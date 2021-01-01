@@ -1,0 +1,42 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(tibble.print_min = 5, tibble.print_max = 5)
+```
+
+#worldfootballR
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics data from fbref.com
+
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+
+## Usage
+
+The functions available in this package are designed to enable the extraction of world football data.
+
+
+```{r get_raw, eval = FALSE}
+# function to extract chess.com game data
+serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = "2020")
+```
