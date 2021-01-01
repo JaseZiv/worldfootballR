@@ -1,0 +1,31 @@
+Package: worldfootballR
+Type: Package
+Title: An R Package To Extract World Football (Soccer) data from fbref.com
+Version: 0.0.0.9000
+Authors@R: person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
+                  role = c("aut", "cre"))
+URL: https://github.com/JaseZiv/worldfootballR
+BugReports: https://github.com/JaseZiv/worldfootballR/issues
+Description: This R package will enable users to extract a number of different game and player statistics and metrics from fbref.com.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    rlang,
+    dplyr,
+    purrr,
+    tidyr,
+    stringr,
+    lubridate,
+    magrittr,
+    scales,
+    xml2,
+    rvest,
+    curl,
+    rvest,
+    xml2
+RoxygenNote: 7.1.0
+Suggests: knitr,
+    rmarkdown,
+    ggplot2
+VignetteBuilder: knitr
