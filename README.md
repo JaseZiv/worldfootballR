@@ -15,7 +15,7 @@ You can install the `worldfootballR` package from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("JaseZiv/worldfootballR")
+devtools::install_github("JaseZiv/worldfootballR", ref = "main")
 ```
 
 Usage
