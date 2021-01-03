@@ -28,7 +28,9 @@ You can install the `worldfootballR` package from github with:
 ```{r gh-installation}
 # install.packages("devtools")
 devtools::install_github("JaseZiv/worldfootballR", ref = "main")
+```
 
+```{r load_libs}
 library(worldfootballR)
 ```
 
@@ -44,7 +46,7 @@ To get the match results (and additional metadata) for all games for a tier-1 le
 ```{r get_match_results}
 # function to extract chess.com game data
 serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = "2020")
-serieA_2020
+head(serieA_2020, 10)
 ```
 
 
@@ -70,7 +72,7 @@ The following stat types can be selected:
 * *misc*
 
 ```{r get_season_team_stats}
-# function to extract chess.com game data
+# function to extract season teams stats
 prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", stat_type = "shooting")
 prem_2020_shooting
 ```
