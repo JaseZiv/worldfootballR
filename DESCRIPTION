@@ -21,9 +21,7 @@ Imports:
     scales,
     xml2,
     rvest,
-    curl,
-    rvest,
-    xml2
+    curl
 RoxygenNote: 7.1.0
 Suggests: knitr,
     rmarkdown,
