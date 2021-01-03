@@ -131,6 +131,7 @@ get_season_team_stats <- function(country, gender, season_end_year,
     dplyr::filter(.data$Team_or_Opponent == "team") %>%
     dplyr::bind_rows(
       stat_df %>%
+        dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
         dplyr::filter(.data$Team_or_Opponent == "opponent")
     ) %>%
     dplyr::select(.data$Squad, .data$Team_or_Opponent, dplyr::everything())
