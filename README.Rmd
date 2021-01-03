@@ -25,9 +25,11 @@ This package is designed to allow users to extract various world football result
 
 You can install the `worldfootballR` package from github with:
 
-```{r gh-installation, eval = FALSE}
+```{r gh-installation}
 # install.packages("devtools")
 devtools::install_github("JaseZiv/worldfootballR", ref = "main")
+
+library(worldfootballR)
 ```
 
 
@@ -35,8 +37,40 @@ devtools::install_github("JaseZiv/worldfootballR", ref = "main")
 
 The functions available in this package are designed to enable the extraction of world football data.
 
+### Get match results
 
-```{r get_raw, eval = FALSE}
+To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
+
+```{r get_match_results}
 # function to extract chess.com game data
 serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = "2020")
+serieA_2020
+```
+
+
+### Get Season Team Stats
+
+The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in a tier-1 league season.
+
+Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
+
+The following stat types can be selected:
+
+* *league_table*
+* *league_table_home_away*
+* *standard*
+* *keeper*
+* *keeper_adv*
+* *shooting*
+* *passing*
+* *goal_shot_creation*
+* *defense*
+* *possession*
+* *playing_time*
+* *misc*
+
+```{r get_season_team_stats}
+# function to extract chess.com game data
+prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", stat_type = "shooting")
+prem_2020_shooting
 ```

@@ -2,5 +2,6 @@
 
 export(get_match_results)
 export(get_match_urls)
+export(get_season_team_stats)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
