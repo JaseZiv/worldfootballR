@@ -1,3 +1,6 @@
+
+
+
 #' Get season team stats
 #'
 #' Returns different team season statistics results for a given league season and stat type
@@ -30,9 +33,11 @@
 
 
 get_season_team_stats <- function(country, gender, season_end_year,
-                                stat_type = c("league_table", "league_table_home_away", "standard", "keeper", "keeper_adv",
-                                              "shooting", "passing", "goal_shot_creation", "defense", "possession", "playing_time",
-                                              "misc")) {
+                                  stat_type = c("league_table", "league_table_home_away", "standard", "keeper", "keeper_adv",
+                                                "shooting", "passing", "goal_shot_creation", "defense", "possession", "playing_time",
+                                                "misc")) {
+
+  print(paste0("Scraping ", country, " fist division ", stat_type, " data for the ", season_end_year, " season (gender = ", gender, ")"))
 
   select_season <- .get_league_season_url(country=country, gender=gender, season=season_end_year)
 
@@ -46,84 +51,86 @@ get_season_team_stats <- function(country, gender, season_end_year,
     rvest::html_attr("href") %>% .[!is.na(.)] %>% unique() %>%
     paste0("https://fbref.com", .)
 
+  tryCatch(
+    if(stat_type == "league_table") {
+      stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
 
-  if(stat_type == "league_table") {
-    stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
+    } else if(stat_type == "league_table_home_away") {
+      stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
 
-  } else if(stat_type == "league_table_home_away") {
-    stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+      var_names <- stat_df[1,] %>% as.character()
 
-    var_names <- stat_df[1,] %>% as.character()
+      new_names <- paste(var_names, names(stat_df), sep = "_")
 
-    new_names <- paste(var_names, names(stat_df), sep = "_")
+      new_names <- new_names %>%
+        gsub("\\..*", "", .) %>%
+        gsub("_Var", "", .) %>%
+        gsub("/", "_per_", .)
 
-    new_names <- new_names %>%
-      gsub("\\..*", "", .) %>%
-      gsub("_Var", "", .) %>%
-      gsub("/", "_per_", .)
+      names(stat_df) <- new_names
+      stat_df <- stat_df[-1,]
 
-    names(stat_df) <- new_names
-    stat_df <- stat_df[-1,]
+      cols_to_transform <- stat_df %>%
+        dplyr::select(-.data$Squad) %>% names()
 
-    cols_to_transform <- stat_df %>%
-      dplyr::select(-.data$Squad) %>% names()
+      stat_df <- stat_df %>%
+        dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
+        dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
+        dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
 
-    stat_df <- stat_df %>%
-      dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
-      dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
-      dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+    } else if(stat_type == "standard") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_standard"))]
 
-  } else if(stat_type == "standard") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_standard"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "keeper") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper$"))]
 
-  } else if(stat_type == "keeper") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "keeper_adv") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper_adv"))]
 
-  } else if(stat_type == "keeper_adv") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper_adv"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "shooting") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_shooting$"))]
 
-  } else if(stat_type == "shooting") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_shooting$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "passing") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing$"))]
 
-  } else if(stat_type == "passing") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "goal_shot_creation") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_gca$"))]
 
-  } else if(stat_type == "goal_shot_creation") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_gca$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "defense") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_defense$"))]
 
-  } else if(stat_type == "defense") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_defense$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "possession") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_possession$"))]
 
-  } else if(stat_type == "possession") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_possession$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "playing_time") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_playing_time$"))]
 
-  } else if(stat_type == "playing_time") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_playing_time$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    } else if(stat_type == "misc") {
+      stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_misc$"))]
 
-  } else if(stat_type == "misc") {
-    stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_misc$"))]
+      stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+    }, error = function(e) e, finally = print(glue::glue("Stat Type '{stat_type}' is not found for this league season. Check {select_season} to see if it exists.")))
 
-    stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
-  }
 
+  stopifnot("Data not available, see message above" = length(stats_url == 0))
   names(stat_df) <- gsub("\\+", "_plus_", names(stat_df))
 
   stat_df <- stat_df %>%

@@ -49,8 +49,12 @@
 
   league_url <- competitions %>%
     dplyr::filter(toupper(.data$Country) == toupper(country),
-           toupper(.data$Gender) == toupper(gender)) %>%
+                  toupper(.data$Gender) == toupper(gender)) %>%
     dplyr::pull(.data$competition_urls)
+
+  stopifnot("Country or Gender not found" =
+              toupper(country) %in% competitions$Country,
+            toupper(gender) %in% competitions$Gender)
 
   league_url <- xml2::read_html(league_url)
 
@@ -58,6 +62,9 @@
     rvest::html_nodes("th a") %>%
     rvest::html_text() %>%
     gsub(".*-", "", .)
+
+  stopifnot("Season not found or needs to be wrapped in quotes" =
+              season %in% seasons)
 
   seasons_urls <- league_url %>%
     rvest::html_nodes("th a") %>%
