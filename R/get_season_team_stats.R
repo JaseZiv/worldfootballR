@@ -53,9 +53,11 @@ get_season_team_stats <- function(country, gender, season_end_year,
 
   tryCatch(
     if(stat_type == "league_table") {
+      stats_url <- NA
       stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
 
     } else if(stat_type == "league_table_home_away") {
+      stats_url <- NA
       stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
 
       var_names <- stat_df[1,] %>% as.character()
@@ -133,6 +135,7 @@ get_season_team_stats <- function(country, gender, season_end_year,
   stopifnot("Data not available, see message above" = length(stats_url) > 0)
   names(stat_df) <- gsub("\\+", "_plus_", names(stat_df))
 
+
   stat_df <- stat_df %>%
     dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
     dplyr::filter(.data$Team_or_Opponent == "team") %>%
@@ -141,7 +144,8 @@ get_season_team_stats <- function(country, gender, season_end_year,
         dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
         dplyr::filter(.data$Team_or_Opponent == "opponent")
     ) %>%
-    dplyr::select(.data$Squad, .data$Team_or_Opponent, dplyr::everything())
+    dplyr::mutate(Season = season_end_year) %>%
+    dplyr::select(.data$Season, .data$Squad, .data$Team_or_Opponent, dplyr::everything())
 
   return(stat_df)
 }

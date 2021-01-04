@@ -110,6 +110,7 @@
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
     gsub("_Penalty", "", .) %>%
+    gsub("1/3", "Final_Third", .) %>%
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .)
 
