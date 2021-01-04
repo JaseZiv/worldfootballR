@@ -127,10 +127,10 @@ get_season_team_stats <- function(country, gender, season_end_year,
       stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_misc$"))]
 
       stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
-    }, error = function(e) e, finally = print(glue::glue("Stat Type '{stat_type}' is not found for this league season. Check {select_season} to see if it exists.")))
+    }, error = function(e) print(glue::glue("Stat Type '{stat_type}' is not found for this league season. Check {select_season} to see if it exists.")))
 
 
-  stopifnot("Data not available, see message above" = length(stats_url == 0))
+  stopifnot("Data not available, see message above" = length(stats_url) > 0)
   names(stat_df) <- gsub("\\+", "_plus_", names(stat_df))
 
   stat_df <- stat_df %>%
