@@ -109,7 +109,9 @@
     gsub("# Pl", "Num_Players", .) %>%
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
-    gsub("_Penalty", "", .)
+    gsub("_Penalty", "", .) %>%
+    gsub("/", "_per_", .) %>%
+    gsub("-", "_minus_", .)
 
   names(stat_df) <- new_names
   stat_df <- stat_df[-1,]
