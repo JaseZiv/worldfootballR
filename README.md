@@ -16,33 +16,6 @@ You can install the `worldfootballR` package from github with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("JaseZiv/worldfootballR")
-#> Downloading GitHub repo JaseZiv/worldfootballR@HEAD
-#> 
-#>   
-   checking for file ‘/private/var/folders/kx/465y60ys7k92qz7_14xq0pfw0000gn/T/RtmpseIX7Y/remotes496a5bfc6394/JaseZiv-worldfootballR-7313a49/DESCRIPTION’ ...
-  
-✓  checking for file ‘/private/var/folders/kx/465y60ys7k92qz7_14xq0pfw0000gn/T/RtmpseIX7Y/remotes496a5bfc6394/JaseZiv-worldfootballR-7313a49/DESCRIPTION’
-#> 
-  
-─  preparing ‘worldfootballR’:
-#> 
-  
-   checking DESCRIPTION meta-information ...
-  
-✓  checking DESCRIPTION meta-information
-#> 
-  
-─  checking for LF line-endings in source and make files and shell scripts
-#> 
-  
-─  checking for empty or unneeded directories
-#> 
-  
-─  building ‘worldfootballR_0.0.0.9000.tar.gz’
-#> 
-  
-   
-#> 
 ```
 
 ``` r
@@ -111,7 +84,8 @@ prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", seaso
 #> [1] "Scraping ENG fist division shooting data for the 2020 season (gender = M)"
 glimpse(prem_2020_shooting)
 #> Rows: 40
-#> Columns: 21
+#> Columns: 22
+#> $ Season                   <chr> "2020", "2020", "2020", "2020", "2020", "202…
 #> $ Squad                    <chr> "Arsenal", "Aston Villa", "Bournemouth", "Br…
 #> $ Team_or_Opponent         <chr> "team", "team", "team", "team", "team", "tea…
 #> $ Num_Players              <dbl> 29, 28, 27, 25, 22, 27, 25, 24, 24, 24, 24, …
