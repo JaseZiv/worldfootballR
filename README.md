@@ -3,6 +3,9 @@
 worldfootballR
 ==============
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main)](https://travis-ci.org/JaseZiv/worldfootballR) <!-- badges: end -->
+
 Overview
 --------
 
@@ -28,7 +31,15 @@ Usage
 
 The functions available in this package are designed to enable the extraction of world football data.
 
-### Get match results
+There are three main categories of data extract functions in this package:
+
+-   Match-level statistics (team and player)
+-   Season-level statistics (team and player)
+-   League / Team metadata
+
+### Match-level statistics
+
+#### Get match results
 
 To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
 
@@ -46,18 +57,68 @@ glimpse(serieA_2020)
 #> $ Date       <chr> "2019-08-24", "2019-08-24", "2019-08-25", "2019-08-25", "2…
 #> $ Time       <chr> "18:00", "20:45", "18:00", "20:45", "20:45", "20:45", "20:…
 #> $ Home       <chr> "Parma", "Fiorentina", "Udinese", "Torino", "SPAL", "Roma"…
-#> $ HomeGoals  <dbl> 0, 3, 1, 2, 2, 3, 1, 0, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1, 2, 4…
-#> $ Home_xG    <dbl> 0.4, 1.7, 1.0, 1.2, 1.6, 1.9, 0.2, 1.0, 0.8, 1.7, 2.8, 1.5…
+#> $ HomeGoals  <dbl> 0, 3, 1, 2, 2, 3, 0, 1, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1, 2, 4…
+#> $ Home_xG    <dbl> 0.4, 1.7, 1.0, 1.2, 1.6, 1.9, 1.0, 0.2, 0.8, 1.7, 2.8, 1.5…
 #> $ Away       <chr> "Juventus", "Napoli", "Milan", "Sassuolo", "Atalanta", "Ge…
 #> $ AwayGoals  <dbl> 1, 4, 0, 1, 3, 3, 1, 1, 3, 0, 0, 0, 3, 1, 3, 2, 1, 3, 1, 1…
-#> $ Away_xG    <dbl> 1.3, 2.0, 0.5, 1.5, 1.7, 1.3, 1.6, 1.5, 2.3, 0.7, 0.7, 0.6…
-#> $ Attendance <dbl> 20073, 33614, 24584, 16536, 11706, 38779, 16324, 16099, 19…
+#> $ Away_xG    <dbl> 1.3, 2.0, 0.5, 1.5, 1.7, 1.3, 1.5, 1.6, 2.3, 0.7, 0.7, 0.6…
+#> $ Attendance <dbl> 20073, 33614, 24584, 16536, 11706, 38779, 16099, 16324, 19…
 #> $ Venue      <chr> "Stadio Ennio Tardini", "Stadio Artemio Franchi", "Dacia A…
 #> $ Referee    <chr> "Fabio Maresca", "Davide Massa", "Fabrizio Pasqua", "Mauri…
 #> $ Notes      <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
 ```
 
-### Get Season Team Stats
+#### Get match report
+
+This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:
+
+``` r
+# function to extract chess.com game data
+liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+#> Scraping Liverpool vs. Manchester City Match Report – Sunday November 10, 2019
+glimpse(liv_mci_2020)
+#> Rows: 1
+#> Columns: 14
+#> $ League         <chr> "Premier League"
+#> $ Match_Date     <chr> "Sunday November 10, 2019"
+#> $ Matchweek      <chr> "Premier League (Matchweek 12)"
+#> $ Home_Team      <chr> "Liverpool"
+#> $ Home_Formation <chr> "4-3-3"
+#> $ Home_Score     <dbl> 3
+#> $ Home_xG        <dbl> 1
+#> $ Home_Goals     <chr> "\n\t\t\n\t\t\tFabinho · 6&rsquor; \n\t\t\n\t\t\tMoham…
+#> $ Away_Team      <chr> "Manchester City"
+#> $ Away_Formation <chr> "4-2-3-1"
+#> $ Away_Score     <dbl> 1
+#> $ Away_xG        <dbl> 1.3
+#> $ Away_Goals     <chr> "\n\t\t\n\t\t\t Bernardo Silva · 78&rsquor;\n\t\t\n\t"
+#> $ Game_URL       <chr> "https://fbref.com/en/matches/47880eb7/Liverpool-Manch…
+```
+
+#### Get match lineups
+
+This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.
+
+``` r
+# function to extract chess.com game data
+liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+#> Scraping lineups for Liverpool vs. Manchester City Match Report – Sunday November 10, 2019
+glimpse(liv_mci_2020_lineups)
+#> Rows: 36
+#> Columns: 6
+#> $ Matchday    <chr> "Liverpool vs. Manchester City Match Report – Sunday Nove…
+#> $ Team        <chr> "Liverpool", "Liverpool", "Liverpool", "Liverpool", "Live…
+#> $ Formation   <chr> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-…
+#> $ Player_Num  <chr> "1", "3", "4", "5", "6", "9", "10", "11", "14", "26", "66…
+#> $ Player_Name <chr> "Alisson", "Fabinho", "Virgil van Dijk", "Georginio Wijna…
+#> $ Starting    <chr> "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pi…
+```
+
+------------------------------------------------------------------------
+
+### Season-level statistics
+
+#### Get Season Team Stats
 
 The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in a tier-1 league season.
 

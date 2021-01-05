@@ -16,6 +16,10 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 #worldfootballR
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main)](https://travis-ci.org/JaseZiv/worldfootballR)
+<!-- badges: end -->
+
 ## Overview
 
 This package is designed to allow users to extract various world football results and player statistics data from fbref.com
@@ -40,7 +44,15 @@ library(tidyverse)
 
 The functions available in this package are designed to enable the extraction of world football data.
 
-### Get match results
+There are three main categories of data extract functions in this package:
+
+* Match-level statistics (team and player)
+* Season-level statistics (team and player)
+* League / Team metadata
+
+### Match-level statistics
+
+#### Get match results
 
 To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
 
@@ -51,7 +63,33 @@ glimpse(serieA_2020)
 ```
 
 
-### Get Season Team Stats
+#### Get match report
+
+This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
+
+```{r get_match_report}
+# function to extract chess.com game data
+liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+glimpse(liv_mci_2020)
+```
+
+
+#### Get match lineups
+
+This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.  
+
+```{r get_match_lineups}
+# function to extract chess.com game data
+liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+glimpse(liv_mci_2020_lineups)
+```
+
+***
+
+### Season-level statistics
+
+
+#### Get Season Team Stats
 
 The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in a tier-1 league season.
 
