@@ -11,16 +11,16 @@ get_match_results(country, gender, season_end_year)
 
 \item{gender}{gender of competition, either "M" or "F"}
 
-\item{season_end_year}{the year the season concludes, in quotes, ie "2021"}
+\item{season_end_year}{the year(s) the season concludes}
 }
 \value{
 returns a dataframe with the results of the competition, season and gender
 }
 \description{
-Returns the game results for a given league season
+Returns the game results for a given league season(s)
 }
 \examples{
 \dontrun{
-get_match_results(country = "ITA", gender = "M", season_end_year = "2020")
+get_match_results(country = c("ENG", "ITA", "GER"), gender = "M", season_end_year = c(2018:2021))
 }
 }
