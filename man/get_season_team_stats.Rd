@@ -14,11 +14,11 @@ get_season_team_stats(
 )
 }
 \arguments{
-\item{country}{the three character country code}
+\item{country}{the three character country code for all countries}
 
-\item{gender}{gender of competition, either "M" or "F"}
+\item{gender}{gender of competition, either "M", "F" or both}
 
-\item{season_end_year}{the year the season concludes, in quotes, ie "2021"}
+\item{season_end_year}{the year the season(s) concludes}
 
 \item{stat_type}{the type of team statistics the user requires
 
@@ -37,6 +37,6 @@ Returns different team season statistics results for a given league season and s
 }
 \examples{
 \dontrun{
-get_team_statistics(country = "ITA", gender = "M", season_end_year = "2020", stat_type = defense)
+get_team_statistics(country = "ITA", gender = "M", season_end_year = c(2017:2021), stat_type = defense)
 }
 }
