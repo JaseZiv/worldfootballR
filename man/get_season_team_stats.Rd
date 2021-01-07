@@ -9,8 +9,8 @@ get_season_team_stats(
   gender,
   season_end_year,
   stat_type = c("league_table", "league_table_home_away", "standard", "keeper",
-    "keeper_adv", "shooting", "passing", "goal_shot_creation", "defense", "possession",
-    "playing_time", "misc")
+    "keeper_adv", "shooting", "passing", "passing_types", "goal_shot_creation",
+    "defense", "possession", "playing_time", "misc")
 )
 }
 \arguments{
@@ -26,8 +26,8 @@ The statistic type options (stat_type) include:
 
 \emph{"league_table"}, \emph{"league_table_home_away}", \emph{"standard"},
 \emph{"keeper"}, \emph{"keeper_adv"}, \emph{"shooting"}, \emph{"passing"},
-\emph{"goal_shot_creation"}, \emph{"defense" }, \emph{"possession"},
-\emph{"playing_time"}, \emph{"misc"}}
+\emph{"passing"_types}, \emph{"goal_shot_creation"}, \emph{"defense" },
+\emph{"possession"}, \emph{"playing_time"}, \emph{"misc"}}
 }
 \value{
 returns a dataframe of a selected team statistic type for a selected league season

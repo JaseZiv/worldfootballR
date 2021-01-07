@@ -11,8 +11,8 @@
 #'
 #' \emph{"league_table"}, \emph{"league_table_home_away}", \emph{"standard"},
 #' \emph{"keeper"}, \emph{"keeper_adv"}, \emph{"shooting"}, \emph{"passing"},
-#' \emph{"goal_shot_creation"}, \emph{"defense" }, \emph{"possession"},
-#' \emph{"playing_time"}, \emph{"misc"}
+#' \emph{"passing"_types}, \emph{"goal_shot_creation"}, \emph{"defense" },
+#' \emph{"possession"}, \emph{"playing_time"}, \emph{"misc"}
 #'
 #' @return returns a dataframe of a selected team statistic type for a selected league season
 #'
@@ -30,8 +30,8 @@
 
 get_season_team_stats <- function(country, gender, season_end_year,
                                   stat_type = c("league_table", "league_table_home_away", "standard", "keeper", "keeper_adv",
-                                                "shooting", "passing", "goal_shot_creation", "defense", "possession", "playing_time",
-                                                "misc")) {
+                                                "shooting", "passing", "passing_types", "goal_shot_creation", "defense", "possession",
+                                                "playing_time", "misc")) {
 
   print(glue::glue("Scraping season {stat_type} stats"))
 
@@ -118,6 +118,11 @@ get_season_team_stats <- function(country, gender, season_end_year,
 
       } else if(stat_type == "passing") {
         stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing$"))]
+
+        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+
+      } else if(stat_type == "passing_types") {
+        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing_types"))]
 
         stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
 
