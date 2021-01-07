@@ -4,23 +4,23 @@
 \alias{get_match_urls}
 \title{Get match URLs}
 \usage{
-get_match_urls(country, gender, season)
+get_match_urls(country, gender, season_end_year)
 }
 \arguments{
 \item{country}{the three character country code}
 
-\item{gender}{gender of competition, either "M" or "F"}
+\item{gender}{gender of competition, either "M" or "F", or both}
 
-\item{season}{the year the season concludes, in quotes, ie "2021"}
+\item{season_end_year}{the year the season(s) concludes}
 }
 \value{
-returns a character vector of all fbref match URLs for a given competition, season and gender
+returns a character vector of all fbref match URLs for selected competition, season and gender
 }
 \description{
 Returns the URL for each match played for a given league season
 }
 \examples{
 \dontrun{
-get_match_urls(country = "ENG", gender = "M", season_end_year = "2020")
+get_match_urls(country = "ENG", gender = "M", season_end_year = c(2019:2021))
 }
 }

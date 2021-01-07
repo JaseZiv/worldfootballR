@@ -3,10 +3,10 @@
 #' Returns the URL for each match played for a given league season
 #'
 #' @param country the three character country code
-#' @param gender gender of competition, either "M" or "F"
-#' @param season the year the season concludes, in quotes, ie "2021"
+#' @param gender gender of competition, either "M" or "F", or both
+#' @param season_end_year the year the season(s) concludes
 #'
-#' @return returns a character vector of all fbref match URLs for a given competition, season and gender
+#' @return returns a character vector of all fbref match URLs for selected competition, season and gender
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
@@ -15,30 +15,53 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_match_urls(country = "ENG", gender = "M", season_end_year = "2020")
+#' get_match_urls(country = "ENG", gender = "M", season_end_year = c(2019:2021))
 #' }
 
-get_match_urls <- function(country, gender, season) {
+get_match_urls <- function(country, gender, season_end_year) {
   main_url <- "https://fbref.com"
 
-  country <- toupper(country)
-  gender <- toupper(gender)
-  season <- season
+  cat("Scraping match URLs")
 
-  selected_season <- .get_league_season_url(country, gender, season)
+  country_abbr <- country
+  gender_M_F <- gender
+  season_end_year_num <- season_end_year
 
-  fixtures_url <- xml2::read_html(selected_season) %>%
-    rvest::html_nodes(".hoversmooth") %>%
-    rvest::html_nodes(".full") %>%
-    rvest::html_nodes("a") %>%
-    rvest::html_attr("href") %>% .[grepl("Fixtures", .)] %>% paste0(main_url, .)
 
-  match_report_urls <- xml2::read_html(fixtures_url) %>%
-    # html_nodes(".left~ .left+ .left a") %>%
-    rvest::html_nodes("td.left~ .left+ .left a") %>%
-    rvest::html_attr("href") %>%
-    paste0(main_url, .) %>% unique()
+  main_url <- "https://fbref.com"
 
-  return(match_report_urls)
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+
+  seasons <- seasons %>%
+    dplyr::filter(country %in% country_abbr,
+                  gender %in% gender_M_F,
+                  season_end_year %in% season_end_year_num)
+
+  seasons_urls <- seasons %>%
+    dplyr::pull(seasons_urls)
+
+  get_each_seasons_urls <- function(season_url) {
+
+    fixtures_url <- xml2::read_html(season_url) %>%
+      rvest::html_nodes(".hoversmooth") %>%
+      rvest::html_nodes(".full") %>%
+      rvest::html_nodes("a") %>%
+      rvest::html_attr("href") %>% .[grepl("Fixtures", .)] %>% paste0(main_url, .)
+
+    match_report_urls <- xml2::read_html(fixtures_url) %>%
+      rvest::html_nodes("td.left~ .left+ .left a") %>%
+      rvest::html_attr("href") %>%
+      paste0(main_url, .) %>% unique()
+
+    return(match_report_urls)
+  }
+
+  all_seasons_match_urls <- seasons_urls %>%
+    purrr::map(get_each_seasons_urls) %>%
+    unlist()
+
+  cat("Match URLs scrape completed")
+
+  return(all_seasons_match_urls)
 
 }
