@@ -33,7 +33,7 @@ get_season_team_stats <- function(country, gender, season_end_year,
                                                 "shooting", "passing", "passing_types", "goal_shot_creation", "defense", "possession",
                                                 "playing_time", "misc")) {
 
-  print(glue::glue("Scraping season {stat_type} stats"))
+  cat(glue::glue("Scraping season {stat_type} stats"))
 
   country_abbr <- country
   gender_M_F <- gender

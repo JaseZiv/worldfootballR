@@ -21,7 +21,7 @@
 
 get_match_results <- function(country, gender, season_end_year) {
 
-  print("Scraping match results")
+  cat("Scraping match results")
 
   country_abbr <- country
   gender_M_F <- gender
@@ -95,7 +95,7 @@ get_match_results <- function(country, gender, season_end_year) {
     dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
     dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time)
 
-  print("Match results finished scraping")
+  cat("Match results finished scraping")
 
   return(all_results)
 }

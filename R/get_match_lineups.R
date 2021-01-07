@@ -22,7 +22,7 @@ get_match_lineups <- function(match_url) {
 
   game <- match_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
-  print(glue::glue("Scraping lineups for {game}"))
+  cat(glue::glue("Scraping lineups for {game}"))
 
   lineups <- match_page %>% rvest::html_nodes(".lineup") %>% rvest::html_nodes("table")
 
