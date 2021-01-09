@@ -127,3 +127,53 @@
 
   return(stat_df)
 }
+
+
+
+#' Clean each match advanced statistic tables
+#'
+#' Returns cleaned data frame for each of the team statistic tables for each selected match
+#'
+#' @param df_in a raw match stats data frame
+#'
+#' @return a cleaned data frame for the selected match advanced statistic
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+
+.clean_match_advanced_stats_data <- function(df_in) {
+
+  var_names <- df_in[1,] %>% as.character()
+
+  new_names <- paste(var_names, names(df_in), sep = "_")
+
+  new_names <- new_names %>%
+    gsub("\\..*", "", .) %>%
+    gsub("_Var", "", .) %>%
+    gsub("#", "Player_Num", .) %>%
+    gsub("%", "_percent", .) %>%
+    gsub("_Performance", "", .) %>%
+    gsub("_Penalty", "", .) %>%
+    gsub("1/3", "Final_Third", .) %>%
+    gsub("/", "_per_", .) %>%
+    gsub("-", "_minus_", .)
+
+  names(df_in) <- new_names
+  df_in <- df_in[-1,]
+
+  df_in$Nation <- gsub(".*? ", "", df_in$Nation)
+
+  # cols_to_transform <- df_in %>%
+  #   dplyr::select(-.data$Player, -.data$Nation, -.data$Pos, -.data$Age) %>% names()
+
+  non_num_vars <- c("Player", "Nation", "Pos", "Age")
+  cols_to_transform <- names(df_in)[!names(df_in) %in% non_num_vars]
+
+  df_in <- df_in %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+
+  return(df_in)
+}
