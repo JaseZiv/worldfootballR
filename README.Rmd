@@ -177,3 +177,32 @@ Important to note, this function can only be used for one `stat-type` at a time,
 big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
                                         gender = "M", season_end_year = 2020, stat_type = "possession")
 ```
+
+***
+
+## Contributing
+
+### Issues and Feature Requests
+
+Issues, feature requests and improvement ideas are all welcome.
+
+When reporting an issue, please include:
+
+* Reproducible examples
+* A brief description of what the expected results are
+* If applicable, the fbref.com page the observed behaviour is occuring on
+
+For feature requests, raise an issue with the following:
+
+* The desired functionality
+* Example inputs and desired output
+
+
+### Pull Requests
+Pull requests are also welcomed. Before doing so, please create an issue or email me with your idea.
+
+Any new functions should follow the conventions established by the the package’s existing functions. Please ensure:
+
+* Functions are sensibly named
+* The intent of the contribution is clear
+* At least one example is provided in the documentation
