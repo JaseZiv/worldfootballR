@@ -112,7 +112,8 @@
     gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
     gsub("/", "_per_", .) %>%
-    gsub("-", "_minus_", .)
+    gsub("-", "_minus_", .) %>%
+    gsub("90s", "Mins_Per_90", .)
 
   names(stat_df) <- new_names
   stat_df <- stat_df[-1,]
@@ -157,7 +158,8 @@
     gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
     gsub("/", "_per_", .) %>%
-    gsub("-", "_minus_", .)
+    gsub("-", "_minus_", .) %>%
+    gsub("90s", "Mins_Per_90", .)
 
   names(df_in) <- new_names
   df_in <- df_in[-1,]

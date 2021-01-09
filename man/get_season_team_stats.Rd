@@ -26,7 +26,7 @@ The statistic type options (stat_type) include:
 
 \emph{"league_table"}, \emph{"league_table_home_away}", \emph{"standard"},
 \emph{"keeper"}, \emph{"keeper_adv"}, \emph{"shooting"}, \emph{"passing"},
-\emph{"passing"_types}, \emph{"goal_shot_creation"}, \emph{"defense" },
+\emph{"passing_types"}, \emph{"goal_shot_creation"}, \emph{"defense" },
 \emph{"possession"}, \emph{"playing_time"}, \emph{"misc"}}
 }
 \value{
