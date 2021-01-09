@@ -27,7 +27,7 @@ get_match_report <- function(match_url) {
 
   game <- each_game_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
-  cat(glue::glue("Scraping {game}"))
+  print(glue::glue("Scraping {game}"))
 
   tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
   tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[3]}, error = function(e) {Match_Date <- NA})
