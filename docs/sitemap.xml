@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//index.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-clean_advanced_stat_table.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-clean_match_advanced_stats_data.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-get_league_season_url.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-get_tier1_competitions.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_advanced_match_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_lineups.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_report.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_results.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_urls.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_season_team_stats.html</loc>
+  </url>
+</urlset>

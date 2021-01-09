@@ -1,0 +1,10 @@
+destination: docs
+title: worldfootballR
+url: https://jaseziv.github.io/worldfootballR/
+template:
+  params:
+    ganalytics: 258373512
+components:
+  twitter:
+    icon: "fab fa-twitter fa-lg"
+    href: https://twitter.com/jaseziv
