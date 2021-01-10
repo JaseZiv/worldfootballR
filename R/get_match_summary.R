@@ -43,7 +43,9 @@ get_match_summary <- function(match_url) {
       events_df <- events_df %>%
         dplyr::mutate(event_time = gsub("&rsquor.*", "", .data$events_string) %>% ifelse(stringr::str_detect(., "\\+"), (as.numeric(gsub("\\+.*", "", .)) + as.numeric(gsub(".*\\+", "", .))), .),
                       event_time = as.numeric(.data$event_time),
-                      event_type = gsub(".* — ", "", .data$events_string) %>% gsub("[[:digit:]]:[[:digit:]]", "", .) %>% stringr::str_squish(),
+                      event_type = ifelse(stringr::str_detect(tolower(.data$events_string), "penalty"), "Penalty",
+                                          ifelse(stringr::str_detect(tolower(.data$events_string), "own goal"), "Own Goal",
+                                                 gsub(".* — ", "", .data$events_string) %>% gsub("[[:digit:]]:[[:digit:]]", "", .))) %>% stringr::str_squish(),
                       event_players = gsub(".*\\;", "", .data$events_string) %>% gsub(" —.*", "", .),
                       score_progression = stringr::str_extract(.data$event_players, "[[:digit:]]:[[:digit:]]"),
                       event_players = gsub("[[:digit:]]:[[:digit:]]", "", .data$event_players) %>% stringr::str_squish()) %>%
