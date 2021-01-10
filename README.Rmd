@@ -83,6 +83,17 @@ glimpse(liv_mci_2020)
 ```
 
 
+#### Get match summaries
+
+This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
+
+```{r get_match_summary}
+# function to extract chess.com game data
+liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+glimpse(liv_mci_2020_summary)
+```
+
+
 #### Get advanced match statistics
 
 The `get_advanced_match_stats` function allows the user to return a data frame of different stat types for matches played.

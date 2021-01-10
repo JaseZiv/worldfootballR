@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clean advanced statistic tables — .clean_advanced_stat_table • worldfootballR</title>
+<title>Get match summary — get_match_summary • worldfootballR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Clean advanced statistic tables — .clean_advanced_stat_table" />
-<meta property="og:description" content="Returns cleaned dataframe for each of the team statistic tables" />
+<meta property="og:title" content="Get match summary — get_match_summary" />
+<meta property="og:description" content="Returns match summary data for selected match URLs, including goals, subs and cards" />
 
 
 
@@ -117,30 +117,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Clean advanced statistic tables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
-    <div class="hidden name"><code>dot-clean_advanced_stat_table.Rd</code></div>
+    <h1>Get match summary</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/get_match_summary.R'><code>R/get_match_summary.R</code></a></small>
+    <div class="hidden name"><code>get_match_summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns cleaned dataframe for each of the team statistic tables</p>
+    <p>Returns match summary data for selected match URLs, including goals, subs and cards</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.clean_advanced_stat_table</span><span class='op'>(</span><span class='va'>advanced_stat_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_match_summary</span><span class='op'>(</span><span class='va'>match_url</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>advanced_stat_url</th>
-      <td><p>url of the html table on the league season page</p></td>
+      <th>match_url</th>
+      <td><p>the fbref.com URL for the required match</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame for the selected league seasons advanced statistic</p>
+    <p>returns a dataframe with the match events (goals, cards, subs) for selecetd matches</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>match</span> <span class='op'>&lt;-</span> <span class='st'>"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span>
+<span class='fu'>get_match_summary</span><span class='op'>(</span>match_url <span class='op'>=</span> <span class='va'>match</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
