@@ -54,6 +54,8 @@ get_match_urls <- function(country, gender, season_end_year) {
       rvest::html_attr("href") %>%
       paste0(main_url, .) %>% unique()
 
+    match_report_urls <- match_report_urls[-grep("-History", match_report_urls)]
+
     return(match_report_urls)
   }
 
