@@ -21,7 +21,7 @@
 get_match_urls <- function(country, gender, season_end_year) {
   main_url <- "https://fbref.com"
 
-  cat("Scraping match URLs")
+  print("Scraping match URLs")
 
   country_abbr <- country
   gender_M_F <- gender
@@ -35,7 +35,8 @@ get_match_urls <- function(country, gender, season_end_year) {
   seasons <- seasons %>%
     dplyr::filter(country %in% country_abbr,
                   gender %in% gender_M_F,
-                  season_end_year %in% season_end_year_num)
+                  season_end_year %in% season_end_year_num) %>%
+    dplyr::arrange(season_end_year)
 
   seasons_urls <- seasons %>%
     dplyr::pull(seasons_urls)
@@ -60,7 +61,7 @@ get_match_urls <- function(country, gender, season_end_year) {
     purrr::map(get_each_seasons_urls) %>%
     unlist()
 
-  cat("Match URLs scrape completed")
+  print("Match URLs scrape completed")
 
   return(all_seasons_match_urls)
 
