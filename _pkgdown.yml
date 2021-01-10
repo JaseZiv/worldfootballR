@@ -3,7 +3,7 @@ title: worldfootballR
 url: https://jaseziv.github.io/worldfootballR/
 template:
   params:
-    ganalytics: 258373512
+    ganalytics: UA-145056765-3
 components:
   twitter:
     icon: "fab fa-twitter fa-lg"
