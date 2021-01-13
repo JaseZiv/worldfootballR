@@ -21,7 +21,7 @@
 
 get_match_results <- function(country, gender, season_end_year) {
 
-  cat("Scraping match results")
+  print("Scraping match results")
 
   country_abbr <- country
   gender_M_F <- gender
@@ -35,21 +35,16 @@ get_match_results <- function(country, gender, season_end_year) {
   seasons <- seasons %>%
     dplyr::filter(country %in% country_abbr,
                   gender %in% gender_M_F,
-                  season_end_year %in% season_end_year_num)
+                  season_end_year %in% season_end_year_num,
+                  !is.na(.data$fixtures_url)) %>%
+    dplyr::arrange(season_end_year)
 
-  seasons_urls <- seasons %>%
-    dplyr::pull(seasons_urls)
+  fixtures_urls <- seasons %>%
+    dplyr::pull(.data$fixtures_url)
 
+  get_each_season_results <- function(fixture_url) {
 
-  get_each_season_results <- function(season_url) {
-
-    fixtures_url <- xml2::read_html(season_url) %>%
-      rvest::html_nodes(".hoversmooth") %>%
-      rvest::html_nodes(".full") %>%
-      rvest::html_nodes("a") %>%
-      rvest::html_attr("href") %>% .[grepl("Fixtures", .)] %>% paste0(main_url, .)
-
-    fixtures_page <- xml2::read_html(fixtures_url)
+    fixtures_page <- xml2::read_html(fixture_url)
 
     season_name <- fixtures_page %>% rvest::html_nodes("h2 span") %>% rvest::html_text() %>% .[1]
 
@@ -66,7 +61,7 @@ get_match_results <- function(country, gender, season_end_year) {
                       Attendance = as.numeric(gsub(",", "", .data$Attendance)))
     )
 
-    season_summary <- cbind(season_url, season_name, season_summary)
+    season_summary <- cbind(fixture_url, season_summary)
 
     if(!any(stringr::str_detect(names(season_summary), "Round"))) {
       Round <- rep(NA, nrow(season_summary))
@@ -75,27 +70,26 @@ get_match_results <- function(country, gender, season_end_year) {
 
     if(any(stringr::str_detect(names(season_summary), "xG"))) {
       season_summary <- season_summary %>%
-        dplyr::select(.data$season_url, Season_Name=.data$season_name, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, Home_xG=.data$xG, .data$Away, .data$AwayGoals, Away_xG=.data$xG.1, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
+        dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, Home_xG=.data$xG, .data$Away, .data$AwayGoals, Away_xG=.data$xG.1, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
     } else {
       season_summary <- season_summary %>%
-        dplyr::select(.data$season_url, Season_Name=.data$season_name, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, .data$Away, .data$AwayGoals, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
+        dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, .data$Away, .data$AwayGoals, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
     }
-
 
     return(season_summary)
   }
 
-  all_results <- seasons_urls %>%
+  all_results <- fixtures_urls %>%
     purrr::map_df(get_each_season_results)
 
   all_results <- seasons %>%
-    dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls) %>%
-    dplyr::left_join(all_results, by = c("seasons_urls" = "season_url")) %>%
-    dplyr::select(-.data$seasons_urls) %>%
+    dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls, .data$fixtures_url) %>%
+    dplyr::left_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
+    dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%
     dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
     dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time)
 
-  cat("Match results finished scraping")
+  print("Match results finished scraping")
 
   return(all_results)
 }
