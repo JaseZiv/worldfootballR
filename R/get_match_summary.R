@@ -21,9 +21,8 @@ get_match_summary <- function(match_url) {
 
   get_each_match_summary <- function(match_url) {
     match_report <- worldfootballR::get_match_report(match_url = match_url)
-    each_game_page <- NA
 
-    tryCatch( {each_game_page <- xml2::read_html(match_url)}, error = function(e) {each_game_page <- NA})
+    each_game_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
     if(!is.na(each_game_page)) {
       tryCatch( {Home_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_Team <- NA})

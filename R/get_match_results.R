@@ -42,6 +42,7 @@ get_match_results <- function(country, gender, season_end_year) {
   fixtures_urls <- seasons %>%
     dplyr::pull(.data$fixtures_url)
 
+
   get_each_season_results <- function(fixture_url) {
 
     fixtures_page <- xml2::read_html(fixture_url)
@@ -68,6 +69,11 @@ get_match_results <- function(country, gender, season_end_year) {
       season_summary <- cbind(Round, season_summary)
     }
 
+    if(!any(stringr::str_detect(names(season_summary), "Wk"))) {
+      Wk <- rep(NA, nrow(season_summary))
+      season_summary <- cbind(Wk, season_summary)
+    }
+
     if(any(stringr::str_detect(names(season_summary), "xG"))) {
       season_summary <- season_summary %>%
         dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, Home_xG=.data$xG, .data$Away, .data$AwayGoals, Away_xG=.data$xG.1, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
@@ -79,6 +85,8 @@ get_match_results <- function(country, gender, season_end_year) {
     return(season_summary)
   }
 
+  stopifnot("Data not available for the season(s) selected" = length(fixtures_urls) > 0)
+
   all_results <- fixtures_urls %>%
     purrr::map_df(get_each_season_results)
 
@@ -88,6 +96,7 @@ get_match_results <- function(country, gender, season_end_year) {
     dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%
     dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
     dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time)
+
 
   print("Match results finished scraping")
 

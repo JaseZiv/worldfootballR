@@ -24,16 +24,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_team_statistics(country = "ITA", gender = "M", season_end_year = c(2017:2021), stat_type = defense)
+#' get_team_statistics(country = "ITA", gender = "M", season_end_year = c(2017:2021), stat_type = "defense")
 #' }
-
 
 get_season_team_stats <- function(country, gender, season_end_year,
                                   stat_type = c("league_table", "league_table_home_away", "standard", "keeper", "keeper_adv",
                                                 "shooting", "passing", "passing_types", "goal_shot_creation", "defense", "possession",
                                                 "playing_time", "misc")) {
 
-  cat(glue::glue("Scraping season {stat_type} stats"))
+  print(glue::glue("Scraping season {stat_type} stats"))
 
   country_abbr <- country
   gender_M_F <- gender
@@ -139,7 +138,7 @@ get_season_team_stats <- function(country, gender, season_end_year,
       } else if(stat_type == "possession") {
         stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_possession$"))]
 
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df <- tryCatch(.clean_advanced_stat_table(advanced_stat_url = stats_url), error = function(e) data.frame())
 
       } else if(stat_type == "playing_time") {
         stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_playing_time$"))]
@@ -175,7 +174,9 @@ get_season_team_stats <- function(country, gender, season_end_year,
       stat_df <- seasons %>%
         dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls) %>%
         dplyr::left_join(stat_df, by = c("seasons_urls" = "season_url")) %>%
-        dplyr::select(-.data$seasons_urls)
+        dplyr::select(-.data$seasons_urls) %>%
+        dplyr::filter(!is.na(.data$Squad)) %>%
+        dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad)
     }
 
 
@@ -184,9 +185,7 @@ get_season_team_stats <- function(country, gender, season_end_year,
   }
 
   all_stats_df <- seasons_urls %>%
-    purrr::map_df(get_each_stats_type) %>%
-    dplyr::filter(!is.na(.data$Squad)) %>%
-    dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad)
+    purrr::map_df(get_each_stats_type)
 
   return(all_stats_df)
 

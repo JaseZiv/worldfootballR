@@ -18,44 +18,57 @@
 #' }
 
 get_match_lineups <- function(match_url) {
-  match_page <- xml2::read_html(match_url)
+  print("Scraping lineups")
 
-  game <- match_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
+  get_each_match_lineup <- function(match_url) {
 
-  cat(glue::glue("Scraping lineups for {game}"))
+    match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
-  lineups <- match_page %>% rvest::html_nodes(".lineup") %>% rvest::html_nodes("table")
+    if(!is.na(match_page)) {
+      game <- match_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
-  home <- 1
-  away <- 2
+      lineups <- match_page %>% rvest::html_nodes(".lineup") %>% rvest::html_nodes("table")
 
-  get_each_lineup <- function(home_away) {
-    lineup <- lineups[home_away] %>% rvest::html_table() %>% data.frame()
-    formation <- names(lineup)[1] %>% gsub(".*\\.\\.", "", .) %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
-    tryCatch( {team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[home_away]}, error = function(e) {team <- NA})
+      home <- 1
+      away <- 2
 
-    bench_index <- which(lineup[,1] == "Bench")
+      get_each_lineup <- function(home_away) {
+        lineup <- lineups[home_away] %>% rvest::html_table() %>% data.frame()
+        formation <- names(lineup)[1] %>% gsub(".*\\.\\.", "", .) %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        tryCatch( {team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[home_away]}, error = function(e) {team <- NA})
 
-    lineup <- lineup[1:(bench_index-1),] %>% dplyr::mutate(Starting = "Pitch") %>%
-      dplyr::bind_rows(
-        lineup[(bench_index+1):nrow(lineup),] %>% dplyr::mutate(Starting = "Bench")
-      )
+        bench_index <- which(lineup[,1] == "Bench")
 
-    lineup <- lineup %>%
-      dplyr::mutate(Matchday = game,
-             Team = team,
-             Formation = formation)
+        lineup <- lineup[1:(bench_index-1),] %>% dplyr::mutate(Starting = "Pitch") %>%
+          dplyr::bind_rows(
+            lineup[(bench_index+1):nrow(lineup),] %>% dplyr::mutate(Starting = "Bench")
+          )
 
-    names(lineup) <- c("Player_Num", "Player_Name", "Starting", "Matchday", "Team", "Formation")
+        lineup <- lineup %>%
+          dplyr::mutate(Matchday = game,
+                        Team = team,
+                        Formation = formation)
 
-    lineup <- lineup %>%
-      dplyr::select(.data$Matchday, .data$Team, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting)
+        names(lineup) <- c("Player_Num", "Player_Name", "Starting", "Matchday", "Team", "Formation")
 
-    return(lineup)
+        lineup <- lineup %>%
+          dplyr::select(.data$Matchday, .data$Team, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting)
+
+        return(lineup)
+      }
+
+      all_lineup <- c(home, away) %>%
+        purrr::map_df(get_each_lineup)
+
+    } else {
+      print(glue::glue("Lineups not available for {match_url}"))
+      all_lineup <- data.frame()
+    }
+
+    return(all_lineup)
   }
+  all_lineups <- match_url %>%
+    purrr::map_df(get_each_match_lineup)
 
-  all_lineup <- c(home, away) %>%
-    purrr::map_df(get_each_lineup)
-
-  return(all_lineup)
+  return(all_lineups)
 }
