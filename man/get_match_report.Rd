@@ -13,7 +13,7 @@ get_match_report(match_url)
 returns a dataframe with the match details for a selected match
 }
 \description{
-Returns match report details for a selected match
+Returns match report details for selected matches
 }
 \examples{
 \dontrun{

@@ -20,13 +20,13 @@
 get_match_summary <- function(match_url) {
 
   get_each_match_summary <- function(match_url) {
-    match_report <- worldfootballR::get_match_report(match_url = match_url)
 
     each_game_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
     if(!is.na(each_game_page)) {
-      tryCatch( {Home_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_Team <- NA})
-      tryCatch( {Away_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_Team <- NA})
+      match_report <- .get_match_report_page(match_page = each_game_page)
+      Home_Team <- tryCatch(each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1], error = function(e) NA)
+      Away_Team <- tryCatch(each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2], error = function(e) NA)
 
       events <- each_game_page %>% rvest::html_nodes("#events_wrap")
 
@@ -50,17 +50,28 @@ get_match_summary <- function(match_url) {
                       event_players = gsub("[[:digit:]]:[[:digit:]]", "", .data$event_players) %>% stringr::str_squish()) %>%
         dplyr::select(-.data$events_string) %>%
         dplyr::arrange(.data$event_time)
-    } else {
-      events_df <- NA
-    }
 
-    events_df <- cbind(match_report, events_df)
+      events_df <- cbind(match_report, events_df)
+
+    } else {
+      print(glue::glue("Match Summary not available for {match_url}"))
+      events_df <- data.frame()
+    }
 
     return(events_df)
   }
 
   all_events_df <- match_url %>%
     purrr::map_df(get_each_match_summary)
+
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+
+  seasons <- seasons %>%
+    dplyr::filter(.data$seasons_urls %in% all_events_df$League_URL) %>%
+    dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons)
+
+  all_events_df <- cbind(seasons, all_events_df) %>%
+    dplyr::select(-.data$League_URL)
 
   return(all_events_df)
 }

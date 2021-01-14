@@ -35,10 +35,10 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
 
   get_each_match_statistic <- function(match_url) {
 
-    match_report <- tryCatch(worldfootballR::get_match_report(match_url = match_url), error = function(e) NA)
+    match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
-    if(!is.na(match_report)) {
-      match_page <- xml2::read_html(match_url)
+    if(!is.na(match_page)) {
+      match_report <- .get_match_report_page(match_page = match_page)
 
       league_url <- match_page %>%
         rvest::html_nodes("#content") %>%
@@ -153,7 +153,14 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
     final_df <- match_url %>%
       purrr::map_df(get_each_match_statistic) )
 
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+
+  seasons <- seasons %>%
+    dplyr::filter(.data$seasons_urls %in% final_df$League_URL) %>%
+    dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons)
+
+  final_df <- cbind(seasons, final_df) %>%
+    dplyr::select(-.data$League_URL)
+
   return(final_df)
 }
-
-
