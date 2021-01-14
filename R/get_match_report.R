@@ -9,7 +9,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #'
-#' @export
 
 .get_match_report_page <- function(match_page) {
 

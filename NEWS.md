@@ -1,3 +1,7 @@
+# worldfootballR 0.0.1
+* performance improvements, including limiting page reads where match report data included in output
+* error handling
+
 # worldfootballR 0.0.0.9000
 
 * First commit of package
