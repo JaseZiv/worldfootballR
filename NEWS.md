@@ -1,3 +1,8 @@
+# worldfootballR 0.1.0
+* Bug fixes #8
+* Package Logo
+* Tests written and codecov installed
+
 # worldfootballR 0.0.1
 * performance improvements, including limiting page reads where match report data included in output
 * error handling
