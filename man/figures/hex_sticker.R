@@ -23,16 +23,16 @@ sticker(pitch,
         s_x=1, s_y=.8, s_width=1.3, s_height=0.85,
         h_fill = "#538032",
         url = "https://jaseziv.github.io/worldfootballR/", u_y = 0.07, u_x = 1.0, u_size = 1.2, u_color = "white", u_family = "play",
-        filename="man/figures/logo.png") # modify size in viewer to dimensions 181x209 as a png
+        filename="man/figures/logo.png")
 
-# full size hex logo:
+# smaller size hex logo:
 sticker(pitch,
         package="worldfootballR",
         p_family = "play",  p_size=6, p_color = "white",
         s_x=1, s_y=.8, s_width=1.3, s_height=0.85,
         h_fill = "#538032",
         url = "https://jaseziv.github.io/worldfootballR/", u_y = 0.07, u_x = 1.0, u_size = 1.2, u_color = "white", u_family = "play",
-        filename="man/figures/logo_full_size.png")
+        filename="man/figures/logo_small_size.png") # modify size in viewer to dimensions 181x209 as a png
 
 
 ###########################################################################
