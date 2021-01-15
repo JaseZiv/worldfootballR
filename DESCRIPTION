@@ -24,7 +24,10 @@ Imports:
     curl,
     glue
 RoxygenNote: 7.1.1
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown,
-    ggplot2
+    ggplot2,
+    testthat,
+    covr
 VignetteBuilder: knitr

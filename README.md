@@ -1,18 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-worldfootballR
-==============
+
+# worldfootballR <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main)](https://travis-ci.org/JaseZiv/worldfootballR) <!-- badges: end -->
 
-Overview
---------
+[![Travis build
+status](https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main)](https://travis-ci.org/JaseZiv/worldfootballR)
+[![Codecov test
+coverage](https://codecov.io/gh/JaseZiv/worldfootballR/branch/master/graph/badge.svg)](https://codecov.io/gh/JaseZiv/worldfootballR?branch=master)
+<!-- badges: end -->
 
-This package is designed to allow users to extract various world football results and player statistics data from fbref.com
+## Overview
 
-Installation
-------------
+This package is designed to allow users to extract various world
+football results and player statistics data from fbref.com
+
+## Installation
 
 You can install the `worldfootballR` package from github with:
 
@@ -26,35 +30,37 @@ library(worldfootballR)
 library(tidyverse)
 ```
 
-Usage
------
+## Usage
 
-The functions available in this package are designed to enable the extraction of world football data.
+The functions available in this package are designed to enable the
+extraction of world football data.
 
-There are three main categories of data extract functions in this package:
+There are three main categories of data extract functions in this
+package:
 
--   Match-level statistics (team and player)
--   Season-level statistics (team and player)
--   League / Team metadata
+  - Match-level statistics (team and player)
+  - Season-level statistics (team and player)
+  - League / Team metadata
 
 ### Match-level statistics
 
 #### Get match results
 
-To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
+To get the match results (and additional metadata) for all games for a
+tier-1 league season, the following function can be used:
 
 ``` r
 # function to extract chess.com game data
 serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = 2020)
-#> Scraping match resultsMatch results finished scraping
+#> [1] "Scraping match results"
+#> [1] "Match results finished scraping"
 glimpse(serieA_2020)
 #> Rows: 380
-#> Columns: 20
+#> Columns: 19
 #> $ Competition_Name <chr> "Serie A", "Serie A", "Serie A", "Serie A", "Serie A…
 #> $ Gender           <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…
 #> $ Country          <chr> "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "IT…
 #> $ Season_End_Year  <int> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020…
-#> $ Season_Name      <chr> "2019-2020 Serie A", "2019-2020 Serie A", "2019-2020…
 #> $ Round            <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 #> $ Wk               <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2…
 #> $ Day              <chr> "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Su…
@@ -74,7 +80,8 @@ glimpse(serieA_2020)
 
 **More than one league season**
 
-The `get_match_results` function can be used to get data for multiple seasons/leages/genders/etc also:
+The `get_match_results` function can be used to get data for multiple
+seasons/leages/genders/etc also:
 
 ``` r
 big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
@@ -83,12 +90,14 @@ big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", 
 
 #### Get match report
 
-This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:
+This function will return similar results to that of
+`get_match_results()`, however `get_match_report()` will provide some
+additional information. It will also only provide it for a single match,
+not the whole season:
 
 ``` r
 # function to extract chess.com game data
 liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-#> Scraping Liverpool vs. Manchester City Match Report – Sunday November 10, 2019
 glimpse(liv_mci_2020)
 #> Rows: 1
 #> Columns: 17
@@ -113,12 +122,12 @@ glimpse(liv_mci_2020)
 
 #### Get match summaries
 
-This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:
+This function will return the main events that occur during a match,
+including goals, substitutions and red/yellow cards:
 
 ``` r
 # function to extract chess.com game data
 liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-#> Scraping Liverpool vs. Manchester City Match Report – Sunday November 10, 2019
 glimpse(liv_mci_2020_summary)
 #> Rows: 10
 #> Columns: 23
@@ -149,19 +158,21 @@ glimpse(liv_mci_2020_summary)
 
 #### Get advanced match statistics
 
-The `get_advanced_match_stats` function allows the user to return a data frame of different stat types for matches played.
+The `get_advanced_match_stats` function allows the user to return a data
+frame of different stat types for matches played.
 
-Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
+Note, some stats may not be available for all leagues. The big five
+European leagues should have all of these stats.
 
 The following stat types can be selected:
 
--   *summary*
--   *passing*
--   *passing\_types*
--   *defense*
--   *possession*
--   *misc*
--   *keeper*
+  - *summary*
+  - *passing*
+  - *passing\_types*
+  - *defense*
+  - *possession*
+  - *misc*
+  - *keeper*
 
 The function can be used for either all players individually:
 
@@ -171,12 +182,9 @@ test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-A
                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
 
 advanced_match_stats <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "possession", team_or_player = "player")
-#> Scraping Bordeaux vs. Nantes Match Report – Friday August 21, 2020
-#> Scraping Dijon vs. Angers Match Report – Saturday August 22, 2020
-#> Scraping Lorient vs. Strasbourg Match Report – Sunday August 23, 2020
 glimpse(advanced_match_stats)
 #> Rows: 92
-#> Columns: 45
+#> Columns: 48
 #> $ League                <chr> "Ligue 1", "Ligue 1", "Ligue 1", "Ligue 1", "Li…
 #> $ Gender                <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…
 #> $ Country               <chr> "FRA", "FRA", "FRA", "FRA", "FRA", "FRA", "FRA"…
@@ -217,11 +225,14 @@ glimpse(advanced_match_stats)
 #> $ Carries_Carries       <dbl> 10, 9, 24, 10, 28, 6, 36, 19, 62, 35, 6, 51, 55…
 #> $ TotDist_Carries       <dbl> 67, 39, 94, 31, 130, 48, 179, 99, 185, 71, 25, …
 #> $ PrgDist_Carries       <dbl> 15, 7, 49, 15, 67, 32, 72, 54, 106, 32, 23, 82,…
+#> $ Prog_Carries          <dbl> 0, 0, 5, 0, 2, 2, 2, 3, 3, 2, 0, 0, 2, 2, 0, 5,…
+#> $ Final_Third_Carries   <dbl> 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2,…
+#> $ CPA_Carries           <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+#> $ Mis_Carries           <dbl> 1, 1, 4, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,…
+#> $ Dis_Carries           <dbl> 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…
 #> $ Targ_Receiving        <dbl> 18, 22, 33, 16, 37, 16, 41, 18, 67, 35, 3, 47, …
 #> $ Rec_Receiving         <dbl> 12, 13, 22, 11, 28, 8, 37, 17, 64, 34, 3, 47, 6…
 #> $ Rec_percent_Receiving <dbl> 66.7, 59.1, 66.7, 68.8, 75.7, 50.0, 90.2, 94.4,…
-#> $ Miscon                <dbl> 1, 1, 4, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,…
-#> $ Dispos                <dbl> 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…
 ```
 
 Or used for the team totals for each match:
@@ -232,9 +243,6 @@ test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-A
                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
 
 advanced_match_stats_team <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "passing_types", team_or_player = "team")
-#> Scraping Bordeaux vs. Nantes Match Report – Friday August 21, 2020
-#> Scraping Dijon vs. Angers Match Report – Saturday August 22, 2020
-#> Scraping Lorient vs. Strasbourg Match Report – Sunday August 23, 2020
 glimpse(advanced_match_stats_team)
 #> Rows: 6
 #> Columns: 45
@@ -287,12 +295,13 @@ glimpse(advanced_match_stats_team)
 
 #### Get match lineups
 
-This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.
+This function will return a dataframe of all players listed for that
+match, including whether they started on the pitch, or on the bench.
 
 ``` r
 # function to extract chess.com game data
 liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-#> Scraping lineups for Liverpool vs. Manchester City Match Report – Sunday November 10, 2019
+#> [1] "Scraping lineups"
 glimpse(liv_mci_2020_lineups)
 #> Rows: 36
 #> Columns: 6
@@ -304,31 +313,35 @@ glimpse(liv_mci_2020_lineups)
 #> $ Starting    <chr> "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pi…
 ```
 
-------------------------------------------------------------------------
+-----
 
 ### Season-level statistics
 
 #### Get Season Team Stats
 
-The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in tier-1 league seasons.
+The `get_season_team_stats` function allows the user to return a data
+frame of different stat types for all teams in tier-1 league seasons.
 
-Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
+Note, some stats may not be available for all leagues. The big five
+European leagues should have all of these stats.
 
 The following stat types can be selected:
 
--   *league\_table*
--   *league\_table\_home\_away*
--   *standard*
--   *keeper*
--   *keeper\_adv*
--   *shooting*
--   *passing*
--   *passing\_types*
--   *goal\_shot\_creation*
--   *defense*
--   *possession*
--   *playing\_time*
--   *misc*
+  - *league\_table*
+  - *league\_table\_home\_away*
+  - *standard*
+  - *keeper*
+  - *keeper\_adv*
+  - *shooting*
+  - *passing*
+  - *passing\_types*
+  - *goal\_shot\_creation*
+  - *defense*
+  - *possession*
+  - *playing\_time*
+  - *misc*
+
+<!-- end list -->
 
 ``` r
 # function to extract season teams stats
@@ -366,19 +379,20 @@ glimpse(prem_2020_shooting)
 
 **More than one league season**
 
-The `get_season_team_stats` function can be used to get data for multiple seasons/leages/genders/etc.
+The `get_season_team_stats` function can be used to get data for
+multiple seasons/leages/genders/etc.
 
-Important to note, this function can only be used for one `stat-type` at a time, however all other parameters can have multiple values:
+Important to note, this function can only be used for one `stat-type` at
+a time, however all other parameters can have multiple values:
 
 ``` r
 big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
                                         gender = "M", season_end_year = 2020, stat_type = "possession")
 ```
 
-------------------------------------------------------------------------
+-----
 
-Contributing
-------------
+## Contributing
 
 ### Issues and Feature Requests
 
@@ -386,21 +400,24 @@ Issues, feature requests and improvement ideas are all welcome.
 
 When reporting an issue, please include:
 
--   Reproducible examples
--   A brief description of what the expected results are
--   If applicable, the fbref.com page the observed behaviour is occuring on
+  - Reproducible examples
+  - A brief description of what the expected results are
+  - If applicable, the fbref.com page the observed behaviour is occuring
+    on
 
 For feature requests, raise an issue with the following:
 
--   The desired functionality
--   Example inputs and desired output
+  - The desired functionality
+  - Example inputs and desired output
 
 ### Pull Requests
 
-Pull requests are also welcomed. Before doing so, please create an issue or email me with your idea.
+Pull requests are also welcomed. Before doing so, please create an issue
+or email me with your idea.
 
-Any new functions should follow the conventions established by the the package’s existing functions. Please ensure:
+Any new functions should follow the conventions established by the the
+package’s existing functions. Please ensure:
 
--   Functions are sensibly named
--   The intent of the contribution is clear
--   At least one example is provided in the documentation
+  - Functions are sensibly named
+  - The intent of the contribution is clear
+  - At least one example is provided in the documentation
