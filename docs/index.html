@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>An R Package To Extract World Football (Soccer) data from fbref.com • worldfootballR</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -13,6 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="An R Package To Extract World Football (Soccer) data from fbref.com">
 <meta property="og:description" content="This R package will enable users to extract a number of different game and player statistics and metrics from fbref.com.">
+<meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -37,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -75,9 +82,10 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="worldfootballr" class="section level1">
+<div id="worldfootballr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#worldfootballr" class="anchor"></a>worldfootballR</h1></div>
+<a href="#worldfootballr-" class="anchor"></a>worldfootballR <img src="reference/figures/logo.png" align="right">
+</h1></div>
 <!-- badges: start -->
 
 <div id="overview" class="section level2">
@@ -116,15 +124,15 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract chess.com game data</span>
 <span class="va">serieA_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ITA"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
-<span class="co">#&gt; Scraping match resultsMatch results finished scraping</span>
+<span class="co">#&gt; [1] "Scraping match results"</span>
+<span class="co">#&gt; [1] "Match results finished scraping"</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">serieA_2020</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 380</span>
-<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; Columns: 19</span>
 <span class="co">#&gt; $ Competition_Name &lt;chr&gt; "Serie A", "Serie A", "Serie A", "Serie A", "Serie A…</span>
 <span class="co">#&gt; $ Gender           &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…</span>
 <span class="co">#&gt; $ Country          &lt;chr&gt; "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "IT…</span>
 <span class="co">#&gt; $ Season_End_Year  &lt;int&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020…</span>
-<span class="co">#&gt; $ Season_Name      &lt;chr&gt; "2019-2020 Serie A", "2019-2020 Serie A", "2019-2020…</span>
 <span class="co">#&gt; $ Round            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
 <span class="co">#&gt; $ Wk               &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2…</span>
 <span class="co">#&gt; $ Day              &lt;chr&gt; "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Su…</span>
@@ -153,7 +161,6 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract chess.com game data</span>
 <span class="va">liv_mci_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_match_report.html">get_match_report</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="co">#&gt; Scraping Liverpool vs. Manchester City Match Report – Sunday November 10, 2019</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">liv_mci_2020</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 17</span>
@@ -182,7 +189,6 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract chess.com game data</span>
 <span class="va">liv_mci_2020_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_match_summary.html">get_match_summary</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="co">#&gt; Scraping Liverpool vs. Manchester City Match Report – Sunday November 10, 2019</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">liv_mci_2020_summary</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 10</span>
 <span class="co">#&gt; Columns: 23</span>
@@ -232,12 +238,9 @@
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-<span class="co">#&gt; Scraping Bordeaux vs. Nantes Match Report – Friday August 21, 2020</span>
-<span class="co">#&gt; Scraping Dijon vs. Angers Match Report – Saturday August 22, 2020</span>
-<span class="co">#&gt; Scraping Lorient vs. Strasbourg Match Report – Sunday August 23, 2020</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">advanced_match_stats</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 92</span>
-<span class="co">#&gt; Columns: 45</span>
+<span class="co">#&gt; Columns: 48</span>
 <span class="co">#&gt; $ League                &lt;chr&gt; "Ligue 1", "Ligue 1", "Ligue 1", "Ligue 1", "Li…</span>
 <span class="co">#&gt; $ Gender                &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…</span>
 <span class="co">#&gt; $ Country               &lt;chr&gt; "FRA", "FRA", "FRA", "FRA", "FRA", "FRA", "FRA"…</span>
@@ -278,11 +281,14 @@
 <span class="co">#&gt; $ Carries_Carries       &lt;dbl&gt; 10, 9, 24, 10, 28, 6, 36, 19, 62, 35, 6, 51, 55…</span>
 <span class="co">#&gt; $ TotDist_Carries       &lt;dbl&gt; 67, 39, 94, 31, 130, 48, 179, 99, 185, 71, 25, …</span>
 <span class="co">#&gt; $ PrgDist_Carries       &lt;dbl&gt; 15, 7, 49, 15, 67, 32, 72, 54, 106, 32, 23, 82,…</span>
+<span class="co">#&gt; $ Prog_Carries          &lt;dbl&gt; 0, 0, 5, 0, 2, 2, 2, 3, 3, 2, 0, 0, 2, 2, 0, 5,…</span>
+<span class="co">#&gt; $ Final_Third_Carries   &lt;dbl&gt; 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2,…</span>
+<span class="co">#&gt; $ CPA_Carries           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
+<span class="co">#&gt; $ Mis_Carries           &lt;dbl&gt; 1, 1, 4, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,…</span>
+<span class="co">#&gt; $ Dis_Carries           &lt;dbl&gt; 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…</span>
 <span class="co">#&gt; $ Targ_Receiving        &lt;dbl&gt; 18, 22, 33, 16, 37, 16, 41, 18, 67, 35, 3, 47, …</span>
 <span class="co">#&gt; $ Rec_Receiving         &lt;dbl&gt; 12, 13, 22, 11, 28, 8, 37, 17, 64, 34, 3, 47, 6…</span>
-<span class="co">#&gt; $ Rec_percent_Receiving &lt;dbl&gt; 66.7, 59.1, 66.7, 68.8, 75.7, 50.0, 90.2, 94.4,…</span>
-<span class="co">#&gt; $ Miscon                &lt;dbl&gt; 1, 1, 4, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,…</span>
-<span class="co">#&gt; $ Dispos                &lt;dbl&gt; 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,…</span></code></pre></div>
+<span class="co">#&gt; $ Rec_percent_Receiving &lt;dbl&gt; 66.7, 59.1, 66.7, 68.8, 75.7, 50.0, 90.2, 94.4,…</span></code></pre></div>
 <p>Or used for the team totals for each match:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
@@ -290,9 +296,6 @@
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"passing_types"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span>
-<span class="co">#&gt; Scraping Bordeaux vs. Nantes Match Report – Friday August 21, 2020</span>
-<span class="co">#&gt; Scraping Dijon vs. Angers Match Report – Saturday August 22, 2020</span>
-<span class="co">#&gt; Scraping Lorient vs. Strasbourg Match Report – Sunday August 23, 2020</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">advanced_match_stats_team</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6</span>
 <span class="co">#&gt; Columns: 45</span>
@@ -349,7 +352,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract chess.com game data</span>
 <span class="va">liv_mci_2020_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="co">#&gt; Scraping lineups for Liverpool vs. Manchester City Match Report – Sunday November 10, 2019</span>
+<span class="co">#&gt; [1] "Scraping lineups"</span>
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">liv_mci_2020_lineups</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 36</span>
 <span class="co">#&gt; Columns: 6</span>
@@ -386,7 +389,7 @@
 <li><em>playing_time</em></li>
 <li><em>misc</em></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract season teams stats</span>
 <span class="va">prem_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span>
 <span class="co">#&gt; Scraping season shooting stats</span>
