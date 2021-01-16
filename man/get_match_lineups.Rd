@@ -17,7 +17,7 @@ Returns lineups for home and away teams for a selected match
 }
 \examples{
 \dontrun{
-match <- "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"
+match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021)[1]
 get_match_lineups(match_url = match)
 }
 }

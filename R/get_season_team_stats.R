@@ -24,7 +24,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_team_statistics(country = "ITA", gender = "M", season_end_year = c(2017:2021), stat_type = "defense")
+#' get_team_statistics(country="ITA",gender="M",season_end_year=2021,stat_type="defense")
 #' }
 
 get_season_team_stats <- function(country, gender, season_end_year,

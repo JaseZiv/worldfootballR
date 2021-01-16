@@ -22,11 +22,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-#'                         "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-#'                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
+#' urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021)
 #'
-#' get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "possession", team_or_player = "player")
+#' get_advanced_match_stats(match_url=urls,stat_type="possession",team_or_player="player")
 #' }
 
 get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {

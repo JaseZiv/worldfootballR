@@ -17,7 +17,7 @@ Returns match summary data for selected match URLs, including goals, subs and ca
 }
 \examples{
 \dontrun{
-match <- "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"
+match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021)
 get_match_summary(match_url = match)
 }
 
