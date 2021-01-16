@@ -3,9 +3,23 @@ context("Extraction functions extracting data as expected")
 
 test_that("get_advanced_match_stats() works", {
   testthat::skip_if_offline()
-  # test the functions returns the data
+  # test the functions returns the data for each stat_type
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "summary", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "passing", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "passing_types", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "defense", team_or_player = "team"), "list")
   expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                                        stat_type = "possession", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "misc", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "keeper", team_or_player = "team"), "list")
+  expect_type(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                       stat_type = "keeper", team_or_player = "player"), "list")
 
   # test that multiple match_url can be passed to the function
   test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
@@ -20,6 +34,8 @@ test_that("get_advanced_match_stats() works", {
   # test that an invalid stat_type will error
   expect_error(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                                         stat_type = "test", team_or_player = "team"))
+  expect_error(get_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                                        stat_type = "test", team_or_player = "player"))
 
 })
 
