@@ -71,6 +71,10 @@ get_season_team_stats <- function(country, gender, season_end_year,
         stats_url <- NA
         stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
 
+        if(any(grepl("Attendance", names(stat_df)))) {
+          stat_df$Attendance <- gsub(",", "", stat_df$Attendance) %>% as.numeric()
+        }
+
       } else if(stat_type == "league_table_home_away") {
         stats_url <- NA
         stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
