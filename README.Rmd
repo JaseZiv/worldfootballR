@@ -58,7 +58,7 @@ There are three main categories of data extract functions in this package:
 To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
 
 ```{r get_match_results}
-# function to extract chess.com game data
+# function to extract match results data
 serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = 2020)
 glimpse(serieA_2020)
 ```
@@ -78,7 +78,7 @@ big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", 
 This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
 
 ```{r get_match_report}
-# function to extract chess.com game data
+# function to extract match report data
 liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
 glimpse(liv_mci_2020)
 ```
@@ -89,7 +89,7 @@ glimpse(liv_mci_2020)
 This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
 
 ```{r get_match_summary}
-# function to extract chess.com game data
+# function to extract match summary data
 liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
 glimpse(liv_mci_2020_summary)
 ```
@@ -140,7 +140,7 @@ glimpse(advanced_match_stats_team)
 This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.  
 
 ```{r get_match_lineups}
-# function to extract chess.com game data
+# function to extract match lineups
 liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
 glimpse(liv_mci_2020_lineups)
 ```
