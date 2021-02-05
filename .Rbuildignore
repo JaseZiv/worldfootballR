@@ -4,3 +4,6 @@
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^README\.Rmd$
+LICENSE
+^\.travis\.yml$

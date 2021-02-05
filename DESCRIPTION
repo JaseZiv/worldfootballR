@@ -1,6 +1,6 @@
 Package: worldfootballR
 Type: Package
-Title: An R Package To Extract World Football (Soccer) data from fbref.com
+Title: An R Package to Extract World Football (Soccer) Data from Fbref.com
 Version: 0.1.0
 Authors@R: person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
                   role = c("aut", "cre"))
