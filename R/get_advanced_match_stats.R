@@ -43,13 +43,8 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
         rvest::html_node("a") %>%
         rvest::html_attr("href") %>% paste0(main_url, .)
 
-      # all_tables <- match_page %>%
-      #   rvest::html_nodes(".section_content") %>%
-      #   rvest::html_nodes("div") %>%
-      #   rvest::html_nodes(".table_container")
-
       all_tables <- match_page %>%
-        rvest::html_nodes(".table_wrapper")
+        rvest::html_nodes(".table_container")
 
 
       if(stat_type == "summary") {
