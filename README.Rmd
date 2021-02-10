@@ -192,6 +192,38 @@ big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA",
 
 ***
 
+### Transfer and Market Valuations
+
+The following functions allow the user to extract transfer data for players, and also market valuations by league season. The data for these functions comes from transfermarkt.com
+
+#### Market Values
+
+The following function allows the user to extract player market values from transfermarkt.com.
+
+To get a list of the countries available, see the following link https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv
+
+```{r get_market_vals}
+prem_vals <- get_player_market_values(country_name = "England", start_year = 2020)
+glimpse(prem_vals)
+```
+
+
+#### Transfer history
+
+The following function allows the user to get transfer history for a player or group of players, only requiring the player urls from transfermarkt.com:
+
+```{r}
+urls <- c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198",
+          "https://www.transfermarkt.com/alisson/profil/spieler/105470")
+
+transfers <- player_transfer_history(urls)
+
+glimpse(transfers)
+```
+
+
+***
+
 ## Contributing
 
 ### Issues and Feature Requests

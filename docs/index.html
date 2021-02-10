@@ -139,12 +139,12 @@
 <span class="co">#&gt; $ Date             &lt;date&gt; 2019-08-24, 2019-08-24, 2019-08-25, 2019-08-25, 201…</span>
 <span class="co">#&gt; $ Time             &lt;chr&gt; "18:00", "20:45", "18:00", "20:45", "20:45", "20:45"…</span>
 <span class="co">#&gt; $ Home             &lt;chr&gt; "Parma", "Fiorentina", "Udinese", "Torino", "SPAL", …</span>
-<span class="co">#&gt; $ HomeGoals        &lt;dbl&gt; 0, 3, 1, 2, 2, 3, 1, 0, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1…</span>
-<span class="co">#&gt; $ Home_xG          &lt;dbl&gt; 0.4, 1.7, 1.0, 1.2, 1.6, 1.9, 0.2, 1.0, 0.8, 1.7, 2.…</span>
+<span class="co">#&gt; $ HomeGoals        &lt;dbl&gt; 0, 3, 1, 2, 2, 3, 0, 1, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1…</span>
+<span class="co">#&gt; $ Home_xG          &lt;dbl&gt; 0.4, 1.7, 1.0, 1.2, 1.6, 1.9, 1.0, 0.2, 0.8, 1.7, 2.…</span>
 <span class="co">#&gt; $ Away             &lt;chr&gt; "Juventus", "Napoli", "Milan", "Sassuolo", "Atalanta…</span>
 <span class="co">#&gt; $ AwayGoals        &lt;dbl&gt; 1, 4, 0, 1, 3, 3, 1, 1, 3, 0, 0, 0, 3, 1, 3, 2, 1, 3…</span>
-<span class="co">#&gt; $ Away_xG          &lt;dbl&gt; 1.3, 2.0, 0.5, 1.5, 1.7, 1.3, 1.6, 1.5, 2.3, 0.7, 0.…</span>
-<span class="co">#&gt; $ Attendance       &lt;dbl&gt; 20073, 33614, 24584, 16536, 11706, 38779, 16324, 160…</span>
+<span class="co">#&gt; $ Away_xG          &lt;dbl&gt; 1.3, 2.0, 0.5, 1.5, 1.7, 1.3, 1.5, 1.6, 2.3, 0.7, 0.…</span>
+<span class="co">#&gt; $ Attendance       &lt;dbl&gt; 20073, 33614, 24584, 16536, 11706, 38779, 16099, 163…</span>
 <span class="co">#&gt; $ Venue            &lt;chr&gt; "Stadio Ennio Tardini", "Stadio Artemio Franchi", "D…</span>
 <span class="co">#&gt; $ Referee          &lt;chr&gt; "Fabio Maresca", "Davide Massa", "Fabrizio Pasqua", …</span>
 <span class="co">#&gt; $ Notes            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></code></pre></div>
@@ -427,6 +427,57 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span><span class="op">)</span></code></pre></div>
+<hr>
+</div>
+</div>
+<div id="transfer-and-market-valuations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#transfer-and-market-valuations" class="anchor"></a>Transfer and Market Valuations</h3>
+<p>The following functions allow the user to extract transfer data for players, and also market valuations by league season. The data for these functions comes from transfermarkt.com</p>
+<div id="market-values" class="section level4">
+<h4 class="hasAnchor">
+<a href="#market-values" class="anchor"></a>Market Values</h4>
+<p>The following function allows the user to extract player market values from transfermarkt.com.</p>
+<p>To get a list of the countries available, see the following link <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv" class="uri">https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv</a></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">prem_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">prem_vals</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 512</span>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ comp_name                &lt;chr&gt; "Premier League", "Premier League", "Premier…</span>
+<span class="co">#&gt; $ region                   &lt;chr&gt; "Europe", "Europe", "Europe", "Europe", "Eur…</span>
+<span class="co">#&gt; $ country                  &lt;chr&gt; "England", "England", "England", "England", …</span>
+<span class="co">#&gt; $ season_start_year        &lt;int&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 20…</span>
+<span class="co">#&gt; $ squad                    &lt;chr&gt; "Liverpool FC", "Liverpool FC", "Liverpool F…</span>
+<span class="co">#&gt; $ player_num               &lt;chr&gt; "1", "13", "62", "4", "12", "32", "19", "46"…</span>
+<span class="co">#&gt; $ player_name              &lt;chr&gt; "Alisson", "Adrián", "Caoimhin Kelleher", "V…</span>
+<span class="co">#&gt; $ player_dob               &lt;date&gt; 1992-10-02, 1987-01-03, 1998-11-23, 1991-07…</span>
+<span class="co">#&gt; $ player_age               &lt;dbl&gt; 28, 34, 22, 29, 23, 29, 20, 20, 25, 23, 26, …</span>
+<span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; 8.0e+07, 2.0e+06, 2.0e+06, 8.0e+07, 4.0e+07,…</span>
+<span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/alisson/profi…</span></code></pre></div>
+</div>
+<div id="transfer-history" class="section level4">
+<h4 class="hasAnchor">
+<a href="#transfer-history" class="anchor"></a>Transfer history</h4>
+<p>The following function allows the user to get transfer history for a player or group of players, only requiring the player urls from transfermarkt.com:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"</span>,
+          <span class="st">"https://www.transfermarkt.com/alisson/profil/spieler/105470"</span><span class="op">)</span>
+
+<span class="va">transfers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/player_transfer_history.html">player_transfer_history</a></span><span class="op">(</span><span class="va">urls</span><span class="op">)</span>
+
+<span class="fu">glimpse</span><span class="op">(</span><span class="va">transfers</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 11</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ player_name    &lt;chr&gt; "Cristiano Ronaldo", "Cristiano Ronaldo", "Cristiano R…</span>
+<span class="co">#&gt; $ season         &lt;chr&gt; "18/19", "09/10", "03/04", "02/03", "00/01", "98/99", …</span>
+<span class="co">#&gt; $ transfer_date  &lt;date&gt; 2018-07-10, 2009-07-01, 2003-08-12, 2002-07-01, 2000-…</span>
+<span class="co">#&gt; $ country_from   &lt;chr&gt; "Spain", "England", "Portugal", "Portugal", "Portugal"…</span>
+<span class="co">#&gt; $ team_from      &lt;chr&gt; "Real Madrid", "Man Utd", "Sporting CP", "Sporting U19…</span>
+<span class="co">#&gt; $ country_to     &lt;chr&gt; "Italy", "Spain", "England", "Portugal", "Portugal", "…</span>
+<span class="co">#&gt; $ team_to        &lt;chr&gt; "Juventus", "Real Madrid", "Man Utd", "Sporting CP", "…</span>
+<span class="co">#&gt; $ market_value   &lt;dbl&gt; 1.0e+08, 6.0e+07, NA, NA, NA, NA, NA, 6.0e+07, 7.0e+06…</span>
+<span class="co">#&gt; $ transfer_value &lt;dbl&gt; 1.17e+08, 9.40e+07, 1.90e+07, NA, NA, NA, NA, 6.25e+07…</span></code></pre></div>
 <hr>
 </div>
 </div>
