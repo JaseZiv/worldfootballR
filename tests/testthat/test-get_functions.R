@@ -166,3 +166,20 @@ test_that("get_season_team_stats() works", {
 
 })
 
+
+
+
+test_that("get_player_market_values() works", {
+  testthat::skip_if_offline()
+  testthat::skip_on_cran()
+  # test the functions returns the data
+  expect_type(get_player_market_values(country_name = "England", start_year = 2020), "list")
+
+  # test that multiple countries can be passed to the function
+  expect_type(get_player_market_values(country_name = c("England", "Italy"), start_year = 2020), "list")
+
+  # test that an invalid country will error
+  expect_error(get_player_market_values(country_name = "Fake Country", start_year = 2020))
+
+})
+

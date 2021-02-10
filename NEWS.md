@@ -1,3 +1,6 @@
+# worldfootballR 0.2.0
+* added `get_player_market_values` to get player valuations from transfermarkt.com
+
 # worldfootballR 0.1.0
 * Bug fixes #8
 * Package Logo

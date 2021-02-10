@@ -179,3 +179,26 @@
 
   return(df_in)
 }
+
+
+#' Convert formatted valuations to numeric
+#'
+#' Returns a numeric data type for player valuations
+#'
+#' @param euro_value raw valuation from transfermarkt.com
+#'
+#' @return a cleaned numeric data value for market and/or transfer valuation
+#'
+#' @importFrom magrittr %>%
+#'
+.convert_value_to_numeric <- function(euro_value) {
+  clean_val <- gsub("[^\x20-\x7E]", "", euro_value) %>% tolower()
+  if(grepl("m", clean_val)) {
+    clean_val <- suppressWarnings(gsub("m", "", clean_val) %>% as.numeric() * 1000000)
+  } else if(grepl("th.", clean_val)) {
+    clean_val <- suppressWarnings(gsub("th.", "", clean_val) %>% as.numeric() * 1000)
+  } else {
+    clean_val <- suppressWarnings(as.numeric(clean_val) * 1)
+  }
+  return(clean_val)
+}

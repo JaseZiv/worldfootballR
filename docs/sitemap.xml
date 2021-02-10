@@ -10,6 +10,9 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/dot-clean_match_advanced_stats_data.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-convert_value_to_numeric.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/dot-get_league_season_url.html</loc>
   </url>
   <url>
@@ -37,6 +40,15 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_urls.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_player_market_values.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_season_team_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/player_transfer_history.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/single_player_transfer_history.html</loc>
   </url>
 </urlset>
