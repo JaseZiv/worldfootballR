@@ -171,7 +171,7 @@ test_that("get_season_team_stats() works", {
 
 test_that("get_player_market_values() works", {
   testthat::skip_if_offline()
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
   # test the functions returns the data
   expect_type(get_player_market_values(country_name = "England", start_year = 2020), "list")
 
@@ -187,7 +187,7 @@ test_that("get_player_market_values() works", {
 
 test_that("player_transfer_history() works", {
   testthat::skip_if_offline()
-  testthat::skip_on_cran()
+  # testthat::skip_on_cran()
 
   transfer_data <- player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198",
                                              "https://www.transfermarkt.com/alisson/profil/spieler/105470"))
