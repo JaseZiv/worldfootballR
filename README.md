@@ -28,7 +28,6 @@ devtools::install_github("JaseZiv/worldfootballR")
 
 ``` r
 library(worldfootballR)
-library(tidyverse)
 ```
 
 -----
@@ -59,6 +58,9 @@ Feel free to get in touch via email or twitter
 Package vignettes have been built to help you get started with the
 package.
 
-  - For match-level data, see [here]()
-  - For season-level data, see [here]()
-  - for transfer histories and player market valuations, see [here]()
+  - For match-level data, see
+    [here](https://jaseziv.github.io/worldfootballR/articles/extract-match-data.html)
+  - For season-level data, see
+    [here](https://jaseziv.github.io/worldfootballR/articles/extract-season-data.html)
+  - for transfer histories and player market valuations, see
+    [here](https://jaseziv.github.io/worldfootballR/articles/extract-valuation-data.html)
