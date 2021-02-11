@@ -1,3 +1,12 @@
+# worldfootballR 0.2.1
+
+### General Changes
+* removed internal functions no longer necessary (data is stored at `JaseZiv/worldfootballR_data` instead)
+* Usage instructions now in vignettes as opposed to README
+
+### Bugs
+* Fixed duplicate column name issue for keeper stats [#13](https://github.com/JaseZiv/worldfootballR/issues/13)
+
 # worldfootballR 0.2.0
 * added `get_player_market_values` to get player valuations from transfermarkt.com
 
