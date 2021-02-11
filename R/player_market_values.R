@@ -20,6 +20,8 @@
 
 get_player_market_values <- function(country_name, start_year) {
 
+  print("Extracting player market values...")
+
   main_url <- "https://www.transfermarkt.com"
 
   meta_df <- read.csv(url("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"),
