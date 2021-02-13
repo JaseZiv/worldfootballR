@@ -71,12 +71,20 @@ get_player_market_values <- function(country_name, start_year) {
       player_url <- team_data %>% rvest::html_nodes(".hide-for-small") %>%
         rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_attr("href") %>%
         paste0(main_url, .)
+      # player position
+      player_position <- team_data %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
       # birthdate
       player_birthday <- team_data %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
+      # player_nationality
+      player_nationality <- c()
+      player_nat <- team_data %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)")
+      for(i in 1:length(player_nat)) {
+        player_nationality <- c(player_nationality, xml2::xml_attrs(player_nat[[i]])[["title"]])
+      }
       # value
       player_market_value <- team_data %>% rvest::html_nodes(".rechts.hauptlink") %>% rvest::html_text()
 
-      team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_birthday, player_market_value) %>% data.frame()
+      team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality, player_market_value) %>% data.frame()
       team_df <- team_df %>%
         dplyr::rename(season_urls=each_season)
 
@@ -92,17 +100,14 @@ get_player_market_values <- function(country_name, start_year) {
     dplyr::left_join(all_seasons_df, by = "season_urls")
 
   all_seasons_df <- all_seasons_df %>%
-    dplyr::mutate(value = gsub("[^\x20-\x7E]", "", player_market_value),
-                  value = tolower(.data$value)) %>%
-    dplyr::mutate(ValueMultiplier = ifelse(stringr::str_detect(.data$value, "th"), 1000, ifelse(stringr::str_detect(.data$value, "m"), 1000000, 1))) %>%
-    dplyr::mutate(ValueNumeric_euro = as.integer(stringr::str_extract(.data$value, "[[:digit:]]+\\.*[[:digit:]]*")) * .data$ValueMultiplier) %>%
+    dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
     tidyr::separate(., player_birthday, into = c("Month", "Day", "Year", "player_age"), sep = " ", remove = F) %>%
     dplyr::mutate(Day = gsub(",", "", .data$Day) %>% as.numeric(),
                   Year = as.numeric(.data$Year),
                   Month = match(.data$Month, month.abb),
                   player_dob = lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-"))) %>%
     dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
-    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_dob, .data$player_age, player_market_value_euro=.data$ValueNumeric_euro, .data$player_url)
+    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$player_market_value_euro, .data$player_url)
 
 
   return(all_seasons_df)

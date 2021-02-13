@@ -41,25 +41,6 @@ library(worldfootballR)
 
 ***
 
-## Contributing
-
-### Issues and Feature Requests
-
-When creating an issue, please include:
-
-* Reproducible examples
-* A brief description of what the expected results are
-* If applicable, the fbref.com or transfermarkt.com page the observed behaviour is occuring on
-
-
-### Pull Requests
-Pull requests are also welcomed. Before doing so, please create an issue or email me with your idea.
-
-Feel free to get in touch via email or twitter https://twitter.com/jaseziv
-
-***
-
-
 ## Usage
 
 Package vignettes have been built to help you get started with the package.
@@ -67,3 +48,32 @@ Package vignettes have been built to help you get started with the package.
 * For match-level data, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-match-data.html)
 * For season-level data, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-season-data.html)
 * for transfer histories and player market valuations, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-valuation-data.html)
+
+***
+
+## Leagues and Seasons
+
+For fbref.com data (match and season data), a list of leagues and seasons included in the package can be found in the `worldfootballR_data` repository and can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/league_seasons/all_tier1_season_URLs.csv)
+
+For transfermarkt.com data (valuations and transfers), a list of leagues and seasons included in the package can be found in the `worldfootballR_data` repository and can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv)
+
+
+***
+
+## Contributing
+
+### Issues and Improvements
+
+When creating an issue, please include:
+
+* Reproducible examples
+* A brief description of what the expected results are
+* If applicable, the fbref.com or transfermarkt.com page the observed behaviour is occuring on
+* For improvements, what addiditional features are being requested and what problem they will help solve 
+
+
+### Pull Requests
+Pull requests are also welcomed. Before doing so, please create an issue or email me with your idea.
+
+Feel free to get in touch via email or twitter https://twitter.com/jaseziv
+

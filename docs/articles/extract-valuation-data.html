@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -104,7 +104,7 @@
       <h1 data-toc-skip>Extracting valuation and transfer data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-02-11</h4>
+            <h4 class="date">2021-02-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-valuation-data.Rmd"><code>vignettes/extract-valuation-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-valuation-data.Rmd</code></div>
@@ -157,7 +157,7 @@
 <span class="co">#&gt; [1] "Extracting player market values..."</span>
 <span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">prem_vals</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 512</span>
-<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; Columns: 13</span>
 <span class="co">#&gt; $ comp_name                &lt;chr&gt; "Premier League", "Premier League", "Premier…</span>
 <span class="co">#&gt; $ region                   &lt;chr&gt; "Europe", "Europe", "Europe", "Europe", "Eur…</span>
 <span class="co">#&gt; $ country                  &lt;chr&gt; "England", "England", "England", "England", …</span>
@@ -165,8 +165,10 @@
 <span class="co">#&gt; $ squad                    &lt;chr&gt; "Liverpool FC", "Liverpool FC", "Liverpool F…</span>
 <span class="co">#&gt; $ player_num               &lt;chr&gt; "1", "13", "62", "4", "12", "32", "19", "46"…</span>
 <span class="co">#&gt; $ player_name              &lt;chr&gt; "Alisson", "Adrián", "Caoimhin Kelleher", "V…</span>
+<span class="co">#&gt; $ player_position          &lt;chr&gt; "Goalkeeper", "Goalkeeper", "Goalkeeper", "C…</span>
 <span class="co">#&gt; $ player_dob               &lt;date&gt; 1992-10-02, 1987-01-03, 1998-11-23, 1991-07…</span>
 <span class="co">#&gt; $ player_age               &lt;dbl&gt; 28, 34, 22, 29, 23, 29, 20, 20, 25, 23, 26, …</span>
+<span class="co">#&gt; $ player_nationality       &lt;chr&gt; "Brazil", "Spain", "Ireland", "Netherlands",…</span>
 <span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; 8.0e+07, 2.0e+06, 2.0e+06, 8.0e+07, 4.0e+07,…</span>
 <span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/alisson/profi…</span></code></pre></div>
 </div>
