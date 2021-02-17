@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -104,7 +104,7 @@
       <h1 data-toc-skip>Extracting valuation and transfer data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-02-13</h4>
+            <h4 class="date">2021-02-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-valuation-data.Rmd"><code>vignettes/extract-valuation-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-valuation-data.Rmd</code></div>
@@ -171,12 +171,16 @@
 <span class="co">#&gt; $ player_nationality       &lt;chr&gt; "Brazil", "Spain", "Ireland", "Netherlands",…</span>
 <span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; 8.0e+07, 2.0e+06, 2.0e+06, 8.0e+07, 4.0e+07,…</span>
 <span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/alisson/profi…</span></code></pre></div>
+<p>If the country/countries aren’t available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.</p>
+<p>To extract data for League One in England, the below code will return the player market valuations for the 2020/21 season in League One:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">league_one_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>start_year <span class="op">=</span> <span class="fl">2020</span>, league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="transfer-history" class="section level4">
 <h4 class="hasAnchor">
 <a href="#transfer-history" class="anchor"></a>Transfer history</h4>
 <p>The following function allows the user to get transfer history for a player or group of players, only requiring the player urls from transfermarkt.com:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"</span>,
           <span class="st">"https://www.transfermarkt.com/alisson/profil/spieler/105470"</span><span class="op">)</span>
 

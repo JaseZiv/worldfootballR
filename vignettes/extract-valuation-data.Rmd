@@ -73,6 +73,16 @@ glimpse(prem_vals)
 ```
 
 
+If the country/countries aren't available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.
+
+To extract data for League One in England, the below code will return the player market valuations for the 2020/21 season in League One:
+
+```{r get_unique_league_vals, eval=FALSE}
+league_one_vals <- get_player_market_values(start_year = 2020, league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
+
 #### Transfer history
 
 The following function allows the user to get transfer history for a player or group of players, only requiring the player urls from transfermarkt.com:

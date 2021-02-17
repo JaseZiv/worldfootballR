@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -156,7 +156,7 @@
     <p>Returns data frame of player valuations (in Euros) from transfermarkt.com</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_player_market_values</span><span class='op'>(</span><span class='va'>country_name</span>, <span class='va'>start_year</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_player_market_values</span><span class='op'>(</span><span class='va'>country_name</span>, <span class='va'>start_year</span>, league_url <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,6 +168,10 @@
     <tr>
       <th>start_year</th>
       <td><p>the start year of the season (2020 for the 20/21 season)</p></td>
+    </tr>
+    <tr>
+      <th>league_url</th>
+      <td><p>league url from transfermarkt.com. To be used when country_name not avalilable in main function</p></td>
     </tr>
     </table>
 

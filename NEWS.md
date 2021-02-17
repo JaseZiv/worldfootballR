@@ -1,3 +1,7 @@
+# worldfootballR 0.2.3
+
+* Added `league_url` argument to `get_player_market_values()` to allow extraction of *non-standard* (leagues not stored in `worldfootballR_data`) leagues
+
 # worldfootballR 0.2.2
 
 * Added player nationalities and positions to output of `get_player_market_values()` data output
