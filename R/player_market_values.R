@@ -4,6 +4,7 @@
 #'
 #' @param country_name the country of the league's players
 #' @param start_year the start year of the season (2020 for the 20/21 season)
+#' @param league_url league url from transfermarkt.com. To be used when country_name not avalilable in main function
 #'
 #' @return returns a dataframe of player valuations for country/seasons
 #'
@@ -18,25 +19,63 @@
 #' get_player_market_values(country_name = "England", start_year = c(2019, 2020))
 #' }
 
-get_player_market_values <- function(country_name, start_year) {
+get_player_market_values <- function(country_name, start_year, league_url = NA) {
 
   print("Extracting player market values...")
 
   main_url <- "https://www.transfermarkt.com"
 
-  meta_df <- read.csv(url("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"),
-                      stringsAsFactors = F)
+  if(is.na(league_url)) {
+    meta_df <- read.csv(url("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"),
+                        stringsAsFactors = F)
 
-  tryCatch(meta_df_seasons <- meta_df %>%
-             dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year), error = function(e) data.frame())
+    tryCatch({meta_df_seasons <- meta_df %>%
+      dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
-  if(nrow(meta_df_seasons) == 0) {
-    stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
+    if(nrow(meta_df_seasons) == 0) {
+      stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
+    }
+
+  } else {
+
+    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
+
+    if(length(league_page) == 0) {
+      stop(glue::glue("League URL(s) {league_url} not found. Please check transfermarkt.com for the correct league URL"))
+
+    }
+
+    comp_name <- league_page %>% rvest::html_nodes(".spielername-profil") %>% rvest::html_text()
+
+    country <- league_page %>% rvest::html_nodes(".miniflagge")
+    country <- xml2::xml_attrs(country[[1]])[["title"]]
+
+    seasons <- league_page %>% rvest::html_nodes(".chzn-select") %>% rvest::html_nodes("option")
+
+    season_start_year <- c()
+    for(each_season in seasons) {
+      season_start_year <- c(season_start_year, xml2::xml_attrs(each_season)[["value"]])
+    }
+
+    season_urls <- paste0(league_url, "/plus/?saison_id=", season_start_year)
+
+    meta_df_seasons <- data.frame(comp_name=as.character(comp_name), region=NA_character_, country=as.character(country), comp_url=as.character(league_url), season_start_year=as.numeric(season_start_year), season_urls=as.character(season_urls))
+
+    tryCatch({meta_df_seasons <- meta_df_seasons %>%
+      dplyr::filter(.data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+
+    if(nrow(meta_df_seasons) == 0) {
+      stop(glue::glue("League URL(s) {league_urls} or seasons {start_year} not found. Please check transfermarkt.com for the correct league URL"))
+
+    }
+
   }
+
+  all_seasons_urls <- meta_df_seasons$season_urls
 
   all_seasons_df <- data.frame()
 
-  for(each_season in meta_df_seasons$season_urls) {
+  for(each_season in all_seasons_urls) {
 
     season_page <- xml2::read_html(each_season)
 
