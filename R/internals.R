@@ -1,17 +1,18 @@
 #' Clean advanced statistic tables
 #'
-#' Returns cleaned dataframe for each of the team statistic tables
+#' Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()
 #'
-#' @param advanced_stat_url url of the html table on the league season page
+#' @param input_table_element element of the html table on the league season page
 #'
 #' @return a data frame for the selected league seasons advanced statistic
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #'
-.clean_advanced_stat_table <- function(advanced_stat_url) {
+.clean_advanced_stat_table <- function(input_table_element) {
 
-  stat_df <- xml2::read_html(advanced_stat_url) %>%
+
+  stat_df <- input_table_element %>%
     rvest::html_table() %>%
     data.frame()
 

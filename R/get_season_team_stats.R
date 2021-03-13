@@ -58,13 +58,13 @@ get_season_team_stats <- function(country, gender, season_end_year,
 
     league_standings <- season_stats_page %>% rvest::html_nodes("table")
 
+    all_stat_tabs_holder <- season_stats_page %>% rvest::html_nodes(".stats_table")
 
-    each_stat_table_url <- season_stats_page %>%
-      rvest::html_nodes(".table_wrapper") %>%
-      rvest::html_nodes(".section_heading_text") %>%
-      rvest::html_nodes("a") %>%
-      rvest::html_attr("href") %>% .[!is.na(.)] %>% unique() %>%
-      paste0("https://fbref.com", .)
+    all_tables <- c()
+
+    for(i in 1:length(all_stat_tabs_holder)) {
+      all_tables <- c(all_tables, xml2::xml_attrs(all_stat_tabs_holder[[i]])[["id"]])
+    }
 
     tryCatch(
       if(stat_type == "league_table") {
@@ -100,62 +100,62 @@ get_season_team_stats <- function(country, gender, season_end_year,
           dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
 
       } else if(stat_type == "standard") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_standard"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_standard_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_standard_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "keeper") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_keeper_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_keeper_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "keeper_adv") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_keeper_adv"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_keeper_adv_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_keeper_adv_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "shooting") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_shooting$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_shooting_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_shooting_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "passing") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_passing_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_passing_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "passing_types") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_passing_types"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_passing_types_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_passing_types_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "goal_shot_creation") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_gca$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_gca_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_gca_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "defense") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_defense$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_defense_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_defense_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "possession") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_possession$"))]
-
-        stat_df <- tryCatch(.clean_advanced_stat_table(advanced_stat_url = stats_url), error = function(e) data.frame())
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_possession_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_possession_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "playing_time") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_playing_time$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_playing_time_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_playing_time_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
 
       } else if(stat_type == "misc") {
-        stats_url <- each_stat_table_url[which(stringr::str_detect(each_stat_table_url, "#all_stats_misc$"))]
-
-        stat_df <- .clean_advanced_stat_table(advanced_stat_url = stats_url)
+        stat_df_for <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_misc_for"))]), error = function(e) data.frame())
+        stat_df_against <- tryCatch(.clean_advanced_stat_table(input_table_element = all_stat_tabs_holder[which(stringr::str_detect(all_tables, "stats_squads_misc_against"))]), error = function(e) data.frame())
+        stat_df <- tryCatch(rbind(stat_df_for, stat_df_against), error = function(e) data.frame())
       }, error = function(e)  {stat_df <- data.frame()} )
 
-    if(length(stats_url) == 0) {
+    if(nrow(stat_df) == 0) {
       stat_df <- data.frame()
       print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this league season. Check {season_url} to see if it exists."))
 

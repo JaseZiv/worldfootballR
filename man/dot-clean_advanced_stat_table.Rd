@@ -4,14 +4,14 @@
 \alias{.clean_advanced_stat_table}
 \title{Clean advanced statistic tables}
 \usage{
-.clean_advanced_stat_table(advanced_stat_url)
+.clean_advanced_stat_table(input_table_element)
 }
 \arguments{
-\item{advanced_stat_url}{url of the html table on the league season page}
+\item{input_table_element}{element of the html table on the league season page}
 }
 \value{
 a data frame for the selected league seasons advanced statistic
 }
 \description{
-Returns cleaned dataframe for each of the team statistic tables
+Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()
 }
