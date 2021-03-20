@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021)
+#' urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")
 #'
 #' get_advanced_match_stats(match_url=urls,stat_type="possession",team_or_player="player")
 #' }

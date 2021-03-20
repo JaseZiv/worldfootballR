@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Clean advanced statistic tables — .clean_advanced_stat_table" />
-<meta property="og:description" content="Returns cleaned dataframe for each of the team statistic tables" />
+<meta property="og:description" content="Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -112,6 +112,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+    </li>
     <li>
       <a href="../articles/extract-match-data.html">Extracting match data</a>
     </li>
@@ -153,17 +156,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Returns cleaned dataframe for each of the team statistic tables</p>
+    <p>Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.clean_advanced_stat_table</span><span class='op'>(</span><span class='va'>advanced_stat_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>.clean_advanced_stat_table</span><span class='op'>(</span><span class='va'>input_table_element</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>advanced_stat_url</th>
-      <td><p>url of the html table on the league season page</p></td>
+      <th>input_table_element</th>
+      <td><p>element of the html table on the league season page</p></td>
     </tr>
     </table>
 

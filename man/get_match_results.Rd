@@ -4,7 +4,13 @@
 \alias{get_match_results}
 \title{Get match results}
 \usage{
-get_match_results(country, gender, season_end_year)
+get_match_results(
+  country,
+  gender,
+  season_end_year,
+  tier = "1st",
+  non_dom_league_url = NA
+)
 }
 \arguments{
 \item{country}{the three character country code}
@@ -12,6 +18,10 @@ get_match_results(country, gender, season_end_year)
 \item{gender}{gender of competition, either "M" or "F"}
 
 \item{season_end_year}{the year(s) the season concludes}
+
+\item{tier}{the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on}
+
+\item{non_dom_league_url}{the URL for Cups and Competitions found at https://fbref.com/en/comps/}
 }
 \value{
 returns a dataframe with the results of the competition, season and gender
@@ -22,5 +32,11 @@ Returns the game results for a given league season(s)
 \examples{
 \dontrun{
 get_match_results(country = c("ENG", "ITA", "GER"), gender = "M", season_end_year = c(2018:2021))
+# for results from English Championship:
+get_match_results(country = "ENG", gender = "M", season_end_year = 2021, tier = "2nd")
+# for international friendlies:
+non_dom <- "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"
+get_match_results(country = "", gender = "M", season_end_year = 2018, non_dom_league_url = non_dom)
+
 }
 }

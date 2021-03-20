@@ -4,14 +4,7 @@
 \alias{get_season_team_stats}
 \title{Get season team stats}
 \usage{
-get_season_team_stats(
-  country,
-  gender,
-  season_end_year,
-  stat_type = c("league_table", "league_table_home_away", "standard", "keeper",
-    "keeper_adv", "shooting", "passing", "passing_types", "goal_shot_creation",
-    "defense", "possession", "playing_time", "misc")
-)
+get_season_team_stats(country, gender, season_end_year, tier, stat_type)
 }
 \arguments{
 \item{country}{the three character country code for all countries}
@@ -19,6 +12,8 @@ get_season_team_stats(
 \item{gender}{gender of competition, either "M", "F" or both}
 
 \item{season_end_year}{the year the season(s) concludes}
+
+\item{tier}{the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on}
 
 \item{stat_type}{the type of team statistics the user requires
 
@@ -37,6 +32,7 @@ Returns different team season statistics results for a given league season and s
 }
 \examples{
 \dontrun{
-get_team_statistics(country="ITA",gender="M",season_end_year=2021,stat_type="defense")
+get_season_team_stats("ITA", "M", 2021, "1st", "defense")
+get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 }
 }

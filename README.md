@@ -36,11 +36,13 @@ library(worldfootballR)
 Package vignettes have been built to help you get started with the
 package.
 
+  - For helper functions to extract fbref URLs, see
+    [here](https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html)
   - For match-level data, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-match-data.html)
   - For season-level data, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-season-data.html)
-  - for transfer histories and player market valuations, see
+  - For transfer histories and player market valuations, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-valuation-data.html)
 
 -----
@@ -50,7 +52,7 @@ package.
 For fbref.com data (match and season data), a list of leagues and
 seasons included in the package can be found in the
 `worldfootballR_data` repository and can be found
-[here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/league_seasons/all_tier1_season_URLs.csv)
+[here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv)
 
 For transfermarkt.com data (valuations and transfers), a list of leagues
 and seasons included in the package can be found in the

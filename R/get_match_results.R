@@ -5,6 +5,8 @@
 #' @param country the three character country code
 #' @param gender gender of competition, either "M" or "F"
 #' @param season_end_year the year(s) the season concludes
+#' @param tier the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on
+#' @param non_dom_league_url the URL for Cups and Competitions found at https://fbref.com/en/comps/
 #'
 #' @return returns a dataframe with the results of the competition, season and gender
 #'
@@ -17,30 +19,44 @@
 #' @examples
 #' \dontrun{
 #' get_match_results(country = c("ENG", "ITA", "GER"), gender = "M", season_end_year = c(2018:2021))
+#' # for results from English Championship:
+#' get_match_results(country = "ENG", gender = "M", season_end_year = 2021, tier = "2nd")
+#' # for international friendlies:
+#' non_dom <- "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"
+#' get_match_results(country = "", gender = "M", season_end_year = 2018, non_dom_league_url = non_dom)
+#'
 #' }
-
-get_match_results <- function(country, gender, season_end_year) {
-
+get_match_results <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
+  main_url <- "https://fbref.com"
   print("Scraping match results")
 
   country_abbr <- country
   gender_M_F <- gender
   season_end_year_num <- season_end_year
+  comp_tier <- tier
+  cups_url <- non_dom_league_url
 
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
 
-  main_url <- "https://fbref.com"
-
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
-
-  seasons <- seasons %>%
-    dplyr::filter(country %in% country_abbr,
-                  gender %in% gender_M_F,
-                  season_end_year %in% season_end_year_num,
-                  !is.na(.data$fixtures_url)) %>%
-    dplyr::arrange(season_end_year)
-
-  fixtures_urls <- seasons %>%
-    dplyr::pull(.data$fixtures_url)
+  if(is.na(cups_url)) {
+    fixtures_urls <- seasons %>%
+      dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+      dplyr::filter(country %in% country_abbr,
+                    gender %in% gender_M_F,
+                    season_end_year %in% season_end_year_num,
+                    tier %in% comp_tier,
+                    !is.na(.data$fixtures_url)) %>%
+      dplyr::arrange(season_end_year) %>%
+      dplyr::pull(.data$fixtures_url)
+  } else {
+    fixtures_urls <- seasons %>%
+      dplyr::filter(.data$comp_url %in% cups_url,
+                    gender %in% gender_M_F,
+                    season_end_year %in% season_end_year_num,
+                    !is.na(.data$fixtures_url)) %>%
+      dplyr::arrange(season_end_year) %>%
+      dplyr::pull(.data$fixtures_url)
+  }
 
 
   get_each_season_results <- function(fixture_url) {
@@ -94,7 +110,7 @@ get_match_results <- function(country, gender, season_end_year) {
 
   all_results <- seasons %>%
     dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls, .data$fixtures_url) %>%
-    dplyr::left_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
+    dplyr::right_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
     dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%
     dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
     dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time)

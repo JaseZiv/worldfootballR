@@ -45,8 +45,9 @@ library(dplyr)
 
 The functions available in this package are designed to enable the extraction of world football data.
 
-There are three main categories of data extract functions in this package:
+There are four main categories of data extract functions in this package:
 
+* fbref helper functions to extract key URLs
 * Match-level statistics (team and player)
 * Season-level statistics (team and player)
 * Player market vluations and transfer histories
@@ -55,12 +56,13 @@ This vignette will cover season-level data, typically totals for all games playe
 
 ***
 
-### Season-level statistics
+## Team Stats
 
+This section will cover the functions to aid in the extraction of season team statistics.
 
-#### Get Season Team Stats
+### Get Season Team Stats
 
-The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in tier-1 league seasons.
+The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in Domestic leagues [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv).
 
 Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
 
@@ -80,10 +82,11 @@ The following stat types can be selected:
 * *playing_time*
 * *misc*
 
-```{r get_season_team_stats}
+```{r get_season_team_stats, eval=FALSE}
 # function to extract season teams stats
-prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", stat_type = "shooting")
-glimpse(prem_2020_shooting)
+prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "1st", stat_type = "shooting")
+# to get shooting stats for the English Championship:
+championship_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "2nd", stat_type = "shooting")
 ```
 
 
@@ -95,7 +98,45 @@ Important to note, this function can only be used for one `stat-type` at a time,
 
 ```{r get_season_team_stats_multiple, eval=FALSE}
 big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
-                                        gender = "M", season_end_year = 2020, stat_type = "possession")
+                                        gender = "M", season_end_year = 2020, tier = "1st", stat_type = "possession")
 ```
 
 ***
+
+## Player Stats
+
+This section will cover the functions available to aid in the extraction of player season data
+
+### Get Player Scouting Report
+
+The `fb_player_scouting_report()` function takes in a player_url as the input, and returns scouting reports for the player selected. The scouting reports are a new feature on fbref, thus only available for the big five Euro leagues:
+
+```{r get_player_scouting_report}
+fb_player_scouting_report("https://fbref.com/en/players/3bb7b8b4/Ederson")
+```
+
+
+
+### Get Player Season Stats
+
+The `fb_player_season_stats()` function allows for the extraction of season totals for selected player URLs and stat_type.
+
+The stat_types available for use in this function are below:
+
+* *standard*
+* *shooting*
+* *passing* 
+* *passing_types*
+* *gca*
+* *defense*
+* *possession*
+* *playing_time*
+* *misc*
+* *keeper*
+* *keeper_adv*
+
+```{r player_season_stats, eval=FALSE}
+mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Mohamed-Salah", stat_type = 'shooting')
+```
+
+

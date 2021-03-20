@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extracting season data • worldfootballR</title>
+<title>Extracting fbref URLs • worldfootballR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Extracting season data">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Extracting fbref URLs">
 <meta property="og:description" content="worldfootballR">
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -101,16 +101,16 @@
 
       
 
-      </header><script src="extract-season-data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="extract-helper-urls_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Extracting season data</h1>
+      <h1 data-toc-skip>Extracting fbref URLs</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
             <h4 class="date">2021-03-21</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-season-data.Rmd"><code>vignettes/extract-season-data.Rmd</code></a></small>
-      <div class="hidden name"><code>extract-season-data.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-helper-urls.Rmd"><code>vignettes/extract-helper-urls.Rmd</code></a></small>
+      <div class="hidden name"><code>extract-helper-urls.Rmd</code></div>
 
     </div>
 
@@ -144,93 +144,29 @@
 <li>Season-level statistics (team and player)</li>
 <li>Player market vluations and transfer histories</li>
 </ul>
-<p>This vignette will cover season-level data, typically totals for all games played within seasons.</p>
-<hr>
-</div>
-<div id="team-stats" class="section level2">
-<h2 class="hasAnchor">
-<a href="#team-stats" class="anchor"></a>Team Stats</h2>
-<p>This section will cover the functions to aid in the extraction of season team statistics.</p>
-<div id="get-season-team-stats" class="section level3">
+<p>This vignette will cover the helper functions to extract important URLs from fbref.</p>
+<div id="league-urls" class="section level3">
 <h3 class="hasAnchor">
-<a href="#get-season-team-stats" class="anchor"></a>Get Season Team Stats</h3>
-<p>The <code>get_season_team_stats</code> function allows the user to return a data frame of different stat types for all teams in Domestic leagues <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a>.</p>
-<p>Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.</p>
-<p>The following stat types can be selected:</p>
-<ul>
-<li><em>league_table</em></li>
-<li><em>league_table_home_away</em></li>
-<li><em>standard</em></li>
-<li><em>keeper</em></li>
-<li><em>keeper_adv</em></li>
-<li><em>shooting</em></li>
-<li><em>passing</em></li>
-<li><em>passing_types</em></li>
-<li><em>goal_shot_creation</em></li>
-<li><em>defense</em></li>
-<li><em>possession</em></li>
-<li><em>playing_time</em></li>
-<li><em>misc</em></li>
-</ul>
+<a href="#league-urls" class="anchor"></a>League URLs</h3>
+<p>To extract the URL of any country’s league(s) (provided fbref have data for the league), use the <code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code> function.</p>
+<p>This function also accepts a <code>tier</code> argument. for first-tier leagues, select ‘1st’, for second-tier select ‘2nd’ and so on.</p>
+<p>A fill list of countries available can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># function to extract season teams stats</span>
-<span class="va">prem_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span>
-<span class="co"># to get shooting stats for the English Championship:</span>
-<span class="va">championship_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, tier <span class="op">=</span> <span class="st">"2nd"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span></code></pre></div>
-<p><strong>More than one league season</strong></p>
-<p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leages/genders/etc.</p>
-<p>Important to note, this function can only be used for one <code>stat-type</code> at a time, however all other parameters can have multiple values:</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/fb_league_urls.html">fb_league_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">'2nd'</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="team-urls" class="section level3">
+<h3 class="hasAnchor">
+<a href="#team-urls" class="anchor"></a>Team URLs</h3>
+<p>To get a list of URLs for each team in a particular season, the <code><a href="../reference/fb_teams_urls.html">fb_teams_urls()</a></code> function can be used:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
-                                        gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span><span class="op">)</span></code></pre></div>
-<hr>
+<code class="sourceCode R"><span class="fu"><a href="../reference/fb_teams_urls.html">fb_teams_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/comps/9/Premier-League-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
-</div>
-<div id="player-stats" class="section level2">
-<h2 class="hasAnchor">
-<a href="#player-stats" class="anchor"></a>Player Stats</h2>
-<p>This section will cover the functions available to aid in the extraction of player season data</p>
-<div id="get-player-scouting-report" class="section level3">
+<div id="player-urls" class="section level3">
 <h3 class="hasAnchor">
-<a href="#get-player-scouting-report" class="anchor"></a>Get Player Scouting Report</h3>
-<p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in a player_url as the input, and returns scouting reports for the player selected. The scouting reports are a new feature on fbref, thus only available for the big five Euro leagues:</p>
+<a href="#player-urls" class="anchor"></a>Player URLs</h3>
+<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The reuslts of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span><span class="op">)</span>
-<span class="co">#&gt;    player_name    season                      Statistic Per.90 Percentile</span>
-<span class="co">#&gt; 1      Ederson 2020-2021                        PSxG-GA  +0.11         81</span>
-<span class="co">#&gt; 2      Ederson 2020-2021                  Goals Against   0.60         99</span>
-<span class="co">#&gt; 3      Ederson 2020-2021                          Save%  79.2%         96</span>
-<span class="co">#&gt; 4      Ederson 2020-2021                       PSxG/SoT   0.27         23</span>
-<span class="co">#&gt; 5      Ederson 2020-2021          Save% (Penalty Kicks)   0.0%         20</span>
-<span class="co">#&gt; 6      Ederson 2020-2021         Clean Sheet Percentage  60.4%         99</span>
-<span class="co">#&gt; 7      Ederson 2020-2021                        Touches  33.94         38</span>
-<span class="co">#&gt; 8      Ederson 2020-2021                        Launch%  23.8%          6</span>
-<span class="co">#&gt; 9      Ederson 2020-2021                     Goal Kicks   4.23          1</span>
-<span class="co">#&gt; 10     Ederson 2020-2021      Avg. Length of Goal Kicks   43.5         43</span>
-<span class="co">#&gt; 11     Ederson 2020-2021              Crosses Stopped %   5.6%         19</span>
-<span class="co">#&gt; 12     Ederson 2020-2021 Def. Actions Outside Pen. Area   0.88         78</span>
-<span class="co">#&gt; 13     Ederson 2020-2021  Avg. Distance of Def. Actions   16.4         90</span></code></pre></div>
-</div>
-<div id="get-player-season-stats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-player-season-stats" class="anchor"></a>Get Player Season Stats</h3>
-<p>The <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> function allows for the extraction of season totals for selected player URLs and stat_type.</p>
-<p>The stat_types available for use in this function are below:</p>
-<ul>
-<li><em>standard</em></li>
-<li><em>shooting</em></li>
-<li><em>passing</em></li>
-<li><em>passing_types</em></li>
-<li><em>gca</em></li>
-<li><em>defense</em></li>
-<li><em>possession</em></li>
-<li><em>playing_time</em></li>
-<li><em>misc</em></li>
-<li><em>keeper</em></li>
-<li><em>keeper_adv</em></li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_urls.html">fb_player_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>

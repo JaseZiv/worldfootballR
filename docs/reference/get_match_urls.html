@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -112,6 +112,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+    </li>
     <li>
       <a href="../articles/extract-match-data.html">Extracting match data</a>
     </li>
@@ -156,7 +159,13 @@
     <p>Returns the URL for each match played for a given league season</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_match_urls</span><span class='op'>(</span><span class='va'>country</span>, <span class='va'>gender</span>, <span class='va'>season_end_year</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_match_urls</span><span class='op'>(</span>
+  <span class='va'>country</span>,
+  <span class='va'>gender</span>,
+  <span class='va'>season_end_year</span>,
+  tier <span class='op'>=</span> <span class='st'>"1st"</span>,
+  non_dom_league_url <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,6 +182,14 @@
       <th>season_end_year</th>
       <td><p>the year the season(s) concludes</p></td>
     </tr>
+    <tr>
+      <th>tier</th>
+      <td><p>the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on</p></td>
+    </tr>
+    <tr>
+      <th>non_dom_league_url</th>
+      <td><p>the URL for Cups and Competitions found at https://fbref.com/en/comps/</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -181,7 +198,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>get_match_urls</span><span class='op'>(</span>country <span class='op'>=</span> <span class='st'>"ENG"</span>, gender <span class='op'>=</span> <span class='st'>"M"</span>, season_end_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>get_match_urls</span><span class='op'>(</span>country <span class='op'>=</span> <span class='st'>"ENG"</span>, gender <span class='op'>=</span> <span class='st'>"M"</span>, season_end_year <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>:</span><span class='fl'>2021</span><span class='op'>)</span>, tier <span class='op'>=</span> <span class='st'>"1st"</span><span class='op'>)</span>
+<span class='va'>non_dom</span> <span class='op'>&lt;-</span> <span class='st'>"https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"</span>
+<span class='fu'>get_match_urls</span><span class='op'>(</span>country <span class='op'>=</span> <span class='st'>""</span>, gender <span class='op'>=</span> <span class='st'>"M"</span>, season_end_year <span class='op'>=</span> <span class='fl'>2021</span>, non_dom_league_url <span class='op'>=</span> <span class='va'>non_dom</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

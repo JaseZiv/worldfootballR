@@ -1,0 +1,88 @@
+---
+title: "Extracting fbref URLs"
+author: "Jason Zivkovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting fbref URLs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics data from fbref.com and valuations and transfer data from transfermarkt.com.
+
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(worldfootballR)
+library(dplyr)
+```
+
+***
+
+
+## Usage
+
+The functions available in this package are designed to enable the extraction of world football data.
+
+There are four main categories of data extract functions in this package:
+
+* fbref helper functions to extract key URLs
+* Match-level statistics (team and player)
+* Season-level statistics (team and player)
+* Player market vluations and transfer histories
+
+This vignette will cover the helper functions to extract important URLs from fbref.
+
+
+### League URLs
+
+To extract the URL of any country's league(s) (provided fbref have data for the league), use the `fb_league_urls()` function.
+
+This function also accepts a `tier` argument. for first-tier leagues, select '1st', for second-tier select '2nd' and so on.
+
+A fill list of countries available can be found in the `worldfootballR_data` repository and can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv).
+
+```{r get_league_urls, eval=FALSE}
+fb_league_urls(country = "ENG", gender = "M", season_end_year = 2021, tier = '2nd')
+```
+
+
+### Team URLs
+
+To get a list of URLs for each team in a particular season, the `fb_teams_urls()` function can be used:
+
+```{r get_team_urls, eval=FALSE}
+fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
+```
+
+
+
+### Player URLs
+
+To get a list of player URLs for a particular team, the `fb_player_urls()` function can be used. The reuslts of this output can be passed through to the player season stat functions `fb_player_season_stats()` and `fb_player_scouting_report()`.
+
+```{r, eval=FALSE}
+fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
+```
+

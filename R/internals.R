@@ -46,6 +46,60 @@
   return(stat_df)
 }
 
+#' Clean player season statistic tables
+#'
+#' Returns cleaned dataframe for each of the player statistic tables used by fb_player_season_stats()
+#'
+#' @param input_table_element element of the html table on the player page
+#'
+#' @return a data frame for the selected player's advanced statistic
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+.clean_player_season_stats <- function(input_table_element) {
+
+
+  stat_df <- input_table_element %>%
+    rvest::html_table() %>%
+    data.frame()
+
+  var_names <- stat_df[1,] %>% as.character()
+
+  new_names <- paste(var_names, names(stat_df), sep = "_")
+
+  new_names <- new_names %>%
+    gsub("\\..*", "", .) %>%
+    gsub("_Var", "", .) %>%
+    gsub("_Playing", "", .) %>%
+    gsub("%", "_percent", .) %>%
+    gsub("_Performance", "", .) %>%
+    # gsub("_Penalty", "", .) %>%
+    gsub("1/3", "Final_Third", .) %>%
+    gsub("/", "_per_", .) %>%
+    gsub("-", "_minus_", .) %>%
+    gsub("90s", "Mins_Per_90", .)
+
+  names(stat_df) <- new_names
+  stat_df <- stat_df[-1,]
+
+  stat_df <- stat_df %>% dplyr::select(-.data$Matches)
+
+  remove_rows <- min(grep("Seasons", stat_df$Season)):nrow(stat_df)
+
+  stat_df <- stat_df[-remove_rows, ]
+
+  cols_to_transform <- stat_df %>%
+    dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp) %>% names()
+
+  stat_df <- stat_df %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+
+  return(stat_df)
+}
+
 
 
 #' Clean each match advanced statistic tables

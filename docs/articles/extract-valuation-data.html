@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -67,6 +67,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+    </li>
+    <li>
       <a href="../articles/extract-match-data.html">Extracting match data</a>
     </li>
     <li>
@@ -104,7 +107,7 @@
       <h1 data-toc-skip>Extracting valuation and transfer data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-02-17</h4>
+            <h4 class="date">2021-03-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-valuation-data.Rmd"><code>vignettes/extract-valuation-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-valuation-data.Rmd</code></div>
@@ -134,8 +137,9 @@
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>The functions available in this package are designed to enable the extraction of world football data.</p>
-<p>There are three main categories of data extract functions in this package:</p>
+<p>There are four main categories of data extract functions in this package:</p>
 <ul>
+<li>fbref helper functions to extract key URLs</li>
 <li>Match-level statistics (team and player)</li>
 <li>Season-level statistics (team and player)</li>
 <li>Player market vluations and transfer histories</li>
@@ -153,24 +157,7 @@
 <p>The following function allows the user to extract player market values from transfermarkt.com.</p>
 <p>To get a list of the countries available, see the following link <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv" class="uri">https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">prem_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Extracting player market values..."</span>
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">prem_vals</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 512</span>
-<span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ comp_name                &lt;chr&gt; "Premier League", "Premier League", "Premier…</span>
-<span class="co">#&gt; $ region                   &lt;chr&gt; "Europe", "Europe", "Europe", "Europe", "Eur…</span>
-<span class="co">#&gt; $ country                  &lt;chr&gt; "England", "England", "England", "England", …</span>
-<span class="co">#&gt; $ season_start_year        &lt;int&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 20…</span>
-<span class="co">#&gt; $ squad                    &lt;chr&gt; "Liverpool FC", "Liverpool FC", "Liverpool F…</span>
-<span class="co">#&gt; $ player_num               &lt;chr&gt; "1", "13", "62", "4", "12", "32", "19", "46"…</span>
-<span class="co">#&gt; $ player_name              &lt;chr&gt; "Alisson", "Adrián", "Caoimhin Kelleher", "V…</span>
-<span class="co">#&gt; $ player_position          &lt;chr&gt; "Goalkeeper", "Goalkeeper", "Goalkeeper", "C…</span>
-<span class="co">#&gt; $ player_dob               &lt;date&gt; 1992-10-02, 1987-01-03, 1998-11-23, 1991-07…</span>
-<span class="co">#&gt; $ player_age               &lt;dbl&gt; 28, 34, 22, 29, 23, 29, 20, 20, 25, 23, 26, …</span>
-<span class="co">#&gt; $ player_nationality       &lt;chr&gt; "Brazil", "Spain", "Ireland", "Netherlands",…</span>
-<span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; 8.0e+07, 2.0e+06, 2.0e+06, 8.0e+07, 4.0e+07,…</span>
-<span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/alisson/profi…</span></code></pre></div>
+<code class="sourceCode R"><span class="va">prem_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <p>If the country/countries aren’t available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.</p>
 <p>To extract data for League One in England, the below code will return the player market valuations for the 2020/21 season in League One:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -184,21 +171,7 @@
 <code class="sourceCode R"><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"</span>,
           <span class="st">"https://www.transfermarkt.com/alisson/profil/spieler/105470"</span><span class="op">)</span>
 
-<span class="va">transfers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_transfer_history.html">player_transfer_history</a></span><span class="op">(</span><span class="va">urls</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Extracting player transfer history data..."</span>
-
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">transfers</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 11</span>
-<span class="co">#&gt; Columns: 9</span>
-<span class="co">#&gt; $ player_name    &lt;chr&gt; "Cristiano Ronaldo", "Cristiano Ronaldo", "Cristiano R…</span>
-<span class="co">#&gt; $ season         &lt;chr&gt; "18/19", "09/10", "03/04", "02/03", "00/01", "98/99", …</span>
-<span class="co">#&gt; $ transfer_date  &lt;date&gt; 2018-07-10, 2009-07-01, 2003-08-12, 2002-07-01, 2000-…</span>
-<span class="co">#&gt; $ country_from   &lt;chr&gt; "Spain", "England", "Portugal", "Portugal", "Portugal"…</span>
-<span class="co">#&gt; $ team_from      &lt;chr&gt; "Real Madrid", "Man Utd", "Sporting CP", "Sporting U19…</span>
-<span class="co">#&gt; $ country_to     &lt;chr&gt; "Italy", "Spain", "England", "Portugal", "Portugal", "…</span>
-<span class="co">#&gt; $ team_to        &lt;chr&gt; "Juventus", "Real Madrid", "Man Utd", "Sporting CP", "…</span>
-<span class="co">#&gt; $ market_value   &lt;dbl&gt; 1.0e+08, 6.0e+07, NA, NA, NA, NA, NA, 6.0e+07, 7.0e+06…</span>
-<span class="co">#&gt; $ transfer_value &lt;dbl&gt; 1.17e+08, 9.40e+07, 1.90e+07, NA, NA, NA, NA, 6.25e+07…</span></code></pre></div>
+<span class="va">transfers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_transfer_history.html">player_transfer_history</a></span><span class="op">(</span><span class="va">urls</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>

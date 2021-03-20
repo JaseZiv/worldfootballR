@@ -5,6 +5,7 @@
 #' @param country the three character country code for all countries
 #' @param gender gender of competition, either "M", "F" or both
 #' @param season_end_year the year the season(s) concludes
+#' @param tier the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on
 #' @param stat_type the type of team statistics the user requires
 #'
 #' The statistic type options (stat_type) include:
@@ -24,32 +25,31 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_team_statistics(country="ITA",gender="M",season_end_year=2021,stat_type="defense")
+#' get_season_team_stats("ITA", "M", 2021, "1st", "defense")
+#' get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 #' }
-
-get_season_team_stats <- function(country, gender, season_end_year,
-                                  stat_type = c("league_table", "league_table_home_away", "standard", "keeper", "keeper_adv",
-                                                "shooting", "passing", "passing_types", "goal_shot_creation", "defense", "possession",
-                                                "playing_time", "misc")) {
+get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type) {
 
   print(glue::glue("Scraping season {stat_type} stats"))
+
+  main_url <- "https://fbref.com"
 
   country_abbr <- country
   gender_M_F <- gender
   season_end_year_num <- season_end_year
+  comp_tier <- tier
 
-
-  main_url <- "https://fbref.com"
-
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
-
-  seasons <- seasons %>%
-    dplyr::filter(country %in% country_abbr,
-                  gender %in% gender_M_F,
-                  season_end_year %in% season_end_year_num)
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
 
   seasons_urls <- seasons %>%
+    dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+    dplyr::filter(country %in% country_abbr,
+                  gender %in% gender_M_F,
+                  season_end_year %in% season_end_year_num,
+                  tier %in% comp_tier) %>%
+    dplyr::arrange(season_end_year) %>%
     dplyr::pull(seasons_urls)
+
 
 
   get_each_stats_type <- function(season_url) {

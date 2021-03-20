@@ -45,8 +45,9 @@ library(dplyr)
 
 The functions available in this package are designed to enable the extraction of world football data.
 
-There are three main categories of data extract functions in this package:
+There are four main categories of data extract functions in this package:
 
+* fbref helper functions to extract key URLs
 * Match-level statistics (team and player)
 * Season-level statistics (team and player)
 * Player market vluations and transfer histories
@@ -62,27 +63,33 @@ This vignette will cover match-level data.
 To get the match URLs needed to pass in to some of the match-level functions below, `get_match_urls()` can be used:
 
 ```{r match_urls, eval=FALSE}
-epl_2021_urls <- get_match_urls(country = "ENG", gender = "M", season_end_year = 2021)
+epl_2021_urls <- get_match_urls(country = "ENG", gender = "M", season_end_year = 2021, tier="1st")
 ```
 
 
 ### Get match results
 
-To get the match results (and additional metadata) for all games for a tier-1 league season, the following function can be used:
+To get the match results (and additional metadata) for all leagues and comps listed [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv), the following function can be used:
 
-```{r get_match_results}
-# function to extract match results data
-serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = 2020)
-glimpse(serieA_2020)
+```{r get_match_results, eval=FALSE}
+# function to extract Serie A match results data
+serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = 2020, tier = "1st")
+```
+
+The function can also be used to return match URLs for a non-domestic league season. To use this functionality, simply leave `country = ''` and pass the non-domestic league URL, which can be found at https://fbref.com/en/comps/
+
+```{r get_int_match_results, eval=FALSE}
+# for international friendlies:
+get_match_results(country = "", gender = "M", season_end_year = 2018, tier = "", non_dom_league_url = "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons")
 ```
 
 **More than one league season**
 
-The `get_match_results` function can be used to get data for multiple seasons/leages/genders/etc also:
+The `get_match_results()` function can be used to get data for multiple seasons/leages/genders/etc also:
 
 ```{r get_match_results_multiple, eval=FALSE}
 big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
-                                        gender = "M", season_end_year = 2020)
+                                        gender = "M", season_end_year = 2020, tier = "1st")
 ```
 
 
@@ -90,10 +97,9 @@ big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", 
 
 This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
 
-```{r get_match_report}
+```{r get_match_report, eval=FALSE}
 # function to extract match report data
 liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-glimpse(liv_mci_2020)
 ```
 
 
@@ -101,16 +107,15 @@ glimpse(liv_mci_2020)
 
 This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
 
-```{r get_match_summary}
+```{r get_match_summary, eval=FALSE}
 # function to extract match summary data
 liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-glimpse(liv_mci_2020_summary)
 ```
 
 
 ### Get advanced match statistics
 
-The `get_advanced_match_stats` function allows the user to return a data frame of different stat types for matches played.
+The `get_advanced_match_stats()` function allows the user to return a data frame of different stat types for matches played.
 
 Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
 
@@ -126,25 +131,23 @@ The following stat types can be selected:
 
 The function can be used for either all players individually:
 
-```{r get_advanced_match_stats}
+```{r get_advanced_match_stats, eval=FALSE}
 test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                         "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
 
 advanced_match_stats <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "possession", team_or_player = "player")
-glimpse(advanced_match_stats)
 ```
 
 
 Or used for the team totals for each match:
 
-```{r get_advanced_match_stats_team}
+```{r get_advanced_match_stats_team, eval=FALSE}
 test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                         "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
 
 advanced_match_stats_team <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "passing_types", team_or_player = "team")
-glimpse(advanced_match_stats_team)
 ```
 
 
@@ -152,8 +155,7 @@ glimpse(advanced_match_stats_team)
 
 This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.  
 
-```{r get_match_lineups}
+```{r get_match_lineups, eval=FALSE}
 # function to extract match lineups
 liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-glimpse(liv_mci_2020_lineups)
 ```

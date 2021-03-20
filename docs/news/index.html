@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -111,6 +111,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+    </li>
     <li>
       <a href="../articles/extract-match-data.html">Extracting match data</a>
     </li>
@@ -150,6 +153,38 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worldfootballr-024" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.4">
+<a href="#worldfootballr-024" class="anchor"></a>worldfootballR 0.2.4</h1>
+<div id="new-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h3>
+<ul>
+<li>Added fbref helper functions:
+<ul>
+<li>
+<code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code> to get fbref league URLs for a given country, gender, season, tier</li>
+<li>
+<code><a href="../reference/fb_teams_urls.html">fb_teams_urls()</a></code> to get fbref team URLs for a given league_url</li>
+<li>
+<code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> to get fbref player URLs for a given team_url</li>
+</ul>
+</li>
+<li>Added a function to retrieve a player’s scouting report <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>
+</li>
+<li>Added a function to get season player stats for a selected player and stay_type <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code>
+</li>
+</ul>
+</div>
+<div id="improving-existing-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#improving-existing-functions" class="anchor"></a>Improving existing functions</h3>
+<ul>
+<li>Additional leagues and cups now available in the following functions; <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code>, <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, <code><a href="../reference/get_season_team_stats.html">get_season_team_stats()</a></code>
+</li>
+</ul>
+</div>
+</div>
     <div id="worldfootballr-023" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.3">
 <a href="#worldfootballr-023" class="anchor"></a>worldfootballR 0.2.3</h1>
@@ -213,19 +248,19 @@
 <a href="#worldfootballr-0009000" class="anchor"></a>worldfootballR 0.0.0.9000</h1>
 <ul>
 <li>First commit of package</li>
-<li>Added function to get the match results of a given tier-1 league season <code>get_match_results</code>
+<li>Added function to get the match results of a given tier-1 league season <code><a href="../reference/get_match_results.html">get_match_results()</a></code>
 </li>
-<li>Added function to extract match URLs for a given tier-1 league season <code>get_match_urls</code>
+<li>Added function to extract match URLs for a given tier-1 league season <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code>
 </li>
-<li>Added function to get team season statistics <code>get_season_team_stats</code>
+<li>Added function to get team season statistics <code><a href="../reference/get_season_team_stats.html">get_season_team_stats()</a></code>
 </li>
-<li>Added function to get additional metadata for matches <code>get_match_report</code>
+<li>Added function to get additional metadata for matches <code><a href="../reference/get_match_report.html">get_match_report()</a></code>
 </li>
-<li>Added function to get match lineups for selected match urls <code>get_match_lineups</code>
+<li>Added function to get match lineups for selected match urls <code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code>
 </li>
-<li>Added function to get advanced match statistics for players and/or teams <code>get_advanced_match_statistics</code>
+<li>Added function to get advanced match statistics for players and/or teams <code>get_advanced_match_statistics()</code>
 </li>
-<li>Added function to get match events summary <code>get_match_summary</code>
+<li>Added function to get match events summary <code><a href="../reference/get_match_summary.html">get_match_summary()</a></code>
 </li>
 </ul>
 </div>
