@@ -81,3 +81,10 @@ or email me with your idea.
 
 Feel free to get in touch via email or twitter
 <https://twitter.com/jaseziv>
+
+### Show your support
+
+Follow me on Twitter ([jaseziv](https://twitter.com/jaseziv)) for
+updates
+
+If this package helps you, all I ask is that you star this repo
