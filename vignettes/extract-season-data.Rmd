@@ -140,3 +140,35 @@ mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Moh
 ```
 
 
+## The Big 5 Euro Leagues
+
+The `fb_big5_advanced_season_stats()` function allows users to extract data for any of the below listed stat types for either all players, or all teams of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).
+
+The stat types available for this function are below:
+
+* *standard*
+* *shooting*
+* *passing*
+* *passing_types*
+* *gca*
+* *defense*
+* *possession*
+* *playing_time*
+* *misc*
+* *keepers*
+* *keepers_adv*
+
+The function also accepts a season or seasons and whether you want data for the player, or team.
+
+Note that when selecting `team_or_player="team"`, results will be returned for both the team's for and against stats. To filter on this, use the `Team_or_Opponent` column in the resulting data frame, selecting 'team' if you want the team's for stats, or 'opponent' if you want the team's against stats. 
+
+
+```{r big5_player, eval=FALSE}
+big5_player_possession <- fb_big5_advanced_season_stats(season_end_year= 2021, stat_type= "possession", team_or_player= "player")
+```
+
+```{r big5_team, eval=FALSE}
+big5_team_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "team")
+```
+
+

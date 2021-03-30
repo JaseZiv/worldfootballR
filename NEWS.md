@@ -1,3 +1,8 @@
+# worldfootballR 0.2.5
+
+### New functions
+* Added `fb_big5_advanced_season_stats()` to get fbref season stats for all players or teams stats in the big five Euro leagues
+
 # worldfootballR 0.2.4
 
 ### New functions

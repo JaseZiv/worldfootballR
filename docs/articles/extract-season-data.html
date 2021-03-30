@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting season data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-03-29</h4>
+            <h4 class="date">2021-03-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-season-data.Rmd"><code>vignettes/extract-season-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-season-data.Rmd</code></div>
@@ -232,6 +232,31 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span></code></pre></div>
 </div>
+</div>
+<div id="the-big-5-euro-leagues" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-big-5-euro-leagues" class="anchor"></a>The Big 5 Euro Leagues</h2>
+<p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows users to extract data for any of the below listed stat types for either all players, or all teams of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).</p>
+<p>The stat types available for this function are below:</p>
+<ul>
+<li><em>standard</em></li>
+<li><em>shooting</em></li>
+<li><em>passing</em></li>
+<li><em>passing_types</em></li>
+<li><em>gca</em></li>
+<li><em>defense</em></li>
+<li><em>possession</em></li>
+<li><em>playing_time</em></li>
+<li><em>misc</em></li>
+<li><em>keepers</em></li>
+<li><em>keepers_adv</em></li>
+</ul>
+<p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
+<p>Note that when selecting <code>team_or_player="team"</code>, results will be returned for both the team’s for and against stats. To filter on this, use the <code>Team_or_Opponent</code> column in the resulting data frame, selecting ‘team’ if you want the team’s for stats, or ‘opponent’ if you want the team’s against stats.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">big5_team_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
