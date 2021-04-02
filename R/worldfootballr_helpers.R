@@ -36,7 +36,7 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
            .data$gender %in% gender_M_F,
            .data$season_end_year %in% season_end_year_num,
            .data$tier %in% comp_tier) %>%
-    dplyr::pull(.data$seasons_urls)
+    dplyr::pull(.data$seasons_urls) %>% unique()
 
   return(league_seasons_urls)
 
