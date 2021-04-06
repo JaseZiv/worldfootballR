@@ -1,7 +1,12 @@
+# worldfootballR 0.2.5.2
+
+### Bugs
+Fix duplicating league URLs in various season-level functions as a result of including "Big 5" competition issue [#20](https://github.com/JaseZiv/worldfootballR/issues/20)
+
 # worldfootballR 0.2.5.1
 
 ### Bugs
-Fix duplicating league URLs in `fb_league_urls` as a result of including "Big 5" competition issue [#19](https://github.com/JaseZiv/worldfootballR/issues/19)
+Fix duplicating league URLs in `fb_league_urls()` as a result of including "Big 5" competition issue [#19](https://github.com/JaseZiv/worldfootballR/issues/19)
 
 # worldfootballR 0.2.5
 

@@ -46,7 +46,7 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
     dplyr::filter(stringr::str_detect(.data$competition_type, "Big 5 European Leagues")) %>%
     dplyr::filter(season_end_year %in% season_end_year_num) %>%
     dplyr::arrange(season_end_year) %>%
-    dplyr::pull(seasons_urls)
+    dplyr::pull(seasons_urls) %>% unique()
 
 
   get_each_big5_stats_type <- function(season_url) {

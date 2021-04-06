@@ -152,7 +152,7 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
     dplyr::filter(.data$seasons_urls %in% final_df$League_URL) %>%
     dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
 
-  final_df <- seasons %>%
+  final_df <- seasons %>% dplyr::distinct(.keep_all = T) %>%
     dplyr::left_join(final_df, by = "League_URL") %>%
     dplyr::select(-.data$League_URL)
 

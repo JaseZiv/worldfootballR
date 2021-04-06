@@ -47,7 +47,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
                     tier %in% comp_tier,
                     !is.na(.data$fixtures_url)) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url)
+      dplyr::pull(.data$fixtures_url) %>% unique()
   } else {
     fixtures_urls <- seasons %>%
       dplyr::filter(.data$comp_url %in% cups_url,
@@ -55,7 +55,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
                     season_end_year %in% season_end_year_num,
                     !is.na(.data$fixtures_url)) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url)
+      dplyr::pull(.data$fixtures_url) %>% unique()
   }
 
 
@@ -108,7 +108,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
   all_results <- fixtures_urls %>%
     purrr::map_df(get_each_season_results)
 
-  all_results <- seasons %>%
+  all_results <- seasons %>% dplyr::distinct(.keep_all = T) %>%
     dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls, .data$fixtures_url) %>%
     dplyr::right_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
     dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%

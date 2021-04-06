@@ -71,7 +71,7 @@ get_match_summary <- function(match_url) {
     dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
 
 
-  all_events_df <- seasons %>%
+  all_events_df <- seasons %>% dplyr::distinct(.keep_all = T) %>%
     dplyr::left_join(all_events_df, by = "League_URL") %>%
     dplyr::select(-.data$League_URL)
 

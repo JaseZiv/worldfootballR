@@ -108,7 +108,7 @@ get_match_report <- function(match_url) {
     dplyr::filter(.data$seasons_urls %in% all_games$League_URL) %>%
     dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
 
-  all_games <- seasons %>%
+  all_games <- seasons %>% dplyr::distinct(.keep_all = T) %>%
     dplyr::left_join(all_games, by = "League_URL") %>%
     dplyr::select(-.data$League_URL)
 
