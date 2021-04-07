@@ -175,12 +175,12 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
         dplyr::mutate(season_url = season_url) %>%
         dplyr::select(.data$season_url, .data$Squad, .data$Team_or_Opponent, dplyr::everything())
 
-      stat_df <- seasons %>% dplyr::distinct(.keep_all = T) %>%
+      stat_df <- seasons %>%
         dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls) %>%
         dplyr::left_join(stat_df, by = c("seasons_urls" = "season_url")) %>%
         dplyr::select(-.data$seasons_urls) %>%
         dplyr::filter(!is.na(.data$Squad)) %>%
-        dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad)
+        dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad) %>% dplyr::distinct(.keep_all = T)
     }
 
 

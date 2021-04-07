@@ -1,3 +1,8 @@
+# worldfootballR 0.2.5.3
+
+### Bugs
+Fix duplicated results in some functions
+
 # worldfootballR 0.2.5.2
 
 ### Bugs
