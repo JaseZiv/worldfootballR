@@ -80,7 +80,14 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
     idx <- which(all_lens == 9)
 
-    matchday_table <- weekly_table[idx] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+    if(length(idx) == 1) {
+      matchday_table <- weekly_table[idx] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+    } else {
+      matchday_table_1 <- weekly_table[idx[1]] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+      matchday_table_2 <- weekly_table[idx[2]] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+
+      matchday_table <- rbind(matchday_table_1, matchday_table_2)
+    }
 
 
     matchday_table <- matchday_table %>%
@@ -91,7 +98,10 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
                     P=.data$Var.4, .data$W, .data$D, .data$L, .data$Goals, G_Diff=.data$`X...`, .data$Pts) %>%
       tidyr::separate(.data$Goals, into = c("GF", "GA"), sep = ":") %>%
       dplyr::mutate(GF = as.numeric(.data$GF),
-                    GA = as.numeric(.data$GA))
+                    GA = as.numeric(.data$GA)) %>% suppressWarnings()
+
+    matchday_table <- matchday_table %>%
+      dplyr::mutate_at(.vars = c("P", "W", "D", "L", "GF", "GA", "G_Diff", "Pts"), as.numeric) %>% suppressWarnings()
 
     all_matchdays <- rbind(all_matchdays, matchday_table)
   }
