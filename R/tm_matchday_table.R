@@ -62,7 +62,11 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
     print(glue::glue("Extracting league table for matchday {each_matchday}..."))
 
-    matchday_url <- paste0(season_url, "?saison_id=", start_year, "&spieltag=", each_matchday)
+    if(is.na(league_url)) {
+      matchday_url <- paste0(season_url, "&spieltag=", each_matchday)
+    } else {
+      matchday_url <- paste0(season_url, "?saison_id=", start_year, "&spieltag=", each_matchday)
+    }
 
     tab <- xml2::read_html(matchday_url)
 
