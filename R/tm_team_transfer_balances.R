@@ -23,6 +23,8 @@
 
 tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 
+  print("Scraping team transfer balances for the season")
+
   main_url <- "https://www.transfermarkt.com"
 
   if(is.na(league_url)) {
@@ -86,7 +88,7 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
       val_in <- i %>% rvest::html_nodes(".transfer-einnahmen-ausgaben") %>% rvest::html_text() %>% .[2] %>% stringr::str_squish()
       age_in <- i %>% rvest::html_nodes(".transfer-zusatzinfo-alter") %>% rvest::html_text() %>% .[1] %>% stringr::str_squish()
       age_out <- i %>% rvest::html_nodes(".transfer-zusatzinfo-alter") %>% rvest::html_text() %>% .[2] %>% stringr::str_squish()
-      df <- data.frame(country=country_name, league=league_name, season=season, team=team_name, expenditure_euros=val_out, income_euros=val_in, avg_age_out=age_out, avg_age_in=age_in)
+      df <- data.frame(country=country_name, league=league_name, season=season, squad=team_name, expenditure_euros=val_out, income_euros=val_in, avg_age_out=age_out, avg_age_in=age_in)
     }
     all_df <- dplyr::bind_rows(all_df, df)
 

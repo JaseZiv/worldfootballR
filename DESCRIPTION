@@ -22,7 +22,8 @@ Imports:
     xml2,
     rvest,
     curl,
-    glue
+    glue,
+    janitor
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,

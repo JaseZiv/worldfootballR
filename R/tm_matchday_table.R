@@ -107,6 +107,10 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
     matchday_table <- matchday_table %>%
       dplyr::mutate_at(.vars = c("P", "W", "D", "L", "GF", "GA", "G_Diff", "Pts"), as.numeric) %>% suppressWarnings()
 
+    matchday_table <- matchday_table %>%
+      janitor::clean_names() %>%
+      dplyr::rename(squad = .data$team)
+
     all_matchdays <- rbind(all_matchdays, matchday_table)
   }
 
