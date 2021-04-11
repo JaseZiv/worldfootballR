@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get fbref Player Season Statistics — fb_player_season_stats • worldfootballR</title>
+<title>Get weekly league table — tm_matchday_table • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get fbref Player Season Statistics — fb_player_season_stats" />
-<meta property="og:description" content="Returns the historical season stats for a selected player and stat type" />
+<meta property="og:title" content="Get weekly league table — tm_matchday_table" />
+<meta property="og:description" content="Returns the league table for each chosen matchday from transfermarkt" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,42 +150,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get fbref Player Season Statistics</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/get_season_player_stats.R'><code>R/get_season_player_stats.R</code></a></small>
-    <div class="hidden name"><code>fb_player_season_stats.Rd</code></div>
+    <h1>Get weekly league table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/tm_matchday_table.R'><code>R/tm_matchday_table.R</code></a></small>
+    <div class="hidden name"><code>tm_matchday_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns the historical season stats for a selected player and stat type</p>
+    <p>Returns the league table for each chosen matchday from transfermarkt</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fb_player_season_stats</span><span class='op'>(</span><span class='va'>player_url</span>, <span class='va'>stat_type</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tm_matchday_table</span><span class='op'>(</span><span class='va'>country_name</span>, <span class='va'>start_year</span>, <span class='va'>matchday</span>, league_url <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>player_url</th>
-      <td><p>the URL of the player (can come from fb_player_urls())</p></td>
+      <th>country_name</th>
+      <td><p>the country of the league's players</p></td>
     </tr>
     <tr>
-      <th>stat_type</th>
-      <td><p>the type of statistic required</p>
-<p>The statistic type options (stat_type) include:</p>
-<p><em>"standard"</em>, <em>"shooting"</em>, <em>"passing"</em>,
-<em>"passing_types"</em>, <em>"gca"</em>, <em>"defense"</em>, <em>"possession"</em>
-<em>"playing_time"</em>, <em>"misc"</em>, <em>"keeper"</em>, <em>"keeper_adv"</em></p></td>
+      <th>start_year</th>
+      <td><p>the start year of the season (2020 for the 20/21 season)</p></td>
+    </tr>
+    <tr>
+      <th>matchday</th>
+      <td><p>the matchweek number. Can be a vector of matchdays</p></td>
+    </tr>
+    <tr>
+      <th>league_url</th>
+      <td><p>league url from transfermarkt.com. To be used when country_name not avalilable in main function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe of a player's historical season stats</p>
+    <p>returns a dataframe of the table for a selected league and matchday</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>fb_player_season_stats</span><span class='op'>(</span><span class='st'>"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>,
-stat_type <span class='op'>=</span> <span class='st'>'standard'</span><span class='op'>)</span>
+<span class='fu'>tm_matchday_table</span><span class='op'>(</span>country_name<span class='op'>=</span><span class='st'>"England"</span>, start_year<span class='op'>=</span><span class='st'>"2020"</span>, matchday<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>tm_matchday_table</span><span class='op'>(</span>country_name<span class='op'>=</span><span class='st'>"England"</span>, start_year<span class='op'>=</span><span class='st'>"2020"</span>, matchday<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>34</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

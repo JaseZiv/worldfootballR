@@ -1,3 +1,13 @@
+# worldfootballR 0.2.6
+
+### New functions
+* Added new transfermarkt functions:
+  * `tm_team_transfer_balances()` to get team total transfer income and expenditure data
+  * `tm_matchday_table()` to get league table after each specified matchday(s)
+
+### Improving existing functions
+* Various transfermarkt functions refactored to have consistent column names
+
 # worldfootballR 0.2.5.3
 
 ### Bugs

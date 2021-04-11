@@ -101,6 +101,27 @@ big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA",
                                         gender = "M", season_end_year = 2020, tier = "1st", stat_type = "possession")
 ```
 
+
+### League Table by Matchdays
+
+To be able to extract league tables for select matchday(s), the below function can be used. 
+
+The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv) repository, it can accept the league URL, season start year and matchday number(s).
+
+Note, the league tables are scraped from transfermarkt.
+
+```{r matchday_league_table, eval=FALSE}
+# to get the EPL table after matchday 1 of the 20/21 season:
+epl_matchday_1_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=1)
+
+# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
+epl_matchday_1to35_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=c(1:35))
+
+# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
+league_one_matchday_1_table <- tm_matchday_table(start_year="2020", matchday=1, league_url="https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
 ***
 
 ## Player Stats

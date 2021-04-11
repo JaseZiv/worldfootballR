@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting season data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-04-07</h4>
+            <h4 class="date">2021-04-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-season-data.Rmd"><code>vignettes/extract-season-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-season-data.Rmd</code></div>
@@ -183,6 +183,22 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="league-table-by-matchdays" class="section level3">
+<h3 class="hasAnchor">
+<a href="#league-table-by-matchdays" class="anchor"></a>League Table by Matchdays</h3>
+<p>To be able to extract league tables for select matchday(s), the below function can be used.</p>
+<p>The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">worldfootballR_data</a> repository, it can accept the league URL, season start year and matchday number(s).</p>
+<p>Note, the league tables are scraped from transfermarkt.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># to get the EPL table after matchday 1 of the 20/21 season:</span>
+<span class="va">epl_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+
+<span class="co"># to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:</span>
+<span class="va">epl_matchday_1to35_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:</span>
+<span class="va">league_one_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span>, league_url<span class="op">=</span><span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -194,22 +210,22 @@
 <h3 class="hasAnchor">
 <a href="#get-player-scouting-report" class="anchor"></a>Get Player Scouting Report</h3>
 <p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in a player_url as the input, and returns scouting reports for the player selected. The scouting reports are a new feature on fbref, thus only available for the big five Euro leagues:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span><span class="op">)</span>
 <span class="co">#&gt;    player_name    season                      Statistic Per.90 Percentile</span>
-<span class="co">#&gt; 1      Ederson 2020-2021                        PSxG-GA  +0.11         83</span>
-<span class="co">#&gt; 2      Ederson 2020-2021                  Goals Against   0.60         99</span>
-<span class="co">#&gt; 3      Ederson 2020-2021                          Save%  79.2%         97</span>
-<span class="co">#&gt; 4      Ederson 2020-2021                       PSxG/SoT   0.27         21</span>
+<span class="co">#&gt; 1      Ederson 2020-2021                        PSxG-GA  +0.08         71</span>
+<span class="co">#&gt; 2      Ederson 2020-2021                  Goals Against   0.63         99</span>
+<span class="co">#&gt; 3      Ederson 2020-2021                          Save%  77.8%         96</span>
+<span class="co">#&gt; 4      Ederson 2020-2021                       PSxG/SoT   0.26         14</span>
 <span class="co">#&gt; 5      Ederson 2020-2021          Save% (Penalty Kicks)   0.0%         20</span>
-<span class="co">#&gt; 6      Ederson 2020-2021         Clean Sheet Percentage  60.0%         99</span>
-<span class="co">#&gt; 7      Ederson 2020-2021                        Touches  33.54         32</span>
-<span class="co">#&gt; 8      Ederson 2020-2021                        Launch%  24.0%          7</span>
-<span class="co">#&gt; 9      Ederson 2020-2021                     Goal Kicks   4.20          1</span>
+<span class="co">#&gt; 6      Ederson 2020-2021         Clean Sheet Percentage  58.8%         99</span>
+<span class="co">#&gt; 7      Ederson 2020-2021                        Touches  33.27         29</span>
+<span class="co">#&gt; 8      Ederson 2020-2021                        Launch%  23.8%          6</span>
+<span class="co">#&gt; 9      Ederson 2020-2021                     Goal Kicks   4.12          1</span>
 <span class="co">#&gt; 10     Ederson 2020-2021      Avg. Length of Goal Kicks   42.9         40</span>
-<span class="co">#&gt; 11     Ederson 2020-2021              Crosses Stopped %   5.5%         17</span>
-<span class="co">#&gt; 12     Ederson 2020-2021 Def. Actions Outside Pen. Area   0.86         78</span>
-<span class="co">#&gt; 13     Ederson 2020-2021  Avg. Distance of Def. Actions   16.3         89</span></code></pre></div>
+<span class="co">#&gt; 11     Ederson 2020-2021              Crosses Stopped %   5.5%         16</span>
+<span class="co">#&gt; 12     Ederson 2020-2021 Def. Actions Outside Pen. Area   0.84         78</span>
+<span class="co">#&gt; 13     Ederson 2020-2021  Avg. Distance of Def. Actions   16.4         90</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
 <h3 class="hasAnchor">
@@ -229,7 +245,7 @@
 <li><em>keeper</em></li>
 <li><em>keeper_adv</em></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
@@ -253,9 +269,9 @@
 </ul>
 <p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
 <p>Note that when selecting <code>team_or_player="team"</code>, results will be returned for both the team’s for and against stats. To filter on this, use the <code>Team_or_Opponent</code> column in the resulting data frame, selecting ‘team’ if you want the team’s for stats, or ‘opponent’ if you want the team’s against stats.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big5_team_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
