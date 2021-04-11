@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting valuation and transfer data</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-04-07</h4>
+            <h4 class="date">2021-04-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-valuation-data.Rmd"><code>vignettes/extract-valuation-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-valuation-data.Rmd</code></div>
@@ -163,11 +163,24 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">league_one_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>start_year <span class="op">=</span> <span class="fl">2020</span>, league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="transfer-summary" class="section level4">
+<h4 class="hasAnchor">
+<a href="#transfer-summary" class="anchor"></a>Transfer Summary</h4>
+<p>To get aggregated total transfer income and expenditure for each team within a specified league season from transfermarkt.com, the below function can assist.</p>
+<p>The function can either accept a country argument and season start year, or it can accept the season start year and a league URL for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">worldfootballR_data</a> repository.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for leagues contained in worldfootballR_Data repo</span>
+<span class="va">epl_transfer_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfer_balances.html">tm_team_transfer_balances</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span><span class="op">)</span>
+
+<span class="co"># for leagues not in worldfootballR_Data repo:</span>
+<span class="va">odd_legue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfer_balances.html">tm_team_transfer_balances</a></span><span class="op">(</span>start_year<span class="op">=</span><span class="st">"2020"</span>, league_url<span class="op">=</span><span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
+</div>
 <div id="transfer-history" class="section level4">
 <h4 class="hasAnchor">
 <a href="#transfer-history" class="anchor"></a>Transfer history</h4>
+<p><strong>Players:</strong></p>
 <p>The following function allows the user to get transfer history for a player or group of players, only requiring the player urls from transfermarkt.com:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"</span>,
           <span class="st">"https://www.transfermarkt.com/alisson/profil/spieler/105470"</span><span class="op">)</span>
 

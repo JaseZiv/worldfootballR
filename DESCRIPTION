@@ -1,7 +1,7 @@
 Package: worldfootballR
 Type: Package
 Title: An R Package to Extract World Football (Soccer) Data from Fbref.com and transfermarkt.com
-Version: 0.2.5.3
+Version: 0.2.6
 Authors@R: person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
                   role = c("aut", "cre"))
 URL: https://github.com/JaseZiv/worldfootballR
@@ -22,7 +22,8 @@ Imports:
     xml2,
     rvest,
     curl,
-    glue
+    glue,
+    janitor
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
