@@ -47,7 +47,7 @@ test_that("get_match_lineups() works", {
   # test the functions returns the data
   expect_type(test_df, "list")
   # test that the correct number of columns returned
-  expect_equal(ncol(test_df), 6)
+  expect_equal(ncol(test_df), 15)
   # test that incorrect URL will return empty data frame
   error_lineups <- get_match_lineups("aaa.aaa")
   expect_equal(nrow(error_lineups), 0)
