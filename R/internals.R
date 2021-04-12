@@ -89,8 +89,13 @@
 
   stat_df <- stat_df[-remove_rows, ]
 
-  cols_to_transform <- stat_df %>%
-    dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp) %>% names()
+  if(any(grepl("LgRank", names(stat_df)))){
+    cols_to_transform <- stat_df %>%
+      dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp, -.data$LgRank) %>% names()
+  } else {
+    cols_to_transform <- stat_df %>%
+      dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp) %>% names()
+  }
 
   stat_df <- stat_df %>%
     dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
