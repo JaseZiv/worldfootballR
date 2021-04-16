@@ -109,6 +109,16 @@ fb_player_season_stats <- function(player_url, stat_type) {
   } else {
     expanded_table_elements <- player_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table")
 
+    expanded_table_idx <- c()
+
+    for(i in 1:length(expanded_table_elements)) {
+      idx <- xml2::xml_attrs(expanded_table_elements[[i]])[["id"]]
+      expanded_table_idx <- c(expanded_table_idx, idx)
+    }
+
+    idx <- grep("_dom_", expanded_table_idx)
+    expanded_table_idx <- expanded_table_idx[idx]
+
     stat_df <- tryCatch(
       .clean_player_season_stats(expanded_table_elements[which(stringr::str_detect(expanded_table_idx, paste0("stats_", stat_type)))]),
       error = function(e) data.frame()
@@ -119,7 +129,7 @@ fb_player_season_stats <- function(player_url, stat_type) {
 
   stat_df <- stat_df %>%
     dplyr::mutate(player_name = player_name,
-           player_url = player_url) %>%
+                  player_url = player_url) %>%
     dplyr::select(player_name, player_url, dplyr::everything())
 
   return(stat_df)

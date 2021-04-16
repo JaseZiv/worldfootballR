@@ -49,6 +49,9 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_results.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_shooting.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_match_summary.html</loc>
   </url>
   <url>
@@ -59,6 +62,9 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_season_team_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/get_team_match_results.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/player_transfer_history.html</loc>
@@ -83,5 +89,8 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//articles/extract-valuation-data.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//articles/team-and-player-data.html</loc>
   </url>
 </urlset>

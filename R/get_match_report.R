@@ -42,13 +42,14 @@
     tryCatch( {Away_Goals <- each_game_page %>% rvest::html_nodes("#b") %>% .[[1]] %>% rvest::html_text()}, error = function(e) {Away_Goals <- NA}) %>%
       stringr::str_remove_all("\n") %>% stringr::str_remove_all("\t")
 
+    suppressWarnings(each_game <- cbind(League_URL, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Game_URL) %>%
+                       dplyr::as_tibble() %>%
+                       dplyr::mutate(Home_Score = as.numeric(.data$Home_Score),
+                                     Home_xG = as.numeric(.data$Home_xG),
+                                     Away_Score = as.numeric(.data$Away_Score),
+                                     Away_xG = as.numeric(.data$Away_xG))
+    )
 
-    each_game <- cbind(League_URL, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Game_URL) %>%
-      dplyr::as_tibble() %>%
-      dplyr::mutate(Home_Score = as.numeric(.data$Home_Score),
-                    Home_xG = as.numeric(.data$Home_xG),
-                    Away_Score = as.numeric(.data$Away_Score),
-                    Away_xG = as.numeric(.data$Away_xG))
 
     # seasons <- seasons %>%
     #   dplyr::filter(.data$seasons_urls %in% each_game$League_URL) %>%
@@ -102,7 +103,7 @@ get_match_report <- function(match_url) {
   all_games <- match_url %>%
     purrr::map_df(each_match_report)
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
 
   seasons <- seasons %>%
     dplyr::filter(.data$seasons_urls %in% all_games$League_URL) %>%
