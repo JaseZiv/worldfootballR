@@ -102,7 +102,7 @@ get_match_report <- function(match_url) {
   all_games <- match_url %>%
     purrr::map_df(each_match_report)
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
 
   seasons <- seasons %>%
     dplyr::filter(.data$seasons_urls %in% all_games$League_URL) %>%

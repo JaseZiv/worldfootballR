@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert formatted valuations to numeric — .convert_value_to_numeric • worldfootballR</title>
+<title>Get match shooting data — get_match_shooting • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Convert formatted valuations to numeric — .convert_value_to_numeric" />
-<meta property="og:description" content="Returns a numeric data type for player valuations" />
+<meta property="og:title" content="Get match shooting data — get_match_shooting" />
+<meta property="og:description" content="Returns detailed player shooting data for home and away teams for a selected match(es)" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,30 +150,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert formatted valuations to numeric</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
-    <div class="hidden name"><code>dot-convert_value_to_numeric.Rd</code></div>
+    <h1>Get match shooting data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/get_match_shooting.R'><code>R/get_match_shooting.R</code></a></small>
+    <div class="hidden name"><code>get_match_shooting.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a numeric data type for player valuations</p>
+    <p>Returns detailed player shooting data for home and away teams for a selected match(es)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.convert_value_to_numeric</span><span class='op'>(</span><span class='va'>euro_value</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_match_shooting</span><span class='op'>(</span><span class='va'>match_url</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>euro_value</th>
-      <td><p>raw valuation from transfermarkt.com</p></td>
+      <th>match_url</th>
+      <td><p>the fbref.com URL for the required match</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a cleaned numeric data value for market and/or transfer valuation</p>
+    <p>returns a dataframe</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>match</span> <span class='op'>&lt;-</span> <span class='st'>"https://fbref.com/en/matches/bf52349b/Fulham-Arsenal-September-12-2020-Premier-League"</span>
+<span class='fu'>get_match_shooting</span><span class='op'>(</span>match_url <span class='op'>=</span> <span class='va'>match</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

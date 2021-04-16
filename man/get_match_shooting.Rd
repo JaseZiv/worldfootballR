@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_match_shooting.R
 \name{get_match_shooting}
 \alias{get_match_shooting}
-\title{Get match shooting data}
+\title{Get match shooting event data}
 \usage{
 get_match_shooting(match_url)
 }
@@ -10,14 +10,15 @@ get_match_shooting(match_url)
 \item{match_url}{the fbref.com URL for the required match}
 }
 \value{
-returns a dataframe with detailed player shooting data for a selected match
+returns a dataframe
 }
 \description{
-Returns detailed player shooting data for home and away teams for a selected match
+Returns detailed player shooting data for home and away teams for a selected match(es)
 }
 \examples{
 \dontrun{
 match <- "https://fbref.com/en/matches/bf52349b/Fulham-Arsenal-September-12-2020-Premier-League"
 get_match_shooting(match_url = match)
 }
+
 }

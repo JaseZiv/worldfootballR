@@ -1,3 +1,15 @@
+# worldfootballR 0.2.7
+
+### New functions
+* Added new fbref functions
+  * `get_match_shooting()` to get shot and shot creation specific details (issue [#3](https://github.com/JaseZiv/worldfootballR/issues/3))
+  
+### Improving existing functions
+* `get_match_lineups()` now returns additional summary player performance data (shots, goals, cards, etc) to the original lineups output
+
+### Bugs
+* Fixed issue where `get_season_player_stats()` not returning results for players who have only played in domestic comps (not cups, internationals, etc) (issue [#22](https://github.com/JaseZiv/worldfootballR/issues/22))
+
 # worldfootballR 0.2.6
 
 ### New functions

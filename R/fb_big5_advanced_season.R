@@ -55,6 +55,11 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
       stat_type <- "stats"
     }
 
+    # fixes the change fbref made with the name of playing time
+    if(stat_type == "playing_time") {
+      stat_type <- "playingtime"
+    }
+
     season_stats_page <- xml2::read_html(season_url)
 
     if(team_or_player == "player") {
@@ -102,17 +107,33 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
 
     new_names <- paste(var_names, names(stat_df), sep = "_")
 
-    new_names <- new_names %>%
-      gsub("\\..*", "", .) %>%
-      gsub("_Var", "", .) %>%
-      gsub("# Pl", "Num_Players", .) %>%
-      gsub("%", "_percent", .) %>%
-      gsub("_Performance", "", .) %>%
-      # gsub("_Penalty", "", .) %>%
-      gsub("1/3", "Final_Third", .) %>%
-      gsub("/", "_per_", .) %>%
-      gsub("-", "_minus_", .) %>%
-      gsub("90s", "Mins_Per_90", .)
+    if(stat_type == "playingtime") {
+      new_names <- new_names %>%
+        gsub("\\..[[:digit:]]+", "", .) %>%
+        gsub("\\.[[:digit:]]+", "", .) %>%
+        gsub("_Var", "", .) %>%
+        gsub("# Pl", "Num_Players", .) %>%
+        gsub("%", "_percent", .) %>%
+        gsub("_Performance", "", .) %>%
+        # gsub("_Penalty", "", .) %>%
+        gsub("1/3", "Final_Third", .) %>%
+        gsub("/", "_per_", .) %>%
+        gsub("-", "_minus_", .) %>%
+        gsub("90s", "Mins_Per_90", .) %>%
+        gsub("\\+", "plus", .)
+    } else {
+      new_names <- new_names %>%
+        gsub("\\..*", "", .) %>%
+        gsub("_Var", "", .) %>%
+        gsub("# Pl", "Num_Players", .) %>%
+        gsub("%", "_percent", .) %>%
+        gsub("_Performance", "", .) %>%
+        # gsub("_Penalty", "", .) %>%
+        gsub("1/3", "Final_Third", .) %>%
+        gsub("/", "_per_", .) %>%
+        gsub("-", "_minus_", .) %>%
+        gsub("90s", "Mins_Per_90", .)
+    }
 
     names(stat_df) <- new_names
     stat_df <- stat_df[-1,]
