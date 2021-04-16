@@ -1,10 +1,10 @@
 ---
-title: "Extracting match data"
+title: "Extracting whole league match data"
 author: "Jason Zivkovic"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Extracting match data}
+  %\VignetteIndexEntry{Extracting whole league match data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -45,14 +45,15 @@ library(dplyr)
 
 The functions available in this package are designed to enable the extraction of world football data.
 
-There are four main categories of data extract functions in this package:
+There are five main categories of data extract functions in this package:
 
 * fbref helper functions to extract key URLs
-* Match-level statistics (team and player)
-* Season-level statistics (team and player)
+* Match-level statistics (team and player) for whole leagues
+* Season-level statistics (team and player) for whole leagues
+* Statistics for individual players and or teams
 * Player market vluations and transfer histories
 
-This vignette will cover match-level data.
+This vignette will cover match-level data for whole leagues.
 
 ***
 

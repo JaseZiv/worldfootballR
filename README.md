@@ -38,10 +38,13 @@ package.
 
   - For helper functions to extract fbref URLs, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html)
-  - For match-level data, see
+  - For whole league match-level data, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-match-data.html)
-  - For season-level data, see
+  - For whole league season-level data, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-season-data.html)
+  - For functions to extract data for individual players and or teams,
+    see
+    [here](https://jaseziv.github.io/worldfootballR/articles/team-and-player-data.html)
   - For transfer histories and player market valuations, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-valuation-data.html)
 

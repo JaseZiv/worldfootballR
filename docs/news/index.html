@@ -115,13 +115,16 @@
       <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
     </li>
     <li>
-      <a href="../articles/extract-match-data.html">Extracting match data</a>
+      <a href="../articles/extract-match-data.html">Extracting whole league match data</a>
     </li>
     <li>
-      <a href="../articles/extract-season-data.html">Extracting season data</a>
+      <a href="../articles/extract-season-data.html">Extracting whole league season data</a>
     </li>
     <li>
       <a href="../articles/extract-valuation-data.html">Extracting valuation and transfer data</a>
+    </li>
+    <li>
+      <a href="../articles/team-and-player-data.html">Extracting data for individual players or teams</a>
     </li>
   </ul>
 </li>
@@ -164,6 +167,8 @@
 <ul>
 <li>
 <code><a href="../reference/get_match_shooting.html">get_match_shooting()</a></code> to get shot and shot creation specific details (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/3"><a href='https://github.com/JaseZiv/worldfootballR/issues/3'>#3</a></a>)</li>
+<li>
+<code><a href="../reference/get_team_match_results.html">get_team_match_results()</a></code> to get match results for a given team or teams in a season</li>
 </ul>
 </li>
 </ul>
@@ -181,6 +186,7 @@
 <a href="#bugs" class="anchor"></a>Bugs</h3>
 <ul>
 <li>Fixed issue where <code>get_season_player_stats()</code> not returning results for players who have only played in domestic comps (not cups, internationals, etc) (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/22"><a href='https://github.com/JaseZiv/worldfootballR/issues/22'>#22</a></a>)</li>
+<li>Fixed issue where <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> not returning results for ‘playing_time’ stat_type (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/23"><a href='https://github.com/JaseZiv/worldfootballR/issues/23'>#23</a></a>)</li>
 </ul>
 </div>
 </div>

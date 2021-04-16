@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get match shooting data — get_match_shooting • worldfootballR</title>
+<title>Get match shooting event data — get_match_shooting • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Get match shooting data — get_match_shooting" />
+<meta property="og:title" content="Get match shooting event data — get_match_shooting" />
 <meta property="og:description" content="Returns detailed player shooting data for home and away teams for a selected match(es)" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
@@ -116,13 +116,16 @@
       <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
     </li>
     <li>
-      <a href="../articles/extract-match-data.html">Extracting match data</a>
+      <a href="../articles/extract-match-data.html">Extracting whole league match data</a>
     </li>
     <li>
-      <a href="../articles/extract-season-data.html">Extracting season data</a>
+      <a href="../articles/extract-season-data.html">Extracting whole league season data</a>
     </li>
     <li>
       <a href="../articles/extract-valuation-data.html">Extracting valuation and transfer data</a>
+    </li>
+    <li>
+      <a href="../articles/team-and-player-data.html">Extracting data for individual players or teams</a>
     </li>
   </ul>
 </li>
@@ -150,7 +153,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get match shooting data</h1>
+    <h1>Get match shooting event data</h1>
     <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/get_match_shooting.R'><code>R/get_match_shooting.R</code></a></small>
     <div class="hidden name"><code>get_match_shooting.Rd</code></div>
     </div>
@@ -179,6 +182,7 @@
 <span class='va'>match</span> <span class='op'>&lt;-</span> <span class='st'>"https://fbref.com/en/matches/bf52349b/Fulham-Arsenal-September-12-2020-Premier-League"</span>
 <span class='fu'>get_match_shooting</span><span class='op'>(</span>match_url <span class='op'>=</span> <span class='va'>match</span><span class='op'>)</span>
 <span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
