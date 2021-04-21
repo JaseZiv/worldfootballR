@@ -72,8 +72,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
     league_name <- tab %>% rvest::html_node("h1") %>% rvest::html_text()
 
-    weekly_table <- tab %>%
-      rvest::html_nodes(".box")
+    weekly_table <- weekly_table[-1]
 
     all_lens <- c()
 
@@ -81,6 +80,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
       len <- i %>% rvest::html_nodes("th") %>% length()
       all_lens <- c(all_lens, len)
     }
+
 
     idx <- which(all_lens == 9)
 
