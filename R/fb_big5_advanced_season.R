@@ -60,6 +60,11 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
       stat_type <- "playingtime"
     }
 
+    # fixes the change fbref made with the name of advanced keepers
+    if(stat_type == "keepers_adv") {
+      stat_type <- "keepersadv"
+    }
+
     season_stats_page <- xml2::read_html(season_url)
 
     if(team_or_player == "player") {
