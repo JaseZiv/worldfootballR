@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -148,12 +148,17 @@
 <li>Statistics for individual players and or teams</li>
 <li>Player market vluations and transfer histories</li>
 </ul>
-<p>This vignette will cover match-level data for whole leagues.</p>
+<p>This vignette will cover match-level data for whole leagues. It is broken down into two main sections;</p>
+<ol style="list-style-type: decimal">
+<li>Functions to get <strong>team</strong> stats for matches played</li>
+<li>Functions to get <strong>team OR player</strong> stats for matches played</li>
+</ol>
 <hr>
 </div>
-<div id="match-level-data" class="section level2">
+<div id="match-level-data---teams" class="section level2">
 <h2 class="hasAnchor">
-<a href="#match-level-data" class="anchor"></a>Match-level data</h2>
+<a href="#match-level-data---teams" class="anchor"></a>Match-level data - TEAMS</h2>
+<p>This section contains examples of functions to use when you want to return statistics for teams.</p>
 <div id="get-match-urls" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-match-urls" class="anchor"></a>Get match urls</h3>
@@ -194,6 +199,33 @@
 <code class="sourceCode R"><span class="co"># function to extract match summary data</span>
 <span class="va">liv_mci_2020_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_summary.html">get_match_summary</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="get-match-lineups" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-lineups" class="anchor"></a>Get match lineups</h3>
+<p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
+<p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># function to extract match lineups</span>
+<span class="va">liv_mci_2020_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="get-shooting-and-shot-creation-events" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-shooting-and-shot-creation-events" class="anchor"></a>Get shooting and shot creation events</h3>
+<p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">shot_one_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League"</span><span class="op">)</span>
+
+<span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
+                        <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
+                        <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
+<span class="va">shot_multiple_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span><span class="va">test_urls_multiple</span><span class="op">)</span></code></pre></div>
+<hr>
+</div>
+</div>
+<div id="match-level-data---teams-or-players" class="section level2">
+<h2 class="hasAnchor">
+<a href="#match-level-data---teams-or-players" class="anchor"></a>Match-level data - TEAMS OR PLAYERS</h2>
+<p>This section contains examples of functions to use when you want to return statistics for either teams or players.</p>
 <div id="get-advanced-match-statistics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-advanced-match-statistics" class="anchor"></a>Get advanced match statistics</h3>
@@ -210,40 +242,19 @@
 <li><em>keeper</em></li>
 </ul>
 <p>The function can be used for either all players individually:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
 <p>Or used for the team totals for each match:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"passing_types"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="get-match-lineups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-lineups" class="anchor"></a>Get match lineups</h3>
-<p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
-<p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># function to extract match lineups</span>
-<span class="va">liv_mci_2020_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="get-shooting-and-shot-creation-events" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-shooting-and-shot-creation-events" class="anchor"></a>Get shooting and shot creation events</h3>
-<p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">shot_one_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League"</span><span class="op">)</span>
-
-<span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
-                        <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
-                        <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
-<span class="va">shot_multiple_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span><span class="va">test_urls_multiple</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>

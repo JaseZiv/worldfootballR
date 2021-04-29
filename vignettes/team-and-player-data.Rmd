@@ -96,6 +96,28 @@ The stat_types available for use in this function are below:
 mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Mohamed-Salah", stat_type = 'shooting')
 ```
 
+
+### Player Match Logs
+
+The `fb_player_match_logs()` function allows the user to return a data frame of the match logs of different stat types for a player's matches played in a season.
+
+The following stat types can be selected, depending on the player's position (ie a striker probably won't have "keepers" stats):
+
+* *summary*
+* *keepers*
+* *passing*
+* *passing_types*
+* *gca*
+* *defense*
+* *possession*
+* *misc*
+
+
+```{r player_match_logs, eval=FALSE}
+ederson_summary <- fb_player_match_logs("https://fbref.com/en/players/3bb7b8b4/Ederson", season_end_year = 2021, stat_type = 'summary')
+```
+
+
 ***
 
 
