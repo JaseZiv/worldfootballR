@@ -129,7 +129,8 @@ fb_player_season_stats <- function(player_url, stat_type) {
 
   stat_df <- stat_df %>%
     dplyr::mutate(player_name = player_name,
-                  player_url = player_url) %>%
+                  player_url = player_url,
+                  Squad = sub("^.*?([A-Z])", "\\1", .data$Squad)) %>%
     dplyr::select(player_name, player_url, dplyr::everything())
 
   return(stat_df)
