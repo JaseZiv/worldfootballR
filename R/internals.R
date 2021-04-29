@@ -157,6 +157,42 @@
 }
 
 
+#' Clean stat table column names
+#'
+#' Returns cleaned column names for stats tables
+#'
+#' @param df_in a raw match stats data frame
+#'
+#' @return a data frame with cleaned names
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+.clean_table_names <- function(df_in) {
+  var_names <- df_in[1,] %>% as.character()
+
+  new_names <- paste(var_names, names(df_in), sep = "_")
+
+  new_names <- new_names %>%
+    gsub("\\..*", "", .) %>%
+    gsub("_Var", "", .) %>%
+    gsub("#", "Num_", .) %>%
+    gsub("%", "_percent", .) %>%
+    gsub("_Performance", "", .) %>%
+    gsub("_Penalty", "", .) %>%
+    gsub("1/3", "Final_Third", .) %>%
+    gsub("/", "_per_", .) %>%
+    gsub("-", "_minus_", .) %>%
+    gsub("90s", "Mins_Per_90", .)
+
+  names(df_in) <- new_names
+  df_in <- df_in[-1,]
+
+  return(df_in)
+}
+
+
+
 #' Convert formatted valuations to numeric
 #'
 #' Returns a numeric data type for player valuations
