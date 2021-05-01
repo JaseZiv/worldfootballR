@@ -64,14 +64,20 @@ This section will cover the functions available to aid in the extraction of play
 
 The examples provided below in a lot of cases have the actual url (player or team) passed to them, however the suite of fbref helper functions outlined in [this helpers vignette](https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html) could also be used.
 
+
 ### Get Player Scouting Report
 
-The `fb_player_scouting_report()` function takes in a player_url as the input, and returns scouting reports for the player selected. The scouting reports are a new feature on fbref, thus only available for the big five Euro leagues:
+The `fb_player_scouting_report()` function takes in two inputs;
+
+* `player_url` - the URL of the player's main page
+* `pos_versus`  which can return the player's comparison against players in their "primary", OR "secondary" position
+
+and returns the full scouting report for the player selected.
 
 ```{r get_player_scouting_report}
-fb_player_scouting_report("https://fbref.com/en/players/3bb7b8b4/Ederson")
+glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary"))
+glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary"))
 ```
-
 
 
 ### Get Player Season Stats

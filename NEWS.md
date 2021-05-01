@@ -5,6 +5,7 @@
   * `fb_player_match_logs()` to get player match logs for a season and stat type (issue [#26](https://github.com/JaseZiv/worldfootballR/issues/26))
   
 ### Improving existing functions
+* `fb_player_scouting_report()` now returns a players **full** scouting report against peers in Men's Big 5 Leagues and European Competition over the last 365 days (issue [27](https://github.com/JaseZiv/worldfootballR/issues/27))
 * Removed the country abbreviation in the `Squad` column of the data frame returned using `fb_player_season_stats()`
 
 
