@@ -53,11 +53,16 @@ There are five main categories of data extract functions in this package:
 * Statistics for individual players and or teams
 * Player market vluations and transfer histories
 
-This vignette will cover match-level data for whole leagues.
+This vignette will cover match-level data for whole leagues. It is broken down into two main sections;
+
+1. Functions to get **team** stats for matches played
+3. Functions to get **team OR player** stats for matches played
 
 ***
 
-## Match-level data
+## Match-level data - TEAMS
+
+This section contains examples of functions to use when you want to return statistics for teams.
 
 ### Get match urls
 
@@ -114,6 +119,39 @@ liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matc
 ```
 
 
+### Get match lineups
+
+This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.
+
+From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.
+
+```{r get_match_lineups, eval=FALSE}
+# function to extract match lineups
+liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+```
+
+
+
+### Get shooting and shot creation events
+
+The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.
+
+```{r get_shot_and_creation, eval=FALSE}
+shot_one_match <- get_match_shooting(match_url = "https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League")
+
+test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
+                        "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
+shot_multiple_matches <- get_match_shooting(test_urls_multiple)
+```
+
+
+***
+
+## Match-level data - TEAMS OR PLAYERS
+
+This section contains examples of functions to use when you want to return statistics for either teams or players.
+
 ### Get advanced match statistics
 
 The `get_advanced_match_stats()` function allows the user to return a data frame of different stat types for matches played.
@@ -150,33 +188,4 @@ test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-A
 
 advanced_match_stats_team <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "passing_types", team_or_player = "team")
 ```
-
-
-### Get match lineups
-
-This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.
-
-From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.
-
-```{r get_match_lineups, eval=FALSE}
-# function to extract match lineups
-liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
-```
-
-
-
-### Get shooting and shot creation events
-
-The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.
-
-```{r get_shot_and_creation, eval=FALSE}
-shot_one_match <- get_match_shooting(match_url = "https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League")
-
-test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-                        "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
-shot_multiple_matches <- get_match_shooting(test_urls_multiple)
-```
-
-
 

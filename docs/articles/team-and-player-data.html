@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data for individual players or teams</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-04-29</h4>
+            <h4 class="date">2021-05-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/team-and-player-data.Rmd"><code>vignettes/team-and-player-data.Rmd</code></a></small>
       <div class="hidden name"><code>team-and-player-data.Rmd</code></div>
@@ -159,23 +159,37 @@
 <div id="get-player-scouting-report" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-player-scouting-report" class="anchor"></a>Get Player Scouting Report</h3>
-<p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in a player_url as the input, and returns scouting reports for the player selected. The scouting reports are a new feature on fbref, thus only available for the big five Euro leagues:</p>
+<p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in two inputs;</p>
+<ul>
+<li>
+<code>player_url</code> - the URL of the player’s main page</li>
+<li>
+<code>pos_versus</code> which can return the player’s comparison against players in their “primary”, OR “secondary” position</li>
+</ul>
+<p>and returns the full scouting report for the player selected.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span><span class="op">)</span>
-<span class="co">#&gt;    player_name    season                      Statistic Per.90 Percentile</span>
-<span class="co">#&gt; 1      Ederson 2020-2021                        PSxG-GA  +0.09         76</span>
-<span class="co">#&gt; 2      Ederson 2020-2021                  Goals Against   0.65         99</span>
-<span class="co">#&gt; 3      Ederson 2020-2021                          Save%  77.1%         94</span>
-<span class="co">#&gt; 4      Ederson 2020-2021                       PSxG/SoT   0.27         19</span>
-<span class="co">#&gt; 5      Ederson 2020-2021          Save% (Penalty Kicks)   0.0%         19</span>
-<span class="co">#&gt; 6      Ederson 2020-2021         Clean Sheet Percentage  55.6%         99</span>
-<span class="co">#&gt; 7      Ederson 2020-2021                        Touches  33.15         27</span>
-<span class="co">#&gt; 8      Ederson 2020-2021                        Launch%  23.9%          6</span>
-<span class="co">#&gt; 9      Ederson 2020-2021                     Goal Kicks   4.13          1</span>
-<span class="co">#&gt; 10     Ederson 2020-2021      Avg. Length of Goal Kicks   42.4         38</span>
-<span class="co">#&gt; 11     Ederson 2020-2021              Crosses Stopped %   5.6%         17</span>
-<span class="co">#&gt; 12     Ederson 2020-2021 Def. Actions Outside Pen. Area   0.83         76</span>
-<span class="co">#&gt; 13     Ederson 2020-2021  Avg. Distance of Def. Actions   16.2         86</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Scraping full scouting report for Lionel Messi</span>
+<span class="co">#&gt; Rows: 150</span>
+<span class="co">#&gt; Columns: 7</span>
+<span class="co">#&gt; $ Player         &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lionel…</span>
+<span class="co">#&gt; $ Versus         &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwar…</span>
+<span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
+<span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.78, 0.41, 0.60, 0.19, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 94, 98, 86, 93, 94, 63, 57, 94, 85, 98, 97, 94, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4…</span>
+<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Scraping full scouting report for Lionel Messi</span>
+<span class="co">#&gt; Rows: 150</span>
+<span class="co">#&gt; Columns: 7</span>
+<span class="co">#&gt; $ Player         &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lionel…</span>
+<span class="co">#&gt; $ Versus         &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / Wi…</span>
+<span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
+<span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.78, 0.41, 0.60, 0.19, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 95, 99, 96, 98, 63, 56, 99, 98, 98, 99, 99, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
 <h3 class="hasAnchor">
@@ -197,6 +211,24 @@
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="player-match-logs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#player-match-logs" class="anchor"></a>Player Match Logs</h3>
+<p>The <code><a href="../reference/fb_player_match_logs.html">fb_player_match_logs()</a></code> function allows the user to return a data frame of the match logs of different stat types for a player’s matches played in a season.</p>
+<p>The following stat types can be selected, depending on the player’s position (ie a striker probably won’t have “keepers” stats):</p>
+<ul>
+<li><em>summary</em></li>
+<li><em>keepers</em></li>
+<li><em>passing</em></li>
+<li><em>passing_types</em></li>
+<li><em>gca</em></li>
+<li><em>defense</em></li>
+<li><em>possession</em></li>
+<li><em>misc</em></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -204,7 +236,7 @@
 <h2 class="hasAnchor">
 <a href="#team-stats" class="anchor"></a>Team Stats</h2>
 <p>To get all the results a team(s) has competed in for a season, the following function can be used. The resulting dataframe output will include all game results, including any cup games played, and will accept either one, or many team URLs.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for single teams:</span>
 <span class="va">man_city_2021_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span>
 <span class="va">man_city_2021_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_team_match_results.html">get_team_match_results</a></span><span class="op">(</span><span class="va">man_city_url</span><span class="op">)</span>

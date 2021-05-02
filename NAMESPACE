@@ -2,6 +2,7 @@
 
 export(fb_big5_advanced_season_stats)
 export(fb_league_urls)
+export(fb_player_match_logs)
 export(fb_player_scouting_report)
 export(fb_player_season_stats)
 export(fb_player_urls)

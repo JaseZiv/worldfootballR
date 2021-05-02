@@ -1,3 +1,14 @@
+# worldfootballR 0.2.8
+
+### New functions
+* Added new fbref functions
+  * `fb_player_match_logs()` to get player match logs for a season and stat type (issue [#26](https://github.com/JaseZiv/worldfootballR/issues/26))
+  
+### Improving existing functions
+* `fb_player_scouting_report()` now returns a players **full** scouting report against peers in Men's Big 5 Leagues and European Competition over the last 365 days (issue [27](https://github.com/JaseZiv/worldfootballR/issues/27))
+* Removed the country abbreviation in the `Squad` column of the data frame returned using `fb_player_season_stats()`
+
+
 # worldfootballR 0.2.7
 
 ### New functions
@@ -12,6 +23,8 @@
 * Fixed issue where `get_season_player_stats()` not returning results for players who have only played in domestic comps (not cups, internationals, etc) (issue [#22](https://github.com/JaseZiv/worldfootballR/issues/22))
 * Fixed issue where `fb_big5_advanced_season_stats()` not returning results for 'playing_time' stat_type (issue [#23](https://github.com/JaseZiv/worldfootballR/issues/23))
 
+*** 
+
 # worldfootballR 0.2.6
 
 ### New functions
@@ -22,25 +35,35 @@
 ### Improving existing functions
 * Various transfermarkt functions refactored to have consistent column names
 
+***
+
 # worldfootballR 0.2.5.3
 
 ### Bugs
 Fix duplicated results in some functions
+
+***
 
 # worldfootballR 0.2.5.2
 
 ### Bugs
 Fix duplicating league URLs in various season-level functions as a result of including "Big 5" competition issue [#20](https://github.com/JaseZiv/worldfootballR/issues/20)
 
+***
+
 # worldfootballR 0.2.5.1
 
 ### Bugs
 Fix duplicating league URLs in `fb_league_urls()` as a result of including "Big 5" competition issue [#19](https://github.com/JaseZiv/worldfootballR/issues/19)
 
+***
+
 # worldfootballR 0.2.5
 
 ### New functions
 * Added `fb_big5_advanced_season_stats()` to get fbref season stats for all players or teams stats in the big five Euro leagues
+
+***
 
 # worldfootballR 0.2.4
 
@@ -55,13 +78,19 @@ Fix duplicating league URLs in `fb_league_urls()` as a result of including "Big 
 ### Improving existing functions
 * Additional leagues and cups now available in the following functions; `get_match_urls()`, `get_match_results()`, `get_season_team_stats()`
 
+***
+
 # worldfootballR 0.2.3
 
 * Added `league_url` argument to `get_player_market_values()` to allow extraction of *non-standard* (leagues not stored in `worldfootballR_data`) leagues
 
+***
+
 # worldfootballR 0.2.2
 
 * Added player nationalities and positions to output of `get_player_market_values()` data output
+
+***
 
 # worldfootballR 0.2.1
 
@@ -72,17 +101,25 @@ Fix duplicating league URLs in `fb_league_urls()` as a result of including "Big 
 ### Bugs
 * Fixed duplicate column name issue for keeper stats [#13](https://github.com/JaseZiv/worldfootballR/issues/13)
 
+***
+
 # worldfootballR 0.2.0
 * Added `get_player_market_values` to get player valuations from transfermarkt.com
+
+***
 
 # worldfootballR 0.1.0
 * Bug fixes #8
 * Package Logo
 * Tests written and codecov installed
 
+***
+
 # worldfootballR 0.0.1
 * performance improvements, including limiting page reads where match report data included in output
 * error handling
+
+***
 
 # worldfootballR 0.0.0.9000
 

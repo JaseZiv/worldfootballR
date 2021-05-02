@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -156,12 +156,38 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="worldfootballr-027" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.7">
-<a href="#worldfootballr-027" class="anchor"></a>worldfootballR 0.2.7</h1>
+    <div id="worldfootballr-028" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.8">
+<a href="#worldfootballr-028" class="anchor"></a>worldfootballR 0.2.8</h1>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h3>
+<ul>
+<li>Added new fbref functions
+<ul>
+<li>
+<code><a href="../reference/fb_player_match_logs.html">fb_player_match_logs()</a></code> to get player match logs for a season and stat type (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/26"><a href='https://github.com/JaseZiv/worldfootballR/issues/26'>#26</a></a>)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="improving-existing-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#improving-existing-functions" class="anchor"></a>Improving existing functions</h3>
+<ul>
+<li>
+<code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> now returns a players <strong>full</strong> scouting report against peers in Men’s Big 5 Leagues and European Competition over the last 365 days (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/27">27</a>)</li>
+<li>Removed the country abbreviation in the <code>Squad</code> column of the data frame returned using <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code>
+</li>
+</ul>
+</div>
+</div>
+    <div id="worldfootballr-027" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.7">
+<a href="#worldfootballr-027" class="anchor"></a>worldfootballR 0.2.7</h1>
+<div id="new-functions-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new fbref functions
 <ul>
@@ -173,9 +199,9 @@
 </li>
 </ul>
 </div>
-<div id="improving-existing-functions" class="section level3">
+<div id="improving-existing-functions-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improving-existing-functions" class="anchor"></a>Improving existing functions</h3>
+<a href="#improving-existing-functions-1" class="anchor"></a>Improving existing functions</h3>
 <ul>
 <li>
 <code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code> now returns additional summary player performance data (shots, goals, cards, etc) to the original lineups output</li>
@@ -188,14 +214,15 @@
 <li>Fixed issue where <code>get_season_player_stats()</code> not returning results for players who have only played in domestic comps (not cups, internationals, etc) (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/22"><a href='https://github.com/JaseZiv/worldfootballR/issues/22'>#22</a></a>)</li>
 <li>Fixed issue where <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> not returning results for ‘playing_time’ stat_type (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/23"><a href='https://github.com/JaseZiv/worldfootballR/issues/23'>#23</a></a>)</li>
 </ul>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-026" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.6">
 <a href="#worldfootballr-026" class="anchor"></a>worldfootballR 0.2.6</h1>
-<div id="new-functions-1" class="section level3">
+<div id="new-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new transfermarkt functions:
 <ul>
@@ -207,12 +234,13 @@
 </li>
 </ul>
 </div>
-<div id="improving-existing-functions-1" class="section level3">
+<div id="improving-existing-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improving-existing-functions-1" class="anchor"></a>Improving existing functions</h3>
+<a href="#improving-existing-functions-2" class="anchor"></a>Improving existing functions</h3>
 <ul>
 <li>Various transfermarkt functions refactored to have consistent column names</li>
 </ul>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-0253" class="section level1">
@@ -222,6 +250,7 @@
 <h3 class="hasAnchor">
 <a href="#bugs-1" class="anchor"></a>Bugs</h3>
 <p>Fix duplicated results in some functions</p>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-0252" class="section level1">
@@ -231,6 +260,7 @@
 <h3 class="hasAnchor">
 <a href="#bugs-2" class="anchor"></a>Bugs</h3>
 <p>Fix duplicating league URLs in various season-level functions as a result of including “Big 5” competition issue <a href="https://github.com/JaseZiv/worldfootballR/issues/20"><a href='https://github.com/JaseZiv/worldfootballR/issues/20'>#20</a></a></p>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-0251" class="section level1">
@@ -240,25 +270,27 @@
 <h3 class="hasAnchor">
 <a href="#bugs-3" class="anchor"></a>Bugs</h3>
 <p>Fix duplicating league URLs in <code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code> as a result of including “Big 5” competition issue <a href="https://github.com/JaseZiv/worldfootballR/issues/19"><a href='https://github.com/JaseZiv/worldfootballR/issues/19'>#19</a></a></p>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-025" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.5">
 <a href="#worldfootballr-025" class="anchor"></a>worldfootballR 0.2.5</h1>
-<div id="new-functions-2" class="section level3">
+<div id="new-functions-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h3>
+<a href="#new-functions-3" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> to get fbref season stats for all players or teams stats in the big five Euro leagues</li>
 </ul>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-024" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.4">
 <a href="#worldfootballr-024" class="anchor"></a>worldfootballR 0.2.4</h1>
-<div id="new-functions-3" class="section level3">
+<div id="new-functions-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-3" class="anchor"></a>New functions</h3>
+<a href="#new-functions-4" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added fbref helper functions:
 <ul>
@@ -276,13 +308,14 @@
 </li>
 </ul>
 </div>
-<div id="improving-existing-functions-2" class="section level3">
+<div id="improving-existing-functions-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improving-existing-functions-2" class="anchor"></a>Improving existing functions</h3>
+<a href="#improving-existing-functions-3" class="anchor"></a>Improving existing functions</h3>
 <ul>
 <li>Additional leagues and cups now available in the following functions; <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code>, <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, <code><a href="../reference/get_season_team_stats.html">get_season_team_stats()</a></code>
 </li>
 </ul>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-023" class="section level1">
@@ -291,6 +324,7 @@
 <ul>
 <li>Added <code>league_url</code> argument to <code><a href="../reference/get_player_market_values.html">get_player_market_values()</a></code> to allow extraction of <em>non-standard</em> (leagues not stored in <code>worldfootballR_data</code>) leagues</li>
 </ul>
+<hr>
 </div>
     <div id="worldfootballr-022" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.2">
@@ -298,6 +332,7 @@
 <ul>
 <li>Added player nationalities and positions to output of <code><a href="../reference/get_player_market_values.html">get_player_market_values()</a></code> data output</li>
 </ul>
+<hr>
 </div>
     <div id="worldfootballr-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
@@ -317,6 +352,7 @@
 <li>Fixed duplicate column name issue for keeper stats <a href="https://github.com/JaseZiv/worldfootballR/issues/13"><a href='https://github.com/JaseZiv/worldfootballR/issues/13'>#13</a></a>
 </li>
 </ul>
+<hr>
 </div>
 </div>
     <div id="worldfootballr-020" class="section level1">
@@ -325,6 +361,7 @@
 <ul>
 <li>Added <code>get_player_market_values</code> to get player valuations from transfermarkt.com</li>
 </ul>
+<hr>
 </div>
     <div id="worldfootballr-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
@@ -334,6 +371,7 @@
 <li>Package Logo</li>
 <li>Tests written and codecov installed</li>
 </ul>
+<hr>
 </div>
     <div id="worldfootballr-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
@@ -342,6 +380,7 @@
 <li>performance improvements, including limiting page reads where match report data included in output</li>
 <li>error handling</li>
 </ul>
+<hr>
 </div>
     <div id="worldfootballr-0009000" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9000">
