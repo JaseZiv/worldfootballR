@@ -36,9 +36,12 @@ fb_player_season_stats <- function(player_url, stat_type) {
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
   comps_filters <- player_page %>%
-    rvest::html_nodes(".filter")
+    rvest::html_nodes(".filter") %>%
+    rvest::html_nodes("a") %>%
+    rvest::html_attr("href") %>% .[!is.na(.)]
 
-  if(length(comps_filters) > 0) {
+
+  if(length(comps_filters) > 2) {
     all_comps_url <- player_page %>%
       rvest::html_nodes(".filter") %>%
       rvest::html_nodes("a") %>%
@@ -79,6 +82,8 @@ fb_player_season_stats <- function(player_url, stat_type) {
     idx <- grep("_dom_", expanded_table_idx)
     expanded_table_idx <- expanded_table_idx[idx]
 
+    expanded_table_elements <- expanded_table_elements[idx]
+
     stat_df <- tryCatch(
       .clean_player_season_stats(expanded_table_elements[which(stringr::str_detect(expanded_table_idx, paste0("stats_", stat_type)))]),
       error = function(e) data.frame()
@@ -90,7 +95,7 @@ fb_player_season_stats <- function(player_url, stat_type) {
   stat_df <- stat_df %>%
     dplyr::mutate(player_name = player_name,
                   player_url = player_url,
-                  Squad = sub("^.*?([A-Z])", "\\1", .data$Squad)) %>%
+                  Country = gsub("^.*? ([A-Z])", "\\1", .data$Country)) %>%
     dplyr::select(player_name, player_url, dplyr::everything())
 
   return(stat_df)
