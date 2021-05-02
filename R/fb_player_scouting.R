@@ -92,8 +92,8 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
                   Percentile = as.numeric(.data$Percentile)) %>%
     dplyr::select(.data$Player, .data$Versus, StatGroup=.data$stat_group, dplyr::everything())
 
-  mins_played <- player_page %>% rvest::html_nodes("#tfooter_scout_summary_FW") %>% rvest::html_nodes("strong") %>%
-    rvest::html_text() %>% gsub(" minutes", "", .) %>% as.numeric()
+  mins_played <- player_page %>% rvest::html_nodes("#all_scout")%>% rvest::html_nodes(".footer") %>% rvest::html_nodes("strong") %>%
+    rvest::html_text() %>% gsub(" minutes", "", .) %>% as.numeric() %>% unique()
 
   scout_pos <- scout_pos %>%
     dplyr::mutate(BasedOnMinutes = mins_played)
