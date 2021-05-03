@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8.1</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data for individual players or teams</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-05-01</h4>
+            <h4 class="date">2021-05-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/team-and-player-data.Rmd"><code>vignettes/team-and-player-data.Rmd</code></a></small>
       <div class="hidden name"><code>team-and-player-data.Rmd</code></div>
@@ -176,9 +176,9 @@
 <span class="co">#&gt; $ Versus         &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwar…</span>
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
-<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.78, 0.41, 0.60, 0.19, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 94, 98, 86, 93, 94, 63, 57, 94, 85, 98, 97, 94, 99, 99,…</span>
-<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4…</span>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.81, 0.40, 0.63, 0.18, 0.24, 0.10, 0.00, 0.70, 0.51, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 95, 98, 89, 93, 95, 63, 57, 94, 86, 98, 97, 95, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4…</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Scraping full scouting report for Lionel Messi</span>
 <span class="co">#&gt; Rows: 150</span>
@@ -187,9 +187,9 @@
 <span class="co">#&gt; $ Versus         &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / Wi…</span>
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
-<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.78, 0.41, 0.60, 0.19, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 95, 99, 96, 98, 63, 56, 99, 98, 98, 99, 99, 99, 99,…</span>
-<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4373, 4…</span></code></pre></div>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.81, 0.40, 0.63, 0.18, 0.24, 0.10, 0.00, 0.70, 0.51, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 95, 99, 96, 98, 62, 56, 99, 98, 98, 99, 99, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4463, 4…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
 <h3 class="hasAnchor">

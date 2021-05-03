@@ -1,3 +1,10 @@
+# worldfootballR 0.2.8.1
+
+### Bugs
+Fix issue [#29](https://github.com/JaseZiv/worldfootballR/issues/29) where `get_match_results()` not returing data for seasons before 2014-15
+
+*** 
+
 # worldfootballR 0.2.8
 
 ### New functions
@@ -8,6 +15,7 @@
 * `fb_player_scouting_report()` now returns a players **full** scouting report against peers in Men's Big 5 Leagues and European Competition over the last 365 days (issue [27](https://github.com/JaseZiv/worldfootballR/issues/27))
 * Removed the country abbreviation in the `Squad` column of the data frame returned using `fb_player_season_stats()`
 
+***
 
 # worldfootballR 0.2.7
 
