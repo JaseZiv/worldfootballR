@@ -29,7 +29,7 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
   season_end_year_num <- season_end_year
   comp_tier <- tier
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   league_seasons_urls <- seasons %>%
     dplyr::filter(.data$country %in% country_abbr,

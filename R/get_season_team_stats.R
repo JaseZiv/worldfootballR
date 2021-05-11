@@ -39,7 +39,7 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
   season_end_year_num <- season_end_year
   comp_tier <- tier
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons_urls <- seasons %>%
     dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%

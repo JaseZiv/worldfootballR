@@ -40,7 +40,7 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
 
   season_end_year_num <- season_end_year
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons_urls <- seasons %>%
     dplyr::filter(stringr::str_detect(.data$competition_type, "Big 5 European Leagues")) %>%

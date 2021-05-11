@@ -36,7 +36,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
   comp_tier <- tier
   cups_url <- non_dom_league_url
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv")
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   if(is.na(cups_url)) {
     fixtures_urls <- seasons %>%

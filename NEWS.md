@@ -1,3 +1,10 @@
+# worldfootballR 0.2.8.2
+
+### Bugs
+Fix issue [#30](https://github.com/JaseZiv/worldfootballR/issues/30) for functions reading in seasons data from [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data)
+
+*** 
+
 # worldfootballR 0.2.8.1
 
 ### Bugs
