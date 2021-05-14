@@ -12,7 +12,7 @@
 
 .get_match_report_page <- function(match_page) {
 
-  # seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv")
+  # seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   Game_URL <- match_page %>% rvest::html_nodes(".langs") %>% rvest::html_node(".en") %>% rvest::html_attr("href")
   each_game_page <- tryCatch(match_page, error = function(e) NA)

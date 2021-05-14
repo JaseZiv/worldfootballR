@@ -64,7 +64,7 @@ get_match_summary <- function(match_url) {
   all_events_df <- match_url %>%
     purrr::map_df(get_each_match_summary)
 
-  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/league_seasons/all_tier1_season_URLs.csv", stringsAsFactors = F)
+  seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons <- seasons %>%
     dplyr::filter(.data$seasons_urls %in% all_events_df$League_URL) %>%

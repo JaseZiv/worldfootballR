@@ -1,3 +1,10 @@
+# worldfootballR 0.2.8.3
+
+### Bugs
+Fix issue [#31](https://github.com/JaseZiv/worldfootballR/issues/31) for `get_advanced_match_stats()`, `get_match_report()` and `get_match_summary()` not returning results for lower than tier 1 leagues
+
+*** 
+
 # worldfootballR 0.2.8.2
 
 ### Bugs
