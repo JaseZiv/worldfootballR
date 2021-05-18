@@ -64,6 +64,18 @@ and seasons included in the package can be found in the
 
 -----
 
+## Attribute the Source
+
+When using the functions in the package, please ensure you attribute the
+source of the data based on the function you use.
+
+Data providers are listed below:
+
+  - [StatsBomb via FBref](https://fbref.com/en/)
+  - [Transfermarkt](https://www.transfermarkt.com/)
+
+-----
+
 ## Contributing
 
 ### Issues and Improvements
