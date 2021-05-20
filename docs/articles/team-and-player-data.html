@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data for individual players or teams</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-05-18</h4>
+            <h4 class="date">2021-05-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/team-and-player-data.Rmd"><code>vignettes/team-and-player-data.Rmd</code></a></small>
       <div class="hidden name"><code>team-and-player-data.Rmd</code></div>
@@ -177,7 +177,7 @@
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
 <span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.80, 0.38, 0.63, 0.17, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 94, 98, 91, 92, 95, 65, 58, 95, 87, 98, 97, 94, 99, 99,…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 94, 99, 90, 92, 95, 66, 57, 95, 87, 99, 97, 94, 99, 99,…</span>
 <span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4…</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Scraping full scouting report for Lionel Messi</span>
@@ -188,7 +188,7 @@
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
 <span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.80, 0.38, 0.63, 0.17, 0.23, 0.10, 0.00, 0.69, 0.51, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 95, 99, 95, 97, 64, 57, 99, 98, 98, 99, 99, 99, 99,…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 95, 99, 96, 97, 64, 57, 99, 98, 98, 99, 99, 99, 99,…</span>
 <span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4733, 4…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
@@ -210,7 +210,11 @@
 <li><em>keeper_adv</em></li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span>
+
+<span class="va">multiple_playing_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
+                                                <span class="st">"https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"</span><span class="op">)</span>,
+                                 stat_type <span class="op">=</span> <span class="st">"playing_time"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="player-match-logs" class="section level3">
 <h3 class="hasAnchor">

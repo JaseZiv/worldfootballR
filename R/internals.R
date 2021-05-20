@@ -21,16 +21,20 @@
   new_names <- paste(var_names, names(stat_df), sep = "_")
 
   new_names <- new_names %>%
-    gsub("\\..*", "", .) %>%
+    gsub("\\..[0-9]", "", .) %>%
+    gsub("\\.[0-9]", "", .) %>%
+    gsub("\\.", "_", .) %>%
     gsub("_Var", "", .) %>%
     gsub("# Pl", "Num_Players", .) %>%
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
     # gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
+    gsub("\\+/-", "Plus_Minus", .) %>%
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .) %>%
-    gsub("90s", "Mins_Per_90", .)
+    gsub("90s", "Mins_Per_90", .) %>%
+    gsub("__", "_", .)
 
   names(stat_df) <- new_names
   stat_df <- stat_df[-1,]
@@ -69,23 +73,27 @@
   new_names <- paste(var_names, names(stat_df), sep = "_")
 
   new_names <- new_names %>%
-    gsub("\\..*", "", .) %>%
+    gsub("\\..[0-9]", "", .) %>%
+    gsub("\\.[0-9]", "", .) %>%
+    gsub("\\.", "_", .) %>%
     gsub("_Var", "", .) %>%
     gsub("_Playing", "", .) %>%
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
     # gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
+    gsub("\\+/-", "Plus_Minus", .) %>%
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .) %>%
-    gsub("90s", "Mins_Per_90", .)
+    gsub("90s", "Mins_Per_90", .) %>%
+    gsub("__", "_", .)
 
   names(stat_df) <- new_names
   stat_df <- stat_df[-1,]
 
   stat_df <- stat_df %>% dplyr::select(-.data$Matches)
 
-  remove_rows <- min(grep("Seasons", stat_df$Season)):nrow(stat_df)
+  remove_rows <- min(grep("Season", stat_df$Season)):nrow(stat_df)
 
   stat_df <- stat_df[-remove_rows, ]
 
@@ -126,16 +134,20 @@
   new_names <- paste(var_names, names(df_in), sep = "_")
 
   new_names <- new_names %>%
-    gsub("\\..*", "", .) %>%
+    gsub("\\..[0-9]", "", .) %>%
+    gsub("\\.[0-9]", "", .) %>%
+    gsub("\\.", "_", .) %>%
     gsub("_Var", "", .) %>%
     gsub("#", "Player_Num", .) %>%
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
     gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
+    gsub("\\+/-", "Plus_Minus", .) %>%
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .) %>%
-    gsub("90s", "Mins_Per_90", .)
+    gsub("90s", "Mins_Per_90", .) %>%
+    gsub("__", "_", .)
 
   names(df_in) <- new_names
   df_in <- df_in[-1,]
@@ -174,16 +186,20 @@
   new_names <- paste(var_names, names(df_in), sep = "_")
 
   new_names <- new_names %>%
-    gsub("\\..*", "", .) %>%
+    gsub("\\..[0-9]", "", .) %>%
+    gsub("\\.[0-9]", "", .) %>%
+    gsub("\\.", "_", .) %>%
     gsub("_Var", "", .) %>%
     gsub("#", "Num_", .) %>%
     gsub("%", "_percent", .) %>%
     gsub("_Performance", "", .) %>%
     gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
+    gsub("\\+/-", "Plus_Minus", .) %>%
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .) %>%
-    gsub("90s", "Mins_Per_90", .)
+    gsub("90s", "Mins_Per_90", .) %>%
+    gsub("__", "_", .)
 
   names(df_in) <- new_names
   df_in <- df_in[-1,]

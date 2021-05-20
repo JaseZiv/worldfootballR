@@ -7,7 +7,7 @@
 fb_player_season_stats(player_url, stat_type)
 }
 \arguments{
-\item{player_url}{the URL of the player (can come from fb_player_urls())}
+\item{player_url}{the URL(s) of the player(s) (can come from fb_player_urls())}
 
 \item{stat_type}{the type of statistic required
 
@@ -21,11 +21,16 @@ The statistic type options (stat_type) include:
 returns a dataframe of a player's historical season stats
 }
 \description{
-Returns the historical season stats for a selected player and stat type
+Returns the historical season stats for a selected player(s) and stat type
 }
 \examples{
 \dontrun{
 fb_player_season_stats("https://fbref.com/en/players/3bb7b8b4/Ederson",
-stat_type = 'standard')
+                       stat_type = 'standard')
+
+multiple_playing_time <- fb_player_season_stats(
+ player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+           "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
+ stat_type = "playing_time")
 }
 }

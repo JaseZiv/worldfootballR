@@ -100,6 +100,10 @@ The stat_types available for use in this function are below:
 
 ```{r player_season_stats, eval=FALSE}
 mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Mohamed-Salah", stat_type = 'shooting')
+
+multiple_playing_time <- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+                                                "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
+                                 stat_type = "playing_time")
 ```
 
 
