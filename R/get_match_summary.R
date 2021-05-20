@@ -70,7 +70,7 @@ get_match_summary <- function(match_url) {
                       Penalty_Number = as.numeric(.data$Penalty_Number),
                       Event_Players = gsub("[[:digit:]]+\\s", "", .data$Event_Players)) %>%
         dplyr::select(-.data$events_string) %>%
-        dplyr::arrange(.data$Event_Time)
+        dplyr::arrange(.data$Event_Half, .data$Event_Time)
 
 
       events_df <- cbind(match_report, events_df)
