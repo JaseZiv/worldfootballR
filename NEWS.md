@@ -1,3 +1,29 @@
+# worldfootballR 0.3.0
+
+### New functions
+
+Functions to extract understat.com data now available:
+* Shots locations data:
+  * `understat_league_season_shots()`
+  * `understat_team_season_shots()`
+  * `understat_match_shots()`
+  * `understat_player_shots()`
+  * `understat_league_match_results()`
+
+New transfermarkt.com functions:
+* `tm_player_bio()`
+* `tm_team_transfers()`
+* Helper functions:
+  * `tm_league_team_urls()`
+  * `tm_team_player_urls()`
+
+### Improvements
+
+* `get_player_market_values` from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires
+
+
+***
+
 # worldfootballR 0.2.9
 
 ### Breaking Changes

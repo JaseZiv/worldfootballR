@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -112,19 +112,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+      <a href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
     </li>
     <li>
-      <a href="../articles/extract-match-data.html">Extracting whole league match data</a>
+      <a href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
     </li>
     <li>
-      <a href="../articles/extract-season-data.html">Extracting whole league season data</a>
-    </li>
-    <li>
-      <a href="../articles/extract-valuation-data.html">Extracting valuation and transfer data</a>
-    </li>
-    <li>
-      <a href="../articles/team-and-player-data.html">Extracting data for individual players or teams</a>
+      <a href="../articles/extract-understat-data.html">Extracting data from Understat</a>
     </li>
   </ul>
 </li>
@@ -208,9 +202,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="dot-get_clean_understat_json.html">.get_clean_understat_json()</a></code> </p>
+        </td>
+        <td><p>Clean Understat JSON data</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="dot-get_match_report_page.html">.get_match_report_page()</a></code> </p>
         </td>
         <td><p>Get match report for webpage</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dot-tm_fix_dates.html">.tm_fix_dates()</a></code> </p>
+        </td>
+        <td><p>Clean date fields</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dot-understat_shooting.html">.understat_shooting()</a></code> </p>
+        </td>
+        <td><p>Understat shots location helper function</p></td>
       </tr><tr>
         
         <td>
@@ -328,15 +340,69 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="tm_league_team_urls.html">tm_league_team_urls()</a></code> </p>
+        </td>
+        <td><p>Get transfermarkt Team URLs</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="tm_matchday_table.html">tm_matchday_table()</a></code> </p>
         </td>
         <td><p>Get weekly league table</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="tm_player_bio.html">tm_player_bio()</a></code> </p>
+        </td>
+        <td><p>Get transfermarkt player bios</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tm_team_player_urls.html">tm_team_player_urls()</a></code> </p>
+        </td>
+        <td><p>Get transfermarkt Player URLs</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="tm_team_transfer_balances.html">tm_team_transfer_balances()</a></code> </p>
         </td>
         <td><p>Team transfer balances</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="tm_team_transfers.html">tm_team_transfers()</a></code> </p>
+        </td>
+        <td><p>Get team transfers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="understat_league_match_results.html">understat_league_match_results()</a></code> </p>
+        </td>
+        <td><p>Get Understat season match results</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="understat_league_season_shots.html">understat_league_season_shots()</a></code> </p>
+        </td>
+        <td><p>Get Understat league season shot locations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="understat_match_shots.html">understat_match_shots()</a></code> </p>
+        </td>
+        <td><p>Get Understat match shot locations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="understat_player_shots.html">understat_player_shots()</a></code> </p>
+        </td>
+        <td><p>Get all Understat shot locations for a player</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="understat_team_season_shots.html">understat_team_season_shots()</a></code> </p>
+        </td>
+        <td><p>Get Understat team season shot locations</p></td>
       </tr>
     </tbody>
     </table>

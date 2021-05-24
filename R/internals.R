@@ -230,3 +230,109 @@
   }
   return(clean_val)
 }
+
+
+#' Clean Understat JSON data
+#'
+#' Returns a cleaned Understat data frame
+#'
+#' @param page_url understat.com page URL
+#' @param script_name html JSON script name
+#'
+#' @return a cleaned Understat data frame
+#'
+#' @importFrom magrittr %>%
+#'
+.get_clean_understat_json <- function(page_url, script_name) {
+  main_url <- "https://understat.com/"
+  page <-  tryCatch( xml2::read_html(page_url), error = function(e) NA)
+
+  if(!is.na(page)) {
+    # locate script tags
+    clean_json <- page %>% rvest::html_nodes("script") %>% as.character()
+    clean_json <- clean_json[grep(script_name, clean_json)] %>% stringi::stri_unescape_unicode()
+    clean_json <- qdapRegex::rm_square(clean_json, extract = TRUE, include.markers = TRUE) %>% unlist() %>% stringr::str_subset("\\[\\]", negate = TRUE)
+
+    out_df <- lapply(clean_json, jsonlite::fromJSON) %>% do.call("rbind", .)
+    # some outputs don't come with the season present, so add it in if not
+    if(!any(grepl("season", colnames(out_df)))) {
+      season <- page %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
+        rvest::html_nodes("option") %>% rvest::html_attr("value") %>% .[1] %>% as.numeric()
+      out_df <- cbind(season, out_df)
+    }
+
+  } else {
+    out_df <- data.frame()
+  }
+
+  return(out_df)
+
+}
+
+
+#' Understat shots location helper function
+#'
+#' Returns a cleaned Understat shooting location  data frame
+#'
+#' @param type_url can be season, team, match, player URL
+#'
+#' @return a cleaned Understat shooting location data frame
+#'
+#' @importFrom magrittr %>%
+#' @importFrom stats runif
+#'
+.understat_shooting <- function(type_url) {
+  main_url <- "https://understat.com/"
+  # need to get the game IDs first, filtering out matches not yet played as these URLs will error
+  games <-  .get_clean_understat_json(page_url = type_url, script_name = "datesData") %>%
+    dplyr::filter(.data$isResult)
+  # then create a chr vector of match URLs
+  match_urls <- paste0(main_url, "match/", games$id)
+
+  # start scrape:
+  shots_data <- data.frame()
+
+  for(each_match in match_urls) {
+    Sys.sleep(round(runif(1, 1, 2)))
+    tryCatch(df <- .get_clean_understat_json(page_url = each_match, script_name = "shotsData"), error = function(e) data.frame())
+    if(nrow(df) == 0) {
+      print(glue::glue("Shots data for match_url {each_match} not available"))
+    }
+    shots_data <- rbind(shots_data, df)
+
+  }
+  return(shots_data)
+}
+
+
+#' Clean date fields
+#'
+#' Returns a date format in YYYY-MM-DD from 'mmm d, yyyy'
+#'
+#' @param dirty_dates formatted date value
+#'
+#' @return a cleaned date
+#'
+#' @importFrom magrittr %>%
+#'
+.tm_fix_dates <- function(dirty_dates) {
+
+  fix_date <- function(dirty_date) {
+    if(is.na(dirty_date)) {
+      clean_date <- NA_character_
+    } else {
+      split_string <- strsplit(dirty_date, split = " ") %>% unlist() %>% gsub(",", "", .)
+      if(length(split_string) != 3) {
+        clean_date <- NA_character_
+      } else {
+        tryCatch({clean_date <- lubridate::ymd(paste(split_string[3], split_string[1], split_string[2], sep = "-")) %>%
+          as.character()}, error = function(e) {country_name <- NA_character_})
+      }
+    }
+
+    return(clean_date)
+  }
+  clean_dates <- dirty_dates %>% purrr::map_chr(fix_date)
+
+  return(clean_dates)
+}

@@ -1,0 +1,152 @@
+---
+title: "Extracting data from Transfermarkt"
+author: "Jason Zivkovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting data from Transfermarkt}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:
+
+* [FBref](https://fbref.com/en/)
+* [Transfermarkt](https://www.transfermarkt.com/)
+* [Understat](https://understat.com/)
+
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(worldfootballR)
+```
+
+***
+
+## Usage
+
+Package vignettes have been built to help you get started with the package.
+
+* For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+* For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+* For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+
+This vignette will cover the functions to extract data from transfermarkt.com
+
+
+***
+
+## Transfermarkt Helper Functions
+
+The following section will outline the various functions available to find different URLs to be able to pass through the Transfermarkt suite of functions outlined in this vignette.
+
+### Team URLs
+
+To get a list of URLs for each team in a particular season from transfermarkt.com, the `tm_league_team_urls()` function can be used. If the country/countries aren't available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.
+
+```{r tm_team_urls, eval=FALSE}
+team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
+# if it's not a league in the stored leagues data in worldfootballR_data repo:
+league_one_teams <- tm_league_team_urls(start_year = 2020, league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
+### Player URLs
+
+To get a list of player URLs for a particular team in transfermarkt.com, the `tm_team_player_urls()` function can be used.
+
+```{r tm_player_urls, eval=FALSE}
+tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
+```
+
+***
+
+## League Season-Level Data
+
+This section will cover the functions to aid in the extraction of season team statistics.
+
+
+### League Table by Matchdays
+
+To be able to extract league tables for select matchday(s), the below function can be used. 
+
+The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv) repository, it can accept the league URL, season start year and matchday number(s).
+
+
+```{r matchday_league_table, eval=FALSE}
+# to get the EPL table after matchday 1 of the 20/21 season:
+epl_matchday_1_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=1)
+
+# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
+epl_matchday_1to35_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=c(1:35))
+
+# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
+league_one_matchday_1_table <- tm_matchday_table(start_year="2020", matchday=1, league_url="https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
+***
+
+## Team Data
+
+This section will cover off the functions to get team-level data from Transfermarkt.
+
+
+### Transfer activity by team
+
+To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the `tm_team_transfers()` function can be used:
+
+```{r team_transfers, eval=FALSE}
+# for one team:
+bayern <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+
+# or for multiple teams:
+team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
+epl_xfers_2020 <- tm_team_transfers(team_url = team_urls)
+```
+
+***
+
+
+## Player Data
+
+This section will cover the functions available to aid in the extraction of player data.
+
+### Player Bios
+
+To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the `tm_player_bio()` function.:
+
+```{r player_bios, eval=FALSE}
+# for a single player 
+hazard_bio <- tm_player_bio(player_url = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
+
+# for multiple players:
+# can make use of a tm helper function:
+burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
+# then pass all those URLs to the tm_player_bio
+burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
+```
+
+***
+
+
