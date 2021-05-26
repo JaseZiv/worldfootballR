@@ -72,8 +72,13 @@ tm_team_transfers <- function(team_url) {
                  error = function(e) {player_df[j, "is_loan"] <- NA_character_})
         tryCatch({player_df[j, "transfer_fee_dup"] <- player_df[j, "transfer_fee"]},
                  error = function(e) {player_df[j, "transfer_fee_dup"] <- NA_character_})
-        tryCatch({player_df[j, "transfer_fee_notes1"] <- each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()},
-                 error = function(e) {player_df[j, "transfer_fee_notes1"] <- NA_character_})
+        if(length(each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()) == 0) {
+          player_df[j, "transfer_fee_notes1"] <- NA_character_
+        } else {
+          tryCatch({player_df[j, "transfer_fee_notes1"] <- each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()},
+                   error = function(e) {player_df[j, "transfer_fee_notes1"] <- NA_character_})
+        }
+
       }
       team_df <- dplyr::bind_rows(team_df, player_df)
     }
@@ -86,7 +91,7 @@ tm_team_transfers <- function(team_url) {
       dplyr::mutate(transfer_fee = ifelse(stringr::str_detect(.data$transfer_fee_dup, "Loan fee:"), .data$transfer_fee_notes1, .data$transfer_fee)) %>%
       dplyr::mutate(transfer_fee = mapply(.convert_value_to_numeric, euro_value = .data$transfer_fee)) %>%
       dplyr::mutate(transfer_fee_dup = ifelse(is.na(.data$transfer_fee), .data$transfer_fee_dup, NA_character_),
-             transfer_fee_dup = gsub("End of loan", "End of loan ", .data$transfer_fee_dup)) %>%
+                    transfer_fee_dup = gsub("End of loan", "End of loan ", .data$transfer_fee_dup)) %>%
       dplyr::rename(transfer_notes = .data$transfer_fee_dup) %>%
       dplyr::select(-.data$transfer_fee_notes1)
 
