@@ -40,6 +40,10 @@ understat_league_season_shots <- function(league, season_start_year) {
 
   shots_data <- cbind(league, shots_data)
 
+  shots_data <- shots_data %>%
+    dplyr::rename(home_team=.data$h_team, away_team=.data$a_team, home_goals=.data$h_goals, away_goals=.data$a_goals) %>%
+    dplyr::mutate_at(c("X", "Y", "xG", "home_goals", "away_goals"), as.numeric)
+
   return(shots_data)
 }
 
@@ -65,6 +69,11 @@ understat_team_season_shots <- function(team_url) {
   print(glue::glue("Scraping all shots for team {team_url}. Please acknowledge understat.com as the data source"))
 
   shots_df <- .understat_shooting(type_url = team_url)
+
+  shots_df <- shots_df %>%
+    dplyr::rename(home_away=.data$h_a, home_team=.data$h_team, away_team=.data$a_team, home_goals=.data$h_goals, away_goals=.data$a_goals) %>%
+    dplyr::mutate_at(c("minute", "X", "Y", "xG", "home_goals", "away_goals"), as.numeric)
+
   return(shots_df)
 }
 
@@ -92,6 +101,11 @@ understat_match_shots <- function(match_url) {
   print(glue::glue("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source"))
 
   match_shots_df <- .get_clean_understat_json(page_url = match_url, script_name = "shotsData")
+
+  match_shots_df <- match_shots_df %>%
+    dplyr::rename(home_away=.data$h_a, home_team=.data$h_team, away_team=.data$a_team, home_goals=.data$h_goals, away_goals=.data$a_goals) %>%
+    dplyr::mutate_at(c("minute", "X", "Y", "xG", "home_goals", "away_goals"), as.numeric)
+
   return(match_shots_df)
 }
 

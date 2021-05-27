@@ -265,6 +265,8 @@
     out_df <- data.frame()
   }
 
+  out_df <- do.call(data.frame, out_df)
+
   return(out_df)
 
 }
