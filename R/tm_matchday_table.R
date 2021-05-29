@@ -22,6 +22,8 @@
 #' }
 tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA) {
 
+  print("Scraping matchday table. Please acknowledge transfermarkt.com as the data source")
+
   main_url <- "https://www.transfermarkt.com"
 
   if(is.na(league_url)) {
@@ -74,7 +76,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
    weekly_table <- tab %>%
       rvest::html_nodes(".box")
-    
+
     weekly_table <- weekly_table[-1]
 
     all_lens <- c()

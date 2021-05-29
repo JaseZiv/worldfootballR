@@ -125,6 +125,23 @@ team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
 epl_xfers_2020 <- tm_team_transfers(team_url = team_urls)
 ```
 
+
+### Squad Player Stats
+
+To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the `tm_squad_stats()` function can be used:
+
+```{r squad_stats, eval=FALSE}
+# for one team:
+bayern <- tm_squad_stats(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+
+# or for multiple teams:
+team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
+epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
+```
+
+
+
+
 ***
 
 

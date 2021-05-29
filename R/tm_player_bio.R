@@ -21,6 +21,8 @@
 #' }
 tm_player_bio <- function(player_urls) {
 
+  print("Scraping player bios. Please acknowledge transfermarkt.com as the data source")
+
   each_bio <- function(player_url) {
 
     player_page <- tryCatch(xml2::read_html(player_url), error = function(e) NA)

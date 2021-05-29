@@ -104,7 +104,7 @@
       <h1 data-toc-skip>Extracting data from Transfermarkt</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-05-24</h4>
+            <h4 class="date">2021-05-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-transfermarkt-data.Rmd"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -207,6 +207,18 @@
 <span class="co"># or for multiple teams:</span>
 <span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="va">epl_xfers_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfers.html">tm_team_transfers</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="va">team_urls</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="squad-player-stats" class="section level3">
+<h3 class="hasAnchor">
+<a href="#squad-player-stats" class="anchor"></a>Squad Player Stats</h3>
+<p>To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the <code><a href="../reference/tm_squad_stats.html">tm_squad_stats()</a></code> function can be used:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># for one team:</span>
+<span class="va">bayern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_squad_stats.html">tm_squad_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"</span><span class="op">)</span>
+
+<span class="co"># or for multiple teams:</span>
+<span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
+<span class="va">epl_team_players_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_squad_stats.html">tm_squad_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="va">team_urls</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -218,7 +230,7 @@
 <h3 class="hasAnchor">
 <a href="#player-bios" class="anchor"></a>Player Bios</h3>
 <p>To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> function.:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for a single player </span>
 <span class="va">hazard_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_bio.html">tm_player_bio</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"</span><span class="op">)</span>
 
