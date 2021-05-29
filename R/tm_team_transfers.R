@@ -95,8 +95,33 @@ tm_team_transfers <- function(team_url) {
       dplyr::rename(transfer_notes = .data$transfer_fee_dup) %>%
       dplyr::select(-.data$transfer_fee_notes1)
 
+
+    #----- Get player stats including goals and appearances: -----#
+    team_data_url <- gsub("startseite", "leistungsdaten", each_team_url)
+    team_data_page <- xml2::read_html(team_data_url)
+
+    team_data_table <- team_data_page %>% rvest::html_nodes("#yw1") %>% rvest::html_node("table") %>% rvest::html_nodes("tbody") %>% rvest::html_children()
+
+    player_name <- team_data_table %>% rvest::html_nodes(".hauptlink") %>% rvest::html_nodes(".hide-for-small") %>% rvest::html_text()
+    # player_age <- team_data_table %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
+    in_squad <- team_data_table %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>% as.numeric()
+    appearances <- team_data_table %>% rvest::html_nodes("td:nth-child(6)") %>% rvest::html_text() %>%
+      gsub("Not used during this season", "0", .) %>% as.numeric()
+    goals <- team_data_table %>% rvest::html_nodes(".zentriert:nth-child(7)") %>% rvest::html_text() %>%
+      gsub("-", "0", .) %>% as.numeric()
+    minutes_played <- team_data_table %>% rvest::html_nodes(".rechts") %>% rvest::html_text() %>%
+      gsub("\\.", "", .) %>% gsub("'", "", .) %>% gsub("-", "0", .) %>% as.numeric()
+
+    team_data_df <- data.frame(player_name = as.character(player_name), in_squad = as.numeric(in_squad),
+                               appearances = as.numeric(appearances), goals = as.numeric(goals), minutes_played = as.numeric(minutes_played))
+
+    # now join the two data sets together:
+    team_df <- team_df %>%
+      dplyr::left_join(team_data_df, by = c("player_name"))
+
     return(team_df)
   }
+
 
   final_output <- team_url %>%
     purrr::map_df(each_team_xfer)
