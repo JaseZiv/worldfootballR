@@ -189,11 +189,10 @@ test_that("player_transfer_history() works", {
   testthat::skip_if_offline()
   # testthat::skip_on_cran()
 
-  transfer_data <- player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198",
-                                             "https://www.transfermarkt.com/alisson/profil/spieler/105470"))
+  transfer_data <- player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
   # test the functions returns the data
   expect_type(transfer_data, "list")
-  expect_true(ncol(transfer_data) == 9)
+  expect_true(ncol(transfer_data) == 11)
 
   # test that an invalid country will error
   expect_error(player_transfer_history("aaa.com.au"))
