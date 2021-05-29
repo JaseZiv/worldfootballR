@@ -26,7 +26,7 @@ tm_team_transfers <- function(team_url) {
   print("Scraping team transfer arrivals and departures. Please acknowledge transfermarkt.com as the data source")
 
   each_team_xfer <- function(each_team_url) {
-
+    pb$tick()
     xfers_url <- gsub("startseite", "transfers", each_team_url)
 
     team_page <- xml2::read_html(xfers_url)
@@ -104,9 +104,10 @@ tm_team_transfers <- function(team_url) {
 
     player_name <- team_data_table %>% rvest::html_nodes(".hauptlink") %>% rvest::html_nodes(".hide-for-small") %>% rvest::html_text()
     # player_age <- team_data_table %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
-    in_squad <- team_data_table %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>% as.numeric()
+    in_squad <- team_data_table %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>%
+      gsub("-", "0", .) %>% as.numeric()
     appearances <- team_data_table %>% rvest::html_nodes("td:nth-child(6)") %>% rvest::html_text() %>%
-      gsub("Not used during this season", "0", .) %>% as.numeric()
+      gsub("Not.*", "0", .) %>% as.numeric()
     goals <- team_data_table %>% rvest::html_nodes(".zentriert:nth-child(7)") %>% rvest::html_text() %>%
       gsub("-", "0", .) %>% as.numeric()
     minutes_played <- team_data_table %>% rvest::html_nodes(".rechts") %>% rvest::html_text() %>%
@@ -122,10 +123,11 @@ tm_team_transfers <- function(team_url) {
     return(team_df)
   }
 
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(team_url))
 
   final_output <- team_url %>%
     purrr::map_df(each_team_xfer)
 
   return(final_output)
 }
-

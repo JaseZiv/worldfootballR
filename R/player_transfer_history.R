@@ -86,6 +86,8 @@ single_player_transfer_history <- function(player_url) {
 #' }
 player_transfer_history <- function(player_urls) {
   print("Extracting player transfer history data. Please acknowledge transfermarkt.com as the data source.")
+
+
   all_players <- player_urls %>%
     purrr::map_df(single_player_transfer_history)
 

@@ -24,6 +24,7 @@ tm_player_bio <- function(player_urls) {
   print("Scraping player bios. Please acknowledge transfermarkt.com as the data source")
 
   each_bio <- function(player_url) {
+    pb$tick()
 
     player_page <- tryCatch(xml2::read_html(player_url), error = function(e) NA)
 
@@ -59,11 +60,12 @@ tm_player_bio <- function(player_urls) {
     return(a)
   }
 
-  full_bios <- data.frame()
-  for(each_url in player_urls) {
-    df <- each_bio(each_url)
-    full_bios <- dplyr::bind_rows(full_bios, df)
-  }
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(player_urls))
+
+  full_bios <- player_urls %>%
+    purrr::map_df(each_bio)
+
 
   # some of the following columns may not exist, so this series of if statements will handle for this:
   if(any(grepl("date_of_birth", colnames(full_bios)))) {

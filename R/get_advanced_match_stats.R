@@ -32,6 +32,7 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
 
 
   get_each_match_statistic <- function(match_url) {
+    pb$tick()
 
     match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
@@ -141,6 +142,9 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
 
     return(stat_df_output)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
 
   suppressWarnings(
     final_df <- match_url %>%

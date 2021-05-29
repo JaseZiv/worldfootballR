@@ -89,6 +89,7 @@
 get_match_report <- function(match_url) {
 
   each_match_report <- function(match_url) {
+    pb$tick()
     match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
     if(!is.na(match_page)) {
@@ -99,6 +100,9 @@ get_match_report <- function(match_url) {
     }
     return(each_game)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
 
   all_games <- match_url %>%
     purrr::map_df(each_match_report)

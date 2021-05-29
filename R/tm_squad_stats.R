@@ -26,6 +26,7 @@ tm_squad_stats <- function(team_url) {
   print("Scraping squad player stats. Please acknowledge transfermarkt.com as the data source")
 
   each_squad_stats <- function(each_team_url) {
+    pb$tick()
 
     team_data_url <- gsub("startseite", "leistungsdaten", each_team_url)
     team_data_page <- tryCatch(xml2::read_html(team_data_url), error = function(e) NA)
@@ -42,9 +43,10 @@ tm_squad_stats <- function(team_url) {
       player_pos <- team_data_table %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
       player_age <- team_data_table %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
       nationality <- team_data_table %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% rvest::html_attr("title")
-      in_squad <- team_data_table %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>% as.numeric()
+      in_squad <- team_data_table %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>%
+        gsub("-", "0", .) %>% as.numeric()
       appearances <- team_data_table %>% rvest::html_nodes("td:nth-child(6)") %>% rvest::html_text() %>%
-        gsub("Not used during this season", "0", .) %>% as.numeric()
+        gsub("Not.*", "0", .) %>% as.numeric()
       goals <- team_data_table %>% rvest::html_nodes(".zentriert:nth-child(7)") %>% rvest::html_text() %>%
         gsub("-", "0", .) %>% as.numeric()
       minutes_played <- team_data_table %>% rvest::html_nodes(".rechts") %>% rvest::html_text() %>%
@@ -61,6 +63,9 @@ tm_squad_stats <- function(team_url) {
     return(team_data_df)
 
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(team_url))
 
   final_output <- team_url %>%
     purrr::map_df(each_squad_stats)

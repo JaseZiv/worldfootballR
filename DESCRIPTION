@@ -26,7 +26,8 @@ Imports:
     janitor,
     qdapRegex,
     jsonlite,
-    stringi
+    stringi,
+    progress
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,

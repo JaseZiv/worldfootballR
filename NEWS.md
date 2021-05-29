@@ -21,7 +21,7 @@ New transfermarkt.com functions:
 ### Improvements
 
 * `get_player_market_values` from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires
-
+* **Progress bars now included on all long running functions!**
 
 ***
 

@@ -21,6 +21,7 @@ get_match_lineups <- function(match_url) {
   print("Scraping lineups")
 
   get_each_match_lineup <- function(match_url) {
+    pb$tick()
 
     match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
@@ -94,6 +95,10 @@ get_match_lineups <- function(match_url) {
 
     return(all_lineup)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
+
   all_lineups <- match_url %>%
     purrr::map_df(get_each_match_lineup)
 
