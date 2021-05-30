@@ -35,15 +35,20 @@ get_match_lineups <- function(match_url) {
 
       get_each_lineup <- function(home_away) {
         lineup <- lineups[home_away] %>% rvest::html_table() %>% data.frame()
-        formation <- names(lineup)[1] %>% gsub(".*\\.\\.", "", .) %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        formation <- names(lineup)[1]
+        is_diamond <- grepl("\\..$", formation)
+        formation  <- formation %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        if(is_diamond) {
+          formation <- paste0(formation, "-diamond")
+        }
         tryCatch( {team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[home_away]}, error = function(e) {team <- NA})
 
         bench_index <- which(lineup[,1] == "Bench")
 
-        lineup <- lineup[1:(bench_index-1),] %>% dplyr::mutate(Starting = "Pitch") %>%
-          dplyr::bind_rows(
-            lineup[(bench_index+1):nrow(lineup),] %>% dplyr::mutate(Starting = "Bench")
-          )
+        suppressMessages(lineup <- lineup[1:(bench_index-1),] %>% dplyr::mutate(Starting = "Pitch") %>%
+                           dplyr::bind_rows(
+                             lineup[(bench_index+1):nrow(lineup),] %>% dplyr::mutate(Starting = "Bench")
+                           ) )
 
         lineup <- lineup %>%
           dplyr::mutate(Matchday = match_date,

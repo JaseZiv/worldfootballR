@@ -22,6 +22,7 @@ New transfermarkt.com functions:
 
 * `get_player_market_values` from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires
 * `player_transfer_history()` now includes remaining contract expriry data and remaining contract length (in days) [#34](https://github.com/JaseZiv/worldfootballR/issues/34)
+* `get_match_lineups()` now idntifies diamond formations
 * **Progress bars now included on all long running functions!**
 
 ***
