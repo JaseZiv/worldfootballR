@@ -1,3 +1,9 @@
+# worldfootballR 0.0.0.1
+
+### Bugs
+
+* `player_transfer_history()` returns results even when player hasn't got a club to go to [#37](https://github.com/JaseZiv/worldfootballR/issues/37)
+
 # worldfootballR 0.3.0
 
 ### New functions

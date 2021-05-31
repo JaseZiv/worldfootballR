@@ -38,28 +38,28 @@ player_transfer_history <- function(player_urls) {
     each_player_df <- data.frame()
 
     for(each_row in 1:length(all_transfer_rows)) {
-      tryCatch(season <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
+      season <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
       if(rlang::is_empty(season)) {
         each_row_df <- data.frame()
       } else {
-        tryCatch(transfer_date <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[2] %>% rvest::html_text() %>%
-                   .tm_fix_dates() %>% lubridate::ymd(), error = function(e) NA_character_)
+        transfer_date <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[2] %>% rvest::html_text() %>%
+                                    .tm_fix_dates() %>% lubridate::ymd(), error = function(e) NA_character_)
 
-        tryCatch(country_flags <- all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
-        tryCatch(country_from <- xml2::xml_attrs(xml2::xml_child(country_flags[[1]], 1))[["title"]], error = function(e) NA_character_)
-        tryCatch(country_to <- xml2::xml_attrs(xml2::xml_child(country_flags[[2]], 1))[["title"]], error = function(e) NA_character_)
+        country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
+        country_from <- tryCatch(xml2::xml_attrs(xml2::xml_child(country_flags[[1]], 1))[["title"]], error = function(e) NA_character_)
+        country_to <- tryCatch(xml2::xml_attrs(xml2::xml_child(country_flags[[2]], 1))[["title"]], error = function(e) NA_character_)
 
-        tryCatch(team_from <- all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
-        tryCatch(team_to <- all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[2] %>% rvest::html_text(), error = function(e) NA_character_)
+        team_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
+        team_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[2] %>% rvest::html_text(), error = function(e) NA_character_)
 
-        tryCatch(market_value <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-mw") %>% rvest::html_text() %>%
-                   .convert_value_to_numeric(), error = function(e) NA_character_)
-        tryCatch(transfer_value <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-abloese") %>% rvest::html_text() %>%
-                   .convert_value_to_numeric, error = function(e) NA_character_)
+        market_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-mw") %>% rvest::html_text() %>%
+                                   .convert_value_to_numeric(), error = function(e) NA_character_)
+        transfer_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-abloese") %>% rvest::html_text() %>%
+                                     .convert_value_to_numeric, error = function(e) NA_character_)
 
         # to get contract length, which isn't on the main page listing all transfers:
         extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% rvest::html_nodes("a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
-        tryCatch(extra_info <- xml2::read_html(extra_info_url), error = function(e) NA)
+        extra_info <- tryCatch(xml2::read_html(extra_info_url), error = function(e) NA)
         contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
         contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
         if(is.na(extra_info)) {
@@ -100,3 +100,4 @@ player_transfer_history <- function(player_urls) {
 
   return(all_players)
 }
+
