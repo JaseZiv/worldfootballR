@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An R Package to Extract World Football (Soccer) Data from Fbref.com and transfermarkt.com • worldfootballR</title>
+<title>An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com • worldfootballR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="An R Package to Extract World Football (Soccer) Data from Fbref.com and transfermarkt.com">
-<meta property="og:description" content="This R package will enable users to extract a number of different game and player statistics and metrics from fbref.com and transfer data from transfermarket.com.">
+<script src="pkgdown.js"></script><meta property="og:title" content="An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com">
+<meta property="og:description" content="This R package will enable users to extract a number of different game and player statistics and metrics from numerous football sites, including fbref.com, transfer data from transfermarket.com and shooting data from understat.com.">
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -67,19 +67,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/extract-helper-urls.html">Extracting fbref URLs</a>
+      <a href="articles/extract-fbref-data.html">Extracting data from FBref</a>
     </li>
     <li>
-      <a href="articles/extract-match-data.html">Extracting whole league match data</a>
+      <a href="articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
     </li>
     <li>
-      <a href="articles/extract-season-data.html">Extracting whole league season data</a>
-    </li>
-    <li>
-      <a href="articles/extract-valuation-data.html">Extracting valuation and transfer data</a>
-    </li>
-    <li>
-      <a href="articles/team-and-player-data.html">Extracting data for individual players or teams</a>
+      <a href="articles/extract-understat-data.html">Extracting data from Understat</a>
     </li>
   </ul>
 </li>
@@ -115,7 +109,12 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>This package is designed to allow users to extract various world football results and player statistics data from fbref.com and valuations and transfer data from transfermarkt.com.</p>
+<p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
+<ul>
+<li><a href="https://fbref.com/en/">FBref</a></li>
+<li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
+<li><a href="https://understat.com/">Understat</a></li>
+</ul>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -133,15 +132,11 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Package vignettes have been built to help you get started with the package.</p>
 <ul>
-<li>For helper functions to extract fbref URLs, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html">here</a>
+<li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
 </li>
-<li>For whole league match-level data, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-match-data.html">here</a>
+<li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
-<li>For whole league season-level data, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-season-data.html">here</a>
-</li>
-<li>For functions to extract data for individual players and or teams, see <a href="https://jaseziv.github.io/worldfootballR/articles/team-and-player-data.html">here</a>
-</li>
-<li>For transfer histories and player market valuations, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-valuation-data.html">here</a>
+<li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
 </li>
 </ul>
 <hr>
@@ -149,9 +144,30 @@
 <div id="leagues-and-seasons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#leagues-and-seasons" class="anchor"></a>Leagues and Seasons</h2>
-<p>For fbref.com data (match and season data), a list of leagues and seasons included in the package can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a></p>
+<div id="fbref" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fbref" class="anchor"></a>Fbref</h3>
+<p>For FBref.com data (match and season data), a list of leagues and seasons included in the package can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a></p>
+</div>
+<div id="transfermarkt" class="section level3">
+<h3 class="hasAnchor">
+<a href="#transfermarkt" class="anchor"></a>Transfermarkt</h3>
 <p>For transfermarkt.com data (valuations and transfers), a list of leagues and seasons included in the package can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">here</a></p>
+</div>
+<div id="understat" class="section level3">
+<h3 class="hasAnchor">
+<a href="#understat" class="anchor"></a>Understat</h3>
+<p>The following leagues are currently supported by Understat (these values can be passed in to the <code>league</code> arguments of most <code>understat_</code> functions):</p>
+<ul>
+<li>“EPL”</li>
+<li>“La liga”</li>
+<li>“Bundesliga”</li>
+<li>“Serie A”</li>
+<li>“Ligue 1”</li>
+<li>“RFPL”</li>
+</ul>
 <hr>
+</div>
 </div>
 <div id="attribute-the-source" class="section level2">
 <h2 class="hasAnchor">
@@ -161,8 +177,14 @@
 <ul>
 <li><a href="https://fbref.com/en/">StatsBomb via FBref</a></li>
 <li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
+<li><a href="https://understat.com/">Understat</a></li>
 </ul>
+<div id="acknowledgements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h3>
+<p>Special mention goes out to <a href="https://github.com/ewenme">Ewan Henderson’s</a> awesome <a href="https://github.com/ewenme/understatr"><code>understatr</code></a> library for the inspiration and internal code for the <code>understat_</code> functions contained in this package.</p>
 <hr>
+</div>
 </div>
 <div id="contributing" class="section level2">
 <h2 class="hasAnchor">
@@ -174,15 +196,10 @@
 <ul>
 <li>Reproducible examples</li>
 <li>A brief description of what the expected results are</li>
-<li>If applicable, the fbref.com or transfermarkt.com page the observed behaviour is occuring on</li>
-<li>For improvements, what addiditional features are being requested and what problem they will help solve</li>
+<li>If applicable, the fbref.com, transfermarkt.com or understat.com page the observed behaviour is occuring on</li>
+<li>For improvement suggestions, what features are being requested and their purpose</li>
 </ul>
-</div>
-<div id="pull-requests" class="section level3">
-<h3 class="hasAnchor">
-<a href="#pull-requests" class="anchor"></a>Pull Requests</h3>
-<p>Pull requests are also welcomed. Before doing so, please create an issue or email me with your idea.</p>
-<p>Feel free to get in touch via email or twitter <a href="https://twitter.com/jaseziv" class="uri">https://twitter.com/jaseziv</a></p>
+<p>Feel free to get in touch via email or twitter <a href="https://twitter.com/jaseziv" class="uri">https://twitter.com/jaseziv</a> if you aren’t able to creat an issue.</p>
 </div>
 <div id="show-your-support" class="section level3">
 <h3 class="hasAnchor">

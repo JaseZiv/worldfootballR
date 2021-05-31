@@ -20,6 +20,7 @@
 get_match_summary <- function(match_url) {
 
   get_each_match_summary <- function(match_url) {
+    pb$tick()
 
     each_game_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 
@@ -82,6 +83,9 @@ get_match_summary <- function(match_url) {
 
     return(events_df)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
 
   all_events_df <- match_url %>%
     purrr::map_df(get_each_match_summary)

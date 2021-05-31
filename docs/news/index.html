@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -112,19 +112,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/extract-helper-urls.html">Extracting fbref URLs</a>
+      <a href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
     </li>
     <li>
-      <a href="../articles/extract-match-data.html">Extracting whole league match data</a>
+      <a href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
     </li>
     <li>
-      <a href="../articles/extract-season-data.html">Extracting whole league season data</a>
-    </li>
-    <li>
-      <a href="../articles/extract-valuation-data.html">Extracting valuation and transfer data</a>
-    </li>
-    <li>
-      <a href="../articles/team-and-player-data.html">Extracting data for individual players or teams</a>
+      <a href="../articles/extract-understat-data.html">Extracting data from Understat</a>
     </li>
   </ul>
 </li>
@@ -156,6 +150,61 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worldfootballr-030" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0">
+<a href="#worldfootballr-030" class="anchor"></a>worldfootballR 0.3.0</h1>
+<div id="new-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h3>
+<p>Functions to extract understat.com data now available:</p>
+<ul>
+<li>Shots locations data:
+<ul>
+<li>
+<code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> to get shot location data for all matches in a league season</li>
+<li>
+<code><a href="../reference/understat_team_season_shots.html">understat_team_season_shots()</a></code> to get shot locations for and against a select team</li>
+<li>
+<code><a href="../reference/understat_match_shots.html">understat_match_shots()</a></code> to get shot locations for a selected match</li>
+<li>
+<code><a href="../reference/understat_player_shots.html">understat_player_shots()</a></code> to get all available shot locations for games played by a selected player</li>
+<li>
+<code><a href="../reference/understat_league_match_results.html">understat_league_match_results()</a></code> to get results and match data for all matches played in a season</li>
+</ul>
+</li>
+</ul>
+<p>New transfermarkt.com functions:</p>
+<ul>
+<li>
+<code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> to get player bios from transfermarkt</li>
+<li>
+<code><a href="../reference/tm_team_transfers.html">tm_team_transfers()</a></code> to get all arrival and departures for a team season</li>
+<li>
+<code><a href="../reference/tm_squad_stats.html">tm_squad_stats()</a></code> to get basic squad stats for teams for a season</li>
+<li>Helper functions:
+<ul>
+<li>
+<code><a href="../reference/tm_league_team_urls.html">tm_league_team_urls()</a></code> to get teams URLs for a league season</li>
+<li>
+<code><a href="../reference/tm_team_player_urls.html">tm_team_player_urls()</a></code> to get player URLs for a given team</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="improvements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#improvements" class="anchor"></a>Improvements</h3>
+<ul>
+<li>
+<code>get_player_market_values</code> from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires</li>
+<li>
+<code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> now includes remaining contract expriry data and remaining contract length (in days) <a href="https://github.com/JaseZiv/worldfootballR/issues/34"><a href='https://github.com/JaseZiv/worldfootballR/issues/34'>#34</a></a>
+</li>
+<li><strong>Progress bars now included on all long running functions!</strong></li>
+</ul>
+<hr>
+</div>
+</div>
     <div id="worldfootballr-029" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.9">
 <a href="#worldfootballr-029" class="anchor"></a>worldfootballR 0.2.9</h1>
@@ -167,9 +216,9 @@
 <li>Column names <code>event_time</code>, <code>event_type</code>, <code>event_players</code> and <code>score_progression</code> changed for <code><a href="../reference/get_match_summary.html">get_match_summary()</a></code>, and additional columns added</li>
 </ul>
 </div>
-<div id="improvements" class="section level3">
+<div id="improvements-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements" class="anchor"></a>Improvements</h3>
+<a href="#improvements-1" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> now able to accept multiple <code>player_url</code> values</li>
@@ -236,9 +285,9 @@
     <div id="worldfootballr-028" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.8">
 <a href="#worldfootballr-028" class="anchor"></a>worldfootballR 0.2.8</h1>
-<div id="new-functions" class="section level3">
+<div id="new-functions-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h3>
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new fbref functions
 <ul>
@@ -248,9 +297,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-1" class="section level3">
+<div id="improvements-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-1" class="anchor"></a>Improvements</h3>
+<a href="#improvements-2" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> now returns a players <strong>full</strong> scouting report against peers in Men’s Big 5 Leagues and European Competition over the last 365 days (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/27">27</a>)</li>
@@ -263,9 +312,9 @@
     <div id="worldfootballr-027" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.7">
 <a href="#worldfootballr-027" class="anchor"></a>worldfootballR 0.2.7</h1>
-<div id="new-functions-1" class="section level3">
+<div id="new-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new fbref functions
 <ul>
@@ -277,9 +326,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-2" class="section level3">
+<div id="improvements-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-2" class="anchor"></a>Improvements</h3>
+<a href="#improvements-3" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code> now returns additional summary player performance data (shots, goals, cards, etc) to the original lineups output</li>
@@ -298,9 +347,9 @@
     <div id="worldfootballr-026" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.6">
 <a href="#worldfootballr-026" class="anchor"></a>worldfootballR 0.2.6</h1>
-<div id="new-functions-2" class="section level3">
+<div id="new-functions-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h3>
+<a href="#new-functions-3" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new transfermarkt functions:
 <ul>
@@ -312,9 +361,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-3" class="section level3">
+<div id="improvements-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-3" class="anchor"></a>Improvements</h3>
+<a href="#improvements-4" class="anchor"></a>Improvements</h3>
 <ul>
 <li>Various transfermarkt functions refactored to have consistent column names</li>
 </ul>
@@ -354,9 +403,9 @@
     <div id="worldfootballr-025" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.5">
 <a href="#worldfootballr-025" class="anchor"></a>worldfootballR 0.2.5</h1>
-<div id="new-functions-3" class="section level3">
+<div id="new-functions-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-3" class="anchor"></a>New functions</h3>
+<a href="#new-functions-4" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> to get fbref season stats for all players or teams stats in the big five Euro leagues</li>
 </ul>
@@ -366,9 +415,9 @@
     <div id="worldfootballr-024" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.4">
 <a href="#worldfootballr-024" class="anchor"></a>worldfootballR 0.2.4</h1>
-<div id="new-functions-4" class="section level3">
+<div id="new-functions-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-4" class="anchor"></a>New functions</h3>
+<a href="#new-functions-5" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added fbref helper functions:
 <ul>
@@ -386,9 +435,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-4" class="section level3">
+<div id="improvements-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-4" class="anchor"></a>Improvements</h3>
+<a href="#improvements-5" class="anchor"></a>Improvements</h3>
 <ul>
 <li>Additional leagues and cups now available in the following functions; <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code>, <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, <code><a href="../reference/get_season_team_stats.html">get_season_team_stats()</a></code>
 </li>

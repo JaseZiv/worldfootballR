@@ -2,12 +2,10 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  extract-helper-urls: extract-helper-urls.html
-  extract-match-data: extract-match-data.html
-  extract-season-data: extract-season-data.html
-  extract-valuation-data: extract-valuation-data.html
-  team-and-player-data: team-and-player-data.html
-last_built: 2021-05-20T05:32Z
+  extract-fbref-data: extract-fbref-data.html
+  extract-transfermarkt-data: extract-transfermarkt-data.html
+  extract-understat-data: extract-understat-data.html
+last_built: 2021-05-29T21:00Z
 urls:
   reference: https://jaseziv.github.io/worldfootballR//reference
   article: https://jaseziv.github.io/worldfootballR//articles

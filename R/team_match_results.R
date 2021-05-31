@@ -27,6 +27,7 @@ get_team_match_results <- function(team_url) {
   print("Scraping team match logs...")
 
   get_each_team_log <- function(team_url) {
+    pb$tick()
     team_page <- xml2::read_html(team_url)
 
     team_name <- sub('.*\\/', '', team_url) %>% gsub("-Stats", "", .) %>% gsub("-", " ", .)
@@ -52,6 +53,9 @@ get_team_match_results <- function(team_url) {
 
     return(team_log)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(team_url))
 
   all_team_logs <- team_url %>%
     purrr::map_df(get_each_team_log)

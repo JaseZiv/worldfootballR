@@ -33,6 +33,7 @@ fb_player_season_stats <- function(player_url, stat_type) {
   main_url <- "https://fbref.com"
 
   get_each_player_season <- function(player_url, stat_type) {
+    pb$tick()
 
     stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keeper", "keeper_adv")
 
@@ -112,6 +113,10 @@ fb_player_season_stats <- function(player_url, stat_type) {
     return(stat_df)
 
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(player_url))
+
   # run for all players selected
   all_players <- purrr::map2_df(player_url, stat_type, get_each_player_season)
 }

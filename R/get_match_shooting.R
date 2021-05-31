@@ -22,6 +22,8 @@ get_match_shooting <- function(match_url) {
   print("Scraping detailed shot and shot creation data...")
 
   get_each_match_shooting_data <- function(match_url) {
+
+    pb$tick()
     match_page <- xml2::read_html(match_url)
 
     tryCatch( {home_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {home_team <- NA})
@@ -89,6 +91,9 @@ get_match_shooting <- function(match_url) {
 
     return(all_shot_df)
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
 
   all_shooting <- match_url %>%
     purrr::map_df(get_each_match_shooting_data)

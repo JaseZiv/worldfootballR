@@ -1,3 +1,32 @@
+# worldfootballR 0.3.0
+
+### New functions
+
+Functions to extract understat.com data now available:
+* Shots locations data:
+  * `understat_league_season_shots()` to get shot location data for all matches in a league season
+  * `understat_team_season_shots()` to get shot locations for and against a select team
+  * `understat_match_shots()` to get shot locations for a selected match
+  * `understat_player_shots()` to get all available shot locations for games played by a selected player
+  * `understat_league_match_results()` to get results and match data for all matches played in a season
+
+New transfermarkt.com functions:
+* `tm_player_bio()` to get player bios from transfermarkt
+* `tm_team_transfers()` to get all arrival and departures for a team season
+* `tm_squad_stats()` to get basic squad stats for teams for a season
+* Helper functions:
+  * `tm_league_team_urls()` to get teams URLs for a league season 
+  * `tm_team_player_urls()` to get player URLs for a given team
+
+### Improvements
+
+* `get_player_market_values` from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires
+* `player_transfer_history()` now includes remaining contract expriry data and remaining contract length (in days) [#34](https://github.com/JaseZiv/worldfootballR/issues/34)
+* `get_match_lineups()` now idntifies diamond formations
+* **Progress bars now included on all long running functions!**
+
+***
+
 # worldfootballR 0.2.9
 
 ### Breaking Changes

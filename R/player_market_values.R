@@ -120,10 +120,22 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       for(i in 1:length(player_nat)) {
         player_nationality <- c(player_nationality, xml2::xml_attrs(player_nat[[i]])[["title"]])
       }
+      # player height
+      player_height_mtrs <- team_data %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>%
+        gsub(",", "\\.", .) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric()
+      # player_foot
+      player_foot <- team_data %>% rvest::html_nodes("td:nth-child(6)") %>% rvest::html_text()
+      # date joined club
+      date_joined <- team_data %>% rvest::html_nodes("td:nth-child(7)") %>% rvest::html_text()
+      # joined from
+      joined_from <- team_data %>% rvest::html_nodes("td:nth-child(8)") %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+      # contract expiry
+      contract_expiry <- team_data %>% rvest::html_nodes("td:nth-child(9)") %>% rvest::html_text()
       # value
       player_market_value <- team_data %>% rvest::html_nodes(".rechts.hauptlink") %>% rvest::html_text()
 
-      team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality, player_market_value) %>% data.frame()
+      team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality,
+                       player_height_mtrs, player_foot, date_joined, joined_from, contract_expiry, player_market_value) %>% data.frame()
       team_df <- team_df %>%
         dplyr::rename(season_urls=each_season)
 
@@ -138,15 +150,19 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
   all_seasons_df <- meta_df_seasons %>%
     dplyr::left_join(all_seasons_df, by = "season_urls")
 
+
   all_seasons_df <- all_seasons_df %>%
     dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
+    dplyr::mutate(date_joined = .tm_fix_dates(.data$date_joined),
+                  contract_expiry = .tm_fix_dates(.data$contract_expiry)) %>%
     tidyr::separate(., player_birthday, into = c("Month", "Day", "Year", "player_age"), sep = " ", remove = F) %>%
     dplyr::mutate(Day = gsub(",", "", .data$Day) %>% as.numeric(),
                   Year = as.numeric(.data$Year),
                   Month = match(.data$Month, month.abb),
                   player_dob = lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-"))) %>%
     dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
-    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$player_market_value_euro, .data$player_url)
+    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality,
+                  .data$player_height_mtrs, .data$player_foot, .data$date_joined, .data$joined_from, .data$contract_expiry, .data$player_market_value_euro, .data$player_url)
 
 
   return(all_seasons_df)

@@ -1,0 +1,149 @@
+---
+title: "Extracting data from Understat"
+author: "Jason Zivkovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting data from Understat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:
+
+* [FBref](https://fbref.com/en/)
+* [Transfermarkt](https://www.transfermarkt.com/)
+* [Understat](https://understat.com/)
+
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(worldfootballR)
+```
+
+***
+
+## Usage
+
+Package vignettes have been built to help you get started with the package.
+
+* For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+* For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+* For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+
+This vignette will cover the functions to extract data from understat.com
+
+
+***
+
+## Understat Helper Functions
+
+There are currently no helper functions for Understat functions.
+
+***
+
+## League Season-Level Data
+
+This section will cover the functions to aid in the extraction of season league statistics from Understat.
+
+The following leagues are currently supported by Understat (these values can be passed in to the `league` arguments of most `understat_` functions):
+
+* "EPL"
+* "La liga"
+* "Bundesliga"
+* "Serie A"
+* "Ligue 1"
+* "RFPL"
+
+
+### Match Results
+
+To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probablity of a team winning.
+
+To extract the data, use the `understat_league_match_results()` function:
+
+
+```{r understat_match_results, eval=FALSE}
+# to get the EPL results:
+epl_results <- understat_league_match_results(league = "EPL", season_start_year = 2020)
+```
+
+
+### Season Shooting locations
+
+To get shooting locations for a whole season in supported leagues, use the `understat_league_season_shots()` function:
+
+```{r season_shots, eval=FALSE}
+ligue1_shot_location <- understat_league_season_shots(league = "Ligue 1", season_start_year = 2020)
+```
+
+
+***
+
+## Match-Level Data
+
+The following sections outlines the functions available to extract data at the per-match level
+
+### Match Shooting Locations
+
+To get shooting locations for an individual match, use the `understat_match_shots()` function:
+
+```{r match_shots, eval=FALSE}
+wba_liv_shots <- understat_match_shots(match_url = "https://understat.com/match/14789")
+```
+
+
+***
+
+## Team Data
+
+This section will cover off the functions to get team-level data from Transfermarkt.
+
+
+### Team Shooting Locations
+
+To get all shots taken and conceded by a team during a season, use the `understat_team_season_shots()` function:
+
+```{r team_shots, eval=FALSE}
+# for one team:
+man_city_shots <- understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
+```
+
+***
+
+
+## Player Data
+
+This section will cover the functions available to aid in the extraction of player data.
+
+### Player Shooting Locations
+
+To get shooting locations for all games a player has participated in (for as long as Understat has data for), use the `understat_player_shots()` function:
+
+```{r player_bios, eval=FALSE}
+raheem_sterling_shots <- understat_player_shots(player_url = "https://understat.com/player/618")
+```
+
+***
+
+

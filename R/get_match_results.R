@@ -61,6 +61,8 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
 
   get_each_season_results <- function(fixture_url) {
 
+    pb$tick()
+
     fixtures_page <- xml2::read_html(fixture_url)
 
     season_name <- fixtures_page %>% rvest::html_nodes("h2 span") %>% rvest::html_text() %>% .[1]
@@ -104,6 +106,9 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
   }
 
   stopifnot("Data not available for the season(s) selected" = length(fixtures_urls) > 0)
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(fixtures_urls))
 
   all_results <- fixtures_urls %>%
     purrr::map_df(get_each_season_results)

@@ -51,6 +51,8 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
 
   get_each_big5_stats_type <- function(season_url) {
 
+    pb$tick()
+
     if(stat_type == "standard") {
       stat_type <- "stats"
     }
@@ -199,6 +201,9 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
     return(stat_df)
 
   }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(seasons_urls))
 
   all_stats_df <- seasons_urls %>%
     purrr::map_df(get_each_big5_stats_type)
