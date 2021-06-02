@@ -37,7 +37,12 @@ get_match_lineups <- function(match_url) {
         lineup <- lineups[home_away] %>% rvest::html_table() %>% data.frame()
         formation <- names(lineup)[1]
         is_diamond <- grepl("\\..$", formation)
-        formation  <- formation %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        # on Windows, the diamond is coming through as utf-8, while on MacOS coming through as ".."
+        if(grepl("u", formation, ignore.case = T)) {
+          formation  <- formation %>% gsub("u\\..*", "", ., ignore.case = T) %>%stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        } else {
+          formation  <- formation %>% stringr::str_extract_all(., "[[:digit:]]") %>% unlist() %>% paste(collapse = "-")
+        }
         if(is_diamond) {
           formation <- paste0(formation, "-diamond")
         }
@@ -85,7 +90,6 @@ get_match_lineups <- function(match_url) {
           dplyr::mutate(Home_Away = ifelse(is.na(.data$Home_Away), home_or_away, .data$Home_Away)) %>%
           dplyr::select(.data$Matchday, .data$Team, .data$Home_Away, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting, dplyr::everything()) %>%
           dplyr::mutate(Matchday = lubridate::ymd(.data$Matchday))
-
 
         return(lineup)
       }

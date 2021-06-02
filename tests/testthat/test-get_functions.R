@@ -94,24 +94,26 @@ test_that("get_match_results() works", {
 
 })
 
-
-test_that("get_match_summary() works", {
-  testthat::skip_if_offline()
-  test_df <- get_match_summary(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1")
-  # test the functions returns the data
-  expect_type(test_df, "list")
-
-  # test that multiple match_url can be passed to the function
-  test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                 "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
-  test_df <- get_match_summary(match_url = test_urls)
-  expect_type(test_df, "list")
-
-  # test that incorrect url will error
-  expect_error(get_match_summary(match_url = "aaa.aaa"))
-
-
-})
+#####################################################################################
+#----- Will need to comment out the below test as FBref have removed this data -----#
+#####################################################################################
+# test_that("get_match_summary() works", {
+#   testthat::skip_if_offline()
+#   test_df <- get_match_summary(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1")
+#   # test the functions returns the data
+#   expect_type(test_df, "list")
+#
+#   # test that multiple match_url can be passed to the function
+#   test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+#                  "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
+#   test_df <- get_match_summary(match_url = test_urls)
+#   expect_type(test_df, "list")
+#
+#   # test that incorrect url will error
+#   expect_error(get_match_summary(match_url = "aaa.aaa"))
+#
+#
+# })
 
 
 
@@ -122,12 +124,6 @@ test_that("get_match_url() works", {
   expect_type(test_urls, "character")
   # also test if it's a correct url:
   expect_equal(grepl("https://", test_urls[1]), TRUE)
-
-  # test that multiple match_url can be passed to the function
-  test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                 "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
-  test_df <- get_match_summary(match_url = test_urls)
-  expect_type(get_match_urls(country = "AUS", gender = c("M", "F"), season_end_year = 2021, tier="1st"), "character")
 
   # test that incorrect url will error
   expect_equal(length(get_match_urls(country = "BBB", gender = "M", season_end_year = 2021, tier="1st")), 0)
