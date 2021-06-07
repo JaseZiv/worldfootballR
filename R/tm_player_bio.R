@@ -37,13 +37,13 @@ tm_player_bio <- function(player_urls) {
         data.frame() %>% dplyr::filter(!stringr::str_detect(.data$X1, "Social-Media")) %>%
         dplyr::mutate(X1 = gsub(":", "", .data$X1))
 
-      X2 <- player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("href")
-      X1 <- player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("title")
+      X2 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("href"), error = function(e) NA_character_)
+      X1 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("title"), error = function(e) NA_character_)
       socials <- cbind(X1, X2)
       a <- rbind(a, socials) %>% dplyr::mutate(X1 = ifelse(.data$X1 == "", "Website", .data$X1))
 
-      player_val <- player_page %>% rvest::html_nodes(".dataMarktwert") %>% rvest::html_nodes("a") %>%
-        rvest::html_text() %>% strsplit(split = "\t") %>% .[[1]] %>% .[1]
+      player_val <- tryCatch(player_page %>% rvest::html_nodes(".dataMarktwert") %>% rvest::html_nodes("a") %>%
+                               rvest::html_text() %>% strsplit(split = "\t") %>% .[[1]] %>% .[1], error = function(e) NA_character_)
       val_df <- data.frame(X1="player_valuation", X2=player_val)
       a <- rbind(a, val_df)
 

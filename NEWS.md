@@ -1,4 +1,11 @@
-# worldfootballR 0.0.0.1
+# worldfootballR 0.3.0.3
+
+### Bugs
+
+* `tm_player_bio()` returning error when player valuations not available on transfermarkt.com
+
+
+# worldfootballR 0.3.0.1
 
 ### Bugs
 
