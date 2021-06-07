@@ -88,8 +88,10 @@ tm_player_bio <- function(player_urls) {
       dplyr::mutate(date_of_last_contract_extension = .tm_fix_dates(.data$date_of_last_contract_extension))
   }
 
-  full_bios <- full_bios %>%
-    dplyr::mutate(height = gsub(",", "\\.", .data$height) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric())
+  if(any(grepl("height", colnames(full_bios)))) {
+    full_bios <- full_bios %>%
+      dplyr::mutate(height = gsub(",", "\\.", .data$height) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric())
+  }
 
   return(full_bios)
 }
