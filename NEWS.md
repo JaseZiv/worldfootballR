@@ -3,6 +3,7 @@
 ### Bugs
 
 * `get_match_shooting()` returning duplicated home shots data and not including away shots
+* `get_match_summary()` not returning all Event_Players where special characters used
 
 # worldfootballR 0.3.0.3
 
