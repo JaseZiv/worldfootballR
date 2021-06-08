@@ -1,3 +1,9 @@
+# worldfootballR 0.3.0.4
+
+### Bugs
+
+* `get_match_shooting()` returning duplicated home shots data and not including away shots
+
 # worldfootballR 0.3.0.3
 
 ### Bugs

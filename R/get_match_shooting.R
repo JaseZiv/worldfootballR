@@ -48,7 +48,6 @@ get_match_shooting <- function(match_url) {
       away_shot_df$Home_Away <- "Away"
 
       prep_shot_df <- function(shot_df) {
-        shot_df <- home_shot_df
         names(shot_df) <- c("Minute", "Shooting_Player", "Squad", "Outcome", "Distance", "Body_Part", "Shot_Notes", "SCA1_Player", "SCA1_Event", "SCA2_Player", "SCA2_Event", "team_name", "Home_Away")
         shot_df <- shot_df[-1, ]
 
