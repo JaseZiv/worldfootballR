@@ -152,7 +152,9 @@
   names(df_in) <- new_names
   df_in <- df_in[-1,]
 
-  df_in$Nation <- gsub(".*? ", "", df_in$Nation)
+  if(any(grepl("Nation", colnames(df_in)))) {
+    df_in$Nation <- gsub(".*? ", "", df_in$Nation)
+  }
 
   # cols_to_transform <- df_in %>%
   #   dplyr::select(-.data$Player, -.data$Nation, -.data$Pos, -.data$Age) %>% names()

@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -150,6 +150,18 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worldfootballr-031" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.1">
+<a href="#worldfootballr-031" class="anchor"></a>worldfootballR 0.3.1</h1>
+<div id="improvements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#improvements" class="anchor"></a>Improvements</h3>
+<ul>
+<li>
+<code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> now returns advanced match stats for internationals</li>
+</ul>
+</div>
+</div>
     <div id="worldfootballr-0304" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0.4">
 <a href="#worldfootballr-0304" class="anchor"></a>worldfootballR 0.3.0.4</h1>
@@ -159,6 +171,8 @@
 <ul>
 <li>
 <code><a href="../reference/get_match_shooting.html">get_match_shooting()</a></code> returning duplicated home shots data and not including away shots</li>
+<li>
+<code><a href="../reference/get_match_summary.html">get_match_summary()</a></code> not returning all Event_Players where special characters used</li>
 </ul>
 </div>
 </div>
@@ -228,12 +242,12 @@
 </li>
 </ul>
 </div>
-<div id="improvements" class="section level3">
+<div id="improvements-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements" class="anchor"></a>Improvements</h3>
+<a href="#improvements-1" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
-<code>get_player_market_values</code> from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires</li>
+<code><a href="../reference/get_player_market_values.html">get_player_market_values()</a></code> from transfermarkt now includes player heights, their preferred foot, when they joined the club and where from and when their contract expires</li>
 <li>
 <code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> now includes remaining contract expriry data and remaining contract length (in days) <a href="https://github.com/JaseZiv/worldfootballR/issues/34"><a href='https://github.com/JaseZiv/worldfootballR/issues/34'>#34</a></a>
 </li>
@@ -255,9 +269,9 @@
 <li>Column names <code>event_time</code>, <code>event_type</code>, <code>event_players</code> and <code>score_progression</code> changed for <code><a href="../reference/get_match_summary.html">get_match_summary()</a></code>, and additional columns added</li>
 </ul>
 </div>
-<div id="improvements-1" class="section level3">
+<div id="improvements-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-1" class="anchor"></a>Improvements</h3>
+<a href="#improvements-2" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> now able to accept multiple <code>player_url</code> values</li>
@@ -336,9 +350,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-2" class="section level3">
+<div id="improvements-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-2" class="anchor"></a>Improvements</h3>
+<a href="#improvements-3" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> now returns a players <strong>full</strong> scouting report against peers in Men’s Big 5 Leagues and European Competition over the last 365 days (issue <a href="https://github.com/JaseZiv/worldfootballR/issues/27">27</a>)</li>
@@ -365,9 +379,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-3" class="section level3">
+<div id="improvements-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-3" class="anchor"></a>Improvements</h3>
+<a href="#improvements-4" class="anchor"></a>Improvements</h3>
 <ul>
 <li>
 <code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code> now returns additional summary player performance data (shots, goals, cards, etc) to the original lineups output</li>
@@ -400,9 +414,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-4" class="section level3">
+<div id="improvements-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-4" class="anchor"></a>Improvements</h3>
+<a href="#improvements-5" class="anchor"></a>Improvements</h3>
 <ul>
 <li>Various transfermarkt functions refactored to have consistent column names</li>
 </ul>
@@ -474,9 +488,9 @@
 </li>
 </ul>
 </div>
-<div id="improvements-5" class="section level3">
+<div id="improvements-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#improvements-5" class="anchor"></a>Improvements</h3>
+<a href="#improvements-6" class="anchor"></a>Improvements</h3>
 <ul>
 <li>Additional leagues and cups now available in the following functions; <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code>, <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, <code><a href="../reference/get_season_team_stats.html">get_season_team_stats()</a></code>
 </li>

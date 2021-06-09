@@ -114,17 +114,32 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player) {
 
           stat_df_output <- dplyr::bind_rows(home_stat, away_stat)
 
-          if(!stat_type %in% c("keeper", "shots")) {
-            if(team_or_player == "team") {
-              stat_df_output <- stat_df_output %>%
-                dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
-                dplyr::select(-.data$Player, -.data$Player_Num, -.data$Nation, -.data$Pos, -.data$Age)
-            } else {
-              stat_df_output <- stat_df_output %>%
-                dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
-            }
+          if(any(grepl("Nation", colnames(stat_df_output)))) {
+            if(!stat_type %in% c("keeper", "shots")) {
+              if(team_or_player == "team") {
+                stat_df_output <- stat_df_output %>%
+                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
+                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Nation, -.data$Pos, -.data$Age)
+              } else {
+                stat_df_output <- stat_df_output %>%
+                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+              }
 
+            }
+          } else {
+            if(!stat_type %in% c("keeper", "shots")) {
+              if(team_or_player == "team") {
+                stat_df_output <- stat_df_output %>%
+                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
+                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Pos, -.data$Age)
+              } else {
+                stat_df_output <- stat_df_output %>%
+                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+              }
+
+            }
           }
+
 
           stat_df_output <- cbind(match_report, stat_df_output)
         } else if(stat_type == "shots") {
