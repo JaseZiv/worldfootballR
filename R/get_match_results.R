@@ -82,6 +82,10 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
                       Attendance = as.numeric(gsub(",", "", .data$Attendance)))
     )
 
+    season_summary <- season_summary %>%
+      dplyr::mutate(HomeGoals = ifelse(is.na(.data$HomeGoals), 0, .data$HomeGoals),
+                    AwayGoals = ifelse(is.na(.data$AwayGoals), 0, .data$AwayGoals))
+
     season_summary <- cbind(fixture_url, season_summary)
 
     if(!any(stringr::str_detect(names(season_summary), "Round"))) {
