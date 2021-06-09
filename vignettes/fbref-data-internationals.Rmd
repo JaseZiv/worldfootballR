@@ -1,0 +1,189 @@
+---
+title: "Extracting data from FBref for International Matches"
+author: "Jason Zivkovic"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting data from FBref for International Matches}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:
+
+* [FBref](https://fbref.com/en/)
+* [Transfermarkt](https://www.transfermarkt.com/)
+* [Understat](https://understat.com/)
+
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(worldfootballR)
+```
+
+***
+
+## Usage
+
+Package vignettes have been built to help you get started with the package.
+
+* For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+* For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+* For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+* For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
+
+This vignette will cover the functions to extract data for international matches from FBref.com.
+
+The functions in this document are all documented in the FBref data vignette, however the method for using these functions for international matches differs from those played in domestic leagues.
+
+
+***
+
+## Important
+
+To get the competition URLs needed for a lot of the functions in this document, refer to the column `comp_url` for the relevant league / competition you're interested in, in this stored data [file](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv).
+
+***
+
+## Helper Function
+
+### Get match urls
+
+To get the match URLs needed to pass in to some of the match-level functions below, `get_match_urls()` can be used.
+
+```{r match_urls_int, eval=FALSE}
+wc_2018_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2018, tier = "", non_dom_league_url = "https://fbref.com/en/comps/1/history/World-Cup-Seasons")
+
+friendly_int_2021_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2021, tier = "", non_dom_league_url = "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons")
+
+euro_2021_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2021, tier = "", non_dom_league_url = "https://fbref.com/en/comps/676/history/European-Championship-Seasons")
+
+copa_2019_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2019, tier = "", non_dom_league_url = "https://fbref.com/en/comps/685/history/Copa-America-Seasons")
+```
+
+
+***
+
+## Match-Level Data
+
+The following sections outlines the functions available to extract data at the per-match level
+
+### Get match results
+
+To get the match results (and additional metadata), the following function can be used.
+
+To use this functionality, simply leave `country = ''` and pass the non-domestic league URL
+
+```{r get_int_match_results_int, eval=FALSE}
+# euro 2016 results
+euro_2016_results <- get_match_results(country = "", gender = "M", season_end_year = 2016, tier = "", non_dom_league_url = "https://fbref.com/en/comps/676/history/European-Championship-Seasons")
+
+# 2019 Copa America results:
+copa_2019_results <- get_match_results(country = "", gender = "M", season_end_year = 2019, non_dom_league_url = "https://fbref.com/en/comps/685/history/Copa-America-Seasons")
+
+# for international friendlies:
+international_results <- get_match_results(country = "", gender = "M", season_end_year = 2021, tier = "", non_dom_league_url = "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons")
+```
+
+
+
+### Get match report
+
+This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
+
+```{r get_match_report_int, eval=FALSE}
+# function to extract match report data for 2018 world cup
+wc_2018_report <- get_match_report(match_url = wc_2018_urls)
+# function to extract match report data for 2021 international friendlies
+friendlies_report <- get_match_report(match_url = friendly_int_2021_urls)
+```
+
+
+### Get match summaries
+
+This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
+
+```{r get_match_summary_int, eval=FALSE}
+# first get the URLs for the 2016 Euros
+euro_2016_match_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2016, tier = "", non_dom_league_url = "https://fbref.com/en/comps/676/history/European-Championship-Seasons")
+
+# then pass these to the function to get match summaries:
+euro_2016_events <- get_match_summary(euro_2016_match_urls)
+```
+
+
+### Get match lineups
+
+This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.
+
+From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.
+
+```{r get_match_lineups_int, eval=FALSE}
+# function to extract match lineups
+copa_2019_lineups <- get_match_lineups(match_url = copa_2019_urls)
+```
+
+
+
+### Get shooting and shot creation events
+
+The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.
+
+```{r get_shot_and_creation_int, eval=FALSE}
+shots_wc_2018 <- get_match_shooting(wc_2018_urls)
+```
+
+
+
+### Get advanced match statistics
+
+The `get_advanced_match_stats()` function allows the user to return a data frame of different stat types for matches played.
+
+Note, some stats may not be available for all comps.
+
+The following stat types can be selected:
+
+* *summary*
+* *passing*
+* *passing_types*
+* *defense*
+* *possession*
+* *misc*
+* *keeper*
+
+The function can be used for either all players individually:
+
+```{r get_advanced_match_stats_int, eval=FALSE}
+advanced_match_stats_player <- get_advanced_match_stats(match_url = wc_2018_urls, stat_type = "possession", team_or_player = "player")
+```
+
+
+Or used for the team totals for each match:
+
+```{r get_advanced_match_stats_team_int, eval=FALSE}
+advanced_match_stats_team <- get_advanced_match_stats(match_url = wc_2018_urls, stat_type = "passing_types", team_or_player = "team")
+```
+
+***
+
+

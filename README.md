@@ -16,9 +16,9 @@ This package is designed to allow users to extract various world
 football results and player statistics from the following popular
 football (soccer) data sites:
 
-  - [FBref](https://fbref.com/en/)
-  - [Transfermarkt](https://www.transfermarkt.com/)
-  - [Understat](https://understat.com/)
+-   [FBref](https://fbref.com/en/)
+-   [Transfermarkt](https://www.transfermarkt.com/)
+-   [Understat](https://understat.com/)
 
 ## Installation
 
@@ -33,21 +33,24 @@ devtools::install_github("JaseZiv/worldfootballR")
 library(worldfootballR)
 ```
 
------
+------------------------------------------------------------------------
 
 ## Usage
 
 Package vignettes have been built to help you get started with the
 package.
 
-  - For functions to extract data from FBref, see
+-   For functions to extract data from FBref, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
-  - For functions to extract data from Transfermarkt, see
+-   For functions to extract data from Transfermarkt, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
-  - For functions to extract data from Understat, see
+-   For functions to extract data from Understat, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+-   For functions to extract data for international matches from FBref,
+    see
+    [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
 
------
+------------------------------------------------------------------------
 
 ## Leagues and Seasons
 
@@ -71,14 +74,14 @@ The following leagues are currently supported by Understat (these values
 can be passed in to the `league` arguments of most `understat_`
 functions):
 
-  - “EPL”
-  - “La liga”
-  - “Bundesliga”
-  - “Serie A”
-  - “Ligue 1”
-  - “RFPL”
+-   “EPL”
+-   “La liga”
+-   “Bundesliga”
+-   “Serie A”
+-   “Ligue 1”
+-   “RFPL”
 
------
+------------------------------------------------------------------------
 
 ## Attribute the Source
 
@@ -87,9 +90,9 @@ source of the data based on the function you use.
 
 Data providers are listed below:
 
-  - [StatsBomb via FBref](https://fbref.com/en/)
-  - [Transfermarkt](https://www.transfermarkt.com/)
-  - [Understat](https://understat.com/)
+-   [StatsBomb via FBref](https://fbref.com/en/)
+-   [Transfermarkt](https://www.transfermarkt.com/)
+-   [Understat](https://understat.com/)
 
 ### Acknowledgements
 
@@ -99,7 +102,7 @@ Henderson’s](https://github.com/ewenme) awesome
 inspiration and internal code for the `understat_` functions contained
 in this package.
 
------
+------------------------------------------------------------------------
 
 ## Contributing
 
@@ -107,11 +110,11 @@ in this package.
 
 When creating an issue, please include:
 
-  - Reproducible examples
-  - A brief description of what the expected results are
-  - If applicable, the fbref.com, transfermarkt.com or understat.com
+-   Reproducible examples
+-   A brief description of what the expected results are
+-   If applicable, the fbref.com, transfermarkt.com or understat.com
     page the observed behaviour is occuring on
-  - For improvement suggestions, what features are being requested and
+-   For improvement suggestions, what features are being requested and
     their purpose
 
 Feel free to get in touch via email or twitter

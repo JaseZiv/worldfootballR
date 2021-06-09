@@ -27,11 +27,6 @@
 #'
 #' }
 
-country = ""
-gender = "M"
-season_end_year = 2016
-non_dom_league_url = "https://fbref.com/en/comps/676/history/European-Championship-Seasons"
-
 get_match_results <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
   main_url <- "https://fbref.com"
   print("Scraping match results")

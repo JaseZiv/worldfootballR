@@ -3,7 +3,19 @@
 
 ### Improvements
 
-* `get_advanced_match_stats()` now returns advanced match stats for internationals
+The following functions now return results for international matches fro FBref:
+
+* `get_match_urls()`
+* `get_match_results()`
+* `get_match_report()`
+* `get_match_summary()`
+* `get_match_lineups()`
+* `get_match_shooting()`
+* `get_advanced_match_stats()`
+
+The following transfermarkt function has been improved:
+
+* `tm_team_transfers()` now includes a column for `season`
 
 
 # worldfootballR 0.3.0.4

@@ -34,6 +34,7 @@ tm_team_transfers <- function(team_url) {
     team_name <- team_page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish()
     league <- team_page %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish()
     country <- team_page %>% rvest::html_nodes(".mediumpunkt img") %>% rvest::html_attr("title")
+    season <- xfers_url %>% gsub(".*saison_id/", "", .)
 
 
     tab_box <- team_page %>% rvest::html_nodes(".box")
@@ -84,7 +85,7 @@ tm_team_transfers <- function(team_url) {
     }
 
     # add metadata
-    team_df <- cbind(team_name, league, country, team_df)
+    team_df <- cbind(team_name, league, country, season, team_df)
 
     # cleaning up final output data
     team_df <- team_df %>%
