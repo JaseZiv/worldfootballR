@@ -26,6 +26,12 @@
 #' get_match_results(country = "", gender = "M", season_end_year = 2018, non_dom_league_url = non_dom)
 #'
 #' }
+
+country = ""
+gender = "M"
+season_end_year = 2016
+non_dom_league_url = "https://fbref.com/en/comps/676/history/European-Championship-Seasons"
+
 get_match_results <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
   main_url <- "https://fbref.com"
   print("Scraping match results")
@@ -83,8 +89,8 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
     )
 
     season_summary <- season_summary %>%
-      dplyr::mutate(HomeGoals = ifelse(is.na(.data$HomeGoals), 0, .data$HomeGoals),
-                    AwayGoals = ifelse(is.na(.data$AwayGoals), 0, .data$AwayGoals))
+      dplyr::mutate(HomeGoals = ifelse(is.na(.data$HomeGoals) & !is.na(.data$AwayGoals), .data$AwayGoals, .data$HomeGoals),
+                    AwayGoals = ifelse(is.na(.data$AwayGoals) & !is.na(.data$HomeGoals), .data$HomeGoals, .data$AwayGoals))
 
     season_summary <- cbind(fixture_url, season_summary)
 
