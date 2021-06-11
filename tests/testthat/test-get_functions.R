@@ -134,33 +134,33 @@ test_that("get_match_url() works", {
 
 
 
-test_that("get_season_team_stats() works", {
-  testthat::skip_if_offline()
-  # test the functions returns the data
-  expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table"), "list")
-  expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table_home_away"), "list")
-  expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "standard"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "keeper"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "keeper_adv"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "shooting"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "passing"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "passing_types"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "goal_shot_creation"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "defense"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "possession"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "playing_time"), "list")
-  expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "misc"), "list")
-
-  # test that multiple genders can be passed to the function
-  expect_type(get_season_team_stats(country = "AUS", gender = c("M", "F"), season_end_year = 2021, tier="1st", stat_type = "league_table"), "list")
-
-  # test that incorrect URL will error
-  expect_equal(length(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "possession")), 0)
-
-  # test that an invalid stat_type will error
-  expect_error(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "test"))
-
-})
+# test_that("get_season_team_stats() works", {
+#   testthat::skip_if_offline()
+#   # test the functions returns the data
+#   expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table"), "list")
+#   expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table_home_away"), "list")
+#   expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "standard"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "keeper"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "keeper_adv"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "shooting"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "passing"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "passing_types"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "goal_shot_creation"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "defense"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "possession"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "playing_time"), "list")
+#   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "misc"), "list")
+#
+#   # test that multiple genders can be passed to the function
+#   expect_type(get_season_team_stats(country = "AUS", gender = c("M", "F"), season_end_year = 2021, tier="1st", stat_type = "league_table"), "list")
+#
+#   # test that incorrect URL will error
+#   expect_equal(length(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "possession")), 0)
+#
+#   # test that an invalid stat_type will error
+#   expect_error(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "test"))
+#
+# })
 
 
 

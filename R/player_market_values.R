@@ -100,6 +100,8 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
 
       team_data <- team_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes(".items") %>% rvest::html_node("tbody")
 
+      tab_head_names <- team_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes(".items") %>% rvest::html_nodes("th") %>% rvest::html_text()
+
       # team name
       squad <- team_page %>% rvest::html_node(".dataName") %>% rvest::html_text() %>% stringr::str_squish()
       # numbers
@@ -120,22 +122,55 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       for(i in 1:length(player_nat)) {
         player_nationality <- c(player_nationality, xml2::xml_attrs(player_nat[[i]])[["title"]])
       }
+      # current club - only for previous seasons, not current:
+      current_club_idx <- grep("Current club", tab_head_names)
+      if(length(current_club_idx) == 0) {
+        current_club <- NA_character_
+      } else {
+        current_club <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", current_club_idx,")")) %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+      }
       # player height
-      player_height_mtrs <- team_data %>% rvest::html_nodes("td:nth-child(5)") %>% rvest::html_text() %>%
-        gsub(",", "\\.", .) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric()
+      height_idx <- grep("Height", tab_head_names)
+      if(length(height_idx) == 0) {
+        player_height_mtrs <- NA_character_
+      } else {
+        suppressWarnings(player_height_mtrs <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", height_idx, ")")) %>% rvest::html_text() %>%
+                           gsub(",", "\\.", .) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric())
+      }
       # player_foot
-      player_foot <- team_data %>% rvest::html_nodes("td:nth-child(6)") %>% rvest::html_text()
+      foot_idx <- grep("Foot", tab_head_names)
+      if(length(foot_idx) == 0) {
+        player_foot <- NA_character_
+      } else {
+        player_foot <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", foot_idx,")")) %>% rvest::html_text()
+      }
       # date joined club
-      date_joined <- team_data %>% rvest::html_nodes("td:nth-child(7)") %>% rvest::html_text()
+      joined_idx <- grep("Joined", tab_head_names)
+      if(length(joined_idx) == 0) {
+        date_joined <- NA_character_
+      } else {
+        date_joined <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", joined_idx, ")")) %>% rvest::html_text()
+      }
       # joined from
-      joined_from <- team_data %>% rvest::html_nodes("td:nth-child(8)") %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+      from_idx <- grep("Signed from", tab_head_names)
+      if(length(from_idx) == 0) {
+        joined_from <- NA_character_
+      } else {
+        joined_from <- tryCatch(team_data %>% rvest::html_nodes(paste0("td:nth-child(", from_idx, ")")) %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt"), error = function(e) NA)
+      }
       # contract expiry
-      contract_expiry <- team_data %>% rvest::html_nodes("td:nth-child(9)") %>% rvest::html_text()
+      contract_idx <- grep("Contract", tab_head_names)
+      if(length(contract_idx) == 0) {
+        contract_expiry <- NA_character_
+      } else {
+        contract_expiry <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", contract_idx, ")")) %>% rvest::html_text()
+      }
       # value
       player_market_value <- team_data %>% rvest::html_nodes(".rechts.hauptlink") %>% rvest::html_text()
 
-      team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality,
-                       player_height_mtrs, player_foot, date_joined, joined_from, contract_expiry, player_market_value) %>% data.frame()
+      suppressWarnings(team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality, current_club,
+                                        player_height_mtrs, player_foot, date_joined, joined_from, contract_expiry, player_market_value) %>% data.frame())
+
       team_df <- team_df %>%
         dplyr::rename(season_urls=each_season)
 
@@ -161,7 +196,7 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
                   Month = match(.data$Month, month.abb),
                   player_dob = lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-"))) %>%
     dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
-    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality,
+    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$current_club,
                   .data$player_height_mtrs, .data$player_foot, .data$date_joined, .data$joined_from, .data$contract_expiry, .data$player_market_value_euro, .data$player_url)
 
 

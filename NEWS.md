@@ -1,5 +1,12 @@
-# worldfootballR 0.3.1
+# worldfootballR 0.3.1.1
 
+### Bugs
+
+* `get_player_market_values()` returning errors for seasons prior to current season [#41](https://github.com/JaseZiv/worldfootballR/issues/41)
+
+***
+
+# worldfootballR 0.3.1
 
 ### Improvements
 
@@ -17,6 +24,7 @@ The following transfermarkt function has been improved:
 
 * `tm_team_transfers()` now includes a column for `season`
 
+***
 
 # worldfootballR 0.3.0.4
 
@@ -25,18 +33,23 @@ The following transfermarkt function has been improved:
 * `get_match_shooting()` returning duplicated home shots data and not including away shots
 * `get_match_summary()` not returning all Event_Players where special characters used
 
+***
+
 # worldfootballR 0.3.0.3
 
 ### Bugs
 
 * `tm_player_bio()` returning error when player valuations not available on transfermarkt.com
 
+***
 
 # worldfootballR 0.3.0.1
 
 ### Bugs
 
 * `player_transfer_history()` returns results even when player hasn't got a club to go to [#37](https://github.com/JaseZiv/worldfootballR/issues/37)
+
+***
 
 # worldfootballR 0.3.0
 
