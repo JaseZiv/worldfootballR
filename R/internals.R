@@ -340,3 +340,22 @@
 
   return(clean_dates)
 }
+
+
+#' Replace Empty Values
+#'
+#' Returns a NA character for empty values
+#'
+#' @param val a value that can either be empty, or not empty
+#'
+#' @return NA_character where the extracted value is empty, or the value itself
+#'
+#'
+.replace_empty_na <- function(val) {
+  if(length(val) == 0) {
+    val <- NA_character_
+  } else {
+    val <- val
+  }
+  return(val)
+}

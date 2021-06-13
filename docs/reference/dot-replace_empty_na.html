@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get season team stats — get_season_team_stats • worldfootballR</title>
+<title>Replace Empty Values — .replace_empty_na • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get season team stats — get_season_team_stats" />
-<meta property="og:description" content="Returns different team season statistics results for a given league season and stat type" />
+<meta property="og:title" content="Replace Empty Values — .replace_empty_na" />
+<meta property="og:description" content="Returns a NA character for empty values" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,57 +150,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get season team stats</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/get_season_team_stats.R'><code>R/get_season_team_stats.R</code></a></small>
-    <div class="hidden name"><code>get_season_team_stats.Rd</code></div>
+    <h1>Replace Empty Values</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
+    <div class="hidden name"><code>dot-replace_empty_na.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns different team season statistics results for a given league season and stat type</p>
+    <p>Returns a NA character for empty values</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_season_team_stats</span><span class='op'>(</span><span class='va'>country</span>, <span class='va'>gender</span>, <span class='va'>season_end_year</span>, <span class='va'>tier</span>, <span class='va'>stat_type</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>.replace_empty_na</span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>country</th>
-      <td><p>the three character country code for all countries</p></td>
-    </tr>
-    <tr>
-      <th>gender</th>
-      <td><p>gender of competition, either "M", "F" or both</p></td>
-    </tr>
-    <tr>
-      <th>season_end_year</th>
-      <td><p>the year the season(s) concludes</p></td>
-    </tr>
-    <tr>
-      <th>tier</th>
-      <td><p>the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on</p></td>
-    </tr>
-    <tr>
-      <th>stat_type</th>
-      <td><p>the type of team statistics the user requires</p>
-<p>The statistic type options (stat_type) include:</p>
-<p><em>"league_table"</em>, <em>"league_table_home_away</em>", <em>"standard"</em>,
-<em>"keeper"</em>, <em>"keeper_adv"</em>, <em>"shooting"</em>, <em>"passing"</em>,
-<em>"passing_types"</em>, <em>"goal_shot_creation"</em>, <em>"defense" </em>,
-<em>"possession"</em>, <em>"playing_time"</em>, <em>"misc"</em></p></td>
+      <th>val</th>
+      <td><p>a value that can either be empty, or not empty</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe of a selected team statistic type for a selected league season</p>
+    <p>NA_character where the extracted value is empty, or the value itself</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>get_season_team_stats</span><span class='op'>(</span><span class='st'>"ITA"</span>, <span class='st'>"M"</span>, <span class='fl'>2021</span>, <span class='st'>"1st"</span>, <span class='st'>"defense"</span><span class='op'>)</span>
-<span class='fu'>get_season_team_stats</span><span class='op'>(</span><span class='st'>"ITA"</span>, <span class='st'>"M"</span>, <span class='fl'>2021</span>, <span class='st'>"2nd"</span>, <span class='st'>"standard"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

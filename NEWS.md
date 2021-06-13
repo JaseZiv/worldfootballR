@@ -1,3 +1,11 @@
+# worldfootballR 0.3.1.2
+
+### Bugs
+
+* `tm_team_transfers()` handles for missing values for some teams/leagues
+
+***
+
 # worldfootballR 0.3.1.1
 
 ### Bugs
