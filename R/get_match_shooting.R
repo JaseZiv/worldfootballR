@@ -51,24 +51,16 @@ get_match_shooting <- function(match_url) {
         names(shot_df) <- c("Minute", "Shooting_Player", "Squad", "Outcome", "Distance", "Body_Part", "Shot_Notes", "SCA1_Player", "SCA1_Event", "SCA2_Player", "SCA2_Event", "team_name", "Home_Away")
         shot_df <- shot_df[-1, ]
 
-        mins_idx <- which(shot_df$Minute == "")
-        if(length(mins_idx)==0) {
-          half <- "1st"
-        } else {
-          mins_max_idx <- nrow(shot_df) - (mins_idx)
-
-          first_half <- rep("1st", times=mins_idx-1)
-          second_half <- rep("2nd", times=mins_max_idx)
-
-          shot_df <- shot_df %>%
-            dplyr::filter(.data$Minute != "")
-
-          half <- c(first_half, second_half)
-        }
-
+        shot_df <- shot_df %>%
+          dplyr::mutate(Match_Half = dplyr::case_when(
+            as.numeric(gsub("\\+.*", "", .data$Minute)) <= 45 ~ 1,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 46, 90) ~ 2,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 91, 105) ~ 3,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 106, 120) ~ 4,
+            TRUE ~ 5))
 
         shot_df <- shot_df %>%
-          dplyr::mutate(Match_Half = half)
+          dplyr::filter(.data$Minute != "")
 
         shot_df <- dplyr::bind_cols(Date=match_date, shot_df)
 

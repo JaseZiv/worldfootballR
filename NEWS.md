@@ -1,3 +1,11 @@
+# worldfootballR 0.3.1.3
+
+### Bugs
+
+* `get_match_shooting()` handles for extra time periods
+
+***
+
 # worldfootballR 0.3.1.2
 
 ### Bugs
