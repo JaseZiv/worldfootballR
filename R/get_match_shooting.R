@@ -40,15 +40,9 @@ get_match_shooting <- function(match_url) {
       # all_shots <- match_page %>% rvest::html_nodes("#shots_all")
       # shot_df <- all_shots %>% rvest::html_table() %>% data.frame()
 
-      home_shot_df <- all_shots[2] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
-      home_shot_df$team_name <- home_team
-      home_shot_df$Home_Away <- "Home"
-      away_shot_df <- all_shots[3] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
-      away_shot_df$team_name <- away_team
-      away_shot_df$Home_Away <- "Away"
-
+      # function to clean home and away df
       prep_shot_df <- function(shot_df) {
-        names(shot_df) <- c("Minute", "Shooting_Player", "Squad", "Outcome", "Distance", "Body_Part", "Shot_Notes", "SCA1_Player", "SCA1_Event", "SCA2_Player", "SCA2_Event", "team_name", "Home_Away")
+        names(shot_df) <- c("Minute", "Shooting_Player", "Squad", "Outcome", "Distance", "Body_Part", "Shot_Notes", "SCA1_Player", "SCA1_Event", "SCA2_Player", "SCA2_Event")
         shot_df <- shot_df[-1, ]
 
         shot_df <- shot_df %>%
@@ -67,12 +61,22 @@ get_match_shooting <- function(match_url) {
         return(shot_df)
       }
 
-      all_shot_df <- prep_shot_df(home_shot_df) %>%
-        rbind(prep_shot_df(away_shot_df))
+      home_shot_df <- tryCatch(all_shots[2] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame(), error = function(e) data.frame())
+      if(nrow(home_shot_df > 0)) {
+        home_shot_df <- prep_shot_df(home_shot_df)
+      }
 
+      away_shot_df <- tryCatch(all_shots[3] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame(), error = function(e) data.frame())
+      if(nrow(away_shot_df > 0)) {
+        away_shot_df <- prep_shot_df(away_shot_df)
+      }
+
+      all_shot_df <- home_shot_df %>%
+        rbind(away_shot_df)
 
       all_shot_df <- all_shot_df %>%
-        dplyr::select(.data$Date, Team=.data$team_name, .data$Home_Away, .data$Match_Half, dplyr::everything())
+        dplyr::mutate(Home_Away = ifelse(.data$Squad == home_team, "Home", "Away")) %>%
+        dplyr::select(.data$Date, .data$Squad, .data$Home_Away, .data$Match_Half, dplyr::everything())
     } else {
       print(glue::glue("Detailed shot data unavailable for {match_url}"))
       all_shot_df <- data.frame()
