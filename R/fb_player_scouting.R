@@ -62,8 +62,10 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
 
 
   scout_pos <- scouting_all[pos_versus] %>%
-    rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame() %>%
-    dplyr::filter(.data$Standard.Stats != "")
+    rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+
+  missing_idx <- scout_pos[,1] != ""
+  scout_pos <- scout_pos[missing_idx,]
 
   names(scout_pos) <- scout_pos[1,]
   scout_pos <- scout_pos %>%
