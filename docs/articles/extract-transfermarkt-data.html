@@ -44,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -87,7 +81,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JaseZiv/worldfootballR/">
-    <span class="fab fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,13 +95,13 @@
 
       
 
-      </header><script src="extract-transfermarkt-data_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from Transfermarkt</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-06-13</h4>
+            <h4 class="date">2021-07-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-transfermarkt-data.Rmd"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -130,10 +124,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the <code>worldfootballR</code> package from github with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -162,7 +156,7 @@
 <h3 class="hasAnchor">
 <a href="#team-urls" class="anchor"></a>Team URLs</h3>
 <p>To get a list of URLs for each team in a particular season from transfermarkt.com, the <code><a href="../reference/tm_league_team_urls.html">tm_league_team_urls()</a></code> function can be used. If the country/countries aren’t available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="co"># if it's not a league in the stored leagues data in worldfootballR_data repo:</span>
 <span class="va">league_one_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>start_year <span class="op">=</span> <span class="fl">2020</span>, league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
@@ -171,7 +165,7 @@
 <h3 class="hasAnchor">
 <a href="#player-urls" class="anchor"></a>Player URLs</h3>
 <p>To get a list of player URLs for a particular team in transfermarkt.com, the <code><a href="../reference/tm_team_player_urls.html">tm_team_player_urls()</a></code> function can be used.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tm_team_player_urls.html">tm_team_player_urls</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -185,7 +179,7 @@
 <a href="#league-table-by-matchdays" class="anchor"></a>League Table by Matchdays</h3>
 <p>To be able to extract league tables for select matchday(s), the below function can be used.</p>
 <p>The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">worldfootballR_data</a> repository, it can accept the league URL, season start year and matchday number(s).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># to get the EPL table after matchday 1 of the 20/21 season:</span>
 <span class="va">epl_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 
@@ -205,7 +199,7 @@
 <h3 class="hasAnchor">
 <a href="#transfer-activity-by-team" class="anchor"></a>Transfer activity by team</h3>
 <p>To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the <code><a href="../reference/tm_team_transfers.html">tm_team_transfers()</a></code> function can be used:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">bayern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfers.html">tm_team_transfers</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"</span><span class="op">)</span>
 
@@ -217,7 +211,7 @@
 <h3 class="hasAnchor">
 <a href="#squad-player-stats" class="anchor"></a>Squad Player Stats</h3>
 <p>To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the <code><a href="../reference/tm_squad_stats.html">tm_squad_stats()</a></code> function can be used:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">bayern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_squad_stats.html">tm_squad_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"</span><span class="op">)</span>
 
@@ -235,7 +229,7 @@
 <h3 class="hasAnchor">
 <a href="#player-bios" class="anchor"></a>Player Bios</h3>
 <p>To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> function.:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for a single player </span>
 <span class="va">hazard_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_bio.html">tm_player_bio</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"</span><span class="op">)</span>
 
@@ -264,7 +258,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

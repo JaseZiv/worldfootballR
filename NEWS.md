@@ -1,3 +1,16 @@
+# worldfootballR 0.3.2
+
+### Breaking Changes
+
+* The `Team` in the data frame column returned by `get_match_shooting()` no longer exists, with `Squad` being elevated in to it's place instead.
+
+### Bugs
+
+* `fb_player_scouting_report()` now returns results for Goalkeepers also [#42](https://github.com/JaseZiv/worldfootballR/issues/42)
+* `get_match_shooting()` now handles for when only one team (home or away) record any shots [#43](https://github.com/JaseZiv/worldfootballR/issues/43)
+
+***
+
 # worldfootballR 0.3.1.3
 
 ### Bugs
