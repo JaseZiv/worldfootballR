@@ -1,3 +1,15 @@
+# worldfootballR 0.3.2.1
+
+### Improvements
+
+Transfermarkt functions `tm_team_transfers()` and `player_transfer_history()` returning transfer prices now differentiate between unknown (returning `NA`) to *free transfers* (returning `0`) [#45](https://github.com/JaseZiv/worldfootballR/issues/45)
+
+### Bugs
+
+* `get_match_summary()` no longer throws errors where only one team (home or away) didn't have a recorded event [#46](https://github.com/JaseZiv/worldfootballR/issues/46)
+
+***
+
 # worldfootballR 0.3.2
 
 ### Breaking Changes
