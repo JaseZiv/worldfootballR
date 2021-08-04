@@ -34,8 +34,8 @@ get_match_summary <- function(match_url) {
       events_home <- events %>% rvest::html_nodes(".a") %>% rvest::html_text() %>% stringr::str_squish()
       events_away <- events %>% rvest::html_nodes(".b") %>% rvest::html_text() %>% stringr::str_squish()
 
-      home_events <- data.frame(Team=Home_Team, Home_Away="Home", events_string=events_home)
-      away_events <- data.frame(Team=Away_Team, Home_Away="Away", events_string=events_away)
+      home_events <- tryCatch(data.frame(Team=Home_Team, Home_Away="Home", events_string=events_home), error = function(e) data.frame())
+      away_events <- tryCatch(data.frame(Team=Away_Team, Home_Away="Away", events_string=events_away), error = function(e) data.frame())
 
       events_df <- dplyr::bind_rows(home_events, away_events)
 
