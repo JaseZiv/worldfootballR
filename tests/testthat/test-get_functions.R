@@ -22,8 +22,8 @@ test_that("get_advanced_match_stats() works", {
                                        stat_type = "keeper", team_or_player = "player"), "list")
 
   # test that multiple match_url can be passed to the function
-  test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                 "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
+  test_urls <- c("https://fbref.com/en/matches/e0a84e7e/Southampton-Manchester-United-November-29-2020-Premier-League",
+                 "https://fbref.com/en/matches/703db983/Paris-Saint-Germain-Toulouse-August-25-2019-Ligue-1")
   test_df <- get_advanced_match_stats(match_url = test_urls, stat_type = "possession", team_or_player = "team")
   expect_type(test_df, "list")
   expect_equal(nrow(test_df), 4)
