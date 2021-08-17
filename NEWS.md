@@ -1,3 +1,12 @@
+
+# worldfootballR 0.3.2.2
+
+### Bugs
+
+* `fb_player_season_stats()` handles with print statement when stat stypes are not present for players [#33](https://github.com/JaseZiv/worldfootballR/issues/33)
+
+***
+
 # worldfootballR 0.3.2.1
 
 ### Improvements

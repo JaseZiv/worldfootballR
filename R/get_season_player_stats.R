@@ -102,13 +102,17 @@ fb_player_season_stats <- function(player_url, stat_type) {
       }
     }
 
-    if(nrow(stat_df) == 0) stop("check stat type")
+    if(nrow(stat_df) == 0){
 
-    stat_df <- stat_df %>%
-      dplyr::mutate(player_name = player_name,
-                    player_url = player_url,
-                    Country = gsub("^.*? ([A-Z])", "\\1", .data$Country)) %>%
-      dplyr::select(player_name, player_url, dplyr::everything())
+      print(glue::glue("{stat_type} data not available for: {player_url}"))
+
+    } else {
+      stat_df <- stat_df %>%
+        dplyr::mutate(player_name = player_name,
+                      player_url = player_url,
+                      Country = gsub("^.*? ([A-Z])", "\\1", .data$Country)) %>%
+        dplyr::select(player_name, player_url, dplyr::everything())
+    }
 
     return(stat_df)
 
