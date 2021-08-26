@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Replace Empty Values — .replace_empty_na • worldfootballR</title>
+<title>Player Mapping Dictionary — player_dictionary_mapping • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Replace Empty Values — .replace_empty_na" />
-<meta property="og:description" content="Returns a NA character for empty values" />
+<meta property="og:title" content="Player Mapping Dictionary — player_dictionary_mapping" />
+<meta property="og:description" content="Returns data frame of players from the top 5 Euro leagues, their player URL
+and their respective Transfermarkt URL.
+Currently only for the players who have been in the top 5 leagues since
+the 2017-2018 season" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,30 +153,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Replace Empty Values</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
-    <div class="hidden name"><code>dot-replace_empty_na.Rd</code></div>
+    <h1>Player Mapping Dictionary</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/player_dictionary_mapping.R'><code>R/player_dictionary_mapping.R</code></a></small>
+    <div class="hidden name"><code>player_dictionary_mapping.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a NA character for empty values</p>
+    <p>Returns data frame of players from the top 5 Euro leagues, their player URL
+and their respective Transfermarkt URL.
+Currently only for the players who have been in the top 5 leagues since
+the 2017-2018 season</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.replace_empty_na</span><span class='op'>(</span><span class='va'>val</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>player_dictionary_mapping</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>val</th>
-      <td><p>a value that can either be empty, or not empty</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>NA_character where the extracted value is empty, or the value itself</p>
+    <p>returns a dataframe of FBref players and respective Transfermarkt URL</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
+<span class='va'>mapped_players</span> <span class='op'>&lt;-</span> <span class='fu'>player_dictionary_mapping</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

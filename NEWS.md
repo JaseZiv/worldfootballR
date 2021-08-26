@@ -1,3 +1,14 @@
+# worldfootballR 0.3.3
+
+### New functions
+
+* `player_dictionary_mapping()` returns a data frame of players (names and FBref URLs) who have played in the top 5 Euro leagues and their respective Transfermarkt URL
+
+### Improvements
+
+* `fb_big5_advanced_season_stats()` now returns player URLs from FBref
+
+***
 
 # worldfootballR 0.3.2.2
 

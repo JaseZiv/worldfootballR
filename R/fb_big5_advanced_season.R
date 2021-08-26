@@ -145,22 +145,39 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
     names(stat_df) <- new_names
     stat_df <- stat_df[-1,]
 
-    stat_df <- stat_df %>%
-      dplyr::filter(.data$Rk != "Rk") %>%
-      dplyr::select(-.data$Rk)
+    urls <- team_page %>%
+      rvest::html_nodes(".table_container") %>%
+      rvest::html_nodes("table") %>%
+      rvest::html_nodes("tbody") %>%
+      rvest::html_nodes("tr") %>% rvest::html_node("td a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
 
+    # important here to change the order of when URLs are applied, so if player, bind before fintering, otherwise after filtering
+    # to remove the NAs for the sub heading rows
     if(team_or_player == "player") {
+      stat_df <- dplyr::bind_cols(stat_df, Url=urls)
+
+      stat_df <- stat_df %>%
+        dplyr::filter(.data$Rk != "Rk") %>%
+        dplyr::select(-.data$Rk)
+
       stat_df <- stat_df %>%
         dplyr::select(-.data$Matches)
 
       cols_to_transform <- stat_df %>%
-        dplyr::select(-.data$Squad, -.data$Player, -.data$Nation, -.data$Pos, -.data$Comp, -.data$Age) %>% names()
+        dplyr::select(-.data$Squad, -.data$Player, -.data$Nation, -.data$Pos, -.data$Comp, -.data$Age, -.data$Url) %>% names()
 
       chr_vars_to_transform <- stat_df %>%
         dplyr::select(.data$Nation, .data$Comp) %>% names()
+
     } else {
+      stat_df <- stat_df %>%
+        dplyr::filter(.data$Rk != "Rk") %>%
+        dplyr::select(-.data$Rk)
+
+      stat_df <- dplyr::bind_cols(stat_df, Url=urls)
+
       cols_to_transform <- stat_df %>%
-        dplyr::select(-.data$Squad, -.data$Comp) %>% names()
+        dplyr::select(-.data$Squad, -.data$Comp, -.data$Url) %>% names()
 
       chr_vars_to_transform <- stat_df %>%
         dplyr::select(.data$Comp) %>% names()
@@ -211,3 +228,4 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
   return(all_stats_df)
 
 }
+

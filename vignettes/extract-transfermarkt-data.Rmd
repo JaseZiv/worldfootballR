@@ -57,6 +57,16 @@ This vignette will cover the functions to extract data from transfermarkt.com
 
 ***
 
+## Join FBref and Transfermarkt data
+
+To be able to join data player between FBref and Transfermarkt, `player_dictionary_mapping()` has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv)
+
+```{r mapped_players}
+mapped_players <- player_dictionary_mapping()
+dplyr::glimpse(mapped_players)
+```
+
+
 ## Transfermarkt Helper Functions
 
 The following section will outline the various functions available to find different URLs to be able to pass through the Transfermarkt suite of functions outlined in this vignette.
@@ -140,6 +150,15 @@ team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
 epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
 ```
 
+
+### Player Valuations
+
+To get player valuations for all teams in a league season, use the `get_player_market_values()` function:
+
+```{r, player_vals, eval=FALSE}
+big_5_valuations <- get_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),
+                                       start_year = 2021)
+```
 
 
 
