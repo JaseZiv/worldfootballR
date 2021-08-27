@@ -1,3 +1,11 @@
+# worldfootballR 0.3.3.1
+
+### Bugs
+
+* `get_player_market_values()` now returning the correct current (`current_club`) and previous (`previous_club`) clubs for players
+
+***
+
 # worldfootballR 0.3.3
 
 ### New functions

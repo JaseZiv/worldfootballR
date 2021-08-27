@@ -76,7 +76,6 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
   all_seasons_df <- data.frame()
 
   for(each_season in all_seasons_urls) {
-
     season_page <- xml2::read_html(each_season)
 
     team_urls <- season_page %>%
@@ -91,11 +90,9 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
 
 
     # Get Teams ---------------------------------------------------------------
-
     league_season_df <- data.frame()
 
     for(each_team in team_urls) {
-
       team_page <- xml2::read_html(each_team)
 
       team_data <- team_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes(".items") %>% rvest::html_node("tbody")
@@ -106,28 +103,55 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       squad <- team_page %>% rvest::html_node(".dataName") %>% rvest::html_text() %>% stringr::str_squish()
       # numbers
       player_num <- team_data %>% rvest::html_nodes(".rn_nummer") %>% rvest::html_text()
+      if(length(player_num) == 0) {
+        player_num <- NA_character_
+      }
       # player names
       player_name <- team_data %>% rvest::html_nodes(".hide-for-small") %>% rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_text()
+      if(length(player_name) == 0) {
+        player_name <- NA_character_
+      }
       # player_url
       player_url <- team_data %>% rvest::html_nodes(".hide-for-small") %>%
         rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_attr("href") %>%
         paste0(main_url, .)
+      if(length(player_url) == 0) {
+        player_url <- NA_character_
+      }
       # player position
       player_position <- team_data %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
+      if(length(player_position) == 0) {
+        player_position <- NA_character_
+      }
       # birthdate
       player_birthday <- team_data %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
+      if(length(player_birthday) == 0) {
+        player_birthday <- NA_character_
+      }
       # player_nationality
       player_nationality <- c()
       player_nat <- team_data %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)")
-      for(i in 1:length(player_nat)) {
-        player_nationality <- c(player_nationality, xml2::xml_attrs(player_nat[[i]])[["title"]])
+      if(length(player_nat) == 0) {
+        player_nationality <- NA_character_
+      } else {
+        for(i in 1:length(player_nat)) {
+          player_nationality <- c(player_nationality, xml2::xml_attrs(player_nat[[i]])[["title"]])
+        }
       }
       # current club - only for previous seasons, not current:
       current_club_idx <- grep("Current club", tab_head_names)
       if(length(current_club_idx) == 0) {
         current_club <- NA_character_
       } else {
-        current_club <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", current_club_idx,")")) %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+        c_club <- team_data %>% rvest::html_nodes(paste0("td:nth-child(", current_club_idx,")"))
+        current_club <- c()
+        for(cc in c_club) {
+          each_current <- cc %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+          if(length(each_current) == 0) {
+            each_current <- NA_character_
+          }
+          current_club <- c(current_club, each_current)
+        }
       }
       # player height
       height_idx <- grep("Height", tab_head_names)
@@ -156,7 +180,15 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       if(length(from_idx) == 0) {
         joined_from <- NA_character_
       } else {
-        joined_from <- tryCatch(team_data %>% rvest::html_nodes(paste0("td:nth-child(", from_idx, ")")) %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt"), error = function(e) NA)
+        p_club <- tryCatch(team_data %>% rvest::html_nodes(paste0("td:nth-child(", from_idx, ")")), error = function(e) NA)
+        joined_from <- c()
+        for(pc in p_club) {
+          each_past <- pc %>% rvest::html_nodes("a") %>% rvest::html_nodes("img") %>% rvest::html_attr("alt")
+          if(length(each_past) == 0) {
+            each_past <- NA_character_
+          }
+          joined_from <- c(joined_from, each_past)
+        }
       }
       # contract expiry
       contract_idx <- grep("Contract", tab_head_names)
@@ -167,6 +199,9 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       }
       # value
       player_market_value <- team_data %>% rvest::html_nodes(".rechts.hauptlink") %>% rvest::html_text()
+      if(length(player_market_value) == 0) {
+        player_market_value <- NA_character_
+      }
 
       suppressWarnings(team_df <- cbind(each_season, squad, player_num, player_name, player_url, player_position, player_birthday, player_nationality, current_club,
                                         player_height_mtrs, player_foot, date_joined, joined_from, contract_expiry, player_market_value) %>% data.frame())
