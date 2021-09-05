@@ -43,7 +43,7 @@ tm_player_bio <- function(player_urls) {
       a <- rbind(a, socials) %>% dplyr::mutate(X1 = ifelse(.data$X1 == "", "Website", .data$X1))
 
       player_val <- tryCatch(player_page %>% rvest::html_nodes(".dataMarktwert") %>% rvest::html_nodes("a") %>%
-                               rvest::html_text() %>% strsplit(split = "\t") %>% .[[1]] %>% .[1], error = function(e) NA_character_)
+                               rvest::html_text() %>% strsplit(split = "  ") %>% .[[1]] %>% .[1], error = function(e) NA_character_)
       val_df <- data.frame(X1="player_valuation", X2=player_val)
       a <- rbind(a, val_df)
 

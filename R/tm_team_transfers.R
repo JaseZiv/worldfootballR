@@ -22,6 +22,7 @@
 #' epl_xfers_2020 <- tm_team_transfers(team_url = team_urls)
 #' }
 tm_team_transfers <- function(team_url) {
+  main_url <- "https://www.transfermarkt.com"
 
   print("Scraping team transfer arrivals and departures. Please acknowledge transfermarkt.com as the data source")
 
@@ -55,6 +56,8 @@ tm_team_transfers <- function(team_url) {
                  error = function(e) {player_df[j, "transfer_type"] <- NA_character_})
         tryCatch({player_df[j, "player_name"] <- each_tab[j] %>% rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_text()},
                  error = function(e) {player_df[j, "player_name"] <- NA_character_})
+        tryCatch({player_df[j, "player_url"] <- each_tab[j] %>% rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_attr("href") %>% paste0(main_url, .)},
+                 error = function(e) {player_df[j, "player_url"] <- NA_character_})
         tryCatch({player_df[j, "player_position"] <- each_tab[j] %>% rvest::html_nodes(".ma_pos+ td tr+ tr td") %>% rvest::html_text()},
                  error = function(e) {player_df[j, "player_position"] <- NA_character_})
         tryCatch({player_df[j, "player_age"] <- each_tab[j] %>% rvest::html_nodes("td.zentriert:nth-child(3)") %>% rvest::html_text()},

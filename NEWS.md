@@ -1,3 +1,16 @@
+# worldfootballR 0.3.4
+
+### Improvements
+
+* `tm_team_transfers()` now also includes player URLs from Transfermarkt to allow for joining with player market values [#51](https://github.com/JaseZiv/worldfootballR/issues/51)
+
+### Bugs
+
+* `fb_player_season_stats()` was not returning results for some players even though stats were available on FBref [#52](https://github.com/JaseZiv/worldfootballR/issues/52)
+* `tm_player_bio()` now returns player market valuations [#50](https://github.com/JaseZiv/worldfootballR/issues/50)
+
+***
+
 # worldfootballR 0.3.3.1
 
 ### Bugs

@@ -68,14 +68,28 @@ fb_player_season_stats <- function(player_url, stat_type) {
       }
 
       idx <- grep("_expanded", expanded_table_idx)
-      expanded_table_idx <- expanded_table_idx[idx]
+      if(length(idx) == 0) {
+        idx <- grep("_dom_", expanded_table_idx)
 
-      expanded_table_elements <- expanded_table_elements[idx]
+        expanded_table_idx <- expanded_table_idx[idx]
 
-      stat_df <- tryCatch(
-        .clean_player_season_stats(expanded_table_elements[which(stringr::str_detect(expanded_table_idx, paste0("stats_", stat_type, "_expanded")))]),
-        error = function(e) data.frame()
-      )
+        expanded_table_elements <- expanded_table_elements[idx]
+
+        stat_df <- tryCatch(
+          .clean_player_season_stats(expanded_table_elements[which(stringr::str_detect(expanded_table_idx, paste0("stats_", stat_type, "_dom_lg")))]),
+          error = function(e) data.frame()
+        )
+      } else {
+        expanded_table_idx <- expanded_table_idx[idx]
+
+        expanded_table_elements <- expanded_table_elements[idx]
+
+        stat_df <- tryCatch(
+          .clean_player_season_stats(expanded_table_elements[which(stringr::str_detect(expanded_table_idx, paste0("stats_", stat_type, "_expanded")))]),
+          error = function(e) data.frame()
+        )
+      }
+
       # for leagues where there are no options between all_comps, dom, cups, etc, and only domestic league data exists:
     } else {
       expanded_table_elements <- player_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table")

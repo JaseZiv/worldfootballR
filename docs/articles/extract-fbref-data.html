@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-08-27</h4>
+            <h4 class="date">2021-09-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -161,11 +161,11 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6,122</span>
+<span class="co">#&gt; Rows: 6,167</span>
 <span class="co">#&gt; Columns: 3</span>
-<span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
-<span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
-<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span></code></pre></div>
+<span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Ömer Toprak", "Šime Vrsaljko", "Šimon Štefanec", "Ørjan N…</span>
+<span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/c5fd13e9/Omer-Toprak", "http…</span>
+<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/omer-toprak/profil/spieler/…</span></code></pre></div>
 </div>
 <div id="fbref-helper-functions" class="section level2">
 <h2 class="hasAnchor">
@@ -403,9 +403,9 @@
 <span class="co">#&gt; $ Versus         &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwar…</span>
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
-<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.88, 0.28, 0.71, 0.18, 0.25, 0.10, 0.00, 0.76, 0.55, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 96, 88, 95, 90, 94, 65, 57, 95, 90, 99, 97, 96, 99, 99,…</span>
-<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3…</span>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.88, 0.28, 0.70, 0.18, 0.25, 0.10, 0.00, 0.75, 0.55, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 97, 88, 96, 92, 94, 64, 57, 95, 91, 99, 97, 97, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3…</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Scraping full scouting report for Lionel Messi</span>
 <span class="co">#&gt; Rows: 149</span>
@@ -414,9 +414,9 @@
 <span class="co">#&gt; $ Versus         &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / Wi…</span>
 <span class="co">#&gt; $ StatGroup      &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Standa…</span>
 <span class="co">#&gt; $ Statistic      &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kicks…</span>
-<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.88, 0.28, 0.71, 0.18, 0.25, 0.10, 0.00, 0.76, 0.55, 0…</span>
-<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 81, 99, 94, 96, 62, 56, 99, 99, 97, 99, 99, 99, 99,…</span>
-<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3563, 3…</span></code></pre></div>
+<span class="co">#&gt; $ Per90          &lt;dbl&gt; 0.88, 0.28, 0.70, 0.18, 0.25, 0.10, 0.00, 0.75, 0.55, 0…</span>
+<span class="co">#&gt; $ Percentile     &lt;dbl&gt; 99, 81, 99, 94, 96, 63, 57, 99, 99, 96, 99, 99, 99, 99,…</span>
+<span class="co">#&gt; $ BasedOnMinutes &lt;dbl&gt; 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3588, 3…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
 <h3 class="hasAnchor">
