@@ -4,10 +4,12 @@
 \alias{tm_team_transfers}
 \title{Get team transfers}
 \usage{
-tm_team_transfers(team_url)
+tm_team_transfers(team_url, transfer_window = "all")
 }
 \arguments{
 \item{team_url}{transfermarkt.com team url for a season}
+
+\item{transfer_window}{which window the transfer occurred - options include "all" for both, "summer" or "winter"}
 }
 \value{
 returns a dataframe of all team transfers
@@ -23,6 +25,6 @@ team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27
 )
 # can even do it for a number of teams:
 team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-epl_xfers_2020 <- tm_team_transfers(team_url = team_urls)
+epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all")
 }
 }

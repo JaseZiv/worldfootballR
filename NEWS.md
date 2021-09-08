@@ -1,3 +1,12 @@
+# worldfootballR 0.3.5
+
+### Improvements
+
+* `tm_team_transfers()` now includes which transfer window the transfer occurred in [#53](https://github.com/JaseZiv/worldfootballR/issues/53)
+
+
+***
+
 # worldfootballR 0.3.4
 
 ### Improvements
