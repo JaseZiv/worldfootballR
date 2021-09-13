@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-09-05</h4>
+            <h4 class="date">2021-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -162,10 +162,11 @@
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6,167</span>
-<span class="co">#&gt; Columns: 3</span>
+<span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Ömer Toprak", "Šime Vrsaljko", "Šimon Štefanec", "Ørjan N…</span>
 <span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/c5fd13e9/Omer-Toprak", "http…</span>
-<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/omer-toprak/profil/spieler/…</span></code></pre></div>
+<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/omer-toprak/profil/spieler/…</span>
+<span class="co">#&gt; $ TmPos       &lt;chr&gt; "Centre-Back", "Right-Back", "Attacking Midfield", "Goalke…</span></code></pre></div>
 </div>
 <div id="fbref-helper-functions" class="section level2">
 <h2 class="hasAnchor">

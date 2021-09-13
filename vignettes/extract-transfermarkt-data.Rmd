@@ -125,15 +125,15 @@ This section will cover off the functions to get team-level data from Transferma
 
 ### Transfer activity by team
 
-To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the `tm_team_transfers()` function can be used:
+To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the `tm_team_transfers()` function can be used. This function can return either `summer`, `winter` or `all` for both `transfer_windows`:
 
 ```{r team_transfers, eval=FALSE}
 # for one team:
-bayern <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+bayern <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "all")
 
 # or for multiple teams:
 team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-epl_xfers_2020 <- tm_team_transfers(team_url = team_urls)
+epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all")
 ```
 
 
