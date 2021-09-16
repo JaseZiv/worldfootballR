@@ -16,7 +16,6 @@
 #' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 #' get_match_lineups(match_url = match)
 #' }
-
 get_match_lineups <- function(match_url) {
   print("Scraping lineups")
 
@@ -83,8 +82,8 @@ get_match_lineups <- function(match_url) {
           dplyr::mutate(Player_Num = as.character(.data$Player_Num))
 
         if(any(grepl("Nation", colnames(additional_info)))) {
-         additional_info <- additional_info %>%
-           dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Nation, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
+          additional_info <- additional_info %>%
+            dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Nation, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
         } else {
           additional_info <- additional_info %>%
             dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
@@ -101,8 +100,12 @@ get_match_lineups <- function(match_url) {
         return(lineup)
       }
 
-      all_lineup <- c(home, away) %>%
-        purrr::map_df(get_each_lineup)
+      all_lineup <- tryCatch(c(home, away) %>%
+                               purrr::map_df(get_each_lineup), error = function(e) data.frame())
+
+      if(nrow(all_lineup) == 0) {
+        print(glue::glue("Lineups not available for {match_url}"))
+      }
 
     } else {
       print(glue::glue("Lineups not available for {match_url}"))

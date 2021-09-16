@@ -1,3 +1,13 @@
+# worldfootballR 0.3.5.1
+
+### Bugs
+
+* Fixed encoding issue on Windows OS for player names in `player_dictionary_mapping()` [#56](https://github.com/JaseZiv/worldfootballR/issues/56)
+* Fixed issue with `get_match_summary()` and `get_match_lineups()` not returning results for games that were canceled/postponed [#55](https://github.com/JaseZiv/worldfootballR/issues/55)
+
+***
+
+
 # worldfootballR 0.3.5
 
 ### Improvements
