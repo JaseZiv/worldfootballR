@@ -9,7 +9,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
-#' @importFrom utils read.csv
+#' @importFrom readr read_csv
 #'
 #' @export
 #'
@@ -21,7 +21,8 @@
 
 
 player_dictionary_mapping <- function() {
-  players_mapped <- read.csv("https://github.com/JaseZiv/worldfootballR_data/raw/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv", stringsAsFactors = F)
+  players_mapped <- readr::read_csv("https://github.com/JaseZiv/worldfootballR_data/raw/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv",
+                                    show_col_types = FALSE)
 
   return(players_mapped)
 }
