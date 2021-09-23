@@ -33,8 +33,12 @@ tm_player_bio <- function(player_urls) {
 
       # print(glue::glue("Scraping player_bio for {player_name}"))
 
-      a <- player_page %>% rvest::html_nodes(".spielerdaten") %>% rvest::html_node("table") %>% rvest::html_table() %>%
-        data.frame() %>% dplyr::filter(!stringr::str_detect(.data$X1, "Social-Media")) %>%
+      X1 <- player_page %>% rvest::html_nodes(".player-data-personal-info__content--left") %>% rvest::html_text() %>% stringr::str_squish()
+      X2 <- player_page %>% rvest::html_nodes(".player-data-personal-info__content--right") %>% rvest::html_text() %>% stringr::str_squish()
+
+      a <- cbind(X1, X2) %>% data.frame()
+
+      a <- a %>% dplyr::filter(!stringr::str_detect(.data$X1, "Social-Media")) %>%
         dplyr::mutate(X1 = gsub(":", "", .data$X1))
 
       X2 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("href"), error = function(e) NA_character_)
