@@ -1,3 +1,11 @@
+# worldfootballR 0.3.5.3
+
+### Bugs
+
+* Fixed `tm_player_bio()` throwing errors due to another change in html on Transfermarkt
+
+***
+
 # worldfootballR 0.3.5.2
 
 ### Bugs

@@ -33,8 +33,8 @@ tm_player_bio <- function(player_urls) {
 
       # print(glue::glue("Scraping player_bio for {player_name}"))
 
-      X1 <- player_page %>% rvest::html_nodes(".player-data-personal-info__content--left") %>% rvest::html_text() %>% stringr::str_squish()
-      X2 <- player_page %>% rvest::html_nodes(".player-data-personal-info__content--right") %>% rvest::html_text() %>% stringr::str_squish()
+      X1 <- player_page %>% rvest::html_nodes(".info-table__content--regular") %>% rvest::html_text() %>% stringr::str_squish()
+      X2 <- player_page %>% rvest::html_nodes(".info-table__content--bold") %>% rvest::html_text() %>% stringr::str_squish()
 
       a <- cbind(X1, X2) %>% data.frame()
 
