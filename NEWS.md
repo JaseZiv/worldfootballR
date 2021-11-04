@@ -1,3 +1,11 @@
+# worldfootballR 0.3.6
+
+### Improvements / Breaking Changes
+
+* `fb_player_scouting_report()` now contains an additional column in the output (`scouting_period`) that allows the user to filter on the period they need the scouting report for
+
+***
+
 # worldfootballR 0.3.5.3
 
 ### Bugs
