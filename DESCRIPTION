@@ -1,9 +1,11 @@
 Package: worldfootballR
 Type: Package
-Title: An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com
-Version: 0.3.5.3
-Authors@R: person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
-                  role = c("aut", "cre"))
+Title: An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com, understat.com, and fotmob.com
+Version: 0.3.6.0
+Authors@R: c(person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
+                  role = c("aut", "cre")),
+           person("Tony ElHabr", email = "anthonyelhabr@gmail.com",
+                  role = "ctb"))
 URL: https://github.com/JaseZiv/worldfootballR
 BugReports: https://github.com/JaseZiv/worldfootballR/issues
 Description: This R package will enable users to extract a number of different game and player statistics and metrics from numerous football sites, including fbref.com, transfer data from transfermarket.com and shooting data from understat.com.
@@ -28,7 +30,7 @@ Imports:
     jsonlite,
     stringi,
     progress
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: 
     knitr,
     rmarkdown,
