@@ -1,3 +1,9 @@
+# worldfootballR 0.3.6
+
+### Improvements
+
+* `fotmob_get_matches_by_date()` and `fotmob_get_match_details()` added  [#61](https://github.com/JaseZiv/worldfootballR/issues/61)
+
 # worldfootballR 0.3.5.3
 
 ### Bugs
