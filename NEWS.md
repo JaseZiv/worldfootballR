@@ -1,3 +1,11 @@
+# worldfootballR 0.4.0
+
+### Improvements
+
+* `fotmob_get_matches_by_date()` and `fotmob_get_match_details()` added  [#61](https://github.com/JaseZiv/worldfootballR/issues/61)
+
+***
+
 # worldfootballR 0.3.6
 
 ### Improvements / Breaking Changes
@@ -5,6 +13,7 @@
 * `fb_player_scouting_report()` now contains an additional column in the output (`scouting_period`) that allows the user to filter on the period they need the scouting report for
 
 ***
+
 
 # worldfootballR 0.3.5.3
 
