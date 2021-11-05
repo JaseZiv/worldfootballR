@@ -197,7 +197,7 @@ test_that("get_match_url() works", {
 
 test_that("fotmob_get_matches_by_date() works", {
   results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
-  expect_equal(nrow(results), 268)
+  expect_equal(nrow(results), 244)
   expect_equal(ncol(results), 12)
 })
 

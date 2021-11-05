@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com • worldfootballR</title>
+<title>An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com, understat.com, and fotmob.com • worldfootballR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com">
+<script src="pkgdown.js"></script><meta property="og:title" content="An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com, understat.com, and fotmob.com">
 <meta property="og:description" content="This R package will enable users to extract a number of different game and player statistics and metrics from numerous football sites, including fbref.com, transfer data from transfermarket.com and shooting data from understat.com.">
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -68,6 +68,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/extract-fbref-data.html">Extracting data from FBref</a>
+    </li>
+    <li>
+      <a href="articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     </li>
     <li>
       <a href="articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
@@ -117,6 +120,7 @@
 <li><a href="https://fbref.com/en/">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
 <li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://www.fotmob.com/">fotmob</a></li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -140,6 +144,8 @@
 <li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
 <li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
+</li>
+<li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
@@ -183,6 +189,7 @@
 <li><a href="https://fbref.com/en/">StatsBomb via FBref</a></li>
 <li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
 <li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">fotmob</a></li>
 </ul>
 <div id="acknowledgements" class="section level3">
 <h3 class="hasAnchor">
@@ -236,6 +243,7 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Jason Zivkovic <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 

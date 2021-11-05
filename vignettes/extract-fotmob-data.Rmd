@@ -22,9 +22,11 @@ knitr::opts_chunk$set(
 
 This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:
 
--   [FBref](https://fbref.com/en/)
--   [Transfermarkt](https://www.transfermarkt.com/)
--   [Understat](https://understat.com/)
+* [FBref](https://fbref.com/en/)
+* [Transfermarkt](https://www.transfermarkt.com/)
+* [Understat](https://understat.com/)
+* [fotmob](https://www.fotmob.com/)
+
 
 ## Installation
 
@@ -39,18 +41,19 @@ devtools::install_github("JaseZiv/worldfootballR")
 library(worldfootballR)
 ```
 
-------------------------------------------------------------------------
+***
 
 ## Usage
 
 Package vignettes have been built to help you get started with the package.
 
--   For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
--   For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
--   For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
--   For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
+* For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+* For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+* For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+* For functions to extract data from fotmob, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
+* For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
 
-This vignette will cover the functions to extract data from understat.com
+This vignette will cover the functions to extract data from fotmob.com
 
 ------------------------------------------------------------------------
 

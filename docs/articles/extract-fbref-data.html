@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -68,6 +68,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
+    </li>
+    <li>
+      <a href="../articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     </li>
     <li>
       <a href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
@@ -124,6 +127,7 @@
 <li><a href="https://fbref.com/en/">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
 <li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://www.fotmob.com/">fotmob</a></li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -147,6 +151,8 @@
 <li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
 <li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
+</li>
+<li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
@@ -413,9 +419,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.92, 0.24, 0.79, 0.13, 0.21, 0.08, 0.00, 0.73, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 83, 98, 84, 93, 69, 57, 97, 93, 99, 98, 98, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3438, 3438, 3438, 3438, 3438, 3438, 3438, 3438, 3438, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.91, 0.24, 0.81, 0.11, 0.19, 0.08, 0.00, 0.72, 0.57, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 84, 98, 80, 92, 69, 57, 96, 93, 99, 98, 98, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: Last 365 Days</span>
@@ -429,9 +435,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.92, 0.24, 0.79, 0.13, 0.21, 0.08, 0.00, 0.73, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 75, 99, 92, 95, 74, 57, 99, 99, 95, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3438, 3438, 3438, 3438, 3438, 3438, 3438, 3438, 3438, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.91, 0.24, 0.81, 0.11, 0.19, 0.08, 0.00, 0.72, 0.57, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 76, 99, 90, 94, 73, 57, 99, 99, 96, 99, 99, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
