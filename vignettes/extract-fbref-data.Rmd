@@ -341,6 +341,15 @@ The `fb_player_scouting_report()` function takes in two inputs;
 
 and returns the full scouting report for the player selected.
 
+As of version `0.3.6`, the function now returns the scouting report of ALL available periods, not just the "Last 365 Days". As a result, there is now an additional column called `scouting_period`. This column should be used to filter out the period/season you want the scouting report for:
+
+```
+# TO GET THE LAST 365 DAYS REPORT:
+scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+                                   pos_versus = "primary") %>% 
+               dplyr::filter(scouting_period == "Last 365 Days")
+```
+
 ```{r get_player_scouting_report}
 dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary"))
 dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary"))
