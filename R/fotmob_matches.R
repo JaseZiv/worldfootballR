@@ -80,14 +80,61 @@ fotmob_get_match_details <- function(match_ids) {
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom purrr possibly
+#' @importFrom dplyr bind_cols mutate case_when
+#' @importFrom rlang .data
 .fotmob_get_single_match_details <- function(match_id) {
   print(glue::glue("Scraping match data from fotmob for match {match_id}."))
   main_url <- "https://www.fotmob.com/"
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
+
   f <- function(url) {
     resp <- jsonlite::fromJSON(url)
-    resp$content$shotmap$shots
+    shots <- resp$content$shotmap$shots
+    has_shots <- length(shots) > 0
+    general <- resp$general
+    general_scalars <- data.frame(
+      stringsAsFactors = FALSE,
+      matchId = general$matchId,
+      matchRound = ifelse(is.null(general$matchRound), "", general$matchRound),
+      leagueId = general$leagueId,
+      leagueName = general$leagueName,
+      leagueRoundName = general$leagueRoundName,
+      parentLeagueId = general$parentLeagueId,
+      parentLeagueSeason = general$parentLeagueSeason,
+      matchTimeUTC = general$matchTimeUTC
+    )
+    general_teams <- data.frame(
+      stringsAsFactors = FALSE,
+      homeTeamId = unlist(general$homeTeam$id),
+      homeTeam = unlist(general$homeTeam$name),
+      homeTeamColor = unlist(general$teamColors$home),
+      awayTeamId = unlist(general$awayTeam$id),
+      awayTeam = unlist(general$awayTeam$name),
+      awayTeamColor = unlist(general$teamColors$away)
+    )
+
+    df <- dplyr::bind_cols(
+        general_scalars,
+        general_teams
+      )
+
+    if(has_shots) {
+      df <-
+        dplyr::bind_cols(
+          df,
+          shots
+        ) %>%
+        dplyr::mutate(
+          team = dplyr::case_when(
+            teamId == general$homeTeam$id ~ .data$homeTeam,
+            teamId == general$awayTeam$id ~ .data$awayTeam,
+            TRUE ~ NA_character_
+          )
+        )
+    }
+    df
   }
+
   fp <- purrr::possibly(f, otherwise = data.frame())
   return(fp(url))
 }

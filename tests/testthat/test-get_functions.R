@@ -204,6 +204,6 @@ test_that("fotmob_get_matches_by_date() works", {
 test_that("fotmob_get_match_details() works", {
   details <- fotmob_get_match_details(c(3609987, 3609979))
   expect_equal(nrow(details), 45)
-  expect_equal(ncol(details), 24)
+  expect_equal(ncol(details), 39)
 })
 
