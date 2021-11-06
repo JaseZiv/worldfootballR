@@ -2,7 +2,7 @@ Package: worldfootballR
 Type: Package
 Title: An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com
 Version: 0.4.1
-Authors@R: person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
+Authors@R: c(person("Jason Zivkovic", email = "jase.ziv83@gmail.com",
                   role = c("aut", "cre")),
            person("Tony ElHabr", email = "anthonyelhabr@gmail.com",
                   role = "ctb"))

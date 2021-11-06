@@ -3,10 +3,11 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   extract-fbref-data: extract-fbref-data.html
+  extract-fotmob-data: extract-fotmob-data.html
   extract-transfermarkt-data: extract-transfermarkt-data.html
   extract-understat-data: extract-understat-data.html
   fbref-data-internationals: fbref-data-internationals.html
-last_built: 2021-11-04T22:21Z
+last_built: 2021-11-06T09:26Z
 urls:
   reference: https://jaseziv.github.io/worldfootballR//reference
   article: https://jaseziv.github.io/worldfootballR//articles
