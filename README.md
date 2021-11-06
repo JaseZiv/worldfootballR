@@ -19,7 +19,6 @@ football (soccer) data sites:
 -   [FBref](https://fbref.com/en/)
 -   [Transfermarkt](https://www.transfermarkt.com/)
 -   [Understat](https://understat.com/)
--   [fotmob](https://www.fotmob.com/)
 
 ## Installation
 
@@ -47,8 +46,6 @@ package.
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
 -   For functions to extract data from Understat, see
     [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
--   For functions to extract data from fotmob, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
 -   For functions to extract data for international matches from FBref,
     see
     [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
@@ -96,7 +93,6 @@ Data providers are listed below:
 -   [StatsBomb via FBref](https://fbref.com/en/)
 -   [Transfermarkt](https://www.transfermarkt.com/)
 -   [Understat](https://understat.com/)
--   [fotmob](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
 
 ### Acknowledgements
 
