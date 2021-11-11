@@ -1,6 +1,7 @@
 context("Testing Transfermarkt functions")
 
 test_that("get_player_market_values() works", {
+  testthat::skip()
   testthat::skip_if_offline()
   # testthat::skip_on_cran()
   # test the functions returns the data
@@ -17,6 +18,7 @@ test_that("get_player_market_values() works", {
 
 
 test_that("player_transfer_history() works", {
+  testthat::skip()
   testthat::skip_if_offline()
   # testthat::skip_on_cran()
 
@@ -31,17 +33,18 @@ test_that("player_transfer_history() works", {
 })
 
 
-# test_that("tm_team_transfers() works", {
-#   bayern_summer <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
-#   expect_type(bayern_summer, "list")
-#   bayern_all <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
-#   expect_type(bayern_all, "list")
-#   # test multiple urls:
-#   urls <- c("https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
-#             "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
-#   multi <- tm_team_transfers(team_url = urls, transfer_window = "all")
-#
-# })
+test_that("tm_team_transfers() works", {
+  testthat::skip()
+  bayern_summer <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
+  expect_type(bayern_summer, "list")
+  bayern_all <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
+  expect_type(bayern_all, "list")
+  # test multiple urls:
+  urls <- c("https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
+            "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+  multi <- tm_team_transfers(team_url = urls, transfer_window = "all")
+
+})
 
 
 test_that("tm_matchday_table() works", {
@@ -50,11 +53,12 @@ test_that("tm_matchday_table() works", {
 })
 
 
-# test_that("tm_league_team_urls() works", {
-#   team_urls <- tm_league_team_urls(country_name = "England", start_year = 2021)
-#   expect_type(team_urls, "character")
-#   expect_true(team_urls == 20)
-# })
+test_that("tm_league_team_urls() works", {
+  testthat::skip()
+  team_urls <- tm_league_team_urls(country_name = "England", start_year = 2021)
+  expect_type(team_urls, "character")
+  expect_true(team_urls == 20)
+})
 
 
 test_that("tm_team_player_urls() works", {

@@ -11,7 +11,7 @@ test_that("fb_league_urls() works", {
   league_urls <- fb_league_urls(country = "ENG", gender = "M", season_end_year = 2021, tier = '2nd')
   expect_type(league_urls, "character")
   # test that there is more than just the baseline URL
-  expect_false(grepl("https://fbref.com/en/$", test_urls[1]))
+  expect_false(grepl("https://fbref.com/en/$", league_urls[1]))
 })
 
 
@@ -27,7 +27,7 @@ test_that("fb_player_urls() works", {
   player_urls <- fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
   expect_type(player_urls, "character")
   # test that there is more than just the baseline URL
-  expect_false(grepl("https://fbref.com/en/$", team_urls[1]))
+  expect_false(grepl("https://fbref.com/en/$", player_urls[1]))
 })
 
 
@@ -222,7 +222,7 @@ test_that("get_match_shooting() works", {
 })
 
 
-test_that("", {
+test_that("get_team_match_results() works", {
   # for single teams:
   man_city_2021_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
   man_city_2021_results <- get_team_match_results(man_city_2021_url)
@@ -232,7 +232,7 @@ test_that("", {
 
   # get all team URLs for a league
   epl_2021_team_urls <- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
-  epl_2021_team_results <- get_team_match_results(team_url = team_urls)
+  epl_2021_team_results <- get_team_match_results(team_url = epl_2021_team_urls)
   expect_type(epl_2021_team_results, "list")
   expect_false(nrow(epl_2021_team_results) == 0)
 })
