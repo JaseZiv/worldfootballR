@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main)](https://travis-ci.org/JaseZiv/worldfootballR)
+[![R build
+status](https://github.com/JaseZiv/worldfootballR/workflows/R-CMD-check/badge.svg)](https://github.com/JaseZiv/worldfootballR/actions)
 [![codecov](https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL)](https://codecov.io/gh/JaseZiv/worldfootballR)
 <!-- badges: end -->
 
