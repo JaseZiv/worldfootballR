@@ -16,7 +16,8 @@
 #' \dontrun{
 #'
 #' bayern <- tm_team_transfers(
-#' team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"
+#' team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020",
+#' transfer_window = "all"
 #' )
 #' # can even do it for a number of teams:
 #' team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
@@ -72,42 +73,47 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
       team_df_each_window <- data.frame()
 
       for(i in 1:length(tab_box_window)) {
-        each_tab <- both_tabs[i] %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
+        each_tab <- tryCatch(both_tabs[i] %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children(), error = function(e) NA_character_)
 
         player_df <- data.frame()
         for(j in 1:length(each_tab)) {
           tryCatch({player_df[j, "transfer_type"] <- tab_box_window[i] %>% rvest::html_nodes("h2") %>% rvest::html_text() %>% stringr::str_squish()},
                    error = function(e) {player_df[j, "transfer_type"] <- NA_character_})
-          tryCatch({player_df[j, "player_name"] <- each_tab[j] %>% rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "player_name"] <- NA_character_})
-          tryCatch({player_df[j, "player_url"] <- each_tab[j] %>% rvest::html_nodes(".spielprofil_tooltip") %>% rvest::html_attr("href") %>% paste0(main_url, .)},
-                   error = function(e) {player_df[j, "player_url"] <- NA_character_})
-          tryCatch({player_df[j, "player_position"] <- each_tab[j] %>% rvest::html_nodes(".ma_pos+ td tr+ tr td") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "player_position"] <- NA_character_})
-          tryCatch({player_df[j, "player_age"] <- each_tab[j] %>% rvest::html_nodes("td.zentriert:nth-child(3)") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "player_age"] <- NA_character_})
-          tryCatch({player_df[j, "player_nationality"] <- each_tab[j] %>% rvest::html_nodes(".zentriert .flaggenrahmen") %>% .[1] %>% rvest::html_attr("title")},
-                   error = function(e) {player_df[j, "player_nationality"] <- NA_character_})
-          tryCatch({player_df[j, "club_2"] <- each_tab[j] %>% rvest::html_nodes(".hauptlink .vereinprofil_tooltip") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "club_2"] <- NA_character_})
-          tryCatch({player_df[j, "league_2"] <- each_tab[j] %>% rvest::html_nodes(".flaggenrahmen+ a") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "league_2"] <- NA_character_})
-          tryCatch({player_df[j, "country_2"] <- each_tab[j] %>% rvest::html_nodes(".inline-table .flaggenrahmen") %>% rvest::html_attr("alt")},
-                   error = function(e) {player_df[j, "country_2"] <- NA_character_})
-          tryCatch({player_df[j, "transfer_fee"] <- each_tab[j] %>% rvest::html_nodes(".rechts a") %>% rvest::html_text()},
-                   error = function(e) {player_df[j, "transfer_fee"] <- NA_character_})
-          tryCatch({ player_df[j, "is_loan"] <- grepl("loan", player_df[j, "transfer_fee"], ignore.case = T)},
-                   error = function(e) {player_df[j, "is_loan"] <- NA_character_})
-          tryCatch({player_df[j, "transfer_fee_dup"] <- player_df[j, "transfer_fee"]},
-                   error = function(e) {player_df[j, "transfer_fee_dup"] <- NA_character_})
-          if(length(each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()) == 0) {
+          player_df[j, "player_name"] <- tryCatch(each_tab[j] %>% rvest::html_elements("tm-tooltip") %>% rvest::html_nodes("a") %>% .[1] %>% rvest::html_text(),
+                                                  error = function(e) player_df[j, "player_name"] <- NA_character_)
+          player_df[j, "player_url"] <- tryCatch(each_tab[j] %>% rvest::html_element("tm-tooltip") %>% rvest::html_nodes("a") %>% rvest::html_attr("href") %>% paste0(main_url, .),
+                                                 error = function(e) player_df[j, "player_url"] <- NA_character_)
+          player_df[j, "player_position"] <- tryCatch(each_tab[j] %>% rvest::html_nodes("td:nth-child(2) tr+ tr td") %>% rvest::html_text(),
+                                                      error = function(e) player_df[j, "player_position"] <- NA_character_)
+          player_df[j, "player_age"] <- tryCatch(each_tab[j] %>% rvest::html_nodes("td.zentriert:nth-child(3)") %>% rvest::html_text(),
+                                                 error = function(e) player_df[j, "player_age"] <- NA_character_)
+          player_df[j, "player_nationality"] <- tryCatch(each_tab[j] %>% rvest::html_nodes(".zentriert .flaggenrahmen") %>% .[1] %>% rvest::html_attr("title"),
+                                                         error = function(e) player_df[j, "player_nationality"] <- NA_character_)
+          player_df[j, "club_2"] <- tryCatch(each_tab[j] %>% rvest::html_elements("tm-tooltip") %>% rvest::html_nodes("a") %>% .[3] %>% rvest::html_text(),
+                                             error = function(e) player_df[j, "club_2"] <- NA_character_)
+          player_df[j, "league_2"] <- tryCatch(each_tab[j] %>% rvest::html_nodes(".flaggenrahmen+ a") %>% rvest::html_text(),
+                                               error = function(e) player_df[j, "league_2"] <- NA_character_)
+          player_df[j, "country_2"] <- tryCatch(each_tab[j] %>% rvest::html_nodes(".inline-table .flaggenrahmen") %>% rvest::html_attr("alt"),
+                                                error = function(e) player_df[j, "country_2"] <- NA_character_)
+          player_df[j, "transfer_fee"] <- tryCatch(each_tab[j] %>% rvest::html_nodes(".rechts a") %>% rvest::html_text(),
+                                                   error = function(e) player_df[j, "transfer_fee"] <- NA_character_)
+          player_df[j, "is_loan"] <- tryCatch(grepl("loan", player_df[j, "transfer_fee"], ignore.case = T),
+                                              error = function(e) player_df[j, "is_loan"] <- NA_character_)
+          player_df[j, "transfer_fee_dup"] <- tryCatch(player_df[j, "transfer_fee"],
+                                                       error = function(e) player_df[j, "transfer_fee_dup"] <- NA_character_)
+          if(is.na(each_tab[j])) {
             player_df[j, "transfer_fee_notes1"] <- NA_character_
           } else {
-            tryCatch({player_df[j, "transfer_fee_notes1"] <- each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()},
-                     error = function(e) {player_df[j, "transfer_fee_notes1"] <- NA_character_})
+            if(length(each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text()) == 0) {
+              player_df[j, "transfer_fee_notes1"] <- NA_character_
+            } else {
+              player_df[j, "transfer_fee_notes1"] <- tryCatch(each_tab[j] %>% rvest::html_nodes(".rechts.hauptlink a i") %>% rvest::html_text(),
+                                                              error = function(e) player_df[j, "transfer_fee_notes1"] <- NA_character_)
+            }
           }
-          tryCatch({player_df[j, "window"] <- each_window},
-                   error = function(e) {player_df[j, "window"] <- NA_character_})
+
+          player_df[j, "window"] <- tryCatch(each_window,
+                                             error = function(e) player_df[j, "window"] <- NA_character_)
 
         }
         team_df_each_window <- dplyr::bind_rows(team_df_each_window, player_df)
@@ -168,6 +174,9 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
 
   final_output <- team_url %>%
     purrr::map_df(each_team_xfer)
+
+  final_output <- final_output %>%
+    dplyr::filter(!is.na(player_name))
 
   return(final_output)
 }

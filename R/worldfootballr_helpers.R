@@ -166,8 +166,8 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
   season_page <- xml2::read_html(season_url)
 
   team_urls <- season_page %>%
-    rvest::html_nodes(".items") %>%
-    rvest::html_nodes(".vereinprofil_tooltip") %>% rvest::html_attr("href") %>%
+    rvest::html_nodes("#yw1 .items") %>%
+    rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
     unique() %>% paste0(main_url, .)
 
   return(team_urls)

@@ -52,9 +52,9 @@ tm_squad_stats <- function(team_url) {
       minutes_played <- team_data_table %>% rvest::html_nodes(".rechts") %>% rvest::html_text() %>%
         gsub("\\.", "", .) %>% gsub("'", "", .) %>% gsub("-", "0", .) %>% as.numeric()
 
-      team_data_df <- data.frame(player_name = as.character(player_name), player_pos = as.character(player_pos), nationality = as.character(nationality),
-                                 in_squad = as.numeric(in_squad), appearances = as.numeric(appearances), goals = as.numeric(goals),
-                                 minutes_played = as.numeric(minutes_played))
+      team_data_df <- data.frame(player_name = as.character(player_name), player_pos = as.character(player_pos), player_age = as.numeric(player_age),
+                                 nationality = as.character(nationality), in_squad = as.numeric(in_squad), appearances = as.numeric(appearances),
+                                 goals = as.numeric(goals), minutes_played = as.numeric(minutes_played))
 
     } else {
       team_data_df <- data.frame()
