@@ -20,16 +20,15 @@ Imports:
     stringr,
     lubridate,
     magrittr,
-    scales,
     xml2,
     rvest,
-    curl,
     glue,
     janitor,
     qdapRegex,
     jsonlite,
     stringi,
-    progress
+    progress,
+    withr
 RoxygenNote: 7.1.2
 Suggests: 
     knitr,
