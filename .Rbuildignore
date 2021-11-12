@@ -7,3 +7,6 @@
 ^README\.Rmd$
 LICENSE
 ^\.travis\.yml$
+^.github$
+^CODE_OF_CONDUCT\.md
+^CODE_OF_CONDUCT\.md$

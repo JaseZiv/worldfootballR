@@ -34,8 +34,13 @@ test_that("player_transfer_history() works", {
 test_that("tm_team_transfers() works", {
   bayern_summer <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
   expect_type(bayern_summer, "list")
-  bayern_all <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
+  expect_false(nrow(bayern_summer) == 0)
+  expect_false(any(is.na(bayern_summer$player_name)))
+
+  bayern_all <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "all")
   expect_type(bayern_all, "list")
+  expect_false(nrow(bayern_all) == 0)
+  expect_false(any(is.na(bayern_all$player_name)))
   # test multiple urls:
   urls <- c("https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
             "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")

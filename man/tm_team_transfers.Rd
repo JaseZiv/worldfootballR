@@ -21,7 +21,8 @@ Returns all transfer arrivals and departures for a given team season
 \dontrun{
 
 bayern <- tm_team_transfers(
-team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"
+team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020",
+transfer_window = "all"
 )
 # can even do it for a number of teams:
 team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)

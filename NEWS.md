@@ -1,3 +1,11 @@
+# worldfootballR 0.4.2
+
+### Bugs
+
+* Fixed various transfermarkt functions that were broken due to HTML changes on the site
+
+***
+
 # worldfootballR 0.4.1
 
 ### Breaking Changes
