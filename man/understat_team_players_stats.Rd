@@ -4,21 +4,19 @@
 \alias{understat_team_players_stats}
 \title{Get Understat team player stats}
 \usage{
-understat_team_players_stats(team_names, years)
+understat_team_players_stats(team_url)
 }
 \arguments{
-\item{team_names}{a vector of team names (can be just 1)}
-
-\item{years}{a vector of years/seasons (can be just 1)}
+\item{team_url}{the URL of the team season}
 }
 \value{
-a tibble
+a dataframe of player stats for a selected team season
 }
 \description{
-Retrieve Understat team player stats. Similar to `understatr::get_team_players_stats`.
+Retrieve Understat team player stats.
 }
 \examples{
 \dontrun{
-understat_team_players_stats(team_names = c("Liverpool", "Manchester City"), years = c(2019, 2020))
+understat_team_players_stats(team_url = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
 }
 }
