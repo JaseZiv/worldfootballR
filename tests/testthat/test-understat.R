@@ -26,3 +26,18 @@ test_that("understat_player_shots() works", {
   expect_type(sterling, "list")
   expect_equal(ncol(sterling), 20)
 })
+
+test_that("understat_team_players_stats() works", {
+  team_players_stats <- understat_team_players_stats(team_url = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
+  expect_true(any("data.frame" == class(team_players_stats)))
+  expect_equal(ncol(team_players_stats), 19)
+  expect_gt(nrow(team_players_stats), 0)
+})
+
+test_that("understat_team_stats_breakdown() works", {
+  team_stats <- understat_team_stats_breakdown(team_urls = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
+  expect_true(any("data.frame" == class(team_stats)))
+  expect_equal(ncol(team_stats), 11)
+  expect_gt(nrow(team_stats), 0)
+})
+
