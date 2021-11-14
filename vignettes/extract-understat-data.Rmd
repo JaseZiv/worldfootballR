@@ -59,7 +59,15 @@ This vignette will cover the functions to extract data from understat.com
 
 ## Understat Helper Functions
 
-There are currently no helper functions for Understat functions.
+
+### Team URLs
+
+To get a list of all season team URLs for selected teams, use the `understat_team_meta()` function (note, to get team names, it might be advisable to look at Understat.com's spelling of the team names and pass that through to the function):
+
+```{r team_urls, eval=FALSE}
+team_urls <- understat_team_meta(team_name = c("Liverpool", "Manchester City"))
+```
+
 
 ***
 
@@ -130,6 +138,26 @@ To get all shots taken and conceded by a team during a season, use the `understa
 man_city_shots <- understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
 ```
 
+
+### Team Stat Breakdowns
+
+To get a more granular breakdown of team shooting data for whole seasons, the `understat_team_stats_breakdown()` function can be used. This functions returns a breakdown of team shooting data based on the following groupings:
+
+* Situation
+* Formation
+* Game state
+* Timing
+* Shot zones
+* Attack speed
+* Result
+
+```{r team_breakdown, eval=FALSE}
+team_urls <- c("https://understat.com/team/Liverpool/2020",
+               "https://understat.com/team/Manchester_City/2020")
+team_breakdown <- understat_team_stats_breakdown(urls = team_urls)
+```
+
+
 ***
 
 
@@ -144,6 +172,18 @@ To get shooting locations for all games a player has participated in (for as lon
 ```{r player_bios, eval=FALSE}
 raheem_sterling_shots <- understat_player_shots(player_url = "https://understat.com/player/618")
 ```
+
+
+### Team Player Season Stats
+
+To get stats for all players of selected teams, run the `understat_team_players_stats()` function.
+
+Note: Team URLs cal be extracted using `understat_team_meta()`.
+
+```{r team_players, eval=FALSE}
+team_players <- understat_team_players_stats(team_url = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
+```
+
 
 ***
 

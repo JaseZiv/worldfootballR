@@ -1,3 +1,13 @@
+# worldfootballR 0.4.3
+
+### Improvements
+
+* `understat_team_players_stats()` gets season-long player stats for selected teams
+* `understat_team_stats_breakdown()` gets team season shooting data broken down into game states
+* `understat_team_meta()` created to allow for the extraction of team season URLs
+
+***
+
 # worldfootballR 0.4.2
 
 ### Bugs

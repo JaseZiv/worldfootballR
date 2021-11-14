@@ -34,3 +34,10 @@ test_that("understat_team_players_stats() works", {
   expect_gt(nrow(team_players_stats), 0)
 })
 
+test_that("understat_team_stats_breakdown() works", {
+  team_stats <- understat_team_stats_breakdown(team_urls = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
+  expect_true(any("data.frame" == class(team_stats)))
+  expect_equal(ncol(team_stats), 11)
+  expect_gt(nrow(team_stats), 0)
+})
+
