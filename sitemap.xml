@@ -124,7 +124,16 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/understat_player_shots.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/understat_team_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/understat_team_players_stats.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/understat_team_season_shots.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/understat_team_stats_breakdown.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//articles/extract-fbref-data.html</loc>

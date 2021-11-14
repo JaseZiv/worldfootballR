@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clean Understat JSON data — .get_clean_understat_json • worldfootballR</title>
+<title>Get Understat team statistics breakdowns — understat_team_stats_breakdown • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Clean Understat JSON data — .get_clean_understat_json" />
-<meta property="og:description" content="Returns a cleaned Understat data frame" />
+<meta property="og:title" content="Get Understat team statistics breakdowns — understat_team_stats_breakdown" />
+<meta property="og:description" content="Returns a data frame for the selected team(s) with stats broken down in
+different ways. Breakdown groups include:" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,34 +151,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Clean Understat JSON data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
-    <div class="hidden name"><code>dot-get_clean_understat_json.Rd</code></div>
+    <h1>Get Understat team statistics breakdowns</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/understat_teams.R'><code>R/understat_teams.R</code></a></small>
+    <div class="hidden name"><code>understat_team_stats_breakdown.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a cleaned Understat data frame</p>
+    <p>Returns a data frame for the selected team(s) with stats broken down in
+different ways. Breakdown groups include:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.get_clean_understat_json</span><span class='op'>(</span><span class='va'>page_url</span>, <span class='va'>script_name</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>understat_team_stats_breakdown</span><span class='op'>(</span><span class='va'>team_urls</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>page_url</th>
-      <td><p>understat.com page URL</p></td>
-    </tr>
-    <tr>
-      <th>script_name</th>
-      <td><p>html JSON script name</p></td>
+      <th>team_urls</th>
+      <td><p>the url(s) of the teams in question</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a cleaned Understat data frame</p>
+    <p>returns a dataframe of all stat groups and values</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p><em>"Situation"</em>, <em>"Formation</em>", <em>"Game state"</em>,
+<em>"Timing"</em>, <em>"Shot zones"</em>, <em>"Attack speed"</em>, <em>"Result"</em></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>team_urls</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"https://understat.com/team/Liverpool/2020"</span>,</span>
+<span class='r-in'>              <span class='st'>"https://understat.com/team/Manchester_City/2020"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>understat_team_stats_breakdown</span><span class='op'>(</span>urls <span class='op'>=</span> <span class='va'>team_urls</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
