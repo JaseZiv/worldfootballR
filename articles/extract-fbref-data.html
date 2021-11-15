@@ -191,7 +191,7 @@
 <div id="player-urls" class="section level3">
 <h3 class="hasAnchor">
 <a href="#player-urls" class="anchor"></a>Player URLs</h3>
-<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The reuslts of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
+<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The results of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_urls.html">fb_player_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -236,7 +236,7 @@
 <div id="more-than-one-league-season" class="section level4">
 <h4 class="hasAnchor">
 <a href="#more-than-one-league-season" class="anchor"></a>More than one league season</h4>
-<p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leages/genders/etc.</p>
+<p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leagues/genders/etc.</p>
 <p>Important to note, this function can only be used for one <code>stat-type</code> at a time, however all other parameters can have multiple values:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
@@ -286,7 +286,7 @@
 <div id="more-than-one-league-season-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#more-than-one-league-season-1" class="anchor"></a>More than one league season</h4>
-<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leages/genders/etc also:</p>
+<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leagues/genders/etc also:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></code></pre></div>
