@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' understat_league_season_shots(league = "EPL", season_start_year = 2020)
 #' }
 understat_league_season_shots <- function(league, season_start_year) {
@@ -62,7 +62,7 @@ understat_league_season_shots <- function(league, season_start_year) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
 #' }
 understat_team_season_shots <- function(team_url) {
@@ -94,7 +94,7 @@ understat_team_season_shots <- function(team_url) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' understat_match_shots(match_url = "https://understat.com/match/14789")
 #' }
 understat_match_shots <- function(match_url) {
@@ -123,7 +123,7 @@ understat_match_shots <- function(match_url) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' sterling <- understat_player_shots(player_url = "https://understat.com/player/618")
 #' }
 understat_player_shots <- function(player_url) {

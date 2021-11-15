@@ -24,7 +24,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_season_team_stats("ITA", "M", 2021, "1st", "defense")
 #' get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 #' }

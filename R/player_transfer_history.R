@@ -2,7 +2,7 @@
 #'
 #' Returns data frame of player(s) transfer history from transfermarkt.com
 #'
-#' @param player_urls the player url(s) from transfermarket
+#' @param player_urls the player url(s) from transfermarkt
 #'
 #' @return returns a dataframe of player transfers
 #'
@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' player_transfer_history(player_urls)
 #' }
 player_transfer_history <- function(player_urls) {

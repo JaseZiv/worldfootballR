@@ -4,7 +4,7 @@
 #'
 #' @param match_url the fbref.com URL for the required match
 #'
-#' @return returns a dataframe with the match events (goals, cards, subs) for selecetd matches
+#' @return returns a dataframe with the match events (goals, cards, subs) for selected matches
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data

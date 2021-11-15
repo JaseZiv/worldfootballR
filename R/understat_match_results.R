@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' understat_league_match_results(league = "EPL", season_start_year = 2020)
 #' }
 understat_league_match_results <- function(league, season_start_year) {
