@@ -95,7 +95,7 @@ fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
 
 ### Player URLs
 
-To get a list of player URLs for a particular team, the `fb_player_urls()` function can be used. The reuslts of this output can be passed through to the player season stat functions `fb_player_season_stats()` and `fb_player_scouting_report()`.
+To get a list of player URLs for a particular team, the `fb_player_urls()` function can be used. The results of this output can be passed through to the player season stat functions `fb_player_season_stats()` and `fb_player_scouting_report()`.
 
 ```{r, eval=FALSE}
 fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
@@ -148,7 +148,7 @@ championship_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M
 
 #### More than one league season
 
-The `get_season_team_stats` function can be used to get data for multiple seasons/leages/genders/etc.
+The `get_season_team_stats` function can be used to get data for multiple seasons/leagues/genders/etc.
 
 Important to note, this function can only be used for one `stat-type` at a time, however all other parameters can have multiple values:
 
@@ -210,7 +210,7 @@ get_match_results(country = "", gender = "M", season_end_year = 2018, tier = "",
 
 #### More than one league season
 
-The `get_match_results()` function can be used to get data for multiple seasons/leages/genders/etc also:
+The `get_match_results()` function can be used to get data for multiple seasons/leagues/genders/etc also:
 
 ```{r get_match_results_multiple, eval=FALSE}
 big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
