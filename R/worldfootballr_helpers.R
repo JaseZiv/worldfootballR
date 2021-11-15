@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' fb_league_urls(country = "ENG", gender = "M", season_end_year = 2021, tier = '1st')
 #' }
 fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
@@ -57,7 +57,7 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
 #' }
 fb_teams_urls <- function(league_url) {
@@ -91,7 +91,7 @@ fb_teams_urls <- function(league_url) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
 #' }
 fb_player_urls <- function(team_url) {
@@ -128,7 +128,7 @@ fb_player_urls <- function(team_url) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
 #' }
 tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
@@ -166,9 +166,11 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
   season_page <- xml2::read_html(season_url)
 
   team_urls <- season_page %>%
-    rvest::html_nodes("#yw1 .items") %>%
-    rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
+    rvest::html_nodes("#yw1 .hauptlink a") %>% rvest::html_attr("href") %>%
+    # rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
     unique() %>% paste0(main_url, .)
+  # there now appears to be an errorneous URL so will remove that manually:
+  team_urls <- team_urls[-grep(".com#", team_urls)]
 
   return(team_urls)
 }
@@ -188,7 +190,7 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' team_url <- "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"
 #' tm_team_player_urls(team_url = team_url)
 #' }

@@ -1,8 +1,8 @@
 #' Get transfermarkt player bios
 #'
-#' Returns data frame of player bois from transfermarkt.com
+#' Returns data frame of player bios from transfermarkt.com
 #'
-#' @param player_urls player url(s) from transfermarket
+#' @param player_urls player url(s) from transfermarkt
 #'
 #' @return returns a dataframe of player bios
 #'

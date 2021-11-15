@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_player_market_values(country_name = "England", start_year = c(2019, 2020))
 #' }
 
@@ -79,9 +79,11 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
     season_page <- xml2::read_html(each_season)
 
     team_urls <- season_page %>%
-      rvest::html_nodes("#yw1 .items") %>%
-      rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
+      rvest::html_nodes("#yw1 .hauptlink a") %>% rvest::html_attr("href") %>%
+      # rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
       unique() %>% paste0(main_url, .)
+    # there now appears to be an errorneous URL so will remove that manually:
+    team_urls <- team_urls[-grep(".com#", team_urls)]
 
     team_urls <- gsub("startseite", "kader", team_urls) %>%
       paste0(., "/plus/1")
@@ -107,12 +109,12 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
         player_num <- NA_character_
       }
       # player names
-      player_name <- team_data %>% rvest::html_nodes(".hauptlink") %>% rvest::html_elements("tm-tooltip .hide-for-small a") %>% rvest::html_text()
+      player_name <- team_data %>% rvest::html_nodes(".hauptlink .di.nowrap") %>% rvest::html_elements(".hide-for-small a") %>% rvest::html_text()
       if(length(player_name) == 0) {
         player_name <- NA_character_
       }
       # player_url
-      player_url <- team_data %>% rvest::html_nodes(".hauptlink") %>% rvest::html_elements("tm-tooltip .hide-for-small a") %>% rvest::html_attr("href") %>%
+      player_url <- team_data %>% rvest::html_nodes(".hauptlink .di.nowrap") %>% rvest::html_elements(".hide-for-small a") %>% rvest::html_attr("href") %>%
         paste0(main_url, .)
       if(length(player_url) == 0) {
         player_url <- NA_character_
