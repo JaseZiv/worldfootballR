@@ -2,7 +2,7 @@ context("Testing Transfermarkt functions")
 
 test_that("get_player_market_values() works", {
   testthat::skip_if_offline()
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
   # test the functions returns the data
   expect_type(get_player_market_values(country_name = "Australia", start_year = 2021), "list")
 
@@ -18,7 +18,7 @@ test_that("get_player_market_values() works", {
 
 test_that("player_transfer_history() works", {
   testthat::skip_if_offline()
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   transfer_data <- player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
   # test the functions returns the data
@@ -32,6 +32,7 @@ test_that("player_transfer_history() works", {
 
 
 test_that("tm_team_transfers() works", {
+  testthat::skip_on_cran()
   bayern_summer <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "summer")
   expect_type(bayern_summer, "list")
   expect_false(nrow(bayern_summer) == 0)
@@ -50,12 +51,14 @@ test_that("tm_team_transfers() works", {
 
 
 test_that("tm_matchday_table() works", {
+  testthat::skip_on_cran()
   expect_type(tm_matchday_table(country_name="England", start_year="2021", matchday=1), "list")
   expect_type(tm_matchday_table(country_name="England", start_year="2021", matchday=c(1:5)), "list")
 })
 
 
 test_that("tm_league_team_urls() works", {
+  testthat::skip_on_cran()
   team_urls <- tm_league_team_urls(country_name = "England", start_year = 2021)
   expect_type(team_urls, "character")
   expect_true(length(team_urls) == 20)
@@ -63,18 +66,21 @@ test_that("tm_league_team_urls() works", {
 
 
 test_that("tm_team_player_urls() works", {
+  testthat::skip_on_cran()
   player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
   expect_type(player_urls, "character")
 })
 
 
 test_that("tm_squad_stats() works", {
+  testthat::skip_on_cran()
   bayern <- tm_squad_stats(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
   expect_type(bayern, "list")
 })
 
 
 test_that("tm_player_bio() works", {
+  testthat::skip_on_cran()
   hazard_bio <- tm_player_bio(player_url = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
   expect_type(hazard_bio, "list")
   expect_equal(ncol(hazard_bio), 19)

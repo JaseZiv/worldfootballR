@@ -7,7 +7,7 @@
 
 [![R build
 status](https://github.com/JaseZiv/worldfootballR/workflows/R-CMD-check/badge.svg)](https://github.com/JaseZiv/worldfootballR/actions)
-[![codecov](https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL)](https://codecov.io/gh/JaseZiv/worldfootballR)
+[![codecov](https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL)](https://app.codecov.io/gh/JaseZiv/worldfootballR)
 <!-- badges: end -->
 
 ## Overview
@@ -118,7 +118,7 @@ When creating an issue, please include:
     their purpose
 
 Feel free to get in touch via email or twitter
-<https://twitter.com/jaseziv> if you aren’t able to creat an issue.
+<https://twitter.com/jaseziv> if you aren’t able to create an issue.
 
 ### Show your support
 

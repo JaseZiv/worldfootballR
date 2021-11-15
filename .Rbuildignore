@@ -10,3 +10,5 @@ LICENSE
 ^.github$
 ^CODE_OF_CONDUCT\.md
 ^CODE_OF_CONDUCT\.md$
+^revdep$
+^cran-comments\.md$
