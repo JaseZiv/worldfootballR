@@ -1,5 +1,3 @@
-# worldfootballR 0.4.5
-
 # worldfootballR 0.4.4
 
 ### Improvements
