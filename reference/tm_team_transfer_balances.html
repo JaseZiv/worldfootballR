@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -183,11 +183,103 @@
     <p>returns a dataframe of the summarised financial transfer performance of all teams for a league season</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='fu'>tm_team_transfer_balances</span><span class='op'>(</span>country_name<span class='op'>=</span><span class='st'>"England"</span>, start_year<span class='op'>=</span><span class='st'>"2020"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    country         league season                   squad expenditure_euros</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  England Premier League   &lt;NA&gt;              Arsenal FC          86000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  England Premier League   &lt;NA&gt;             Aston Villa         101350000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  England Premier League   &lt;NA&gt;  Brighton &amp; Hove Albion          28500000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  England Premier League   &lt;NA&gt;              Burnley FC           1100000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  England Premier League   &lt;NA&gt;              Chelsea FC         247200000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  England Premier League   &lt;NA&gt;          Crystal Palace          22400000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  England Premier League   &lt;NA&gt;              Everton FC          74870000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  England Premier League   &lt;NA&gt;               Fulham FC          37250000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  England Premier League   &lt;NA&gt;            Leeds United         105800000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 England Premier League   &lt;NA&gt;          Leicester City          58500000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 England Premier League   &lt;NA&gt;            Liverpool FC          82650000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 England Premier League   &lt;NA&gt;         Manchester City         161800000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 England Premier League   &lt;NA&gt;       Manchester United          83800000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 England Premier League   &lt;NA&gt;        Newcastle United          39000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 England Premier League   &lt;NA&gt;        Sheffield United          62700000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 England Premier League   &lt;NA&gt;          Southampton FC          37300000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 England Premier League   &lt;NA&gt;       Tottenham Hotspur         110500000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 England Premier League   &lt;NA&gt;    West Bromwich Albion          42140000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 England Premier League   &lt;NA&gt;         West Ham United          54700000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 England Premier League   &lt;NA&gt; Wolverhampton Wanderers          84800000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    income_euros avg_age_out avg_age_in</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      19150000        25.8       25.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       2770000        27.6       25.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3      20600000        26.1       23.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4       2300000        27.4       24.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      57400000        25.6       25.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      20000000        24.8       24.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7       4430000        27.0       25.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8             0        26.6       25.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9             0        22.7       24.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10     53770000        26.4       25.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11     17200000        25.8       22.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12     76650000        23.5       21.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13     19500000        25.0       25.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14       275000        26.2       24.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15            0        25.3       23.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16     26300000        26.0       25.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17     13300000        24.5       24.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18      8100000        25.8       26.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19     45410000        28.1       26.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20     79200000        23.9       23.3</span>
 <span class='r-in'><span class='va'>odd_league</span> <span class='op'>&lt;-</span> <span class='st'>"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span></span>
 <span class='r-in'><span class='fu'>tm_team_transfer_balances</span><span class='op'>(</span>start_year<span class='op'>=</span><span class='st'>"2020"</span>, league_url<span class='op'>=</span><span class='va'>odd_league</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    country     league season               squad expenditure_euros income_euros</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  England League One   &lt;NA&gt;  Accrington Stanley                 0       275000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  England League One   &lt;NA&gt;       AFC Wimbledon                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  England League One   &lt;NA&gt;        Blackpool FC                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  England League One   &lt;NA&gt;      Bristol Rovers                 0      1400000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  England League One   &lt;NA&gt;       Burton Albion                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  England League One   &lt;NA&gt;   Charlton Athletic            488000      2200000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  England League One   &lt;NA&gt;     Crewe Alexandra                 0      1060000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  England League One   &lt;NA&gt;    Doncaster Rovers                 0      1670000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  England League One   &lt;NA&gt;      Fleetwood Town                 0       390000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 England League One   &lt;NA&gt;       Gillingham FC                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 England League One   &lt;NA&gt;           Hull City            835000      2100000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 England League One   &lt;NA&gt;        Ipswich Town                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 England League One   &lt;NA&gt;        Lincoln City                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 England League One   &lt;NA&gt;  Milton Keynes Dons            222000       720000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 England League One   &lt;NA&gt;    Northampton Town                 0      1100000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 England League One   &lt;NA&gt;       Oxford United                 0      2700000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 England League One   &lt;NA&gt; Peterborough United           2500000      5600000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 England League One   &lt;NA&gt;     Plymouth Argyle                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 England League One   &lt;NA&gt;       Portsmouth FC            275000            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 England League One   &lt;NA&gt;        Rochdale AFC                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 England League One   &lt;NA&gt;     Shrewsbury Town                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 England League One   &lt;NA&gt;      Sunderland AFC            338000            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 England League One   &lt;NA&gt;        Swindon Town                 0            0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 England League One   &lt;NA&gt;      Wigan Athletic                 0      8400000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    avg_age_out avg_age_in</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         22.6       22.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         22.5       21.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3         24.8       23.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4         23.7       21.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5         23.7       23.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6         24.7       24.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7         25.1       23.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8         22.2       22.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9         25.0       24.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10        24.5       23.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11        24.5       23.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12        22.7       22.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13        23.9       22.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14        24.9       24.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15        25.1       24.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16        24.1       23.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17        23.0       20.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18        23.2       22.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19        24.2       23.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20        24.8       20.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21        24.7       23.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22        26.4       25.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23        23.0       22.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24        25.6       23.6</span>
+<span class='r-in'><span class='co'># }</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

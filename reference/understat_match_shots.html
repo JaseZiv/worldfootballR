@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -175,9 +175,157 @@
     <p>returns a dataframe of shooting locations for a selected team season</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='fu'>understat_match_shots</span><span class='op'>(</span>match_url <span class='op'>=</span> <span class='st'>"https://understat.com/match/14789"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        id minute      result     X     Y         xG                 player</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  422440      9 MissedShots 0.869 0.441 0.03135269             Semi Ajayi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  422441     11 MissedShots 0.965 0.460 0.14474539           Okay Yokuslu</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  422442     14        Goal 0.881 0.356 0.23826571        Hal Robson-Kanu</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  422450     35 BlockedShot 0.883 0.336 0.28253871        Hal Robson-Kanu</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  422456     46 MissedShots 0.957 0.590 0.02608211           Kyle Bartley</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  422454     47 MissedShots 0.712 0.403 0.03956936        Matheus Pereira</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  422458     50   SavedShot 0.767 0.590 0.04381445        Matheus Pereira</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  422460     61 MissedShots 0.942 0.626 0.01327414        Darnell Furlong</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  422462     70 MissedShots 0.905 0.491 0.02667309             Semi Ajayi</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 422465     77   SavedShot 0.905 0.392 0.29570183        Hal Robson-Kanu</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 422437      2 BlockedShot 0.782 0.504 0.03780668       Thiago Alcántara</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 422438      3 MissedShots 0.919 0.509 0.04976943     Nathaniel Phillips</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 422439      5 MissedShots 0.926 0.448 0.03913435     Nathaniel Phillips</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 422443     23 MissedShots 0.888 0.462 0.40629628             Sadio Mané</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 422444     26 BlockedShot 0.756 0.642 0.05527206 Trent Alexander-Arnold</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 422445     27 BlockedShot 0.921 0.496 0.12781920          Rhys Williams</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 422446     27   SavedShot 0.942 0.361 0.06873091          Mohamed Salah</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 422447     31 MissedShots 0.817 0.357 0.04077561 Trent Alexander-Arnold</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 422448     32        Goal 0.813 0.350 0.03779993          Mohamed Salah</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 422449     34  ShotOnPost 0.861 0.421 0.34253857        Roberto Firmino</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 422451     39 BlockedShot 0.862 0.285 0.03881568                Fabinho</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 422452     39   SavedShot 0.866 0.288 0.03959307                Fabinho</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 422453     41 BlockedShot 0.780 0.575 0.03130256             Sadio Mané</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 422455     45 BlockedShot 0.794 0.325 0.02635817 Trent Alexander-Arnold</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 422457     49 BlockedShot 0.886 0.400 0.10506576          Mohamed Salah</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 422459     56   SavedShot 0.902 0.673 0.08952659          Mohamed Salah</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 422461     67 BlockedShot 0.813 0.701 0.02821749        Roberto Firmino</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 422463     73 MissedShots 0.906 0.668 0.07385880        Roberto Firmino</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 422464     76 MissedShots 0.725 0.458 0.01714121                Fabinho</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 422466     78 MissedShots 0.797 0.675 0.02576318       Thiago Alcántara</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 422467     82 MissedShots 0.903 0.403 0.12352330 Trent Alexander-Arnold</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 422468     86   SavedShot 0.751 0.370 0.01921204       Thiago Alcántara</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 422469     89 MissedShots 0.851 0.525 0.09763246    Georginio Wijnaldum</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 422470     90 BlockedShot 0.758 0.702 0.01478345    Georginio Wijnaldum</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 422471     91 BlockedShot 0.811 0.445 0.03412251       Thiago Alcántara</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 422472     94        Goal 0.927 0.532 0.10768176                Alisson</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    home_away player_id      situation season  shotType match_id</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1          h      4490       SetPiece   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2          h      6932       SetPiece   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3          h      1738       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4          h      1738       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5          h       964     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6          h      7153 DirectFreekick   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7          h      7153       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8          h      4391     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9          h      4490     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10         h      1738       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11         a       229       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12         a      8228     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13         a      8228     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14         a       838       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15         a      1791 DirectFreekick   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16         a      9086     FromCorner   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17         a      1250       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18         a      1791       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19         a      1250       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20         a       482       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21         a      3420       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22         a      3420       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23         a       838       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24         a      1791       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25         a      1250       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26         a      1250       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27         a       482       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28         a       482       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29         a      3420       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30         a       229       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31         a      1791       OpenPlay   2020  LeftFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32         a       229       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33         a       771       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34         a       771       OpenPlay   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35         a       229     FromCorner   2020 RightFoot    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36         a      1257     FromCorner   2020      Head    14789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               home_team away_team home_goals away_goals                date</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 West Bromwich Albion Liverpool          1          2 2021-05-16 15:30:00</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>           player_assisted lastAction</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         Matheus Pereira      Cross</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         Darnell Furlong    Chipped</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3         Matheus Pereira       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4         Darnell Furlong   HeadPass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5         Matheus Pereira     Aerial</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                    &lt;NA&gt;   Standard</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7         Hal Robson-Kanu       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8         Matheus Pereira     Aerial</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9         Conor Gallagher     Aerial</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10             Semi Ajayi    Chipped</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11             Sadio Mané     Tackle</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 Trent Alexander-Arnold     Aerial</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       Andrew Robertson     Aerial</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14       Thiago Alcántara       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                   &lt;NA&gt;   Standard</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16     Nathaniel Phillips   HeadPass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17 Trent Alexander-Arnold    Chipped</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18       Thiago Alcántara       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19             Sadio Mané       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20                   &lt;NA&gt;       None</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21       Thiago Alcántara       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22          Mohamed Salah       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23       Thiago Alcántara       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24          Mohamed Salah       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25 Trent Alexander-Arnold       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26 Trent Alexander-Arnold       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27          Mohamed Salah       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28       Thiago Alcántara       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29        Xherdan Shaqiri       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30        Xherdan Shaqiri       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31                Fabinho     TakeOn</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32        Roberto Firmino       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33          Mohamed Salah       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34       Andrew Robertson       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35    Georginio Wijnaldum       Pass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36 Trent Alexander-Arnold      Cross</span>
+<span class='r-in'><span class='co'># }</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

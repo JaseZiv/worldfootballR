@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -175,10 +175,42 @@
     <p>returns a character vector of all transfermarkt player URLs for a selected team</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='va'>team_url</span> <span class='op'>&lt;-</span> <span class='st'>"https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"</span></span>
 <span class='r-in'><span class='fu'>tm_team_player_urls</span><span class='op'>(</span>team_url <span class='op'>=</span> <span class='va'>team_url</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "https://www.transfermarkt.com/nick-pope/profil/spieler/192080"               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2] "https://www.transfermarkt.com/bailey-peacock-farrell/profil/spieler/410436"  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3] "https://www.transfermarkt.com/will-norris/profil/spieler/285033"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4] "https://www.transfermarkt.com/james-tarkowski/profil/spieler/173504"         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5] "https://www.transfermarkt.com/ben-gibson/profil/spieler/128904"              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6] "https://www.transfermarkt.com/ben-mee/profil/spieler/74810"                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7] "https://www.transfermarkt.com/kevin-long/profil/spieler/111114"              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8] "https://www.transfermarkt.com/jimmy-dunne/profil/spieler/396174"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9] "https://www.transfermarkt.com/richard-nartey/profil/spieler/396861"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10] "https://www.transfermarkt.com/bobby-thomas/profil/spieler/788283"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [11] "https://www.transfermarkt.com/charlie-taylor/profil/spieler/195633"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [12] "https://www.transfermarkt.com/erik-pieters/profil/spieler/43763"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13] "https://www.transfermarkt.com/anthony-driscoll-glennon/profil/spieler/503683"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [14] "https://www.transfermarkt.com/matthew-lowton/profil/spieler/102258"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15] "https://www.transfermarkt.com/phil-bardsley/profil/spieler/15773"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [16] "https://www.transfermarkt.com/jack-cork/profil/spieler/40613"                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17] "https://www.transfermarkt.com/ashley-westwood/profil/spieler/91317"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18] "https://www.transfermarkt.com/josh-brownhill/profil/spieler/293569"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19] "https://www.transfermarkt.com/dale-stephens/profil/spieler/49755"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [20] "https://www.transfermarkt.com/josh-benson/profil/spieler/397102"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [21] "https://www.transfermarkt.com/anthony-gomez-mancini/profil/spieler/677311"   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [22] "https://www.transfermarkt.com/mace-goodridge/profil/spieler/382552"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [23] "https://www.transfermarkt.com/robbie-brady/profil/spieler/128229"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [24] "https://www.transfermarkt.com/lewis-richardson/profil/spieler/657863"        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [25] "https://www.transfermarkt.com/dwight-mcneil/profil/spieler/584769"           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [26] "https://www.transfermarkt.com/johann-berg-gudmundsson/profil/spieler/89231"  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [27] "https://www.transfermarkt.com/max-thompson/profil/spieler/598958"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [28] "https://www.transfermarkt.com/chris-wood/profil/spieler/108725"              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [29] "https://www.transfermarkt.com/jay-rodriguez/profil/spieler/53360"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [30] "https://www.transfermarkt.com/ashley-barnes/profil/spieler/63200"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [31] "https://www.transfermarkt.com/matej-vydra/profil/spieler/101500"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [32] "https://www.transfermarkt.com/joel-mumbongo/profil/spieler/381156"           </span>
+<span class='r-in'><span class='co'># }</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

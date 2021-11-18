@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.4</span>
       </span>
     </div>
 
@@ -166,7 +166,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>league</th>
-      <td><p>the avaliable leagues in Understat as outlined below</p></td>
+      <td><p>the available leagues in Understat as outlined below</p></td>
     </tr>
     <tr>
       <th>season_start_year</th>
@@ -182,9 +182,1152 @@
     <p>returns a dataframe of match results for a selected league season</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='fu'>understat_league_match_results</span><span class='op'>(</span>league <span class='op'>=</span> <span class='st'>"EPL"</span>, season_start_year <span class='op'>=</span> <span class='fl'>2020</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     league season match_id isResult home_id               home_team home_abbr</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      EPL   2021    14086     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      EPL   2021    14087     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3      EPL   2021    14090     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4      EPL   2021    14091     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      EPL   2021    14092     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      EPL   2021    14093     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7      EPL   2021    14094     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8      EPL   2021    14095     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9      EPL   2021    14096     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10     EPL   2021    14097     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11     EPL   2021    14098     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12     EPL   2021    14099     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13     EPL   2021    14100     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14     EPL   2021    14101     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15     EPL   2021    14102     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16     EPL   2021    14103     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17     EPL   2021    14104     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18     EPL   2021    14105     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19     EPL   2021    14106     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20     EPL   2021    14107     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21     EPL   2021    14108     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22     EPL   2021    14109     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23     EPL   2021    14110     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24     EPL   2021    14111     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25     EPL   2021    14112     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26     EPL   2021    14113     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27     EPL   2021    14114     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28     EPL   2021    14115     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29     EPL   2021    14467     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30     EPL   2021    14468     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31     EPL   2021    14469     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32     EPL   2021    14472     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33     EPL   2021    14470     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34     EPL   2021    14473     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35     EPL   2021    14465     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36     EPL   2021    14474     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37     EPL   2021    14471     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38     EPL   2021    14466     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39     EPL   2021    14477     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40     EPL   2021    14475     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41     EPL   2021    14480     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42     EPL   2021    14481     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43     EPL   2021    14482     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44     EPL   2021    14476     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45     EPL   2021    14483     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46     EPL   2021    14479     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47     EPL   2021    14484     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48     EPL   2021    14478     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49     EPL   2021    14486     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50     EPL   2021    14493     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51     EPL   2021    14489     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52     EPL   2021    14491     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53     EPL   2021    14490     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54     EPL   2021    14492     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55     EPL   2021    14494     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56     EPL   2021    14485     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57     EPL   2021    14487     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58     EPL   2021    14488     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59     EPL   2021    14504     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60     EPL   2021    14502     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61     EPL   2021    14496     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62     EPL   2021    14499     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63     EPL   2021    14495     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64     EPL   2021    14501     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65     EPL   2021    14500     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66     EPL   2021    14503     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67     EPL   2021    14497     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68     EPL   2021    14498     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69     EPL   2021    14506     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 70     EPL   2021    14512     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 71     EPL   2021    14509     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 72     EPL   2021    14508     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 73     EPL   2021    14507     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 74     EPL   2021    14514     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 75     EPL   2021    14513     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 76     EPL   2021    14510     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 77     EPL   2021    14511     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 78     EPL   2021    14505     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 79     EPL   2021    14521     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 80     EPL   2021    14515     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 81     EPL   2021    14523     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 82     EPL   2021    14520     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 83     EPL   2021    14517     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 84     EPL   2021    14522     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 85     EPL   2021    14518     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 86     EPL   2021    14519     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 87     EPL   2021    14516     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 88     EPL   2021    14524     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 89     EPL   2021    14530     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 90     EPL   2021    14528     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 91     EPL   2021    14533     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 92     EPL   2021    14531     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 93     EPL   2021    14527     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 94     EPL   2021    14534     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 95     EPL   2021    14529     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 96     EPL   2021    14525     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 97     EPL   2021    14532     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 98     EPL   2021    14526     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 99     EPL   2021    14537     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 100    EPL   2021    14540     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 101    EPL   2021    14544     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 102    EPL   2021    14538     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 103    EPL   2021    14543     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 104    EPL   2021    14541     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 105    EPL   2021    14542     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 106    EPL   2021    14539     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 107    EPL   2021    14536     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 108    EPL   2021    14548     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 109    EPL   2021    14552     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 110    EPL   2021    14550     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 111    EPL   2021    14549     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 112    EPL   2021    14546     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 113    EPL   2021    14551     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 114    EPL   2021    14545     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 115    EPL   2021    14547     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 116    EPL   2021    14553     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 117    EPL   2021    14554     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 118    EPL   2021    14562     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 119    EPL   2021    14564     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 120    EPL   2021    14555     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 121    EPL   2021    14558     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 122    EPL   2021    14559     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 123    EPL   2021    14557     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 124    EPL   2021    14561     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 125    EPL   2021    14563     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 126    EPL   2021    14556     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 127    EPL   2021    14560     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 128    EPL   2021    14568     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 129    EPL   2021    14572     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 130    EPL   2021    14569     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 131    EPL   2021    14571     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 132    EPL   2021    14565     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 133    EPL   2021    14573     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 134    EPL   2021    14570     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 135    EPL   2021    14574     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 136    EPL   2021    14566     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 137    EPL   2021    14567     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 138    EPL   2021    14579     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 139    EPL   2021    14576     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 140    EPL   2021    14577     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 141    EPL   2021    14575     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 142    EPL   2021    14581     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 143    EPL   2021    14582     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 144    EPL   2021    14578     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 145    EPL   2021    14583     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 146    EPL   2021    14580     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 147    EPL   2021    14584     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 148    EPL   2021    14594     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 149    EPL   2021    14586     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 150    EPL   2021    14585     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 151    EPL   2021    14587     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 152    EPL   2021    14588     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 153    EPL   2021    14590     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 154    EPL   2021    14592     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 155    EPL   2021    14591     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 156    EPL   2021    14595     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 157    EPL   2021    14596     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 158    EPL   2021    14599     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 159    EPL   2021    14604     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 160    EPL   2021    14601     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 161    EPL   2021    14600     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 162    EPL   2021    14597     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 163    EPL   2021    14603     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 164    EPL   2021    14598     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 165    EPL   2021    14610     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 166    EPL   2021    14612     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 167    EPL   2021    14088     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 168    EPL   2021    14614     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 169    EPL   2021    14589     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 170    EPL   2021    14605     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 171    EPL   2021    14624     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 172    EPL   2021    14618     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 173    EPL   2021    14623     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 174    EPL   2021    14617     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 175    EPL   2021    14619     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 176    EPL   2021    14622     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 177    EPL   2021    14620     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 178    EPL   2021    14621     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 179    EPL   2021    14615     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 180    EPL   2021    14611     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 181    EPL   2021    14609     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 182    EPL   2021    14089     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 183    EPL   2021    14607     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 184    EPL   2021    14613     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 185    EPL   2021    14535     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 186    EPL   2021    14631     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 187    EPL   2021    14634     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 188    EPL   2021    14629     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 189    EPL   2021    14632     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 190    EPL   2021    14626     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 191    EPL   2021    14630     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 192    EPL   2021    14625     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 193    EPL   2021    14627     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 194    EPL   2021    14628     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 195    EPL   2021    14633     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 196    EPL   2021    14644     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 197    EPL   2021    14638     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 198    EPL   2021    14640     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 199    EPL   2021    14642     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 200    EPL   2021    14635     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 201    EPL   2021    14641     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 202    EPL   2021    14637     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 203    EPL   2021    14643     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 204    EPL   2021    14639     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 205    EPL   2021    14636     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 206    EPL   2021    14649     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 207    EPL   2021    14650     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 208    EPL   2021    14651     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 209    EPL   2021    14652     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 210    EPL   2021    14646     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 211    EPL   2021    14647     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 212    EPL   2021    14648     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 213    EPL   2021    14645     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 214    EPL   2021    14654     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 215    EPL   2021    14653     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 216    EPL   2021    14655     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 217    EPL   2021    14656     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 218    EPL   2021    14661     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 219    EPL   2021    14657     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 220    EPL   2021    14660     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 221    EPL   2021    14663     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 222    EPL   2021    14664     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 223    EPL   2021    14659     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 224    EPL   2021    14662     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 225    EPL   2021    14658     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 226    EPL   2021    14670     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 227    EPL   2021    14668     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 228    EPL   2021    14671     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 229    EPL   2021    14666     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 230    EPL   2021    14672     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 231    EPL   2021    14673     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 232    EPL   2021    14665     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 233    EPL   2021    14669     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 234    EPL   2021    14674     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 235    EPL   2021    14667     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 236    EPL   2021    14602     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 237    EPL   2021    14593     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 238    EPL   2021    14684     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 239    EPL   2021    14682     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 240    EPL   2021    14678     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 241    EPL   2021    14680     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 242    EPL   2021    14679     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 243    EPL   2021    14683     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 244    EPL   2021    14676     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 245    EPL   2021    14675     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 246    EPL   2021    14681     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 247    EPL   2021    14677     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 248    EPL   2021    14608     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 249    EPL   2021    14689     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 250    EPL   2021    14692     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 251    EPL   2021    14691     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 252    EPL   2021    14688     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 253    EPL   2021    14687     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 254    EPL   2021    14690     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 255    EPL   2021    14693     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 256    EPL   2021    14685     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 257    EPL   2021    14694     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 258    EPL   2021    14686     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 259    EPL   2021    14720     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 260    EPL   2021    14716     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 261    EPL   2021    14721     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 262    EPL   2021    14717     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 263    EPL   2021    14723     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 264    EPL   2021    14757     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 265    EPL   2021    14719     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 266    EPL   2021    14697     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 267    EPL   2021    14701     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 268    EPL   2021    14695     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 269    EPL   2021    14696     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 270    EPL   2021    14703     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 271    EPL   2021    14699     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 272    EPL   2021    14700     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 273    EPL   2021    14702     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 274    EPL   2021    14698     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 275    EPL   2021    14704     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 276    EPL   2021    14761     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 277    EPL   2021    14712     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 278    EPL   2021    14709     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 279    EPL   2021    14706     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 280    EPL   2021    14707     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 281    EPL   2021    14708     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 282    EPL   2021    14713     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 283    EPL   2021    14710     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 284    EPL   2021    14705     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 285    EPL   2021    14711     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 286    EPL   2021    14714     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 287    EPL   2021    14718     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 288    EPL   2021    14715     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 289    EPL   2021    14724     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 290    EPL   2021    14606     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 291    EPL   2021    14727     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 292    EPL   2021    14729     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 293    EPL   2021    14730     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 294    EPL   2021    14725     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 295    EPL   2021    14733     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 296    EPL   2021    14732     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 297    EPL   2021    14726     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 298    EPL   2021    14731     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 299    EPL   2021    14728     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 300    EPL   2021    14734     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 301    EPL   2021    14738     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 302    EPL   2021    14740     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 303    EPL   2021    14739     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 304    EPL   2021    14737     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 305    EPL   2021    14736     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 306    EPL   2021    14744     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 307    EPL   2021    14742     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 308    EPL   2021    14741     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 309    EPL   2021    14743     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 310    EPL   2021    14735     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 311    EPL   2021    14748     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 312    EPL   2021    14752     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 313    EPL   2021    14754     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 314    EPL   2021    14745     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 315    EPL   2021    14751     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 316    EPL   2021    14749     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 317    EPL   2021    14747     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 318    EPL   2021    14722     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 319    EPL   2021    14746     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 320    EPL   2021    14750     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 321    EPL   2021    14755     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 322    EPL   2021    14760     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 323    EPL   2021    14763     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 324    EPL   2021    14762     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 325    EPL   2021    14764     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 326    EPL   2021    14758     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 327    EPL   2021    14756     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 328    EPL   2021    14759     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 329    EPL   2021    14772     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 330    EPL   2021    14768     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 331    EPL   2021    14765     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 332    EPL   2021    14767     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 333    EPL   2021    14769     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 334    EPL   2021    14771     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 335    EPL   2021    14773     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 336    EPL   2021    14774     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 337    EPL   2021    14766     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 338    EPL   2021    14779     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 339    EPL   2021    14778     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 340    EPL   2021    14782     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 341    EPL   2021    14781     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 342    EPL   2021    14780     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 343    EPL   2021    14784     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 344    EPL   2021    14776     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 345    EPL   2021    14783     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 346    EPL   2021    14775     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 347    EPL   2021    14777     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 348    EPL   2021    14788     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 349    EPL   2021    14753     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 350    EPL   2021    14790     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 351    EPL   2021    14770     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 352    EPL   2021    14616     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 353    EPL   2021    14791     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 354    EPL   2021    14786     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 355    EPL   2021    14792     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 356    EPL   2021    14785     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 357    EPL   2021    14794     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 358    EPL   2021    14793     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 359    EPL   2021    14789     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 360    EPL   2021    14787     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 361    EPL   2021    14800     TRUE      89       Manchester United       MUN</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 362    EPL   2021    14802     TRUE      74             Southampton       SOU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 363    EPL   2021    14795     TRUE     220                Brighton       BRI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 364    EPL   2021    14797     TRUE      80                 Chelsea       CHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 365    EPL   2021    14799     TRUE      72                 Everton       EVE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 366    EPL   2021    14801     TRUE      86        Newcastle United       NEW</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 367    EPL   2021    14803     TRUE      82               Tottenham       TOT</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 368    EPL   2021    14798     TRUE      78          Crystal Palace       CRY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 369    EPL   2021    14796     TRUE      92                 Burnley       BUR</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 370    EPL   2021    14804     TRUE      76    West Bromwich Albion       WBA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 371    EPL   2021    14805     TRUE      83                 Arsenal       ARS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 372    EPL   2021    14806     TRUE      71             Aston Villa       AVL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 373    EPL   2021    14807     TRUE     228                  Fulham       FLH</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 374    EPL   2021    14808     TRUE     245                   Leeds       LED</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 375    EPL   2021    14809     TRUE      75               Leicester       LEI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 376    EPL   2021    14810     TRUE      87               Liverpool       LIV</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 377    EPL   2021    14811     TRUE      88         Manchester City       MCI</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 378    EPL   2021    14812     TRUE     238        Sheffield United       SHE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 379    EPL   2021    14813     TRUE      81                West Ham       WHU</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 380    EPL   2021    14814     TRUE     229 Wolverhampton Wanderers       WOL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     away_id               away_team away_abbr home_goals away_goals   home_xG</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        83                 Arsenal       ARS          0          3 0.1263270</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2        74             Southampton       SOU          1          0 1.3956900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3       245                   Leeds       LED          4          3 3.1541200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        86        Newcastle United       NEW          0          2 0.8614450</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        75               Leicester       LEI          0          3 0.3529970</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        72                 Everton       EVE          0          1 0.8229440</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7       229 Wolverhampton Wanderers       WOL          0          2 0.9493160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8        80                 Chelsea       CHE          1          3 1.4428100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9        76    West Bromwich Albion       WBA          5          2 4.1625400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10      228                  Fulham       FLH          4          3 1.4525400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11       78          Crystal Palace       CRY          1          3 1.0973700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12       81                West Ham       WHU          2          1 1.3290200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       82               Tottenham       TOT          2          5 2.2770800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14      220                Brighton       BRI          0          3 0.5206780</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15       87               Liverpool       LIV          0          2 0.9041830</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16       92                 Burnley       BUR          4          2 0.9873650</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17      238        Sheffield United       SHE          1          0 0.8052700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18       88         Manchester City       MCI          1          3 0.7276770</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19       89       Manchester United       MUN          2          3 2.9765900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20       72                 Everton       EVE          1          2 0.4431150</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21       80                 Chelsea       CHE          3          3 0.9111850</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22       74             Southampton       SOU          0          1 0.3471360</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23      245                   Leeds       LED          0          1 1.5327800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24       86        Newcastle United       NEW          1          1 3.1876500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25       75               Leicester       LEI          2          5 1.4463300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26      229 Wolverhampton Wanderers       WOL          4          0 3.0570300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27       71             Aston Villa       AVL          0          3 0.5346750</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28       83                 Arsenal       ARS          3          1 2.7383400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29       78          Crystal Palace       CRY          4          0 2.5143300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30      220                Brighton       BRI          4          2 2.3403400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31       88         Manchester City       MCI          1          1 2.5666200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32       92                 Burnley       BUR          3          1 1.9562900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33       81                West Ham       WHU          0          3 0.4560220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34       76    West Bromwich Albion       WBA          2          0 0.9490790</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35      238        Sheffield United       SHE          2          1 0.6671310</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36      228                  Fulham       FLH          1          0 0.8935900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37       82               Tottenham       TOT          1          6 0.8734350</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38       87               Liverpool       LIV          7          2 3.0762600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39       87               Liverpool       LIV          2          2 1.3599800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40       74             Southampton       SOU          3          3 1.9870800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41       83                 Arsenal       ARS          1          0 1.4302300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42       89       Manchester United       MUN          1          4 0.8674960</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43      228                  Fulham       FLH          1          1 1.6636300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44      220                Brighton       BRI          1          1 0.7611690</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45       81                West Ham       WHU          3          3 1.7760200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46       71             Aston Villa       AVL          0          1 0.6715950</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47       92                 Burnley       BUR          0          0 0.7316920</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48      229 Wolverhampton Wanderers       WOL          0          1 1.0833200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49      245                   Leeds       LED          0          3 1.5012500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50       88         Manchester City       MCI          1          1 0.2637390</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51       78          Crystal Palace       CRY          1          2 1.0525800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52       80                 Chelsea       CHE          0          0 0.6484270</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53      238        Sheffield United       SHE          2          1 2.4028600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54       72                 Everton       EVE          2          0 0.7415100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55       86        Newcastle United       NEW          1          1 0.7586260</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56       75               Leicester       LEI          0          1 0.7394400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57       76    West Bromwich Albion       WBA          1          1 0.5468070</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58       82               Tottenham       TOT          0          1 0.9504500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59       78          Crystal Palace       CRY          2          0 1.3489500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60       88         Manchester City       MCI          0          1 0.6875440</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61       80                 Chelsea       CHE          0          3 0.4073410</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62       81                West Ham       WHU          2          1 1.5630200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63       74             Southampton       SOU          3          4 2.4485500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64       72                 Everton       EVE          2          1 2.6311000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65       83                 Arsenal       ARS          0          1 0.3941130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66      220                Brighton       BRI          2          1 1.9723600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67       76    West Bromwich Albion       WBA          2          0 1.6224700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68       75               Leicester       LEI          1          4 1.7482200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69       92                 Burnley       BUR          0          0 1.5902200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 70       86        Newcastle United       NEW          2          0 0.9858280</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 71       89       Manchester United       MUN          1          3 0.3764640</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 72      245                   Leeds       LED          4          1 1.3016900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 73      238        Sheffield United       SHE          4          1 2.8762200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 74      228                  Fulham       FLH          1          0 1.4261400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 75       82               Tottenham       TOT          0          1 0.7993520</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 76      229 Wolverhampton Wanderers       WOL          1          0 2.0545000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 77       87               Liverpool       LIV          1          1 1.5848700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 78       71             Aston Villa       AVL          0          3 1.3903700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 79       80                 Chelsea       CHE          0          2 0.3682860</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 80      220                Brighton       BRI          1          2 1.7651400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 81       88         Manchester City       MCI          2          0 0.7611420</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 82       76    West Bromwich Albion       WBA          1          0 2.4299400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 83       72                 Everton       EVE          2          3 1.8702800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 84       81                West Ham       WHU          0          1 0.6923740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 85       83                 Arsenal       ARS          0          0 1.9617000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 86       75               Leicester       LEI          3          0 3.7724500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 87       78          Crystal Palace       CRY          1          0 1.7534300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 88       74             Southampton       SOU          1          1 1.5747900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 89       86        Newcastle United       NEW          0          2 0.5348930</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 90       87               Liverpool       LIV          1          1 2.3072200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 91       92                 Burnley       BUR          5          0 2.2612900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 92      245                   Leeds       LED          0          1 1.2922900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 93      238        Sheffield United       SHE          1          0 1.7164400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 94       89       Manchester United       MUN          2          3 0.4987830</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 95       82               Tottenham       TOT          0          0 0.9747550</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 96      229 Wolverhampton Wanderers       WOL          1          2 1.1185000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 97      228                  Fulham       FLH          1          2 1.2781400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 98       71             Aston Villa       AVL          2          1 0.5716330</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 99       72                 Everton       EVE          1          1 0.7304340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 100     228                  Fulham       FLH          2          0 3.2632800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 101      89       Manchester United       MUN          1          3 2.5300600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 102     245                   Leeds       LED          3          1 4.8947200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 103      78          Crystal Palace       CRY          1          5 0.5672340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 104      75               Leicester       LEI          1          2 0.2907430</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 105      83                 Arsenal       ARS          2          0 0.3906290</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 106     229 Wolverhampton Wanderers       WOL          4          0 1.5945400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 107      74             Southampton       SOU          1          2 2.0337600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 108      81                West Ham       WHU          1          2 1.5664400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 109      71             Aston Villa       AVL          0          1 1.1356000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 110      76    West Bromwich Albion       WBA          2          1 0.9041630</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 111      88         Manchester City       MCI          0          0 0.5916170</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 112      80                 Chelsea       CHE          1          0 1.2216000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 113     238        Sheffield United       SHE          3          0 2.2797300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 114      82               Tottenham       TOT          1          1 1.8444300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 115      87               Liverpool       LIV          1          1 1.7250900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 116     220                Brighton       BRI          3          0 1.6435100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 117      92                 Burnley       BUR          0          1 1.8536200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 118      80                 Chelsea       CHE          2          1 0.6837830</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 119      76    West Bromwich Albion       WBA          1          1 2.5859300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 120      74             Southampton       SOU          1          1 0.6611350</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 121      86        Newcastle United       NEW          5          2 2.9513700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 122      72                 Everton       EVE          0          2 0.8388300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 123     220                Brighton       BRI          0          0 1.0044800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 124      78          Crystal Palace       CRY          1          1 0.4494690</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 125      82               Tottenham       TOT          2          1 1.2178300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 126      92                 Burnley       BUR          0          0 1.8114200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 127      89       Manchester United       MUN          2          3 1.2352500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 128      87               Liverpool       LIV          0          7 0.4893180</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 129      88         Manchester City       MCI          0          1 0.5869720</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 130      83                 Arsenal       ARS          2          1 0.6617440</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 131     228                  Fulham       FLH          1          1 1.2672500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 132     238        Sheffield United       SHE          1          1 2.9009700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 133      75               Leicester       LEI          0          2 0.9459320</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 134     245                   Leeds       LED          6          2 4.7774300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 135      71             Aston Villa       AVL          0          3 0.0388442</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 136     229 Wolverhampton Wanderers       WOL          2          1 1.2046500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 137      81                West Ham       WHU          3          0 2.4115700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 138      89       Manchester United       MUN          2          2 1.0396000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 139      78          Crystal Palace       CRY          3          0 4.5821400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 140      74             Southampton       SOU          0          0 0.7818550</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 141      80                 Chelsea       CHE          3          1 1.9448500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 142      86        Newcastle United       NEW          2          0 3.1957500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 143      72                 Everton       EVE          0          1 1.2510600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 144      92                 Burnley       BUR          1          0 2.1327100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 145     220                Brighton       BRI          2          2 1.3887700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 146      76    West Bromwich Albion       WBA          1          1 1.4548500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 147      82               Tottenham       TOT          1          1 0.7425980</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 148      75               Leicester       LEI          1          1 0.3213480</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 149      71             Aston Villa       AVL          1          1 1.5370100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 150      83                 Arsenal       ARS          0          1 0.7993680</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 151     238        Sheffield United       SHE          1          0 0.9738310</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 152      81                West Ham       WHU          0          0 0.6709960</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 153     245                   Leeds       LED          0          5 0.4355100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 154     229 Wolverhampton Wanderers       WOL          1          0 1.4820700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 155      87               Liverpool       LIV          0          0 0.8179350</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 156      81                West Ham       WHU          0          1 0.3710450</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 157      71             Aston Villa       AVL          2          1 2.4647300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 158     245                   Leeds       LED          3          0 2.5286000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 159     238        Sheffield United       SHE          2          0 0.5988880</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 160     229 Wolverhampton Wanderers       WOL          3          3 2.4228000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 161      83                 Arsenal       ARS          0          4 0.8698740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 162      75               Leicester       LEI          1          2 0.2645840</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 163      88         Manchester City       MCI          1          3 0.6910130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 164      87               Liverpool       LIV          1          0 0.5004360</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 165      86        Newcastle United       NEW          1          0 2.0131500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 166      72                 Everton       EVE          1          2 0.8524950</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 167      89       Manchester United       MUN          0          1 0.6485820</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 168     220                Brighton       BRI          1          0 2.9085500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 169     228                  Fulham       FLH          1          1 3.1437200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 170      78          Crystal Palace       CRY          0          0 0.3685540</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 171      76    West Bromwich Albion       WBA          2          3 1.9435800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 172     220                Brighton       BRI          0          1 0.2451930</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 173      92                 Burnley       BUR          1          0 1.7339700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 174      80                 Chelsea       CHE          0          1 0.4612600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 175      74             Southampton       SOU          2          0 2.1201900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 176      82               Tottenham       TOT          1          3 0.9781330</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 177      89       Manchester United       MUN          0          0 1.2020500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 178      78          Crystal Palace       CRY          4          0 0.9610880</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 179      86        Newcastle United       NEW          3          0 2.3074400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 180      76    West Bromwich Albion       WBA          2          1 2.1751200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 181      80                 Chelsea       CHE          2          0 1.1449000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 182      71             Aston Villa       AVL          2          0 3.3438500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 183      89       Manchester United       MUN          1          2 0.7536690</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 184      92                 Burnley       BUR          0          1 1.6490700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 185      86        Newcastle United       NEW          2          0 2.6026000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 186     245                   Leeds       LED          1          2 1.1364000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 187      81                West Ham       WHU          2          3 0.6290330</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 188      88         Manchester City       MCI          0          5 0.5682580</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 189      83                 Arsenal       ARS          1          3 0.9950400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 190      71             Aston Villa       AVL          3          2 0.7176810</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 191     229 Wolverhampton Wanderers       WOL          0          0 0.6633240</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 192     228                  Fulham       FLH          0          0 2.2912900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 193      75               Leicester       LEI          1          1 0.4749810</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 194     238        Sheffield United       SHE          1          2 0.9931000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 195      87               Liverpool       LIV          1          3 0.1045860</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 196      86        Newcastle United       NEW          0          2 0.9660120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 197     229 Wolverhampton Wanderers       WOL          1          0 1.3687700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 198     228                  Fulham       FLH          2          2 0.9946640</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 199     238        Sheffield United       SHE          1          0 1.5311600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 200      89       Manchester United       MUN          0          0 0.7471660</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 201      71             Aston Villa       AVL          0          1 2.2255700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 202      92                 Burnley       BUR          2          0 1.4405000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 203     245                   Leeds       LED          1          3 1.7343200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 204      87               Liverpool       LIV          1          3 0.8830610</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 205      82               Tottenham       TOT          1          0 1.7738600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 206      76    West Bromwich Albion       WBA          2          1 1.3580400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 207      83                 Arsenal       ARS          2          1 1.5616200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 208      74             Southampton       SOU          9          0 5.0325000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 209      78          Crystal Palace       CRY          1          2 1.9075500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 210      88         Manchester City       MCI          0          2 0.0489155</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 211      75               Leicester       LEI          0          2 0.7312880</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 212      72                 Everton       EVE          1          2 1.1430300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 213      81                West Ham       WHU          1          3 0.7411540</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 214     220                Brighton       BRI          0          1 1.0951800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 215      80                 Chelsea       CHE          0          1 0.5694460</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 216      83                 Arsenal       ARS          1          0 1.1979200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 217     220                Brighton       BRI          1          1 1.8893400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 218      74             Southampton       SOU          3          2 0.9105530</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 219      81                West Ham       WHU          0          0 1.6088400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 220      72                 Everton       EVE          3          3 1.7176900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 221      76    West Bromwich Albion       WBA          2          0 1.9299700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 222      75               Leicester       LEI          0          0 1.3550600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 223      88         Manchester City       MCI          1          4 1.1772800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 224      80                 Chelsea       CHE          1          2 0.6230450</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 225      78          Crystal Palace       CRY          2          0 2.6476900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 226      87               Liverpool       LIV          3          1 2.0738300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 227      92                 Burnley       BUR          0          3 0.6456160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 228      82               Tottenham       TOT          3          0 2.4621900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 229      71             Aston Villa       AVL          0          0 2.3323200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 230     229 Wolverhampton Wanderers       WOL          1          2 0.8536000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 231      89       Manchester United       MUN          1          1 0.9459640</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 232     245                   Leeds       LED          4          2 2.5061400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 233     228                  Fulham       FLH          0          2 0.3140750</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 234     238        Sheffield United       SHE          3          0 2.3273500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 235      86        Newcastle United       NEW          2          0 2.5428000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 236     228                  Fulham       FLH          1          1 1.2064200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 237      88         Manchester City       MCI          1          3 1.0466400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 238     245                   Leeds       LED          1          0 0.5920490</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 239      80                 Chelsea       CHE          1          1 0.4966030</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 240      76    West Bromwich Albion       WBA          0          0 0.5351530</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 241      72                 Everton       EVE          0          2 1.5404600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 242     238        Sheffield United       SHE          1          0 1.2100600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 243      82               Tottenham       TOT          2          1 1.0924600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 244      75               Leicester       LEI          1          2 1.7084000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 245      88         Manchester City       MCI          0          1 0.3311880</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 246      86        Newcastle United       NEW          3          1 1.7256000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 247      78          Crystal Palace       CRY          1          2 2.5920400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 248      74             Southampton       SOU          3          0 1.8475300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 249      81                West Ham       WHU          2          1 0.7605740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 250     220                Brighton       BRI          1          0 0.6870910</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 251      71             Aston Villa       AVL          0          1 1.0010600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 252     229 Wolverhampton Wanderers       WOL          1          1 1.9519000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 253     228                  Fulham       FLH          0          0 0.0880148</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 254      83                 Arsenal       ARS          1          3 0.5335750</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 255      92                 Burnley       BUR          4          0 2.3578800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 256      89       Manchester United       MUN          0          0 1.1729400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 257      87               Liverpool       LIV          0          2 0.7771490</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 258      74             Southampton       SOU          1          0 1.4205400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 259     229 Wolverhampton Wanderers       WOL          4          1 3.2619600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 260      75               Leicester       LEI          1          1 1.2679300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 261      71             Aston Villa       AVL          1          0 0.7162540</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 262      89       Manchester United       MUN          0          0 0.7423970</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 263      72                 Everton       EVE          0          1 1.0203800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 264      82               Tottenham       TOT          0          1 1.1715000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 265      80                 Chelsea       CHE          0          1 0.2470340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 266      83                 Arsenal       ARS          1          1 1.1037400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 267      74             Southampton       SOU          0          2 0.9081550</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 268     229 Wolverhampton Wanderers       WOL          0          0 0.9563920</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 269      75               Leicester       LEI          1          2 0.7547100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 270      86        Newcastle United       NEW          0          0 1.4650300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 271     228                  Fulham       FLH          0          1 0.7017640</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 272      89       Manchester United       MUN          0          2 1.2756100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 273      78          Crystal Palace       CRY          4          1 2.2415900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 274      72                 Everton       EVE          2          0 2.5722400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 275     245                   Leeds       LED          2          0 2.3755600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 276      74             Southampton       SOU          5          2 3.1050300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 277      71             Aston Villa       AVL          1          1 0.8731710</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 278      80                 Chelsea       CHE          0          0 0.3829570</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 279      76    West Bromwich Albion       WBA          1          0 1.3069400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 280      92                 Burnley       BUR          1          2 1.6984900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 281      88         Manchester City       MCI          0          3 0.4494990</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 282     220                Brighton       BRI          1          2 1.0349500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 283     238        Sheffield United       SHE          5          0 4.5457100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 284      82               Tottenham       TOT          2          1 1.5652900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 285      81                West Ham       WHU          1          0 1.7012800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 286      87               Liverpool       LIV          0          1 1.2917500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 287     245                   Leeds       LED          1          2 1.4749800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 288      86        Newcastle United       NEW          3          0 0.9519210</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 289      83                 Arsenal       ARS          3          3 2.5062900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 290      82               Tottenham       TOT          0          2 0.4396810</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 291      76    West Bromwich Albion       WBA          2          5 2.5591700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 292     238        Sheffield United       SHE          2          1 2.5059700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 293      88         Manchester City       MCI          0          2 0.2847810</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 294      87               Liverpool       LIV          0          3 0.1611610</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 295      92                 Burnley       BUR          3          2 2.4027200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 296      82               Tottenham       TOT          2          2 3.3009800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 297     228                  Fulham       FLH          3          1 1.5222900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 298     220                Brighton       BRI          2          1 1.7347400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 299      78          Crystal Palace       CRY          1          1 2.5338600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 300      81                West Ham       WHU          2          3 1.9564900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 301     229 Wolverhampton Wanderers       WOL          0          1 0.7331540</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 302     245                   Leeds       LED          1          2 1.9882500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 303      71             Aston Villa       AVL          2          1 2.1459200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 304      80                 Chelsea       CHE          1          4 0.6021670</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 305      86        Newcastle United       NEW          1          2 1.8426200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 306      75               Leicester       LEI          3          2 1.0240800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 307      89       Manchester United       MUN          1          3 0.9218010</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 308      83                 Arsenal       ARS          0          3 0.3151210</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 309      74             Southampton       SOU          3          0 2.7708900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 310      72                 Everton       EVE          0          0 1.1646500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 311      82               Tottenham       TOT          2          2 2.2602200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 312      81                West Ham       WHU          3          2 2.4314000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 313     238        Sheffield United       SHE          1          0 1.2260400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 314     228                  Fulham       FLH          1          1 2.8557300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 315      92                 Burnley       BUR          3          1 2.8745500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 316      87               Liverpool       LIV          1          1 2.5971900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 317     220                Brighton       BRI          0          0 0.8073480</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 318      74             Southampton       SOU          2          1 1.2882400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 319      88         Manchester City       MCI          1          2 0.8017330</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 320      76    West Bromwich Albion       WBA          3          0 2.6712000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 321      72                 Everton       EVE          0          1 0.7357670</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 322      86        Newcastle United       NEW          1          1 2.8470800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 323      80                 Chelsea       CHE          0          1 0.2671230</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 324     220                Brighton       BRI          1          0 0.7863240</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 325      92                 Burnley       BUR          0          4 0.3516730</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 326      89       Manchester United       MUN          0          0 0.2168340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 327      76    West Bromwich Albion       WBA          2          2 2.6539400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 328      78          Crystal Palace       CRY          2          1 1.2341900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 329      75               Leicester       LEI          1          1 0.9540570</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 330      88         Manchester City       MCI          0          2 0.3618660</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 331     245                   Leeds       LED          2          0 2.5254200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 332     228                  Fulham       FLH          2          0 1.8433000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 333      71             Aston Villa       AVL          1          2 1.2230000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 334      83                 Arsenal       ARS          0          2 0.1729880</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 335     238        Sheffield United       SHE          4          0 2.2601600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 336     229 Wolverhampton Wanderers       WOL          1          1 1.0713300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 337      81                West Ham       WHU          1          2 1.6831200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 338      86        Newcastle United       NEW          2          4 2.3150000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 339      82               Tottenham       TOT          3          1 2.5521600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 340      78          Crystal Palace       CRY          0          2 0.6393250</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 341      80                 Chelsea       CHE          1          2 1.7916800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 342      74             Southampton       SOU          2          0 2.2636700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 343     220                Brighton       BRI          2          1 1.1199000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 344      89       Manchester United       MUN          1          3 0.5654720</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 345      72                 Everton       EVE          0          1 1.0970400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 346      76    West Bromwich Albion       WBA          3          1 1.0704200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 347      92                 Burnley       BUR          0          2 0.7780740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 348      75               Leicester       LEI          1          2 0.2128740</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 349      78          Crystal Palace       CRY          3          1 1.5887200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 350      83                 Arsenal       ARS          0          1 1.5678600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 351      87               Liverpool       LIV          2          4 1.7132800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 352      72                 Everton       EVE          0          0 0.5589760</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 353      88         Manchester City       MCI          3          4 2.1831200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 354     245                   Leeds       LED          0          4 1.4133800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 355     228                  Fulham       FLH          3          1 2.2914600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 356      81                West Ham       WHU          1          1 0.9225870</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 357      71             Aston Villa       AVL          3          2 1.9528500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 358     229 Wolverhampton Wanderers       WOL          2          0 3.1394700</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 359      87               Liverpool       LIV          1          2 1.1420200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 360     238        Sheffield United       SHE          0          1 1.2460900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 361     228                  Fulham       FLH          1          1 0.9224300</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 362     245                   Leeds       LED          0          2 1.3084000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 363      88         Manchester City       MCI          3          2 1.2282400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 364      75               Leicester       LEI          2          1 2.8614900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 365     229 Wolverhampton Wanderers       WOL          1          0 0.6709970</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 366     238        Sheffield United       SHE          1          0 1.8250800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 367      71             Aston Villa       AVL          1          2 0.8927900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 368      83                 Arsenal       ARS          1          3 0.9983770</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 369      87               Liverpool       LIV          0          3 0.8370480</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 370      81                West Ham       WHU          1          3 1.1074100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 371     220                Brighton       BRI          2          0 0.7729040</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 372      80                 Chelsea       CHE          2          1 0.9804130</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 373      86        Newcastle United       NEW          0          2 0.9890200</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 374      76    West Bromwich Albion       WBA          3          1 2.4900900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 375      82               Tottenham       TOT          2          4 1.8255400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 376      78          Crystal Palace       CRY          2          0 2.2034800</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 377      72                 Everton       EVE          5          0 2.8835500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 378      92                 Burnley       BUR          1          0 0.4200060</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 379      74             Southampton       SOU          3          0 1.9834400</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 380      89       Manchester United       MUN          1          2 0.7012560</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       away_xG            datetime forecast_win forecast_draw forecast_loss</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1   2.1628700 2020-09-12 11:30:00       0.0037        0.0476        0.9487</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2   1.2626700 2020-09-12 14:00:00       0.3916        0.3022        0.3062</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3   0.2698130 2020-09-12 16:30:00       0.9658        0.0296        0.0046</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4   1.6591100 2020-09-12 19:00:00       0.1506        0.2480        0.6014</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5   2.9558100 2020-09-13 13:00:00       0.0070        0.0358        0.9572</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6   1.2679300 2020-09-13 15:30:00       0.2200        0.2977        0.4823</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7   1.6130700 2020-09-14 17:00:00       0.1683        0.2906        0.5411</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8   1.2706200 2020-09-14 19:15:00       0.3871        0.3153        0.2976</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9   0.3153470 2020-09-19 11:30:00       0.9973        0.0022        0.0005</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10  1.5550300 2020-09-19 14:00:00       0.3157        0.3137        0.3706</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11  1.9145600 2020-09-19 16:30:00       0.1695        0.2378        0.5927</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12  2.0637700 2020-09-19 19:00:00       0.1916        0.2407        0.5677</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13  2.2800400 2020-09-20 11:00:00       0.3533        0.2765        0.3702</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14  1.8766000 2020-09-20 13:00:00       0.0459        0.1757        0.7784</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15  2.2521100 2020-09-20 15:30:00       0.0572        0.1950        0.7478</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16  1.5240400 2020-09-20 18:00:00       0.2291        0.2639        0.5070</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17  0.8497090 2020-09-21 17:00:00       0.2616        0.3753        0.3631</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18  2.0765100 2020-09-21 19:15:00       0.0838        0.1706        0.7456</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19  1.5758300 2020-09-26 11:30:00       0.7204        0.1779        0.1017</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20  2.2718900 2020-09-26 14:00:00       0.0286        0.1089        0.8625</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21  2.3604600 2020-09-26 16:30:00       0.0777        0.1726        0.7497</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22  0.7066320 2020-09-26 19:00:00       0.1508        0.4188        0.4304</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23  1.4664100 2020-09-27 11:00:00       0.3921        0.2709        0.3370</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24  0.9427260 2020-09-27 13:00:00       0.8860        0.0894        0.0246</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25  2.8672100 2020-09-27 15:30:00       0.0894        0.1492        0.7614</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26  0.3851520 2020-09-27 18:00:00       0.9395        0.0484        0.0121</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27  2.0322200 2020-09-28 17:00:00       0.0665        0.1687        0.7648</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28  1.1781700 2020-09-28 19:15:00       0.7546        0.1695        0.0759</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29  0.1032490 2020-10-03 11:30:00       0.9641        0.0340        0.0019</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30  1.1656800 2020-10-03 14:00:00       0.6864        0.2051        0.1085</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31  1.4153300 2020-10-03 16:30:00       0.6582        0.1825        0.1593</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32  0.4388490 2020-10-03 19:00:00       0.8267        0.1338        0.0395</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33  2.0322700 2020-10-04 11:00:00       0.0488        0.1630        0.7882</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34  0.1612830 2020-10-04 11:00:00       0.5842        0.3636        0.0522</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35  0.1449940 2020-10-04 13:00:00       0.4810        0.4495        0.0695</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36  0.9693930 2020-10-04 13:00:00       0.2918        0.3533        0.3549</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37  3.3017000 2020-10-04 15:30:00       0.0166        0.0804        0.9030</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38  1.6570500 2020-10-04 18:15:00       0.6988        0.1605        0.1407</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39  2.4949200 2020-10-17 11:30:00       0.1599        0.1957        0.6444</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40  1.4234800 2020-10-17 14:00:00       0.5201        0.2782        0.2017</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41  0.8383220 2020-10-17 16:30:00       0.5302        0.2829        0.1869</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42  2.2172900 2020-10-17 19:00:00       0.0765        0.1952        0.7283</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43  1.3561100 2020-10-18 11:00:00       0.4387        0.3183        0.2430</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44  1.0935000 2020-10-18 13:00:00       0.2443        0.3704        0.3853</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45  1.4999200 2020-10-18 15:30:00       0.4284        0.2958        0.2758</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46  0.8737760 2020-10-18 18:15:00       0.2525        0.3567        0.3908</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47  1.0853200 2020-10-19 16:30:00       0.2211        0.3288        0.4501</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48  0.6181910 2020-10-19 19:00:00       0.4733        0.3334        0.1933</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49  2.3769500 2020-10-23 19:00:00       0.2041        0.2113        0.5846</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50  0.8924560 2020-10-24 11:30:00       0.0966        0.3869        0.5165</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51  2.8104900 2020-10-24 14:00:00       0.0666        0.1314        0.8020</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52  0.2199060 2020-10-24 16:30:00       0.4197        0.4747        0.1056</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53  1.3978800 2020-10-24 19:00:00       0.6498        0.2161        0.1341</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54  0.2870540 2020-10-25 14:00:00       0.4409        0.4299        0.1292</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55  0.2536850 2020-10-25 16:30:00       0.4507        0.4333        0.1160</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 56  0.7361720 2020-10-25 19:15:00       0.2978        0.3790        0.3232</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 57  0.2956540 2020-10-26 17:30:00       0.3660        0.4803        0.1537</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 58  0.7973440 2020-10-26 20:00:00       0.3729        0.3409        0.2862</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 59  0.8027670 2020-10-30 20:00:00       0.5090        0.2930        0.1980</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 60  1.8964300 2020-10-31 12:30:00       0.0699        0.2127        0.7174</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 61  1.2307700 2020-10-31 15:00:00       0.1035        0.2914        0.6051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 62  0.2690480 2020-10-31 17:30:00       0.7962        0.1710        0.0328</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 63  1.0033300 2020-11-01 12:00:00       0.7378        0.1720        0.0902</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 64  1.2180500 2020-11-01 14:00:00       0.7653        0.1563        0.0784</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 65  0.9980720 2020-11-01 16:30:00       0.1004        0.3182        0.5814</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 66  0.3244570 2020-11-01 19:15:00       0.8592        0.1151        0.0257</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 67  0.4826850 2020-11-02 17:30:00       0.7108        0.2057        0.0835</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 68  3.0765700 2020-11-02 20:00:00       0.1116        0.1818        0.7066</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 69  0.3269330 2020-11-06 17:30:00       0.7227        0.2148        0.0625</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 70  0.1756330 2020-11-06 20:00:00       0.5809        0.3577        0.0614</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 71  1.5964200 2020-11-07 12:30:00       0.0690        0.2068        0.7242</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 72  0.8479130 2020-11-07 15:00:00       0.4854        0.2920        0.2226</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 73  0.7439670 2020-11-07 17:30:00       0.8726        0.0989        0.0285</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 74  1.8492200 2020-11-07 20:00:00       0.2509        0.2638        0.4853</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 75  1.8706300 2020-11-08 12:00:00       0.1207        0.2169        0.6624</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 76  0.5793600 2020-11-08 14:00:00       0.8134        0.1440        0.0426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 77  1.1878900 2020-11-08 16:30:00       0.4692        0.3291        0.2017</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 78  1.9855300 2020-11-08 19:15:00       0.2332        0.2465        0.5203</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 79  1.8192300 2020-11-21 12:30:00       0.0513        0.1759        0.7728</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 80  1.5003800 2020-11-21 15:00:00       0.4473        0.2738        0.2789</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 81  1.6632500 2020-11-21 17:30:00       0.1445        0.2444        0.6111</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 82  0.4386460 2020-11-21 20:00:00       0.8842        0.0918        0.0240</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 83  2.2508000 2020-11-22 12:00:00       0.2729        0.2637        0.4634</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 84  2.1142000 2020-11-22 14:00:00       0.0757        0.1728        0.7515</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 85  0.7107780 2020-11-22 16:30:00       0.6937        0.2006        0.1057</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 86  1.9839700 2020-11-22 19:15:00       0.7591        0.1383        0.1026</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 87  1.2833100 2020-11-23 17:30:00       0.4942        0.2612        0.2446</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 88  1.0785000 2020-11-23 20:00:00       0.4908        0.2832        0.2260</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 89  1.2792900 2020-11-27 20:00:00       0.1382        0.2907        0.5711</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 90  0.2810900 2020-11-28 12:30:00       0.9205        0.0683        0.0112</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 91  0.4198770 2020-11-28 15:00:00       0.8292        0.1283        0.0425</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 92  3.1132400 2020-11-28 17:30:00       0.0770        0.1377        0.7853</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 93  3.3654400 2020-11-28 20:00:00       0.1120        0.1416        0.7464</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 94  2.4754700 2020-11-29 14:00:00       0.0381        0.1118        0.8501</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 95  0.2268900 2020-11-29 16:30:00       0.5514        0.3637        0.0849</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 96  2.0069000 2020-11-29 19:15:00       0.1526        0.2366        0.6108</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 97  2.0371900 2020-11-30 17:30:00       0.1823        0.2401        0.5776</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 98  2.3905100 2020-11-30 20:00:00       0.0322        0.1121        0.8557</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 99  2.2813900 2020-12-05 12:30:00       0.0537        0.1440        0.8023</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 100 0.2874440 2020-12-05 15:00:00       0.9658        0.0301        0.0041</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 101 1.7870800 2020-12-05 17:30:00       0.5546        0.2197        0.2257</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 102 1.0277000 2020-12-05 20:00:00       0.9757        0.0189        0.0054</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 103 1.6865600 2020-12-06 12:00:00       0.1028        0.2216        0.6756</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 104 1.3904000 2020-12-06 14:15:00       0.0609        0.2424        0.6967</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 105 0.5952160 2020-12-06 16:30:00       0.1973        0.4601        0.3426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 106 0.3577530 2020-12-06 19:15:00       0.7432        0.1988        0.0580</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 107 1.3480100 2020-12-07 20:00:00       0.5465        0.2771        0.1764</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 108 1.7851000 2020-12-11 20:00:00       0.3202        0.2674        0.4124</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 109 1.2687200 2020-12-12 12:30:00       0.2880        0.3207        0.3913</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 110 0.5731900 2020-12-12 15:00:00       0.4254        0.3604        0.2142</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 111 1.2843400 2020-12-12 17:30:00       0.1496        0.2848        0.5656</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 112 1.0062700 2020-12-12 20:00:00       0.4004        0.3507        0.2489</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 113 0.2191150 2020-12-13 12:00:00       0.8969        0.0890        0.0141</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 114 1.4079200 2020-12-13 14:15:00       0.4846        0.2605        0.2549</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 115 1.8244500 2020-12-13 16:30:00       0.3366        0.2847        0.3787</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 116 0.7916730 2020-12-13 19:15:00       0.6082        0.2453        0.1465</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 117 0.8153750 2020-12-13 19:15:00       0.6447        0.2211        0.1342</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 118 1.5677200 2020-12-15 18:00:00       0.1287        0.2507        0.6206</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 119 0.2102430 2020-12-15 20:00:00       0.9138        0.0742        0.0120</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 120 1.1129600 2020-12-16 18:00:00       0.1907        0.3312        0.4781</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 121 1.4443700 2020-12-16 18:00:00       0.7302        0.1724        0.0974</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 122 1.5148600 2020-12-16 18:00:00       0.1305        0.2971        0.5724</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 123 0.4624560 2020-12-16 20:00:00       0.5269        0.3370        0.1361</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 124 1.0910800 2020-12-16 20:00:00       0.1279        0.3153        0.5568</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 125 1.5161000 2020-12-16 20:00:00       0.2781        0.2611        0.4608</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 126 0.3167370 2020-12-17 18:00:00       0.7678        0.1799        0.0523</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 127 1.7866700 2020-12-17 20:00:00       0.2175        0.2633        0.5192</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 128 2.8690200 2020-12-19 12:30:00       0.0192        0.0740        0.9068</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 129 1.1559900 2020-12-19 15:00:00       0.1610        0.3106        0.5284</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 130 1.2520600 2020-12-19 17:30:00       0.1508        0.2951        0.5541</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 131 1.1064500 2020-12-19 20:00:00       0.4058        0.3137        0.2805</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 132 1.0371300 2020-12-20 12:00:00       0.8142        0.1309        0.0549</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 133 1.7477200 2020-12-20 14:15:00       0.1388        0.2862        0.5750</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 134 1.6346700 2020-12-20 16:30:00       0.9111        0.0538        0.0351</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 135 2.6196400 2020-12-20 19:15:00       0.0007        0.0230        0.9763</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 136 1.4572200 2020-12-21 17:30:00       0.2779        0.2962        0.4259</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 137 0.2777370 2020-12-21 20:00:00       0.9248        0.0652        0.0100</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 138 2.0842300 2020-12-26 12:30:00       0.1358        0.2170        0.6472</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 139 0.8490860 2020-12-26 15:00:00       0.9765        0.0188        0.0047</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 140 0.1197090 2020-12-26 15:00:00       0.5283        0.4211        0.0506</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 141 2.2541400 2020-12-26 17:30:00       0.2853        0.2648        0.4499</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 142 0.2009530 2020-12-26 20:00:00       0.9721        0.0238        0.0041</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 143 0.5688030 2020-12-26 20:00:00       0.5874        0.2991        0.1135</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 144 1.5459100 2020-12-27 12:00:00       0.5321        0.2575        0.2104</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 145 1.5055100 2020-12-27 14:15:00       0.3232        0.2901        0.3867</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 146 0.7398450 2020-12-27 16:30:00       0.5437        0.2912        0.1651</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 147 0.4081090 2020-12-27 19:15:00       0.4091        0.4096        0.1813</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 148 1.7213200 2020-12-28 15:00:00       0.0389        0.1668        0.7943</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 149 0.7308590 2020-12-28 17:30:00       0.6007        0.2712        0.1281</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 150 1.3139400 2020-12-29 18:00:00       0.1948        0.2845        0.5207</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 151 0.4925780 2020-12-29 18:00:00       0.5046        0.3332        0.1622</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 152 1.0724600 2020-12-29 18:00:00       0.1937        0.3418        0.4645</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 153 1.5422500 2020-12-29 18:00:00       0.0736        0.2468        0.6796</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 154 0.4110460 2020-12-29 20:00:00       0.7471        0.1978        0.0551</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 155 1.3204700 2020-12-30 20:00:00       0.2097        0.2881        0.5022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 156 1.1971300 2021-01-01 17:30:00       0.0929        0.2811        0.6260</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 157 1.5643400 2021-01-01 20:00:00       0.5885        0.2225        0.1890</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 158 1.1562600 2021-01-02 12:30:00       0.7069        0.1737        0.1194</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 159 0.3231580 2021-01-02 15:00:00       0.3625        0.4722        0.1653</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 160 1.8185600 2021-01-02 17:30:00       0.5295        0.2673        0.2032</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 161 4.0342900 2021-01-02 20:00:00       0.0061        0.0330        0.9609</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 162 0.7020810 2021-01-03 14:15:00       0.1200        0.4330        0.4470</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 163 3.1806300 2021-01-03 16:30:00       0.0236        0.0772        0.8992</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 164 1.3720400 2021-01-04 20:00:00       0.1159        0.2744        0.6097</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 165 1.0474500 2021-01-12 18:00:00       0.6246        0.2342        0.1412</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 166 0.3234450 2021-01-12 20:15:00       0.4722        0.3951        0.1327</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 167 1.2399600 2021-01-12 22:15:00       0.1875        0.3023        0.5102</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 168 0.1770840 2021-01-13 18:00:00       0.9559        0.0392        0.0049</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 169 1.0532900 2021-01-13 20:00:00       0.8342        0.1077        0.0581</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 170 0.7096340 2021-01-14 20:00:00       0.1608        0.4365        0.4027</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 171 2.4633200 2021-01-16 12:30:00       0.2440        0.2365        0.5195</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 172 1.1442400 2021-01-16 15:00:00       0.0547        0.2547        0.6906</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 173 0.3956680 2021-01-16 15:00:00       0.7582        0.1885        0.0533</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 174 1.3793900 2021-01-16 17:30:00       0.1163        0.2684        0.6153</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 175 0.3781470 2021-01-16 20:00:00       0.8242        0.1382        0.0376</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 176 1.2838500 2021-01-17 14:00:00       0.2638        0.2989        0.4373</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 177 1.1892900 2021-01-17 16:30:00       0.3456        0.3080        0.3464</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 178 0.0515836 2021-01-17 19:15:00       0.6417        0.3394        0.0189</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 179 0.1687960 2021-01-18 20:00:00       0.9022        0.0861        0.0117</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 180 0.4640910 2021-01-19 18:00:00       0.8430        0.1265        0.0305</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 181 0.6157270 2021-01-19 20:15:00       0.5140        0.3091        0.1769</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 182 0.6017680 2021-01-20 20:00:00       0.9330        0.0513        0.0157</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 183 1.6840100 2021-01-20 20:15:00       0.1286        0.2406        0.6308</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 184 1.0805900 2021-01-21 20:00:00       0.4994        0.2767        0.2239</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 185 0.4003640 2021-01-23 20:00:00       0.9080        0.0743        0.0177</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 186 0.7859140 2021-01-26 18:00:00       0.4368        0.3274        0.2358</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 187 3.3032100 2021-01-26 18:00:00       0.0139        0.0546        0.9315</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 188 2.2483800 2021-01-26 20:15:00       0.0239        0.1323        0.8438</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 189 2.4339000 2021-01-26 20:15:00       0.0733        0.1715        0.7552</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 190 2.7071800 2021-01-27 18:00:00       0.0368        0.1120        0.8512</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 191 0.6319200 2021-01-27 18:00:00       0.2961        0.3950        0.3089</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 192 0.5132260 2021-01-27 19:30:00       0.8321        0.1258        0.0421</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 193 0.7920450 2021-01-27 20:15:00       0.2061        0.3883        0.4056</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 194 0.6895480 2021-01-27 20:15:00       0.4096        0.3432        0.2472</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 195 2.5879800 2021-01-28 20:00:00       0.0010        0.0234        0.9756</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 196 2.0883200 2021-01-30 12:30:00       0.1367        0.2001        0.6632</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 197 0.4509070 2021-01-30 15:00:00       0.6637        0.2520        0.0843</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 198 1.5204400 2021-01-30 15:00:00       0.2182        0.2867        0.4951</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 199 0.1545370 2021-01-30 15:00:00       0.8331        0.1503        0.0166</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 200 1.5133200 2021-01-30 17:30:00       0.1496        0.2491        0.6013</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 201 0.7955080 2021-01-30 20:00:00       0.7450        0.1783        0.0767</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 202 0.3907140 2021-01-31 12:00:00       0.6509        0.2679        0.0812</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 203 1.8141000 2021-01-31 14:00:00       0.3472        0.2628        0.3900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 204 2.0580900 2021-01-31 16:30:00       0.0975        0.2051        0.6974</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 205 0.3725240 2021-01-31 19:15:00       0.7747        0.1711        0.0542</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 206 1.6187100 2021-02-02 18:00:00       0.2481        0.3174        0.4345</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 207 0.7162650 2021-02-02 18:00:00       0.6219        0.2553        0.1228</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 208 0.5078930 2021-02-02 20:15:00       0.9916        0.0075        0.0009</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 209 0.8093120 2021-02-02 20:15:00       0.6511        0.2222        0.1267</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 210 2.1215300 2021-02-03 18:00:00       0.0020        0.0706        0.9274</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 211 1.7129900 2021-02-03 18:00:00       0.0773        0.2402        0.6825</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 212 1.9153900 2021-02-03 19:30:00       0.1702        0.2423        0.5875</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 213 1.7906400 2021-02-03 20:15:00       0.1371        0.2225        0.6404</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 214 1.1897700 2021-02-03 20:15:00       0.3094        0.3128        0.3778</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 215 2.3930000 2021-02-04 20:00:00       0.0393        0.1251        0.8356</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 216 0.6796490 2021-02-06 12:30:00       0.4986        0.3021        0.1993</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 217 0.6126820 2021-02-06 15:00:00       0.7280        0.1852        0.0868</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 218 1.4344500 2021-02-06 15:00:00       0.2193        0.2865        0.4942</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 219 0.9435390 2021-02-06 17:30:00       0.5319        0.2729        0.1952</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 220 1.5571000 2021-02-06 20:00:00       0.4001        0.2778        0.3221</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 221 0.6986860 2021-02-07 12:00:00       0.7001        0.2046        0.0953</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 222 0.6322320 2021-02-07 14:00:00       0.5741        0.2754        0.1505</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 223 3.5519600 2021-02-07 16:30:00       0.0077        0.0419        0.9504</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 224 1.6414400 2021-02-07 19:15:00       0.0869        0.2349        0.6782</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 225 0.3702780 2021-02-08 20:00:00       0.9029        0.0772        0.0199</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 226 1.6832500 2021-02-13 12:30:00       0.4663        0.2664        0.2673</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 227 1.9550200 2021-02-13 15:00:00       0.0914        0.1803        0.7283</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 228 0.4235000 2021-02-13 17:30:00       0.8805        0.0952        0.0243</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 229 0.1440360 2021-02-13 20:00:00       0.9125        0.0777        0.0098</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 230 1.0936100 2021-02-14 12:00:00       0.2361        0.3448        0.4191</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 231 0.4238850 2021-02-14 14:00:00       0.5013        0.3551        0.1436</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 232 0.7707400 2021-02-14 16:30:00       0.8375        0.1230        0.0395</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 233 2.5508500 2021-02-14 19:00:00       0.0068        0.0481        0.9451</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 234 0.9266520 2021-02-15 18:00:00       0.7379        0.1827        0.0794</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 235 0.4326030 2021-02-15 20:00:00       0.8826        0.0951        0.0223</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 236 0.5944710 2021-02-17 18:00:00       0.5452        0.2995        0.1553</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 237 1.2321800 2021-02-17 20:15:00       0.2781        0.3846        0.3373</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 238 2.4793000 2021-02-19 20:00:00       0.0445        0.1246        0.8309</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 239 1.4484900 2021-02-20 12:30:00       0.0713        0.2519        0.6768</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 240 1.7192200 2021-02-20 15:00:00       0.0492        0.1886        0.7622</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 241 2.0146800 2021-02-20 17:30:00       0.2479        0.2577        0.4944</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 242 0.9777470 2021-02-20 20:00:00       0.4010        0.3167        0.2823</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 243 0.7707060 2021-02-21 12:00:00       0.4855        0.3432        0.1713</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 244 1.2385200 2021-02-21 14:00:00       0.4989        0.2797        0.2214</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 245 2.0886800 2021-02-21 16:30:00       0.0335        0.1341        0.8324</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 246 0.3417780 2021-02-21 19:00:00       0.7921        0.1648        0.0431</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 247 0.1798860 2021-02-22 20:00:00       0.9263        0.0656        0.0081</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 248 1.4798100 2021-02-23 20:00:00       0.4520        0.2588        0.2892</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 249 1.9289200 2021-02-27 12:30:00       0.0637        0.1992        0.7371</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 250 3.1211100 2021-02-27 15:00:00       0.0135        0.0646        0.9219</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 251 0.8762550 2021-02-27 17:30:00       0.3618        0.3531        0.2851</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 252 1.2782700 2021-02-27 20:00:00       0.5390        0.2409        0.2201</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 253 0.8131340 2021-02-28 12:00:00       0.0365        0.4295        0.5340</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 254 2.1065000 2021-02-28 12:00:00       0.0266        0.1097        0.8637</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 255 0.6032120 2021-02-28 14:00:00       0.8138        0.1319        0.0543</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 256 0.3595400 2021-02-28 16:30:00       0.6210        0.2899        0.0891</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 257 2.8055100 2021-02-28 19:15:00       0.0461        0.1081        0.8458</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 258 0.6657430 2021-03-01 20:00:00       0.5895        0.2921        0.1184</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 259 0.3188240 2021-03-02 20:00:00       0.9559        0.0369        0.0072</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 260 1.2410900 2021-03-03 18:00:00       0.3650        0.2970        0.3380</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 261 1.4417600 2021-03-03 18:00:00       0.1570        0.2830        0.5600</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 262 0.5840160 2021-03-03 20:15:00       0.3773        0.3779        0.2448</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 263 1.4078900 2021-03-04 18:00:00       0.2458        0.2813        0.4729</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 264 1.5519000 2021-03-04 18:00:00       0.2445        0.2814        0.4741</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 265 1.2263500 2021-03-04 20:15:00       0.0629        0.2710        0.6661</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 266 2.5369200 2021-03-06 12:30:00       0.1026        0.1738        0.7236</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 267 2.3738600 2021-03-06 15:00:00       0.0726        0.1717        0.7557</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 268 2.1508700 2021-03-06 17:30:00       0.0783        0.1901        0.7316</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 269 1.0380100 2021-03-06 20:00:00       0.2386        0.3338        0.4276</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 270 0.4545770 2021-03-07 12:00:00       0.6665        0.2392        0.0943</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 271 1.3704700 2021-03-07 14:00:00       0.1574        0.2768        0.5658</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 272 2.1141100 2021-03-07 16:30:00       0.1821        0.2071        0.6108</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 273 0.5593830 2021-03-07 19:15:00       0.8314        0.1326        0.0360</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 274 0.2707570 2021-03-08 18:00:00       0.9309        0.0583        0.0108</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 275 1.3497100 2021-03-08 20:00:00       0.6568        0.2033        0.1399</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 276 1.6056100 2021-03-10 18:00:00       0.7399        0.1695        0.0906</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 277 0.7486650 2021-03-12 20:00:00       0.3578        0.3501        0.2921</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 278 0.9710540 2021-03-13 12:30:00       0.1358        0.3647        0.4995</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 279 0.5134390 2021-03-13 15:00:00       0.6416        0.2594        0.0990</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 280 0.7485200 2021-03-13 17:30:00       0.6458        0.2217        0.1325</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 281 2.7257800 2021-03-13 20:00:00       0.0073        0.0514        0.9413</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 282 0.8959670 2021-03-14 12:00:00       0.3796        0.3355        0.2849</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 283 0.0934777 2021-03-14 14:00:00       0.9969        0.0028        0.0003</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 284 0.7055660 2021-03-14 16:30:00       0.6294        0.2781        0.0925</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 285 0.4637370 2021-03-14 19:15:00       0.7121        0.2097        0.0782</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 286 1.0552000 2021-03-15 20:00:00       0.4272        0.2998        0.2730</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 287 1.4070600 2021-03-19 20:00:00       0.3806        0.2745        0.3449</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 288 0.1009450 2021-03-20 20:00:00       0.6071        0.3553        0.0376</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 289 1.3521700 2021-03-21 15:00:00       0.6805        0.1962        0.1233</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 290 1.7201100 2021-03-21 19:30:00       0.0436        0.1674        0.7890</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 291 1.3831500 2021-04-03 11:30:00       0.6651        0.1824        0.1525</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 292 0.8676520 2021-04-03 14:00:00       0.7805        0.1599        0.0596</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 293 1.9843800 2021-04-03 16:30:00       0.0283        0.1346        0.8371</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 294 2.4373200 2021-04-03 19:00:00       0.0079        0.0691        0.9230</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 295 1.5028500 2021-04-04 11:00:00       0.6005        0.2275        0.1720</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 296 2.4368300 2021-04-04 13:05:00       0.5970        0.2250        0.1780</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 297 1.5217200 2021-04-04 15:30:00       0.3485        0.2992        0.3523</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 298 1.4107100 2021-04-04 18:30:00       0.4341        0.3034        0.2625</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 299 0.6037490 2021-04-05 17:00:00       0.8213        0.1246        0.0541</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 300 1.5969400 2021-04-05 19:15:00       0.4676        0.2413        0.2911</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 301 0.4281340 2021-04-09 19:00:00       0.4003        0.4043        0.1954</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 302 0.1752500 2021-04-10 11:30:00       0.8420        0.1385        0.0195</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 303 0.7606210 2021-04-10 14:00:00       0.7214        0.1886        0.0900</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 304 3.8547200 2021-04-10 16:30:00       0.0040        0.0373        0.9587</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 305 1.3427900 2021-04-11 11:00:00       0.4886        0.2590        0.2524</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 306 1.1718800 2021-04-11 13:05:00       0.3020        0.3279        0.3701</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 307 2.0973700 2021-04-11 15:30:00       0.0924        0.1919        0.7157</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 308 1.9383800 2021-04-11 18:00:00       0.0320        0.1343        0.8337</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 309 1.5002000 2021-04-12 17:00:00       0.6857        0.1872        0.1271</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 310 0.3062870 2021-04-12 19:15:00       0.5916        0.3146        0.0938</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 311 1.4815000 2021-04-16 19:00:00       0.5766        0.2344        0.1890</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 312 2.0674100 2021-04-17 11:30:00       0.4656        0.2547        0.2797</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 313 0.2959250 2021-04-17 19:15:00       0.6820        0.2514        0.0666</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 314 0.8391280 2021-04-18 12:30:00       0.8755        0.1066        0.0179</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 315 0.9598040 2021-04-18 15:00:00       0.8479        0.1129        0.0392</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 316 1.6004300 2021-04-19 19:00:00       0.6186        0.1930        0.1884</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 317 0.4595680 2021-04-20 19:00:00       0.4424        0.3754        0.1822</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 318 1.0613400 2021-04-21 19:00:00       0.3738        0.3948        0.2314</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 319 1.5634000 2021-04-21 19:15:00       0.1609        0.2592        0.5799</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 320 0.2771260 2021-04-22 19:00:00       0.9217        0.0646        0.0137</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 321 0.5296760 2021-04-23 19:00:00       0.3705        0.4035        0.2260</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 322 0.8606940 2021-04-24 11:30:00       0.8163        0.1263        0.0574</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 323 2.5205900 2021-04-24 16:30:00       0.0114        0.0683        0.9203</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 324 2.0603800 2021-04-24 19:00:00       0.0692        0.1939        0.7369</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 325 2.2404900 2021-04-25 11:00:00       0.0220        0.0914        0.8866</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 326 1.1163500 2021-04-25 13:00:00       0.0668        0.3229        0.6103</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 327 1.5676400 2021-04-25 18:00:00       0.6499        0.2090        0.1411</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 328 0.7231120 2021-04-26 19:00:00       0.4787        0.3373        0.1840</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 329 2.5151800 2021-04-30 19:00:00       0.0622        0.1703        0.7675</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 330 2.0444300 2021-05-01 11:30:00       0.0363        0.1388        0.8249</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 331 0.5108740 2021-05-01 14:00:00       0.8643        0.1069        0.0288</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 332 0.2900420 2021-05-01 16:30:00       0.8231        0.1413        0.0356</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 333 1.5881100 2021-05-01 19:00:00       0.2579        0.2757        0.4664</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 334 1.7875100 2021-05-02 13:00:00       0.0241        0.1411        0.8348</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 335 0.4690260 2021-05-02 18:15:00       0.8305        0.1270        0.0425</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 336 0.8441380 2021-05-03 17:00:00       0.4226        0.3202        0.2572</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 337 2.4247700 2021-05-03 19:15:00       0.2109        0.2441        0.5450</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 338 2.8726100 2021-05-07 19:00:00       0.2655        0.2085        0.5260</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 339 1.0338400 2021-05-08 11:30:00       0.7578        0.1565        0.0857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 340 2.2538200 2021-05-08 14:00:00       0.0700        0.1595        0.7705</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 341 0.6197240 2021-05-08 16:30:00       0.7182        0.2005        0.0813</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 342 1.2289000 2021-05-08 19:15:00       0.6337        0.2173        0.1490</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 343 0.2757100 2021-05-09 11:00:00       0.6073        0.3084        0.0843</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 344 1.8879300 2021-05-09 13:05:00       0.0706        0.1774        0.7520</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 345 1.5622200 2021-05-09 15:30:00       0.2139        0.3101        0.4760</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 346 1.8307600 2021-05-09 18:00:00       0.1771        0.2420        0.5809</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 347 1.6583100 2021-05-10 19:00:00       0.1531        0.2403        0.6066</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 348 0.9915220 2021-05-11 17:00:00       0.0739        0.3307        0.5954</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 349 1.3258600 2021-05-11 21:00:00       0.4176        0.3071        0.2753</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 350 0.6920430 2021-05-12 19:15:00       0.5977        0.2762        0.1261</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 351 2.9380000 2021-05-13 19:15:00       0.1547        0.1730        0.6723</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 352 0.9754080 2021-05-13 21:00:00       0.2001        0.3438        0.4561</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 353 1.4770000 2021-05-14 19:00:00       0.5786        0.2559        0.1655</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 354 1.8565400 2021-05-15 11:30:00       0.2605        0.2571        0.4824</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 355 0.8759570 2021-05-15 14:00:00       0.7254        0.1717        0.1029</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 356 1.9237800 2021-05-15 19:00:00       0.1388        0.2215        0.6397</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 357 1.2303000 2021-05-16 11:00:00       0.5805        0.2413        0.1782</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 358 1.0920600 2021-05-16 13:05:00       0.8344        0.1112        0.0544</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 359 2.0785400 2021-05-16 15:30:00       0.1776        0.2271        0.5953</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 360 1.3910000 2021-05-16 18:00:00       0.2805        0.3451        0.3744</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 361 0.8726430 2021-05-18 17:00:00       0.3388        0.3338        0.3274</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 362 1.5813200 2021-05-18 17:00:00       0.2758        0.2938        0.4304</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 363 1.0713900 2021-05-18 18:00:00       0.3705        0.3206        0.3089</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 364 0.8325960 2021-05-18 19:15:00       0.8552        0.1094        0.0354</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 365 0.2655260 2021-05-19 17:00:00       0.4117        0.4584        0.1299</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 366 0.8822420 2021-05-19 17:00:00       0.6308        0.2284        0.1408</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 367 1.6366900 2021-05-19 17:00:00       0.1764        0.2600        0.5636</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 368 1.7945000 2021-05-19 18:00:00       0.1501        0.2421        0.6078</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 369 2.7331600 2021-05-19 19:15:00       0.0603        0.1284        0.8113</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 370 3.5699100 2021-05-19 19:15:00       0.0175        0.0659        0.9166</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 371 0.1939680 2021-05-23 15:00:00       0.4749        0.4374        0.0877</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 372 3.4341400 2021-05-23 15:00:00       0.0296        0.0819        0.8885</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 373 1.6015700 2021-05-23 15:00:00       0.1770        0.2746        0.5484</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 374 1.0220900 2021-05-23 15:00:00       0.7524        0.1582        0.0894</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 375 1.8522900 2021-05-23 15:00:00       0.3328        0.3403        0.3269</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 376 0.7723170 2021-05-23 15:00:00       0.7516        0.1730        0.0754</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 377 1.0725800 2021-05-23 15:00:00       0.7906        0.1483        0.0611</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 378 0.5585080 2021-05-23 15:00:00       0.2153        0.4670        0.3177</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 379 1.3517900 2021-05-23 15:00:00       0.5303        0.2337        0.2360</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 380 2.0522900 2021-05-23 15:00:00       0.0767        0.1725        0.7508</span>
+<span class='r-in'><span class='co'># }</span></span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
