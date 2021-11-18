@@ -56,7 +56,7 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
     period <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".section_heading_text") %>% rvest::html_text() %>%
       unique() %>% stringr::str_squish()
 
-    print(glue::glue("Scraping full scouting report for {player_name} for period: {period}"))
+    # .pkg_message("Scraping full scouting report for {player_name} for period: {period}")
 
     outer <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".filter.switcher") %>% rvest::html_nodes("div")
 

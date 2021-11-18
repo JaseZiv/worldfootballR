@@ -20,7 +20,7 @@
 #' }
 fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 
-  print("Getting league URLs")
+  # .pkg_message("Getting league URLs")
 
   main_url <- "https://fbref.com"
 
@@ -62,7 +62,7 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 #' }
 fb_teams_urls <- function(league_url) {
 
-  print("Scraping team URLs")
+  # .pkg_message("Scraping team URLs")
 
   league_season_page <- xml2::read_html(league_url)
 
@@ -96,7 +96,7 @@ fb_teams_urls <- function(league_url) {
 #' }
 fb_player_urls <- function(team_url) {
 
-  print("Scraping Player URLs")
+  # .pkg_message("Scraping Player URLs")
 
   main_url <- "https://fbref.com"
 
@@ -231,7 +231,7 @@ understat_team_meta <- function(team_names) {
 #' @importFrom stringr str_replace_all
 #' @importFrom rvest read_html html_nodes html_attr html_text
 .understat_team_meta <- function(team_name) {
-  print(glue::glue("Scraping {team_name} metadata. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping {team_name} metadata. Please acknowledge understat.com as the data source")
 
   main_url <- "https://understat.com"
 

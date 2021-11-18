@@ -7,13 +7,13 @@
 tm_player_bio(player_urls)
 }
 \arguments{
-\item{player_urls}{player url(s) from transfermarket}
+\item{player_urls}{player url(s) from transfermarkt}
 }
 \value{
 returns a dataframe of player bios
 }
 \description{
-Returns data frame of player bois from transfermarkt.com
+Returns data frame of player bios from transfermarkt.com
 }
 \examples{
 \dontrun{

@@ -16,7 +16,7 @@ returns a dataframe of shooting locations for a selected team season
 Returns shooting locations for all matches played by a selected team from Understat.com
 }
 \examples{
-\dontrun{
+\donttest{
 understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
 }
 }

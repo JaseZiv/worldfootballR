@@ -34,7 +34,7 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
 
   if(!stat_type %in% stat_types) stop("check stat type")
 
-  print(glue::glue("Scraping {team_or_player} season '{stat_type}' stats"))
+  # .pkg_message("Scraping {team_or_player} season '{stat_type}' stats")
 
   main_url <- "https://fbref.com"
 

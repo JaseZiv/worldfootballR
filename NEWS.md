@@ -1,3 +1,12 @@
+# worldfootballR 0.4.4
+
+### Improvements
+
+* CRAN Submission Feedback:
+  * Wrap Data sources in single quotes in DESCRIPTION file (title and/or description)
+  * Fixed `Warning: Unexecutable code in man/fb_player_scouting_report.Rd: pos_versus = "primary")`
+  * Wrote `.pkg_message()` to allow users to easily suppress messages outputted to the console by setting `options(mypackage.verbose = FALSE)`
+
 # worldfootballR 0.4.3
 
 ### Improvements

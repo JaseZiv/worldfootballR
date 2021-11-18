@@ -22,7 +22,7 @@ understat_team_players_stats <- function(team_url) {
 }
 
 .understat_team_players_stats <- function(team_url) {
-  print(glue::glue("Scraping player stats for team {team_url}. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping player stats for team {team_url}. Please acknowledge understat.com as the data source")
 
   players_data <- .get_clean_understat_json(team_url, "playersData")
 

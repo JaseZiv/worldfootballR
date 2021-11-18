@@ -22,7 +22,7 @@
 #' }
 tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA) {
 
-  print("Scraping matchday table. Please acknowledge transfermarkt.com as the data source")
+  # .pkg_message("Scraping matchday table. Please acknowledge transfermarkt.com as the data source")
 
   main_url <- "https://www.transfermarkt.com"
 
@@ -62,7 +62,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
   for(each_matchday in matchday) {
 
-    print(glue::glue("Extracting league table for matchday {each_matchday}..."))
+    # .pkg_message("Extracting league table for matchday {each_matchday}...")
 
     if(is.na(league_url)) {
       matchday_url <- paste0(season_url, "&spieltag=", each_matchday)

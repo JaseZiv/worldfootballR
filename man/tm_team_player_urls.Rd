@@ -16,7 +16,7 @@ returns a character vector of all transfermarkt player URLs for a selected team
 Returns the transfermarkt URLs for all players for a given team
 }
 \examples{
-\dontrun{
+\donttest{
 team_url <- "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"
 tm_team_player_urls(team_url = team_url)
 }

@@ -7,7 +7,7 @@
 player_transfer_history(player_urls)
 }
 \arguments{
-\item{player_urls}{the player url(s) from transfermarket}
+\item{player_urls}{the player url(s) from transfermarkt}
 }
 \value{
 returns a dataframe of player transfers
@@ -16,7 +16,7 @@ returns a dataframe of player transfers
 Returns data frame of player(s) transfer history from transfermarkt.com
 }
 \examples{
-\dontrun{
-player_transfer_history(player_urls)
+\donttest{
+player_transfer_history("https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
 }
 }

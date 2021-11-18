@@ -10,7 +10,7 @@ get_match_summary(match_url)
 \item{match_url}{the fbref.com URL for the required match}
 }
 \value{
-returns a dataframe with the match events (goals, cards, subs) for selecetd matches
+returns a dataframe with the match events (goals, cards, subs) for selected matches
 }
 \description{
 Returns match summary data for selected match URLs, including goals, subs and cards

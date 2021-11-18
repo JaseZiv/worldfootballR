@@ -19,7 +19,7 @@
 #'
 
 get_match_shooting <- function(match_url) {
-  print("Scraping detailed shot and shot creation data...")
+  # .pkg_message("Scraping detailed shot and shot creation data...")
 
   get_each_match_shooting_data <- function(match_url) {
 

@@ -30,7 +30,7 @@
 #' }
 get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type) {
 
-  print(glue::glue("Scraping season {stat_type} stats"))
+  # .pkg_message("Scraping season {stat_type} stats")
 
   main_url <- "https://fbref.com"
 

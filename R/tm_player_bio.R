@@ -21,7 +21,7 @@
 #' }
 tm_player_bio <- function(player_urls) {
 
-  print("Scraping player bios. Please acknowledge transfermarkt.com as the data source")
+  # .pkg_message("Scraping player bios. Please acknowledge transfermarkt.com as the data source")
 
   each_bio <- function(player_url) {
     pb$tick()

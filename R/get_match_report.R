@@ -21,8 +21,6 @@
   if(!is.na(each_game_page)) {
     game <- each_game_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
-    # print(glue::glue("Scraping {game}"))
-
     # tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
     tryCatch( {League_URL <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_attr("href") %>% paste0("https://fbref.com", .)}, error = function(e) {League <- NA})
     tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[3]}, error = function(e) {Match_Date <- NA})

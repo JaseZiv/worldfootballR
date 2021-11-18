@@ -16,7 +16,7 @@ returns a character vector of all fbref player URLs for a selected team
 Returns the URLs for all players for a given team
 }
 \examples{
-\dontrun{
+\donttest{
 fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
 }
 }

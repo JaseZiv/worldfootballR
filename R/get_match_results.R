@@ -29,7 +29,7 @@
 
 get_match_results <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
   main_url <- "https://fbref.com"
-  print("Scraping match results")
+  # .pkg_message("Scraping match results")
 
   country_abbr <- country
   gender_M_F <- gender
@@ -126,7 +126,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
     dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time) %>% dplyr::distinct(.keep_all = T)
 
 
-  print("Match results finished scraping")
+  # .pkg_message("Match results finished scraping")
 
   return(all_results)
 }
