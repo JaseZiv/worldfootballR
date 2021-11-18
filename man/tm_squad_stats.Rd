@@ -16,7 +16,7 @@ returns a dataframe of all player stats for team(s)
 Returns basic stats for players of a team season
 }
 \examples{
-\dontrun{
+\donttest{
 
 bayern <- tm_squad_stats(
 team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"

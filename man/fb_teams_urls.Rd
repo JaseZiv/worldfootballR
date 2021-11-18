@@ -16,7 +16,7 @@ returns a character vector of all fbref team URLs for a selected league
 Returns the URLs for all teams for a given league
 }
 \examples{
-\dontrun{
+\donttest{
 fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
 }
 }

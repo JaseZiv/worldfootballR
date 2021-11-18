@@ -21,7 +21,7 @@
 
 get_player_market_values <- function(country_name, start_year, league_url = NA) {
 
-  print("Extracting player market values...")
+  # .pkg_message("Extracting player market values...")
 
   main_url <- "https://www.transfermarkt.com"
 

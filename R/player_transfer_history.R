@@ -13,10 +13,10 @@
 #'
 #' @examples
 #' \donttest{
-#' player_transfer_history(player_urls)
+#' player_transfer_history("https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
 #' }
 player_transfer_history <- function(player_urls) {
-  print("Extracting player transfer history data. Please acknowledge transfermarkt.com as the data source.")
+  # .pkg_message("Extracting player transfer history data. Please acknowledge transfermarkt.com as the data source.")
 
   single_player_transfer_history <- function(player_url) {
     pb$tick()

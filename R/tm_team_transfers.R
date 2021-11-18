@@ -28,7 +28,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
 
   if(!tolower(transfer_window) %in% c("all", "summer", "winter")) stop("check transfer window is either 'all', 'summer' or 'winter'")
 
-  print("Scraping team transfer arrivals and departures. Please acknowledge transfermarkt.com as the data source")
+  # .pkg_message("Scraping team transfer arrivals and departures. Please acknowledge transfermarkt.com as the data source")
 
   each_team_xfer <- function(each_team_url) {
     pb$tick()

@@ -20,7 +20,7 @@
 #' understat_league_season_shots(league = "EPL", season_start_year = 2020)
 #' }
 understat_league_season_shots <- function(league, season_start_year) {
-  print(glue::glue("Scraping shots data for {league} {season_start_year} season. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping shots data for {league} {season_start_year} season. Please acknowledge understat.com as the data source")
   main_url <- "https://understat.com/"
 
   leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")
@@ -66,7 +66,7 @@ understat_league_season_shots <- function(league, season_start_year) {
 #' understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
 #' }
 understat_team_season_shots <- function(team_url) {
-  print(glue::glue("Scraping all shots for team {team_url}. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping all shots for team {team_url}. Please acknowledge understat.com as the data source")
 
   shots_df <- .understat_shooting(type_url = team_url)
 
@@ -98,7 +98,7 @@ understat_team_season_shots <- function(team_url) {
 #' understat_match_shots(match_url = "https://understat.com/match/14789")
 #' }
 understat_match_shots <- function(match_url) {
-  print(glue::glue("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source")
 
   match_shots_df <- .get_clean_understat_json(page_url = match_url, script_name = "shotsData")
 
@@ -127,7 +127,7 @@ understat_match_shots <- function(match_url) {
 #' sterling <- understat_player_shots(player_url = "https://understat.com/player/618")
 #' }
 understat_player_shots <- function(player_url) {
-  print(glue::glue("Scraping all shots for player {player_url}. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping all shots for player {player_url}. Please acknowledge understat.com as the data source")
 
   shots_df <- understat_match_shots(match_url = player_url)
   return(shots_df)

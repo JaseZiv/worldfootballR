@@ -20,7 +20,7 @@ returns a character vector of all transfermarkt team URLs for a selected league
 Returns the URLs for all teams for a given league season
 }
 \examples{
-\dontrun{
+\donttest{
 team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
 }
 }

@@ -7,7 +7,7 @@
 understat_league_match_results(league, season_start_year)
 }
 \arguments{
-\item{league}{the avaliable leagues in Understat as outlined below}
+\item{league}{the available leagues in Understat as outlined below}
 
 \item{season_start_year}{the year the season started
 
@@ -22,7 +22,7 @@ returns a dataframe of match results for a selected league season
 Returns match results for all matches played in the selected league season from Understat.com
 }
 \examples{
-\dontrun{
+\donttest{
 understat_league_match_results(league = "EPL", season_start_year = 2020)
 }
 }

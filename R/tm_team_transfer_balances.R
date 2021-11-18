@@ -23,7 +23,7 @@
 
 tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 
-  print("Scraping team transfer balances for the season. Please acknowledge transfermarkt.com as the data source.")
+  # .pkg_message("Scraping team transfer balances for the season. Please acknowledge transfermarkt.com as the data source.")
 
   main_url <- "https://www.transfermarkt.com"
 

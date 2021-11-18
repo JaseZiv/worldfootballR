@@ -18,7 +18,7 @@ returns a dataframe of all team transfers
 Returns all transfer arrivals and departures for a given team season
 }
 \examples{
-\dontrun{
+\donttest{
 
 bayern <- tm_team_transfers(
 team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020",

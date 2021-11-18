@@ -31,7 +31,7 @@ returns a dataframe of a selected team statistic type for a selected league seas
 Returns different team season statistics results for a given league season and stat type
 }
 \examples{
-\dontrun{
+\donttest{
 get_season_team_stats("ITA", "M", 2021, "1st", "defense")
 get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 }

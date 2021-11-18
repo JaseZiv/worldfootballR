@@ -2,7 +2,7 @@
 #'
 #' Returns match results for all matches played in the selected league season from Understat.com
 #'
-#' @param league the avaliable leagues in Understat as outlined below
+#' @param league the available leagues in Understat as outlined below
 #' @param season_start_year the year the season started
 #'
 #' The leagues currently available for Understat are:
@@ -21,7 +21,7 @@
 #' understat_league_match_results(league = "EPL", season_start_year = 2020)
 #' }
 understat_league_match_results <- function(league, season_start_year) {
-  print(glue::glue("Scraping match results data for {league} {season_start_year} season. Please acknowledge understat.com as the data source"))
+  # .pkg_message("Scraping match results data for {league} {season_start_year} season. Please acknowledge understat.com as the data source")
   main_url <- "https://understat.com/"
 
   leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")

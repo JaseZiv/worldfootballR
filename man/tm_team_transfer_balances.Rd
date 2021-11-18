@@ -20,7 +20,7 @@ returns a dataframe of the summarised financial transfer performance of all team
 Returns all team's transfer aggregated performances for a chosen league season
 }
 \examples{
-\dontrun{
+\donttest{
 tm_team_transfer_balances(country_name="England", start_year="2020")
 odd_league <- "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"
 tm_team_transfer_balances(start_year="2020", league_url=odd_league)

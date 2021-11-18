@@ -23,7 +23,7 @@
 #' }
 tm_squad_stats <- function(team_url) {
 
-  print("Scraping squad player stats. Please acknowledge transfermarkt.com as the data source")
+  # .pkg_message("Scraping squad player stats. Please acknowledge transfermarkt.com as the data source")
 
   each_squad_stats <- function(each_team_url) {
     pb$tick()

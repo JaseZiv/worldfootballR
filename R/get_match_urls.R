@@ -25,7 +25,7 @@
 get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
   main_url <- "https://fbref.com"
 
-  print("Scraping match URLs")
+  # .pkg_message("Scraping match URLs")
 
   country_abbr <- country
   gender_M_F <- gender
@@ -77,7 +77,7 @@ get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_d
   }
 
 
-  print("Match URLs scrape completed")
+  # .pkg_message("Match URLs scrape completed")
 
   return(all_seasons_match_urls)
 

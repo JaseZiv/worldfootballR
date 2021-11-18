@@ -24,7 +24,7 @@
 #' }
 
 get_team_match_results <- function(team_url) {
-  print("Scraping team match logs...")
+  # .pkg_message("Scraping team match logs...")
 
   get_each_team_log <- function(team_url) {
     pb$tick()

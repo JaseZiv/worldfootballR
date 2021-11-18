@@ -17,7 +17,7 @@
 #' get_match_lineups(match_url = match)
 #' }
 get_match_lineups <- function(match_url) {
-  print("Scraping lineups")
+  # .pkg_message("Scraping lineups")
 
   get_each_match_lineup <- function(match_url) {
     pb$tick()
