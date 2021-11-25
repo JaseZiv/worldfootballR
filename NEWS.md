@@ -1,3 +1,10 @@
+# worldfootballR 0.4.5
+
+### Improvements
+
+* CRAN Submission Feedback:
+  * Remove errant comment in examples for `fb_player_scouting_report()`
+
 # worldfootballR 0.4.4
 
 ### Improvements
