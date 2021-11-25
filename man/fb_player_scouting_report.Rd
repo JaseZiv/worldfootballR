@@ -23,14 +23,14 @@ fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Li
 pos_versus = "primary")
 
 # to filter for the last 365 days:
-#' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 pos_versus = "primary") \%>\% dplyr::filter(scouting_period == "Last 365 Days")
 
 # to get secondary positions
 fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 pos_versus = "secondary")
 
-for the 2020-2021 La Liga season
+# for the 2020-2021 La Liga season
 fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 pos_versus = "secondary") \%>\% dplyr::filter(scouting_period == "2020-2021 La Liga")
 }
