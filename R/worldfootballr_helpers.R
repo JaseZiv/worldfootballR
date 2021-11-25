@@ -126,11 +126,6 @@ fb_player_urls <- function(team_url) {
 #' @importFrom utils read.csv
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-#' }
 tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 
@@ -188,12 +183,6 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
 #' @importFrom rlang .data
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' team_url <- "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"
-#' tm_team_player_urls(team_url = team_url)
-#' }
 tm_team_player_urls <- function(team_url) {
 
   main_url <- "https://www.transfermarkt.com"

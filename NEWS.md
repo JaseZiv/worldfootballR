@@ -6,6 +6,9 @@
   * Wrap Data sources in single quotes in DESCRIPTION file (title and/or description)
   * Fixed `Warning: Unexecutable code in man/fb_player_scouting_report.Rd: pos_versus = "primary")`
   * Wrote `.pkg_message()` to allow users to easily suppress messages outputted to the console by setting `options(mypackage.verbose = FALSE)`
+  * Removed unnecessary examples
+  
+* Results of using `understat_` functions now return the correct full season details (ie for `season_start_year = 2019`, the resulting `season` column in the df will be '2019/2020')
 
 # worldfootballR 0.4.3
 

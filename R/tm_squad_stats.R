@@ -10,17 +10,6 @@
 #' @importFrom rlang .data
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#'
-#' bayern <- tm_squad_stats(
-#' team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"
-#' )
-#' # can even do it for a number of teams:
-#' team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-#' epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
-#' }
 tm_squad_stats <- function(team_url) {
 
   # .pkg_message("Scraping squad player stats. Please acknowledge transfermarkt.com as the data source")

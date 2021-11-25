@@ -15,8 +15,3 @@ returns a dataframe of player transfers
 \description{
 Returns data frame of player(s) transfer history from transfermarkt.com
 }
-\examples{
-\donttest{
-player_transfer_history("https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
-}
-}

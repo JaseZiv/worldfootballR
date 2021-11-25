@@ -21,8 +21,3 @@ returns a dataframe of shooting locations for a selected league season
 \description{
 Returns shooting locations for all matches played in the selected league season from Understat.com
 }
-\examples{
-\donttest{
-understat_league_season_shots(league = "EPL", season_start_year = 2020)
-}
-}

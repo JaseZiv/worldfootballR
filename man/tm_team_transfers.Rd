@@ -17,15 +17,3 @@ returns a dataframe of all team transfers
 \description{
 Returns all transfer arrivals and departures for a given team season
 }
-\examples{
-\donttest{
-
-bayern <- tm_team_transfers(
-team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020",
-transfer_window = "all"
-)
-# can even do it for a number of teams:
-team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all")
-}
-}

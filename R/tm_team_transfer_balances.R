@@ -13,13 +13,6 @@
 #' @importFrom utils read.csv
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' tm_team_transfer_balances(country_name="England", start_year="2020")
-#' odd_league <- "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"
-#' tm_team_transfer_balances(start_year="2020", league_url=odd_league)
-#' }
 
 tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 

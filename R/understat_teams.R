@@ -8,11 +8,6 @@
 #' @return a dataframe of player stats for a selected team season
 #'
 #' @export
-#' @examples \dontrun{
-#' understat_team_players_stats(team_url =
-#'                              c("https://understat.com/team/Liverpool/2020",
-#'                                "https://understat.com/team/Manchester_City/2020"))
-#' }
 understat_team_players_stats <- function(team_url) {
   f_possibly <- purrr::possibly(.understat_team_players_stats, otherwise = data.frame(), quiet = FALSE)
   purrr::map_dfr(
@@ -51,13 +46,6 @@ understat_team_players_stats <- function(team_url) {
 #' @importFrom magrittr %>%
 #'
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' team_urls <- c("https://understat.com/team/Liverpool/2020",
-#'               "https://understat.com/team/Manchester_City/2020")
-#' understat_team_stats_breakdown(urls = team_urls)
-#' }
 understat_team_stats_breakdown <- function(team_urls) {
   f_possibly <- purrr::possibly(.understat_team_stats_breakdown, otherwise = data.frame())
   purrr::map_dfr(team_urls, f_possibly)

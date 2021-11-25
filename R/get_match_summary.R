@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")
+#' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 #' get_match_summary(match_url = match)
 #' }
 #'

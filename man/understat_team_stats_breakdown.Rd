@@ -20,10 +20,3 @@ different ways. Breakdown groups include:
 \emph{"Situation"}, \emph{"Formation}", \emph{"Game state"},
 \emph{"Timing"}, \emph{"Shot zones"}, \emph{"Attack speed"}, \emph{"Result"}
 }
-\examples{
-\dontrun{
-team_urls <- c("https://understat.com/team/Liverpool/2020",
-              "https://understat.com/team/Manchester_City/2020")
-understat_team_stats_breakdown(urls = team_urls)
-}
-}
