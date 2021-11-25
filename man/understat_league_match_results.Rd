@@ -21,8 +21,3 @@ returns a dataframe of match results for a selected league season
 \description{
 Returns match results for all matches played in the selected league season from Understat.com
 }
-\examples{
-\donttest{
-understat_league_match_results(league = "EPL", season_start_year = 2020)
-}
-}

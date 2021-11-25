@@ -19,8 +19,3 @@ returns a dataframe of player valuations for country/seasons
 \description{
 Returns data frame of player valuations (in Euros) from transfermarkt.com
 }
-\examples{
-\donttest{
-get_player_market_values(country_name = "England", start_year = c(2019, 2020))
-}
-}

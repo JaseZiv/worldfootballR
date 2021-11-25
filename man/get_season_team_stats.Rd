@@ -33,6 +33,5 @@ Returns different team season statistics results for a given league season and s
 \examples{
 \donttest{
 get_season_team_stats("ITA", "M", 2021, "1st", "defense")
-get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 }
 }

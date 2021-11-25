@@ -7,6 +7,7 @@ This is a minor fix to address CRAN submission feedback.
 * Wrap Data sources in single quotes in DESCRIPTION file (title and/or description)
 * Fixed `Warning: Unexecutable code in man/fb_player_scouting_report.Rd: pos_versus = "primary")` by uncommenting the line above `pos_versus = "primary"`
 * Removed print statements that users cannot suppress
+* Removed unnecessary examples
 
 ## Test environments
 * local R installation, R 4.1.1

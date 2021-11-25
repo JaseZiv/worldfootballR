@@ -31,7 +31,7 @@ Returns the game results for a given league season(s)
 }
 \examples{
 \donttest{
-get_match_results(country = c("ENG", "ITA", "GER"), gender = "M", season_end_year = c(2018:2021))
+get_match_results(country = c("ITA"), gender = "M", season_end_year = 2021)
 # for results from English Championship:
 get_match_results(country = "ENG", gender = "M", season_end_year = 2021, tier = "2nd")
 # for international friendlies:

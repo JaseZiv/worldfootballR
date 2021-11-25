@@ -15,10 +15,3 @@ a dataframe of player stats for a selected team season
 \description{
 Retrieve Understat team player stats.
 }
-\examples{
-\dontrun{
-understat_team_players_stats(team_url =
-                             c("https://understat.com/team/Liverpool/2020",
-                               "https://understat.com/team/Manchester_City/2020"))
-}
-}

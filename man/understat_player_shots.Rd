@@ -15,8 +15,3 @@ returns a dataframe of shooting locations for a selected player
 \description{
 Returns shooting locations for a selected player for all matches played from Understat.com
 }
-\examples{
-\donttest{
-sterling <- understat_player_shots(player_url = "https://understat.com/player/618")
-}
-}

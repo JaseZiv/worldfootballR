@@ -260,8 +260,11 @@
     out_df <- lapply(clean_json, jsonlite::fromJSON) %>% do.call("rbind", .)
     # some outputs don't come with the season present, so add it in if not
     if(!any(grepl("season", colnames(out_df)))) {
-      season <- page %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
-        rvest::html_nodes("option") %>% rvest::html_attr("value") %>% .[1] %>% as.numeric()
+      season_element <- page %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
+        rvest::html_nodes("option")
+      season_element <- season_element[grep("selected", season_element)]
+      # season <- season_element %>% rvest::html_attr("value") %>% .[1] %>% as.numeric()
+      season <- season_element %>% rvest::html_text()
       out_df <- cbind(season, out_df)
     }
 

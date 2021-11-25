@@ -15,11 +15,7 @@
 #' @importFrom rlang .data
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' understat_league_match_results(league = "EPL", season_start_year = 2020)
-#' }
+
 understat_league_match_results <- function(league, season_start_year) {
   # .pkg_message("Scraping match results data for {league} {season_start_year} season. Please acknowledge understat.com as the data source")
   main_url <- "https://understat.com/"

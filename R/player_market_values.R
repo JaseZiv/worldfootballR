@@ -14,11 +14,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
-#' get_player_market_values(country_name = "England", start_year = c(2019, 2020))
-#' }
-
 get_player_market_values <- function(country_name, start_year, league_url = NA) {
 
   # .pkg_message("Extracting player market values...")

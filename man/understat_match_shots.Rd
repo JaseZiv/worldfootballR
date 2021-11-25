@@ -15,8 +15,3 @@ returns a dataframe of shooting locations for a selected team season
 \description{
 Returns shooting locations for a selected match from Understat.com
 }
-\examples{
-\donttest{
-understat_match_shots(match_url = "https://understat.com/match/14789")
-}
-}

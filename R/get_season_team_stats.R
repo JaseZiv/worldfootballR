@@ -26,7 +26,6 @@
 #' @examples
 #' \donttest{
 #' get_season_team_stats("ITA", "M", 2021, "1st", "defense")
-#' get_season_team_stats("ITA", "M", 2021, "2nd", "standard")
 #' }
 get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type) {
 

@@ -14,11 +14,6 @@
 #' @importFrom magrittr %>%
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' understat_league_season_shots(league = "EPL", season_start_year = 2020)
-#' }
 understat_league_season_shots <- function(league, season_start_year) {
   # .pkg_message("Scraping shots data for {league} {season_start_year} season. Please acknowledge understat.com as the data source")
   main_url <- "https://understat.com/"
@@ -60,11 +55,6 @@ understat_league_season_shots <- function(league, season_start_year) {
 #' @importFrom magrittr %>%
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
-#' }
 understat_team_season_shots <- function(team_url) {
   # .pkg_message("Scraping all shots for team {team_url}. Please acknowledge understat.com as the data source")
 
@@ -92,11 +82,6 @@ understat_team_season_shots <- function(team_url) {
 #' @importFrom magrittr %>%
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' understat_match_shots(match_url = "https://understat.com/match/14789")
-#' }
 understat_match_shots <- function(match_url) {
   # .pkg_message("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source")
 
@@ -121,11 +106,6 @@ understat_match_shots <- function(match_url) {
 #' @importFrom magrittr %>%
 #'
 #' @export
-#'
-#' @examples
-#' \donttest{
-#' sterling <- understat_player_shots(player_url = "https://understat.com/player/618")
-#' }
 understat_player_shots <- function(player_url) {
   # .pkg_message("Scraping all shots for player {player_url}. Please acknowledge understat.com as the data source")
 
