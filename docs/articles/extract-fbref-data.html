@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -68,9 +68,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
-    </li>
-    <li>
-      <a href="../articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     </li>
     <li>
       <a href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
@@ -110,7 +107,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-11-06</h4>
+            <h4 class="date">2021-11-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -194,7 +191,7 @@
 <div id="player-urls" class="section level3">
 <h3 class="hasAnchor">
 <a href="#player-urls" class="anchor"></a>Player URLs</h3>
-<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The reuslts of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
+<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The results of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_urls.html">fb_player_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -239,7 +236,7 @@
 <div id="more-than-one-league-season" class="section level4">
 <h4 class="hasAnchor">
 <a href="#more-than-one-league-season" class="anchor"></a>More than one league season</h4>
-<p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leages/genders/etc.</p>
+<p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leagues/genders/etc.</p>
 <p>Important to note, this function can only be used for one <code>stat-type</code> at a time, however all other parameters can have multiple values:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
@@ -289,7 +286,7 @@
 <div id="more-than-one-league-season-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#more-than-one-league-season-1" class="anchor"></a>More than one league season</h4>
-<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leages/genders/etc also:</p>
+<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leagues/genders/etc also:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></code></pre></div>
@@ -405,36 +402,26 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
                dplyr::filter(scouting_period == "Last 365 Days")</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: Last 365 Days</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2020-2021 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2019-2020 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2018-2019 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2017-2018 La Liga</span>
 <span class="co">#&gt; Rows: 745</span>
 <span class="co">#&gt; Columns: 8</span>
 <span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.91, 0.24, 0.81, 0.11, 0.19, 0.08, 0.00, 0.72, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 84, 98, 80, 91, 69, 57, 96, 94, 99, 98, 98, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.88, 0.24, 0.80, 0.08, 0.16, 0.08, 0.00, 0.69, 0.56, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 84, 98, 74, 86, 70, 58, 96, 92, 98, 98, 98, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: Last 365 Days</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2020-2021 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2019-2020 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2018-2019 La Liga</span>
-<span class="co">#&gt; Scraping full scouting report for Lionel Messi for period: 2017-2018 La Liga</span>
 <span class="co">#&gt; Rows: 745</span>
 <span class="co">#&gt; Columns: 8</span>
 <span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.91, 0.24, 0.81, 0.11, 0.19, 0.08, 0.00, 0.72, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 77, 99, 90, 94, 72, 57, 99, 99, 96, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, 3348, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.88, 0.24, 0.80, 0.08, 0.16, 0.08, 0.00, 0.69, 0.56, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 75, 99, 87, 92, 74, 58, 99, 99, 92, 99, 99, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">

@@ -5,9 +5,16 @@
 
 <!-- badges: start -->
 
+[![Version-Number](https://img.shields.io/github/r-package/v/JaseZiv/worldfootballR?label=worldfootballR%20(Dev))](https://github.com/JaseZiv/worldfootballR/)
 [![R build
 status](https://github.com/JaseZiv/worldfootballR/workflows/R-CMD-check/badge.svg)](https://github.com/JaseZiv/worldfootballR/actions)
 [![codecov](https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL)](https://app.codecov.io/gh/JaseZiv/worldfootballR)
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version-last-release/worldfootballR?style=for-the-badge)](https://CRAN.R-project.org/package=worldfootballR)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/worldfootballR)](https://CRAN.R-project.org/package=worldfootballR)
+[![Downloads](https://cranlogs.r-pkg.org/badges/worldfootballR)](https://cran.r-project.org/package=worldfootballR)
 <!-- badges: end -->
 
 ## Overview
@@ -22,7 +29,17 @@ football (soccer) data sites:
 
 ## Installation
 
-You can install the `worldfootballR` package from github with:
+You can install the CRAN version of
+[**`worldfootballR`**](https://cran.r-project.org/web/packages/worldfootballR/index.html)
+with:
+
+``` r
+install.packages("worldfootballR")
+```
+
+You can install the released version of
+[**`worldfootballR`**](https://github.com/JaseZiv/worldfootballR/) from
+[GitHub](https://github.com/JaseZiv/worldfootballR) with:
 
 ``` r
 # install.packages("devtools")
@@ -49,6 +66,13 @@ package.
 -   For functions to extract data for international matches from FBref,
     see
     [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
+
+------------------------------------------------------------------------
+
+## News
+
+To stay up-to-date with the latest changes, see the package [change
+log](https://jaseziv.github.io/worldfootballR/news/index.html)
 
 ------------------------------------------------------------------------
 
@@ -113,7 +137,7 @@ When creating an issue, please include:
 -   Reproducible examples
 -   A brief description of what the expected results are
 -   If applicable, the fbref.com, transfermarkt.com or understat.com
-    page the observed behaviour is occuring on
+    page the observed behaviour is occurring on
 -   For improvement suggestions, what features are being requested and
     their purpose
 
