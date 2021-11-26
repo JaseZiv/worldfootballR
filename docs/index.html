@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com • worldfootballR</title>
+<title>Functions to Extract and Clean World Football (Soccer) Data • worldfootballR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,15 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="An R Package to Extract World Football (Soccer) Data from Fbref.com, transfermarkt.com and understat.com">
-<meta property="og:description" content="This R package will enable users to extract a number of different game and player statistics and metrics from numerous football sites, including fbref.com, transfer data from transfermarket.com and shooting data from understat.com.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Functions to Extract and Clean World Football (Soccer) Data">
+<meta property="og:description" content="A set of functions to allow users to obtain clean and tidy
+    football (soccer) game, team and player data. Data is collected from a
+    number of popular sites, including FBref&lt;https://fbref.com/en/&gt;,
+    transfer and valuations data from
+    Transfermarkt&lt;https://www.transfermarkt.com/&gt; and shooting location
+    data from Understat&lt;https://understat.com/&gt;. It gives users the
+    ability to access data more efficiently, rather than having to export
+    data tables to files before being able to complete their analysis.">
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -44,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -68,9 +75,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/extract-fbref-data.html">Extracting data from FBref</a>
-    </li>
-    <li>
-      <a href="articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     </li>
     <li>
       <a href="articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
@@ -112,6 +116,7 @@
 </h1></div>
 <!-- badges: start -->
 
+<p><a href="https://CRAN.R-project.org/package=worldfootballR"><img src="https://www.r-pkg.org/badges/version-last-release/worldfootballR?style=for-the-badge" alt="CRAN status"></a> <a href="https://CRAN.R-project.org/package=worldfootballR"><img src="http://cranlogs.r-pkg.org/badges/grand-total/worldfootballR" alt="CRAN downloads"></a> <a href="https://cran.r-project.org/package=worldfootballR"><img src="https://cranlogs.r-pkg.org/badges/worldfootballR" alt="Downloads"></a> <!-- badges: end --></p>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
@@ -125,11 +130,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the <code>worldfootballR</code> package from github with:</p>
+<p>You can install the CRAN version of <a href="https://cran.r-project.org/web/packages/worldfootballR/index.html"><strong><code>worldfootballR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -147,6 +155,12 @@
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
 </ul>
+<hr>
+</div>
+<div id="news" class="section level2">
+<h2 class="hasAnchor">
+<a href="#news" class="anchor"></a>News</h2>
+<p>To stay up-to-date with the latest changes, see the package <a href="https://jaseziv.github.io/worldfootballR/news/index.html">change log</a></p>
 <hr>
 </div>
 <div id="leagues-and-seasons" class="section level2">
@@ -204,10 +218,10 @@
 <ul>
 <li>Reproducible examples</li>
 <li>A brief description of what the expected results are</li>
-<li>If applicable, the fbref.com, transfermarkt.com or understat.com page the observed behaviour is occuring on</li>
+<li>If applicable, the fbref.com, transfermarkt.com or understat.com page the observed behaviour is occurring on</li>
 <li>For improvement suggestions, what features are being requested and their purpose</li>
 </ul>
-<p>Feel free to get in touch via email or twitter <a href="https://twitter.com/jaseziv" class="uri">https://twitter.com/jaseziv</a> if you aren’t able to creat an issue.</p>
+<p>Feel free to get in touch via email or twitter <a href="https://twitter.com/jaseziv" class="uri">https://twitter.com/jaseziv</a> if you aren’t able to create an issue.</p>
 </div>
 <div id="show-your-support" class="section level3">
 <h3 class="hasAnchor">
@@ -223,6 +237,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=worldfootballR">https://​cloud.r-project.org/​package=worldfootballR</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/JaseZiv/worldfootballR/">https://​github.com/​JaseZiv/​worldfootballR/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/JaseZiv/worldfootballR/issues">https://​github.com/​JaseZiv/​worldfootballR/​issues</a>
@@ -238,7 +254,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Jason Zivkovic <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Jason Zivkovic <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -246,8 +262,9 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/JaseZiv/worldfootballR"><img src="https://travis-ci.org/JaseZiv/worldfootballR.svg?branch=main" alt="Travis build status"></a></li>
-<li><a href="https://codecov.io/gh/JaseZiv/worldfootballR"><img src="https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL" alt="codecov"></a></li>
+<li><a href="https://github.com/JaseZiv/worldfootballR/"><img src="https://img.shields.io/github/r-package/v/JaseZiv/worldfootballR?label=worldfootballR%20(Dev)" alt="Version-Number"></a></li>
+<li><a href="https://github.com/JaseZiv/worldfootballR/actions"><img src="https://github.com/JaseZiv/worldfootballR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://app.codecov.io/gh/JaseZiv/worldfootballR"><img src="https://codecov.io/gh/JaseZiv/worldfootballR/branch/main/graph/badge.svg?token=WGLU5J34VL" alt="codecov"></a></li>
 </ul>
 </div>
 </div>
