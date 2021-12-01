@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,18 +46,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -86,7 +82,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JaseZiv/worldfootballR/">
+  <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,41 +101,41 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from FBref</h1>
-                        <h4 class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-11-26</h4>
+            <h4 data-toc-skip class="date">2021-12-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
 
     </div>
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
 <ul>
-<li><a href="https://fbref.com/en/">FBref</a></li>
-<li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
-<li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
+<li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
+<li><a href="https://understat.com/" class="external-link">Understat</a></li>
 </ul>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install the <code>worldfootballR</code> package from github with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR">worldfootballR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Package vignettes have been built to help you get started with the package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
@@ -154,63 +150,63 @@
 <p>This vignette will cover the functions to extract data from FBref.com.</p>
 <hr>
 </div>
-<div id="join-fbref-and-transfermarkt-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#join-fbref-and-transfermarkt-data" class="anchor"></a>Join FBref and Transfermarkt data</h2>
-<p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv">here</a></p>
+<div class="section level2">
+<h2 id="join-fbref-and-transfermarkt-data">Join FBref and Transfermarkt data<a class="anchor" aria-label="anchor" href="#join-fbref-and-transfermarkt-data"></a>
+</h2>
+<p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv" class="external-link">here</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6,300</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
-<span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
-<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span>
-<span class="co">#&gt; $ TmPos       &lt;chr&gt; "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi…</span></code></pre></div>
+<span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
+<span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
+<span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span>
+<span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi…</span></code></pre></div>
 </div>
-<div id="fbref-helper-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fbref-helper-functions" class="anchor"></a>FBref Helper Functions</h2>
+<div class="section level2">
+<h2 id="fbref-helper-functions">FBref Helper Functions<a class="anchor" aria-label="anchor" href="#fbref-helper-functions"></a>
+</h2>
 <p>The following section will outline the various functions available to find different URLs to be able to pass through the FBref suite of functions outlined in this vignette.</p>
-<div id="league-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#league-urls" class="anchor"></a>League URLs</h3>
+<div class="section level3">
+<h3 id="league-urls">League URLs<a class="anchor" aria-label="anchor" href="#league-urls"></a>
+</h3>
 <p>To extract the URL of any country’s league(s) (provided fbref have data for the league), use the <code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code> function.</p>
 <p>This function also accepts a <code>tier</code> argument. for first-tier leagues, select ‘1st’, for second-tier select ‘2nd’ and so on.</p>
-<p>A fill list of countries available can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a>.</p>
+<p>A fill list of countries available can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_league_urls.html">fb_league_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">'2nd'</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="team-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#team-urls" class="anchor"></a>Team URLs</h3>
+<div class="section level3">
+<h3 id="team-urls">Team URLs<a class="anchor" aria-label="anchor" href="#team-urls"></a>
+</h3>
 <p>To get a list of URLs for each team in a particular season, the <code><a href="../reference/fb_teams_urls.html">fb_teams_urls()</a></code> function can be used:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_teams_urls.html">fb_teams_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/comps/9/Premier-League-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="player-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#player-urls" class="anchor"></a>Player URLs</h3>
+<div class="section level3">
+<h3 id="player-urls">Player URLs<a class="anchor" aria-label="anchor" href="#player-urls"></a>
+</h3>
 <p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The results of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_urls.html">fb_player_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="get-match-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-urls" class="anchor"></a>Get match urls</h3>
+<div class="section level3">
+<h3 id="get-match-urls">Get match urls<a class="anchor" aria-label="anchor" href="#get-match-urls"></a>
+</h3>
 <p>To get the match URLs needed to pass in to some of the match-level functions below, <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code> can be used:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">epl_2021_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_urls.html">get_match_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier<span class="op">=</span><span class="st">"1st"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="league-season-level-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#league-season-level-data" class="anchor"></a>League Season-Level Data</h2>
+<div class="section level2">
+<h2 id="league-season-level-data">League Season-Level Data<a class="anchor" aria-label="anchor" href="#league-season-level-data"></a>
+</h2>
 <p>This section will cover the functions to aid in the extraction of season team statistics.</p>
-<div id="get-season-team-stats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-season-team-stats" class="anchor"></a>Get Season Team Stats</h3>
-<p>The <code>get_season_team_stats</code> function allows the user to return a data frame of different stat types for all teams in Domestic leagues <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a>.</p>
+<div class="section level3">
+<h3 id="get-season-team-stats">Get Season Team Stats<a class="anchor" aria-label="anchor" href="#get-season-team-stats"></a>
+</h3>
+<p>The <code>get_season_team_stats</code> function allows the user to return a data frame of different stat types for all teams in Domestic leagues <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
 <p>Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.</p>
 <p>The following stat types can be selected:</p>
 <ul>
@@ -233,18 +229,18 @@
 <span class="va">prem_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span>
 <span class="co"># to get shooting stats for the English Championship:</span>
 <span class="va">championship_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, tier <span class="op">=</span> <span class="st">"2nd"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span></code></pre></div>
-<div id="more-than-one-league-season" class="section level4">
-<h4 class="hasAnchor">
-<a href="#more-than-one-league-season" class="anchor"></a>More than one league season</h4>
+<div class="section level4">
+<h4 id="more-than-one-league-season">More than one league season<a class="anchor" aria-label="anchor" href="#more-than-one-league-season"></a>
+</h4>
 <p>The <code>get_season_team_stats</code> function can be used to get data for multiple seasons/leagues/genders/etc.</p>
 <p>Important to note, this function can only be used for one <code>stat-type</code> at a time, however all other parameters can have multiple values:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">big_5_2020_possessions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="the-big-5-euro-leagues" class="section level4">
-<h4 class="hasAnchor">
-<a href="#the-big-5-euro-leagues" class="anchor"></a>The Big 5 Euro Leagues</h4>
+<div class="section level4">
+<h4 id="the-big-5-euro-leagues">The Big 5 Euro Leagues<a class="anchor" aria-label="anchor" href="#the-big-5-euro-leagues"></a>
+</h4>
 <p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows users to extract data for any of the below listed stat types for all teams of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).</p>
 <p>The stat types available for this function are below:</p>
 <ul>
@@ -263,75 +259,75 @@
 <p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
 <p>Note that when selecting <code>team_or_player="team"</code>, results will be returned for both the team’s for and against stats. To filter on this, use the <code>Team_or_Opponent</code> column in the resulting data frame, selecting ‘team’ if you want the team’s for stats, or ‘opponent’ if you want the team’s against stats.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big5_team_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">big5_team_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
 </div>
-<div id="match-level-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#match-level-data" class="anchor"></a>Match-Level Data</h2>
+<div class="section level2">
+<h2 id="match-level-data">Match-Level Data<a class="anchor" aria-label="anchor" href="#match-level-data"></a>
+</h2>
 <p>The following sections outlines the functions available to extract data at the per-match level</p>
-<div id="get-match-results" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-results" class="anchor"></a>Get match results</h3>
-<p>To get the match results (and additional metadata) for all leagues and comps listed <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">here</a>, the following function can be used:</p>
+<div class="section level3">
+<h3 id="get-match-results">Get match results<a class="anchor" aria-label="anchor" href="#get-match-results"></a>
+</h3>
+<p>To get the match results (and additional metadata) for all leagues and comps listed <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>, the following function can be used:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract Serie A match results data</span>
 <span class="va">serieA_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ITA"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></code></pre></div>
-<p>The function can also be used to return match URLs for a non-domestic league season. To use this functionality, simply leave <code>country = ''</code> and pass the non-domestic league URL, which can be found at <a href="https://fbref.com/en/comps/" class="uri">https://fbref.com/en/comps/</a></p>
+<p>The function can also be used to return match URLs for a non-domestic league season. To use this functionality, simply leave <code>country = ''</code> and pass the non-domestic league URL, which can be found at <a href="https://fbref.com/en/comps/" class="external-link uri">https://fbref.com/en/comps/</a></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for international friendlies:</span>
 <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2018</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"</span><span class="op">)</span></code></pre></div>
-<div id="more-than-one-league-season-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#more-than-one-league-season-1" class="anchor"></a>More than one league season</h4>
+<div class="section level4">
+<h4 id="more-than-one-league-season-1">More than one league season<a class="anchor" aria-label="anchor" href="#more-than-one-league-season-1"></a>
+</h4>
 <p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leagues/genders/etc also:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big_5_2020_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">big_5_2020_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="get-match-report" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-report" class="anchor"></a>Get match report</h3>
+<div class="section level3">
+<h3 id="get-match-report">Get match report<a class="anchor" aria-label="anchor" href="#get-match-report"></a>
+</h3>
 <p>This function will return similar results to that of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, however <code><a href="../reference/get_match_report.html">get_match_report()</a></code> will provide some additional information. It will also only provide it for a single match, not the whole season:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match report data</span>
 <span class="va">liv_mci_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_report.html">get_match_report</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="get-match-summaries" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-summaries" class="anchor"></a>Get match summaries</h3>
+<div class="section level3">
+<h3 id="get-match-summaries">Get match summaries<a class="anchor" aria-label="anchor" href="#get-match-summaries"></a>
+</h3>
 <p>This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match summary data</span>
 <span class="va">liv_mci_2020_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_summary.html">get_match_summary</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="get-match-lineups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-match-lineups" class="anchor"></a>Get match lineups</h3>
+<div class="section level3">
+<h3 id="get-match-lineups">Get match lineups<a class="anchor" aria-label="anchor" href="#get-match-lineups"></a>
+</h3>
 <p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
 <p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match lineups</span>
 <span class="va">liv_mci_2020_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="get-shooting-and-shot-creation-events" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-shooting-and-shot-creation-events" class="anchor"></a>Get shooting and shot creation events</h3>
+<div class="section level3">
+<h3 id="get-shooting-and-shot-creation-events">Get shooting and shot creation events<a class="anchor" aria-label="anchor" href="#get-shooting-and-shot-creation-events"></a>
+</h3>
 <p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">shot_one_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League"</span><span class="op">)</span>
 
-<span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
+<span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 <span class="va">shot_multiple_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span><span class="va">test_urls_multiple</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="get-advanced-match-statistics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-advanced-match-statistics" class="anchor"></a>Get advanced match statistics</h3>
+<div class="section level3">
+<h3 id="get-advanced-match-statistics">Get advanced match statistics<a class="anchor" aria-label="anchor" href="#get-advanced-match-statistics"></a>
+</h3>
 <p>The <code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> function allows the user to return a data frame of different stat types for matches played.</p>
 <p>Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.</p>
 <p>The following stat types can be selected:</p>
@@ -346,14 +342,14 @@
 </ul>
 <p>The function can be used for either all players individually:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
+<code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
 <p>Or used for the team totals for each match:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
+<code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1"</span><span class="op">)</span>
 
@@ -361,13 +357,13 @@
 <hr>
 </div>
 </div>
-<div id="team-level-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#team-level-data" class="anchor"></a>Team-Level Data</h2>
+<div class="section level2">
+<h2 id="team-level-data">Team-Level Data<a class="anchor" aria-label="anchor" href="#team-level-data"></a>
+</h2>
 <p>This section will cover off the functions to get team-level data from FBref.</p>
-<div id="match-results-by-team" class="section level3">
-<h3 class="hasAnchor">
-<a href="#match-results-by-team" class="anchor"></a>Match Results by team</h3>
+<div class="section level3">
+<h3 id="match-results-by-team">Match Results by team<a class="anchor" aria-label="anchor" href="#match-results-by-team"></a>
+</h3>
 <p>To get all the results a team(s) has competed in for a season, the following function can be used. The resulting data frame output will include all game results, including any cup games played, and will accept either one, or many team URLs.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for single teams:</span>
@@ -379,14 +375,14 @@
 <hr>
 </div>
 </div>
-<div id="player-level-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#player-level-data" class="anchor"></a>Player-Level Data</h2>
+<div class="section level2">
+<h2 id="player-level-data">Player-Level Data<a class="anchor" aria-label="anchor" href="#player-level-data"></a>
+</h2>
 <p>This section will cover the functions available to aid in the extraction of player season data.</p>
 <p>The examples provided below in a lot of cases have the actual url (player or team) passed to them, however the suite of fbref helper functions outlined in <a href="https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html">this helpers vignette</a> could also be used.</p>
-<div id="get-player-scouting-report" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-player-scouting-report" class="anchor"></a>Get Player Scouting Report</h3>
+<div class="section level3">
+<h3 id="get-player-scouting-report">Get Player Scouting Report<a class="anchor" aria-label="anchor" href="#get-player-scouting-report"></a>
+</h3>
 <p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in two inputs;</p>
 <ul>
 <li>
@@ -396,38 +392,38 @@
 </ul>
 <p>and returns the full scouting report for the player selected.</p>
 <p>As of version <code>0.3.6</code>, the function now returns the scouting report of ALL available periods, not just the “Last 365 Days”. As a result, there is now an additional column called <code>scouting_period</code>. This column should be used to filter out the period/season you want the scouting report for:</p>
-<pre><code># TO GET THE LAST 365 DAYS REPORT:
-scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                   pos_versus = "primary") %&gt;% 
-               dplyr::filter(scouting_period == "Last 365 Days")</code></pre>
+<pre><code><span class="co"># TO GET THE LAST 365 DAYS REPORT:</span>
+<span class="va">scout</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
+                                   pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">scouting_period</span> <span class="op">==</span> <span class="st">"Last 365 Days"</span><span class="op">)</span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 745</span>
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 894</span>
 <span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
-<span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
-<span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.88, 0.24, 0.80, 0.08, 0.16, 0.08, 0.00, 0.69, 0.56, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 83, 98, 74, 86, 70, 58, 96, 92, 98, 98, 98, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
-<span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 745</span>
+<span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
+<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
+<span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
+<span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
+<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.32, 0.77, 0.08, 0.16, 0.05, 0.00, 0.70, 0.57, …</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 99, 89, 99, 87, 93, 82, 58, 99, 99, 92, 99, 99, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
+<span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 894</span>
 <span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
-<span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
-<span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.88, 0.24, 0.80, 0.08, 0.16, 0.08, 0.00, 0.69, 0.56, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 75, 99, 87, 92, 73, 58, 99, 99, 92, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
-<span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
+<span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
+<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
+<span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
+<span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
+<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.32, 0.77, 0.08, 0.16, 0.05, 0.00, 0.70, 0.57, …</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 98, 94, 98, 74, 86, 80, 57, 96, 92, 98, 98, 98, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
+<span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
-<div id="get-player-season-stats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#get-player-season-stats" class="anchor"></a>Get Player Season Stats</h3>
-<p>The <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> function allows for the extraction of season totals for selected player URLs and stat_type.</p>
+<div class="section level3">
+<h3 id="get-player-season-stats">Get Player Season Stats<a class="anchor" aria-label="anchor" href="#get-player-season-stats"></a>
+</h3>
+<p>The <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> function allows for the extraction of historical season totals for selected player URLs and stat_type.</p>
 <p>The stat_types available for use in this function are below:</p>
 <ul>
 <li><em>standard</em></li>
@@ -445,13 +441,13 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span>
 
-<span class="va">multiple_playing_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
+<span class="va">multiple_playing_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
                                                 <span class="st">"https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"</span><span class="op">)</span>,
                                  stat_type <span class="op">=</span> <span class="st">"playing_time"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="the-big-5-euro-league-players" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-big-5-euro-league-players" class="anchor"></a>The Big 5 Euro League Players</h3>
+<div class="section level3">
+<h3 id="the-big-5-euro-league-players">The Big 5 Euro League Players<a class="anchor" aria-label="anchor" href="#the-big-5-euro-league-players"></a>
+</h3>
 <p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows users to extract data for any of the below listed stat types for all players of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).</p>
 <p>The stat types available for this function are below:</p>
 <ul>
@@ -471,9 +467,36 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="player-match-logs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#player-match-logs" class="anchor"></a>Player Match Logs</h3>
+<div class="section level3">
+<h3 id="player-season-statistics-for-a-teams-season">Player Season Statistics for a teams season<a class="anchor" aria-label="anchor" href="#player-season-statistics-for-a-teams-season"></a>
+</h3>
+<p>The <code><a href="../reference/fb_team_player_stats.html">fb_team_player_stats()</a></code> function allows users to extract data for any of the below listed stat types for all players of selected team(s) seasons,</p>
+<p>The stat types available for this function are below:</p>
+<ul>
+<li><em>standard</em></li>
+<li><em>shooting</em></li>
+<li><em>passing</em></li>
+<li><em>passing_types</em></li>
+<li><em>gca</em></li>
+<li><em>defense</em></li>
+<li><em>possession</em></li>
+<li><em>playing_time</em></li>
+<li><em>misc</em></li>
+<li><em>keepers</em></li>
+<li><em>keepers_adv</em></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># to get stats for just a single team</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>fleetwood_standard_stats &lt;-<span class="st"> </span><span class="kw">fb_team_player_stats</span>(<span class="dt">team_urls=</span> <span class="st">"https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats"</span>, <span class="dt">stat_type=</span> <span class="st">'standard'</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># Can even get stats for a series of teams:</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>league_url &lt;-<span class="st"> </span><span class="kw">fb_league_urls</span>(<span class="dt">country =</span> <span class="st">"ENG"</span>, <span class="dt">gender =</span> <span class="st">"M"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>teams &lt;-<span class="st"> </span><span class="kw">fb_teams_urls</span>(league_url)</span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a>multiple_playing_time &lt;-<span class="st"> </span><span class="kw">fb_team_player_stats</span>(<span class="dt">team_urls=</span> teams, <span class="dt">stat_type=</span> <span class="st">"playing_time"</span>)</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="player-match-logs">Player Match Logs<a class="anchor" aria-label="anchor" href="#player-match-logs"></a>
+</h3>
 <p>The <code><a href="../reference/fb_player_match_logs.html">fb_player_match_logs()</a></code> function allows the user to return a data frame of the match logs of different stat types for a player’s matches played in a season.</p>
 <p>The following stat types can be selected, depending on the player’s position (ie a striker probably won’t have “keepers” stats):</p>
 <ul>
@@ -486,7 +509,7 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <li><em>possession</em></li>
 <li><em>misc</em></li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -504,11 +527,13 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 
 
       <footer><div class="copyright">
-  <p>Developed by Jason Zivkovic.</p>
+  <p></p>
+<p>Developed by Jason Zivkovic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -516,6 +541,8 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 
   
 
+
+  
 
   </body>
 </html>

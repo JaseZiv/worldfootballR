@@ -32,6 +32,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -44,18 +46,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -86,7 +82,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JaseZiv/worldfootballR/">
+  <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -105,41 +101,41 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from Transfermarkt</h1>
-                        <h4 class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-11-26</h4>
+            <h4 data-toc-skip class="date">2021-12-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-transfermarkt-data.Rmd"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-transfermarkt-data.Rmd</code></div>
 
     </div>
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
 <ul>
-<li><a href="https://fbref.com/en/">FBref</a></li>
-<li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
-<li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
+<li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
+<li><a href="https://understat.com/" class="external-link">Understat</a></li>
 </ul>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install the <code>worldfootballR</code> package from github with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR">worldfootballR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Package vignettes have been built to help you get started with the package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
@@ -154,70 +150,70 @@
 <p>This vignette will cover the functions to extract data from transfermarkt.com</p>
 <hr>
 </div>
-<div id="join-fbref-and-transfermarkt-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#join-fbref-and-transfermarkt-data" class="anchor"></a>Join FBref and Transfermarkt data</h2>
-<p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv">here</a></p>
+<div class="section level2">
+<h2 id="join-fbref-and-transfermarkt-data">Join FBref and Transfermarkt data<a class="anchor" aria-label="anchor" href="#join-fbref-and-transfermarkt-data"></a>
+</h2>
+<p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv" class="external-link">here</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6,300</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
-<span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
-<span class="co">#&gt; $ UrlTmarkt   &lt;chr&gt; "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span>
-<span class="co">#&gt; $ TmPos       &lt;chr&gt; "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi…</span></code></pre></div>
+<span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
+<span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
+<span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span>
+<span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi…</span></code></pre></div>
 </div>
-<div id="transfermarkt-helper-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#transfermarkt-helper-functions" class="anchor"></a>Transfermarkt Helper Functions</h2>
+<div class="section level2">
+<h2 id="transfermarkt-helper-functions">Transfermarkt Helper Functions<a class="anchor" aria-label="anchor" href="#transfermarkt-helper-functions"></a>
+</h2>
 <p>The following section will outline the various functions available to find different URLs to be able to pass through the Transfermarkt suite of functions outlined in this vignette.</p>
-<div id="team-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#team-urls" class="anchor"></a>Team URLs</h3>
+<div class="section level3">
+<h3 id="team-urls">Team URLs<a class="anchor" aria-label="anchor" href="#team-urls"></a>
+</h3>
 <p>To get a list of URLs for each team in a particular season from transfermarkt.com, the <code><a href="../reference/tm_league_team_urls.html">tm_league_team_urls()</a></code> function can be used. If the country/countries aren’t available in the main data set, the function can also accept a League URL from transfermarkt.com. To get the league URL, use the filtering options towards the top of transfermarkt.com, select the country and league you want to collect data from, head to that page, and copy the URL.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="co"># if it's not a league in the stored leagues data in worldfootballR_data repo:</span>
 <span class="va">league_one_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>start_year <span class="op">=</span> <span class="fl">2020</span>, league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="player-urls" class="section level3">
-<h3 class="hasAnchor">
-<a href="#player-urls" class="anchor"></a>Player URLs</h3>
+<div class="section level3">
+<h3 id="player-urls">Player URLs<a class="anchor" aria-label="anchor" href="#player-urls"></a>
+</h3>
 <p>To get a list of player URLs for a particular team in transfermarkt.com, the <code><a href="../reference/tm_team_player_urls.html">tm_team_player_urls()</a></code> function can be used.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tm_team_player_urls.html">tm_team_player_urls</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
-<div id="league-season-level-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#league-season-level-data" class="anchor"></a>League Season-Level Data</h2>
+<div class="section level2">
+<h2 id="league-season-level-data">League Season-Level Data<a class="anchor" aria-label="anchor" href="#league-season-level-data"></a>
+</h2>
 <p>This section will cover the functions to aid in the extraction of season team statistics.</p>
-<div id="league-table-by-matchdays" class="section level3">
-<h3 class="hasAnchor">
-<a href="#league-table-by-matchdays" class="anchor"></a>League Table by Matchdays</h3>
+<div class="section level3">
+<h3 id="league-table-by-matchdays">League Table by Matchdays<a class="anchor" aria-label="anchor" href="#league-table-by-matchdays"></a>
+</h3>
 <p>To be able to extract league tables for select matchday(s), the below function can be used.</p>
-<p>The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">worldfootballR_data</a> repository, it can accept the league URL, season start year and matchday number(s).</p>
+<p>The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv" class="external-link">worldfootballR_data</a> repository, it can accept the league URL, season start year and matchday number(s).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># to get the EPL table after matchday 1 of the 20/21 season:</span>
 <span class="va">epl_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:</span>
-<span class="va">epl_matchday_1to35_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span>
+<span class="va">epl_matchday_1to35_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:</span>
 <span class="va">league_one_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span>, league_url<span class="op">=</span><span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
-<div id="team-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#team-data" class="anchor"></a>Team Data</h2>
+<div class="section level2">
+<h2 id="team-data">Team Data<a class="anchor" aria-label="anchor" href="#team-data"></a>
+</h2>
 <p>This section will cover off the functions to get team-level data from Transfermarkt.</p>
-<div id="transfer-activity-by-team" class="section level3">
-<h3 class="hasAnchor">
-<a href="#transfer-activity-by-team" class="anchor"></a>Transfer activity by team</h3>
+<div class="section level3">
+<h3 id="transfer-activity-by-team">Transfer activity by team<a class="anchor" aria-label="anchor" href="#transfer-activity-by-team"></a>
+</h3>
 <p>To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the <code><a href="../reference/tm_team_transfers.html">tm_team_transfers()</a></code> function can be used. This function can return either <code>summer</code>, <code>winter</code> or <code>all</code> for both <code>transfer_windows</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
@@ -227,9 +223,9 @@
 <span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="va">epl_xfers_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfers.html">tm_team_transfers</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="va">team_urls</span>, transfer_window <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="squad-player-stats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#squad-player-stats" class="anchor"></a>Squad Player Stats</h3>
+<div class="section level3">
+<h3 id="squad-player-stats">Squad Player Stats<a class="anchor" aria-label="anchor" href="#squad-player-stats"></a>
+</h3>
 <p>To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the <code><a href="../reference/tm_squad_stats.html">tm_squad_stats()</a></code> function can be used:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
@@ -239,23 +235,23 @@
 <span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="va">epl_team_players_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_squad_stats.html">tm_squad_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="va">team_urls</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="player-valuations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#player-valuations" class="anchor"></a>Player Valuations</h3>
+<div class="section level3">
+<h3 id="player-valuations">Player Valuations<a class="anchor" aria-label="anchor" href="#player-valuations"></a>
+</h3>
 <p>To get player valuations for all teams in a league season, use the <code><a href="../reference/get_player_market_values.html">get_player_market_values()</a></code> function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">big_5_valuations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"England"</span>, <span class="st">"Spain"</span>, <span class="st">"France"</span>, <span class="st">"Italy"</span>, <span class="st">"Germany"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">big_5_valuations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"England"</span>, <span class="st">"Spain"</span>, <span class="st">"France"</span>, <span class="st">"Italy"</span>, <span class="st">"Germany"</span><span class="op">)</span>,
                                        start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
-<div id="player-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#player-data" class="anchor"></a>Player Data</h2>
+<div class="section level2">
+<h2 id="player-data">Player Data<a class="anchor" aria-label="anchor" href="#player-data"></a>
+</h2>
 <p>This section will cover the functions available to aid in the extraction of player data.</p>
-<div id="player-bios" class="section level3">
-<h3 class="hasAnchor">
-<a href="#player-bios" class="anchor"></a>Player Bios</h3>
+<div class="section level3">
+<h3 id="player-bios">Player Bios<a class="anchor" aria-label="anchor" href="#player-bios"></a>
+</h3>
 <p>To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> function.:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for a single player </span>
@@ -282,11 +278,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jason Zivkovic.</p>
+  <p></p>
+<p>Developed by Jason Zivkovic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -294,6 +292,8 @@
 
   
 
+
+  
 
   </body>
 </html>
