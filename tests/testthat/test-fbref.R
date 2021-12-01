@@ -157,7 +157,7 @@ test_that("get_match_summary() works", {
 test_that("get_match_url() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier="1st")
+  test_urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2020, tier="1st")
   # test the functions returns the data
   expect_type(test_urls, "character")
   # also test if it's a correct url:
@@ -200,6 +200,11 @@ test_that("get_season_team_stats() works", {
 
   # test that an invalid stat_type will error
   expect_error(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "test"))
+
+  # test that MLS league table returns a new column for conference
+  mls_table <- get_season_team_stats(country = "USA", gender = "M", season_end_year = 2021, tier="1st", stat_type = "league_table")
+  expect_type(mls_table, "list")
+  expect_true(any(grepl("Conference", names(mls_table))))
 
 })
 
@@ -285,4 +290,18 @@ test_that("fb_player_match_logs() works", {
   ederson_summary <- fb_player_match_logs("https://fbref.com/en/players/3bb7b8b4/Ederson", season_end_year = 2021, stat_type = 'summary')
   expect_type(ederson_summary, "list")
   expect_false(nrow(ederson_summary) == 0)
+})
+
+
+test_that("fb_team_player_stats() works", {
+  testthat::skip_on_cran()
+  fleetwood_standard_stats <- fb_team_player_stats(team_urls= "https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats", stat_type= 'standard')
+  expect_type(fleetwood_standard_stats, "list")
+  expect_false(nrow(fleetwood_standard_stats) == 0)
+
+  # this should error because the stat type isn't available
+  expect_error(fb_team_player_stats(team_urls= "https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats", stat_type= 'keeper_adv'))
+  # this should error because the spelling of the stat type is incorrect
+  expect_error(fb_team_player_stats(team_urls= "https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats", stat_type= 'stangard'))
+
 })
