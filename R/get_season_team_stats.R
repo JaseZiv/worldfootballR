@@ -68,7 +68,21 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
     tryCatch(
       if(stat_type == "league_table") {
         stats_url <- NA
-        stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
+        if(any(grepl("Conference", all_tables, ignore.case = TRUE))) {
+          stat_df1 <- league_standings[1] %>% rvest::html_table() %>% data.frame()
+          conf1 <- season_stats_page %>% rvest::html_nodes(".section_content") %>% rvest::html_nodes("h2") %>% .[1] %>% rvest::html_text()
+          stat_df1 <- stat_df1 %>%
+            dplyr::mutate(Conference = conf1)
+
+          stat_df2 <- league_standings[3] %>% rvest::html_table() %>% data.frame()
+          conf2 <- season_stats_page %>% rvest::html_nodes(".section_content") %>% rvest::html_nodes("h2") %>% .[3] %>% rvest::html_text()
+          stat_df2 <- stat_df2 %>%
+            dplyr::mutate(Conference = conf2)
+
+          stat_df <- dplyr::bind_rows(stat_df1, stat_df2)
+        } else {
+          stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
+        }
 
         if(any(grepl("Attendance", names(stat_df)))) {
           stat_df$Attendance <- gsub(",", "", stat_df$Attendance) %>% as.numeric()
@@ -76,7 +90,22 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
 
       } else if(stat_type == "league_table_home_away") {
         stats_url <- NA
-        stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+        if(any(grepl("Conference", all_tables, ignore.case = TRUE))) {
+          stat_df1 <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+          conf1 <- season_stats_page %>% rvest::html_nodes(".section_content") %>% rvest::html_nodes("h2") %>% .[2] %>% rvest::html_text()
+          stat_df1 <- stat_df1 %>%
+            dplyr::mutate(Conference = conf1)
+
+          stat_df2 <- league_standings[4] %>% rvest::html_table() %>% data.frame()
+          conf2 <- season_stats_page %>% rvest::html_nodes(".section_content") %>% rvest::html_nodes("h2") %>% .[4] %>% rvest::html_text()
+          stat_df2 <- stat_df2 %>%
+            dplyr::mutate(Conference = conf2)
+
+          stat_df <- dplyr::bind_rows(stat_df1, stat_df2)
+          stat_df$Conference[1] <- "Conference"
+        } else {
+          stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+        }
 
         var_names <- stat_df[1,] %>% as.character()
 
@@ -90,8 +119,12 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
         names(stat_df) <- new_names
         stat_df <- stat_df[-1,]
 
+        stat_df <- stat_df %>%
+          dplyr::filter(.data$Rk != "Rk") %>%
+          dplyr::rename(Conference = .data$Conference_Conference)
+
         cols_to_transform <- stat_df %>%
-          dplyr::select(-.data$Squad) %>% names()
+          dplyr::select(-.data$Squad, -.data$Conference) %>% names()
 
         stat_df <- stat_df %>%
           dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%

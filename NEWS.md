@@ -1,4 +1,14 @@
-# worldfootballR 0.4.5
+# worldfootballR 0.4.6
+
+### New functions
+
+* `fb_team_player_stats()` allows users to get all stats for a team(s) player season stats
+
+### Improvements
+
+* `get_season_team_stats()` now returns an additional column for MLS called `Conference` for when `stat_type = "league_table"` and `stat_type = "league_table_home_away"`
+
+# worldfootballR 0.4.5 (CRAN)
 
 ### Improvements
 
