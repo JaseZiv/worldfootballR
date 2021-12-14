@@ -45,6 +45,8 @@ tm_player_bio <- function(player_urls) {
       X1 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("title"), error = function(e) NA_character_)
       socials <- cbind(X1, X2)
       a <- rbind(a, socials) %>% dplyr::mutate(X1 = ifelse(.data$X1 == "", "Website", .data$X1))
+      # handle for duplicate socials
+      a <- a %>% dplyr::distinct(X1, .keep_all = TRUE)
 
       player_val <- tryCatch(player_page %>% rvest::html_nodes(".dataMarktwert") %>% rvest::html_nodes("a") %>%
                                rvest::html_text() %>% strsplit(split = "  ") %>% .[[1]] %>% .[1], error = function(e) NA_character_)

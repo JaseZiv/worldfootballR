@@ -1,3 +1,11 @@
+# worldfootballR 0.4.6.1
+
+### Bugs
+
+* Fixed for rare case of duplicate socials in `tm_player_bio()` coercing other values to lists
+
+***
+
 # worldfootballR 0.4.6
 
 ### New functions
