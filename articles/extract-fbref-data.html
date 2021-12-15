@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.6.1</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2021-12-01</h4>
+            <h4 data-toc-skip class="date">2021-12-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -401,23 +401,23 @@
 <span class="co">#&gt; Rows: 894</span>
 <span class="co">#&gt; Columns: 8</span>
 <span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
+<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.32, 0.77, 0.08, 0.16, 0.05, 0.00, 0.70, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 99, 89, 99, 87, 93, 82, 58, 99, 99, 92, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
+<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.34, 0.75, 0.10, 0.18, 0.05, 0.00, 0.68, 0.54, …</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 98, 95, 96, 81, 88, 80, 57, 95, 90, 99, 98, 98, 99, 98…</span>
+<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 894</span>
 <span class="co">#&gt; Columns: 8</span>
 <span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
+<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.32, 0.77, 0.08, 0.16, 0.05, 0.00, 0.70, 0.57, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 98, 94, 98, 74, 86, 80, 57, 96, 92, 98, 98, 98, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, 3393, …</span>
+<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.85, 0.34, 0.75, 0.10, 0.18, 0.05, 0.00, 0.68, 0.54, …</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 99, 90, 99, 91, 95, 81, 58, 99, 99, 94, 99, 99, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
 <div class="section level3">
@@ -533,7 +533,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
