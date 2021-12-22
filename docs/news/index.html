@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -153,6 +153,23 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worldfootballr-047" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.7">
+<a href="#worldfootballr-047" class="anchor"></a>worldfootballR 0.4.7<small> Unreleased </small>
+</h1>
+<div id="new-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h3>
+<ul>
+<li>
+<code><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls()</a></code> allows users to extract URLs of selected team staff members based on staff role (ie ‘Manager’, ‘Assistant Manager’, etc)</li>
+<li>
+<code><a href="../reference/tm_team_staff_history.html">tm_team_staff_history()</a></code> allows users to get all people who have held the selected role in a team’s history and some summary statistics</li>
+<li>
+<code><a href="../reference/tm_staff_job_history.html">tm_staff_job_history()</a></code> allows users to get all roles a selected staff member(s) has held and performance data in that role (wins, draws, losses, etc)</li>
+</ul>
+</div>
+</div>
     <div id="worldfootballr-0461" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.6.1">
 <a href="#worldfootballr-0461" class="anchor"></a>worldfootballR 0.4.6.1<small> Unreleased </small>
@@ -170,9 +187,9 @@
 <h1 class="page-header" data-toc-text="0.4.6">
 <a href="#worldfootballr-046" class="anchor"></a>worldfootballR 0.4.6<small> Unreleased </small>
 </h1>
-<div id="new-functions" class="section level3">
+<div id="new-functions-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h3>
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code><a href="../reference/fb_team_player_stats.html">fb_team_player_stats()</a></code> allows users to get all stats for a team(s) player season stats</li>
@@ -218,7 +235,7 @@
 <li>Wrap Data sources in single quotes in DESCRIPTION file (title and/or description)</li>
 <li>Fixed <code>Warning: Unexecutable code in man/fb_player_scouting_report.Rd: pos_versus = "primary")</code>
 </li>
-<li>Wrote <code>.pkg_message()</code> to allow users to easily suppress messages outputted to the console by setting <code>options(mypackage.verbose = FALSE)</code>
+<li>Wrote <code>.pkg_message()</code> to allow users to easily suppress messages outputted to the console by setting <code><a href="https://rdrr.io/r/base/options.html">options(mypackage.verbose = FALSE)</a></code>
 </li>
 <li>Removed unnecessary examples</li>
 </ul>
@@ -403,9 +420,9 @@
 <h1 class="page-header" data-toc-text="0.3.3">
 <a href="#worldfootballr-033" class="anchor"></a>worldfootballR 0.3.3<small> Unreleased </small>
 </h1>
-<div id="new-functions-1" class="section level3">
+<div id="new-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> returns a data frame of players (names and FBref URLs) who have played in the top 5 Euro leagues and their respective Transfermarkt URL</li>
@@ -599,9 +616,9 @@
 <h1 class="page-header" data-toc-text="0.3.0">
 <a href="#worldfootballr-030" class="anchor"></a>worldfootballR 0.3.0<small> Unreleased </small>
 </h1>
-<div id="new-functions-2" class="section level3">
+<div id="new-functions-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h3>
+<a href="#new-functions-3" class="anchor"></a>New functions</h3>
 <p>Functions to extract understat.com data now available:</p>
 <ul>
 <li>Shots locations data:
@@ -661,7 +678,7 @@
 <h3 class="hasAnchor">
 <a href="#breaking-changes-2" class="anchor"></a>Breaking Changes</h3>
 <ul>
-<li>Most Fbref table names will have changed slightly, as they have been cleaned up to not include "__" and “+/-” has been replaced with “Plus_Minus”</li>
+<li>Most Fbref table names will have changed slightly, as they have been cleaned up to not include “__” and “+/-” has been replaced with “Plus_Minus”</li>
 <li>Column names <code>event_time</code>, <code>event_type</code>, <code>event_players</code> and <code>score_progression</code> changed for <code><a href="../reference/get_match_summary.html">get_match_summary()</a></code>, and additional columns added</li>
 </ul>
 </div>
@@ -738,9 +755,9 @@
 <h1 class="page-header" data-toc-text="0.2.8">
 <a href="#worldfootballr-028" class="anchor"></a>worldfootballR 0.2.8<small> Unreleased </small>
 </h1>
-<div id="new-functions-3" class="section level3">
+<div id="new-functions-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-3" class="anchor"></a>New functions</h3>
+<a href="#new-functions-4" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new fbref functions
 <ul>
@@ -766,9 +783,9 @@
 <h1 class="page-header" data-toc-text="0.2.7">
 <a href="#worldfootballr-027" class="anchor"></a>worldfootballR 0.2.7<small> Unreleased </small>
 </h1>
-<div id="new-functions-4" class="section level3">
+<div id="new-functions-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-4" class="anchor"></a>New functions</h3>
+<a href="#new-functions-5" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new fbref functions
 <ul>
@@ -802,9 +819,9 @@
 <h1 class="page-header" data-toc-text="0.2.6">
 <a href="#worldfootballr-026" class="anchor"></a>worldfootballR 0.2.6<small> Unreleased </small>
 </h1>
-<div id="new-functions-5" class="section level3">
+<div id="new-functions-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-5" class="anchor"></a>New functions</h3>
+<a href="#new-functions-6" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added new transfermarkt functions:
 <ul>
@@ -862,9 +879,9 @@
 <h1 class="page-header" data-toc-text="0.2.5">
 <a href="#worldfootballr-025" class="anchor"></a>worldfootballR 0.2.5<small> Unreleased </small>
 </h1>
-<div id="new-functions-6" class="section level3">
+<div id="new-functions-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-6" class="anchor"></a>New functions</h3>
+<a href="#new-functions-7" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> to get fbref season stats for all players or teams stats in the big five Euro leagues</li>
 </ul>
@@ -875,9 +892,9 @@
 <h1 class="page-header" data-toc-text="0.2.4">
 <a href="#worldfootballr-024" class="anchor"></a>worldfootballR 0.2.4<small> Unreleased </small>
 </h1>
-<div id="new-functions-7" class="section level3">
+<div id="new-functions-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-7" class="anchor"></a>New functions</h3>
+<a href="#new-functions-8" class="anchor"></a>New functions</h3>
 <ul>
 <li>Added fbref helper functions:
 <ul>

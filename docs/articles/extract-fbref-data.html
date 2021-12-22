@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -101,13 +101,13 @@
 
       
 
-      </header><script src="extract-fbref-data_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><script src="extract-fbref-data_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-12-15</h4>
+            <h4 class="date">2021-12-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -161,7 +161,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6,300</span>
+<span class="co">#&gt; Rows: 6,378</span>
 <span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
 <span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
@@ -408,9 +408,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.85, 0.34, 0.75, 0.10, 0.18, 0.05, 0.00, 0.68, 0.54, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 95, 96, 81, 88, 80, 57, 95, 90, 99, 98, 98, 99, 98…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.87, 0.35, 0.76, 0.11, 0.16, 0.05, 0.00, 0.68, 0.55, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 96, 98, 80, 86, 78, 57, 96, 89, 99, 98, 98, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 894</span>
@@ -419,9 +419,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.85, 0.34, 0.75, 0.10, 0.18, 0.05, 0.00, 0.68, 0.54, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 90, 99, 91, 95, 81, 58, 99, 99, 94, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, 3483, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.87, 0.35, 0.76, 0.11, 0.16, 0.05, 0.00, 0.68, 0.55, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 91, 99, 91, 94, 78, 58, 99, 99, 95, 99, 99, 99, 99…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">

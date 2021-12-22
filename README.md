@@ -30,7 +30,7 @@ football (soccer) data sites:
 ## Installation
 
 You can install the CRAN version of
-[**`worldfootballR`**](https://cran.r-project.org/web/packages/worldfootballR/index.html)
+[**`worldfootballR`**](https://CRAN.R-project.org/package=worldfootballR)
 with:
 
 ``` r

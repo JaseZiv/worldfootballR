@@ -90,6 +90,30 @@ To get a list of player URLs for a particular team in transfermarkt.com, the `tm
 tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
 ```
 
+
+### Staff URLs
+
+To get a list of staff URLs for a particular team(s) and staff role in transfermarkt.com, the `tm_league_staff_urls()` function can be used.
+
+The staff roles that can be passed to the function via the `staff_role` argument are below:
+
+* "Manager" (this will also return caretaker managers)
+* "Assistant Manager"
+* "Goalkeeping Coach"
+* "Fitness Coach"
+* "Conditioning Coach"
+
+```{r, tm_staff_urls, eval=FALSE}
+# get a list of team URLs for the EPL 2021/22 season
+epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
+# get all EPL managers for the 2021/22 season
+epl_managers <- tm_team_staff_urls(team_urls = epl_teams, staff_role = "Manager")
+
+# get all EPL goal keeping coaches for the 2021/22 season
+epl_gk_coaches <- tm_team_staff_urls(team_urls = epl_teams, staff_role = "Goalkeeping Coach")
+```
+
+
 ***
 
 ## League Season-Level Data
@@ -185,5 +209,46 @@ burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
 ```
 
 ***
+
+
+## Club Staff Data
+
+From version 0.4.7, users now have the ability to get historical data for club staff from transfermarkt.
+
+The following two functions can be used, depending on the need (in addition to the helper function `tm_team_staff_urls()` detailed above).
+
+### Club Staff History
+
+You can extract all employees by role in a club's history using `tm_team_staff_history()`.
+
+The list of roles that can be passed to the `staff_roles` argument can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_staff/tm_staff_types.csv)
+
+```{r tm_team_staff_history, eval=FALSE}
+# get a list of team URLs for the EPL 2021/22 season
+epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
+
+# then use the URLs to pass to the function, and select the role you wish to see results for
+club_manager_history <- tm_team_staff_history(team_urls = epl_teams, staff_role = "Manager")
+club_caretaker_manager_history <- tm_team_staff_history(team_urls = epl_teams, staff_role = "Caretaker Manager")
+```
+
+
+### Staff Member's History
+
+To be able to get all roles held by a selected staff member(s), the `tm_staff_job_history()` function can be used.
+
+The function accepts one argument, `staff_urls`, which can be extracted using `tm_team_staff_urls()` explained in the helpers section above.
+
+```{r tm_staff_job_history, eval=FALSE}
+# get a list of team URLs for the EPL 2021/22 season
+epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
+
+# get all EPL goal keeping coaches for the 2021/22 season
+epl_gk_coaches <- tm_team_staff_urls(team_urls = epl_teams[1:3], staff_role = "Goalkeeping Coach")
+# then you can pass these URLs to the function and get job histories for the selected staff members
+epl_gk_coach_job_histories <- tm_staff_job_history(staff_urls = epl_gk_coaches)
+```
+
+
 
 

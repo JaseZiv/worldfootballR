@@ -37,7 +37,7 @@ This package is designed to allow users to extract various world football result
 
 ## Installation
 
-You can install the CRAN version of [**```worldfootballR```** ](https://cran.r-project.org/web/packages/worldfootballR/index.html) with:
+You can install the CRAN version of [**```worldfootballR```** ](https://CRAN.R-project.org/package=worldfootballR) with:
 
 ```{r cran-installation, eval=FALSE}
 install.packages("worldfootballR")

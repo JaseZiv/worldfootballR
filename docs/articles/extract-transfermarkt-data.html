@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
       </span>
     </div>
 
@@ -101,13 +101,13 @@
 
       
 
-      </header><script src="extract-transfermarkt-data_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><script src="extract-transfermarkt-data_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from Transfermarkt</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-12-15</h4>
+            <h4 class="date">2021-12-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-transfermarkt-data.Rmd"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -161,7 +161,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6,300</span>
+<span class="co">#&gt; Rows: 6,378</span>
 <span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
 <span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
@@ -187,6 +187,27 @@
 <p>To get a list of player URLs for a particular team in transfermarkt.com, the <code><a href="../reference/tm_team_player_urls.html">tm_team_player_urls()</a></code> function can be used.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tm_team_player_urls.html">tm_team_player_urls</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="staff-urls" class="section level3">
+<h3 class="hasAnchor">
+<a href="#staff-urls" class="anchor"></a>Staff URLs</h3>
+<p>To get a list of staff URLs for a particular team(s) and staff role in transfermarkt.com, the <code>tm_league_staff_urls()</code> function can be used.</p>
+<p>The staff roles that can be passed to the function via the <code>staff_role</code> argument are below:</p>
+<ul>
+<li>“Manager” (this will also return caretaker managers)</li>
+<li>“Assistant Manager”</li>
+<li>“Goalkeeping Coach”</li>
+<li>“Fitness Coach”</li>
+<li>“Conditioning Coach”</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get a list of team URLs for the EPL 2021/22 season</span>
+<span class="va">epl_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
+<span class="co"># get all EPL managers for the 2021/22 season</span>
+<span class="va">epl_managers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span>, staff_role <span class="op">=</span> <span class="st">"Manager"</span><span class="op">)</span>
+
+<span class="co"># get all EPL goal keeping coaches for the 2021/22 season</span>
+<span class="va">epl_gk_coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span>, staff_role <span class="op">=</span> <span class="st">"Goalkeeping Coach"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -199,7 +220,7 @@
 <a href="#league-table-by-matchdays" class="anchor"></a>League Table by Matchdays</h3>
 <p>To be able to extract league tables for select matchday(s), the below function can be used.</p>
 <p>The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv">worldfootballR_data</a> repository, it can accept the league URL, season start year and matchday number(s).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># to get the EPL table after matchday 1 of the 20/21 season:</span>
 <span class="va">epl_matchday_1_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_matchday_table.html">tm_matchday_table</a></span><span class="op">(</span>country_name<span class="op">=</span><span class="st">"England"</span>, start_year<span class="op">=</span><span class="st">"2020"</span>, matchday<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 
@@ -219,7 +240,7 @@
 <h3 class="hasAnchor">
 <a href="#transfer-activity-by-team" class="anchor"></a>Transfer activity by team</h3>
 <p>To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the <code><a href="../reference/tm_team_transfers.html">tm_team_transfers()</a></code> function can be used. This function can return either <code>summer</code>, <code>winter</code> or <code>all</code> for both <code>transfer_windows</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">bayern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_transfers.html">tm_team_transfers</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"</span>, transfer_window <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
 
@@ -231,7 +252,7 @@
 <h3 class="hasAnchor">
 <a href="#squad-player-stats" class="anchor"></a>Squad Player Stats</h3>
 <p>To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the <code><a href="../reference/tm_squad_stats.html">tm_squad_stats()</a></code> function can be used:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">bayern</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_squad_stats.html">tm_squad_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"</span><span class="op">)</span>
 
@@ -243,7 +264,7 @@
 <h3 class="hasAnchor">
 <a href="#player-valuations" class="anchor"></a>Player Valuations</h3>
 <p>To get player valuations for all teams in a league season, use the <code><a href="../reference/get_player_market_values.html">get_player_market_values()</a></code> function:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_valuations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"England"</span>, <span class="st">"Spain"</span>, <span class="st">"France"</span>, <span class="st">"Italy"</span>, <span class="st">"Germany"</span><span class="op">)</span>,
                                        start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
 <hr>
@@ -257,7 +278,7 @@
 <h3 class="hasAnchor">
 <a href="#player-bios" class="anchor"></a>Player Bios</h3>
 <p>To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> function.:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for a single player </span>
 <span class="va">hazard_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_bio.html">tm_player_bio</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"</span><span class="op">)</span>
 
@@ -267,6 +288,39 @@
 <span class="co"># then pass all those URLs to the tm_player_bio</span>
 <span class="va">burnley_bios</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_bio.html">tm_player_bio</a></span><span class="op">(</span>player_urls <span class="op">=</span> <span class="va">burnley_player_urls</span><span class="op">)</span></code></pre></div>
 <hr>
+</div>
+</div>
+<div id="club-staff-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#club-staff-data" class="anchor"></a>Club Staff Data</h2>
+<p>From version 0.4.7, users now have the ability to get historical data for club staff from transfermarkt.</p>
+<p>The following two functions can be used, depending on the need (in addition to the helper function <code><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls()</a></code> detailed above).</p>
+<div id="club-staff-history" class="section level3">
+<h3 class="hasAnchor">
+<a href="#club-staff-history" class="anchor"></a>Club Staff History</h3>
+<p>You can extract all employees by role in a club’s history using <code><a href="../reference/tm_team_staff_history.html">tm_team_staff_history()</a></code>.</p>
+<p>The list of roles that can be passed to the <code>staff_roles</code> argument can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_staff/tm_staff_types.csv">here</a></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get a list of team URLs for the EPL 2021/22 season</span>
+<span class="va">epl_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
+
+<span class="co"># then use the URLs to pass to the function, and select the role you wish to see results for</span>
+<span class="va">club_manager_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_history.html">tm_team_staff_history</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span>, staff_role <span class="op">=</span> <span class="st">"Manager"</span><span class="op">)</span>
+<span class="va">club_caretaker_manager_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_history.html">tm_team_staff_history</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span>, staff_role <span class="op">=</span> <span class="st">"Caretaker Manager"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="staff-members-history" class="section level3">
+<h3 class="hasAnchor">
+<a href="#staff-members-history" class="anchor"></a>Staff Member’s History</h3>
+<p>To be able to get all roles held by a selected staff member(s), the <code><a href="../reference/tm_staff_job_history.html">tm_staff_job_history()</a></code> function can be used.</p>
+<p>The function accepts one argument, <code>staff_urls</code>, which can be extracted using <code><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls()</a></code> explained in the helpers section above.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get a list of team URLs for the EPL 2021/22 season</span>
+<span class="va">epl_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
+
+<span class="co"># get all EPL goal keeping coaches for the 2021/22 season</span>
+<span class="va">epl_gk_coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, staff_role <span class="op">=</span> <span class="st">"Goalkeeping Coach"</span><span class="op">)</span>
+<span class="co"># then you can pass these URLs to the function and get job histories for the selected staff members</span>
+<span class="va">epl_gk_coach_job_histories</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_staff_job_history.html">tm_staff_job_history</a></span><span class="op">(</span>staff_urls <span class="op">=</span> <span class="va">epl_gk_coaches</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>

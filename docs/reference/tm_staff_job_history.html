@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Understat team season shot locations — understat_team_season_shots • worldfootballR</title>
+<title>Get Staff Member's job history — tm_staff_job_history • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get Understat team season shot locations — understat_team_season_shots" />
-<meta property="og:description" content="Returns shooting locations for all matches played by a selected team from Understat.com" />
+<meta property="og:title" content="Get Staff Member's job history — tm_staff_job_history" />
+<meta property="og:description" content="Returns all roles a selected staff member(s) has held and performance data" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,29 +150,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Understat team season shot locations</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/understat_shots.R'><code>R/understat_shots.R</code></a></small>
-    <div class="hidden name"><code>understat_team_season_shots.Rd</code></div>
+    <h1>Get Staff Member's job history</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/tm_staff_job_history.R'><code>R/tm_staff_job_history.R</code></a></small>
+    <div class="hidden name"><code>tm_staff_job_history.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns shooting locations for all matches played by a selected team from Understat.com</p>
+    <p>Returns all roles a selected staff member(s) has held and performance data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>understat_team_season_shots</span><span class='op'>(</span><span class='va'>team_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tm_staff_job_history</span><span class='op'>(</span><span class='va'>staff_urls</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>team_url</th>
-      <td><p>the URL of the team season</p></td>
+      <th>staff_urls</th>
+      <td><p>transfermarkt.com staff(s) url (can use tm_league_staff_urls() to get)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe of shooting locations for a selected team season</p>
+    <p>returns a data frame of all roles a selected staff member(s) has held and performance data</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

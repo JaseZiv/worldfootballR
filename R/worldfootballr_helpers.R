@@ -198,6 +198,61 @@ tm_team_player_urls <- function(team_url) {
   return(player_urls)
 }
 
+#' Get transfermarkt Club Staff URLs
+#'
+#' Returns the transfermarkt URLs for all staff of selected roles for a given team
+#'
+#' @param team_urls the staff member's team URL (can be from tm_league_team_urls())
+#' @param staff_role role of the staff member URLs required for with options including:
+#'
+#' \emph{"Manager"}, \emph{"Assistant Manager"}, \emph{"Goalkeeping Coach"},
+#' \emph{"Fitness Coach"}, \emph{"Conditioning Coach"}
+#'
+#' @return returns a character vector of all transfermarkt staff URLs for a selected team(s)
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+tm_team_staff_urls <- function(team_urls, staff_role) {
+
+  if(!staff_role %in% c("Manager", "Assistant Manager", "Goalkeeping Coach", "Fitness Coach", "Conditioning Coach")) stop("Check that staff role is one of:\n'Manager', 'Assistant Manager', 'Goalkeeping Coach', 'Fitness Coach' or 'Conditioning Coach'")
+
+  get_each_team <- function(team_url) {
+    pb$tick()
+    main_url <- "https://www.transfermarkt.com"
+
+    manager_history_url <- gsub("startseite", "mitarbeiter", team_url) %>% gsub("/saison_id.*", "", .)
+
+    history_pg <- xml2::read_html(manager_history_url)
+
+
+    coaching <- history_pg %>% rvest::html_nodes(".large-8") %>% rvest::html_nodes(".box") %>% .[1]
+
+    name <- coaching %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_text()
+    url <- coaching %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
+    position <- coaching %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
+    coaching_df <- data.frame(name, url, position)
+
+    if(staff_role == "Manager") {
+      url <- coaching_df %>% dplyr::filter(position %in% c("Manager", "Caretaker Manager")) %>% dplyr::pull(.data$url)
+    } else {
+      url <- coaching_df %>% dplyr::filter(position == staff_role) %>% dplyr::pull(.data$url)
+    }
+
+    return(url)
+  }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(team_urls))
+
+  f_possibly <- purrr::possibly(get_each_team, otherwise = NA_character_, quiet = FALSE)
+  purrr::map(
+    team_urls,
+    f_possibly
+  ) %>% unlist()
+
+}
 
 
 #' Get Understat team info

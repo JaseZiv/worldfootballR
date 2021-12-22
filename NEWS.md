@@ -1,3 +1,11 @@
+# worldfootballR 0.4.7
+
+### New functions
+
+* `tm_team_staff_urls()` allows users to extract URLs of selected team staff members based on staff role (ie 'Manager', 'Assistant Manager', etc)
+* `tm_team_staff_history()` allows users to get all people who have held the selected role in a team's history and some summary statistics
+* `tm_staff_job_history()` allows users to get all roles a selected staff member(s) has held and performance data in that role (wins, draws, losses, etc)
+
 # worldfootballR 0.4.6.1
 
 ### Bugs

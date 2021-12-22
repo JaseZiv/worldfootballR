@@ -106,7 +106,16 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_squad_stats.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_staff_job_history.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_team_player_urls.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_team_staff_history.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_team_staff_urls.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_team_transfer_balances.html</loc>

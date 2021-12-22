@@ -92,3 +92,60 @@ test_that("tm_player_bio() works", {
   expect_equal(ncol(burnley_bios), 21)
 
 })
+
+
+
+test_that("tm_team_staff_urls() works", {
+  testthat::skip_on_cran()
+
+  # get a list of team URLs for the EPL 2021/22 season
+  teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
+             "https://www.transfermarkt.com/manchester-united/startseite/verein/985/saison_id/2021",
+             "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
+  # get all EPL managers for the 2021/22 season
+  epl_managers <- tm_team_staff_urls(team_urls = teams, staff_role = "Manager")
+  expect_type(epl_managers, "character")
+  # test that there is more than just the baseline URL
+  expect_false(all(grepl("https://www.transfermarkt.com$", epl_managers)))
+
+  # get all EPL goal keeping coaches for the 2021/22 season
+  epl_gk_coaches <- tm_team_staff_urls(team_urls = teams, staff_role = "Goalkeeping Coach")
+  expect_type(epl_gk_coaches, "character")
+  # test that there is more than just the baseline URL
+  expect_false(all(grepl("https://www.transfermarkt.com$", epl_gk_coaches)))
+
+})
+
+
+test_that("tm_team_staff_history() works", {
+  testthat::skip_on_cran()
+
+  # get a list of team URLs for the EPL 2021/22 season
+  teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
+            "https://www.transfermarkt.com/manchester-united/startseite/verein/985/saison_id/2021",
+            "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
+  # get all EPL managers for the 2021/22 season
+  epl_club_managers <- tm_team_staff_history(team_urls = teams, staff_role = "Manager")
+  expect_type(epl_club_managers, "list")
+  expect_false(nrow(epl_club_managers) == 0)
+})
+
+
+test_that("tm_team_staff_history() works", {
+  testthat::skip_on_cran()
+
+  managers <- c("https://www.transfermarkt.com/pep-guardiola/profil/trainer/5672",
+                "https://www.transfermarkt.com/ralf-rangnick/profil/trainer/196",
+                "https://www.transfermarkt.com/thomas-tuchel/profil/trainer/7471")
+  epl_manager_job_histories <- tm_staff_job_history(staff_urls = managers)
+  expect_type(epl_manager_job_histories, "list")
+  expect_false(nrow(epl_manager_job_histories) == 0)
+
+  gk_coaches <- c("https://www.transfermarkt.com/xabier-mancisidor/profil/trainer/17486",
+                  "https://www.transfermarkt.com/richard-wright/profil/trainer/93678",
+                  "https://www.transfermarkt.com/richard-hartis/profil/trainer/19348")
+
+  epl_gk_coach_job_histories <- tm_staff_job_history(staff_urls = gk_coaches)
+  expect_type(epl_gk_coach_job_histories, "list")
+  expect_false(nrow(epl_gk_coach_job_histories) == 0)
+})
