@@ -106,7 +106,7 @@ test_that("get_match_report() works", {
   expect_type(test_df, "list")
 
   # test that the correct number of columns returned
-  expect_equal(ncol(test_df), 17)
+  expect_equal(ncol(test_df), 21)
 
   # test that incorrect URL will error
   expect_error(get_match_report("aaa.aaa"))
