@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get transfermarkt Player URLs — tm_team_player_urls • worldfootballR</title>
+<title>Get player injury history — tm_player_injury_history • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get transfermarkt Player URLs — tm_team_player_urls" />
-<meta property="og:description" content="Returns the transfermarkt URLs for all players for a given team" />
+<meta property="og:title" content="Get player injury history — tm_player_injury_history" />
+<meta property="og:description" content="Returns data frame of a player's injury history transfermarkt.com" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -150,29 +150,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get transfermarkt Player URLs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/worldfootballr_helpers.R'><code>R/worldfootballr_helpers.R</code></a></small>
-    <div class="hidden name"><code>tm_team_player_urls.Rd</code></div>
+    <h1>Get player injury history</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/tm_player_injury_history.R'><code>R/tm_player_injury_history.R</code></a></small>
+    <div class="hidden name"><code>tm_player_injury_history.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns the transfermarkt URLs for all players for a given team</p>
+    <p>Returns data frame of a player's injury history transfermarkt.com</p>
     </div>
 
-    <pre class="usage"><span class='fu'>tm_team_player_urls</span><span class='op'>(</span><span class='va'>team_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>tm_player_injury_history</span><span class='op'>(</span><span class='va'>player_urls</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>team_url</th>
-      <td><p>the player's team URL (can be from tm_league_team_urls())</p></td>
+      <th>player_urls</th>
+      <td><p>player url(s) from transfermarkt</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a character vector of all transfermarkt player URLs for a selected team</p>
+    <p>returns a dataframe of player injury history</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

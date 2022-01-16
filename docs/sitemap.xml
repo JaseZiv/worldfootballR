@@ -94,6 +94,15 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/player_transfer_history.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_expiring_contracts.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_league_debutants.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_league_injuries.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_league_team_urls.html</loc>
   </url>
   <url>
@@ -101,6 +110,9 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_player_bio.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/tm_player_injury_history.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/tm_squad_stats.html</loc>

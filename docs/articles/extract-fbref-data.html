@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2021-12-23</h4>
+            <h4 class="date">2022-01-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -402,27 +402,7 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
                dplyr::filter(scouting_period == "Last 365 Days")</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 894</span>
-<span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
-<span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
-<span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.87, 0.35, 0.76, 0.11, 0.16, 0.05, 0.00, 0.68, 0.55, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 98, 96, 98, 80, 86, 78, 57, 96, 89, 99, 98, 98, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, …</span>
-<span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 894</span>
-<span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          &lt;chr&gt; "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione…</span>
-<span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
-<span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
-<span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.87, 0.35, 0.76, 0.11, 0.16, 0.05, 0.00, 0.68, 0.55, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 99, 91, 99, 91, 94, 78, 58, 99, 99, 95, 99, 99, 99, 99…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, 3303, …</span>
-<span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
 <h3 class="hasAnchor">
