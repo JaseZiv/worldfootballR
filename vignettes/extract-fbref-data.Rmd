@@ -350,7 +350,7 @@ scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d7
                dplyr::filter(scouting_period == "Last 365 Days")
 ```
 
-```{r get_player_scouting_report}
+```{r get_player_scouting_report, eval=FALSE}
 dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary"))
 dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary"))
 ```

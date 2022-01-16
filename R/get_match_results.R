@@ -73,6 +73,31 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
       dplyr::filter(.data$Date != "")
 
 
+    tab_holder <- fixtures_page %>%
+      rvest::html_nodes(".stats_table tbody tr")
+
+    tab_holder <- tab_holder[!grepl("spacer partial", xml2::xml_attrs(tab_holder))]
+
+    idx_rm <- grep("thead", xml2::xml_attrs(tab_holder))
+
+    if(length(idx_rm) != 0) {
+      tab_holder <- tab_holder[-idx_rm]
+    }
+
+    get_url <- function(tab_element) {
+      a <- tab_element %>% rvest::html_node(xpath='.//*[@data-stat="match_report"]//a') %>% rvest::html_attr("href")
+      if(is.na(a) || length(a) == 0) {
+        a <- NA_character_
+      } else {
+        a <-  paste0(main_url, a)
+      }
+
+      return(a)
+    }
+
+    match_urls <- purrr::map_chr(tab_holder, get_url) %>% unique()
+
+
     suppressWarnings(
       season_summary <- season_summary %>%
         dplyr::filter(is.na(.data$Time) | .data$Time != "Time") %>%
@@ -106,6 +131,9 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
       season_summary <- season_summary %>%
         dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, .data$Away, .data$AwayGoals, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
     }
+
+    season_summary <- season_summary %>%
+      dplyr::mutate(MatchURL = match_urls)
 
     return(season_summary)
   }
