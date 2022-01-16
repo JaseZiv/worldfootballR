@@ -19,6 +19,8 @@
 get_match_lineups <- function(match_url) {
   # .pkg_message("Scraping lineups")
 
+  main_url <- "https://fbref.com"
+
   get_each_match_lineup <- function(match_url) {
     pb$tick()
 
@@ -34,6 +36,8 @@ get_match_lineups <- function(match_url) {
 
       get_each_lineup <- function(home_away) {
         lineup <- lineups[home_away] %>% rvest::html_table() %>% data.frame()
+
+        player_urls <- lineups[home_away] %>% rvest::html_nodes("a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
         formation <- names(lineup)[1]
         is_diamond <- grepl("\\..$", formation)
         # on Windows, the diamond is coming through as utf-8, while on MacOS coming through as ".."
@@ -57,9 +61,10 @@ get_match_lineups <- function(match_url) {
         lineup <- lineup %>%
           dplyr::mutate(Matchday = match_date,
                         Team = team,
-                        Formation = formation)
+                        Formation = formation,
+                        PlayerURL = player_urls)
 
-        names(lineup) <- c("Player_Num", "Player_Name", "Starting", "Matchday", "Team", "Formation")
+        names(lineup) <- c("Player_Num", "Player_Name", "Starting", "Matchday", "Team", "Formation", "PlayerURL")
 
         all_tables <- match_page %>%
           rvest::html_nodes(".table_container")
@@ -95,7 +100,8 @@ get_match_lineups <- function(match_url) {
           dplyr::left_join(additional_info, by = c("Team", "Player_Name" = "Player", "Player_Num")) %>%
           dplyr::mutate(Home_Away = ifelse(is.na(.data$Home_Away), home_or_away, .data$Home_Away)) %>%
           dplyr::select(.data$Matchday, .data$Team, .data$Home_Away, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting, dplyr::everything()) %>%
-          dplyr::mutate(Matchday = lubridate::ymd(.data$Matchday))
+          dplyr::mutate(Matchday = lubridate::ymd(.data$Matchday)) %>%
+          dplyr::mutate(MatchURL = match_url)
 
         return(lineup)
       }

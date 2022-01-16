@@ -118,7 +118,7 @@ epl_gk_coaches <- tm_team_staff_urls(team_urls = epl_teams, staff_role = "Goalke
 
 ## League Season-Level Data
 
-This section will cover the functions to aid in the extraction of season team statistics.
+This section will cover the functions to aid in the extraction of season team statistics and information for whole leagues.
 
 
 ### League Table by Matchdays
@@ -137,6 +137,54 @@ epl_matchday_1to35_table <- tm_matchday_table(country_name="England", start_year
 
 # to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
 league_one_matchday_1_table <- tm_matchday_table(start_year="2020", matchday=1, league_url="https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
+### League Debutants
+
+To be able to extract all debutants making either their league or professional debut, the `tm_league_debutants()` function can be used.
+
+To see all league debutants (regardless of their professional status), set `debut_type = "league"`, while setting `debut_type = "pro"` will only return debutants in the selected league who are making their professional debuts.
+
+The variables `debut_start_year` and `debut_end_year` set time periods on when debutant data is required for. As with all transfermarkt functions, this season value is the starting year if the season, ie for the 2021-22 LaLiga season, this value is set to 2021.
+
+```{r league_debutants, eval=FALSE}
+# Laliga players making their LaLiga debut in 2021/2022
+laliga_debutants <- tm_league_debutants(country_name = "Spain", debut_type = "league", debut_start_year = 2021, debut_end_year = 2021)
+
+# English League One players making their PRO debuts in 2021/2022
+league_one_PRO_debutants <- tm_league_debutants(country_name = "", league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3", debut_type = "pro", debut_start_year = 2021, debut_end_year = 2021)
+```
+
+
+### Expiring Contracts
+
+To be able to extract a list of all players whose contracts expire in a selected year, the `tm_expiring_contracts()` can be used.
+
+Set the `contract_end_year` to be equal to the calendar year the contracts are due to expire.
+
+```{r expiring_contracts, eval=FALSE}
+# LaLiga players with expiring contracts in 2022
+laliga_expiring <- tm_expiring_contracts(country_name = "Spain", contract_end_year = 2023)
+
+# English League One players with expiring contracts in 2022
+league_one_expiring <- tm_expiring_contracts(country_name = "",
+                                               contract_end_year = 2023,
+                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+```
+
+
+### League Injuries
+
+To get a list of all reported *current* injuries for a selected league, use the `tm_league_injuries()` function:
+
+```{r league_injuries, eval=FALSE}
+# to get all current injuries for LaLiga
+laliga_injuries <- tm_league_injuries(country_name = "Spain")
+
+# get all current injuries for League One in England
+league_one_injuries <- tm_league_injuries(country_name = "",
+                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
 ```
 
 
@@ -207,6 +255,23 @@ burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt
 # then pass all those URLs to the tm_player_bio
 burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
 ```
+
+
+### Player Injury History
+
+To be able to get an individual player(s) injury history from transfermarkt, use the `tm_player_injury_history()` function.
+
+```{r player_injury_history, eval=FALSE}
+# for a single player
+hazard_injuries <- tm_player_injury_history(player_urls = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
+
+# for multiple players:
+# can make use of a tm helper function:
+burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2021")
+# then pass all those URLs to the tm_player_bio
+burnley_player_injuries <- tm_player_injury_history(player_urls = burnley_player_urls)
+```
+
 
 ***
 

@@ -60,11 +60,25 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
 
     outer <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".filter.switcher") %>% rvest::html_nodes("div")
 
+    # if(pos_versus == "primary") {
+    #   pos_versus <- 1
+    #   tryCatch({versus <- outer %>% rvest::html_text() %>%
+    #     stringr::str_squish() %>% .[1]}, error = function(e) {versus <- data.frame()})
+    # } else if (pos_versus == "secondary") {
+    #   pos_versus <- 2
+    #   tryCatch({versus <- outer %>% rvest::html_text() %>%
+    #     stringr::str_squish() %>% .[2]}, error = function(e) {versus <- data.frame()})
+    # }
+
+    # else {
+    #   stop(glue::glue("Select a correct 'pos_versus' value from either 'primary' or 'secondary'"))
+    # }
+
     if(length(outer) == 1) {
       pos_versus <- 1
       versus <- outer %>% rvest::html_text() %>%
         stringr::str_squish()
-    } else if (length(outer) == 2) {
+    } else if (length(outer) > 1) {
       if(pos_versus != "primary") {
         pos_versus <- 2
       } else {

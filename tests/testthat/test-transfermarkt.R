@@ -149,3 +149,68 @@ test_that("tm_team_staff_history() works", {
   expect_type(epl_gk_coach_job_histories, "list")
   expect_false(nrow(epl_gk_coach_job_histories) == 0)
 })
+
+
+test_that("tm_league_debutants() works", {
+  testthat::skip_on_cran()
+
+  laliga_debutants <- tm_league_debutants(country_name = "Spain", debut_type = "league", debut_start_year = 2021, debut_end_year = 2021)
+  expect_type(laliga_debutants, "list")
+  expect_equal(ncol(laliga_debutants), 20)
+  expect_false(nrow(laliga_debutants) == 0)
+
+  league_one_PRO_debutants <- tm_league_debutants(country_name = "",
+                                                  league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3",
+                                                  debut_type = "pro", debut_start_year = 2021, debut_end_year = 2021)
+  expect_type(league_one_PRO_debutants, "list")
+  expect_equal(ncol(league_one_PRO_debutants), 20)
+  expect_false(nrow(league_one_PRO_debutants) == 0)
+})
+
+
+test_that("tm_expiring_contracts() works", {
+  testthat::skip_on_cran()
+
+  laliga_expiring <- tm_expiring_contracts(country_name = "Spain", contract_end_year = 2023)
+  expect_type(laliga_expiring, "list")
+  expect_equal(ncol(laliga_expiring), 14)
+  expect_false(nrow(laliga_expiring) == 0)
+
+
+  league_one_expiring <- tm_expiring_contracts(country_name = "",
+                                               contract_end_year = 2023,
+                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+  expect_type(league_one_expiring, "list")
+  expect_equal(ncol(league_one_expiring), 14)
+  expect_false(nrow(league_one_expiring) == 0)
+
+})
+
+
+test_that("tm_league_injuries() works", {
+  testthat::skip_on_cran()
+
+  laliga_injuries <- tm_league_injuries(country_name = "Spain")
+  expect_type(laliga_injuries, "list")
+  expect_equal(ncol(laliga_injuries), 14)
+  expect_false(nrow(laliga_injuries) == 0)
+
+
+  league_one_injuries <- tm_league_injuries(country_name = "",
+                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+  expect_type(league_one_injuries, "list")
+  expect_equal(ncol(league_one_injuries), 14)
+  expect_false(nrow(league_one_injuries) == 0)
+
+})
+
+
+test_that("tm_player_injury_history() works", {
+  testthat::skip_on_cran()
+
+  hazard_injuries <- tm_player_injury_history(player_urls = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
+  expect_type(hazard_injuries, "list")
+  expect_equal(ncol(hazard_injuries), 9)
+  expect_false(nrow(hazard_injuries) == 0)
+
+})
