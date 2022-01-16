@@ -32,6 +32,8 @@
     tryCatch( {Home_xG <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score_xg") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_xG <- NA})
     tryCatch( {Home_Goals <- each_game_page %>% rvest::html_nodes("#a") %>% .[[1]] %>% rvest::html_text()}, error = function(e) {Home_Goals <- NA}) %>%
       stringr::str_remove_all("\n") %>% stringr::str_remove_all("\t")
+    tryCatch( {Home_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[1] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Home_Yellow_Cards <- 0})
+    tryCatch( {Home_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[1] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Home_Red_Cards <- 0})
 
     tryCatch( {Away_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_Team <- NA})
     tryCatch( {Away_Formation <- each_game_page %>% rvest::html_nodes(".lineup#b") %>% rvest::html_nodes("th") %>% rvest::html_text() %>% .[1] %>% gsub(".*\\(", "", .) %>% gsub("\\)", "", .)}, error = function(e) {Away_Formation <- NA})
@@ -39,8 +41,10 @@
     tryCatch( {Away_xG <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score_xg") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_xG <- NA})
     tryCatch( {Away_Goals <- each_game_page %>% rvest::html_nodes("#b") %>% .[[1]] %>% rvest::html_text()}, error = function(e) {Away_Goals <- NA}) %>%
       stringr::str_remove_all("\n") %>% stringr::str_remove_all("\t")
+    tryCatch( {Away_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Yellow_Cards <- 0})
+    tryCatch( {Away_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Red_Cards <- 0})
 
-    suppressWarnings(each_game <- cbind(League_URL, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Game_URL) %>%
+    suppressWarnings(each_game <- cbind(League_URL, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Home_Yellow_Cards, Home_Red_Cards, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
                        dplyr::as_tibble() %>%
                        dplyr::mutate(Home_Score = as.numeric(.data$Home_Score),
                                      Home_xG = as.numeric(.data$Home_xG),
