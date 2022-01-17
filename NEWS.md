@@ -1,4 +1,4 @@
-# worldfootballR 0.4.8.1000 
+# worldfootballR 0.4.9
 
 ### New functions
 
