@@ -1,3 +1,12 @@
+# worldfootballR 0.4.9.1000
+
+
+### Bugs
+
+* `get_match_results()` was returning additional (incorrect) transfermarkt player URLs [#82](https://github.com/JaseZiv/worldfootballR/issues/80)
+
+***
+
 # worldfootballR 0.4.9
 
 ### New functions
@@ -18,10 +27,6 @@
 ### Bugs
 
 * `tm_team_player_urls()` was returning additional (incorrect) transfermarkt player URLs
-
-# worldfootballR 0.4.8
-
-### CRAN Release
 
 ***
 

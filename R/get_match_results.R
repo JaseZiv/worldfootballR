@@ -95,7 +95,8 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
       return(a)
     }
 
-    match_urls <- purrr::map_chr(tab_holder, get_url) %>% unique()
+    match_urls <- purrr::map_chr(tab_holder, get_url)
+    match_urls <- match_urls[!duplicated(match_urls, incomparables = NA)]
 
 
     suppressWarnings(
