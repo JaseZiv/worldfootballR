@@ -73,8 +73,11 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
       dplyr::filter(.data$Date != "")
 
 
+    # tab_holder <- fixtures_page %>%
+    #   rvest::html_nodes(".stats_table tbody tr")
+
     tab_holder <- fixtures_page %>%
-      rvest::html_nodes(".stats_table tbody tr")
+      rvest::html_node(".stats_table tbody") %>% rvest::html_nodes("tr")
 
     tab_holder <- tab_holder[!grepl("spacer partial", xml2::xml_attrs(tab_holder))]
 
@@ -96,7 +99,7 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
     }
 
     match_urls <- purrr::map_chr(tab_holder, get_url)
-    match_urls <- match_urls[!duplicated(match_urls, incomparables = NA)]
+    # match_urls <- match_urls[!duplicated(match_urls, incomparables = NA)]
 
 
     suppressWarnings(

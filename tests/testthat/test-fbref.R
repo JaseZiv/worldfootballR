@@ -118,7 +118,7 @@ test_that("get_match_report() works", {
 test_that("get_match_results() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_df <- get_match_results(country = "ENG", gender = "F", season_end_year = 2021, tier="1st")
+  test_df <- get_match_results(country = "ENG", gender = "M", season_end_year = 2022, tier="1st")
   # test the functions returns the data
   expect_type(test_df, "list")
 
