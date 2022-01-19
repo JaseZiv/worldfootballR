@@ -1,8 +1,12 @@
 # worldfootballR 0.4.9.2000
 
+### Improvements
+
+* `tm_squad_stats()` now returns team, league information and also player URLs
 
 ### Bugs
 
+* `get_player_market_values()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
 * `tm_league_team_urls()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
 
 ***

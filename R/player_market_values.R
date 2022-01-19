@@ -77,8 +77,11 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
       rvest::html_nodes("#yw1 .hauptlink a") %>% rvest::html_attr("href") %>%
       # rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
       unique() %>% paste0(main_url, .)
+
     # there now appears to be an errorneous URL so will remove that manually:
-    team_urls <- team_urls[-grep(".com#", team_urls)]
+    if(any(grepl("com#", team_urls))) {
+      team_urls <- team_urls[-grep(".com#", team_urls)]
+    }
 
     team_urls <- gsub("startseite", "kader", team_urls) %>%
       paste0(., "/plus/1")
