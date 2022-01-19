@@ -165,7 +165,9 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
     # rvest::html_elements("tm-tooltip a") %>% rvest::html_attr("href") %>%
     unique() %>% paste0(main_url, .)
   # there now appears to be an errorneous URL so will remove that manually:
-  team_urls <- team_urls[-grep(".com#", team_urls)]
+  if(any(grepl("com#", team_urls))) {
+    team_urls <- team_urls[-grep(".com#", team_urls)]
+  }
 
   return(team_urls)
 }

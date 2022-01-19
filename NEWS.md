@@ -1,3 +1,12 @@
+# worldfootballR 0.4.9.2000
+
+
+### Bugs
+
+* `tm_league_team_urls()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
+
+***
+
 # worldfootballR 0.4.9.1000
 
 
