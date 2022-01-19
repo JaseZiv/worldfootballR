@@ -31,7 +31,7 @@ tm_squad_stats <- function(team_url) {
       team_data_table <- team_data_page %>% rvest::html_nodes("#yw1") %>% rvest::html_node("table") %>% rvest::html_nodes("tbody") %>% rvest::html_children()
 
       player_name <- team_data_table %>% rvest::html_nodes(".hauptlink") %>% rvest::html_nodes(".hide-for-small") %>% rvest::html_text()
-      player_url <- team_data_table %>% rvest::html_nodes(".hauptlink") %>% rvest::html_nodes(".hide-for-small a") %>% rvest::html_attr("href") %>% paste(main_url, .)
+      player_url <- team_data_table %>% rvest::html_nodes(".hauptlink") %>% rvest::html_nodes(".hide-for-small a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
       player_pos <- team_data_table %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
       player_age <- team_data_table %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
       nationality <- team_data_table %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% rvest::html_attr("title")
