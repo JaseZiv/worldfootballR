@@ -107,23 +107,23 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
         player_num <- NA_character_
       }
       # player names
-      player_name <- team_data %>% rvest::html_nodes(".hauptlink .di.nowrap") %>% rvest::html_elements(".hide-for-small a") %>% rvest::html_text()
+      player_name <- team_data %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_text() %>% stringr::str_squish()
       if(length(player_name) == 0) {
         player_name <- NA_character_
       }
       # player_url
-      player_url <- team_data %>% rvest::html_nodes(".hauptlink .di.nowrap") %>% rvest::html_elements(".hide-for-small a") %>% rvest::html_attr("href") %>%
+      player_url <- team_data %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_attr("href") %>%
         paste0(main_url, .)
       if(length(player_url) == 0) {
         player_url <- NA_character_
       }
       # player position
-      player_position <- team_data %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text()
+      player_position <- team_data %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text() %>% stringr::str_squish()
       if(length(player_position) == 0) {
         player_position <- NA_character_
       }
       # birthdate
-      player_birthday <- team_data %>% rvest::html_nodes(".posrela+ .zentriert") %>% rvest::html_text()
+      player_birthday <- team_data %>% rvest::html_nodes("td:nth-child(3)") %>% rvest::html_text()
       if(length(player_birthday) == 0) {
         player_birthday <- NA_character_
       }
@@ -224,9 +224,10 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
     dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
     dplyr::mutate(date_joined = .tm_fix_dates(.data$date_joined),
                   contract_expiry = .tm_fix_dates(.data$contract_expiry)) %>%
-    tidyr::separate(., player_birthday, into = c("Month", "Day", "Year", "player_age"), sep = " ", remove = F) %>%
-    dplyr::mutate(Day = gsub(",", "", .data$Day) %>% as.numeric(),
-                  Year = as.numeric(.data$Year),
+    tidyr::separate(., player_birthday, into = c("Month", "Day", "Year"), sep = " ", remove = F) %>%
+    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", Year),
+                  Day = gsub(",", "", .data$Day) %>% as.numeric(),
+                  Year = as.numeric(gsub("\\(.*", "", .data$Year)),
                   Month = match(.data$Month, month.abb),
                   player_dob = lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-"))) %>%
     dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%

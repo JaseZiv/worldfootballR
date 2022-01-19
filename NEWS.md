@@ -6,7 +6,7 @@
 
 ### Bugs
 
-* `get_player_market_values()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
+* `get_player_market_values()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list, and some columns not returning values due to HTML changes on transfermarkt
 * `tm_league_team_urls()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
 
 ***
