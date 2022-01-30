@@ -75,18 +75,18 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
     # }
 
     if(length(outer) == 1) {
-      pos_versus <- 1
+      pos_versus_idx <- 1
       versus <- outer %>% rvest::html_text() %>%
         stringr::str_squish()
     } else if (length(outer) > 1) {
       if(pos_versus != "primary") {
-        pos_versus <- 2
+        pos_versus_idx <- 2
       } else {
-        pos_versus <- 1
+        pos_versus_idx <- 1
       }
 
       versus <- outer %>% rvest::html_text() %>%
-        stringr::str_squish() %>% .[pos_versus]
+        stringr::str_squish() %>% .[pos_versus_idx]
     } else {
       stop(glue::glue("Full scouting report not available for {player_name}"))
     }
@@ -95,7 +95,7 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
     scouting_all <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".table_container")
 
 
-    scout_pos <- scouting_all[pos_versus] %>%
+    scout_pos <- scouting_all[pos_versus_idx] %>%
       rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
 
     missing_idx <- scout_pos[,1] != ""

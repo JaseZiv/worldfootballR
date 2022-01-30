@@ -10,7 +10,7 @@
 #'
 #' The statistic type options (stat_type) include:
 #'
-#' \emph{"standard"}, \emph{"shooting"}, \emph{"passing"}, \emph{"passing"_types},
+#' \emph{"standard"}, \emph{"shooting"}, \emph{"passing"}, \emph{"passing_types"},
 #' \emph{"gca"}, \emph{"defense"}, \emph{"possession"}, \emph{"playing_time"},
 #' \emph{"misc"}, \emph{"keepers"}, \emph{"keepers_adv"}
 #'

@@ -1,3 +1,11 @@
+# worldfootballR 0.4.9.3000
+
+### Bugs
+
+* `fb_player_scouting_report()` was returning incorrect position comparisons in some cases [#85](https://github.com/JaseZiv/worldfootballR/issues/85)
+
+***
+
 # worldfootballR 0.4.9.2000
 
 ### Improvements
