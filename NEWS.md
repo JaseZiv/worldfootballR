@@ -1,12 +1,4 @@
-# worldfootballR 0.4.9.3000
-
-### Bugs
-
-* `fb_player_scouting_report()` was returning incorrect position comparisons in some cases [#85](https://github.com/JaseZiv/worldfootballR/issues/85)
-
-***
-
-# worldfootballR 0.4.9.2000
+# worldfootballR 0.4.10
 
 ### Improvements
 
@@ -14,16 +6,9 @@
 
 ### Bugs
 
+* `fb_player_scouting_report()` was returning incorrect position comparisons in some cases [#85](https://github.com/JaseZiv/worldfootballR/issues/85)
 * `get_player_market_values()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list, and some columns not returning values due to HTML changes on transfermarkt
 * `tm_league_team_urls()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
-
-***
-
-# worldfootballR 0.4.9.1000
-
-
-### Bugs
-
 * `get_match_results()` was returning additional (incorrect) transfermarkt player URLs [#82](https://github.com/JaseZiv/worldfootballR/issues/80)
 
 ***

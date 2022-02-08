@@ -1,24 +1,18 @@
 ## Release summary
 
-This is a minor release that adds some new functions, improves on existing functions and addresses a minor bug in one function:
+This is a minor release that addresses some minor bugs and improvements:
 
-### New functions
-
-* `tm_league_debutants()` to be able to extract league debutants
-* `tm_expiring_contracts()` to be able to extract expiring contracts for a selected league
-* `tm_league_injuries()` to get all current injuries from a selected league
-* `tm_player_injury_history()` to get the full player injury history on transfermarkt for a selected player(s)
 
 ### Improvements
 
-* `fb_player_scouting_report()` had an issue with player listed as three positions [#80](https://github.com/JaseZiv/worldfootballR/issues/80)
-* `get_match_lineups()` now also returns match and player URLs [#78](https://github.com/JaseZiv/worldfootballR/issues/78)
-* `get_match_results()` now includes match URLs [#78](https://github.com/JaseZiv/worldfootballR/issues/78)
-* `get_match_report()` now includes yellow and red card counts [#2](https://github.com/JaseZiv/worldfootballR/issues/2)
+* `tm_squad_stats()` now returns team, league information and also player URLs
 
 ### Bugs
 
-* `tm_team_player_urls()` was returning additional (incorrect) transfermarkt player URLs
+* `get_match_results()` was returning additional (incorrect) transfermarkt player URLs [#82](https://github.com/JaseZiv/worldfootballR/issues/80)
+* `get_player_market_values()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list, and some columns not returning values due to HTML changes on transfermarkt
+* `tm_league_team_urls()` was returning no team URLs for when there was no erroneous URLs in the initial scraped list
+* `fb_player_scouting_report()` was returning incorrect position comparisons in some cases [#85](https://github.com/JaseZiv/worldfootballR/issues/85)
 
 
 ## Test environments
