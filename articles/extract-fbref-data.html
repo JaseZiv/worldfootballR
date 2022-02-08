@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.9.3000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10</span>
       </span>
     </div>
 
@@ -103,7 +103,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-01-30</h4>
+            <h4 data-toc-skip class="date">2022-02-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -156,7 +156,7 @@
 <p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv" class="external-link">here</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6,378</span>
 <span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
@@ -397,8 +397,8 @@
                                    pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
                <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">scouting_period</span> <span class="op">==</span> <span class="st">"Last 365 Days"</span><span class="op">)</span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-player-season-stats">Get Player Season Stats<a class="anchor" aria-label="anchor" href="#get-player-season-stats"></a>
