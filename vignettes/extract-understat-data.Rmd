@@ -87,14 +87,15 @@ The following leagues are currently supported by Understat (these values can be 
 
 ### Match Results
 
-To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probablity of a team winning.
+To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probability of a team winning.
 
 To extract the data, use the `understat_league_match_results()` function:
 
 
-```{r understat_match_results, eval=FALSE}
+```{r understat_match_results}
 # to get the EPL results:
 epl_results <- understat_league_match_results(league = "EPL", season_start_year = 2020)
+dplyr::glimpse(epl_results)
 ```
 
 
@@ -117,8 +118,9 @@ The following sections outlines the functions available to extract data at the p
 
 To get shooting locations for an individual match, use the `understat_match_shots()` function:
 
-```{r match_shots, eval=FALSE}
+```{r match_shots}
 wba_liv_shots <- understat_match_shots(match_url = "https://understat.com/match/14789")
+dplyr::glimpse(wba_liv_shots)
 ```
 
 
@@ -133,9 +135,10 @@ This section will cover off the functions to get team-level data from Transferma
 
 To get all shots taken and conceded by a team during a season, use the `understat_team_season_shots()` function:
 
-```{r team_shots, eval=FALSE}
+```{r team_shots}
 # for one team:
 man_city_shots <- understat_team_season_shots(team_url = "https://understat.com/team/Manchester_City/2020")
+dplyr::glimpse(man_city_shots)
 ```
 
 
@@ -151,10 +154,15 @@ To get a more granular breakdown of team shooting data for whole seasons, the `u
 * Attack speed
 * Result
 
-```{r team_breakdown, eval=FALSE}
-team_urls <- c("https://understat.com/team/Liverpool/2020",
-               "https://understat.com/team/Manchester_City/2020")
-team_breakdown <- understat_team_stats_breakdown(urls = team_urls)
+```{r team_breakdown}
+#----- Can get data for single teams at a time: -----#
+team_breakdown <- understat_team_stats_breakdown(team_urls = "https://understat.com/team/Liverpool/2020")
+dplyr::glimpse(team_breakdown)
+
+#----- Or for multiple teams: -----#
+# team_urls <- c("https://understat.com/team/Liverpool/2020",
+#                "https://understat.com/team/Manchester_City/2020")
+# team_breakdown <- understat_team_stats_breakdown(team_urls = team_urls)
 ```
 
 
@@ -169,8 +177,9 @@ This section will cover the functions available to aid in the extraction of play
 
 To get shooting locations for all games a player has participated in (for as long as Understat has data for), use the `understat_player_shots()` function:
 
-```{r player_bios, eval=FALSE}
+```{r player_shots}
 raheem_sterling_shots <- understat_player_shots(player_url = "https://understat.com/player/618")
+dplyr::glimpse(raheem_sterling_shots)
 ```
 
 
@@ -180,8 +189,9 @@ To get stats for all players of selected teams, run the `understat_team_players_
 
 Note: Team URLs cal be extracted using `understat_team_meta()`.
 
-```{r team_players, eval=FALSE}
+```{r team_players}
 team_players <- understat_team_players_stats(team_url = c("https://understat.com/team/Liverpool/2020", "https://understat.com/team/Manchester_City/2020"))
+dplyr::glimpse(team_players)
 ```
 
 

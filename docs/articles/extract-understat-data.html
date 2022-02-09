@@ -182,11 +182,32 @@
 <div id="match-results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#match-results" class="anchor"></a>Match Results</h3>
-<p>To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probablity of a team winning.</p>
+<p>To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probability of a team winning.</p>
 <p>To extract the data, use the <code><a href="../reference/understat_league_match_results.html">understat_league_match_results()</a></code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># to get the EPL results:</span>
-<span class="va">epl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_match_results.html">understat_league_match_results</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"EPL"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
+<span class="va">epl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_match_results.html">understat_league_match_results</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"EPL"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">epl_results</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 380</span>
+<span class="co">#&gt; Columns: 18</span>
+<span class="co">#&gt; $ league        &lt;chr&gt; "EPL", "EPL", "EPL", "EPL", "EPL", "EPL", "EPL", "EPL", …</span>
+<span class="co">#&gt; $ season        &lt;chr&gt; "2020/2021", "2020/2021", "2020/2021", "2020/2021", "202…</span>
+<span class="co">#&gt; $ match_id      &lt;chr&gt; "14086", "14087", "14090", "14091", "14092", "14093", "1…</span>
+<span class="co">#&gt; $ isResult      &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span>
+<span class="co">#&gt; $ home_id       &lt;chr&gt; "228", "78", "87", "81", "76", "82", "238", "220", "72",…</span>
+<span class="co">#&gt; $ home_team     &lt;chr&gt; "Fulham", "Crystal Palace", "Liverpool", "West Ham", "We…</span>
+<span class="co">#&gt; $ home_abbr     &lt;chr&gt; "FLH", "CRY", "LIV", "WHU", "WBA", "TOT", "SHE", "BRI", …</span>
+<span class="co">#&gt; $ away_id       &lt;chr&gt; "83", "74", "245", "86", "75", "72", "229", "80", "76", …</span>
+<span class="co">#&gt; $ away_team     &lt;chr&gt; "Arsenal", "Southampton", "Leeds", "Newcastle United", "…</span>
+<span class="co">#&gt; $ away_abbr     &lt;chr&gt; "ARS", "SOU", "LED", "NEW", "LEI", "EVE", "WOL", "CHE", …</span>
+<span class="co">#&gt; $ home_goals    &lt;dbl&gt; 0, 1, 4, 0, 0, 0, 0, 1, 5, 4, 1, 2, 2, 0, 0, 4, 1, 1, 2,…</span>
+<span class="co">#&gt; $ away_goals    &lt;dbl&gt; 3, 0, 3, 2, 3, 1, 2, 3, 2, 3, 3, 1, 5, 3, 2, 2, 0, 3, 3,…</span>
+<span class="co">#&gt; $ home_xG       &lt;dbl&gt; 0.126327, 1.395690, 3.154120, 0.861445, 0.352997, 0.8229…</span>
+<span class="co">#&gt; $ away_xG       &lt;dbl&gt; 2.162870, 1.262670, 0.269813, 1.659110, 2.955810, 1.2679…</span>
+<span class="co">#&gt; $ datetime      &lt;chr&gt; "2020-09-12 11:30:00", "2020-09-12 14:00:00", "2020-09-1…</span>
+<span class="co">#&gt; $ forecast_win  &lt;dbl&gt; 0.0037, 0.3916, 0.9658, 0.1506, 0.0070, 0.2200, 0.1683, …</span>
+<span class="co">#&gt; $ forecast_draw &lt;dbl&gt; 0.0476, 0.3022, 0.0296, 0.2480, 0.0358, 0.2977, 0.2906, …</span>
+<span class="co">#&gt; $ forecast_loss &lt;dbl&gt; 0.9487, 0.3062, 0.0046, 0.6014, 0.9572, 0.4823, 0.5411, …</span></code></pre></div>
 </div>
 <div id="season-shooting-locations" class="section level3">
 <h3 class="hasAnchor">
@@ -206,7 +227,30 @@
 <a href="#match-shooting-locations" class="anchor"></a>Match Shooting Locations</h3>
 <p>To get shooting locations for an individual match, use the <code><a href="../reference/understat_match_shots.html">understat_match_shots()</a></code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wba_liv_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_match_shots.html">understat_match_shots</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://understat.com/match/14789"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">wba_liv_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_match_shots.html">understat_match_shots</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://understat.com/match/14789"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">wba_liv_shots</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 36</span>
+<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; $ id              &lt;chr&gt; "422440", "422441", "422442", "422450", "422456", "422…</span>
+<span class="co">#&gt; $ minute          &lt;dbl&gt; 9, 11, 14, 35, 46, 47, 50, 61, 70, 77, 2, 3, 5, 23, 26…</span>
+<span class="co">#&gt; $ result          &lt;chr&gt; "MissedShots", "MissedShots", "Goal", "BlockedShot", "…</span>
+<span class="co">#&gt; $ X               &lt;dbl&gt; 0.869, 0.965, 0.881, 0.883, 0.957, 0.712, 0.767, 0.942…</span>
+<span class="co">#&gt; $ Y               &lt;dbl&gt; 0.441, 0.460, 0.356, 0.336, 0.590, 0.403, 0.590, 0.626…</span>
+<span class="co">#&gt; $ xG              &lt;dbl&gt; 0.03135269, 0.14474539, 0.23826571, 0.28253871, 0.0260…</span>
+<span class="co">#&gt; $ player          &lt;chr&gt; "Semi Ajayi", "Okay Yokuslu", "Hal Robson-Kanu", "Hal …</span>
+<span class="co">#&gt; $ home_away       &lt;chr&gt; "h", "h", "h", "h", "h", "h", "h", "h", "h", "h", "a",…</span>
+<span class="co">#&gt; $ player_id       &lt;chr&gt; "4490", "6932", "1738", "1738", "964", "7153", "7153",…</span>
+<span class="co">#&gt; $ situation       &lt;chr&gt; "SetPiece", "SetPiece", "OpenPlay", "OpenPlay", "FromC…</span>
+<span class="co">#&gt; $ season          &lt;chr&gt; "2020", "2020", "2020", "2020", "2020", "2020", "2020"…</span>
+<span class="co">#&gt; $ shotType        &lt;chr&gt; "Head", "Head", "LeftFoot", "LeftFoot", "Head", "LeftF…</span>
+<span class="co">#&gt; $ match_id        &lt;chr&gt; "14789", "14789", "14789", "14789", "14789", "14789", …</span>
+<span class="co">#&gt; $ home_team       &lt;chr&gt; "West Bromwich Albion", "West Bromwich Albion", "West …</span>
+<span class="co">#&gt; $ away_team       &lt;chr&gt; "Liverpool", "Liverpool", "Liverpool", "Liverpool", "L…</span>
+<span class="co">#&gt; $ home_goals      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ away_goals      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …</span>
+<span class="co">#&gt; $ date            &lt;chr&gt; "2021-05-16 15:30:00", "2021-05-16 15:30:00", "2021-05…</span>
+<span class="co">#&gt; $ player_assisted &lt;chr&gt; "Matheus Pereira", "Darnell Furlong", "Matheus Pereira…</span>
+<span class="co">#&gt; $ lastAction      &lt;chr&gt; "Cross", "Chipped", "Pass", "HeadPass", "Aerial", "Sta…</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -220,7 +264,30 @@
 <p>To get all shots taken and conceded by a team during a season, use the <code><a href="../reference/understat_team_season_shots.html">understat_team_season_shots()</a></code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
-<span class="va">man_city_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_season_shots.html">understat_team_season_shots</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span></code></pre></div>
+<span class="va">man_city_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_season_shots.html">understat_team_season_shots</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">man_city_shots</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 886</span>
+<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; $ id              &lt;chr&gt; "378528", "378533", "378537", "378538", "378539", "378…</span>
+<span class="co">#&gt; $ minute          &lt;dbl&gt; 15, 40, 53, 55, 58, 59, 64, 73, 77, 86, 7, 10, 19, 29,…</span>
+<span class="co">#&gt; $ result          &lt;chr&gt; "BlockedShot", "MissedShots", "MissedShots", "BlockedS…</span>
+<span class="co">#&gt; $ X               &lt;dbl&gt; 0.789, 0.892, 0.860, 0.811, 0.822, 0.886, 0.869, 0.803…</span>
+<span class="co">#&gt; $ Y               &lt;dbl&gt; 0.564, 0.409, 0.501, 0.496, 0.398, 0.473, 0.259, 0.467…</span>
+<span class="co">#&gt; $ xG              &lt;dbl&gt; 0.034228612, 0.036804341, 0.103135295, 0.053397592, 0.…</span>
+<span class="co">#&gt; $ player          &lt;chr&gt; "Pedro Neto", "Raúl Jiménez", "Daniel Podence", "Rúben…</span>
+<span class="co">#&gt; $ home_away       &lt;chr&gt; "h", "h", "h", "h", "h", "h", "h", "h", "h", "h", "a",…</span>
+<span class="co">#&gt; $ player_id       &lt;chr&gt; "6382", "4105", "8291", "6853", "8291", "4105", "6853"…</span>
+<span class="co">#&gt; $ situation       &lt;chr&gt; "OpenPlay", "FromCorner", "OpenPlay", "OpenPlay", "Ope…</span>
+<span class="co">#&gt; $ season          &lt;chr&gt; "2020", "2020", "2020", "2020", "2020", "2020", "2020"…</span>
+<span class="co">#&gt; $ shotType        &lt;chr&gt; "LeftFoot", "Head", "LeftFoot", "LeftFoot", "RightFoot…</span>
+<span class="co">#&gt; $ match_id        &lt;chr&gt; "14105", "14105", "14105", "14105", "14105", "14105", …</span>
+<span class="co">#&gt; $ home_team       &lt;chr&gt; "Wolverhampton Wanderers", "Wolverhampton Wanderers", …</span>
+<span class="co">#&gt; $ away_team       &lt;chr&gt; "Manchester City", "Manchester City", "Manchester City…</span>
+<span class="co">#&gt; $ home_goals      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ away_goals      &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, …</span>
+<span class="co">#&gt; $ date            &lt;chr&gt; "2020-09-21 19:15:00", "2020-09-21 19:15:00", "2020-09…</span>
+<span class="co">#&gt; $ player_assisted &lt;chr&gt; "Daniel Podence", "Adama Traoré", "Adama Traoré", "Ped…</span>
+<span class="co">#&gt; $ lastAction      &lt;chr&gt; "Pass", "Cross", "Pass", "Pass", "Chipped", "Cross", "…</span></code></pre></div>
 </div>
 <div id="team-stat-breakdowns" class="section level3">
 <h3 class="hasAnchor">
@@ -236,9 +303,27 @@
 <li>Result</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://understat.com/team/Liverpool/2020"</span>,
-               <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span>
-<span class="va">team_breakdown</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown</a></span><span class="op">(</span>urls <span class="op">=</span> <span class="va">team_urls</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">#----- Can get data for single teams at a time: -----#</span>
+<span class="va">team_breakdown</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="st">"https://understat.com/team/Liverpool/2020"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">team_breakdown</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 34</span>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ team_name         &lt;chr&gt; "Liverpool", "Liverpool", "Liverpool", "Liverpool", …</span>
+<span class="co">#&gt; $ season_start_year &lt;dbl&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021…</span>
+<span class="co">#&gt; $ stat_group_name   &lt;chr&gt; "situation", "situation", "situation", "situation", …</span>
+<span class="co">#&gt; $ stat_name         &lt;chr&gt; "OpenPlay", "FromCorner", "SetPiece", "DirectFreekic…</span>
+<span class="co">#&gt; $ shots             &lt;int&gt; 466, 94, 23, 22, 6, 532, 33, 31, 13, 2, 302, 135, 10…</span>
+<span class="co">#&gt; $ goals             &lt;int&gt; 49, 11, 2, 0, 6, 59, 6, 1, 2, 0, 32, 15, 8, 11, 2, 6…</span>
+<span class="co">#&gt; $ xG                &lt;dbl&gt; 59.4529072, 9.1182850, 1.8527942, 1.3437831, 4.56701…</span>
+<span class="co">#&gt; $ against.shots     &lt;int&gt; 252, 40, 21, 12, 8, 296, 20, 9, 7, 1, 161, 80, 45, 3…</span>
+<span class="co">#&gt; $ against.goals     &lt;int&gt; 28, 6, 3, 1, 4, 38, 2, 1, 0, 1, 17, 12, 5, 3, 5, 8, …</span>
+<span class="co">#&gt; $ against.xG        &lt;dbl&gt; 33.1091679, 4.2281565, 3.9210227, 0.6303308, 6.08935…</span>
+<span class="co">#&gt; $ time              &lt;int&gt; NA, NA, NA, NA, NA, 3147, 216, 134, 81, 12, 1928, 73…</span>
+
+<span class="co">#----- Or for multiple teams: -----#</span>
+<span class="co"># team_urls &lt;- c("https://understat.com/team/Liverpool/2020",</span>
+<span class="co">#                "https://understat.com/team/Manchester_City/2020")</span>
+<span class="co"># team_breakdown &lt;- understat_team_stats_breakdown(team_urls = team_urls)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -251,7 +336,30 @@
 <a href="#player-shooting-locations" class="anchor"></a>Player Shooting Locations</h3>
 <p>To get shooting locations for all games a player has participated in (for as long as Understat has data for), use the <code><a href="../reference/understat_player_shots.html">understat_player_shots()</a></code> function:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">raheem_sterling_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_player_shots.html">understat_player_shots</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://understat.com/player/618"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">raheem_sterling_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_player_shots.html">understat_player_shots</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://understat.com/player/618"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">raheem_sterling_shots</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 571</span>
+<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; $ id              &lt;chr&gt; "14490", "14491", "14496", "14497", "14779", "15104", …</span>
+<span class="co">#&gt; $ minute          &lt;dbl&gt; 20, 22, 47, 53, 8, 7, 69, 74, 65, 81, 19, 25, 47, 50, …</span>
+<span class="co">#&gt; $ result          &lt;chr&gt; "SavedShot", "Goal", "SavedShot", "MissedShots", "Miss…</span>
+<span class="co">#&gt; $ X               &lt;dbl&gt; 0.853, 0.856, 0.816, 0.745, 0.857, 0.959, 0.940, 0.968…</span>
+<span class="co">#&gt; $ Y               &lt;dbl&gt; 0.695, 0.496, 0.377, 0.443, 0.470, 0.615, 0.524, 0.646…</span>
+<span class="co">#&gt; $ xG              &lt;dbl&gt; 0.04070334, 0.31140882, 0.05760121, 0.02548105, 0.0726…</span>
+<span class="co">#&gt; $ player          &lt;chr&gt; "Raheem Sterling", "Raheem Sterling", "Raheem Sterling…</span>
+<span class="co">#&gt; $ home_away       &lt;chr&gt; "h", "h", "h", "h", "a", "a", "a", "a", "h", "h", "a",…</span>
+<span class="co">#&gt; $ player_id       &lt;chr&gt; "618", "618", "618", "618", "618", "618", "618", "618"…</span>
+<span class="co">#&gt; $ situation       &lt;chr&gt; "OpenPlay", "OpenPlay", "OpenPlay", "OpenPlay", "OpenP…</span>
+<span class="co">#&gt; $ season          &lt;chr&gt; "2014", "2014", "2014", "2014", "2014", "2014", "2014"…</span>
+<span class="co">#&gt; $ shotType        &lt;chr&gt; "LeftFoot", "RightFoot", "RightFoot", "RightFoot", "Ri…</span>
+<span class="co">#&gt; $ match_id        &lt;chr&gt; "4756", "4756", "4756", "4756", "4768", "4777", "4777"…</span>
+<span class="co">#&gt; $ home_team       &lt;chr&gt; "Liverpool", "Liverpool", "Liverpool", "Liverpool", "M…</span>
+<span class="co">#&gt; $ away_team       &lt;chr&gt; "Southampton", "Southampton", "Southampton", "Southamp…</span>
+<span class="co">#&gt; $ home_goals      &lt;dbl&gt; 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 3, 3, 3, 3, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ away_goals      &lt;dbl&gt; 1, 1, 1, 1, 1, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
+<span class="co">#&gt; $ date            &lt;chr&gt; "2014-08-17 13:30:00", "2014-08-17 13:30:00", "2014-08…</span>
+<span class="co">#&gt; $ player_assisted &lt;chr&gt; "Philippe Coutinho", "Jordan Henderson", "Jordan Hende…</span>
+<span class="co">#&gt; $ lastAction      &lt;chr&gt; "Pass", "Throughball", "Pass", "Pass", "Chipped", "Pas…</span></code></pre></div>
 </div>
 <div id="team-player-season-stats" class="section level3">
 <h3 class="hasAnchor">
@@ -259,7 +367,29 @@
 <p>To get stats for all players of selected teams, run the <code><a href="../reference/understat_team_players_stats.html">understat_team_players_stats()</a></code> function.</p>
 <p>Note: Team URLs cal be extracted using <code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_players_stats.html">understat_team_players_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://understat.com/team/Liverpool/2020"</span>, <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">team_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_players_stats.html">understat_team_players_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://understat.com/team/Liverpool/2020"</span>, <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">team_players</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 52</span>
+<span class="co">#&gt; Columns: 19</span>
+<span class="co">#&gt; $ season       &lt;chr&gt; "2020/2021", "2020/2021", "2020/2021", "2020/2021", "2020…</span>
+<span class="co">#&gt; $ player_id    &lt;dbl&gt; 1250, 838, 482, 6854, 771, 1791, 229, 332, 605, 833, 966,…</span>
+<span class="co">#&gt; $ player_name  &lt;chr&gt; "Mohamed Salah", "Sadio Mané", "Roberto Firmino", "Diogo …</span>
+<span class="co">#&gt; $ games        &lt;dbl&gt; 37, 35, 36, 19, 38, 36, 24, 10, 21, 5, 13, 33, 38, 24, 17…</span>
+<span class="co">#&gt; $ time         &lt;dbl&gt; 3085, 2805, 2882, 1114, 2961, 3040, 1865, 701, 1710, 370,…</span>
+<span class="co">#&gt; $ goals        &lt;dbl&gt; 22, 11, 9, 9, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0…</span>
+<span class="co">#&gt; $ xG           &lt;dbl&gt; 20.25084664, 14.82854776, 12.86021341, 7.05772054, 2.8174…</span>
+<span class="co">#&gt; $ assists      &lt;dbl&gt; 5, 7, 7, 0, 0, 7, 0, 2, 1, 0, 1, 0, 7, 2, 1, 0, 0, 1, 0, …</span>
+<span class="co">#&gt; $ xA           &lt;dbl&gt; 6.52852610, 7.78775485, 6.11686340, 1.76252108, 1.6629218…</span>
+<span class="co">#&gt; $ shots        &lt;dbl&gt; 126, 94, 83, 46, 31, 55, 22, 5, 14, 4, 8, 1, 19, 19, 15, …</span>
+<span class="co">#&gt; $ key_passes   &lt;dbl&gt; 55, 61, 44, 12, 21, 77, 30, 3, 14, 0, 2, 0, 65, 12, 7, 0,…</span>
+<span class="co">#&gt; $ yellow_cards &lt;dbl&gt; 0, 3, 2, 2, 1, 2, 4, 2, 0, 1, 0, 1, 2, 2, 2, 0, 0, 3, 0, …</span>
+<span class="co">#&gt; $ red_cards    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ position     &lt;chr&gt; "F M S", "F M S", "F M S", "F M S", "M S", "D S", "M S", …</span>
+<span class="co">#&gt; $ team_name    &lt;chr&gt; "Liverpool", "Liverpool", "Liverpool", "Liverpool", "Live…</span>
+<span class="co">#&gt; $ npg          &lt;dbl&gt; 16, 11, 9, 9, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0…</span>
+<span class="co">#&gt; $ npxG         &lt;dbl&gt; 15.68383364, 14.82854776, 12.86021341, 7.05772054, 2.8174…</span>
+<span class="co">#&gt; $ xGChain      &lt;dbl&gt; 28.9682335, 24.9989232, 25.2714578, 10.9729747, 13.922181…</span>
+<span class="co">#&gt; $ xGBuildup    &lt;dbl&gt; 9.8002357, 6.0576563, 10.1985501, 4.0760965, 10.4762768, …</span></code></pre></div>
 <hr>
 </div>
 </div>

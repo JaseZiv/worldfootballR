@@ -120,7 +120,7 @@ This section will cover the functions to aid in the extraction of season team st
 
 The `get_season_team_stats` function allows the user to return a data frame of different stat types for all teams in Domestic leagues [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv).
 
-Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.
+Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats, but for those leagues, it's more efficient to use `fb_big5_advanced_season_stats()`.
 
 The following stat types can be selected:
 
@@ -138,23 +138,18 @@ The following stat types can be selected:
 * *playing_time*
 * *misc*
 
-```{r get_season_team_stats, eval=FALSE}
-# function to extract season teams stats
+```{r get_season_team_stats}
+#----- function to extract season teams stats -----#
 prem_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "1st", stat_type = "shooting")
-# to get shooting stats for the English Championship:
-championship_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "2nd", stat_type = "shooting")
-```
+dplyr::glimpse(prem_2020_shooting)
 
+#----- to get shooting stats for the English Championship: -----#
+# championship_2020_shooting <- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "2nd", stat_type = "shooting")
 
-#### More than one league season
-
-The `get_season_team_stats` function can be used to get data for multiple seasons/leagues/genders/etc.
-
-Important to note, this function can only be used for one `stat-type` at a time, however all other parameters can have multiple values:
-
-```{r get_season_team_stats_multiple, eval=FALSE}
-big_5_2020_possessions <- get_season_team_stats(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
-                                        gender = "M", season_end_year = 2020, tier = "1st", stat_type = "possession")
+#----- Can also run this for multiple leagues at a time: -----#
+# multiple_2020_shooting <- get_season_team_stats(country = c("USA", "NED"),
+#                                                 gender = "M", season_end_year = 2020, 
+#                                                 tier = "1st", stat_type = "shooting")
 ```
 
 
@@ -181,8 +176,14 @@ The function also accepts a season or seasons and whether you want data for the 
 Note that when selecting `team_or_player="team"`, results will be returned for both the team's for and against stats. To filter on this, use the `Team_or_Opponent` column in the resulting data frame, selecting 'team' if you want the team's for stats, or 'opponent' if you want the team's against stats. 
 
 
-```{r big5_team, eval=FALSE}
+```{r big5_team}
+#----- Get data for big five leagues for TEAMS -----#
 big5_team_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "team")
+dplyr::glimpse(big5_team_shooting)
+
+#----- Get data for big five leagues for PLAYERS -----#
+big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "team")
+dplyr::glimpse(big5_player_shooting)
 ```
 
 
@@ -196,9 +197,10 @@ The following sections outlines the functions available to extract data at the p
 
 To get the match results (and additional metadata) for all leagues and comps listed [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv), the following function can be used:
 
-```{r get_match_results, eval=FALSE}
+```{r get_match_results}
 # function to extract Serie A match results data
 serieA_2020 <- get_match_results(country = "ITA", gender = "M", season_end_year = 2020, tier = "1st")
+dplyr::glimpse(serieA_2020)
 ```
 
 The function can also be used to return match URLs for a non-domestic league season. To use this functionality, simply leave `country = ''` and pass the non-domestic league URL, which can be found at https://fbref.com/en/comps/
@@ -222,9 +224,10 @@ big_5_2020_results <- get_match_results(country = c("ENG", "ESP", "ITA", "GER", 
 
 This function will return similar results to that of `get_match_results()`, however `get_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
 
-```{r get_match_report, eval=FALSE}
+```{r get_match_report}
 # function to extract match report data
 liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+dplyr::glimpse(liv_mci_2020)
 ```
 
 
@@ -232,9 +235,10 @@ liv_mci_2020 <- get_match_report(match_url = "https://fbref.com/en/matches/47880
 
 This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
 
-```{r get_match_summary, eval=FALSE}
+```{r get_match_summary}
 # function to extract match summary data
 liv_mci_2020_summary <- get_match_summary(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+dplyr::glimpse(liv_mci_2020_summary)
 ```
 
 
@@ -244,9 +248,10 @@ This function will return a dataframe of all players listed for that match, incl
 
 From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.
 
-```{r get_match_lineups, eval=FALSE}
+```{r get_match_lineups}
 # function to extract match lineups
 liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+dplyr::glimpse(liv_mci_2020_lineups)
 ```
 
 
@@ -255,13 +260,15 @@ liv_mci_2020_lineups <- get_match_lineups(match_url = "https://fbref.com/en/matc
 
 The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.
 
-```{r get_shot_and_creation, eval=FALSE}
+```{r get_shot_and_creation}
+#----- Get shots data for a single match played: -----#
 shot_one_match <- get_match_shooting(match_url = "https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League")
 
-test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-                        "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
-shot_multiple_matches <- get_match_shooting(test_urls_multiple)
+#----- Can also extract for multiple matches at a time: -----#
+# test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+#                         "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
+#                         "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
+# shot_multiple_matches <- get_match_shooting(test_urls_multiple)
 ```
 
 
@@ -284,23 +291,23 @@ The following stat types can be selected:
 
 The function can be used for either all players individually:
 
-```{r get_advanced_match_stats, eval=FALSE}
+```{r get_advanced_match_stats}
 test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-                        "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
+                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
 
 advanced_match_stats <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "possession", team_or_player = "player")
+dplyr::glimpse(advanced_match_stats)
 ```
 
 
 Or used for the team totals for each match:
 
-```{r get_advanced_match_stats_team, eval=FALSE}
+```{r get_advanced_match_stats_team}
 test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-                        "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
+                        "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
 
 advanced_match_stats_team <- get_advanced_match_stats(match_url = test_urls_multiple, stat_type = "passing_types", team_or_player = "team")
+dplyr::glimpse(advanced_match_stats_team)
 ```
 
 ***
@@ -313,13 +320,15 @@ This section will cover off the functions to get team-level data from FBref.
 ### Match Results by team
 To get all the results a team(s) has competed in for a season, the following function can be used. The resulting data frame output will include all game results, including any cup games played, and will accept either one, or many team URLs.
 
-```{r team_match_logs, eval=FALSE}
-# for single teams:
+```{r team_match_logs}
+#----- for single teams: -----#
 man_city_2021_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-man_city_2021_results <- get_team_match_results(man_city_url)
-# get all team URLs for a league
-epl_2021_team_urls <- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
-epl_2021_team_results <- get_team_match_results(team_url = team_urls)
+man_city_2021_results <- get_team_match_results(man_city_2021_url)
+dplyr::glimpse(man_city_2021_results)
+
+#----- get all team URLs for a league: -----#
+# epl_2021_team_urls <- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
+# epl_2021_team_results <- get_team_match_results(team_url = team_urls)
 ```
 
 ***
@@ -350,9 +359,14 @@ scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d7
                dplyr::filter(scouting_period == "Last 365 Days")
 ```
 
-```{r get_player_scouting_report, eval=FALSE}
-dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary"))
-dplyr::glimpse(fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary"))
+```{r get_player_scouting_report}
+#----- Get scouting report for the players primary position (first position listed in fbref): -----#
+messi_primary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary")
+dplyr::glimpse(messi_primary)
+
+#----- Get scouting report for the players secondary position (second position listed in fbref): -----#
+messi_secondary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary")
+dplyr::glimpse(messi_secondary)
 ```
 
 
@@ -374,12 +388,15 @@ The stat_types available for use in this function are below:
 * *keeper*
 * *keeper_adv*
 
-```{r player_season_stats, eval=FALSE}
+```{r player_season_stats}
+#----- can use for a single player: -----#
 mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Mohamed-Salah", stat_type = 'shooting')
+dplyr::glimpse(mo_shooting)
 
-multiple_playing_time <- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                                "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
-                                 stat_type = "playing_time")
+#----- Or for multiple players at a time: -----#
+# multiple_playing_time <- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+#                                                 "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
+#                                  stat_type = "playing_time")
 ```
 
 
@@ -404,8 +421,9 @@ The stat types available for this function are below:
 The function also accepts a season or seasons and whether you want data for the player, or team.
 
 
-```{r big5_player, eval=FALSE}
+```{r big5_player}
 big5_player_possession <- fb_big5_advanced_season_stats(season_end_year= 2021, stat_type= "possession", team_or_player= "player")
+dplyr::glimpse(big5_player_possession)
 ```
 
 
@@ -427,15 +445,16 @@ The stat types available for this function are below:
 * *keepers*
 * *keepers_adv*
 
-```{r team_player_season_stats, eval=FALSE}
-# to get stats for just a single team
+```{r team_player_season_stats}
+#----- to get stats for just a single team: -----#
 fleetwood_standard_stats <- fb_team_player_stats(team_urls= "https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats", stat_type= 'standard')
+dplyr::glimpse(fleetwood_standard_stats)
 
-# Can even get stats for a series of teams:
-league_url <- fb_league_urls(country = "ENG", gender = "M",
-teams <- fb_teams_urls(league_url)
-
-multiple_playing_time <- fb_team_player_stats(team_urls= teams, stat_type= "playing_time")
+#----- Can even get stats for a series of teams: -----#
+# league_url <- fb_league_urls(country = "ENG", gender = "M",
+# teams <- fb_teams_urls(league_url)
+# 
+# multiple_playing_time <- fb_team_player_stats(team_urls= teams, stat_type= "playing_time")
 ```
 
 
@@ -456,8 +475,9 @@ The following stat types can be selected, depending on the player's position (ie
 * *misc*
 
 
-```{r player_match_logs, eval=FALSE}
+```{r player_match_logs}
 ederson_summary <- fb_player_match_logs("https://fbref.com/en/players/3bb7b8b4/Ederson", season_end_year = 2021, stat_type = 'summary')
+dplyr::glimpse(ederson_summary)
 ```
 
 

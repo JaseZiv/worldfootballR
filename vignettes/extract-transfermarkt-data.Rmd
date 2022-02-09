@@ -128,15 +128,18 @@ To be able to extract league tables for select matchday(s), the below function c
 The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv) repository, it can accept the league URL, season start year and matchday number(s).
 
 
-```{r matchday_league_table, eval=FALSE}
-# to get the EPL table after matchday 1 of the 20/21 season:
+```{r matchday_league_table}
+#----- to get the EPL table after matchday 1 of the 20/21 season: -----#
 epl_matchday_1_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=1)
+dplyr::glimpse(epl_matchday_1_table)
 
-# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
-epl_matchday_1to35_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=c(1:35))
+# #----- to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season: -----#
+# epl_matchday_1to35_table <- tm_matchday_table(country_name="England", start_year="2020", matchday=c(1:35))
 
-# to get the EPL table after each matchdays from matchday 1 to matchday 35 of the 20/21 season:
-league_one_matchday_1_table <- tm_matchday_table(start_year="2020", matchday=1, league_url="https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+#----- to get the League One table after each matchdays from matchday 1 to matchday 5 of the 20/21 season: -----#
+league_one_matchday_1_table <- tm_matchday_table(start_year="2020", matchday=1:5,
+                                                 league_url="https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+dplyr::glimpse(league_one_matchday_1_table)
 ```
 
 
@@ -148,12 +151,14 @@ To see all league debutants (regardless of their professional status), set `debu
 
 The variables `debut_start_year` and `debut_end_year` set time periods on when debutant data is required for. As with all transfermarkt functions, this season value is the starting year if the season, ie for the 2021-22 LaLiga season, this value is set to 2021.
 
-```{r league_debutants, eval=FALSE}
+```{r league_debutants}
 # Laliga players making their LaLiga debut in 2021/2022
 laliga_debutants <- tm_league_debutants(country_name = "Spain", debut_type = "league", debut_start_year = 2021, debut_end_year = 2021)
+dplyr::glimpse(laliga_debutants)
 
 # English League One players making their PRO debuts in 2021/2022
 league_one_PRO_debutants <- tm_league_debutants(country_name = "", league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3", debut_type = "pro", debut_start_year = 2021, debut_end_year = 2021)
+dplyr::glimpse(league_one_PRO_debutants)
 ```
 
 
@@ -163,14 +168,15 @@ To be able to extract a list of all players whose contracts expire in a selected
 
 Set the `contract_end_year` to be equal to the calendar year the contracts are due to expire.
 
-```{r expiring_contracts, eval=FALSE}
-# LaLiga players with expiring contracts in 2022
+```{r expiring_contracts}
+#----- LaLiga players with expiring contracts in 2022: -----#
 laliga_expiring <- tm_expiring_contracts(country_name = "Spain", contract_end_year = 2023)
+dplyr::glimpse(laliga_expiring)
 
-# English League One players with expiring contracts in 2022
-league_one_expiring <- tm_expiring_contracts(country_name = "",
-                                               contract_end_year = 2023,
-                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#
+# league_one_expiring <- tm_expiring_contracts(country_name = "",
+#                                                contract_end_year = 2023,
+#                                                league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
 ```
 
 
@@ -178,13 +184,14 @@ league_one_expiring <- tm_expiring_contracts(country_name = "",
 
 To get a list of all reported *current* injuries for a selected league, use the `tm_league_injuries()` function:
 
-```{r league_injuries, eval=FALSE}
+```{r league_injuries}
 # to get all current injuries for LaLiga
 laliga_injuries <- tm_league_injuries(country_name = "Spain")
+dplyr::glimpse(laliga_injuries)
 
-# get all current injuries for League One in England
-league_one_injuries <- tm_league_injuries(country_name = "",
-                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+#----- Can even do it for non-standard leagues - get all current injuries for League One in England
+# league_one_injuries <- tm_league_injuries(country_name = "",
+#                                                league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
 ```
 
 
@@ -199,13 +206,14 @@ This section will cover off the functions to get team-level data from Transferma
 
 To get all the arrivals and departures for a team (or teams) in a season and data regarding the transfer (transfer value, contract length, where they came from/went to, etc), the `tm_team_transfers()` function can be used. This function can return either `summer`, `winter` or `all` for both `transfer_windows`:
 
-```{r team_transfers, eval=FALSE}
-# for one team:
+```{r team_transfers}
+#----- for one team: -----#
 bayern <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "all")
+dplyr::glimpse(bayern)
 
-# or for multiple teams:
-team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all")
+#----- or for multiple teams: -----#
+# team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
+# epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all")
 ```
 
 
@@ -213,13 +221,14 @@ epl_xfers_2020 <- tm_team_transfers(team_url = team_urls, transfer_window = "all
 
 To get basic statistics (goals, appearances, minutes played, etc) for all games played by players for a squad season, the `tm_squad_stats()` function can be used:
 
-```{r squad_stats, eval=FALSE}
-# for one team:
+```{r squad_stats}
+#----- for one team: -----#
 bayern <- tm_squad_stats(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+dplyr::glimpse(bayern)
 
-# or for multiple teams:
-team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
-epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
+#----- or for multiple teams: -----#
+# team_urls <- tm_league_team_urls(country_name = "England", start_year = 2020)
+# epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
 ```
 
 
@@ -227,9 +236,20 @@ epl_team_players_2020 <- tm_squad_stats(team_url = team_urls)
 
 To get player valuations for all teams in a league season, use the `get_player_market_values()` function:
 
-```{r, player_vals, eval=FALSE}
-big_5_valuations <- get_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),
+```{r, player_vals}
+#----- Can do it for a single league: -----#
+a_league_valuations <- get_player_market_values(country_name = "Australia",
                                        start_year = 2021)
+dplyr::glimpse(a_league_valuations)
+
+#----- Can also do it for multiple leagues: -----#
+# big_5_valuations <- get_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),
+#                                        start_year = 2021)
+
+#----- Can also do it for non standard leagues: -----#
+# league_one_valuations <- get_player_market_values(country_name = "",
+#                                        start_year = 2021,
+#                                        league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
 ```
 
 
@@ -245,15 +265,16 @@ This section will cover the functions available to aid in the extraction of play
 
 To get information about a player, like their age, foot, where they were born, who they play for, their contract details, social media accounts and a whole lot more, use the `tm_player_bio()` function.:
 
-```{r player_bios, eval=FALSE}
-# for a single player 
+```{r player_bios}
+#----- for a single player: -----#
 hazard_bio <- tm_player_bio(player_url = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
+dplyr::glimpse(hazard_bio)
 
-# for multiple players:
-# can make use of a tm helper function:
-burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
-# then pass all those URLs to the tm_player_bio
-burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
+#----- for multiple players: -----#
+# # can make use of a tm helper function:
+# burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
+# # then pass all those URLs to the tm_player_bio
+# burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
 ```
 
 
@@ -261,15 +282,16 @@ burnley_bios <- tm_player_bio(player_urls = burnley_player_urls)
 
 To be able to get an individual player(s) injury history from transfermarkt, use the `tm_player_injury_history()` function.
 
-```{r player_injury_history, eval=FALSE}
-# for a single player
+```{r player_injury_history}
+#----- for a single player: -----#
 hazard_injuries <- tm_player_injury_history(player_urls = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
+dplyr::glimpse(hazard_injuries)
 
-# for multiple players:
-# can make use of a tm helper function:
-burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2021")
-# then pass all those URLs to the tm_player_bio
-burnley_player_injuries <- tm_player_injury_history(player_urls = burnley_player_urls)
+#----- for multiple players: -----#
+# # can make use of a tm helper function:
+# burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2021")
+# # then pass all those URLs to the tm_player_bio
+# burnley_player_injuries <- tm_player_injury_history(player_urls = burnley_player_urls)
 ```
 
 
@@ -286,15 +308,22 @@ The following two functions can be used, depending on the need (in addition to t
 
 You can extract all employees by role in a club's history using `tm_team_staff_history()`.
 
-The list of roles that can be passed to the `staff_roles` argument can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_staff/tm_staff_types.csv)
+The list of roles that can be passed to the `staff_roles` argument can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_staff/tm_staff_types.csv), and they're also listed below:
 
-```{r tm_team_staff_history, eval=FALSE}
+```{r staff_roles, include=FALSE}
+read.csv("https://github.com/JaseZiv/worldfootballR_data/raw/master/raw-data/transfermarkt_staff/tm_staff_types.csv")
+```
+
+
+```{r tm_team_staff_history}
 # get a list of team URLs for the EPL 2021/22 season
 epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
-
-# then use the URLs to pass to the function, and select the role you wish to see results for
+#----- then use the URLs to pass to the function, and select the role you wish to see results for: -----#
 club_manager_history <- tm_team_staff_history(team_urls = epl_teams, staff_role = "Manager")
-club_caretaker_manager_history <- tm_team_staff_history(team_urls = epl_teams, staff_role = "Caretaker Manager")
+dplyr::glimpse(club_manager_history)
+
+#----- can also get other roles: -----#
+# club_caretaker_manager_history <- tm_team_staff_history(team_urls = epl_teams, staff_role = "Caretaker Manager")
 ```
 
 
@@ -304,14 +333,16 @@ To be able to get all roles held by a selected staff member(s), the `tm_staff_jo
 
 The function accepts one argument, `staff_urls`, which can be extracted using `tm_team_staff_urls()` explained in the helpers section above.
 
-```{r tm_staff_job_history, eval=FALSE}
+```{r tm_staff_job_history}
 # get a list of team URLs for the EPL 2021/22 season
-epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
+# epl_teams <- tm_league_team_urls(country_name = "England", start_year = 2021)
 
 # get all EPL goal keeping coaches for the 2021/22 season
 epl_gk_coaches <- tm_team_staff_urls(team_urls = epl_teams[1:3], staff_role = "Goalkeeping Coach")
+
 # then you can pass these URLs to the function and get job histories for the selected staff members
 epl_gk_coach_job_histories <- tm_staff_job_history(staff_urls = epl_gk_coaches)
+dplyr::glimpse(epl_gk_coach_job_histories)
 ```
 
 
