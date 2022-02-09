@@ -1,0 +1,100 @@
+---
+title: "Extracting data from fotmob"
+author: "Tony ElHabr"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Extracting data from fotmob}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message=FALSE,
+  warning=FALSE
+)
+```
+
+## Overview
+
+This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:
+
+-   [FBref](https://fbref.com/en/)
+-   [Transfermarkt](https://www.transfermarkt.com/)
+-   [Understat](https://understat.com/)
+-   [Fotmob](https://www.fotmob.com/)
+
+## Installation
+
+You can install the `worldfootballR` package from github with:
+
+```{r gh-installation, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("JaseZiv/worldfootballR")
+```
+
+```{r load_libs, warning=FALSE, message=FALSE}
+library(worldfootballR)
+```
+
+------------------------------------------------------------------------
+
+## Usage
+
+Package vignettes have been built to help you get started with the package.
+
+-   For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+-   For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+-   For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+-   For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
+
+This vignette will cover the functions to extract data from understat.com
+
+------------------------------------------------------------------------
+
+## fotmob Helper Functions
+
+There are currently no helper functions for fotmob functions.
+
+------------------------------------------------------------------------
+
+## League Season-Level Data
+
+fotmob has data for just about every league that you can think of, including all of the Big 5 leagues. However, no functions currently exist to retrieve entire season's worth of data.
+
+### Match Results
+
+fotmob lists data for all leagues by date. Use `fotmob_get_matches_by_date` to select matches occurring on specific day(s) and filter down to the league(s) that you care about.
+
+```{r fotmob_get_matches_by_date, eval=FALSE}
+library(dplyr)
+library(tidyr)
+results <- fotmob_get_matches_by_date(date =c("20210925", "20210926"))
+filtered_results <- results %>%
+  dplyr::select(primaryId, ccode, league_name = name, matches) %>%
+  dplyr::filter(league_name == "Premier League", ccode == "ENG")
+
+# one way of getting data out of the results
+unnested_results <- filtered_results %>% 
+  tidyr::unnest_longer(matches)
+
+match_ids <- unnested_results %>% 
+  dplyr::pull(matches) %>% 
+  dplyr::pull(id)
+# 3609987 3609979
+```
+
+------------------------------------------------------------------------
+
+## Match-Level Data
+
+### Match Shooting Locations
+
+To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.
+
+```{r match_details, eval=FALSE}
+match_details <- fotmob_get_match_details(c(3609987, 3609979))
+```

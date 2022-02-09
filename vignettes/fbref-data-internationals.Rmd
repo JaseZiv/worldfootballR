@@ -26,7 +26,7 @@ This package is designed to allow users to extract various world football result
 * [FBref](https://fbref.com/en/)
 * [Transfermarkt](https://www.transfermarkt.com/)
 * [Understat](https://understat.com/)
-
+* [Fotmob](https://www.fotmob.com/)
 
 ## Installation
 
