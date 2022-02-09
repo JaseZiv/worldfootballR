@@ -1,4 +1,22 @@
 
+#' Get fotmob match player details by match id
+#'
+#' Returns match details from fotmob.com
+#'
+#' @param match_ids a vector of strings or numbers representing matches
+#'
+#' @return returns a dataframe of match players
+#'
+#' @importFrom purrr map_dfr
+#'
+#' @examples
+#' \dontrun{
+#' players <- fotmob_get_match_players(c(3609987, 3609979))
+#' }
+fotmob_get_match_players <- function(match_ids) {
+  purrr::map_dfr(match_ids, .fotmob_get_single_match_players)
+}
+
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble tibble
@@ -7,7 +25,7 @@
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang .data
 #' @importFrom janitor make_clean_names
-.fotmob_get_single_match_details <- function(match_id) {
+.fotmob_get_single_match_players <- function(match_id) {
   print(glue::glue("Scraping match data from fotmob for match {match_id}."))
   main_url <- "https://www.fotmob.com/"
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
