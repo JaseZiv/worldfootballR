@@ -69,10 +69,12 @@ fotmob has data for just about every league that you can think of, including all
 
 fotmob lists data for all leagues by date. Use `fotmob_get_matches_by_date` to select matches occurring on specific day(s) and filter down to the league(s) that you care about.
 
-```{r fotmob_get_matches_by_date, eval=FALSE}
+```{r fotmob_get_matches_by_date}
 library(dplyr)
 library(tidyr)
 results <- fotmob_get_matches_by_date(date =c("20210925", "20210926"))
+dplyr::glimpse(results)
+
 filtered_results <- results %>%
   dplyr::select(primaryId, ccode, league_name = name, matches) %>%
   dplyr::filter(league_name == "Premier League", ccode == "ENG")
@@ -84,7 +86,7 @@ unnested_results <- filtered_results %>%
 match_ids <- unnested_results %>% 
   dplyr::pull(matches) %>% 
   dplyr::pull(id)
-# 3609987 3609979
+match_ids
 ```
 
 ------------------------------------------------------------------------
@@ -95,15 +97,17 @@ match_ids <- unnested_results %>%
 
 To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.
 
-```{r match_details, eval=FALSE}
+```{r match_details}
 fotmob_matches <- c(3609987, 3609979)
 match_details <- fotmob_get_match_details(fotmob_matches)
+dplyr::glimpse(match_details)
 ```
 
 ### Players
 
 You can also extract players from matches with the `fotmob_get_match_players()` function.
 
-```{r match_details, eval=FALSE}
+```{r match_details}
 players <- fotmob_get_match_players(fotmob_matches)
+dplyr::glimpse(players)
 ```
