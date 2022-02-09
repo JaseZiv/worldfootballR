@@ -20,7 +20,7 @@ fotmob_get_match_players <- function(match_ids) {
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble tibble
-#' @importFrom purrr map_dfr possibly
+#' @importFrom purrr pluck map_dfr possibly
 #' @importFrom dplyr bind_cols select filter distinct
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang .data
@@ -78,7 +78,7 @@ fotmob_get_match_players <- function(match_ids) {
       stats <- ps %>% purrr::map_dfr(.clean_stats)
 
       pp <- function(..., .na, .f) {
-        res <- pluck(p, ...)
+        res <- purrr::pluck(p, ...)
         if(is.null(res) | length(res) == 0) {
           return(rep(.na, n))
         }
@@ -89,7 +89,7 @@ fotmob_get_match_players <- function(match_ids) {
       ppi <- function(...) pp(..., .na = NA_integer_, .f = as.integer)
       ppl <- function(...) pp(..., .na = NA, .f = as.logical)
       pp2 <- function(...) {
-        res <- pluck(p, ...)
+        res <- purrr::pluck(p, ...)
         if(is.null(res) | length(res) == 0) {
           return(NULL)
         }
