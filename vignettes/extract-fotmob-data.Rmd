@@ -96,5 +96,14 @@ match_ids <- unnested_results %>%
 To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.
 
 ```{r match_details, eval=FALSE}
-match_details <- fotmob_get_match_details(c(3609987, 3609979))
+fotmob_matches <- c(3609987, 3609979)
+match_details <- fotmob_get_match_details(fotmob_matches)
+```
+
+### Players
+
+You can also extract players from matches with the `fotmob_get_match_players()` function.
+
+```{r match_details, eval=FALSE}
+players <- fotmob_get_match_players(fotmob_matches)
 ```
