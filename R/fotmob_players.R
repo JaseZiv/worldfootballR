@@ -77,16 +77,18 @@ fotmob_get_match_players <- function(match_ids) {
           tidyr::pivot_wider(
             names_from = "col",
             values_from = "value"
-          )
+          ) %>%
+          as.data.frame()
       }
 
       stats <- if(is.null(ps)) {
         NULL
       } else {
-        stats <- ps %>% purrr::map_dfr(.clean_stats)
+        pss <- ps %>% purrr::map_dfr(.clean_stats)
         if(any(colnames(stats) == "dummy")) {
-          stats <- stats %>% dplyr::select(-any_of("dummy"))
+          pss <- pss %>% dplyr::select(-any_of("dummy"))
         }
+        pss
       }
 
       pp <- function(..., .na, .f) {
@@ -140,7 +142,6 @@ fotmob_get_match_players <- function(match_ids) {
           stats = list(stats),
           shotmap = if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
         )
-      rows
     }
 
     res <- dplyr::bind_rows(

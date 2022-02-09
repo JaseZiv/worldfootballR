@@ -97,8 +97,8 @@ match_ids
 
 To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.
 
-```{r match_details}
-fotmob_matches <- c(3609987, 3609979)
+```{r fotmob_match_details}
+fotmob_matches <- c(3609994, 3610132)
 match_details <- fotmob_get_match_details(fotmob_matches)
 dplyr::glimpse(match_details)
 ```
@@ -107,7 +107,22 @@ dplyr::glimpse(match_details)
 
 You can also extract players from matches with the `fotmob_get_match_players()` function.
 
-```{r match_details}
+```{r fotmob_players}
 players <- fotmob_get_match_players(fotmob_matches)
 dplyr::glimpse(players)
+```
+
+```{r salah_shotmap}
+salah <- players %>% dplyr::filter(id == "292462")
+salah_shotmap <- salah %>% 
+  dplyr::select(player_id = id, shotmap) %>% 
+  tidyr::unnest(shotmap)
+dplyr::glimpse(salah_shotmap)
+```
+
+```{r salah_stats}
+salah_stats <- salah %>% 
+  dplyr::select(player_id = id, stats) %>% 
+  tidyr::unnest(stats)
+dplyr::glimpse(salah_stats)
 ```
