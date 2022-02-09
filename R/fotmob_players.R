@@ -31,7 +31,6 @@ fotmob_get_match_players <- function(match_ids) {
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
   f <- function(url) {
-    # match_id = 3610093
     resp <- jsonlite::fromJSON(url)
 
     lineup <- resp$content$lineup$lineup
@@ -43,19 +42,18 @@ fotmob_get_match_players <- function(match_ids) {
     .clean_positions <- function(p) {
 
       ## index represents F/M/D/G (1/2/3/4), row index represents player (usually up to 4)
-      player_ids <- as.character(p[['id']])
+      player_ids <- as.character(p[["id"]])
       n <- length(player_ids)
-      ## for some reason jsonlite tries to combine stuff row-wise when it really should
-      ##   just bind things column-wise
-      ps <- p[['stats']]
+      ## for some reason jsonlite tries to combine stuff row-wise when it really should just bind things column-wise
+      ps <- p[["stats"]]
 
       .clean_stats <- function(x) {
         xt <- t(x)
-        xt[xt == 'NULL'] <- NA_real_
+        xt[xt == "NULL"] <- NA_real_
         rn <- rownames(xt)
         suppressWarnings(
           xt2 <- matrix(
-            as.numeric(gsub('%', '', xt)),
+            as.numeric(gsub("%", "", xt)),
             ncol = ncol(xt)
           )
         )
@@ -73,13 +71,13 @@ fotmob_get_match_players <- function(match_ids) {
           dplyr::filter(!is.na(.data$value)) %>%
           dplyr::distinct(.data$col, .data$value) %>%
           tidyr::pivot_wider(
-            names_from = 'col',
-            values_from = 'value'
+            names_from = "col",
+            values_from = "value"
           )
       }
       stats <- ps %>% purrr::map_dfr(.clean_stats)
 
-      pp <- function(..., .na = NA, .f = as.logical) {
+      pp <- function(..., .na, .f) {
         res <- pluck(p, ...)
         if(is.null(res) | length(res) == 0) {
           return(rep(.na, n))
@@ -90,7 +88,6 @@ fotmob_get_match_players <- function(match_ids) {
       ppc <- function(...) pp(..., .na = NA_character_, .f = as.character)
       ppi <- function(...) pp(..., .na = NA_integer_, .f = as.integer)
       ppl <- function(...) pp(..., .na = NA, .f = as.logical)
-      ppd <- function(...) pp(..., .na = list(), .f = as.data.frame)
       pp2 <- function(...) {
         res <- pluck(p, ...)
         if(is.null(res) | length(res) == 0) {
@@ -100,36 +97,36 @@ fotmob_get_match_players <- function(match_ids) {
       }
 
       rows <- tibble::tibble(
-        'id' = player_ids,
-        'using_opta_id' = ppl('usingOptaId'),
-        'first_name' = ppc('name', 'firstName'),
-        'last_name' = ppc('name', 'lastName'),
-        'image_url' = ppc('imageUrl'),
-        'page_url' = ppc('pageUrl'),
-        'shirt' = ppc('shirt') ,
-        'is_home_team' = ppl('isHomeTeam'),
-        'time_subbed_on' = ppi('timeSubbedOn'),
-        'time_subbed_off' = ppi('timeSubbedOff'),
-        'usual_position' = ppi('usualPosition'),
-        'position_row' = ppi('positionRow'),
-        'role' = ppc('role'),
-        'is_captain' = ppl('isCaptain'),
-        'subbed_out' = ppi('events', 'subbedOut'),
-        'g' = ppi('events', 'g'),
-        'rating_num' = ppc('rating', 'num'),
-        'rating_bgcolor' = ppc('rating', 'bgcolor'),
-        'is_top_rating' = ppl('rating', 'isTop', 'isTopRating'),
-        'is_match_finished' = ppl('rating', 'isTop', 'isMatchFinished'),
-        'fantasy_score_num' = ppc('fantasyScore', 'num'),
-        'fantasy_score_bgcolor' = ppc('fantasyScore', 'bgcolor'),
-        'home_team_id' = ppi('teamData', 'home', 'id'),
-        'home_team_color' = ppc('teamData', 'home', 'color'),
-        'away_team_id' = ppi('teamData', 'away', 'id'),
-        'away_team_color' = ppc('teamData', 'away', 'color')
+        "id" = player_ids,
+        "using_opta_id" = ppl("usingOptaId"),
+        "first_name" = ppc("name", "firstName"),
+        "last_name" = ppc("name", "lastName"),
+        "image_url" = ppc("imageUrl"),
+        "page_url" = ppc("pageUrl"),
+        "shirt" = ppc("shirt") ,
+        "is_home_team" = ppl("isHomeTeam"),
+        "time_subbed_on" = ppi("timeSubbedOn"),
+        "time_subbed_off" = ppi("timeSubbedOff"),
+        "usual_position" = ppi("usualPosition"),
+        "position_row" = ppi("positionRow"),
+        "role" = ppc("role"),
+        "is_captain" = ppl("isCaptain"),
+        "subbed_out" = ppi("events", "subbedOut"),
+        "g" = ppi("events", "g"),
+        "rating_num" = ppc("rating", "num"),
+        "rating_bgcolor" = ppc("rating", "bgcolor"),
+        "is_top_rating" = ppl("rating", "isTop", "isTopRating"),
+        "is_match_finished" = ppl("rating", "isTop", "isMatchFinished"),
+        "fantasy_score_num" = ppc("fantasyScore", "num"),
+        "fantasy_score_bgcolor" = ppc("fantasyScore", "bgcolor"),
+        "home_team_id" = ppi("teamData", "home", "id"),
+        "home_team_color" = ppc("teamData", "home", "color"),
+        "away_team_id" = ppi("teamData", "away", "id"),
+        "away_team_color" = ppc("teamData", "away", "color")
       ) %>%
         dplyr::mutate(
           stats = stats,
-          shotmap = if(!is.null(pp2('shotmap', 1))) pp2('shotmap') else NULL
+          shotmap = if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
         )
       rows
     }
