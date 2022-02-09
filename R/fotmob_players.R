@@ -13,6 +13,7 @@
 #' \dontrun{
 #' players <- fotmob_get_match_players(c(3609987, 3609979))
 #' }
+#' @export
 fotmob_get_match_players <- function(match_ids) {
   purrr::map_dfr(match_ids, .fotmob_get_single_match_players)
 }
