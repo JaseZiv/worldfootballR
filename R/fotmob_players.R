@@ -49,6 +49,9 @@ fotmob_get_match_players <- function(match_ids) {
       ps <- p[["stats"]]
 
       .clean_stats <- function(x) {
+        if(is.null(x)) {
+          return(data.frame(dummy = 1))
+        }
         xt <- t(x)
         xt[xt == "NULL"] <- NA_real_
         rn <- rownames(xt)
@@ -76,7 +79,15 @@ fotmob_get_match_players <- function(match_ids) {
             values_from = "value"
           )
       }
-      stats <- ps %>% purrr::map_dfr(.clean_stats)
+
+      stats <- if(is.null(ps)) {
+        NULL
+      } else {
+        stats <- ps %>% purrr::map_dfr(.clean_stats)
+        if(any(colnames(stats) == "dummy")) {
+          stats <- stats %>% dplyr::select(-any_of("dummy"))
+        }
+      }
 
       pp <- function(..., .na, .f) {
         res <- purrr::pluck(p, ...)
@@ -126,7 +137,7 @@ fotmob_get_match_players <- function(match_ids) {
         "away_team_color" = ppc("teamData", "away", "color")
       ) %>%
         dplyr::mutate(
-          stats = stats,
+          stats = list(stats),
           shotmap = if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
         )
       rows
@@ -153,6 +164,6 @@ fotmob_get_match_players <- function(match_ids) {
     )
   }
 
-  fp <- purrr::possibly(f, otherwise = data.frame())
-  return(fp(url))
+  # fp <- purrr::possibly(f, otherwise = data.frame())
+  f(url)
 }
