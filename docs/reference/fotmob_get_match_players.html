@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get team match results — get_team_match_results • worldfootballR</title>
+<title>Get fotmob match player details by match id — fotmob_get_match_players • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Get team match results — get_team_match_results" />
-<meta property="og:description" content="Returns all game results for a team in a given season" />
+<meta property="og:title" content="Get fotmob match player details by match id — fotmob_get_match_players" />
+<meta property="og:description" content="Returns match details from fotmob.com" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -153,35 +153,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get team match results</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/team_match_results.R'><code>R/team_match_results.R</code></a></small>
-    <div class="hidden name"><code>get_team_match_results.Rd</code></div>
+    <h1>Get fotmob match player details by match id</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/fotmob_players.R'><code>R/fotmob_players.R</code></a></small>
+    <div class="hidden name"><code>fotmob_get_match_players.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns all game results for a team in a given season</p>
+    <p>Returns match details from fotmob.com</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_team_match_results</span><span class='op'>(</span><span class='va'>team_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fotmob_get_match_players</span><span class='op'>(</span><span class='va'>match_ids</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>team_url</th>
-      <td><p>the URL for the team season</p></td>
+      <th>match_ids</th>
+      <td><p>a vector of strings or numbers representing matches</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe with the results of all games played by the selected team(s)</p>
+    <p>returns a dataframe of match players</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># for single teams:</span>
-<span class='va'>man_city_url</span> <span class='op'>&lt;-</span> <span class='st'>"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span>
-<span class='fu'>get_team_match_results</span><span class='op'>(</span><span class='va'>man_city_url</span><span class='op'>)</span>
+<span class='va'>players</span> <span class='op'>&lt;-</span> <span class='fu'>fotmob_get_match_players</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3609987</span>, <span class='fl'>3609979</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
