@@ -79,6 +79,7 @@ fotmob_get_matches_by_date <- function(dates) {
 #' match_ids # 3609987 3609979
 #' details <- fotmob_get_match_details(match_ids)
 #' }
+#' @export
 fotmob_get_match_details <- function(match_ids) {
   purrr::map_dfr(match_ids, .fotmob_get_single_match_details)
 }

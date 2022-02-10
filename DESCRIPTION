@@ -34,7 +34,7 @@ Imports:
     stats,
     stringi,
     stringr,
-    tidyr,
+    tidyr (>= 1.2.0),
     utils,
     withr,
     xml2,
