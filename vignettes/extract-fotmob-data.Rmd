@@ -113,13 +113,13 @@ unnested_results %>%
 
 To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.
 
-```{r fotmob_match_details, eval=FALSE}
+```{r fotmob_match_details}
 fotmob_matches <- c(3609994, 3610132)
 match_details <- fotmob_get_match_details(fotmob_matches)
 dplyr::glimpse(match_details)
 ```
 
-```{r fotmob_match_shots, eval=FALSE}
+```{r fotmob_match_shots}
 match_shots <- match_details %>% 
   dplyr::select(
     match_id,
@@ -129,14 +129,16 @@ match_shots <- match_details %>%
 dplyr::glimpse(match_shots)
 ```
 
-There is one nested element in the returned data.frame for `on_goal_shot`. As with the nested elements returned by `fotmob_get_matches_by_date`, columns in nested elements have camel case names. (Here, it's only `zoomRatio`.)
+There is one nested element in the returned data.frame for `on_goal_shot`. As with the nested elements returned by `fotmob_get_matches_by_date`, columns in nested elements have camel case names. (Here, it's only `zoomRatio`.) 
 
-```{r on_goal_shots, eval=FALSE}
-# match_shots %>% 
-#   dplyr::select(on_goal_shot) %>% 
-#   tidyr::unnest_wider(
-#     on_goal_shot
-#   )
+*NOTE: The below code block depends on `tidyr 1.2.0`*
+
+```{r on_goal_shots}
+match_shots %>%
+  dplyr::select(on_goal_shot) %>%
+  tidyr::unnest_wider(
+    on_goal_shot
+  )
 ```
 
 Be very careful with interpreting `x` and `y` from `on_goal_shot`. They're not on the same scale as `x` and `y` in the top-level of the result returned from `fotmob_get_match_details`!
@@ -145,12 +147,12 @@ Be very careful with interpreting `x` and `y` from `on_goal_shot`. They're not o
 
 You can also extract players from matches with the `fotmob_get_match_players()` function.
 
-```{r fotmob_players, eval=FALSE}
+```{r fotmob_players}
 players <- fotmob_get_match_players(fotmob_matches)
 dplyr::glimpse(players)
 ```
 
-```{r salah_shotmap, eval=FALSE}
+```{r salah_shotmap}
 salah <- players %>% dplyr::filter(id == "292462")
 salah_shotmap <- salah %>% 
   dplyr::select(player_id = id, shotmap) %>% 
@@ -158,7 +160,7 @@ salah_shotmap <- salah %>%
 dplyr::glimpse(salah_shotmap)
 ```
 
-```{r salah_stats, eval=FALSE}
+```{r salah_stats}
 salah_stats <- salah %>% 
   dplyr::select(player_id = id, stats) %>% 
   tidyr::unnest(stats)
