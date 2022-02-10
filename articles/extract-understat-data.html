@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.1000</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
+    </li>
+    <li>
+      <a href="../articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     </li>
     <li>
       <a href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
@@ -103,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from Understat</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-02-09</h4>
+            <h4 data-toc-skip class="date">2022-02-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-understat-data.Rmd" class="external-link"><code>vignettes/extract-understat-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-understat-data.Rmd</code></div>
@@ -120,16 +123,20 @@
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
 <li><a href="https://understat.com/" class="external-link">Understat</a></li>
+<li><a href="https://www.fotmob.com/" class="external-link">Fotmob</a></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the <code>worldfootballR</code> package from github with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -142,7 +149,7 @@
 </li>
 <li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
-<li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
+<li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
@@ -157,7 +164,7 @@
 <h3 id="team-urls">Team URLs<a class="anchor" aria-label="anchor" href="#team-urls"></a>
 </h3>
 <p>To get a list of all season team URLs for selected teams, use the <code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code> function (note, to get team names, it might be advisable to look at Understat.com’s spelling of the team names and pass that through to the function):</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_meta.html">understat_team_meta</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Liverpool"</span>, <span class="st">"Manchester City"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -180,7 +187,7 @@
 </h3>
 <p>To be able to extract match results from Understat, which not only have results and expected goals, but they also provide a probability of a team winning.</p>
 <p>To extract the data, use the <code><a href="../reference/understat_league_match_results.html">understat_league_match_results()</a></code> function:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># to get the EPL results:</span>
 <span class="va">epl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_match_results.html">understat_league_match_results</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"EPL"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_results</span><span class="op">)</span>
@@ -209,7 +216,7 @@
 <h3 id="season-shooting-locations">Season Shooting locations<a class="anchor" aria-label="anchor" href="#season-shooting-locations"></a>
 </h3>
 <p>To get shooting locations for a whole season in supported leagues, use the <code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ligue1_shot_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_season_shots.html">understat_league_season_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Ligue 1"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
@@ -222,7 +229,7 @@
 <h3 id="match-shooting-locations">Match Shooting Locations<a class="anchor" aria-label="anchor" href="#match-shooting-locations"></a>
 </h3>
 <p>To get shooting locations for an individual match, use the <code><a href="../reference/understat_match_shots.html">understat_match_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wba_liv_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_match_shots.html">understat_match_shots</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://understat.com/match/14789"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">wba_liv_shots</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 36</span>
@@ -258,7 +265,7 @@
 <h3 id="team-shooting-locations">Team Shooting Locations<a class="anchor" aria-label="anchor" href="#team-shooting-locations"></a>
 </h3>
 <p>To get all shots taken and conceded by a team during a season, use the <code><a href="../reference/understat_team_season_shots.html">understat_team_season_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">man_city_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_season_shots.html">understat_team_season_shots</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">man_city_shots</span><span class="op">)</span>
@@ -298,7 +305,7 @@
 <li>Attack speed</li>
 <li>Result</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- Can get data for single teams at a time: -----#</span>
 <span class="va">team_breakdown</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="st">"https://understat.com/team/Liverpool/2020"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">team_breakdown</span><span class="op">)</span>
@@ -331,10 +338,10 @@
 <h3 id="player-shooting-locations">Player Shooting Locations<a class="anchor" aria-label="anchor" href="#player-shooting-locations"></a>
 </h3>
 <p>To get shooting locations for all games a player has participated in (for as long as Understat has data for), use the <code><a href="../reference/understat_player_shots.html">understat_player_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">raheem_sterling_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_player_shots.html">understat_player_shots</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://understat.com/player/618"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">raheem_sterling_shots</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 571</span>
+<span class="co">#&gt; Rows: 573</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "14490", "14491", "14496", "14497", "14779", "15104", …</span>
 <span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20, 22, 47, 53, 8, 7, 69, 74, 65, 81, 19, 25, 47, 50, …</span>
@@ -362,7 +369,7 @@
 </h3>
 <p>To get stats for all players of selected teams, run the <code><a href="../reference/understat_team_players_stats.html">understat_team_players_stats()</a></code> function.</p>
 <p>Note: Team URLs cal be extracted using <code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_players_stats.html">understat_team_players_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://understat.com/team/Liverpool/2020"</span>, <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">team_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 52</span>
