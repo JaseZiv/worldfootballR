@@ -30,7 +30,9 @@ fotmob_get_matches_by_date <- function(dates) {
 #' @importFrom stringr str_remove_all
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
+#' @importFrom janitor clean_names
 #' @importFrom purrr possibly
+#' @importFrom tibble as_tibble tibble
 .fotmob_get_matches_by_single_date <- function(date) {
   print(glue::glue('Scraping match results data from fotmob for "{date}".'))
   main_url <- "https://www.fotmob.com/"
@@ -43,10 +45,12 @@ fotmob_get_matches_by_date <- function(dates) {
   url <- paste0(main_url, "matches?date=", date)
   f <- function(url) {
     resp <- jsonlite::fromJSON(url)
-    resp$leagues
+    resp$leagues %>%
+      janitor::clean_names() %>%
+      tibble::as_tibble()
   }
-  fp <- purrr::possibly(f, otherwise = data.frame())
-  return(fp(url))
+  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp(url)
 }
 
 #' Get fotmob match details by match id
@@ -80,7 +84,9 @@ fotmob_get_match_details <- function(match_ids) {
 #' @importFrom glue glue
 #' @importFrom purrr possibly
 #' @importFrom dplyr bind_cols mutate case_when
+#' @importFrom janitor clean_names
 #' @importFrom rlang .data
+#' @importFrom tibble as_tibble tibble
 .fotmob_get_single_match_details <- function(match_id) {
   print(glue::glue("Scraping match data from fotmob for match {match_id}."))
   main_url <- "https://www.fotmob.com/"
@@ -89,36 +95,24 @@ fotmob_get_match_details <- function(match_ids) {
   f <- function(url) {
 
     general <- .extract_fotmob_match_general(url)
-    resp <- general$resp
-    general_scalars <- general$scalars
-    general_teams <- general$teams
-    shots <- resp$content$shotmap$shots
-    has_shots <- length(shots) > 0
-
     df <- dplyr::bind_cols(
-      general_scalars,
-      general_teams
+      general$scalars,
+      general$teams
     )
+    # browser()
+    shots <- general$resp$content$shotmap$shots %>% janitor::clean_names()
 
-    if(has_shots) {
-      df <-
-        dplyr::bind_cols(
-          df,
-          shots
-        ) %>%
-        dplyr::mutate(
-          team = dplyr::case_when(
-            teamId == general$homeTeam$id ~ .data$homeTeam,
-            teamId == general$awayTeam$id ~ .data$awayTeam,
-            TRUE ~ NA_character_
-          )
-        )
+    if(length(shots) > 0) {
+      df$shots <- list(shots)
+    } else {
+      df$shots <- NULL
     }
-    df
+
+    tibble::as_tibble(df)
   }
 
-  fp <- purrr::possibly(f, otherwise = data.frame())
-  return(fp(url))
+  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp(url)
 }
 
 #' @importFrom jsonlite fromJSON
@@ -127,28 +121,28 @@ fotmob_get_match_details <- function(match_ids) {
   general <- resp$general
   scalars <- data.frame(
     stringsAsFactors = FALSE,
-    matchId = general$matchId,
-    matchRound = ifelse(is.null(general$matchRound), "", general$matchRound),
-    leagueId = general$leagueId,
-    leagueName = general$leagueName,
-    leagueRoundName = general$leagueRoundName,
-    parentLeagueId = general$parentLeagueId,
-    parentLeagueSeason = general$parentLeagueSeason,
-    matchTimeUTC = general$matchTimeUTC
+    match_id = general$matchId,
+    match_round = ifelse(is.null(general$matchRound), "", general$matchRound),
+    league_id = general$leagueId,
+    league_name = general$leagueName,
+    league_round_name = general$leagueRoundName,
+    parent_league_id = general$parentLeagueId,
+    parent_league_season = general$parentLeagueSeason,
+    match_time_utc = general$matchTimeUTC
   )
   teams <- data.frame(
     stringsAsFactors = FALSE,
-    homeTeamId = unlist(general$homeTeam$id),
-    homeTeam = unlist(general$homeTeam$name),
-    homeTeamColor = unlist(general$teamColors$home),
-    awayTeamId = unlist(general$awayTeam$id),
-    awayTeam = unlist(general$awayTeam$name),
-    awayTeamColor = unlist(general$teamColors$away)
+    home_team_id = unlist(general$homeTeam$id),
+    home_team = unlist(general$homeTeam$name),
+    home_team_color = unlist(general$teamColors$home),
+    away_team_id = unlist(general$awayTeam$id),
+    away_team = unlist(general$awayTeam$name),
+    away_team_color = unlist(general$teamColors$away)
   )
   list(
     resp = resp,
-    scalars = general_scalars,
-    teams = general_teams
+    scalars = scalars,
+    teams = teams
   )
 }
 

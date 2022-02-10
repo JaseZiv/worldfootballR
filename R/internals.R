@@ -365,7 +365,6 @@
   return(val)
 }
 
-
 # .pkg_message <- function(msg) {
 #   if(getOption("mypackage.verbose", default = TRUE)) message(glue::glue(msg))
 #   return(NULL)

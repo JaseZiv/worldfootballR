@@ -72,11 +72,13 @@ fotmob lists data for all leagues by date. Use `fotmob_get_matches_by_date` to s
 ```{r fotmob_get_matches_by_date}
 library(dplyr)
 library(tidyr)
-results <- fotmob_get_matches_by_date(date =c("20210925", "20210926"))
+results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
 dplyr::glimpse(results)
+```
 
+```{r fotmob_match_ids}
 filtered_results <- results %>%
-  dplyr::select(primaryId, ccode, league_name = name, matches) %>%
+  dplyr::select(primary_id, ccode, league_name = name, matches) %>%
   dplyr::filter(league_name == "Premier League", ccode == "ENG")
 
 # one way of getting data out of the results
@@ -87,6 +89,14 @@ match_ids <- unnested_results %>%
   dplyr::pull(matches) %>% 
   dplyr::pull(id)
 match_ids
+```
+
+Note that fotmob returns nested data.frames or lists for some elements. Nested components have camel case names.
+
+```{r fotmob_unnested_results}
+unnested_results %>% 
+  dplyr::pull(matches) %>% 
+  dplyr::glimpse()
 ```
 
 ------------------------------------------------------------------------
@@ -102,6 +112,28 @@ fotmob_matches <- c(3609994, 3610132)
 match_details <- fotmob_get_match_details(fotmob_matches)
 dplyr::glimpse(match_details)
 ```
+
+```{r fotmob_match_shots}
+match_shots <- match_details %>% 
+  dplyr::select(
+    match_id,
+    shots
+  ) %>% 
+  tidyr::unnest(shots)
+dplyr::glimpse(match_shots)
+```
+
+There is one nested element in the returned data.frame for `on_goal_shot`. As with the nested elements returned by `fotmob_get_matches_by_date`, columns in nested elements have camel case names. (Here, it's only `zoomRatio`.)
+
+```{r on_goal_shots}
+match_shots %>% 
+  select(on_goal_shot) %>% 
+  tidyr::unnest_wider(
+    on_goal_shot
+  )
+```
+
+Be very careful with interpreting `x` and `y` from `on_goal_shot`. They're not on the same scale as `x` and `y` in the top-level of the result returned from `fotmob_get_match_details`!
 
 ### Players
 

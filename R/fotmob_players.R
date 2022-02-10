@@ -26,6 +26,7 @@ fotmob_get_match_players <- function(match_ids) {
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang .data
 #' @importFrom janitor make_clean_names
+#' @importFrom tibble as_tibble tibble
 .fotmob_get_single_match_players <- function(match_id) {
   print(glue::glue("Scraping match data from fotmob for match {match_id}."))
   main_url <- "https://www.fotmob.com/"
@@ -85,7 +86,7 @@ fotmob_get_match_players <- function(match_ids) {
         NULL
       } else {
         pss <- ps %>% purrr::map_dfr(.clean_stats)
-        if(any(colnames(stats) == "dummy")) {
+        if(any(colnames(pss) == "dummy")) {
           pss <- pss %>% dplyr::select(-any_of("dummy"))
         }
         pss
@@ -144,6 +145,7 @@ fotmob_get_match_players <- function(match_ids) {
         )
     }
 
+
     res <- dplyr::bind_rows(
       purrr::map_dfr(
         starters,
@@ -162,9 +164,10 @@ fotmob_get_match_players <- function(match_ids) {
         dplyr::mutate(
           is_starter = FALSE
         )
-    )
+    ) %>%
+      tibble::as_tibble()
   }
 
-  # fp <- purrr::possibly(f, otherwise = data.frame())
+  fp <- purrr::possibly(f, otherwise = tibble::tibble())
   f(url)
 }
