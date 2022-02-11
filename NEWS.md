@@ -1,3 +1,13 @@
+# worldfootballR 0.4.10.1000
+
+### New functions
+
+* `fotmob_get_matches_by_date()` - to select matches occurring on specific day(s)
+* `fotmob_get_match_details()` - to get shooting locations for an individual match
+* `fotmob_get_match_players()` - extract player statistics from matches
+
+***
+
 # worldfootballR 0.4.10
 
 ### Improvements
