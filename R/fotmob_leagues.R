@@ -4,13 +4,10 @@
 }
 
 #' @importFrom memoise memoise
-.mem_load_fotmob_leagues <- memoise::memoise(.load_fotmob_leagues)
-
-#' @importFrom memoise memoise
 #' @importFrom purrr transpose map_dfr
 #' @importFrom dplyr filter
 .fotmob_get_league_ids <- function(league_id = NULL, country = NULL, league_name = NULL) {
-  leagues <- .mem_load_fotmob_leagues()
+  leagues <- .load_fotmob_leagues()
   has_country <- !is.null(country)
   has_league_name <- !is.null(league_name)
   has_league_id <- !is.null(league_id)

@@ -25,7 +25,6 @@ Imports:
     jsonlite,
     lubridate,
     magrittr,
-    memoise,
     progress,
     purrr,
     qdapRegex,
