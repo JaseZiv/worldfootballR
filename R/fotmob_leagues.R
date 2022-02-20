@@ -3,7 +3,6 @@
   read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/3c6ff713a08a0ef5f9355b8eba791a899fe68189/raw-data/fotmob-leagues/all_leagues.csv", stringsAsFactors = F)
 }
 
-#' @importFrom memoise memoise
 #' @importFrom purrr transpose map_dfr
 #' @importFrom dplyr filter
 .fotmob_get_league_ids <- function(league_id = NULL, country = NULL, league_name = NULL) {
