@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.1000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.2000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 class="author">Tony ElHabr</h4>
             
-            <h4 class="date">2022-02-11</h4>
+            <h4 class="date">2022-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fotmob-data.Rmd"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -159,7 +159,7 @@
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
 </ul>
-<p>This vignette will cover the functions to extract data from understat.com</p>
+<p>This vignette will cover the functions to extract data from fotmob.com</p>
 <hr>
 </div>
 <div id="fotmob-helper-functions" class="section level2">
@@ -175,8 +175,28 @@
 <div id="match-results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#match-results" class="anchor"></a>Match Results</h3>
-<p>fotmob lists data for all leagues by date. Use <code>fotmob_get_matches_by_date</code> to select matches occurring on specific day(s) and filter down to the league(s) that you care about.</p>
+<p>Matches for one or multiple leagues can be retrieved with <code>fotmob_get_league_matches</code>. Currently only the current season’s matches can be retrieved.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">league_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches</a></span><span class="op">(</span>
+  country <span class="op">=</span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>,            <span class="st">"ESP"</span>   <span class="op">)</span>,
+  league_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Premier League"</span>, <span class="st">"LaLiga"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">league_matches_unnested</span> <span class="op">&lt;-</span> <span class="va">league_matches</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>match_id <span class="op">=</span> <span class="va">id</span>, <span class="va">home</span>, <span class="va">away</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/hoist.html">unnest_wider</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">home</span>, <span class="va">away</span><span class="op">)</span>, names_sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">league_matches_unnested</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 760</span>
+<span class="co">#&gt; Columns: 7</span>
+<span class="co">#&gt; $ match_id   &lt;chr&gt; "3609929", "3609934", "3609930", "3609931", "3609932", "360…</span>
+<span class="co">#&gt; $ home_id    &lt;chr&gt; "9937", "10260", "8191", "8455", "8668", "8197", "9817", "9…</span>
+<span class="co">#&gt; $ home_name  &lt;chr&gt; "Brentford", "Man United", "Burnley", "Chelsea", "Everton",…</span>
+<span class="co">#&gt; $ home_score &lt;int&gt; 2, 5, 1, 3, 3, 1, 3, 0, 2, 1, 2, 2, 0, 2, 5, 2, 1, 0, 0, 4,…</span>
+<span class="co">#&gt; $ away_id    &lt;chr&gt; "9825", "8463", "10204", "9826", "8466", "8602", "10252", "…</span>
+<span class="co">#&gt; $ away_name  &lt;chr&gt; "Arsenal", "Leeds", "Brighton", "Crystal Palace", "Southamp…</span>
+<span class="co">#&gt; $ away_score &lt;int&gt; 0, 1, 2, 0, 1, 0, 2, 3, 4, 0, 0, 0, 0, 2, 0, 0, 1, 1, 2, 1,…</span></code></pre></div>
+<p>fotmob also lists data for all leagues by date. Use <code>fotmob_get_matches_by_date</code> to select matches occurring on specific day(s) and filter down to the league(s) that you care about.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 244</span>
@@ -193,7 +213,7 @@
 <span class="co">#&gt; $ is_group           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
 <span class="co">#&gt; $ group_name         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
 <span class="co">#&gt; $ parent_league_name &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filtered_results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">primary_id</span>, <span class="va">ccode</span>, league_name <span class="op">=</span> <span class="va">name</span>, <span class="va">matches</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">league_name</span> <span class="op">==</span> <span class="st">"Premier League"</span>, <span class="va">ccode</span> <span class="op">==</span> <span class="st">"ENG"</span><span class="op">)</span>
@@ -208,7 +228,7 @@
 <span class="va">match_ids</span>
 <span class="co">#&gt; [1] 3609981 3609986 3609983 3609984 3609985 3609988 3609980</span></code></pre></div>
 <p>Note that fotmob returns nested data.frames or lists for some elements. Nested components have camel case names.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unnested_results</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">matches</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
@@ -224,6 +244,38 @@
 <span class="co">#&gt; $ status          &lt;df[,8]&gt; &lt;data.frame[7 x 8]&gt;</span>
 <span class="co">#&gt; $ timeTS          &lt;dbl&gt; 1.632605e+12, 1.632605e+12, 1.632614e+12, 1.632614e+12…</span>
 <span class="co">#&gt; $ tv              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
+</div>
+<div id="standings" class="section level3">
+<h3 class="hasAnchor">
+<a href="#standings" class="anchor"></a>Standings</h3>
+<p>Standings for one or multiple leagues can be retrieved with <code>fotmob_get_league_tables</code>. Currently only the current season’s standings can be retrieved.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">league_tables</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables</a></span><span class="op">(</span>
+  country <span class="op">=</span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENG"</span>,            <span class="st">"ESP"</span>   <span class="op">)</span>,
+  league_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Premier League"</span>, <span class="st">"LaLiga"</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="co"># or</span>
+<span class="co"># league_tables &lt;- fotmob_get_league_tables(league_id = c(47, 87))</span>
+
+<span class="va">away_league_tables</span> <span class="op">&lt;-</span> <span class="va">league_tables</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">table_type</span> <span class="op">==</span> <span class="st">"away"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">away_league_tables</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 40</span>
+<span class="co">#&gt; Columns: 14</span>
+<span class="co">#&gt; $ table_type  &lt;chr&gt; "away", "away", "away", "away", "away", "away", "away", "a…</span>
+<span class="co">#&gt; $ name        &lt;chr&gt; "Man City", "Liverpool", "Chelsea", "Wolves", "Man United"…</span>
+<span class="co">#&gt; $ id          &lt;int&gt; 8456, 8650, 8455, 8602, 10260, 8654, 10204, 8586, 9825, 84…</span>
+<span class="co">#&gt; $ pageUrl     &lt;chr&gt; "/teams/8456/overview/manchester-city", "/teams/8650/overv…</span>
+<span class="co">#&gt; $ deduction   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
+<span class="co">#&gt; $ played      &lt;int&gt; 13, 13, 13, 12, 13, 13, 13, 11, 11, 13, 12, 12, 13, 12, 11…</span>
+<span class="co">#&gt; $ wins        &lt;int&gt; 10, 8, 8, 7, 6, 6, 4, 5, 5, 3, 4, 3, 2, 2, 2, 1, 1, 2, 1, …</span>
+<span class="co">#&gt; $ draws       &lt;int&gt; 2, 3, 3, 2, 5, 3, 7, 2, 1, 4, 0, 2, 4, 4, 3, 6, 5, 2, 4, 3…</span>
+<span class="co">#&gt; $ losses      &lt;int&gt; 1, 2, 2, 3, 2, 4, 2, 4, 5, 6, 8, 7, 7, 6, 6, 5, 6, 8, 6, 8…</span>
+<span class="co">#&gt; $ scoresStr   &lt;chr&gt; "27-8", "34-13", "22-8", "13-8", "23-18", "21-15", "15-14"…</span>
+<span class="co">#&gt; $ goalConDiff &lt;int&gt; 19, 21, 14, 5, 5, 6, 1, -3, -1, -11, -6, -3, -12, -15, -9,…</span>
+<span class="co">#&gt; $ pts         &lt;int&gt; 32, 27, 27, 23, 23, 21, 19, 17, 16, 13, 12, 11, 10, 10, 9,…</span>
+<span class="co">#&gt; $ idx         &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…</span>
+<span class="co">#&gt; $ qualColor   &lt;chr&gt; "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", NA,…</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -234,7 +286,7 @@
 <h3 class="hasAnchor">
 <a href="#match-shooting-locations" class="anchor"></a>Match Shooting Locations</h3>
 <p>To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fotmob_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3609994</span>, <span class="fl">3610132</span><span class="op">)</span>
 <span class="va">match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">match_details</span><span class="op">)</span>
@@ -255,7 +307,7 @@
 <span class="co">#&gt; $ away_team            &lt;chr&gt; "Manchester City", "Liverpool"</span>
 <span class="co">#&gt; $ away_team_color      &lt;chr&gt; "#69A8D8", "#d3171e"</span>
 <span class="co">#&gt; $ shots                &lt;list&gt; [&lt;data.frame[18 x 24]&gt;], [&lt;data.frame[25 x 24]&gt;]</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">match_shots</span> <span class="op">&lt;-</span> <span class="va">match_details</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
     <span class="va">match_id</span>,
@@ -292,7 +344,7 @@
 <span class="co">#&gt; $ last_name                &lt;chr&gt; "Jesus", "Fabinho", "Walker", "Jesus", "Salah…</span></code></pre></div>
 <p>There is one nested element in the returned data.frame for <code>on_goal_shot</code>. As with the nested elements returned by <code>fotmob_get_matches_by_date</code>, columns in nested elements have camel case names. (Here, it’s only <code>zoomRatio</code>.)</p>
 <p><em>NOTE: The below code block depends on <code>tidyr 1.2.0</code></em></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">match_shots</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">on_goal_shot</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/hoist.html">unnest_wider</a></span><span class="op">(</span>
@@ -318,7 +370,7 @@
 <h3 class="hasAnchor">
 <a href="#players" class="anchor"></a>Players</h3>
 <p>You can also extract players from matches with the <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> function.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 80</span>
@@ -352,7 +404,7 @@
 <span class="co">#&gt; $ stats                 &lt;list&gt; [&lt;data.frame[1 x 15]&gt;], [&lt;data.frame[4 x 21]&gt;],…</span>
 <span class="co">#&gt; $ shotmap               &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…</span>
 <span class="co">#&gt; $ is_starter            &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salah</span> <span class="op">&lt;-</span> <span class="va">players</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="st">"292462"</span><span class="op">)</span>
 <span class="va">salah_shotmap</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>player_id <span class="op">=</span> <span class="va">id</span>, <span class="va">shotmap</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -383,7 +435,7 @@
 <span class="co">#&gt; $ period                &lt;chr&gt; "FirstHalf", "SecondHalf", "SecondHalf", "FirstH…</span>
 <span class="co">#&gt; $ isOwnGoal             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE</span>
 <span class="co">#&gt; $ onGoalShot            &lt;df[,3]&gt; &lt;data.frame[7 x 3]&gt;</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salah_stats</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>player_id <span class="op">=</span> <span class="va">id</span>, <span class="va">stats</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
