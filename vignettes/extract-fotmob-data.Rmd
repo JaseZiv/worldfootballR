@@ -58,7 +58,7 @@ Package vignettes have been built to help you get started with the package.
 -   For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
 -   For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
 
-This vignette will cover the functions to extract data from understat.com
+This vignette will cover the functions to extract data from fotmob.com
 
 ------------------------------------------------------------------------
 
