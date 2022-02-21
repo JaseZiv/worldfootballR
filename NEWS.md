@@ -1,3 +1,11 @@
+
+# worldfootballR 0.4.10.2000
+
+### New functions
+
+* `fotmob_get_league_matches()` - to select matches for one or more leagues
+* `fotmob_get_league_tables()` - to get standings for one or more leagues
+
 # worldfootballR 0.4.10.1000
 
 ### New functions

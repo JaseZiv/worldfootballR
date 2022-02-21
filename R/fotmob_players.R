@@ -22,7 +22,7 @@ fotmob_get_match_players <- function(match_ids) {
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble tibble
 #' @importFrom purrr pluck map_dfr possibly
-#' @importFrom dplyr bind_cols select filter distinct
+#' @importFrom dplyr bind_cols select filter distinct any_of
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang .data
 #' @importFrom janitor make_clean_names
@@ -88,7 +88,7 @@ fotmob_get_match_players <- function(match_ids) {
       } else {
         pss <- ps %>% purrr::map_dfr(.clean_stats)
         if(any(colnames(pss) == "dummy")) {
-          pss <- pss %>% dplyr::select(-any_of("dummy"))
+          pss <- pss %>% dplyr::select(-dplyr::any_of("dummy"))
         }
         pss
       }
