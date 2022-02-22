@@ -51,7 +51,7 @@
   n_league_urls <- nrow(league_urls)
   if(n_league_urls == 0) {
     stop(
-      'Could not find any leagues matching specified parameters.',
+      'Could not find any leagues matching specified parameters.'
     )
   }
 
