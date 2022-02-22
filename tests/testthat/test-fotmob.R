@@ -59,7 +59,15 @@ test_that("fotmob_get_league_matches() works", {
   # must also provide country
   expect_error(
     fotmob_get_league_matches(
-      country = "Premier League"
+      league_name = "Premier League"
+    )
+  )
+
+  # mis-specified league_name
+  expect_error(
+    fotmob_get_league_matches(
+      country = "ESP",
+      league_name = "La Liga"
     )
   )
 
