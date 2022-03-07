@@ -26,7 +26,7 @@ Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leag
 
 \item{team_or_player}{return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.}
 
-\item{stat_type}{the type of statistic.
+\item{stat_type}{the type of statistic. Can only be one.
 For \code{entity = "player"}, must be one of the following:
 \itemize{
 \item{"accurate_pass"}
@@ -54,6 +54,7 @@ For `entity = "team"` all of the same stats are available, with the exception of
 \itemize{
 \item{"goals"}
 \item{"assist"}
+\item{"won_contest"}
 }
 Additional stats available for \code{"team"} are:
 \itemize{

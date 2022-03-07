@@ -44,7 +44,8 @@ devtools::install_github("JaseZiv/worldfootballR")
 
 ```{r load_libs, warning=FALSE, message=FALSE}
 library(worldfootballR)
-library(magrittr)
+library(dplyr)
+library(tidyr)
 ```
 
 ------------------------------------------------------------------------
@@ -70,7 +71,145 @@ There are currently no helper functions for fotmob functions.
 
 ## League Season-Level Data
 
-fotmob has data for just about every league that you can think of, including all of the Big 5 leagues. However, no functions currently exist to retrieve entire season's worth of data.
+fotmob has data for just about every league that you can think of, including all of the Big 5 leagues.
+
+### Team Stats
+
+Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, and league. Currently the available stat types are:
+
+-   accurate_pass
+-   big_chance_created
+-   big_chance_missed
+-   clean_sheet
+-   effective_clearance
+-   xg (goals are in the `sub_stat_value` column)
+-   xg_conceded (goals conceded are in the `sub_stat_value` column)
+-   goals_conceded_per_match
+-   goals_per_match
+-   ontarget_scoring_att
+-   penalty_won
+-   poss_won_att_3rd
+-   possession_percentage
+-   rating
+-   red_card
+-   saves
+-   won_tackle
+-   yellow_card
+
+```{r fotmob_get_season_stats_teams}
+epl_team_xg_2021 <- fotmob_get_season_stats(
+  country = "ENG",
+  league_name = "Premier League",
+  season = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "team"
+)
+
+epl_team_xg_2021 %>%
+  dplyr::select(
+    league_id = id,
+    league_name = name,
+    season_id,
+    season_name,
+    team_id,
+    team_name = participant_name,
+    matches_played,
+    xg = stat_value,
+    g = sub_stat_value
+  ) %>%
+  dplyr::glimpse()
+```
+
+You can retrieve data for multiple leagues and/or season at the same time.
+
+```{r fotmob_get_season_stats_teams}
+team_xg_conceded_2021 <- fotmob_get_season_stats(
+  country =     c("ITA",     "ESP"),
+  league_name = c("Serie A", "LaLiga"),
+  season = c("2020/2021", "2021/2022"),
+  stat_type = "xg_conceded",
+  team_or_player = "team"
+)
+
+## 2 leagues x 20 teams x 2 seasons = 80 records
+team_xg_conceded_2021 %>% nrow()
+```
+
+At this time, only one `stat_type` and one `team_or_player` can be retrieved at a time.
+
+### Player Stats
+
+You can also use `fotmob_get_season_stats` to retrieve stats for players.
+
+-   accurate_pass
+-   big_chance_created
+-   big_chance_missed
+-   clean_sheet
+-   effective_clearance
+-   xg
+-   xg_conceded
+-   assist
+-   goals
+-   mins_played_goal (minutes played per goal)
+-   ontarget_scoring_att
+-   penalty_won
+-   poss_won_att_3rd
+-   rating
+-   red_card
+-   saves
+-   won_contest
+-   won_tackle
+-   yellow_card
+
+```{r fotmob_get_season_stats_players}
+epl_player_xg_2021 <- fotmob_get_season_stats(
+  country = "ENG",
+  league_name = "Premier League",
+  season = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "player"
+)
+
+epl_player_xg_2021 %>%
+  dplyr::select(
+    league_id = id,
+    league_name = name,
+    season_id,
+    season_name,
+    team_id,
+    ## NOTE: particiant_id is a typo on behalf of fotmob! We leave it as is.
+    player_id = particiant_id,
+    player_name = participant_name,
+    minutes_played,
+    matches_played,
+    xg = stat_value,
+    g = sub_stat_value
+  ) %>%
+  dplyr::glimpse()
+```
+
+Currently the available stat types are:
+
+-   accurate_pass
+-   big_chance_created
+-   big_chance_missed
+-   clean_sheet
+-   effective_clearance
+-   expected_goals
+-   expected_goals_conceded
+-   goal_assist
+-   goals
+-   mins_played_goal
+-   ontarget_scoring_att
+-   penalty_won
+-   poss_won_att_3rd
+-   rating
+-   red_card
+-   saves
+-   total_att_assist
+-   won_contest
+-   won_tackle
+-   yellow_card
 
 ### Match Results
 
