@@ -8,9 +8,8 @@
 }
 
 ## Probably best to just have this always available, until caching is implemented.
-.fotmob_stat_types <- read.csv(
-  "https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/bdc5a8f8d4b31b477621e309ddb06fae9d35e022/raw-data/fotmob-stats/stat_types.csv",
-  stringsAsFactors = F
+.fotmob_stat_types <- .load_fotmob_csv(
+  "https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/bdc5a8f8d4b31b477621e309ddb06fae9d35e022/raw-data/fotmob-stats/stat_types.csv"
 )
 
 #' @importFrom dplyr filter
