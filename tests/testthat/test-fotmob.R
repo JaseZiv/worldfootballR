@@ -133,30 +133,30 @@ test_that("fotmob_get_league_season_stats() works", {
     team_or_player = "team"
   )
   expect_true(nrow(epl_team_xg_2021_a) > 0)
-  expect_equal(ncol(epl_team_xg_2021_a), 11)
+  expect_equal(ncol(epl_team_xg_2021_a), 18)
 
-  get_epl_season_stats <- function(...) {
+  get_epl_season_stats <- function(
+    season = "2020/2021",
+    team_or_player = "team",
+    stat_type = "xg"
+  ) {
     fotmob_get_season_stats(
       country = "ENG",
       league_name = "Premier League",
-      ...
+      season = season,
+      team_or_player = team_or_player,
+      stat_type = stat_type
     )
   }
 
-  epl_team_xg_2021_b <- get_epl_season_stats(
-    season = "2020/2021",
-    stat_type = "xg",
-    team_or_player = "team"
-  )
+  epl_team_xg_2021_b <- get_epl_season_stats()
 
   expect_identical(epl_team_xg_2021_a, epl_team_xg_2021_b)
 
   ## fotmob doesn't has data for 2016/2017 for some leagues, but not all
   expect_warning(
     get_epl_season_stats(
-      season = "2016/2017",
-      stat_type = "xg",
-      team_or_player = "team"
+      season = "2016/2017"
     ),
     regexp = "Issue with data"
   )
@@ -164,26 +164,21 @@ test_that("fotmob_get_league_season_stats() works", {
   ## fotmob doesn't have data this far back for any stat or league
   expect_error(
     get_epl_season_stats(
-      season = "2010/2011",
-      stat_type = "xg",
-      team_or_player = "team"
+      season = "2010/2011"
     ),
     regexp = "matching parameters"
   )
 
   epl_player_xg_2021 <- get_epl_season_stats(
-    season = "2020/2021",
-    stat_type = "xg",
     team_or_player = "player"
   )
   expect_true(nrow(epl_player_xg_2021) > 0)
-  expect_equal(ncol(epl_player_xg_2021), 11)
+  expect_equal(ncol(epl_player_xg_2021), 18)
 
   ## similar to team test
   expect_warning(
     get_epl_season_stats(
       season = "2016/2017",
-      stat_type = "xg",
       team_or_player = "player"
     ),
     regexp = "Issue with data"
@@ -193,36 +188,38 @@ test_that("fotmob_get_league_season_stats() works", {
   expect_error(
     get_epl_season_stats(
       season = "2010/2011",
-      stat_type = "xg",
       team_or_player = "player"
     ),
     regexp = "matching parameters"
   )
 
-  ## should error about `stat_type` but return a df for "xg"
-  epl_player_xg_foo_2021 <- expect_message(
+  ## more than one `stat_type` is not allowed
+  expect_error(
     get_epl_season_stats(
-      season = "2020/2021",
-      stat_type = c("xg", "foo"),
-      team_or_player = "team"
-    ),
-    regexp = "Error"
+      stat_type = c("xg", "xg_conceded")
+    )
   )
 
-  expect_true(nrow(epl_player_xg_foo_2021) > 0)
-  expect_equal(ncol(epl_player_xg_foo_2021), 11)
-
-  epl_player_foo_2021 <- expect_message(
+  ## more than one `team_or_player` is not allowed
+  expect_error(
     get_epl_season_stats(
-      season = "2020/2021",
-      stat_type = "foo",
-      team_or_player = "team"
-    ),
-    regexp = "Error"
+      team_or_player = c("team", "player")
+    )
   )
 
-  expect_equal(nrow(epl_player_foo_2021), 0)
-  expect_equal(ncol(epl_player_foo_2021), 0)
+  ## invalid `stat_type`
+  expect_error(
+    get_epl_season_stats(
+      stat_type = "foo"
+    )
+  )
+
+  ## invalid `team_or_player`
+  expect_error(
+    get_epl_season_stats(
+      team_or_player = "foo"
+    )
+  )
 })
 
 test_that("fotmob_get_match_details() works", {
