@@ -188,29 +188,6 @@ epl_player_xg_2021 %>%
   dplyr::glimpse()
 ```
 
-Currently the available stat types are:
-
--   accurate_pass
--   big_chance_created
--   big_chance_missed
--   clean_sheet
--   effective_clearance
--   expected_goals
--   expected_goals_conceded
--   goal_assist
--   goals
--   mins_played_goal
--   ontarget_scoring_att
--   penalty_won
--   poss_won_att_3rd
--   rating
--   red_card
--   saves
--   total_att_assist
--   won_contest
--   won_tackle
--   yellow_card
-
 ### Match Results
 
 Matches for one or multiple leagues can be retrieved with `fotmob_get_league_matches`. Currently only the current season's matches can be retrieved.
