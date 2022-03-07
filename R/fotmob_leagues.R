@@ -1,29 +1,31 @@
 
-.load_fotmob_leagues <- function() {
-  read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/3c6ff713a08a0ef5f9355b8eba791a899fe68189/raw-data/fotmob-leagues/all_leagues.csv", stringsAsFactors = F)
+## TODO: Cache this.
+.load_fotmob_csv <- function(url) {
+  read.csv(url, stringsAsFactors = F)
 }
 
 #' @importFrom purrr transpose map_dfr
 #' @importFrom dplyr filter
-.fotmob_get_league_ids <- function(league_id = NULL, country = NULL, league_name = NULL) {
-  leagues <- .load_fotmob_leagues()
+.fotmob_get_league_or_season_ids <- function(url, league_id = NULL, country = NULL, league_name = NULL) {
+  leagues <- .load_fotmob_csv(url)
+  is_league_ids <- stringr::str_detect(url, "all_leagues")
   has_country <- !is.null(country)
   has_league_name <- !is.null(league_name)
   has_league_id <- !is.null(league_id)
   if(!has_league_id & !(has_country & has_league_name)) {
     stop(
-      'Must provide `league_id` or both of `country` and `league_name`.'
+      "Must provide `league_id` or both of `country` and `league_name`."
     )
   }
 
   has_country_and_league_name <- has_country & has_league_name
-  league_urls <- if(has_country_and_league_name) {
+  urls <- if(has_country_and_league_name) {
     n_country <- length(country)
     n_league_name <- length(league_name)
     if(n_country != n_league_name) {
       stop(
         sprintf(
-          'If providing `country` and `league_name`, length of each must be the same (%s != %s).',
+          "If providing `country` and `league_name`, length of each must be the same (%s != %s).",
           n_country,
           n_league_name
         )
@@ -48,10 +50,10 @@
       dplyr::filter(.data$id %in% league_id)
   }
 
-  n_league_urls <- nrow(league_urls)
-  if(n_league_urls == 0) {
+  n_urls <- nrow(urls)
+  if(n_urls == 0) {
     stop(
-      'Could not find any leagues matching specified parameters.'
+      "Could not find any leagues matching specified parameters."
     )
   }
 
@@ -61,24 +63,31 @@
     length(league_id)
   )
 
-  if(n_league_urls < n_params) {
+  if(is_league_ids & (n_urls < n_params)) {
     warning(
       sprintf(
-        'Found less leagues than specified (%s < %s).',
-        n_league_urls,
+        "Found less leagues than specified (%s < %s).",
+        n_urls,
         n_params
       )
     )
-  } else if (n_league_urls > n_params) {
+  } else if (is_league_ids & (n_urls > n_params)) {
     warning(
       sprintf(
-        'Found more leagues than specified (%s > %s).',
-        n_league_urls,
+        "Found more leagues than specified (%s > %s).",
+        n_urls,
         n_params
       )
     )
   }
-  league_urls$id
+  urls
+}
+
+.fotmob_get_league_ids <- function(...) {
+  .fotmob_get_league_or_season_ids(
+    url = "https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-leagues/all_leagues.csv",
+    ...
+  )
 }
 
 #' @importFrom jsonlite fromJSON
@@ -133,7 +142,7 @@
 #' }
 fotmob_get_league_matches <- function(country, league_name, league_id) {
 
-  ids <- .fotmob_get_league_ids(
+  urls <- .fotmob_get_league_ids(
     country = rlang::maybe_missing(country, NULL),
     league_name = rlang::maybe_missing(league_name, NULL),
     league_id = rlang::maybe_missing(league_id, NULL)
@@ -145,7 +154,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id) {
     otherwise = tibble::tibble()
   )
   purrr::map_dfr(
-    ids,
+    urls$id,
     .fotmob_get_league_matches
   )
 }
@@ -201,7 +210,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id) {
 #' }
 fotmob_get_league_tables <- function(country, league_name, league_id) {
 
-  ids <- .fotmob_get_league_ids(
+  urls <- .fotmob_get_league_ids(
     country = rlang::maybe_missing(country, NULL),
     league_name = rlang::maybe_missing(league_name, NULL),
     league_id = rlang::maybe_missing(league_id, NULL)
@@ -213,7 +222,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id) {
     otherwise = tibble::tibble()
   )
   purrr::map_dfr(
-    ids,
+    urls$id,
     fp
   )
 }
