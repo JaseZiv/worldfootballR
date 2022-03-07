@@ -207,7 +207,7 @@ fotmob_get_season_stats <- function(
   ##   keep around meta info about the league and season (in `filt_urls`) to join with the results.
   filt_urls %>%
     dplyr::mutate(rn = dplyr::row_number()) %>%
-    dplyr::group_split(rn, .keep = FALSE) %>%
+    dplyr::group_split(.data$rn, .keep = FALSE) %>%
     purrr::map_dfr(
       ~fp(
         .x,
