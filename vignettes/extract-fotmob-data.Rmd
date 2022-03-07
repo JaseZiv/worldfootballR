@@ -96,7 +96,7 @@ Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, a
 -   won_tackle
 -   yellow_card
 
-```{r fotmob_get_season_stats_teams}
+```{r epl_team_xg_2021}
 epl_team_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
@@ -122,7 +122,7 @@ epl_team_xg_2021 %>%
 
 You can retrieve data for multiple leagues and/or season at the same time.
 
-```{r fotmob_get_season_stats_teams}
+```{r team_xg_conceded_2021}
 team_xg_conceded_2021 <- fotmob_get_season_stats(
   country =     c("ITA",     "ESP"),
   league_name = c("Serie A", "LaLiga"),
@@ -161,7 +161,7 @@ You can also use `fotmob_get_season_stats` to retrieve stats for players.
 -   won_tackle
 -   yellow_card
 
-```{r fotmob_get_season_stats_players}
+```{r epl_player_xg_2021}
 epl_player_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
