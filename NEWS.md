@@ -1,3 +1,8 @@
+# worldfootballR 0.4.10.3000
+
+### New functions
+
+* `fotmob_get_season_stats()` - to get stats for one or more leagues, at team or player level
 
 # worldfootballR 0.4.10.2000
 
