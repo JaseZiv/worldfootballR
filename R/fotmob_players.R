@@ -36,6 +36,7 @@ fotmob_get_match_players <- function(match_ids) {
   f <- function(url) {
     resp <- jsonlite::fromJSON(url)
 
+    table <- resp$content$table
     lineup <- resp$content$lineup$lineup
     starters <- lineup$players
     bench <- lineup$bench
@@ -61,10 +62,10 @@ fotmob_get_match_players <- function(match_ids) {
           xt2 <- matrix(
             as.numeric(gsub("%", "", xt)),
             ncol = ncol(xt)
-          )
+          ) %>%
+            tibble::as_tibble()
         )
         xt2 %>%
-          tibble::as_tibble() %>%
           dplyr::bind_cols(
             col = janitor::make_clean_names(rn)
           ) %>%
@@ -167,8 +168,12 @@ fotmob_get_match_players <- function(match_ids) {
         )
     ) %>%
       tibble::as_tibble()
+    ## Overwrite the existing variables since the away team value is "bad". See https://github.com/JaseZiv/worldfootballR/issues/93
+    res$home_team_id <- table$teams[1]
+    res$away_team_id <- table$teams[2]
+    res
   }
 
   fp <- purrr::possibly(f, otherwise = tibble::tibble())
-  f(url)
+  fp(url)
 }
