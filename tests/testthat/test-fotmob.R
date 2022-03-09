@@ -123,6 +123,105 @@ test_that("fotmob_get_league_tables() works", {
 
 })
 
+test_that("fotmob_get_league_season_stats() works", {
+  testthat::skip_on_cran()
+
+  epl_team_xg_2021_a <- fotmob_get_season_stats(
+    league_id = 47,
+    season = "2020/2021",
+    stat_type = "xg",
+    team_or_player = "team"
+  )
+  expect_true(nrow(epl_team_xg_2021_a) > 0)
+  expect_equal(ncol(epl_team_xg_2021_a), 18)
+
+  get_epl_season_stats <- function(
+    season = "2020/2021",
+    team_or_player = "team",
+    stat_type = "xg"
+  ) {
+    fotmob_get_season_stats(
+      country = "ENG",
+      league_name = "Premier League",
+      season = season,
+      team_or_player = team_or_player,
+      stat_type = stat_type
+    )
+  }
+
+  epl_team_xg_2021_b <- get_epl_season_stats()
+
+  expect_identical(epl_team_xg_2021_a, epl_team_xg_2021_b)
+
+  ## fotmob doesn't has data for 2016/2017 for some leagues, but not all
+  expect_warning(
+    get_epl_season_stats(
+      season = "2016/2017"
+    ),
+    regexp = "Issue with data"
+  )
+
+  ## fotmob doesn't have data this far back for any stat or league
+  expect_error(
+    get_epl_season_stats(
+      season = "2010/2011"
+    ),
+    regexp = "matching parameters"
+  )
+
+  epl_player_xg_2021 <- get_epl_season_stats(
+    team_or_player = "player"
+  )
+  expect_true(nrow(epl_player_xg_2021) > 0)
+  expect_equal(ncol(epl_player_xg_2021), 18)
+
+  ## similar to team test
+  expect_warning(
+    get_epl_season_stats(
+      season = "2016/2017",
+      team_or_player = "player"
+    ),
+    regexp = "Issue with data"
+  )
+
+  ## similar to team test
+  expect_error(
+    get_epl_season_stats(
+      season = "2010/2011",
+      team_or_player = "player"
+    ),
+    regexp = "matching parameters"
+  )
+
+  ## more than one `stat_type` is not allowed
+  expect_error(
+    get_epl_season_stats(
+      stat_type = c("xg", "xg_conceded")
+    )
+  )
+
+  ## more than one `team_or_player` is not allowed
+  expect_error(
+    get_epl_season_stats(
+      team_or_player = c("team", "player")
+    )
+  )
+
+  ## invalid `stat_type`
+  expect_error(
+    get_epl_season_stats(
+      stat_type = "foo"
+    )
+  )
+
+  ## invalid `team_or_player`
+  expect_error(
+    get_epl_season_stats(
+      team_or_player = "foo"
+    )
+  )
+})
+
 test_that("fotmob_get_match_details() works", {
   testthat::skip_on_cran()
   details <- fotmob_get_match_details(c(3609987, 3609979))

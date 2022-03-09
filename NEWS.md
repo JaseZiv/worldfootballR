@@ -1,3 +1,13 @@
+# worldfootballR 0.4.10.3000
+
+### New functions
+
+* `fotmob_get_season_stats()` - to get stats for one or more leagues, at team or player level
+
+### Bugs
+
+* `fotmob_get_match_players()` no longer returning the identical home and away team IDs [#93](https://github.com/JaseZiv/worldfootballR/issues/93)
+
 
 # worldfootballR 0.4.10.2000
 
@@ -5,6 +15,8 @@
 
 * `fotmob_get_league_matches()` - to select matches for one or more leagues
 * `fotmob_get_league_tables()` - to get standings for one or more leagues
+
+
 
 # worldfootballR 0.4.10.1000
 
