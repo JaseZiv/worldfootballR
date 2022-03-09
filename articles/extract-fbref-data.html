@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.3000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-03-08</h4>
+            <h4 data-toc-skip class="date">2022-03-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -378,12 +378,12 @@
 <span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-08-24, 2019-08-24, 2019-08-25, 2019-08-25, 2019…</span>
 <span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "18:00", "20:45", "18:00", "20:45", "20:45", "20:45",…</span>
 <span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Parma", "Fiorentina", "Udinese", "Torino", "SPAL", "…</span>
-<span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 3, 1, 2, 2, 3, 1, 0, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1,…</span>
-<span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 1.7, 0.9, 1.2, 1.6, 1.9, 0.2, 1.0, 0.8, 1.7, 2.8…</span>
+<span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 3, 1, 2, 2, 3, 0, 1, 0, 4, 1, 1, 4, 1, 2, 1, 0, 1,…</span>
+<span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 1.7, 0.9, 1.2, 1.6, 1.9, 1.0, 0.2, 0.8, 1.7, 2.8…</span>
 <span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Napoli", "Milan", "Sassuolo", "Atalanta"…</span>
 <span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 4, 0, 1, 3, 3, 1, 1, 3, 0, 0, 0, 3, 1, 3, 2, 1, 3,…</span>
-<span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.3, 2.0, 0.4, 1.5, 1.7, 1.3, 1.6, 1.5, 2.3, 0.7, 0.7…</span>
-<span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20073, 33614, 24584, 16536, 11706, 38779, 16324, 1609…</span>
+<span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.3, 2.0, 0.4, 1.5, 1.7, 1.3, 1.5, 1.6, 2.3, 0.7, 0.7…</span>
+<span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20073, 33614, 24584, 16536, 11706, 38779, 16099, 1632…</span>
 <span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Stadio Ennio Tardini", "Stadio Artemio Franchi", "Da…</span>
 <span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabio Maresca", "Davide Massa", "Fabrizio Pasqua", "…</span>
 <span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
@@ -729,7 +729,7 @@
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
 <span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.58, 0.39, 0.52, 0.06, 0.15, 0.03, 0.00, 0.60, 0.47, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 95, 95, 94, 84, 92, 87, 58, 99, 97, 97, 99, 95, 99, 98…</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 95, 94, 94, 84, 92, 87, 58, 99, 97, 97, 99, 95, 99, 98…</span>
 <span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 
@@ -743,7 +743,7 @@
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
 <span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.58, 0.39, 0.52, 0.06, 0.15, 0.03, 0.00, 0.60, 0.47, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 82, 97, 81, 58, 82, 91, 55, 88, 85, 99, 96, 82, 99, 91…</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 81, 97, 81, 58, 81, 91, 55, 89, 86, 99, 97, 81, 99, 91…</span>
 <span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
@@ -883,7 +883,7 @@
 <code class="sourceCode R"><span class="co">#----- to get stats for just a single team: -----#</span>
 <span class="va">fleetwood_standard_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_team_player_stats.html">fb_team_player_stats</a></span><span class="op">(</span>team_urls<span class="op">=</span> <span class="st">"https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats"</span>, stat_type<span class="op">=</span> <span class="st">'standard'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">fleetwood_standard_stats</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 40</span>
+<span class="co">#&gt; Rows: 41</span>
 <span class="co">#&gt; Columns: 24</span>
 <span class="co">#&gt; $ Season                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2021-2022", "2021-2022", "2021-2022", "202…</span>
 <span class="co">#&gt; $ Squad                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fleetwood Town", "Fleetwood Town", "Fleetw…</span>
@@ -891,23 +891,23 @@
 <span class="co">#&gt; $ Player                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alex Cairns", "Danny Andrew", "Tom Clarke"…</span>
 <span class="co">#&gt; $ Nation                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "NIR", "…</span>
 <span class="co">#&gt; $ Pos                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GK", "DF,MF", "DF", "DF,MF", "MF", "MF", "…</span>
-<span class="co">#&gt; $ Age                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "29-063", "31-075", "34-077", "25-136", "25…</span>
-<span class="co">#&gt; $ MP_Playing_Time            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34, 34, 29, 26, 28, 22, 26, 22, 20, 22, 18,…</span>
-<span class="co">#&gt; $ Starts_Playing_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34, 34, 29, 23, 23, 21, 19, 19, 18, 17, 15,…</span>
-<span class="co">#&gt; $ Min_Playing_Time           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3060, 3042, 2580, 2113, 1975, 1779, 1850, 1…</span>
-<span class="co">#&gt; $ Mins_Per_90_Playing_Time   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34.0, 33.8, 28.7, 23.5, 21.9, 19.8, 20.6, 1…</span>
-<span class="co">#&gt; $ Gls                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 5, 2, 4, 7, 1, 1, 4, 1, 2, 0, 2…</span>
+<span class="co">#&gt; $ Age                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "29-064", "31-076", "34-078", "25-137", "25…</span>
+<span class="co">#&gt; $ MP_Playing_Time            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 35, 35, 29, 27, 28, 22, 26, 23, 20, 22, 18,…</span>
+<span class="co">#&gt; $ Starts_Playing_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 35, 35, 29, 24, 23, 21, 19, 19, 18, 17, 15,…</span>
+<span class="co">#&gt; $ Min_Playing_Time           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3150, 3132, 2580, 2203, 1975, 1779, 1850, 1…</span>
+<span class="co">#&gt; $ Mins_Per_90_Playing_Time   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 35.0, 34.8, 28.7, 24.5, 21.9, 19.8, 20.6, 1…</span>
+<span class="co">#&gt; $ Gls                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 5, 2, 4, 7, 1, 1, 4, 1, 2, 0, 3…</span>
 <span class="co">#&gt; $ Ast                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 0, 1, 1, 3, 8, 1, 0, 3, 4, 0, 0, 2, 2…</span>
-<span class="co">#&gt; $ G_minus_PK                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 5, 2, 4, 6, 1, 1, 3, 1, 2, 0, 2…</span>
+<span class="co">#&gt; $ G_minus_PK                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 5, 2, 4, 6, 1, 1, 3, 1, 2, 0, 3…</span>
 <span class="co">#&gt; $ PK                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0…</span>
 <span class="co">#&gt; $ PKatt                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0…</span>
 <span class="co">#&gt; $ CrdY                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 4, 3, 3, 4, 2, 2, 1, 6, 3, 2, 3, 1, 0, 1…</span>
 <span class="co">#&gt; $ CrdR                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0…</span>
-<span class="co">#&gt; $ Gls_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.18, 0.07, 0.13, 0.23, 0.10, 0.19, 0…</span>
-<span class="co">#&gt; $ Ast_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.18, 0.00, 0.04, 0.05, 0.15, 0.39, 0…</span>
-<span class="co">#&gt; $ `G+A_Per_Minutes`          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.36, 0.07, 0.17, 0.27, 0.25, 0.58, 0…</span>
-<span class="co">#&gt; $ G_minus_PK_Per_Minutes     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.18, 0.07, 0.13, 0.23, 0.10, 0.19, 0…</span>
-<span class="co">#&gt; $ `G+A_minus_PK_Per_Minutes` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.36, 0.07, 0.17, 0.27, 0.25, 0.58, 0…</span>
+<span class="co">#&gt; $ Gls_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.17, 0.07, 0.12, 0.23, 0.10, 0.19, 0…</span>
+<span class="co">#&gt; $ Ast_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.17, 0.00, 0.04, 0.05, 0.15, 0.39, 0…</span>
+<span class="co">#&gt; $ `G+A_Per_Minutes`          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.34, 0.07, 0.16, 0.27, 0.25, 0.58, 0…</span>
+<span class="co">#&gt; $ G_minus_PK_Per_Minutes     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.17, 0.07, 0.12, 0.23, 0.10, 0.19, 0…</span>
+<span class="co">#&gt; $ `G+A_minus_PK_Per_Minutes` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.34, 0.07, 0.16, 0.27, 0.25, 0.58, 0…</span>
 <span class="co">#&gt; $ PlayerURL                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/1a5e36e7/Alex…</span>
 
 <span class="co">#----- Can even get stats for a series of teams: -----#</span>
