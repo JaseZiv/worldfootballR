@@ -4,7 +4,7 @@
 \alias{fotmob_get_league_matches}
 \title{Get fotmob match results by league}
 \usage{
-fotmob_get_league_matches(country, league_name, league_id)
+fotmob_get_league_matches(country, league_name, league_id, cached = TRUE)
 }
 \arguments{
 \item{country}{Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)}
@@ -12,12 +12,14 @@ fotmob_get_league_matches(country, league_name, league_id)
 \item{league_name}{League names. If provided, `country` must also be provided (of the same length)}
 
 \item{league_id}{Fotmob ID for the league. Only used if `country` and `league_name` are not specified.}
+
+\item{cached}{Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.}
 }
 \value{
 returns a dataframe of league matches
 }
 \description{
-Returns match results for all matches played on the selected date from fotmob.com
+Returns match results for all matches played on the selected date from fotmob.com.
 }
 \examples{
 \dontrun{
