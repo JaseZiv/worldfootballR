@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.3000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.4000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-03-09</h4>
+            <h4 data-toc-skip class="date">2022-03-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -338,7 +338,7 @@
 <span class="co">#&gt; $ id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 47, 54, 873679, 87, 874077, 53, 874044, 873…</span>
 <span class="co">#&gt; $ primary_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 47, 54, 48, 87, 230, 53, 10084, 9134, 55, 8972…</span>
 <span class="co">#&gt; $ name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Major League Soccer", "Premier League", "1. Bundes…</span>
-<span class="co">#&gt; $ matches            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[10 x 10]&gt;], [&lt;data.frame[7 x 10]&gt;], […</span>
+<span class="co">#&gt; $ matches            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[10 x 11]&gt;], [&lt;data.frame[7 x 11]&gt;], […</span>
 <span class="co">#&gt; $ parent_league_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, NA, NA, 48, NA, 230, NA, 10084, 9134, NA, NA, …</span>
 <span class="co">#&gt; $ internal_rank      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 30, 20, 29, 10, 10, 10, 0, 2, 9, 9, 8, 0, 7, 7,…</span>
 <span class="co">#&gt; $ live_rank          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 100, 101, 100, 0, 100, 0, 100, 0, 0, 100, 0, 0, 0, …</span>
@@ -366,17 +366,18 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">matches</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 9</span>
-<span class="co">#&gt; Columns: 10</span>
-<span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609981, 3609986, 3609983, 3609984, 3609985, 3609988, …</span>
-<span class="co">#&gt; $ leagueId        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47</span>
-<span class="co">#&gt; $ time            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 16…</span>
-<span class="co">#&gt; $ home            <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
-<span class="co">#&gt; $ away            <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
-<span class="co">#&gt; $ statusId        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
-<span class="co">#&gt; $ tournamentStage <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
-<span class="co">#&gt; $ status          <span style="color: #949494; font-style: italic;">&lt;df[,8]&gt;</span> &lt;data.frame[9 x 8]&gt;</span>
-<span class="co">#&gt; $ timeTS          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632551e+12, 1.632551e+12, 1.632560e+12, 1.632560e+12…</span>
-<span class="co">#&gt; $ tv              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ id               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609981, 3609986, 3609983, 3609984, 3609985, 3609988,…</span>
+<span class="co">#&gt; $ leagueId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47</span>
+<span class="co">#&gt; $ time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 1…</span>
+<span class="co">#&gt; $ home             <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
+<span class="co">#&gt; $ away             <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
+<span class="co">#&gt; $ eliminatedTeamId <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span>
+<span class="co">#&gt; $ statusId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
+<span class="co">#&gt; $ tournamentStage  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
+<span class="co">#&gt; $ status           <span style="color: #949494; font-style: italic;">&lt;df[,7]&gt;</span> &lt;data.frame[9 x 7]&gt;</span>
+<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632551e+12, 1.632551e+12, 1.632560e+12, 1.632560e+1…</span>
+<span class="co">#&gt; $ tv               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standings">Standings<a class="anchor" aria-label="anchor" href="#standings"></a>
@@ -395,20 +396,20 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">away_league_tables</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 40</span>
 <span class="co">#&gt; Columns: 14</span>
-<span class="co">#&gt; $ table_type  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "away", "away", "away", "away", "a…</span>
-<span class="co">#&gt; $ name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Chelsea", "Liverpool", "Wolves", "Man United"…</span>
-<span class="co">#&gt; $ id          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8455, 8650, 8602, 10260, 8654, 8586, 9825, 10204, 10…</span>
-<span class="co">#&gt; $ pageUrl     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8455/overv…</span>
-<span class="co">#&gt; $ deduction   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ played      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 14, 14, 13, 14, 14, 14, 13, 12, 14, 13, 14, 14, 14, 13, 12…</span>
-<span class="co">#&gt; $ wins        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 11, 9, 8, 7, 6, 6, 6, 6, 4, 5, 3, 3, 3, 3, 3, 2, 2, 1, 2, …</span>
-<span class="co">#&gt; $ draws       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 3, 3, 2, 5, 3, 2, 1, 7, 0, 6, 4, 4, 3, 3, 4, 4, 6, 2, 3…</span>
-<span class="co">#&gt; $ losses      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 5, 3, 5, 5, 5, 3, 8, 5, 7, 7, 7, 6, 6, 8, 6, 9, 9…</span>
-<span class="co">#&gt; $ scoresStr   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28-8", "26-8", "34-13", "14-11", "24-22", "21-16", "17-17…</span>
-<span class="co">#&gt; $ goalConDiff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 20, 18, 21, 3, 2, 5, 0, 0, 0, -4, -4, -10, -15, -3, -7, -1…</span>
-<span class="co">#&gt; $ pts         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 35, 30, 27, 23, 23, 21, 20, 19, 19, 15, 15, 13, 13, 12, 12…</span>
-<span class="co">#&gt; $ idx         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,…</span>
-<span class="co">#&gt; $ qualColor   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", NA,…</span></code></pre></div>
+<span class="co">#&gt; $ table_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "away", "away", "away", "away", …</span>
+<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Chelsea", "Wolves", "Man Unite…</span>
+<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 8602, 10260, 8586, 9825, 8654, 10204, …</span>
+<span class="co">#&gt; $ page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8650/ove…</span>
+<span class="co">#&gt; $ deduction     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 15, 15, 15, 15, 14, 15, 13, 15, 14, 15, 14, 15, 15, 15, …</span>
+<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 11, 10, 10, 8, 6, 7, 7, 6, 4, 6, 3, 4, 3, 3, 3, 3, 3, 1,…</span>
+<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 2, 5, 2, 1, 3, 7, 0, 6, 3, 4, 4, 4, 4, 3, 6, 2,…</span>
+<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 5, 3, 6, 5, 6, 3, 9, 5, 8, 8, 8, 7, 8, 7, 7, 10…</span>
+<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28-8", "38-13", "29-9", "15-11", "24-22", "21-20", "20-…</span>
+<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 20, 25, 20, 4, 2, 1, 1, 3, 0, -2, -4, -6, -11, -12, -15,…</span>
+<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 36, 33, 33, 26, 23, 23, 22, 21, 19, 18, 15, 15, 13, 13, …</span>
+<span class="co">#&gt; $ idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
+<span class="co">#&gt; $ qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", N…</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -451,30 +452,30 @@
 <span class="co">#&gt; Rows: 43</span>
 <span class="co">#&gt; Columns: 25</span>
 <span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3609994", "3609994", "3609994", "3609994", "…</span>
-<span class="co">#&gt; $ id                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2338963885, 2338959161, 2338956375, 233894143…</span>
-<span class="co">#&gt; $ event_type               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AttemptSaved", "AttemptSaved", "Miss", "Atte…</span>
-<span class="co">#&gt; $ team_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8456, 8456, 8650, 8650, 8456, 845…</span>
-<span class="co">#&gt; $ player_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 576165, 359188, 159833, 576165, 292462, 57046…</span>
-<span class="co">#&gt; $ player_name              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gabriel Jesus", "Fabinho", "Kyle Walker", "G…</span>
-<span class="co">#&gt; $ x                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 93.10000, 101.39655, 76.17816, 93.50000, 80.5…</span>
-<span class="co">#&gt; $ y                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 24.62981, 40.80572, 31.71250, 47.08357, 45.26…</span>
-<span class="co">#&gt; $ min                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 90, 87, 84, 67, 63, 50, 40, 40, 38, 34, 24, 2…</span>
-<span class="co">#&gt; $ min_added                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ is_blocked               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, …</span>
-<span class="co">#&gt; $ is_on_target             <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, T…</span>
-<span class="co">#&gt; $ blocked_x                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 97.66667, 102.43966, NA, 95.25439, 90.80000, …</span>
-<span class="co">#&gt; $ blocked_y                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27.36238, 38.95667, NA, 45.19185, 40.97381, 3…</span>
-<span class="co">#&gt; $ goal_crossed_y           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 33.0087500, 35.6012500, 30.2800000, 34.457500…</span>
-<span class="co">#&gt; $ goal_crossed_z           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.21999999, 1.21999999, 5.67089656, 1.2199999…</span>
-<span class="co">#&gt; $ expected_goals           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0973, 0.2122, 0.0563, 0.0459, 0.0643, 0.061…</span>
-<span class="co">#&gt; $ expected_goals_on_target <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, 0.0412, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ shot_type                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "RightFoot", "RightFoot", "RightFoot", "Right…</span>
-<span class="co">#&gt; $ situation                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FastBreak", "SetPiece", "FreeKick", "Regular…</span>
-<span class="co">#&gt; $ period                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SecondHalf", "SecondHalf", "SecondHalf", "Se…</span>
+<span class="co">#&gt; $ id                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2338869639, 2338876703, 2338881401, 233888382…</span>
+<span class="co">#&gt; $ event_type               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AttemptSaved", "AttemptSaved", "AttemptSaved…</span>
+<span class="co">#&gt; $ team_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8456, 8456, 8456, 8456, 8456, 8456, 845…</span>
+<span class="co">#&gt; $ player_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 292462, 312765, 815006, 169200, 169200, 16920…</span>
+<span class="co">#&gt; $ player_name              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mohamed Salah", "Jack Grealish", "Phil Foden…</span>
+<span class="co">#&gt; $ x                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 92.50000, 91.50000, 100.35345, 97.57017, 97.0…</span>
+<span class="co">#&gt; $ y                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 50.72688, 49.53580, 42.00375, 46.31286, 28.95…</span>
+<span class="co">#&gt; $ min                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8, 15, 21, 24, 34, 38, 40, 40, 50, 59, 63, 67…</span>
+<span class="co">#&gt; $ min_added                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ is_blocked               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, …</span>
+<span class="co">#&gt; $ is_on_target             <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, F…</span>
+<span class="co">#&gt; $ blocked_x                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 94.48246, 93.40000, 101.87069, 104.05172, NA,…</span>
+<span class="co">#&gt; $ blocked_y                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 48.20459, 47.57401, 39.54500, 0.00000, NA, 28…</span>
+<span class="co">#&gt; $ goal_crossed_y           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34.6100000, 34.8387500, 32.7800000, 0.3279621…</span>
+<span class="co">#&gt; $ goal_crossed_z           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.21999999, 1.21999999, 0.36600000, 0.5329473…</span>
+<span class="co">#&gt; $ expected_goals           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04540855, 0.04835442, 0.63251555, 0.0870914…</span>
+<span class="co">#&gt; $ expected_goals_on_target <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 0.6931, NA, NA, NA, NA, NA, 0.0412, 0…</span>
+<span class="co">#&gt; $ shot_type                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LeftFoot", "RightFoot", "LeftFoot", "LeftFoo…</span>
+<span class="co">#&gt; $ situation                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FromCorner", "RegularPlay", "RegularPlay", "…</span>
+<span class="co">#&gt; $ period                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FirstHalf", "FirstHalf", "FirstHalf", "First…</span>
 <span class="co">#&gt; $ is_own_goal              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…</span>
 <span class="co">#&gt; $ on_goal_shot             <span style="color: #949494; font-style: italic;">&lt;df[,3]&gt;</span> &lt;data.frame[26 x 3]&gt;</span>
-<span class="co">#&gt; $ first_name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gabriel", "", "Kyle", "Gabriel", "Mohamed…</span>
-<span class="co">#&gt; $ last_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jesus", "Fabinho", "Walker", "Jesus", "Salah…</span></code></pre></div>
+<span class="co">#&gt; $ first_name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mohamed", "Jack", "Phil", "Kevin", "Kevin…</span>
+<span class="co">#&gt; $ last_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Salah", "Grealish", "Foden", "De Bruyne", "D…</span></code></pre></div>
 <p>There is one nested element in the returned data.frame for <code>on_goal_shot</code>. As with the nested elements returned by <code>fotmob_get_matches_by_date</code>, columns in nested elements have camel case names. (Here, it’s only <code>zoomRatio</code>.)</p>
 <p><em>NOTE: The below code block depends on <code>tidyr 1.2.0</code></em></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -486,16 +487,16 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 43 × 3</span></span>
 <span class="co">#&gt;        x      y zoomRatio</span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1.26  0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0.576 0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.44  0.677      0.451</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 0.879 0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.16  0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.26  0.216      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 0     0.025<span style="text-decoration: underline;">5</span>     0.181</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1.14  0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.14  0.323      1    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1.38  0.677      0.461</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 0.839 0.323      1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0.778 0.323      1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.32  0.096<span style="text-decoration: underline;">8</span>     1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2     0.015<span style="text-decoration: underline;">8</span>     0.112</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.38  0.677      0.461</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.14  0.323      1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1.14  0.323      1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 0     0.025<span style="text-decoration: underline;">5</span>     0.181</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.26  0.216      1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 0.476 0.022<span style="text-decoration: underline;">1</span>     1    </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 33 more rows</span></span></code></pre></div>
 <p>Be very careful with interpreting <code>x</code> and <code>y</code> from <code>on_goal_shot</code>. They’re not on the same scale as <code>x</code> and <code>y</code> in the top-level of the result returned from <code>fotmob_get_match_details</code>!</p>
 </div>
@@ -534,7 +535,7 @@
 <span class="co">#&gt; $ home_team_color       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#d3171e", "#d3171e", "#d3171e", "#d3…</span>
 <span class="co">#&gt; $ away_team_id          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8456, 8456, 8456, 8456, 8456, 8456, 8456, …</span>
 <span class="co">#&gt; $ away_team_color       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#69A8D8", "#69A8D8", "#69A8D8", "#69A8D8", "#69…</span>
-<span class="co">#&gt; $ stats                 <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[1 x 15]&gt;], [&lt;data.frame[4 x 21]&gt;],…</span>
+<span class="co">#&gt; $ stats                 <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[1 x 15]&gt;], [&lt;data.frame[4 x 22]&gt;],…</span>
 <span class="co">#&gt; $ shotmap               <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…</span>
 <span class="co">#&gt; $ is_starter            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -561,7 +562,7 @@
 <span class="co">#&gt; $ blockedY              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 48.20459, 40.97381, NA, 33.69500, NA, 30.22000, …</span>
 <span class="co">#&gt; $ goalCrossedY          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 34.61000, 33.39000, 37.27875, 34.68625, 32.01750…</span>
 <span class="co">#&gt; $ goalCrossedZ          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.220000, 1.220000, 1.136526, 0.854000, 1.014526…</span>
-<span class="co">#&gt; $ expectedGoals         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0229, 0.0643, 0.4214, 0.2446, 0.2338, 0.1425, …</span>
+<span class="co">#&gt; $ expectedGoals         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.04540855, 0.04966947, 0.29863000, 0.17881796, …</span>
 <span class="co">#&gt; $ expectedGoalsOnTarget <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 0.9744, 0.1107, 0.2217, NA, 0.2100</span>
 <span class="co">#&gt; $ shotType              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LeftFoot", "LeftFoot", "RightFoot", "RightFoot"…</span>
 <span class="co">#&gt; $ situation             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FromCorner", "FreeKick", "RegularPlay", "Regula…</span>
@@ -582,7 +583,7 @@
 <span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 0, 0, 0, 0</span>
 <span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 1, 1, 2, 0, 4</span>
 <span class="co">#&gt; $ stats_key_passes                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 0, 0, 1, 0, 2</span>
-<span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.51, 0.06, 0.40, 0.54, NA, 0.66</span>
+<span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.39, 0.10, 0.25, 0.82, NA, 0.71</span>
 <span class="co">#&gt; $ stats_expected_goals_on_target_x_got <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.97, 0.04, 0.83, 0.55, NA, 0.54</span>
 <span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.29, 0.01, NA, 0.05, 0.03, 0.04</span>
 <span class="co">#&gt; $ stats_blocked_shots                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, NA, NA, NA, NA, 1</span>

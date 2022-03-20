@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.3000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.4000</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fotmob_get_league_tables</span><span class="op">(</span><span class="va">country</span>, <span class="va">league_name</span>, <span class="va">league_id</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fotmob_get_league_tables</span><span class="op">(</span><span class="va">country</span>, <span class="va">league_name</span>, <span class="va">league_id</span>, cached <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -92,6 +92,8 @@
 <dd><p>League names. If provided, `country` must also be provided (of the same length)</p></dd>
 <dt>league_id</dt>
 <dd><p>Fotmob ID for the league. Only used if `country` and `league_name` are not specified.</p></dd>
+<dt>cached</dt>
+<dd><p>Whether to load the dataframe from the <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv" class="external-link">data CSV</a>. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
