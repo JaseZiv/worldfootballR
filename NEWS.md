@@ -1,3 +1,15 @@
+# worldfootballR 0.4.10.4000
+
+### Improvements
+
+* Added documentation for `fotmob_get_match_players` and `fotmob_get_match_players()`
+
+### Bugs
+
+* Fixed multiple rows returned for single player in `stats` column returned in `fotmob_get_match_players()`
+
+***
+
 # worldfootballR 0.4.10.3000
 
 ### New functions

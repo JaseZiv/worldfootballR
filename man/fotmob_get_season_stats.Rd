@@ -71,7 +71,26 @@ Returns team or player season-long statistics standings from fotmob.com.
 }
 \examples{
 \dontrun{
-library(dplyr)
-library(tidyr)
+epl_team_xg_2021 <- fotmob_get_season_stats(
+  country = "ENG",
+  league_name = "Premier League",
+  season = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "team"
+)
+
+## fotmob doesn't has data for 2016/2017 for some leagues, but not all.
+##   you'll see a warning about this and receive an empty dataframe
+get_epl_season_stats(
+  season = "2016/2017"
+)
+
+epl_player_xg_2021 <- get_epl_season_stats(
+  country = "ENG",
+  league_name = "Premier League",
+  season = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "player"
+)
 }
 }
