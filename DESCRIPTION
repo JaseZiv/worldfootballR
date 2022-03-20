@@ -30,7 +30,7 @@ Imports:
     qdapRegex,
     readr,
     rlang,
-    rvest,
+    rvest (>= 1.0.0),
     stats,
     stringi,
     stringr,

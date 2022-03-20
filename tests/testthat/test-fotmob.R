@@ -123,7 +123,7 @@ test_that("fotmob_get_league_tables() works", {
 
 })
 
-test_that("fotmob_get_league_season_stats() works", {
+test_that("fotmob_get_season_stats() works", {
   testthat::skip_on_cran()
 
   epl_team_xg_2021_a <- fotmob_get_season_stats(

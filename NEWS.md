@@ -1,5 +1,9 @@
 # worldfootballR 0.4.10.4000
 
+### New functions
+`
+* `fotmob_get_league_ids()` - to get Fotmob's league ids, which can be specified as an alternative to `country` and `league_name` in `fotmob_get_league_matches()` and `fotmob_get_league_tables()`
+
 ### Improvements
 
 * Added documentation for `fotmob_get_match_players` and `fotmob_get_match_players()`
@@ -7,6 +11,7 @@
 ### Bugs
 
 * Fixed multiple rows returned for single player in `stats` column returned in `fotmob_get_match_players()`
+* `fotmob_get_league_matches` and `fotmob_get_league_tables` updated to address new Fotmob league endpoint.
 
 ***
 
