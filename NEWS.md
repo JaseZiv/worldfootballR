@@ -1,3 +1,15 @@
+# worldfootballR 0.4.10.4000
+
+### New functions
+`
+* `fotmob_get_league_ids()` - to get Fotmob's league ids, which can be specified as an alternative to `country` and `league_name` in `fotmob_get_league_matches()` and `fotmob_get_league_tables()`
+
+### Bugs
+
+* `fotmob_get_league_matches` and `fotmob_get_league_tables` updated to address new Fotmob league endpoint.
+
+***
+
 # worldfootballR 0.4.10.3000
 
 ### New functions

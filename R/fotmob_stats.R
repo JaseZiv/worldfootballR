@@ -1,15 +1,16 @@
 
 ## TODO: Cache this
 .fotmob_get_season_ids <- function(...) {
-  .fotmob_get_league_or_season_ids(
-    url = "https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/466d399903d2dfc2c0e37058dc2e3f33f1ac74d1/raw-data/fotmob-leagues/season_ids.csv",
+  leagues <- .fotmob_load_csv("fotmob-leagues/season_ids.csv")
+  .fotmob_get_league_or_season_urls(
+    leagues = leagues,
     ...
   )
 }
 
 ## Probably best to just have this always available, until caching is implemented.
-.fotmob_stat_types <- .load_fotmob_csv(
-  "https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/bdc5a8f8d4b31b477621e309ddb06fae9d35e022/raw-data/fotmob-stats/stat_types.csv"
+.fotmob_stat_types <- .fotmob_load_csv(
+  "fotmob-stats/stat_types.csv"
 )
 
 #' @importFrom dplyr filter
