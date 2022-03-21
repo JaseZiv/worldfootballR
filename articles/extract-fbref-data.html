@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.10.5000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-03-20</h4>
+            <h4 data-toc-skip class="date">2022-03-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -694,6 +694,33 @@
 <span class="co">#----- get all team URLs for a league: -----#</span>
 <span class="co"># epl_2021_team_urls &lt;- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")</span>
 <span class="co"># epl_2021_team_results &lt;- get_team_match_results(team_url = team_urls)</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="stat-logs-for-season">Stat Logs for Season<a class="anchor" aria-label="anchor" href="#stat-logs-for-season"></a>
+</h3>
+<p>To be able to get full match logs for all available stat types for each team(s) season, the <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code> function can be used.</p>
+<p>Available stat types are below. Note, not all of the listed stat types are available for all teams, and for teams where they are, there still may be gaps in the resulting data frame as not all competitions participated in will have the stat available:</p>
+<ul>
+<li><em>shooting</em></li>
+<li><em>keeper</em></li>
+<li><em>passing</em></li>
+<li><em>passing_types</em></li>
+<li><em>gca</em></li>
+<li><em>defense</em></li>
+<li><em>misc</em></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># can do it for one team:</span>
+<span class="va">man_city_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span>
+<span class="va">man_city_logs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">man_city_url</span>, stat_tyoe <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span>
+
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">man_city_logs</span><span class="op">)</span>
+
+<span class="co"># or multiple teams:</span>
+<span class="va">urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/822bd0ba/Liverpool-Stats"</span>,
+          <span class="st">"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span><span class="op">)</span>
+
+<span class="va">shooting_logs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">urls</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -718,7 +745,7 @@
 <span class="va">scout</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
                                    pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
                <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">scouting_period</span> <span class="op">==</span> <span class="st">"Last 365 Days"</span><span class="op">)</span></code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- Get scouting report for the players primary position (first position listed in fbref): -----#</span>
 <span class="va">messi_primary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">messi_primary</span><span class="op">)</span>
@@ -729,7 +756,7 @@
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
 <span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.49, 0.36, 0.43, 0.06, 0.12, 0.03, 0.00, 0.54, 0.45, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 93, 92, 89, 84, 89, 87, 58, 97, 97, 96, 99, 93, 99, 97…</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 93, 92, 89, 85, 90, 87, 58, 97, 97, 96, 99, 93, 99, 97…</span>
 <span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 
@@ -743,7 +770,7 @@
 <span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
 <span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.49, 0.36, 0.43, 0.06, 0.12, 0.03, 0.00, 0.54, 0.45, …</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 66, 98, 69, 61, 76, 90, 55, 80, 83, 99, 95, 66, 98, 85…</span>
+<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 66, 97, 69, 61, 77, 90, 56, 80, 83, 99, 96, 66, 98, 85…</span>
 <span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
 <span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
@@ -765,7 +792,7 @@
 <li><em>keeper</em></li>
 <li><em>keeper_adv</em></li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- can use for a single player: -----#</span>
 <span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mo_shooting</span><span class="op">)</span>
@@ -821,7 +848,7 @@
 <li><em>keepers_adv</em></li>
 </ul>
 <p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_player_possession</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,822</span>
@@ -879,7 +906,7 @@
 <li><em>keepers</em></li>
 <li><em>keepers_adv</em></li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- to get stats for just a single team: -----#</span>
 <span class="va">fleetwood_standard_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_team_player_stats.html">fb_team_player_stats</a></span><span class="op">(</span>team_urls<span class="op">=</span> <span class="st">"https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats"</span>, stat_type<span class="op">=</span> <span class="st">'standard'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">fleetwood_standard_stats</span><span class="op">)</span>
@@ -891,7 +918,7 @@
 <span class="co">#&gt; $ Player                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Danny Andrew", "Alex Cairns", "Tom Clarke"…</span>
 <span class="co">#&gt; $ Nation                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "NIR", "…</span>
 <span class="co">#&gt; $ Pos                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DF,MF", "GK", "DF", "DF,MF", "MF", "MF", "…</span>
-<span class="co">#&gt; $ Age                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "31-087", "29-075", "34-089", "25-148", "26…</span>
+<span class="co">#&gt; $ Age                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "31-088", "29-076", "34-090", "25-149", "26…</span>
 <span class="co">#&gt; $ MP_Playing_Time            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 36, 35, 29, 30, 31, 23, 25, 26, 20, 22, 17,…</span>
 <span class="co">#&gt; $ Starts_Playing_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 36, 35, 29, 27, 25, 21, 20, 19, 18, 17, 15,…</span>
 <span class="co">#&gt; $ Min_Playing_Time           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3138, 3150, 2580, 2473, 2239, 1824, 1719, 1…</span>
@@ -931,7 +958,7 @@
 <li><em>possession</em></li>
 <li><em>misc</em></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">ederson_summary</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 66</span>
