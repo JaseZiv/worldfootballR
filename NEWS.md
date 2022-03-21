@@ -1,3 +1,15 @@
+# worldfootballR 0.4.10.5000
+
+### New functions
+
+* `fb_team_match_log_stats()` - to get match logs of selected stat types for a team(s) for all matches played in a season
+
+### Improvements
+
+* `.clean_table_names()` (internal function) now able to clean tab names in `fb_team_match_log_stats()`
+
+***
+
 # worldfootballR 0.4.10.4000
 
 ### New functions

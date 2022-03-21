@@ -206,6 +206,8 @@
   names(df_in) <- new_names
   df_in <- df_in[-1,]
 
+  colnames(df_in) <- gsub("_$", "", colnames(df_in))
+
   return(df_in)
 }
 
