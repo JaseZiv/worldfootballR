@@ -27,6 +27,14 @@ test_that("fotmob_get_league_matches() works", {
   expect_equal(ncol(league_matches), 11)
 
   league_matches <- fotmob_get_league_matches(
+    league_id = 47,
+    cached = FALSE
+  )
+
+  expect_true(nrow(league_matches) > 0)
+  expect_equal(ncol(league_matches), 11)
+
+  league_matches <- fotmob_get_league_matches(
     country =     c("ENG",            "ESP"   ),
     league_name = c("Premier League", "LaLiga")
   )
