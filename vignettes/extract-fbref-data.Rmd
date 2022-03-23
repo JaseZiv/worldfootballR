@@ -339,6 +339,36 @@ dplyr::glimpse(man_city_2021_results)
 # epl_2021_team_results <- get_team_match_results(team_url = team_urls)
 ```
 
+
+### Stat Logs for Season
+
+To be able to get full match logs for all available stat types for each team(s) season, the `fb_team_match_log_stats()` function can be used.
+
+Available stat types are below. Note, not all of the listed stat types are available for all teams, and for teams where they are, there still may be gaps in the resulting data frame as not all competitions participated in will have the stat available:
+
+* *shooting*
+* *keeper*
+* *passing*
+* *passing_types*
+* *gca*
+* *defense*
+* *misc*
+
+```{r team_stat_match_logs, eval=FALSE}
+# can do it for one team:
+man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
+man_city_logs <- fb_team_match_log_stats(team_urls = man_city_url, stat_tyoe = "passing")
+
+dplyr::glimpse(man_city_logs)
+
+# or multiple teams:
+urls <- c("https://fbref.com/en/squads/822bd0ba/Liverpool-Stats",
+          "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats")
+
+shooting_logs <- fb_team_match_log_stats(team_urls = urls, stat_type = "shooting")
+```
+
+
 ***
 
 

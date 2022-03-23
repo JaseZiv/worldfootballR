@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clean advanced statistic tables — .clean_advanced_stat_table • worldfootballR</title>
+<title>Get fotmob league ids — fotmob_get_league_ids • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Clean advanced statistic tables — .clean_advanced_stat_table" />
-<meta property="og:description" content="Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()" />
+<meta property="og:title" content="Get fotmob league ids — fotmob_get_league_ids" />
+<meta property="og:description" content="Returns a dataframe of the league ids available on fotmob" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -153,29 +153,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Clean advanced statistic tables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/internals.R'><code>R/internals.R</code></a></small>
-    <div class="hidden name"><code>dot-clean_advanced_stat_table.Rd</code></div>
+    <h1>Get fotmob league ids</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/fotmob_leagues.R'><code>R/fotmob_leagues.R</code></a></small>
+    <div class="hidden name"><code>fotmob_get_league_ids.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()</p>
+    <p>Returns a dataframe of the league ids available on fotmob</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.clean_advanced_stat_table</span><span class='op'>(</span><span class='va'>input_table_element</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fotmob_get_league_ids</span><span class='op'>(</span>cached <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>input_table_element</th>
-      <td><p>element of the html table on the league season page</p></td>
+      <th>cached</th>
+      <td><p>Whether to load the dataframe from the <a href='https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv'>data CSV</a>. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a data frame for the selected league seasons advanced statistic</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
