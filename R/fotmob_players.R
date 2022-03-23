@@ -11,7 +11,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' players <- fotmob_get_match_players(c(3609987, 3609979))
+#' library(dplyr)
+#' library(tidyr)
+#' ## single match
+#' players <- fotmob_get_match_players(3610132)
+#' salah_id <- "292462"
+#' players %>%
+#'   dplyr::filter(id == salah_id) %>%
+#'   dplyr::select(player_id = id, stats) %>%
+#'   tidyr::unnest(stats)
+#'
+#' ## multiple matches
+#' fotmob_get_match_players(c(3609987, 3609979))
 #' }
 #' @export
 fotmob_get_match_players <- function(match_ids) {
@@ -87,6 +98,7 @@ fotmob_get_match_players <- function(match_ids) {
       stats <- if(is.null(ps)) {
         NULL
       } else {
+
         pss <- ps %>% purrr::map_dfr(.clean_stats)
         if(any(colnames(pss) == "dummy")) {
           pss <- pss %>% dplyr::select(-dplyr::any_of("dummy"))
@@ -140,13 +152,11 @@ fotmob_get_match_players <- function(match_ids) {
         "home_team_color" = ppc("teamData", "home", "color"),
         "away_team_id" = ppi("teamData", "away", "id"),
         "away_team_color" = ppc("teamData", "away", "color")
-      ) %>%
-        dplyr::mutate(
-          stats = list(stats),
-          shotmap = if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
-        )
+      )
+      rows$stats <- stats
+      rows$shotmap <- if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
+      rows
     }
-
 
     res <- dplyr::bind_rows(
       purrr::map_dfr(
@@ -168,7 +178,8 @@ fotmob_get_match_players <- function(match_ids) {
         )
     ) %>%
       tibble::as_tibble()
-    ## Overwrite the existing variables since the away team value is "bad". See https://github.com/JaseZiv/worldfootballR/issues/93
+    ## Overwrite the existing variables since the away team value is "bad".
+    ##   See https://github.com/JaseZiv/worldfootballR/issues/93
     res$home_team_id <- table$teams[1]
     res$away_team_id <- table$teams[2]
     res

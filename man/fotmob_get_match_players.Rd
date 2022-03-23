@@ -17,6 +17,17 @@ Returns match details from fotmob.com
 }
 \examples{
 \dontrun{
-players <- fotmob_get_match_players(c(3609987, 3609979))
+library(dplyr)
+library(tidyr)
+## single match
+players <- fotmob_get_match_players(3610132)
+salah_id <- "292462"
+players \%>\%
+  dplyr::filter(id == salah_id) \%>\%
+  dplyr::select(player_id = id, stats) \%>\%
+  tidyr::unnest(stats)
+
+## multiple matches
+fotmob_get_match_players(c(3609987, 3609979))
 }
 }

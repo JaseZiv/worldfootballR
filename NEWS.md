@@ -14,11 +14,15 @@
 ### Improvements
 
 * `.clean_table_names()` (internal function) now able to clean tab names in `fb_team_match_log_stats()`
+* * Added documentation for `fotmob_get_match_players` and `fotmob_get_match_players()`
+
 
 ### Bugs
 
 * `fotmob_get_league_matches` and `fotmob_get_league_tables` updated to address new Fotmob league endpoint.
 * `fotmob_get_match_players()` no longer returning the identical home and away team IDs [#93](https://github.com/JaseZiv/worldfootballR/issues/93)
+* * Fixed multiple rows returned for single player in `stats` column returned in `fotmob_get_match_players()`
+* `fotmob_get_league_matches` and `fotmob_get_league_tables` updated to address new Fotmob league endpoint.
 
 
 ***
