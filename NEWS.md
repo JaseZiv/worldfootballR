@@ -1,54 +1,25 @@
-# worldfootballR 0.4.10.5000
+# worldfootballR 0.5.0
 
 ### New functions
 
 * `fb_team_match_log_stats()` - to get match logs of selected stat types for a team(s) for all matches played in a season
+* `fotmob_get_league_ids()` - to get Fotmob's league ids, which can be specified as an alternative to `country` and `league_name` in `fotmob_get_league_matches()` and `fotmob_get_league_tables()`
+* `fotmob_get_season_stats()` - to get stats for one or more leagues, at team or player level
+* `fotmob_get_league_matches()` - to select matches for one or more leagues
+* `fotmob_get_league_tables()` - to get standings for one or more leagues
+* `fotmob_get_matches_by_date()` - to select matches occurring on specific day(s)
+* `fotmob_get_match_details()` - to get shooting locations for an individual match
+* `fotmob_get_match_players()` - extract player statistics from matches
 
 ### Improvements
 
 * `.clean_table_names()` (internal function) now able to clean tab names in `fb_team_match_log_stats()`
 
-***
-
-# worldfootballR 0.4.10.4000
-
-### New functions
-`
-* `fotmob_get_league_ids()` - to get Fotmob's league ids, which can be specified as an alternative to `country` and `league_name` in `fotmob_get_league_matches()` and `fotmob_get_league_tables()`
-
 ### Bugs
 
 * `fotmob_get_league_matches` and `fotmob_get_league_tables` updated to address new Fotmob league endpoint.
-
-***
-
-# worldfootballR 0.4.10.3000
-
-### New functions
-
-* `fotmob_get_season_stats()` - to get stats for one or more leagues, at team or player level
-
-### Bugs
-
 * `fotmob_get_match_players()` no longer returning the identical home and away team IDs [#93](https://github.com/JaseZiv/worldfootballR/issues/93)
 
-
-# worldfootballR 0.4.10.2000
-
-### New functions
-
-* `fotmob_get_league_matches()` - to select matches for one or more leagues
-* `fotmob_get_league_tables()` - to get standings for one or more leagues
-
-
-
-# worldfootballR 0.4.10.1000
-
-### New functions
-
-* `fotmob_get_matches_by_date()` - to select matches occurring on specific day(s)
-* `fotmob_get_match_details()` - to get shooting locations for an individual match
-* `fotmob_get_match_players()` - extract player statistics from matches
 
 ***
 
