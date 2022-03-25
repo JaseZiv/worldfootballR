@@ -339,17 +339,17 @@
 <span class="co">#&gt; $ comp_name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span>
 <span class="co">#&gt; $ country             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span>
 <span class="co">#&gt; $ comp_url            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/laliga/startseite/w…</span>
-<span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gavi", "Jan Oblak", "Carlos Soler", "Memphis Depa…</span>
-<span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/gavi/profil/spieler…</span>
-<span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Central Midfield", "Goalkeeper", "Central Midfiel…</span>
-<span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Slovenia", "Spain", "Netherlands", "Spai…</span>
-<span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Ghana", NA, NA, "Guadeloupe", NA, "Ne…</span>
-<span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FC Barcelona", "Atlético de Madrid", "Valencia CF…</span>
+<span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jan Oblak", "Gavi", "Carlos Soler", "Memphis Depa…</span>
+<span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/jan-oblak/profil/sp…</span>
+<span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goalkeeper", "Central Midfield", "Central Midfiel…</span>
+<span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Slovenia", "Spain", "Spain", "Netherlands", "Urug…</span>
+<span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Ghana", NA, "Guadeloupe", NA, "Nether…</span>
+<span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Atlético de Madrid", "FC Barcelona", "Valencia CF…</span>
 <span class="co">#&gt; $ contract_expiry     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-30, 2023-06-30, 2023-06-30, 2023-06-30, 2…</span>
 <span class="co">#&gt; $ contract_option     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …</span>
 <span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.0e+07, 6.0e+07, 5.0e+07, 4.5e+07, 4.0e+07, 4.0e+…</span>
-<span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 16000000, NA, 0, NA, NA, 72000000, 40000000, 3…</span>
-<span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Puyol, De la Peña &amp; Sostres", "Miha Mlakar", "Pro…</span>
+<span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 16000000, NA, NA, 0, NA, 72000000, 40000000, 39000…</span>
+<span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Miha Mlakar", "Puyol, De la Peña &amp; Sostres", "Pro…</span>
 
 <span class="co">#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#</span>
 <span class="co"># league_one_expiring &lt;- tm_expiring_contracts(country_name = "",</span>
@@ -373,7 +373,7 @@
 <span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/thomas-lemar/profil…</span>
 <span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Attacking Midfield", "Central Midfield", "Left Wi…</span>
 <span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Atlético de Madrid", "RCD Mallorca", "Real Socied…</span>
-<span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 26, 28, 22, 32, 29, 18, 25, 21, 28, 34, 22, 30, 22…</span>
+<span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 26, 28, 22, 32, 29, 18, 25, 21, 34, 28, 22, 30, 22…</span>
 <span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "France", "Spain", "France", "Denmark", "Brazil", …</span>
 <span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Guadeloupe", NA, "Algeria", NA, NA, "Dominican Re…</span>
 <span class="co">#&gt; $ injury              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Muscle Injury", "Cruciate Ligament Injury", "Musc…</span>
