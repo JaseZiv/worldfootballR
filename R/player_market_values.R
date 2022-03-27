@@ -229,7 +229,7 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
                   Day = gsub(",", "", .data$Day) %>% as.numeric(),
                   Year = as.numeric(gsub("\\(.*", "", .data$Year)),
                   Month = match(.data$Month, month.abb),
-                  player_dob = lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-"))) %>%
+                  player_dob = suppressWarnings(lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-")))) %>%
     dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
     dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$current_club,
                   .data$player_height_mtrs, .data$player_foot, .data$date_joined, .data$joined_from, .data$contract_expiry, .data$player_market_value_euro, .data$player_url)

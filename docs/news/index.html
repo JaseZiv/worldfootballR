@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -156,9 +156,17 @@
       <small>Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="worldfootballr-051" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.1">
+<a href="#worldfootballr-051" class="anchor"></a>worldfootballR 0.5.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>Modifications based on CRAN feedback to updates for CRAN submission</li>
+</ul>
+</div>
     <div id="worldfootballr-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
-<a href="#worldfootballr-050" class="anchor"></a>worldfootballR 0.5.0<small> Unreleased </small>
+<a href="#worldfootballr-050" class="anchor"></a>worldfootballR 0.5.0<small> 2022-03-21 </small>
 </h1>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
@@ -190,6 +198,10 @@
 <li>
 <code><a href="../reference/.clean_table_names.html">.clean_table_names()</a></code> (internal function) now able to clean tab names in <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code>
 </li>
+<li><ul>
+<li>Added documentation for <code>fotmob_get_match_players</code> and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+</li>
+</ul></li>
 </ul>
 </div>
 <div id="bugs" class="section level3">
@@ -201,6 +213,12 @@
 <li>
 <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> no longer returning the identical home and away team IDs <a href="https://github.com/JaseZiv/worldfootballR/issues/93"><a href='https://github.com/JaseZiv/worldfootballR/issues/93'>#93</a></a>
 </li>
+<li><ul>
+<li>Fixed multiple rows returned for single player in <code>stats</code> column returned in <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+</li>
+</ul></li>
+<li>
+<code>fotmob_get_league_matches</code> and <code>fotmob_get_league_tables</code> updated to address new Fotmob league endpoint.</li>
 </ul>
 <hr>
 </div>

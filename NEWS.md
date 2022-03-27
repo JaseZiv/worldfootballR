@@ -1,3 +1,7 @@
+# worldfootballR 0.5.1
+
+* Modifications based on CRAN feedback to updates for CRAN submission
+
 # worldfootballR 0.5.0
 
 ### New functions

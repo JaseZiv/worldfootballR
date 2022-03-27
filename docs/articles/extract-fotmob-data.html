@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.5000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 class="author">Tony ElHabr</h4>
             
-            <h4 class="date">2022-03-21</h4>
+            <h4 class="date">2022-03-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fotmob-data.Rmd"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -342,7 +342,7 @@
 <span class="co">#&gt; $ id                 &lt;int&gt; 47, 54, 873679, 87, 871358, 260, 872538, 874057, 87…</span>
 <span class="co">#&gt; $ primary_id         &lt;int&gt; 47, 54, 48, 87, 114, 260, 9213, 112, 9213, 8965, 11…</span>
 <span class="co">#&gt; $ name               &lt;chr&gt; "Premier League", "1. Bundesliga", "Championship", …</span>
-<span class="co">#&gt; $ matches            &lt;list&gt; [&lt;data.frame[2 x 11]&gt;], [&lt;data.frame[1 x 11]&gt;], [&lt;…</span>
+<span class="co">#&gt; $ matches            &lt;list&gt; [&lt;data.frame[2 x 10]&gt;], [&lt;data.frame[1 x 10]&gt;], [&lt;…</span>
 <span class="co">#&gt; $ internal_rank      &lt;int&gt; 30, 20, 29, 10, 0, 0, 7, 9, 7, 8, 8, 11, 9, 0, 9, 1…</span>
 <span class="co">#&gt; $ live_rank          &lt;int&gt; 101, 100, 0, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
 <span class="co">#&gt; $ simple_league      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FAL…</span>
@@ -370,18 +370,17 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">matches</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 7</span>
-<span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ id               &lt;int&gt; 3609981, 3609986, 3609983, 3609984, 3609985, 3609988,…</span>
-<span class="co">#&gt; $ leagueId         &lt;int&gt; 47, 47, 47, 47, 47, 47, 47</span>
-<span class="co">#&gt; $ time             &lt;chr&gt; "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 1…</span>
-<span class="co">#&gt; $ home             &lt;df[,4]&gt; &lt;data.frame[7 x 4]&gt;</span>
-<span class="co">#&gt; $ away             &lt;df[,4]&gt; &lt;data.frame[7 x 4]&gt;</span>
-<span class="co">#&gt; $ eliminatedTeamId &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA</span>
-<span class="co">#&gt; $ statusId         &lt;int&gt; 6, 6, 6, 6, 6, 6, 6</span>
-<span class="co">#&gt; $ tournamentStage  &lt;chr&gt; "6", "6", "6", "6", "6", "6", "6"</span>
-<span class="co">#&gt; $ status           &lt;df[,7]&gt; &lt;data.frame[7 x 7]&gt;</span>
-<span class="co">#&gt; $ timeTS           &lt;dbl&gt; 1.632605e+12, 1.632605e+12, 1.632614e+12, 1.632614e+1…</span>
-<span class="co">#&gt; $ tv               &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
+<span class="co">#&gt; Columns: 10</span>
+<span class="co">#&gt; $ id              &lt;int&gt; 3609981, 3609986, 3609983, 3609984, 3609985, 3609988, …</span>
+<span class="co">#&gt; $ leagueId        &lt;int&gt; 47, 47, 47, 47, 47, 47, 47</span>
+<span class="co">#&gt; $ time            &lt;chr&gt; "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 16…</span>
+<span class="co">#&gt; $ home            &lt;df[,4]&gt; &lt;data.frame[7 x 4]&gt;</span>
+<span class="co">#&gt; $ away            &lt;df[,4]&gt; &lt;data.frame[7 x 4]&gt;</span>
+<span class="co">#&gt; $ statusId        &lt;int&gt; 6, 6, 6, 6, 6, 6, 6</span>
+<span class="co">#&gt; $ tournamentStage &lt;chr&gt; "6", "6", "6", "6", "6", "6", "6"</span>
+<span class="co">#&gt; $ status          &lt;df[,8]&gt; &lt;data.frame[7 x 8]&gt;</span>
+<span class="co">#&gt; $ timeTS          &lt;dbl&gt; 1.632605e+12, 1.632605e+12, 1.632614e+12, 1.632614e+12…</span>
+<span class="co">#&gt; $ tv              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
 </div>
 <div id="standings" class="section level3">
 <h3 class="hasAnchor">
@@ -539,9 +538,9 @@
 <span class="co">#&gt; $ home_team_color       &lt;chr&gt; "#d3171e", "#d3171e", "#d3171e", "#d3171e", "#d3…</span>
 <span class="co">#&gt; $ away_team_id          &lt;int&gt; 8456, 8456, 8456, 8456, 8456, 8456, 8456, 8456, …</span>
 <span class="co">#&gt; $ away_team_color       &lt;chr&gt; "#69A8D8", "#69A8D8", "#69A8D8", "#69A8D8", "#69…</span>
-<span class="co">#&gt; $ stats                 &lt;list&gt; [&lt;data.frame[1 x 15]&gt;], [&lt;data.frame[4 x 22]&gt;],…</span>
-<span class="co">#&gt; $ shotmap               &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;,…</span>
-<span class="co">#&gt; $ is_starter            &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …</span></code></pre></div>
+<span class="co">#&gt; $ stats                 &lt;df[,41]&gt; &lt;data.frame[26 x 41]&gt;</span>
+<span class="co">#&gt; $ shotmap               &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NUL…</span>
+<span class="co">#&gt; $ is_starter            &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,…</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salah</span> <span class="op">&lt;-</span> <span class="va">players</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="st">"292462"</span><span class="op">)</span>
 <span class="va">salah_shotmap</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op">%&gt;%</span> 
@@ -575,36 +574,52 @@
 <span class="co">#&gt; $ onGoalShot            &lt;df[,3]&gt; &lt;data.frame[7 x 3]&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salah_stats</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>player_id <span class="op">=</span> <span class="va">id</span>, <span class="va">stats</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">salah_stats</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6</span>
-<span class="co">#&gt; Columns: 25</span>
-<span class="co">#&gt; $ player_id                            &lt;chr&gt; "292462", "292462", "292462", "29…</span>
-<span class="co">#&gt; $ stats_fot_mob_rating                 &lt;dbl&gt; 8.85, 6.14, 7.42, 8.15, 5.54, 7.99</span>
-<span class="co">#&gt; $ stats_minutes_played                 &lt;dbl&gt; 90, 68, 90, 89, 69, 90</span>
-<span class="co">#&gt; $ stats_goals                          &lt;dbl&gt; 1, 0, 1, 1, 0, 1</span>
-<span class="co">#&gt; $ stats_assists                        &lt;dbl&gt; 1, 0, 0, 0, 0, 0</span>
-<span class="co">#&gt; $ stats_total_shots                    &lt;dbl&gt; 3, 1, 1, 2, 0, 4</span>
-<span class="co">#&gt; $ stats_key_passes                     &lt;dbl&gt; 2, 0, 0, 1, 0, 2</span>
-<span class="co">#&gt; $ stats_expected_goals_x_g             &lt;dbl&gt; 0.39, 0.10, 0.25, 0.82, NA, 0.71</span>
-<span class="co">#&gt; $ stats_expected_goals_on_target_x_got &lt;dbl&gt; 0.97, 0.04, 0.83, 0.55, NA, 0.54</span>
-<span class="co">#&gt; $ stats_expected_assists_x_a           &lt;dbl&gt; 0.29, 0.01, NA, 0.05, 0.03, 0.04</span>
-<span class="co">#&gt; $ stats_blocked_shots                  &lt;dbl&gt; 2, NA, NA, NA, NA, 1</span>
-<span class="co">#&gt; $ stats_touches                        &lt;dbl&gt; 49, 26, 33, 48, 39, 41</span>
-<span class="co">#&gt; $ stats_dispossessed                   &lt;dbl&gt; 1, 1, 1, 2, 3, 1</span>
-<span class="co">#&gt; $ stats_clearances                     &lt;dbl&gt; 1, NA, NA, 2, NA, NA</span>
-<span class="co">#&gt; $ stats_headed_clearance               &lt;dbl&gt; 1, NA, NA, 2, NA, NA</span>
-<span class="co">#&gt; $ stats_interceptions                  &lt;dbl&gt; 1, 1, 1, 1, NA, 1</span>
-<span class="co">#&gt; $ stats_recoveries                     &lt;dbl&gt; 1, 4, 3, 4, 4, 2</span>
-<span class="co">#&gt; $ stats_dribbled_past                  &lt;dbl&gt; 1, 2, NA, NA, 1, NA</span>
-<span class="co">#&gt; $ stats_was_fouled                     &lt;dbl&gt; 1, 2, 2, 1, 1, 0</span>
-<span class="co">#&gt; $ stats_fouls_committed                &lt;dbl&gt; 0, 3, 2, 1, 4, 1</span>
-<span class="co">#&gt; $ stats_fantasy_points                 &lt;dbl&gt; NA, 2, 7, 6, 5, 7</span>
-<span class="co">#&gt; $ stats_tackles_won                    &lt;dbl&gt; NA, 0, 0, NA, 0, 0</span>
-<span class="co">#&gt; $ stats_offsides                       &lt;dbl&gt; NA, NA, NA, 1, 1, 1</span>
-<span class="co">#&gt; $ stats_big_chance_missed              &lt;dbl&gt; NA, NA, NA, NA, NA, 1</span>
-<span class="co">#&gt; $ stats_aerial_duels_won               &lt;dbl&gt; NA, NA, NA, NA, NA, 0</span></code></pre></div>
+<span class="co">#&gt; Rows: 2</span>
+<span class="co">#&gt; Columns: 41</span>
+<span class="co">#&gt; $ stats_fot_mob_rating                 &lt;dbl&gt; 8.85, 7.99</span>
+<span class="co">#&gt; $ stats_minutes_played                 &lt;dbl&gt; 90, 90</span>
+<span class="co">#&gt; $ stats_saves                          &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_goals                          &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ stats_goals_conceded                 &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_x_got_faced                    &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_diving_save                    &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_saves_inside_box               &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_acted_as_sweeper               &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_punches                        &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_throws                         &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_high_claim                     &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_recoveries                     &lt;dbl&gt; 1, 2</span>
+<span class="co">#&gt; $ stats_fantasy_points                 &lt;dbl&gt; NA, 7</span>
+<span class="co">#&gt; $ stats_touches                        &lt;dbl&gt; 49, 41</span>
+<span class="co">#&gt; $ stats_assists                        &lt;dbl&gt; 1, 0</span>
+<span class="co">#&gt; $ stats_total_shots                    &lt;dbl&gt; 3, 4</span>
+<span class="co">#&gt; $ stats_key_passes                     &lt;dbl&gt; 2, 2</span>
+<span class="co">#&gt; $ stats_expected_assists_x_a           &lt;dbl&gt; 0.29, 0.04</span>
+<span class="co">#&gt; $ stats_corners                        &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_dispossessed                   &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ stats_tackles_won                    &lt;dbl&gt; NA, 0</span>
+<span class="co">#&gt; $ stats_blocks                         &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_clearances                     &lt;dbl&gt; 1, NA</span>
+<span class="co">#&gt; $ stats_interceptions                  &lt;dbl&gt; 1, 1</span>
+<span class="co">#&gt; $ stats_was_fouled                     &lt;dbl&gt; 1, 0</span>
+<span class="co">#&gt; $ stats_fouls_committed                &lt;dbl&gt; 0, 1</span>
+<span class="co">#&gt; $ stats_headed_clearance               &lt;dbl&gt; 1, NA</span>
+<span class="co">#&gt; $ stats_aerial_duels_won               &lt;dbl&gt; NA, 0</span>
+<span class="co">#&gt; $ stats_dribbled_past                  &lt;dbl&gt; 1, NA</span>
+<span class="co">#&gt; $ stats_offsides                       &lt;dbl&gt; NA, 1</span>
+<span class="co">#&gt; $ stats_expected_goals_x_g             &lt;dbl&gt; 0.39, 0.71</span>
+<span class="co">#&gt; $ stats_big_chance_missed              &lt;dbl&gt; NA, 1</span>
+<span class="co">#&gt; $ stats_expected_goals_on_target_x_got &lt;dbl&gt; 0.97, 0.54</span>
+<span class="co">#&gt; $ stats_blocked_shots                  &lt;dbl&gt; 2, 1</span>
+<span class="co">#&gt; $ stats_clearance_off_the_line         &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_ground_duels_won               &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_accurate_passes                &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_accurate_long_balls            &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_error_led_to_goal              &lt;dbl&gt; NA, NA</span>
+<span class="co">#&gt; $ stats_last_man_tackle                &lt;dbl&gt; NA, NA</span></code></pre></div>
 </div>
 </div>
   </div>
