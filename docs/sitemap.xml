@@ -52,10 +52,22 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/fb_player_urls.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/fb_team_match_log_stats.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/fb_team_player_stats.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/fb_teams_urls.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_league_ids.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_league_matches.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_league_tables.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_match_details.html</loc>
@@ -65,6 +77,9 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_matches_by_date.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/fotmob_get_season_stats.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_advanced_match_stats.html</loc>
