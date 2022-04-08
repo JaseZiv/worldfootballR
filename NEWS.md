@@ -1,3 +1,9 @@
+# worldfootballR 0.5.1.1000
+
+* Set minimum R version to 4.0.0
+
+***
+
 # worldfootballR 0.5.1
 
 * Modifications based on CRAN feedback to updates for CRAN submission
