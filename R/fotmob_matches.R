@@ -63,8 +63,6 @@ fotmob_get_matches_by_date <- function(dates) {
 #'
 #' @return returns a dataframe of match shots
 #'
-#' @importFrom purrr map_dfr
-#'
 #' @examples
 #' \dontrun{
 #' library(dplyr)
@@ -81,7 +79,7 @@ fotmob_get_matches_by_date <- function(dates) {
 #' }
 #' @export
 fotmob_get_match_details <- function(match_ids) {
-  purrr::map_dfr(match_ids, .fotmob_get_single_match_details)
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_details)
 }
 
 #' @importFrom glue glue
@@ -125,7 +123,7 @@ fotmob_get_match_details <- function(match_ids) {
   general <- resp$general
   scalars <- data.frame(
     stringsAsFactors = FALSE,
-    match_id = general$matchId,
+    match_id = general$matchId, ## don't technically need this since `.fotmob_get_single_match_details` is wrapped with `.wrap_fotmob_match_id_f`
     match_round = ifelse(is.null(general$matchRound), "", general$matchRound),
     league_id = general$leagueId,
     league_name = general$leagueName,
