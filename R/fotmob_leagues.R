@@ -308,6 +308,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom rlang .data
+#' @importFrom dplyr select all_of
 #' @importFrom tidyr pivot_longer unnest_longer unnest
 .fotmob_get_league_tables <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
@@ -319,9 +320,11 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
   table <- f(resp)$tableData$table %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
+  cols <- c("all", "home", "away")
   table %>%
+    dplyr::select(dplyr::all_of(cols)) %>%
     tidyr::pivot_longer(
-      colnames(table),
+      dplyr::all_of(cols),
       names_to = "table_type",
       values_to = "table"
     ) %>%
