@@ -4,6 +4,12 @@
 
 ***
 
+# worldfootballR 0.5.2
+
+### Improvements
+
+* `fotmob_get_league_matches` and `fotmob_get_league_tables` now check 2 places for the league endpoint since it changes occassionally.
+
 # worldfootballR 0.5.1
 
 * Modifications based on CRAN feedback to updates for CRAN submission

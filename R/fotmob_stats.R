@@ -48,7 +48,6 @@
 #' @importFrom dplyr select bind_cols
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
-#' @importFrom purrr safely
 .fotmob_get_single_season_stats <- function(df, stat_type_df) {
   url <- sprintf(
     "https://data.fotmob.com/stats/%s/season/%s/%s.json",
@@ -58,8 +57,7 @@
   )
 
   ## This still print out HTTP error 403 even with `quiet = TRUE`?!?
-  fs <- purrr::safely(jsonlite::fromJSON, otherwise = NULL, quiet = TRUE)
-  resp <- fs(url)
+  resp <- .safely_from_json(url)
   if(!is.null(resp$error)) {
     warning(
       sprintf(
