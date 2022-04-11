@@ -1,4 +1,19 @@
 
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr mutate across
+#' @importFrom rlang .data
+#' @importFrom stats setNames
+.wrap_fotmob_match_f <- function(match_ids, f) {
+  purrr::map_dfr(
+    stats::setNames(match_ids, match_ids),
+    f,
+    .id = "match_id"
+  ) %>%
+    dplyr::mutate(
+      dplyr::across(.data$match_id, as.integer)
+    )
+}
+
 #' Get fotmob match player details by match id
 #'
 #' Returns match details from fotmob.com
@@ -6,8 +21,6 @@
 #' @param match_ids a vector of strings or numbers representing matches
 #'
 #' @return returns a dataframe of match players
-#'
-#' @importFrom purrr map_dfr
 #'
 #' @examples
 #' \dontrun{
@@ -26,13 +39,13 @@
 #' }
 #' @export
 fotmob_get_match_players <- function(match_ids) {
-  purrr::map_dfr(match_ids, .fotmob_get_single_match_players)
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_players)
 }
 
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble tibble
-#' @importFrom purrr pluck map_dfr possibly
+#' @importFrom purrr pluck map_dfr map2_dfr possibly
 #' @importFrom dplyr bind_cols select filter distinct any_of
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang .data
@@ -52,7 +65,7 @@ fotmob_get_match_players <- function(match_ids) {
     starters <- lineup$players
     bench <- lineup$bench
     stopifnot(length(starters) == 2) ## 2 teams
-    stopifnot(length(bench) == 2) ## 2 teams
+    stopifnot(length(bench) == 2)
 
     .clean_positions <- function(p) {
 
@@ -158,20 +171,32 @@ fotmob_get_match_players <- function(match_ids) {
       rows
     }
 
+    add_team_info <- function(p, i) {
+      res <- .clean_positions(p)
+      res$team_id <- lineup$teamId[i]
+      res$team_name <- lineup$teamName[i]
+      res %>%
+        dplyr::relocate(
+          .data$team_id,
+          .data$team_name,
+          .before = 1
+        )
+    }
+
     res <- dplyr::bind_rows(
-      purrr::map_dfr(
-        starters,
-        ~purrr::map_dfr(
-          .x,
-          .clean_positions
+      purrr::map2_dfr(
+        starters, seq_along(starters),
+        ~purrr::map2_dfr(
+          .x, .y,
+          add_team_info
         )
       ) %>%
         dplyr::mutate(
           is_starter = TRUE
         ),
-      purrr::map_dfr(
-        bench,
-        .clean_positions
+      purrr::map2_dfr(
+        bench, seq_along(bench),
+        add_team_info
       ) %>%
         dplyr::mutate(
           is_starter = FALSE

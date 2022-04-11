@@ -9,6 +9,7 @@
 ### Improvements
 
 * `fotmob_get_league_matches` and `fotmob_get_league_tables` now check 2 places for the league endpoint since it changes occassionally.
+* `fotmob_get_match_players` gets 3 additional columns: `match_id`, `team_id`, `team_name`. [#105](https://github.com/JaseZiv/worldfootballR/issues/105)
 
 # worldfootballR 0.5.1
 
