@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1.2000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-03-27</h4>
+            <h4 data-toc-skip class="date">2022-04-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -332,13 +332,13 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 268</span>
+<span class="co">#&gt; Rows: 267</span>
 <span class="co">#&gt; Columns: 12</span>
 <span class="co">#&gt; $ ccode              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "ENG", "GER", "ENG", "ESP", "MEX", "FRA", "U…</span>
 <span class="co">#&gt; $ id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 47, 54, 873679, 87, 874077, 53, 874044, 873…</span>
 <span class="co">#&gt; $ primary_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 47, 54, 48, 87, 230, 53, 10084, 9134, 55, 8972…</span>
 <span class="co">#&gt; $ name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Major League Soccer", "Premier League", "1. Bundes…</span>
-<span class="co">#&gt; $ matches            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[10 x 10]&gt;], [&lt;data.frame[7 x 10]&gt;], […</span>
+<span class="co">#&gt; $ matches            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[10 x 11]&gt;], [&lt;data.frame[7 x 11]&gt;], […</span>
 <span class="co">#&gt; $ parent_league_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, NA, NA, 48, NA, 230, NA, 10084, 9134, NA, NA, …</span>
 <span class="co">#&gt; $ internal_rank      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 30, 20, 29, 10, 10, 10, 0, 2, 9, 9, 8, 0, 7, 7,…</span>
 <span class="co">#&gt; $ live_rank          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 100, 101, 100, 0, 100, 0, 100, 0, 0, 100, 0, 0, 0, …</span>
@@ -366,17 +366,18 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">matches</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 9</span>
-<span class="co">#&gt; Columns: 10</span>
-<span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609981, 3609986, 3609983, 3609984, 3609985, 3609988, …</span>
-<span class="co">#&gt; $ leagueId        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47</span>
-<span class="co">#&gt; $ time            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 16…</span>
-<span class="co">#&gt; $ home            <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
-<span class="co">#&gt; $ away            <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
-<span class="co">#&gt; $ statusId        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
-<span class="co">#&gt; $ tournamentStage <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
-<span class="co">#&gt; $ status          <span style="color: #949494; font-style: italic;">&lt;df[,8]&gt;</span> &lt;data.frame[9 x 8]&gt;</span>
-<span class="co">#&gt; $ timeTS          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632555e+12, 1.632555e+12, 1.632564e+12, 1.632564e+12…</span>
-<span class="co">#&gt; $ tv              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ id               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609981, 3609986, 3609983, 3609984, 3609985, 3609988,…</span>
+<span class="co">#&gt; $ leagueId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47</span>
+<span class="co">#&gt; $ time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "25.09.2021 13:30", "25.09.2021 13:30", "25.09.2021 1…</span>
+<span class="co">#&gt; $ home             <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
+<span class="co">#&gt; $ away             <span style="color: #949494; font-style: italic;">&lt;df[,4]&gt;</span> &lt;data.frame[9 x 4]&gt;</span>
+<span class="co">#&gt; $ eliminatedTeamId <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span>
+<span class="co">#&gt; $ statusId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
+<span class="co">#&gt; $ tournamentStage  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
+<span class="co">#&gt; $ status           <span style="color: #949494; font-style: italic;">&lt;df[,7]&gt;</span> &lt;data.frame[9 x 7]&gt;</span>
+<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632544e+12, 1.632544e+12, 1.632553e+12, 1.632553e+1…</span>
+<span class="co">#&gt; $ tv               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standings">Standings<a class="anchor" aria-label="anchor" href="#standings"></a>
@@ -396,19 +397,19 @@
 <span class="co">#&gt; Rows: 40</span>
 <span class="co">#&gt; Columns: 14</span>
 <span class="co">#&gt; $ table_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "away", "away", "away", "away", …</span>
-<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Chelsea", "Wolves", "Man Unite…</span>
-<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 8602, 10260, 8586, 9825, 8654, 10204, …</span>
-<span class="co">#&gt; $ page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8650/ove…</span>
+<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Chelsea", "Liverpool", "Tottenham", "Wolves…</span>
+<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8455, 8650, 8586, 8602, 10260, 10204, 9825, 8654, …</span>
+<span class="co">#&gt; $ page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8455/ove…</span>
 <span class="co">#&gt; $ deduction     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
-<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 15, 15, 15, 15, 14, 15, 13, 15, 14, 15, 14, 15, 15, 15, …</span>
-<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 11, 10, 10, 8, 6, 7, 7, 6, 4, 6, 3, 4, 3, 3, 3, 3, 3, 1,…</span>
-<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 2, 5, 2, 1, 3, 7, 0, 6, 3, 4, 4, 4, 4, 3, 6, 2,…</span>
-<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 5, 3, 6, 5, 6, 3, 9, 5, 8, 8, 8, 7, 8, 7, 7, 10…</span>
-<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28-8", "38-13", "29-9", "15-11", "24-22", "21-20", "20-…</span>
-<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 20, 25, 20, 4, 2, 1, 1, 3, 0, -2, -4, -6, -11, -12, -15,…</span>
-<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 36, 33, 33, 26, 23, 23, 22, 21, 19, 18, 15, 15, 13, 13, …</span>
+<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 16, 16, 16, 16, 16, 15, 15, 14, 16, 16, 16, 16, 15, 16, …</span>
+<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 12, 11, 10, 8, 8, 6, 5, 7, 6, 6, 4, 4, 3, 4, 3, 3, 3, 1,…</span>
+<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 4, 2, 2, 5, 7, 1, 3, 0, 4, 4, 6, 3, 5, 4, 4, 6, 3,…</span>
+<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 6, 6, 4, 3, 6, 7, 10, 8, 8, 6, 9, 7, 7, 9, 8, 1…</span>
+<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "30-8", "35-9", "40-15", "25-20", "15-12", "24-23", "18-…</span>
+<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 22, 26, 25, 5, 3, 1, 1, -2, 1, -3, -8, -18, -5, -8, -15,…</span>
+<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 39, 36, 34, 26, 26, 23, 22, 22, 21, 18, 16, 16, 15, 15, …</span>
 <span class="co">#&gt; $ idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
-<span class="co">#&gt; $ qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", N…</span></code></pre></div>
+<span class="co">#&gt; $ qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", "…</span></code></pre></div>
 <hr>
 </div>
 </div>
