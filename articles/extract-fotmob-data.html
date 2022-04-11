@@ -332,7 +332,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 267</span>
+<span class="co">#&gt; Rows: 268</span>
 <span class="co">#&gt; Columns: 12</span>
 <span class="co">#&gt; $ ccode              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "ENG", "GER", "ENG", "ESP", "MEX", "FRA", "U…</span>
 <span class="co">#&gt; $ id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 47, 54, 873679, 87, 874077, 53, 874044, 873…</span>
@@ -376,7 +376,7 @@
 <span class="co">#&gt; $ statusId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
 <span class="co">#&gt; $ tournamentStage  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
 <span class="co">#&gt; $ status           <span style="color: #949494; font-style: italic;">&lt;df[,7]&gt;</span> &lt;data.frame[9 x 7]&gt;</span>
-<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632544e+12, 1.632544e+12, 1.632553e+12, 1.632553e+1…</span>
+<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632555e+12, 1.632555e+12, 1.632564e+12, 1.632564e+1…</span>
 <span class="co">#&gt; $ tv               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
 </div>
 <div class="section level3">
@@ -426,7 +426,7 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">match_details</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2</span>
 <span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ match_id             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3609994", "3610132"</span>
+<span class="co">#&gt; $ match_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609994, 3610132</span>
 <span class="co">#&gt; $ match_round          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "7", "21"</span>
 <span class="co">#&gt; $ league_id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47</span>
 <span class="co">#&gt; $ league_name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League"</span>
@@ -451,7 +451,7 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">match_shots</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 43</span>
 <span class="co">#&gt; Columns: 25</span>
-<span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3609994", "3609994", "3609994", "3609994", "…</span>
+<span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609994, 3609994, 3609994, 3609994, 3609994, …</span>
 <span class="co">#&gt; $ id                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2338869639, 2338876703, 2338881401, 233888382…</span>
 <span class="co">#&gt; $ event_type               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AttemptSaved", "AttemptSaved", "AttemptSaved…</span>
 <span class="co">#&gt; $ team_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8456, 8456, 8456, 8456, 8456, 8456, 845…</span>
@@ -508,7 +508,10 @@
 <code class="sourceCode R"><span class="va">players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 80</span>
-<span class="co">#&gt; Columns: 29</span>
+<span class="co">#&gt; Columns: 32</span>
+<span class="co">#&gt; $ match_id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609994, 3609994, 3609994, 3609994, 3609994, 360…</span>
+<span class="co">#&gt; $ team_id               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8650, 8650, 8650, 8650, 8650, 8650, 8650, …</span>
+<span class="co">#&gt; $ team_name             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Liverpool", "Liverpool", "Liverpoo…</span>
 <span class="co">#&gt; $ id                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "319784", "38807", "171698", "209405", "357880",…</span>
 <span class="co">#&gt; $ using_opta_id         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span>
 <span class="co">#&gt; $ first_name            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alisson", "James", "Joel", "Virgil", "Andrew", …</span>
