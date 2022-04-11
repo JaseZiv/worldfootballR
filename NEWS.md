@@ -1,15 +1,17 @@
-# worldfootballR 0.5.1.1000
-
-* Set minimum R version to 4.0.0
-
-***
-
-# worldfootballR 0.5.2
+# worldfootballR 0.5.1.2000
 
 ### Improvements
 
 * `fotmob_get_league_matches` and `fotmob_get_league_tables` now check 2 places for the league endpoint since it changes occassionally.
 * `fotmob_get_match_players` gets 3 additional columns: `match_id`, `team_id`, `team_name`. [#105](https://github.com/JaseZiv/worldfootballR/issues/105)
+
+***
+
+# worldfootballR 0.5.1.1000
+
+* Set minimum R version to 4.0.0
+
+***
 
 # worldfootballR 0.5.1
 
