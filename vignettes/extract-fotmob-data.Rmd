@@ -100,15 +100,15 @@ Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, a
 epl_team_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
-  season = "2020/2021",
+  season_name = "2020/2021",
   stat_type = "xg",
   team_or_player = "team"
 )
 
 epl_team_xg_2021 %>%
   dplyr::select(
-    league_id = id,
-    league_name = name,
+    league_id,
+    league_name,
     season_id,
     season_name,
     team_id,
@@ -120,22 +120,46 @@ epl_team_xg_2021 %>%
   dplyr::glimpse()
 ```
 
-You can retrieve data for multiple leagues and/or season at the same time.
+If you know the `league_id`, you can use it instead of passing in values for `country` and `league_name`.
 
-```{r team_xg_conceded_2021}
-team_xg_conceded_2021 <- fotmob_get_season_stats(
-  country =     c("ITA",     "ESP"),
-  league_name = c("Serie A", "LaLiga"),
-  season = c("2020/2021", "2021/2022"),
-  stat_type = "xg_conceded",
+```{r epl_team_xg_2021_w_league_id}
+fotmob_get_season_stats(
+  league_id = 47,
+  season_name = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "team"
+)
+```
+
+You can retrieve data for multiple leagues, seasons, or stat types at the same time.
+
+```{r team_xgs_2021}
+team_xgs_2021 <- fotmob_get_season_stats(
+  country =        c("ITA",     "ESP"),
+  league_name =    c("Serie A", "LaLiga"),
+  season_name =    c("2020/2021", "2021/2022"),
+  stat_type =      c("xg", "xg_conceded"),
   team_or_player = "team"
 )
 
-## 2 leagues x 20 teams x 2 seasons = 80 records
-team_xg_conceded_2021 %>% nrow()
+## 2 leagues x 20 teams x 2 seasons x 2 stats = 160 records
+team_xgs_2021 %>% nrow()
 ```
 
-At this time, only one `stat_type` and one `team_or_player` can be retrieved at a time.
+You can potentially get cup data for leagues in the future, although at this time Fotmob does not have this data for most leagues, seasons, or stats.
+
+```{r team_xg_2021_fa_cup, eval=F}
+## Not run to avoid error.
+fotmob_get_season_stats(
+  league_id = 47,
+  season_name = "2020/2021",
+  stat_type = "xg",
+  team_or_player = "team",
+  stat_league_name = "FA Cup"
+)
+```
+
+At this time, only one `team_or_player` can be retrieved at a time.
 
 ### Player Stats
 
@@ -172,8 +196,8 @@ epl_player_xg_2021 <- fotmob_get_season_stats(
 
 epl_player_xg_2021 %>%
   dplyr::select(
-    league_id = id,
-    league_name = name,
+    league_id,
+    league_name,
     season_id,
     season_name,
     team_id,

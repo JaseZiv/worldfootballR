@@ -1,13 +1,4 @@
 
-## TODO: Cache this
-.fotmob_get_season_ids <- function(...) {
-  leagues <- .fotmob_load_csv("fotmob-leagues/season_ids.csv")
-  .fotmob_get_league_or_season_urls(
-    leagues = leagues,
-    ...
-  )
-}
-
 ## Probably best to just have this always available, until caching is implemented.
 .fotmob_stat_types <- .fotmob_load_csv(
   "fotmob-stats/stat_types.csv"
@@ -24,15 +15,14 @@
   entity <- match.arg(team_or_player, c("player", "team"))
 
   stopifnot(
-    "`stat_type` must be specified." = !is.null(stat_type),
-    "`stat_type` must have length 1" = length(stat_type) == 1
+    "`stat_type` must be specified." = !is.null(stat_type)
   )
 
   filt_stat_choices <- .fotmob_stat_types %>%
     dplyr::filter(.data$entity == !!team_or_player)
 
   n_stats <- length(stat_type)
-  res <- filt_stat_choices %>% dplyr::filter(.data$stat == !!stat_type)
+  res <- filt_stat_choices %>% dplyr::filter(.data$stat %in% !!stat_type)
   n_res <- nrow(res)
 
   if(n_res == 0) {
@@ -44,16 +34,17 @@
 }
 
 #' @importFrom jsonlite fromJSON
-#' @importFrom tibble as_tibble
-#' @importFrom dplyr select bind_cols
+#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr select
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
-.fotmob_get_single_season_stats <- function(df, stat_type_df) {
+#' @importFrom purrr safely
+.fotmob_get_single_season_stats <- function(league_id, season_id, full_stat, stat) {
   url <- sprintf(
     "https://data.fotmob.com/stats/%s/season/%s/%s.json",
-    df$id,
-    df$season_id,
-    stat_type_df$full_stat
+    league_id,
+    season_id,
+    full_stat
   )
 
   ## This still print out HTTP error 403 even with `quiet = TRUE`?!?
@@ -66,18 +57,47 @@
     )
     return(tibble::tibble())
   }
-  res <- resp$result %>%
+
+  resp$result %>%
     tibble::as_tibble() %>%
     dplyr::select(.data$TopLists) %>%
     tidyr::unnest(.data$TopLists) %>%
     dplyr::select(.data$StatList) %>%
     tidyr::unnest(.data$StatList) %>%
     janitor::clean_names()
+}
 
-  dplyr::bind_cols(
-    df,
-    tibble::tibble(stat_type = stat_type_df$stat),
-    res
+#' @importFrom tibble tibble
+#' @importFrom rvest read_html html_elements html_attr
+#' @importFrom stringr str_replace str_replace
+#' @importFrom rlang maybe_missing
+.fotmob_get_season_options <- function(
+  country,
+  league_name,
+  league_id,
+  team_or_player,
+  cached = TRUE
+) {
+  tables <- fotmob_get_league_tables(
+    cached = TRUE,
+    country = rlang::maybe_missing(country, NULL),
+    league_name = rlang::maybe_missing(league_name, NULL),
+    league_id = rlang::maybe_missing(league_id, NULL)
+  )
+  team_id <- tables$id[1]
+  url <- sprintf(
+    "https://www.fotmob.com%s/%ss",
+    stringr::str_replace(tables$page_url[1], "overview", "stats"),
+    team_or_player
+  )
+  page <- url %>% rvest::read_html()
+  option_elements <- page %>% rvest::html_elements("option")
+  labels <- option_elements %>% rvest::html_text2()
+  rgx <- "(^.*)(\\s)(20[012].*$)"
+  tibble::tibble(
+    league_name = labels %>% stringr::str_replace(rgx, "\\1"),
+    season_name = labels %>% stringr::str_replace(rgx, "\\3"),
+    season_id = option_elements %>% rvest::html_attr("value")
   )
 }
 
@@ -87,11 +107,12 @@
 #'
 #' @inheritParams fotmob_get_league_matches
 #' @param season_name Season names in the format `"2021/2022"`. Multiple allowed. If multiple leagues are specified, season stats are retrieved for each league.
+#' @param stat_league_name Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).
 #'
 #' Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.
 #'
 #' @param team_or_player return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.
-#' @param stat_type the type of statistic. Can only be one.
+#' @param stat_type the type of statistic. Can be more than one.
 #' For \code{entity = "player"}, must be one of the following:
 #' \itemize{
 #' \item{"accurate_pass"}
@@ -128,12 +149,12 @@
 #' \item{"possession_percentage"}
 #' }
 #'
-#' @return returns a dataframe of league standings
+#' @return returns a dataframe of team or player stats
 #'
-#' @importFrom purrr possibly map2_dfr
+#' @importFrom purrr map_dfr map2_dfr pmap_dfr possibly
+#' @importFrom rlang maybe_missing .data
+#' @importFrom dplyr filter
 #' @importFrom tibble tibble
-#' @importFrom rlang maybe_missing
-#' @importFrom dplyr filter distinct pull mutate row_number group_split
 #'
 #' @export
 #' @examples
@@ -165,72 +186,162 @@ fotmob_get_season_stats <- function(
   league_name,
   league_id,
   season_name,
-  team_or_player,
-  stat_type
+  team_or_player = c("team", "player"),
+  stat_type,
+  stat_league_name = league_name,
+  cached = TRUE
 ) {
 
-  ## There's already warnings in this function for non-matching leagues, so we don't need to warn about that here.
-  urls <- .fotmob_get_season_ids(
-    country = rlang::maybe_missing(country, NULL),
-    league_name = rlang::maybe_missing(league_name, NULL),
-    league_id = rlang::maybe_missing(league_id, NULL)
-  )
+  match.arg(team_or_player, several.ok = FALSE)
+  stopifnot("`season_name` cannot be NULL.`" = !is.null(season_name))
 
   stat_type_df <- .fotmob_validate_stat_type(
     team_or_player = rlang::maybe_missing(team_or_player, NULL),
     stat_type = rlang::maybe_missing(stat_type, NULL)
   )
 
-  n_urls <- nrow(urls)
-  filt_urls <- urls %>%
-    dplyr::filter(
-      .data$season_name %in% !!season_name
-    )
+  urls <- .fotmob_get_league_ids(
+    cached = cached,
+    country = rlang::maybe_missing(country, NULL),
+    league_name = rlang::maybe_missing(league_name, NULL),
+    league_id = rlang::maybe_missing(league_id, NULL)
+  )
+  stat_league_name <- rlang::maybe_missing(stat_league_name, urls$name)
 
-  if(nrow(filt_urls) == 0) {
+  n_league_name <- length(urls$name)
+  n_stat_league_name <- length(stat_league_name)
+  ## this check only comes into play if the user explicitly specifies `stat_league_name`
+  if(n_league_name != n_stat_league_name) {
     stop(
       sprintf(
-        "No league-`season_name` pairs matching parameters. Perhaps try the following:\n- %s",
-        glue::glue_collapse(
-          glue::glue("{urls$id} - {urls$name} - {urls$country} - {urls$season_name}"),
-          sep = "\n- "
-        )
+        "`league_name` and `stat_league_name` must have the same length (%s != %s)", n_league_name, n_stat_league_name
+      )
+    )
+  }
+  urls$stat_league_name <- stat_league_name
+
+  fp <- purrr::possibly(.fotmob_get_single_league_single_season_stats, otherwise = tibble::tibble(), quiet = FALSE)
+
+  ## Note that this is written in this awkward fashion (instead of expanding on stat, season_name, AND league_id)
+  ##   so that we can re-use the season options for a given league without having to re-scrape it every time
+  ##   (if we have multiple stats or seasons for a given league).
+  g <- function(stat, season_name, league_id) {
+
+    url <- urls %>% dplyr::filter(.data$id == !!league_id)
+    country <-  url$ccode
+    league_name <- url$name
+    season_options <- .fotmob_get_season_options(
+      cached = cached,
+      country = country,
+      league_name = league_name,
+      league_id = league_id,
+      team_or_player = team_or_player
+    )
+
+    if(nrow(season_options) == 0) {
+      stop(
+        sprintf("No seasons with stats found for league.")
+      )
+    }
+
+    purrr::map_dfr(
+      season_name,
+      ~fp(
+        country = country,
+        league_name = league_name,
+        league_id = league_id,
+        stat = stat,
+        full_stat = stat_type_df %>% dplyr::filter(.data$stat == !!stat) %>% dplyr::pull(.data$full_stat),
+        stat_league_name = url$stat_league_name,
+        season_name = .x,
+        season_options = season_options
       )
     )
   }
 
-  actual_season_names <- filt_urls %>%
-    dplyr::distinct(.data$season_name) %>%
-    dplyr::pull(.data$season_name)
+  params <- expand.grid(
+    stat = stat_type_df$stat,
+    season_name = season_name,
+    stringsAsFactors = FALSE
+  )
 
-  diff_season_names <- setdiff(season_name, actual_season_names)
-  if(length(diff_season_names) > 0) {
-    warning(
-      sprintf(
-        "Couldn't find the following `season_name`s:\n- %s",
-        glue::glue_collapse(glue::glue("{diff_season_names}"), sep = "\n- ")
+  purrr::map2_dfr(
+    params$stat,
+    params$season_name,
+    ~purrr::pmap_dfr(
+      list(
+        .x,
+        .y,
+        urls$id
+      ),
+      ~g(..1, ..2, ..3)
+    )
+  )
+
+}
+
+#' @importFrom glue glue glue_collapse
+#' @importFrom dplyr filter mutate
+#' @importFrom tibble tibble
+#' @importFrom rlang .data
+.fotmob_get_single_league_single_season_stats <- function(
+  country,
+  league_name,
+  league_id,
+  stat,
+  full_stat,
+  stat_league_name,
+  season_name,
+  season_options
+) {
+
+  filt_season_options <- season_options %>%
+    dplyr::filter(
+      .data$league_name == !!stat_league_name,
+      .data$season_name == !!season_name
+    )
+
+  n_season_options <- nrow(filt_season_options)
+  if(n_season_options == 0) {
+    stop(
+      glue::glue(
+        '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" not found. Try one of the following:\n{glue::glue_collapse(sprintf("%s %s", season_options$league_name, season_options$season_name), "\n")}
+        ',
       )
     )
   }
 
-  ## TODO: It's possible that there's a `season_name` for one league but not for another...
-  ##  It would be nice to warn about that.
+  if(n_season_options > 1) {
+    stop(
+      glue::glue(
+        '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" match more than 1 result ({n_season_options}):\n{glue::glue_collapse(sprintf("%s %s", season_options$league_name, season_options$season_name), "\n")}'
+      )
+    )
+  }
+
   fp <- purrr::possibly(
     .fotmob_get_single_season_stats,
     quiet = FALSE,
     otherwise = tibble::tibble()
   )
 
-  ## This feels a little clunky, but this was the most elegant way that I could think of to
-  ##   keep around meta info about the league and season (in `filt_urls`) to join with the results.
-  filt_urls %>%
-    dplyr::mutate(rn = dplyr::row_number()) %>%
-    dplyr::group_split(.data$rn, .keep = FALSE) %>%
-    purrr::map_dfr(
-      ~fp(
-        .x,
-        stat_type_df = stat_type_df
-      )
+  res <- fp(
+    league_id = league_id,
+    season_id = filt_season_options$season_id,
+    full_stat = full_stat,
+    stat = stat
+  )
+
+  res %>%
+    dplyr::mutate(
+      country = country,
+      league_name = league_name,
+      league_id = league_id,
+      season_name = season_name,
+      season_id = filt_season_options$season_id,
+      stat_league_name = stat_league_name,
+      stat_type = stat,
+      .before = 1
     )
 
 }

@@ -1,3 +1,10 @@
+
+# worldfootballR 0.5.1.3000
+
+### Improvements
+
+* `fotmob_get_season_stats` gains `stat_league_name` and can now be used for all leagues since seasons are programmatically scraped
+
 # worldfootballR 0.5.1.2000
 
 ### Improvements
