@@ -220,88 +220,64 @@ fotmob_get_season_stats <- function(
   }
   urls$stat_league_name <- stat_league_name
 
-  fp <- purrr::possibly(.fotmob_get_single_league_season_stats, otherwise = tibble::tibble(), quiet = FALSE)
-  g <- function(stat, league_id, season_name) {
+  fp <- purrr::possibly(.fotmob_get_single_league_single_season_stats, otherwise = tibble::tibble(), quiet = FALSE)
+
+  ## Note that this is written in this awkward fashion (instead of expanding on stat, season_name, AND league_id)
+  ##   so that we can re-use the season options for a given league without having to re-scrape it every time
+  ##   (if we have multiple stats or seasons for a given league).
+  g <- function(stat, season_name, league_id) {
 
     url <- urls %>% dplyr::filter(.data$id == !!league_id)
-    purrr::map2_dfr(
-      stat,
-      league_id,
-      ~purrr::pmap_dfr(
-        list(
-          .x,
-          .y,
-          season_name
-        ),
-        ~fp(
-          country = url$ccode,
-          league_name = url$name,
-          league_id = ..2,
-          team_or_player = team_or_player,
-          stat = ..1,
-          full_stat = stat_type_df %>% dplyr::filter(.data$stat == ..1) %>% dplyr::pull(.data$full_stat),
-          stat_league_name = url$stat_league_name,
-          season_name = ..3,
-          cached = cached
-        )
+    country <-  url$ccode
+    league_name <- url$name
+    season_options <- .fotmob_get_season_options(
+      cached = cached,
+      country = country,
+      league_name = league_name,
+      league_id = league_id,
+      team_or_player = team_or_player
+    )
+
+    if(nrow(season_options) == 0) {
+      stop(
+        sprintf("No seasons with stats found for league.")
+      )
+    }
+
+    purrr::map_dfr(
+      season_name,
+      ~fp(
+        country = country,
+        league_name = league_name,
+        league_id = league_id,
+        stat = stat,
+        full_stat = stat_type_df %>% dplyr::filter(.data$stat == !!stat) %>% dplyr::pull(.data$full_stat),
+        stat_league_name = url$stat_league_name,
+        season_name = .x,
+        season_options = season_options
       )
     )
   }
 
-  res <- purrr::map_dfr(
-    stat_type_df$stat,
+  params <- expand.grid(
+    stat = stat_type_df$stat,
+    season_name = season_name,
+    stringsAsFactors = FALSE
+  )
+
+  purrr::map2_dfr(
+    params$stat,
+    params$season_name,
     ~purrr::pmap_dfr(
       list(
         .x,
-        urls$id,
-        season_name
+        .y,
+        urls$id
       ),
       ~g(..1, ..2, ..3)
     )
   )
-  res
-}
 
-#' @importFrom purrr map_dfr
-.fotmob_get_single_league_season_stats <- function(
-  country,
-  league_name,
-  league_id,
-  team_or_player,
-  stat,
-  full_stat,
-  stat_league_name,
-  season_name,
-  cached
-) {
-
-  season_options <- .fotmob_get_season_options(
-    cached = cached,
-    country = country,
-    league_name = league_name,
-    league_id = league_id,
-    team_or_player = team_or_player
-  )
-
-  if(nrow(season_options) == 0) {
-    stop(
-      sprintf("No seasons with stats found for league.")
-    )
-  }
-
-  purrr::map_dfr(
-    season_name,
-    ~.fotmob_get_single_league_single_season_stats(
-      country = country,
-      league_name = league_name,
-      league_id = league_id,
-      stat = stat,
-      full_stat = full_stat,
-      stat_league_name = stat_league_name,
-      season_name = .x,
-      season_options = season_options
-    )
-  )
 }
 
 #' @importFrom glue glue glue_collapse
