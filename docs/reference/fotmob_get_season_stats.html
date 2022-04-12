@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.3000</span>
       </span>
     </div>
 
@@ -167,8 +167,10 @@
   <span class='va'>league_name</span>,
   <span class='va'>league_id</span>,
   <span class='va'>season_name</span>,
-  <span class='va'>team_or_player</span>,
-  <span class='va'>stat_type</span>
+  team_or_player <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"team"</span>, <span class='st'>"player"</span><span class='op'>)</span>,
+  <span class='va'>stat_type</span>,
+  stat_league_name <span class='op'>=</span> <span class='va'>league_name</span>,
+  cached <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -180,7 +182,7 @@
     </tr>
     <tr>
       <th>league_name</th>
-      <td><p>League names. If provided, `country` must also be provided (of the same length)</p></td>
+      <td><p>League names. If provided, `country` must also be provided (of the same length).</p></td>
     </tr>
     <tr>
       <th>league_id</th>
@@ -188,8 +190,7 @@
     </tr>
     <tr>
       <th>season_name</th>
-      <td><p>Season names in the format `"2021/2022"`. Multiple allowed. If multiple leagues are specified, season stats are retrieved for each league.</p>
-<p>Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.</p></td>
+      <td><p>Season names in the format `"2021/2022"`. Multiple allowed. If multiple leagues are specified, season stats are retrieved for each league.</p></td>
     </tr>
     <tr>
       <th>team_or_player</th>
@@ -197,7 +198,7 @@
     </tr>
     <tr>
       <th>stat_type</th>
-      <td><p>the type of statistic. Can only be one.
+      <td><p>the type of statistic. Can be more than one.
 For <code>entity = "player"</code>, must be one of the following:</p><ul>
 <li><p>"accurate_pass"</p></li>
 <li><p>"big_chance_created"</p></li>
@@ -229,11 +230,20 @@ For <code>entity = "player"</code>, must be one of the following:</p><ul>
 <li><p>"possession_percentage"</p></li>
 </ul></td>
     </tr>
+    <tr>
+      <th>stat_league_name</th>
+      <td><p>Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).</p>
+<p>Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.</p></td>
+    </tr>
+    <tr>
+      <th>cached</th>
+      <td><p>Whether to load the dataframe from the <a href='https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv'>data CSV</a>. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe of league standings</p>
+    <p>returns a dataframe of team or player stats</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
