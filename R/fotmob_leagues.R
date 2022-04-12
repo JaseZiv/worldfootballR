@@ -9,7 +9,7 @@
 
 #' @importFrom purrr transpose map_dfr
 #' @importFrom dplyr filter
-.fotmob_get_league_or_season_urls <- function(
+.fotmob_get_league_urls <- function(
   leagues,
   league_id = NULL,
   country = NULL,
@@ -18,7 +18,6 @@
   has_country <- !is.null(country)
   has_league_name <- !is.null(league_name)
   has_league_id <- !is.null(league_id)
-  is_league_ids <- !any(names(leagues) == "season_id")
   if(!has_league_id & !(has_country & has_league_name)) {
     stop(
       "Must provide `league_id` or both of `country` and `league_name`."
@@ -70,7 +69,7 @@
     length(league_id)
   )
 
-  if(is_league_ids & (n_urls < n_params)) {
+  if(n_urls < n_params) {
     warning(
       sprintf(
         "Found less leagues than specified (%s < %s).",
@@ -78,7 +77,7 @@
         n_params
       )
     )
-  } else if (is_league_ids & (n_urls > n_params)) {
+  } else if (n_urls > n_params) {
     warning(
       sprintf(
         "Found more leagues than specified (%s > %s).",
@@ -136,7 +135,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 
 .fotmob_get_league_ids <- function(cached = TRUE, ...) {
   leagues <- fotmob_get_league_ids(cached = cached)
-  .fotmob_get_league_or_season_urls(
+  .fotmob_get_league_urls(
     leagues = leagues,
     ...
   )
@@ -167,7 +166,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #' Returns match results for all matches played on the selected date from fotmob.com.
 #'
 #' @param country Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)
-#' @param league_name League names. If provided, `country` must also be provided (of the same length)
+#' @param league_name League names. If provided, `country` must also be provided (of the same length).
 #' @param league_id Fotmob ID for the league. Only used if `country` and `league_name` are not specified.
 #' @inheritParams fotmob_get_league_ids
 #'

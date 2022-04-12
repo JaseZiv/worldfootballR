@@ -9,7 +9,7 @@ fotmob_get_league_matches(country, league_name, league_id, cached = TRUE)
 \arguments{
 \item{country}{Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)}
 
-\item{league_name}{League names. If provided, `country` must also be provided (of the same length)}
+\item{league_name}{League names. If provided, `country` must also be provided (of the same length).}
 
 \item{league_id}{Fotmob ID for the league. Only used if `country` and `league_name` are not specified.}
 
