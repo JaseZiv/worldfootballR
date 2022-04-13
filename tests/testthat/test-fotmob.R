@@ -275,5 +275,10 @@ test_that("fotmob_get_match_players() works", {
   players <- fotmob_get_match_players(c(3609987, 3609979))
   expect_gt(nrow(players), 0)
   expect_equal(ncol(players), 32)
+
+  ## non-domestic league
+  players <- fotmob_get_match_players(3846347)
+  expect_gt(nrow(players), 0)
+  expect_equal(ncol(players), 32)
 })
 

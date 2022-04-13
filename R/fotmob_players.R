@@ -205,8 +205,20 @@ fotmob_get_match_players <- function(match_ids) {
       tibble::as_tibble()
     ## Overwrite the existing variables since the away team value is "bad".
     ##   See https://github.com/JaseZiv/worldfootballR/issues/93
-    res$home_team_id <- table$teams[1]
-    res$away_team_id <- table$teams[2]
+    ## For non-domestic leagues, the table element will not have a teams element
+    ##   See https://github.com/JaseZiv/worldfootballR/issues/111
+    coerce_team_id <- function(df, side) {
+      idx <- ifelse(side == "home", 1, 2)
+      team_col <- sprintf("%s_team_id", side)
+      df[[team_col]] <- ifelse(
+        is.logical(table) | !("teams" %in% names(table)),
+        df[[team_col]],
+        table$teams[idx]
+      )
+      df
+    }
+    res <- coerce_team_id(res, "home")
+    res <- coerce_team_id(res, "away")
     res
   }
 
