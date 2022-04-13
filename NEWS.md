@@ -1,3 +1,17 @@
+# worldfootballR 0.5.1.4000
+
+
+### Improvements / Breaking Changes
+
+* `tm_player_bio()` now also returns the player's maximum valuation (`max_player_valuation`) and the date that max valuation was recorded (`max_player_valuation_date`). **Note:** there will now be an additional two columns to the output
+
+
+### Bugs
+
+* `tm_player_bio` returning player number instead of name and also NAs for valuation [#109](https://github.com/JaseZiv/worldfootballR/issues/109)
+
+
+***
 
 # worldfootballR 0.5.1.3000
 

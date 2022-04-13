@@ -83,13 +83,13 @@ test_that("tm_player_bio() works", {
   testthat::skip_on_cran()
   hazard_bio <- tm_player_bio(player_url = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
   expect_type(hazard_bio, "list")
-  expect_equal(ncol(hazard_bio), 19)
+  expect_equal(ncol(hazard_bio), 21)
 
   burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
   # then pass all those URLs to the tm_player_bio
   burnley_bios <- tm_player_bio(player_urls = burnley_player_urls[1:3])
   expect_type(burnley_bios, "list")
-  expect_equal(ncol(burnley_bios), 21)
+  expect_equal(ncol(burnley_bios), 23)
 
 })
 
