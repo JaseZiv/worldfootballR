@@ -1,3 +1,9 @@
+# worldfootballR 0.5.1.5000
+
+### Bugs
+
+* `fotmob_get_match_players` failed for non-domestic leagues because the `team` element does id not exist under the `table` element. Fix is to have more robust element for assigning team ids for players.
+
 # worldfootballR 0.5.1.4000
 
 
