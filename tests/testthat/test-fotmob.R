@@ -3,6 +3,7 @@ context("Testing fotmob functions")
 
 test_that("fotmob_get_matches_by_date() works", {
   testthat::skip_on_cran()
+
   results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
   expect_gt(nrow(results), 0)
   expect_equal(ncol(results), 12)
@@ -100,60 +101,76 @@ test_that("fotmob_get_league_matches() works", {
 test_that("fotmob_get_league_tables() works", {
   testthat::skip_on_cran()
 
-  league_table <- fotmob_get_league_tables(
+  n_expected_domestic_league_table_cols <- 16
+  epl_league_table <- fotmob_get_league_tables(
     country = "ENG",
     league_name = "Premier League"
   )
 
-  expect_gt(nrow(league_table), 0)
-  expect_equal(ncol(league_table), 14)
+  ## should be 20 teams x 3 table types = 60
+  expect_gt(nrow(epl_league_table), 0)
+  expect_equal(ncol(epl_league_table), n_expected_domestic_league_table_cols)
 
-  league_table <- fotmob_get_league_tables(
+  epl_league_table <- fotmob_get_league_tables(
     league_id = 47
   )
 
-  expect_gt(nrow(league_table), 0)
-  expect_equal(ncol(league_table), 14)
+  expect_gt(nrow(epl_league_table), 0)
+  expect_equal(ncol(epl_league_table), n_expected_domestic_league_table_cols)
 
-  league_table <- fotmob_get_league_tables(
+  epl_ll_league_tables <- fotmob_get_league_tables(
     country =     c("ENG",            "ESP"   ),
     league_name = c("Premier League", "LaLiga")
   )
 
-  expect_gt(nrow(league_table), 0)
-  expect_equal(ncol(league_table), 14)
+  ## should be 2 leagues x 20 teams x 3 table types = 120
+  expect_gt(nrow(epl_ll_league_tables), 0)
+  expect_equal(ncol(epl_ll_league_tables), n_expected_domestic_league_table_cols)
 
-  table_types <- dplyr::distinct(league_table, table_type)
+  table_types <- dplyr::distinct(epl_ll_league_tables, table_type)
   expect_equal(
     table_types$table_type,
     c("all", "home", "away")
   )
+
+  ## non-domestic league
+  n_expected_int_league_table_cols <- 20
+  cl_league_table <- fotmob_get_league_tables(
+    country =     "INT",
+    league_name = "Champions League",
+    cached = FALSE
+  )
+
+  ## should be 32 teams x 3 table types = 96
+  expect_gt(nrow(cl_league_table), 0)
+  expect_equal(ncol(cl_league_table), n_expected_int_league_table_cols)
 
 })
 
 test_that("fotmob_get_season_stats() works", {
   testthat::skip_on_cran()
 
+  n_expected_stat_cols <- 19
   epl_team_xg_21_a <- fotmob_get_season_stats(
     league_id = 47,
     season_name = "2020/2021",
-    stat_type = "xg",
+    stat_name = "Expected Goals",
     team_or_player = "team"
   )
   expect_gt(nrow(epl_team_xg_21_a), 0)
-  expect_equal(ncol(epl_team_xg_21_a), 18)
+  expect_equal(ncol(epl_team_xg_21_a), n_expected_stat_cols)
 
   get_epl_season_stats <- function(
     season_name = "2020/2021",
     team_or_player = "team",
-    stat_type = "xg"
+    stat_name = "Expected Goals"
   ) {
     fotmob_get_season_stats(
       country = "ENG",
       league_name = "Premier League",
       season_name = season_name,
       team_or_player = team_or_player,
-      stat_type = stat_type
+      stat_name = stat_name
     )
   }
 
@@ -181,7 +198,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "player"
   )
   expect_gt(nrow(epl_player_xg_21), 0)
-  expect_equal(ncol(epl_player_xg_21), 18)
+  expect_equal(ncol(epl_player_xg_21), n_expected_stat_cols)
 
   ## similar to team test
   expect_warning(
@@ -208,10 +225,10 @@ test_that("fotmob_get_season_stats() works", {
     )
   )
 
-  ## invalid `stat_type`
+  ## invalid `stat_name`
   expect_error(
     get_epl_season_stats(
-      stat_type = "foo"
+      stat_name = "foo"
     )
   )
 
@@ -222,16 +239,27 @@ test_that("fotmob_get_season_stats() works", {
     )
   )
 
+  ## Does this work for an international tournament?
+  cl_team_xg_21 <- fotmob_get_season_stats(
+    league_id = 42,
+    season_name = "2020/2021",
+    stat_name = "Expected Goals",
+    team_or_player = "team",
+    cached = FALSE
+  )
+  expect_gt(nrow(cl_team_xg_21), 0)
+  expect_equal(ncol(cl_team_xg_21), n_expected_stat_cols)
+
   ## multiple leagues
   epl_ll_team_xg_21 <- fotmob_get_season_stats(
     league_id = c(47, 87),
     season_name = "2020/2021",
-    stat_type = "xg",
+    stat_name = "Expected Goals",
     team_or_player = "team"
   )
 
   expect_gt(nrow(epl_ll_team_xg_21), nrow(epl_team_xg_21_a))
-  expect_equal(ncol(epl_ll_team_xg_21), 18)
+  expect_equal(ncol(epl_ll_team_xg_21), n_expected_stat_cols)
 
   ## multiple seasons
   epl_team_xg_2122 <- get_epl_season_stats(
@@ -239,46 +267,57 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   expect_gt(nrow(epl_team_xg_2122), nrow(epl_team_xg_21_a))
-  expect_equal(ncol(epl_team_xg_2122), 18)
+  expect_equal(ncol(epl_team_xg_2122), n_expected_stat_cols)
 
   ## more than one stat
   epl_team_xgs_21 <- get_epl_season_stats(
-    stat_type = c("xg", "xg_conceded")
+    stat_name = c("Expected Goals", "Expected Goals conceded")
   )
   expect_gt(nrow(epl_team_xgs_21), nrow(epl_team_xg_21_a))
-  expect_equal(ncol(epl_team_xgs_21), 18)
+  expect_equal(ncol(epl_team_xgs_21), n_expected_stat_cols)
 
   ## multiple leagues, seasons, and stats
   epl_ll_team_xgs_2122 <- fotmob_get_season_stats(
     league_id = c(47, 87),
     season_name = c("2020/2021", "2021/2022"),
-    stat_type = c("xg", "xg_conceded"),
+    stat_name = c("Expected Goals", "Expected Goals conceded"),
     team_or_player = "team"
   )
 
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_ll_team_xg_21))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xg_2122))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xgs_21))
-  expect_equal(ncol(epl_ll_team_xgs_2122), 18)
+  expect_equal(ncol(epl_ll_team_xgs_2122), n_expected_stat_cols)
 })
 
 test_that("fotmob_get_match_details() works", {
   testthat::skip_on_cran()
+
+  n_expected_match_detail_cols <- 15
   details <- fotmob_get_match_details(c(3609987, 3609979))
+
+  ## 1 row per match
   expect_gt(nrow(details), 0)
-  expect_equal(ncol(details), 15)
+  expect_equal(ncol(details), n_expected_match_detail_cols)
+
+  ## non-domestic match
+  details <- fotmob_get_match_details(3846342)
+  expect_gt(nrow(details), 0)
+  expect_equal(ncol(details), n_expected_match_detail_cols)
 })
 
 
 test_that("fotmob_get_match_players() works", {
   testthat::skip_on_cran()
+
+  n_expected_match_player_cols <- 32
   players <- fotmob_get_match_players(c(3609987, 3609979))
   expect_gt(nrow(players), 0)
-  expect_equal(ncol(players), 32)
+  expect_equal(ncol(players), n_expected_match_player_cols)
 
   ## non-domestic league
   players <- fotmob_get_match_players(3846347)
   expect_gt(nrow(players), 0)
-  expect_equal(ncol(players), 32)
+  expect_equal(ncol(players), n_expected_match_player_cols)
 })
 
