@@ -10,7 +10,7 @@ fotmob_get_season_stats(
   league_id,
   season_name,
   team_or_player = c("team", "player"),
-  stat_type,
+  stat_name,
   stat_league_name = league_name,
   cached = TRUE
 )
@@ -25,6 +25,12 @@ fotmob_get_season_stats(
 \item{season_name}{Season names in the format `"2021/2022"`. Multiple allowed. If multiple leagues are specified, season stats are retrieved for each league.}
 
 \item{team_or_player}{return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.}
+
+\item{stat_league_name}{Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).
+
+Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.}
+
+\item{cached}{Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.}
 
 \item{stat_type}{the type of statistic. Can be more than one.
 For \code{entity = "player"}, must be one of the following:
@@ -62,12 +68,6 @@ Additional stats available for \code{"team"} are:
 \item{"goals_per_match"}
 \item{"possession_percentage"}
 }}
-
-\item{stat_league_name}{Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).
-
-Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.}
-
-\item{cached}{Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.}
 }
 \value{
 returns a dataframe of team or player stats
