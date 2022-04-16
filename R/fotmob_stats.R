@@ -95,41 +95,33 @@
 #' Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.
 #'
 #' @param team_or_player return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.
-#' @param stat_type the type of statistic. Can be more than one.
-#' For \code{entity = "player"}, must be one of the following:
+#' @param stat_name the type of statistic. Can be more than one.
+#' `stat_name` may be one of the following, although it may not be available for both \code{"team"} or \code{"player"}:
 #' \itemize{
-#' \item{"accurate_pass"}
-#' \item{"big_chance_created"}
-#' \item{"big_chance_missed"}
-#' \item{"clean_sheet"}
-#' \item{"effective_clearance"}
-#' \item{"xg"}
-#' \item{"xg_conceded"}
-#' \item{"assist"}
-#' \item{"goals"}
-#' \item{"mins_played_goal"}
-#' \item{"ontarget_scoring_att"}
-#' \item{"penalty_won"}
-#' \item{"poss_won_att_3rd"}
-#' \item{"rating"}
-#' \item{"red_card"}
-#' \item{"saves"}
-#' \item{"total_att_assist"}
-#' \item{"won_contest"}
-#' \item{"won_tackle"}
-#' \item{"yellow_card"}
-#' }
-#' For `entity = "team"` all of the same stats are available, with the exception of:
-#' \itemize{
-#' \item{"goals"}
-#' \item{"assist"}
-#' \item{"won_contest"}
-#' }
-#' Additional stats available for \code{"team"} are:
-#' \itemize{
-#' \item{"goals_conceded_per_match"}
-#' \item{"goals_per_match"}
-#' \item{"possession_percentage"}
+#' \item{"Accurate passes per match"}
+#' \item{"Average possession"}
+#' \item{"Assists}
+#' \item{"Big chances created"}
+#' \item{"Big chances missed"}
+#' \item{"Clean sheets"}
+#' \item{"Clearances per match"}
+#' \item{"Expected Goals"}
+#' \item{"Expected Goals conceded"}
+#' \item{"FotMob rating"}
+#' \item{"Goals"}
+#' \item{"Goals conceded per match"}
+#' \item{"Goals per match"}
+#' \item{"Key passes per match"}
+#' \item{"Minutes per goal"}
+#' \item{"Penalties awarded"}
+#' \item{"Penalties conceded"}
+#' \item{"Possession won final 3rd"}
+#' \item{"Red cards"}
+#' \item{"Saves per match"}
+#' \item{"Shots on target per match"}
+#' \item{"Successful dribbles per match"}
+#' \item{"Successful tackles per match"}
+#' \item{"Yellow cards"}
 #' }
 #'
 #' @return returns a dataframe of team or player stats
@@ -138,6 +130,7 @@
 #' @importFrom rlang maybe_missing .data
 #' @importFrom dplyr filter select
 #' @importFrom tibble tibble
+#' @importFrom glue glue_collapse
 #'
 #' @export
 #' @examples
