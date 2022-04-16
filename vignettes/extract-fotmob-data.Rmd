@@ -260,7 +260,7 @@ unnested_results %>%
 
 You should see international tournaments in the output from `fotmob_get_matches_by_date()`.
 
-```{r fotmob_get_matches_by_date}
+```{r fotmob_get_matches_by_date_int}
 results <- fotmob_get_matches_by_date("20220412")
 results %>%
   dplyr::select(primary_id, ccode, league_name = name, matches) %>%
@@ -286,7 +286,7 @@ dplyr::glimpse(away_league_tables)
 
 Note that the output of `fotmob_get_league_tables` for a tournament has more columns.
 
-```{r fotmob_get_league_tables}
+```{r fotmob_get_league_tables_int}
 cl_table <- fotmob_get_league_tables(league_id = 42)
 
 cl_table %>%
