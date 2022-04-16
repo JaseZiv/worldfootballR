@@ -150,7 +150,7 @@ team_xgs_2021 <- fotmob_get_season_stats(
   team_or_player = "team"
 )
 
-## 2 leagues x 20 teams x 2 seasons x 2 stats = 160 records
+## 2 leagues x 20 teams x 2 seasons x 2 stats = 160 rows
 team_xgs_2021 %>% nrow()
 ```
 
@@ -158,11 +158,11 @@ International tournament data can be retrieved.
 
 ```{r cl_team_xg_2021}
 fotmob_get_season_stats(
-  country = "International",
-  league_name = "Champions League",
+  league_id = 42,
   season_name = "2020/2021",
   stat_name = "Expected Goals",
-  team_or_player = "team"
+  team_or_player = "team",
+  cached = FALSE
 )
 ```
 
@@ -282,6 +282,16 @@ league_tables <- fotmob_get_league_tables(
 away_league_tables <- league_tables %>%
   dplyr::filter(table_type == "away")
 dplyr::glimpse(away_league_tables)
+```
+
+Note that the output of `fotmob_get_league_tables` for a tournament has more columns.
+
+```{r fotmob_get_league_tables}
+cl_table <- fotmob_get_league_tables(league_id = 42)
+
+cl_table %>%
+  dplyr::filter(table_type == "all") %>% 
+  dplyr::glimpse()
 ```
 
 ------------------------------------------------------------------------
