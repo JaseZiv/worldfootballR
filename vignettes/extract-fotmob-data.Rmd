@@ -161,8 +161,7 @@ fotmob_get_season_stats(
   league_id = 42,
   season_name = "2020/2021",
   stat_name = "Expected Goals",
-  team_or_player = "team",
-  cached = FALSE
+  team_or_player = "team"
 )
 ```
 

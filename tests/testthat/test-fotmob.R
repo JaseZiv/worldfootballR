@@ -27,6 +27,7 @@ test_that("fotmob_get_league_matches() works", {
   expect_gt(nrow(league_matches), 0)
   expect_equal(ncol(league_matches), 11)
 
+  ## test cached
   league_matches <- fotmob_get_league_matches(
     league_id = 47,
     cached = FALSE
@@ -244,8 +245,7 @@ test_that("fotmob_get_season_stats() works", {
     league_id = 42,
     season_name = "2020/2021",
     stat_name = "Expected Goals",
-    team_or_player = "team",
-    cached = FALSE
+    team_or_player = "team"
   )
   expect_gt(nrow(cl_team_xg_21), 0)
   expect_equal(ncol(cl_team_xg_21), n_expected_stat_cols)
