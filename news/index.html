@@ -76,6 +76,19 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.1.6000" id="worldfootballr-0516000">worldfootballR 0.5.1.6000<a class="anchor" aria-label="anchor" href="#worldfootballr-0516000"></a></h2>
+<div class="section level4">
+<h4 id="bugs-0-5-1-6000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-1-6000"></a></h4>
+<ul><li>
+<code>fotmob_get_seasons_stats</code> failed for non-domestic leagues, even when setting <code>cached=TRUE</code>. Fix was to add logic such that the latest season for a given league is found from the “See More” links on a generic stats page.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="improvements--breaking-changes-0-5-1-6000">Improvements / Breaking Changes<a class="anchor" aria-label="anchor" href="#improvements--breaking-changes-0-5-1-6000"></a></h4>
+<ul><li>Additional processing logic added such that <code>fotmob_get_league_tables</code> works properly for international tournaments.</li>
+<li>The <code>stat_type</code> argument in <code>fotmob_get_seasons_stats</code> renamed to <code>stat_name</code> to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. <a href="https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players" class="external-link">the Liverpool player stats page</a>. Previously the values came from <a href="https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv" class="external-link">a custom, pre-saved dataframe</a>.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1.5000" id="worldfootballr-0515000">worldfootballR 0.5.1.5000<a class="anchor" aria-label="anchor" href="#worldfootballr-0515000"></a></h2>
 <div class="section level4">
 <h4 id="bugs-0-5-1-5000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-1-5000"></a></h4>
