@@ -307,7 +307,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom rlang .data
-#' @importFrom dplyr select all_of
+#' @importFrom dplyr select all_of bind_rows rename mutate
 #' @importFrom tidyr pivot_longer unnest_longer unnest
 .fotmob_get_league_tables <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
@@ -316,12 +316,34 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
   } else {
     .fotmob_extract_data_from_page_props
   }
-  table <- f(resp)$tableData$table %>%
+  table_init <- f(resp)$tableData
+  cols <- c("all", "home", "away")
+  table <- if("table" %in% names(table_init)) {
+    table_init$table %>% dplyr::select(dplyr::all_of(cols))
+  } else if("tables" %in% names(table_init)) {
+    tables <- dplyr::bind_rows(table_init$tables)
+    tables$all <- tables$table$all
+    tables$home <- tables$table$home
+    tables$away <- tables$table$away
+    tables %>%
+      dplyr::rename(
+        group_id = .data$leagueId,
+        group_page_url = .data$pageUrl,
+        group_name = .data$leagueName
+      ) %>%
+      dplyr::select(
+        -c(.data$table, .data$legend)
+      )
+  } else {
+    stop(
+      "Expected to find `table` or `tables` element but did not."
+    )
+  }
+  table <- table %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
-  cols <- c("all", "home", "away")
-  table %>%
-    dplyr::select(dplyr::all_of(cols)) %>%
+
+  res <- table %>%
     tidyr::pivot_longer(
       dplyr::all_of(cols),
       names_to = "table_type",
@@ -334,5 +356,15 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
       .data$table
     ) %>%
     janitor::clean_names() %>%
-    tibble::as_tibble()
+    tibble::as_tibble() %>%
+    dplyr::rename(
+      team_page_url = .data$page_url
+    )
+
+  res %>%
+    dplyr::mutate(
+      league_id = !!league_id,
+      page_url = !!page_url,
+      .before = 1
+    )
 }

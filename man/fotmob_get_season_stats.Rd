@@ -10,7 +10,7 @@ fotmob_get_season_stats(
   league_id,
   season_name,
   team_or_player = c("team", "player"),
-  stat_type,
+  stat_name,
   stat_league_name = league_name,
   cached = TRUE
 )
@@ -26,41 +26,33 @@ fotmob_get_season_stats(
 
 \item{team_or_player}{return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.}
 
-\item{stat_type}{the type of statistic. Can be more than one.
-For \code{entity = "player"}, must be one of the following:
+\item{stat_name}{the type of statistic. Can be more than one.
+`stat_name` may be one of the following, although it may not be available for both \code{"team"} or \code{"player"}:
 \itemize{
-\item{"accurate_pass"}
-\item{"big_chance_created"}
-\item{"big_chance_missed"}
-\item{"clean_sheet"}
-\item{"effective_clearance"}
-\item{"xg"}
-\item{"xg_conceded"}
-\item{"assist"}
-\item{"goals"}
-\item{"mins_played_goal"}
-\item{"ontarget_scoring_att"}
-\item{"penalty_won"}
-\item{"poss_won_att_3rd"}
-\item{"rating"}
-\item{"red_card"}
-\item{"saves"}
-\item{"total_att_assist"}
-\item{"won_contest"}
-\item{"won_tackle"}
-\item{"yellow_card"}
-}
-For `entity = "team"` all of the same stats are available, with the exception of:
-\itemize{
-\item{"goals"}
-\item{"assist"}
-\item{"won_contest"}
-}
-Additional stats available for \code{"team"} are:
-\itemize{
-\item{"goals_conceded_per_match"}
-\item{"goals_per_match"}
-\item{"possession_percentage"}
+\item{"Accurate passes per match"}
+\item{"Average possession"}
+\item{"Assists}
+\item{"Big chances created"}
+\item{"Big chances missed"}
+\item{"Clean sheets"}
+\item{"Clearances per match"}
+\item{"Expected Goals"}
+\item{"Expected Goals conceded"}
+\item{"FotMob rating"}
+\item{"Goals"}
+\item{"Goals conceded per match"}
+\item{"Goals per match"}
+\item{"Key passes per match"}
+\item{"Minutes per goal"}
+\item{"Penalties awarded"}
+\item{"Penalties conceded"}
+\item{"Possession won final 3rd"}
+\item{"Red cards"}
+\item{"Saves per match"}
+\item{"Shots on target per match"}
+\item{"Successful dribbles per match"}
+\item{"Successful tackles per match"}
+\item{"Yellow cards"}
 }}
 
 \item{stat_league_name}{Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).

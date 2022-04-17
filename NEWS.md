@@ -1,3 +1,14 @@
+# worldfootballR 0.5.1.6000
+
+### Bugs
+
+* `fotmob_get_seasons_stats` failed for non-domestic leagues, even when setting `cached=TRUE`. Fix was to add logic such that the latest season for a given league is found from the "See More" links on a generic stats page.
+
+### Improvements / Breaking Changes
+
+* Additional processing logic added such that `fotmob_get_league_tables` works properly for international tournaments.
+* The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players). Previously the values came from [a custom, pre-saved dataframe](https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv).
+
 # worldfootballR 0.5.1.5000
 
 ### Bugs
