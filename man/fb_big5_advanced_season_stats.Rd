@@ -4,14 +4,21 @@
 \alias{fb_big5_advanced_season_stats}
 \title{Big 5 Euro League Season Stats}
 \usage{
-fb_big5_advanced_season_stats(season_end_year, stat_type, team_or_player)
+fb_big5_advanced_season_stats(
+  season_end_year,
+  stat_type,
+  team_or_player,
+  time_pause = 2
+)
 }
 \arguments{
 \item{season_end_year}{the year(s) the season concludes}
 
 \item{stat_type}{the type of team statistics the user requires}
 
-\item{team_or_player}{result either summarised for each team, or individual players
+\item{team_or_player}{result either summarised for each team, or individual players}
+
+\item{time_pause}{the wait time (in seconds) between page loads
 
 The statistic type options (stat_type) include:
 

@@ -3,6 +3,7 @@
 #' Returns match summary data for selected match URLs, including goals, subs and cards
 #'
 #' @param match_url the fbref.com URL for the required match
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a dataframe with the match events (goals, cards, subs) for selected matches
 #'
@@ -17,10 +18,15 @@
 #' get_match_summary(match_url = match)
 #' }
 #'
-get_match_summary <- function(match_url) {
+get_match_summary <- function(match_url, time_pause=2) {
 
-  get_each_match_summary <- function(match_url) {
+  time_wait <- time_pause
+
+  get_each_match_summary <- function(match_url, time_pause=time_wait) {
     pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     each_game_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 

@@ -3,6 +3,7 @@
 #' Returns lineups for home and away teams for a selected match
 #'
 #' @param match_url the fbref.com URL for the required match
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a dataframe with the team lineups for a selected match
 #'
@@ -16,13 +17,18 @@
 #' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 #' get_match_lineups(match_url = match)
 #' }
-get_match_lineups <- function(match_url) {
+get_match_lineups <- function(match_url, time_pause=2) {
   # .pkg_message("Scraping lineups")
 
   main_url <- "https://fbref.com"
 
-  get_each_match_lineup <- function(match_url) {
+  time_wait <- time_pause
+
+  get_each_match_lineup <- function(match_url, time_pause=time_wait) {
     pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
 

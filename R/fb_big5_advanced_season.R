@@ -7,6 +7,7 @@
 #' @param season_end_year the year(s) the season concludes
 #' @param stat_type the type of team statistics the user requires
 #' @param team_or_player result either summarised for each team, or individual players
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' The statistic type options (stat_type) include:
 #'
@@ -28,7 +29,7 @@
 #' fb_big5_advanced_season_stats(season_end_year=2021,stat_type="possession",team_or_player="player")
 #' }
 
-fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_player) {
+fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_player, time_pause=2) {
 
   stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keepers", "keepers_adv")
 
@@ -48,8 +49,12 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
     dplyr::arrange(season_end_year) %>%
     dplyr::pull(seasons_urls) %>% unique()
 
+  time_wait <- time_pause
 
-  get_each_big5_stats_type <- function(season_url) {
+  get_each_big5_stats_type <- function(season_url, time_pause=time_wait) {
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     pb$tick()
 

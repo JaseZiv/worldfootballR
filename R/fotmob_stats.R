@@ -214,7 +214,7 @@ fotmob_get_season_stats <- function(
     )
 
     stat_options <- options %>%
-      dplyr::filter(option_type == "stat") %>%
+      dplyr::filter(.data$option_type == "stat") %>%
       dplyr::select(stat_name = .data$name, stat = .data$id)
 
     filt_stat_options <- stat_options %>%
@@ -227,7 +227,7 @@ fotmob_get_season_stats <- function(
     }
 
     season_options <- options %>%
-      dplyr::filter(option_type == "season") %>%
+      dplyr::filter(.data$option_type == "season") %>%
       dplyr::select(.data$league_name, season_name = .data$name, season_id = .data$id)
 
     if(nrow(season_options) == 0) {

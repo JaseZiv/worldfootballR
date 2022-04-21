@@ -1,3 +1,12 @@
+# worldfootballR 0.5.2
+
+### Improvements
+
+* All FBref functions now contain a user defined pause (`time_pause`) before each page load to abide by their new rate limiting rules. See [here](https://www.sports-reference.com/bot-traffic.html). Default is set to `2` seconds
+* Internal function`.get_each_season_results()` exported now
+
+***
+
 # worldfootballR 0.5.1.6000
 
 ### Bugs
@@ -9,11 +18,15 @@
 * Additional processing logic added such that `fotmob_get_league_tables` works properly for international tournaments.
 * The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players). Previously the values came from [a custom, pre-saved dataframe](https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv).
 
+***
+
 # worldfootballR 0.5.1.5000
 
 ### Bugs
 
 * `fotmob_get_match_players` failed for non-domestic leagues because the `team` element does id not exist under the `table` element. Fix is to have more robust element for assigning team ids for players.
+
+***
 
 # worldfootballR 0.5.1.4000
 
@@ -35,6 +48,8 @@
 ### Improvements
 
 * `fotmob_get_season_stats` gains `stat_league_name` and can now be used for all leagues since seasons are programmatically scraped
+
+***
 
 # worldfootballR 0.5.1.2000
 

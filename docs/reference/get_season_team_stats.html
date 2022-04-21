@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -162,7 +162,14 @@
     <p>Returns different team season statistics results for a given league season and stat type</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_season_team_stats</span><span class='op'>(</span><span class='va'>country</span>, <span class='va'>gender</span>, <span class='va'>season_end_year</span>, <span class='va'>tier</span>, <span class='va'>stat_type</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_season_team_stats</span><span class='op'>(</span>
+  <span class='va'>country</span>,
+  <span class='va'>gender</span>,
+  <span class='va'>season_end_year</span>,
+  <span class='va'>tier</span>,
+  <span class='va'>stat_type</span>,
+  time_pause <span class='op'>=</span> <span class='fl'>2</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,7 +192,11 @@
     </tr>
     <tr>
       <th>stat_type</th>
-      <td><p>the type of team statistics the user requires</p>
+      <td><p>the type of team statistics the user requires</p></td>
+    </tr>
+    <tr>
+      <th>time_pause</th>
+      <td><p>the wait time (in seconds) between page loads</p>
 <p>The statistic type options (stat_type) include:</p>
 <p><em>"league_table"</em>, <em>"league_table_home_away</em>", <em>"standard"</em>,
 <em>"keeper"</em>, <em>"keeper_adv"</em>, <em>"shooting"</em>, <em>"passing"</em>,

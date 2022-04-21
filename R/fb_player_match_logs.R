@@ -5,6 +5,7 @@
 #' @param player_url the URL of the player (can come from fb_player_urls())
 #' @param season_end_year the year the season(s) concludes
 #' @param stat_type the type of statistic required
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #'The statistic type options (stat_type) include:
 #'
@@ -24,13 +25,17 @@
 #' season_end_year = 2021, stat_type = 'summary')
 #' }
 
-fb_player_match_logs <- function(player_url, season_end_year, stat_type) {
+fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pause=2) {
 
   stat_types <- c("summary", "keepers", "passing", "passing_types", "gca", "defense", "possession", "misc")
   if(!stat_type %in% stat_types) stop("check stat type")
 
 
   main_url <- "https://fbref.com"
+
+  # put sleep in as per new user agreement on FBref
+  Sys.sleep(time_pause)
+
   player_page <- xml2::read_html(player_url)
 
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
@@ -90,6 +95,7 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type) {
 
   # Get match logs for stat -------------------------------------------------
 
+  Sys.sleep(1)
   stat_page <- xml2::read_html(paste0(main_url, log_url))
 
   tab <- stat_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()

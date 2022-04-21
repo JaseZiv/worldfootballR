@@ -9,7 +9,8 @@ get_match_urls(
   gender,
   season_end_year,
   tier = "1st",
-  non_dom_league_url = NA
+  non_dom_league_url = NA,
+  time_pause = 2
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ get_match_urls(
 \item{tier}{the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on}
 
 \item{non_dom_league_url}{the URL for Cups and Competitions found at https://fbref.com/en/comps/}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 returns a character vector of all fbref match URLs for selected competition, season and gender

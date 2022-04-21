@@ -4,14 +4,16 @@
 \alias{get_advanced_match_stats}
 \title{Get advanced match stats}
 \usage{
-get_advanced_match_stats(match_url, stat_type, team_or_player)
+get_advanced_match_stats(match_url, stat_type, team_or_player, time_pause = 2)
 }
 \arguments{
 \item{match_url}{the three character country code for all countries}
 
 \item{stat_type}{the type of team statistics the user requires}
 
-\item{team_or_player}{result either summarised for each team, or individual players
+\item{team_or_player}{result either summarised for each team, or individual players}
+
+\item{time_pause}{the wait time (in seconds) between page loads
 
 The statistic type options (stat_type) include:
 

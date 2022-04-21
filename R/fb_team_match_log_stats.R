@@ -4,6 +4,7 @@
 #'
 #' @param team_urls the URL(s) of the teams(s) (can come from fb_teams_urls())
 #' @param stat_type the type of statistic required
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' The statistic type options (stat_type) include:
 #'
@@ -26,15 +27,21 @@
 #' fb_team_match_log_stats(team_urls = man_city_url, stat_tyoe = "passing")
 #' }
 
-fb_team_match_log_stats <- function(team_urls, stat_type) {
+fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=2) {
   # .pkg_message("Scraping team match logs...")
   main_url <- "https://fbref.com"
 
   stat_types <- c("shooting", "keeper", "passing", "passing_types", "gca", "defense", "possession", "misc")
   if(!stat_type %in% stat_types) stop("check stat type")
 
-  get_each_team_log <- function(team_url) {
+  time_wait <- time_pause
+
+  get_each_team_log <- function(team_url, time_pause=time_wait) {
     pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
+
     team_page <- xml2::read_html(team_url)
 
     team_name <- sub('.*\\/', '', team_url) %>% gsub("-Stats", "", .) %>% gsub("-", " ", .)

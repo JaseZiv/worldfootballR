@@ -4,10 +4,12 @@
 \alias{get_team_match_results}
 \title{Get team match results}
 \usage{
-get_team_match_results(team_url)
+get_team_match_results(team_url, time_pause = 2)
 }
 \arguments{
 \item{team_url}{the URL for the team season}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 returns a dataframe with the results of all games played by the selected team(s)

@@ -7,6 +7,7 @@
 #' @param season_end_year the year the season(s) concludes
 #' @param tier the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on
 #' @param stat_type the type of team statistics the user requires
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' The statistic type options (stat_type) include:
 #'
@@ -27,7 +28,7 @@
 #' \donttest{
 #' get_season_team_stats("ITA", "M", 2021, "1st", "defense")
 #' }
-get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type) {
+get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type, time_pause=2) {
 
   # .pkg_message("Scraping season {stat_type} stats")
 
@@ -49,9 +50,12 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
     dplyr::arrange(season_end_year) %>%
     dplyr::pull(seasons_urls) %>% unique()
 
+  time_wait <- time_pause
 
+  get_each_stats_type <- function(season_url, time_pause=time_wait) {
 
-  get_each_stats_type <- function(season_url) {
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     season_stats_page <- xml2::read_html(season_url)
 

@@ -4,10 +4,12 @@
 \alias{get_match_summary}
 \title{Get match summary}
 \usage{
-get_match_summary(match_url)
+get_match_summary(match_url, time_pause)
 }
 \arguments{
 \item{match_url}{the fbref.com URL for the required match}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 returns a dataframe with the match events (goals, cards, subs) for selected matches
