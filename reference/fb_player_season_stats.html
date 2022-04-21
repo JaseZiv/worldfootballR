@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1.5000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_season_stats</span><span class="op">(</span><span class="va">player_url</span>, <span class="va">stat_type</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_season_stats</span><span class="op">(</span><span class="va">player_url</span>, <span class="va">stat_type</span>, time_pause <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,7 +89,9 @@
     <dl><dt>player_url</dt>
 <dd><p>the URL(s) of the player(s) (can come from fb_player_urls())</p></dd>
 <dt>stat_type</dt>
-<dd><p>the type of statistic required</p>
+<dd><p>the type of statistic required</p></dd>
+<dt>time_pause</dt>
+<dd><p>the wait time (in seconds) between page loads</p>
 <p>The statistic type options (stat_type) include:</p>
 <p><em>"standard"</em>, <em>"shooting"</em>, <em>"passing"</em>,
 <em>"passing_types"</em>, <em>"gca"</em>, <em>"defense"</em>, <em>"possession"</em>

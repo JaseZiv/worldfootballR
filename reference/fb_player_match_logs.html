@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1.5000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_match_logs</span><span class="op">(</span><span class="va">player_url</span>, <span class="va">season_end_year</span>, <span class="va">stat_type</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_match_logs</span><span class="op">(</span><span class="va">player_url</span>, <span class="va">season_end_year</span>, <span class="va">stat_type</span>, time_pause <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,7 +91,9 @@
 <dt>season_end_year</dt>
 <dd><p>the year the season(s) concludes</p></dd>
 <dt>stat_type</dt>
-<dd><p>the type of statistic required</p>
+<dd><p>the type of statistic required</p></dd>
+<dt>time_pause</dt>
+<dd><p>the wait time (in seconds) between page loads</p>
 <p>The statistic type options (stat_type) include:</p>
 <p><em>"summary"</em>, <em>"keepers"</em>, <em>"passing"</em>, <em>"passing_types"</em>,
 <em>"gca"</em>, <em>"defense"</em>, <em>"possession"</em>, <em>"misc"</em></p></dd>

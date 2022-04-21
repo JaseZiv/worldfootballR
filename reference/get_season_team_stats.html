@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1.5000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
       </span>
     </div>
 
@@ -81,7 +81,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_season_team_stats</span><span class="op">(</span><span class="va">country</span>, <span class="va">gender</span>, <span class="va">season_end_year</span>, <span class="va">tier</span>, <span class="va">stat_type</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_season_team_stats</span><span class="op">(</span>
+  <span class="va">country</span>,
+  <span class="va">gender</span>,
+  <span class="va">season_end_year</span>,
+  <span class="va">tier</span>,
+  <span class="va">stat_type</span>,
+  time_pause <span class="op">=</span> <span class="fl">2</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -95,7 +102,9 @@
 <dt>tier</dt>
 <dd><p>the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on</p></dd>
 <dt>stat_type</dt>
-<dd><p>the type of team statistics the user requires</p>
+<dd><p>the type of team statistics the user requires</p></dd>
+<dt>time_pause</dt>
+<dd><p>the wait time (in seconds) between page loads</p>
 <p>The statistic type options (stat_type) include:</p>
 <p><em>"league_table"</em>, <em>"league_table_home_away</em>", <em>"standard"</em>,
 <em>"keeper"</em>, <em>"keeper_adv"</em>, <em>"shooting"</em>, <em>"passing"</em>,

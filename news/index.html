@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.1.5000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
       </span>
     </div>
 
@@ -76,6 +76,14 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.2" id="worldfootballr-052">worldfootballR 0.5.2<a class="anchor" aria-label="anchor" href="#worldfootballr-052"></a></h2>
+<div class="section level4">
+<h4 id="improvements-0-5-2">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-2"></a></h4>
+<ul><li>All FBref functions now contain a user defined pause (<code>time_pause</code>) before each page load to abide by their new rate limiting rules. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">here</a>. Default is set to <code>2</code> seconds</li>
+<li>Internal function<code><a href="../reference/dot-get_each_season_results.html">.get_each_season_results()</a></code> exported now</li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1.6000" id="worldfootballr-0516000">worldfootballR 0.5.1.6000<a class="anchor" aria-label="anchor" href="#worldfootballr-0516000"></a></h2>
 <div class="section level4">
 <h4 id="bugs-0-5-1-6000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-1-6000"></a></h4>
@@ -86,7 +94,7 @@
 <h4 id="improvements--breaking-changes-0-5-1-6000">Improvements / Breaking Changes<a class="anchor" aria-label="anchor" href="#improvements--breaking-changes-0-5-1-6000"></a></h4>
 <ul><li>Additional processing logic added such that <code>fotmob_get_league_tables</code> works properly for international tournaments.</li>
 <li>The <code>stat_type</code> argument in <code>fotmob_get_seasons_stats</code> renamed to <code>stat_name</code> to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. <a href="https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players" class="external-link">the Liverpool player stats page</a>. Previously the values came from <a href="https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv" class="external-link">a custom, pre-saved dataframe</a>.</li>
-</ul></div>
+</ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1.5000" id="worldfootballr-0515000">worldfootballR 0.5.1.5000<a class="anchor" aria-label="anchor" href="#worldfootballr-0515000"></a></h2>
@@ -94,7 +102,7 @@
 <h4 id="bugs-0-5-1-5000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-1-5000"></a></h4>
 <ul><li>
 <code>fotmob_get_match_players</code> failed for non-domestic leagues because the <code>team</code> element does id not exist under the <code>table</code> element. Fix is to have more robust element for assigning team ids for players.</li>
-</ul></div>
+</ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1.4000" id="worldfootballr-0514000">worldfootballR 0.5.1.4000<a class="anchor" aria-label="anchor" href="#worldfootballr-0514000"></a></h2>
@@ -116,7 +124,7 @@
 <h4 id="improvements-0-5-1-3000">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-1-3000"></a></h4>
 <ul><li>
 <code>fotmob_get_season_stats</code> gains <code>stat_league_name</code> and can now be used for all leagues since seasons are programmatically scraped</li>
-</ul></div>
+</ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.1.2000" id="worldfootballr-0512000">worldfootballR 0.5.1.2000<a class="anchor" aria-label="anchor" href="#worldfootballr-0512000"></a></h2>
