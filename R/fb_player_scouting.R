@@ -4,6 +4,7 @@
 #'
 #' @param player_url the URL of the player (can come from fb_player_urls())
 #' @param pos_versus either "primary" or "secondary" as fbref offer comparisons against multiple positions
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a dataframe of a player's full scouting information for all seasons available on FBref
 #'
@@ -29,9 +30,13 @@
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 #' pos_versus = "secondary") %>% dplyr::filter(scouting_period == "2020-2021 La Liga")
 #' }
-fb_player_scouting_report <- function(player_url, pos_versus) {
+fb_player_scouting_report <- function(player_url, pos_versus, time_pause=2) {
 
   main_url <- "https://fbref.com"
+
+  # put sleep in as per new user agreement on FBref
+  Sys.sleep(time_pause)
+
   player_page <- xml2::read_html(player_url)
 
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
@@ -50,6 +55,7 @@ fb_player_scouting_report <- function(player_url, pos_versus) {
   all_scout_pos <- data.frame()
 
   for(each_scout_url in scout_level1_url) {
+    Sys.sleep(time_pause)
 
     scout_pg <- xml2::read_html(each_scout_url)
 

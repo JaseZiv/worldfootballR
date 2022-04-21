@@ -64,6 +64,10 @@ This vignette will cover the functions to extract data for international matches
 
 The functions in this document are all documented in the FBref data vignette, however the method for using these functions for international matches differs from those played in domestic leagues.
 
+**NOTE:**
+
+As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information. 
+
 
 ***
 

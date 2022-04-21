@@ -4,12 +4,14 @@
 \alias{fb_team_player_stats}
 \title{Get fbref Team's Player Season Statistics}
 \usage{
-fb_team_player_stats(team_urls, stat_type)
+fb_team_player_stats(team_urls, stat_type, time_pause = 2)
 }
 \arguments{
 \item{team_urls}{the URL(s) of the teams(s) (can come from fb_teams_urls())}
 
-\item{stat_type}{the type of statistic required
+\item{stat_type}{the type of statistic required}
+
+\item{time_pause}{the wait time (in seconds) between page loads
 
 The statistic type options (stat_type) include:
 

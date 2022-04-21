@@ -7,6 +7,7 @@
 #' @param season_end_year the year the season(s) concludes
 #' @param tier the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on
 #' @param non_dom_league_url the URL for Cups and Competitions found at https://fbref.com/en/comps/
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a character vector of all fbref match URLs for selected competition, season and gender
 #'
@@ -22,7 +23,7 @@
 #' get_match_urls(country = "", gender = "M", season_end_year = 2021, non_dom_league_url = non_dom)
 #' }
 
-get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {
+get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, time_pause=2) {
   main_url <- "https://fbref.com"
 
   # .pkg_message("Scraping match URLs")
@@ -55,8 +56,12 @@ get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_d
       dplyr::pull(fixtures_url) %>% unique()
   }
 
+  time_wait <- time_pause
 
-  get_each_seasons_urls <- function(fixture_url) {
+  get_each_seasons_urls <- function(fixture_url, time_pause=time_wait) {
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     match_report_urls <- xml2::read_html(fixture_url) %>%
       rvest::html_nodes("td.left~ .left+ .left a") %>%

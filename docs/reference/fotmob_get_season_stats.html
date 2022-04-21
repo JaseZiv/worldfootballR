@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -168,7 +168,7 @@
   <span class='va'>league_id</span>,
   <span class='va'>season_name</span>,
   team_or_player <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"team"</span>, <span class='st'>"player"</span><span class='op'>)</span>,
-  <span class='va'>stat_type</span>,
+  <span class='va'>stat_name</span>,
   stat_league_name <span class='op'>=</span> <span class='va'>league_name</span>,
   cached <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
@@ -197,37 +197,33 @@
       <td><p>return statistics for either <code>"team"</code> or <code>"player"</code>. Can only be one or the other.</p></td>
     </tr>
     <tr>
-      <th>stat_type</th>
+      <th>stat_name</th>
       <td><p>the type of statistic. Can be more than one.
-For <code>entity = "player"</code>, must be one of the following:</p><ul>
-<li><p>"accurate_pass"</p></li>
-<li><p>"big_chance_created"</p></li>
-<li><p>"big_chance_missed"</p></li>
-<li><p>"clean_sheet"</p></li>
-<li><p>"effective_clearance"</p></li>
-<li><p>"xg"</p></li>
-<li><p>"xg_conceded"</p></li>
-<li><p>"assist"</p></li>
-<li><p>"goals"</p></li>
-<li><p>"mins_played_goal"</p></li>
-<li><p>"ontarget_scoring_att"</p></li>
-<li><p>"penalty_won"</p></li>
-<li><p>"poss_won_att_3rd"</p></li>
-<li><p>"rating"</p></li>
-<li><p>"red_card"</p></li>
-<li><p>"saves"</p></li>
-<li><p>"total_att_assist"</p></li>
-<li><p>"won_contest"</p></li>
-<li><p>"won_tackle"</p></li>
-<li><p>"yellow_card"</p></li>
-</ul><p>For `entity = "team"` all of the same stats are available, with the exception of:</p><ul>
-<li><p>"goals"</p></li>
-<li><p>"assist"</p></li>
-<li><p>"won_contest"</p></li>
-</ul><p>Additional stats available for <code>"team"</code> are:</p><ul>
-<li><p>"goals_conceded_per_match"</p></li>
-<li><p>"goals_per_match"</p></li>
-<li><p>"possession_percentage"</p></li>
+`stat_name` may be one of the following, although it may not be available for both <code>"team"</code> or <code>"player"</code>:</p><ul>
+<li><p>"Accurate passes per match"</p></li>
+<li><p>"Average possession"</p></li>
+<li><p>"Assists</p></li>
+<li><p>"Big chances created"</p></li>
+<li><p>"Big chances missed"</p></li>
+<li><p>"Clean sheets"</p></li>
+<li><p>"Clearances per match"</p></li>
+<li><p>"Expected Goals"</p></li>
+<li><p>"Expected Goals conceded"</p></li>
+<li><p>"FotMob rating"</p></li>
+<li><p>"Goals"</p></li>
+<li><p>"Goals conceded per match"</p></li>
+<li><p>"Goals per match"</p></li>
+<li><p>"Key passes per match"</p></li>
+<li><p>"Minutes per goal"</p></li>
+<li><p>"Penalties awarded"</p></li>
+<li><p>"Penalties conceded"</p></li>
+<li><p>"Possession won final 3rd"</p></li>
+<li><p>"Red cards"</p></li>
+<li><p>"Saves per match"</p></li>
+<li><p>"Shots on target per match"</p></li>
+<li><p>"Successful dribbles per match"</p></li>
+<li><p>"Successful tackles per match"</p></li>
+<li><p>"Yellow cards"</p></li>
 </ul></td>
     </tr>
     <tr>

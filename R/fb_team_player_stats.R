@@ -4,6 +4,7 @@
 #'
 #' @param team_urls the URL(s) of the teams(s) (can come from fb_teams_urls())
 #' @param stat_type the type of statistic required
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #'The statistic type options (stat_type) include:
 #'
@@ -30,7 +31,7 @@
 #'                          stat_type = "playing_time")
 #' }
 
-fb_team_player_stats <- function(team_urls, stat_type) {
+fb_team_player_stats <- function(team_urls, stat_type, time_pause=2) {
 
   stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keeper", "keeper_adv")
 
@@ -40,9 +41,14 @@ fb_team_player_stats <- function(team_urls, stat_type) {
 
   main_url <- "https://fbref.com"
 
-  get_each_team_players <- function(team_url) {
+  time_wait <- time_pause
+
+  get_each_team_players <- function(team_url, time_pause=time_wait) {
 
     pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
 
     page <- xml2::read_html(team_url)
 

@@ -92,7 +92,7 @@ Multiple seasons can be passed to the function, but only one `stat_type` can be 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -166,7 +166,12 @@ whole team or individual players.
 Multiple seasons can be passed to the function, but only one `stat_type` can be selected</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fb_big5_advanced_season_stats</span><span class='op'>(</span><span class='va'>season_end_year</span>, <span class='va'>stat_type</span>, <span class='va'>team_or_player</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fb_big5_advanced_season_stats</span><span class='op'>(</span>
+  <span class='va'>season_end_year</span>,
+  <span class='va'>stat_type</span>,
+  <span class='va'>team_or_player</span>,
+  time_pause <span class='op'>=</span> <span class='fl'>2</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,7 +186,11 @@ Multiple seasons can be passed to the function, but only one `stat_type` can be 
     </tr>
     <tr>
       <th>team_or_player</th>
-      <td><p>result either summarised for each team, or individual players</p>
+      <td><p>result either summarised for each team, or individual players</p></td>
+    </tr>
+    <tr>
+      <th>time_pause</th>
+      <td><p>the wait time (in seconds) between page loads</p>
 <p>The statistic type options (stat_type) include:</p>
 <p><em>"standard"</em>, <em>"shooting"</em>, <em>"passing"</em>, <em>"passing_types"</em>,
 <em>"gca"</em>, <em>"defense"</em>, <em>"possession"</em>, <em>"playing_time"</em>,

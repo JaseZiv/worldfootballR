@@ -3,6 +3,7 @@
 #' Returns detailed player shooting data for home and away teams for a selected match(es)
 #'
 #' @param match_url the fbref.com URL for the required match
+#' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a dataframe
 #'
@@ -18,12 +19,18 @@
 #' }
 #'
 
-get_match_shooting <- function(match_url) {
+get_match_shooting <- function(match_url, time_pause=2) {
   # .pkg_message("Scraping detailed shot and shot creation data...")
 
-  get_each_match_shooting_data <- function(match_url) {
+  time_wait <- time_pause
+
+  get_each_match_shooting_data <- function(match_url, time_pause=time_wait) {
 
     pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
+
     match_page <- xml2::read_html(match_url)
 
     tryCatch( {home_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {home_team <- NA})

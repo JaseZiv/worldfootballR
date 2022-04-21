@@ -4,12 +4,14 @@
 \alias{fb_player_scouting_report}
 \title{Get fbref Full Player Scouting Report}
 \usage{
-fb_player_scouting_report(player_url, pos_versus)
+fb_player_scouting_report(player_url, pos_versus, time_pause = 2)
 }
 \arguments{
 \item{player_url}{the URL of the player (can come from fb_player_urls())}
 
 \item{pos_versus}{either "primary" or "secondary" as fbref offer comparisons against multiple positions}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 returns a dataframe of a player's full scouting information for all seasons available on FBref

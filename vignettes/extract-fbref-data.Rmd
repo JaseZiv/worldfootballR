@@ -62,6 +62,10 @@ Package vignettes have been built to help you get started with the package.
 
 This vignette will cover the functions to extract data from FBref.com.
 
+**NOTE:**
+
+As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information. 
+
 
 ***
 

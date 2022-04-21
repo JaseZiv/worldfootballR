@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@
     <p>Returns the URLs for all players for a given team</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fb_player_urls</span><span class='op'>(</span><span class='va'>team_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fb_player_urls</span><span class='op'>(</span><span class='va'>team_url</span>, time_pause <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +170,10 @@
     <tr>
       <th>team_url</th>
       <td><p>the player's team URL (can be from fb_team_urls())</p></td>
+    </tr>
+    <tr>
+      <th>time_pause</th>
+      <td><p>the wait time (in seconds) between page loads</p></td>
     </tr>
     </table>
 
@@ -193,11 +197,11 @@
 #&gt; [11] "https://fbref.com/en/players/0f7533cd/Bobby-Reid"                
 #&gt; [12] "https://fbref.com/en/players/f7750aa0/Denis-Odoi"                
 #&gt; [13] "https://fbref.com/en/players/a8748947/Tom-Cairney"               
-#&gt; [14] "https://fbref.com/en/players/63d17038/Paulo-Gazzaniga"           
-#&gt; [15] "https://fbref.com/en/players/77d7c96f/Kenny-Tete"                
-#&gt; [16] "https://fbref.com/en/players/dd323728/Neco-Williams"             
-#&gt; [17] "https://fbref.com/en/players/422862ea/Nathaniel-Chalobah"        
-#&gt; [18] "https://fbref.com/en/players/af69e7f0/Joe-Bryan"                 
+#&gt; [14] "https://fbref.com/en/players/dd323728/Neco-Williams"             
+#&gt; [15] "https://fbref.com/en/players/63d17038/Paulo-Gazzaniga"           
+#&gt; [16] "https://fbref.com/en/players/77d7c96f/Kenny-Tete"                
+#&gt; [17] "https://fbref.com/en/players/af69e7f0/Joe-Bryan"                 
+#&gt; [18] "https://fbref.com/en/players/422862ea/Nathaniel-Chalobah"        
 #&gt; [19] "https://fbref.com/en/players/6612cd8c/Josh-Onomah"               
 #&gt; [20] "https://fbref.com/en/players/979b811d/Ivan-Cavaleiro"            
 #&gt; [21] "https://fbref.com/en/players/5f1a2f31/Michael-Hector"            

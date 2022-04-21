@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.4000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@
     <p>Returns match summary data for selected match URLs, including goals, subs and cards</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_match_summary</span><span class='op'>(</span><span class='va'>match_url</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get_match_summary</span><span class='op'>(</span><span class='va'>match_url</span>, <span class='va'>time_pause</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +170,10 @@
     <tr>
       <th>match_url</th>
       <td><p>the fbref.com URL for the required match</p></td>
+    </tr>
+    <tr>
+      <th>time_pause</th>
+      <td><p>the wait time (in seconds) between page loads</p></td>
     </tr>
     </table>
 

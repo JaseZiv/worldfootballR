@@ -1,2 +1,2 @@
 
-utils::globalVariables(c(".", "an.error.occured", "pb"))
+utils::globalVariables(c(".", "an.error.occured", "pb", "res"))

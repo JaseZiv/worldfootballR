@@ -4,10 +4,12 @@
 \alias{fb_teams_urls}
 \title{Get fbref Team URLs}
 \usage{
-fb_teams_urls(league_url)
+fb_teams_urls(league_url, time_pause = 2)
 }
 \arguments{
 \item{league_url}{the league URL (can be from fb_league_urls())}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 returns a character vector of all fbref team URLs for a selected league
