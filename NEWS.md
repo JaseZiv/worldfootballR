@@ -1,3 +1,11 @@
+# worldfootballR 0.5.2.1000
+
+### Bugs
+
+* `tm_player_bio()` addresses where some data points don't exist for some players and returns NAs
+
+***
+
 # worldfootballR 0.5.2
 
 ### Improvements
