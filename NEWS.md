@@ -3,6 +3,8 @@
 ### Bugs
 
 * `tm_player_bio()` addresses where some data points don't exist for some players and returns NAs
+* `understat_team_stats_breakdown()` now resturns the correct `season_start_year` value [#119](https://github.com/JaseZiv/worldfootballR/issues/119)
+* tests and vignettes for fotmob stat functions changed to lowercase for second word in `stat_name` [#118](https://github.com/JaseZiv/worldfootballR/issues/118)
 
 ***
 

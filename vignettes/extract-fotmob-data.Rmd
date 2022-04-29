@@ -109,7 +109,7 @@ epl_team_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
   season_name = "2020/2021",
-  stat_name = "Expected Goals",
+  stat_name = "Expected goals",
   team_or_player = "team"
 )
 
@@ -134,7 +134,7 @@ If you know the `league_id`, you can use it instead of passing in values for `co
 fotmob_get_season_stats(
   league_id = 47,
   season_name = "2020/2021",
-  stat_name = "Expected Goals",
+  stat_name = "Expected goals",
   team_or_player = "team"
 )
 ```
@@ -146,7 +146,7 @@ team_xgs_2021 <- fotmob_get_season_stats(
   country =        c("ITA",     "ESP"),
   league_name =    c("Serie A", "LaLiga"),
   season_name =    c("2020/2021", "2021/2022"),
-  stat_name =      c("Expected Goals", "Expected Goals conceded"),
+  stat_name =      c("Expected goals", "Expected goals conceded"),
   team_or_player = "team"
 )
 
@@ -160,7 +160,7 @@ International tournament data can be retrieved.
 fotmob_get_season_stats(
   league_id = 42,
   season_name = "2020/2021",
-  stat_name = "Expected Goals",
+  stat_name = "Expected goals",
   team_or_player = "team"
 )
 ```
@@ -172,7 +172,7 @@ You can potentially get cup data for leagues in the future, although at this tim
 fotmob_get_season_stats(
   league_id = 47,
   season_name = "2020/2021",
-  stat_name = "Expected Goals",
+  stat_name = "Expected goals",
   team_or_player = "team",
   stat_league_name = "FA Cup"
 )
@@ -189,7 +189,7 @@ epl_player_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
   season = "2020/2021",
-  stat_name = "Expected Goals",
+  stat_name = "Expected goals",
   team_or_player = "player"
 )
 

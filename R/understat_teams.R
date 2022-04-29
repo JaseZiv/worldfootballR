@@ -56,9 +56,14 @@ understat_team_stats_breakdown <- function(team_urls) {
     team_url %>%
     rvest::read_html()
 
-  team_name <- data_html %>% html_nodes(".breadcrumb") %>% html_nodes("li") %>% .[3] %>% html_text()
-  season <- data_html %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
-    rvest::html_nodes("option") %>% rvest::html_attr("value") %>% .[1] %>% as.numeric()
+  team_name <- data_html %>% rvest::html_nodes(".breadcrumb") %>% rvest::html_nodes("li") %>% .[3] %>% rvest::html_text()
+
+  # need to do this to get the 'selected' season, otherwise all that get's returned is the current season
+  season_element <- data_html %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
+    rvest::html_nodes("option")
+  season_element <- season_element[grep("selected", season_element)]
+
+  season <- season_element %>% rvest::html_attr("value") %>% as.numeric()
 
   # statistics data
   data_statistics <-
