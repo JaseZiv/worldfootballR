@@ -84,8 +84,8 @@ Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, a
 -   "Big chances missed"
 -   "Clean sheets"
 -   "Clearances per match"
--   "Expected Goals"
--   "Expected Goals conceded"
+-   "Expected goals"
+-   "xG conceded"
 -   "FotMob rating"
 -   "Goals"
 -   "Goals conceded per match"
@@ -146,7 +146,7 @@ team_xgs_2021 <- fotmob_get_season_stats(
   country =        c("ITA",     "ESP"),
   league_name =    c("Serie A", "LaLiga"),
   season_name =    c("2020/2021", "2021/2022"),
-  stat_name =      c("Expected goals", "Expected goals conceded"),
+  stat_name =      c("Expected goals", "xG conceded"),
   team_or_player = "team"
 )
 

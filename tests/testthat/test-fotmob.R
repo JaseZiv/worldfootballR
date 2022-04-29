@@ -270,8 +270,8 @@ test_that("fotmob_get_season_stats() works", {
   expect_equal(ncol(epl_team_xg_2122), n_expected_stat_cols)
 
   ## more than one stat
-  epl_team_xgs_21 <- get_epl_season_stats(
-    stat_name = c("Expected goals", "Expected goals conceded")
+  epl_team_xgs_21 <- worldfootballR::get_epl_season_stats(
+    stat_name = c("Expected goals", "xG conceded")
   )
   expect_gt(nrow(epl_team_xgs_21), nrow(epl_team_xg_21_a))
   expect_equal(ncol(epl_team_xgs_21), n_expected_stat_cols)
@@ -280,7 +280,7 @@ test_that("fotmob_get_season_stats() works", {
   epl_ll_team_xgs_2122 <- fotmob_get_season_stats(
     league_id = c(47, 87),
     season_name = c("2020/2021", "2021/2022"),
-    stat_name = c("Expected goals", "Expected goals conceded"),
+    stat_name = c("Expected goals", "xG conceded"),
     team_or_player = "team"
   )
 
