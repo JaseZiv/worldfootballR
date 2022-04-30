@@ -21,40 +21,52 @@ player_transfer_history <- function(player_urls) {
 
     page <- xml2::read_html(player_url)
 
-    player_name <- page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
+    player_name <- page %>% rvest::html_node("h1") %>% rvest::html_text() %>% gsub("#[[:digit:]]+ ", "", .) %>% stringr::str_squish()
 
-    all_transfers_player <- page %>%
-      rvest::html_node(".transferhistorie") %>%
-      rvest::html_nodes(".responsive-table") %>%
-      rvest::html_nodes("tbody")
+    box_holder <- page %>% rvest::html_nodes(".large-8 .viewport-tracking+ .viewport-tracking")
 
+    # need to get the index of the box containing transfer history data
+    box_idx <- box_holder %>% rvest::html_attr('data-viewport') %>% grep("Transferhistorie", .)
+    all_transfers_player <- box_holder[box_idx]
 
-    all_transfer_rows <- all_transfers_player %>% rvest::html_nodes("tr")
+    # now want the rows that contain data, but need to remove heading, column headers and footer
+    # this step is new as transfermarkt USED TO contain this data in a table element
+    all_transfer_rows <- all_transfers_player %>% rvest::html_children()
+    rem_rows_idx <- c(grep("Transfer history", all_transfer_rows %>% rvest::html_text()),
+                      grep("Season", all_transfer_rows %>% rvest::html_text()),
+                      grep("Total", all_transfer_rows %>% rvest::html_text()))
+    # only keep the necessary rows
+    all_transfer_rows <- all_transfer_rows[-rem_rows_idx]
 
+    # loop through each of the rows
     each_player_df <- data.frame()
 
     for(each_row in 1:length(all_transfer_rows)) {
-      season <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
+      season <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__season") %>% rvest::html_text() %>% stringr::str_squish(), error = function(e) NA_character_)
       if(rlang::is_empty(season)) {
         each_row_df <- data.frame()
       } else {
-        transfer_date <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% .[2] %>% rvest::html_text() %>%
+        transfer_date <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__date") %>% rvest::html_text() %>% stringr::str_squish() %>%
                                     .tm_fix_dates() %>% lubridate::ymd(), error = function(e) NA_character_)
 
-        country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
-        country_from <- tryCatch(xml2::xml_attrs(xml2::xml_child(country_flags[[1]], 1))[["title"]], error = function(e) NA_character_)
-        country_to <- tryCatch(xml2::xml_attrs(xml2::xml_child(country_flags[[2]], 1))[["title"]], error = function(e) NA_character_)
+        # country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
+        country_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt")  %>% stringr::str_squish(), error = function(e) NA_character_)
+        country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt"), error = function(e) NA_character_)
 
-        team_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[1] %>% rvest::html_text(), error = function(e) NA_character_)
-        team_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".vereinsname") %>% .[2] %>% rvest::html_text(), error = function(e) NA_character_)
+        team_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>%
+                                stringr::str_squish(), error = function(e) NA_character_)
+        team_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>%
+                              stringr::str_squish(), error = function(e) NA_character_)
 
-        market_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-mw") %>% rvest::html_text() %>%
+        market_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__market-value") %>% rvest::html_text() %>%
+                                   stringr::str_squish() %>%
                                    .convert_value_to_numeric(), error = function(e) NA_character_)
-        transfer_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".zelle-abloese") %>% rvest::html_text() %>%
+        transfer_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__fee") %>% rvest::html_text() %>%
+                                     stringr::str_squish() %>%
                                      .convert_value_to_numeric, error = function(e) NA_character_)
 
         # to get contract length, which isn't on the main page listing all transfers:
-        extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".zentriert") %>% rvest::html_nodes("a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
+        extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__link") %>% rvest::html_attr("href") %>% paste0(main_url, .)
         extra_info <- tryCatch(xml2::read_html(extra_info_url), error = function(e) NA)
         contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
         contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())

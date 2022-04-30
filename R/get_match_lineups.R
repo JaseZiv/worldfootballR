@@ -15,7 +15,7 @@
 #' @examples
 #' \dontrun{
 #' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
-#' get_match_lineups(match_url = match)
+#' df <- get_match_lineups(match_url = match)
 #' }
 get_match_lineups <- function(match_url, time_pause=2) {
   # .pkg_message("Scraping lineups")

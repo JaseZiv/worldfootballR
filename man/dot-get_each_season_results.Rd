@@ -19,7 +19,7 @@ Internal function used in get_match_results
 }
 \examples{
 \donttest{
-.get_each_season_results(fixture_url =
+df <- .get_each_season_results(fixture_url =
 "https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures"
 )
 

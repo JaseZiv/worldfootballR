@@ -166,8 +166,8 @@ test_that("get_match_url() works", {
   # test that incorrect url will error
   expect_equal(length(get_match_urls(country = "BBB", gender = "M", season_end_year = 2021, tier="1st")), 0)
 
-  friendly_int_2021_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2021, tier = "", non_dom_league_url = "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons")
-  expect_type(friendly_int_2021_urls, "character")
+  # friendly_int_2021_urls <- get_match_urls(country = "", gender = "M", season_end_year = 2021, tier = "", non_dom_league_url = "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons")
+  # expect_type(friendly_int_2021_urls, "character")
 
 })
 

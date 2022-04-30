@@ -1,3 +1,11 @@
+# worldfootballR 0.5.2.2000
+
+### Bugs
+
+* `player_transfer_history()` updated after html changes on Transfermarkt caused function to return zero row data frame [#120](https://github.com/JaseZiv/worldfootballR/issues/120)
+
+***
+
 # worldfootballR 0.5.2.1000
 
 ### Bugs

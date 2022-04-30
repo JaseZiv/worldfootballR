@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from Understat</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2022-04-21</h4>
+            <h4 class="date">2022-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-understat-data.Rmd"><code>vignettes/extract-understat-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-understat-data.Rmd</code></div>
@@ -316,7 +316,7 @@
 <span class="co">#&gt; Rows: 34</span>
 <span class="co">#&gt; Columns: 11</span>
 <span class="co">#&gt; $ team_name         &lt;chr&gt; "Liverpool", "Liverpool", "Liverpool", "Liverpool", …</span>
-<span class="co">#&gt; $ season_start_year &lt;dbl&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021…</span>
+<span class="co">#&gt; $ season_start_year &lt;dbl&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020…</span>
 <span class="co">#&gt; $ stat_group_name   &lt;chr&gt; "situation", "situation", "situation", "situation", …</span>
 <span class="co">#&gt; $ stat_name         &lt;chr&gt; "OpenPlay", "FromCorner", "SetPiece", "DirectFreekic…</span>
 <span class="co">#&gt; $ shots             &lt;int&gt; 466, 94, 23, 22, 6, 532, 33, 31, 13, 2, 302, 135, 10…</span>
@@ -325,7 +325,7 @@
 <span class="co">#&gt; $ against.shots     &lt;int&gt; 252, 40, 21, 12, 8, 296, 20, 9, 7, 1, 161, 80, 45, 3…</span>
 <span class="co">#&gt; $ against.goals     &lt;int&gt; 28, 6, 3, 1, 4, 38, 2, 1, 0, 1, 17, 12, 5, 3, 5, 8, …</span>
 <span class="co">#&gt; $ against.xG        &lt;dbl&gt; 33.1091679, 4.2281565, 3.9210227, 0.6303308, 6.08935…</span>
-<span class="co">#&gt; $ time              &lt;int&gt; NA, NA, NA, NA, NA, 3147, 216, 134, 81, 12, 1914, 73…</span>
+<span class="co">#&gt; $ time              &lt;int&gt; NA, NA, NA, NA, NA, 3147, 216, 134, 81, 12, 1926, 73…</span>
 
 <span class="co">#----- Or for multiple teams: -----#</span>
 <span class="co"># team_urls &lt;- c("https://understat.com/team/Liverpool/2020",</span>
@@ -345,7 +345,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">raheem_sterling_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_player_shots.html">understat_player_shots</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://understat.com/player/618"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">raheem_sterling_shots</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 582</span>
+<span class="co">#&gt; Rows: 583</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ id              &lt;chr&gt; "14490", "14491", "14496", "14497", "14779", "15104", …</span>
 <span class="co">#&gt; $ minute          &lt;dbl&gt; 20, 22, 47, 53, 8, 7, 69, 74, 65, 81, 19, 25, 47, 50, …</span>

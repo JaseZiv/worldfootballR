@@ -1,7 +1,7 @@
 Type: Package
 Package: worldfootballR
 Title: Functions to Extract and Clean World Football (Soccer) Data
-Version: 0.5.2.1000
+Version: 0.5.2.2000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb")

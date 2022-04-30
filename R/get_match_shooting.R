@@ -15,7 +15,7 @@
 #' @examples
 #' \dontrun{
 #' match <- "https://fbref.com/en/matches/bf52349b/Fulham-Arsenal-September-12-2020-Premier-League"
-#' get_match_shooting(match_url = match)
+#' df <- get_match_shooting(match_url = match)
 #' }
 #'
 

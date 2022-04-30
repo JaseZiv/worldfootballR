@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from Transfermarkt</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2022-04-21</h4>
+            <h4 class="date">2022-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-transfermarkt-data.Rmd"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -168,7 +168,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6,378</span>
+<span class="co">#&gt; Rows: 6,495</span>
 <span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
 <span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
@@ -280,33 +280,33 @@
 <code class="sourceCode R"><span class="co"># Laliga players making their LaLiga debut in 2021/2022</span>
 <span class="va">laliga_debutants</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_debutants.html">tm_league_debutants</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span>, debut_type <span class="op">=</span> <span class="st">"league"</span>, debut_start_year <span class="op">=</span> <span class="fl">2021</span>, debut_end_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">laliga_debutants</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 170</span>
+<span class="co">#&gt; Rows: 176</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ comp_name           &lt;chr&gt; "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span>
 <span class="co">#&gt; $ country             &lt;chr&gt; "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span>
 <span class="co">#&gt; $ comp_url            &lt;chr&gt; "https://www.transfermarkt.com/laliga/startseite/w…</span>
-<span class="co">#&gt; $ player_name         &lt;chr&gt; "Gavi", "Cristhian Mosquera", "Ilias Akhomach", "Á…</span>
+<span class="co">#&gt; $ player_name         &lt;chr&gt; "Gavi", "Cristhian Mosquera", "Ilias Akhomach", "J…</span>
 <span class="co">#&gt; $ player_url          &lt;chr&gt; "https://www.transfermarkt.com/gavi/profil/spieler…</span>
 <span class="co">#&gt; $ position            &lt;chr&gt; "Central Midfield", "Centre-Back", "Right Winger",…</span>
-<span class="co">#&gt; $ nationality         &lt;chr&gt; "Spain", "Spain", "Spain", "Spain", "Austria", "Sp…</span>
-<span class="co">#&gt; $ second_nationality  &lt;chr&gt; NA, "Colombia", "Morocco", "Dominican Republic", N…</span>
-<span class="co">#&gt; $ debut_for           &lt;chr&gt; "FC Barcelona", "Valencia CF", "FC Barcelona", "FC…</span>
-<span class="co">#&gt; $ debut_date          &lt;date&gt; 2021-08-29, 2022-01-19, 2021-11-20, 2021-09-20, 2…</span>
+<span class="co">#&gt; $ nationality         &lt;chr&gt; "Spain", "Spain", "Spain", "Spain", "Spain", "Aust…</span>
+<span class="co">#&gt; $ second_nationality  &lt;chr&gt; NA, "Colombia", "Morocco", NA, "Dominican Republic…</span>
+<span class="co">#&gt; $ debut_for           &lt;chr&gt; "FC Barcelona", "Valencia CF", "FC Barcelona", "Va…</span>
+<span class="co">#&gt; $ debut_date          &lt;date&gt; 2021-08-29, 2022-01-19, 2021-11-20, 2022-04-19, 2…</span>
 <span class="co">#&gt; $ opponent            &lt;chr&gt; "Getafe CF", "Sevilla FC", "RCD Espanyol Barcelona…</span>
-<span class="co">#&gt; $ goals_for           &lt;dbl&gt; 2, 1, 1, 1, 1, 3, 1, 1, 3, 2, 3, 4, 5, 3, 0, 0, 0,…</span>
-<span class="co">#&gt; $ goals_against       &lt;dbl&gt; 1, 1, 0, 1, 1, 0, 1, 0, 4, 0, 0, 3, 2, 2, 1, 0, 1,…</span>
+<span class="co">#&gt; $ goals_for           &lt;dbl&gt; 2, 1, 1, 0, 1, 1, 3, 1, 1, 3, 2, 3, 4, 5, 3, 0, 0,…</span>
+<span class="co">#&gt; $ goals_against       &lt;dbl&gt; 1, 1, 0, 2, 1, 1, 0, 1, 0, 4, 0, 0, 3, 2, 2, 1, 0,…</span>
 <span class="co">#&gt; $ age_debut           &lt;chr&gt; "17 years 24 days", "17 years 06 months 23 days", …</span>
-<span class="co">#&gt; $ value_at_debut      &lt;dbl&gt; NA, NA, 1.0e+05, 5.0e+05, 8.0e+06, NA, 4.0e+05, NA…</span>
-<span class="co">#&gt; $ player_market_value &lt;dbl&gt; 6.0e+07, NA, 3.0e+06, 5.0e+06, 8.0e+06, NA, 4.0e+0…</span>
-<span class="co">#&gt; $ appearances         &lt;dbl&gt; 27, 5, 2, 4, 6, 1, 1, 1, 9, 13, 11, 3, 21, 4, 6, 1…</span>
-<span class="co">#&gt; $ goals               &lt;dbl&gt; 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0,…</span>
-<span class="co">#&gt; $ minutes_played      &lt;dbl&gt; 1726, 119, 125, 97, 189, 10, 4, 10, 462, 303, 532,…</span>
+<span class="co">#&gt; $ value_at_debut      &lt;dbl&gt; NA, NA, 1.0e+05, NA, 5.0e+05, 8.0e+06, NA, 4.0e+05…</span>
+<span class="co">#&gt; $ player_market_value &lt;dbl&gt; 6.0e+07, NA, 3.0e+06, NA, 5.0e+06, 8.0e+06, NA, 4.…</span>
+<span class="co">#&gt; $ appearances         &lt;dbl&gt; 29, 6, 2, 1, 4, 6, 1, 1, 1, 9, 13, 12, 4, 22, 5, 6…</span>
+<span class="co">#&gt; $ goals               &lt;dbl&gt; 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0,…</span>
+<span class="co">#&gt; $ minutes_played      &lt;dbl&gt; 1906, 209, 125, 35, 97, 189, 10, 4, 10, 462, 303, …</span>
 <span class="co">#&gt; $ debut_type          &lt;chr&gt; "league", "league", "league", "league", "league", …</span>
 
 <span class="co"># English League One players making their PRO debuts in 2021/2022</span>
 <span class="va">league_one_PRO_debutants</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_debutants.html">tm_league_debutants</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">""</span>, league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"</span>, debut_type <span class="op">=</span> <span class="st">"pro"</span>, debut_start_year <span class="op">=</span> <span class="fl">2021</span>, debut_end_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">league_one_PRO_debutants</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 155</span>
+<span class="co">#&gt; Rows: 157</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ comp_name           &lt;chr&gt; "League One", "League One", "League One", "League …</span>
 <span class="co">#&gt; $ country             &lt;chr&gt; "England", "England", "England", "England", "Engla…</span>
@@ -324,9 +324,9 @@
 <span class="co">#&gt; $ age_debut           &lt;chr&gt; "-", "-", "-", "16 years 07 months 12 days", "17 y…</span>
 <span class="co">#&gt; $ value_at_debut      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
 <span class="co">#&gt; $ player_market_value &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ appearances         &lt;dbl&gt; 2, 3, 2, 2, 1, 1, 8, 1, 17, 34, 3, 15, 1, 5, 1, 1,…</span>
+<span class="co">#&gt; $ appearances         &lt;dbl&gt; 2, 3, 2, 2, 1, 1, 8, 2, 19, 36, 3, 16, 1, 5, 1, 1,…</span>
 <span class="co">#&gt; $ goals               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0,…</span>
-<span class="co">#&gt; $ minutes_played      &lt;dbl&gt; 4, 44, 89, 16, 0, 4, 316, 8, 1377, 2927, 78, 1022,…</span>
+<span class="co">#&gt; $ minutes_played      &lt;dbl&gt; 4, 44, 89, 16, 0, 4, 316, 8, 1552, 3097, 78, 1112,…</span>
 <span class="co">#&gt; $ debut_type          &lt;chr&gt; "pro", "pro", "pro", "pro", "pro", "pro", "pro", "…</span></code></pre></div>
 </div>
 <div id="expiring-contracts" class="section level3">
@@ -338,7 +338,7 @@
 <code class="sourceCode R"><span class="co">#----- LaLiga players with expiring contracts in 2022: -----#</span>
 <span class="va">laliga_expiring</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_expiring_contracts.html">tm_expiring_contracts</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span>, contract_end_year <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">laliga_expiring</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 118</span>
+<span class="co">#&gt; Rows: 119</span>
 <span class="co">#&gt; Columns: 14</span>
 <span class="co">#&gt; $ comp_name           &lt;chr&gt; "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span>
 <span class="co">#&gt; $ country             &lt;chr&gt; "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span>
@@ -346,13 +346,13 @@
 <span class="co">#&gt; $ player_name         &lt;chr&gt; "Gavi", "Jan Oblak", "Carlos Soler", "Memphis Depa…</span>
 <span class="co">#&gt; $ player_url          &lt;chr&gt; "https://www.transfermarkt.com/gavi/profil/spieler…</span>
 <span class="co">#&gt; $ position            &lt;chr&gt; "Central Midfield", "Goalkeeper", "Central Midfiel…</span>
-<span class="co">#&gt; $ nationality         &lt;chr&gt; "Spain", "Slovenia", "Spain", "Netherlands", "Port…</span>
-<span class="co">#&gt; $ second_nationality  &lt;chr&gt; NA, NA, NA, "Ghana", NA, NA, NA, "Guadeloupe", "Ne…</span>
+<span class="co">#&gt; $ nationality         &lt;chr&gt; "Spain", "Slovenia", "Spain", "Netherlands", "Spai…</span>
+<span class="co">#&gt; $ second_nationality  &lt;chr&gt; NA, NA, NA, "Ghana", NA, "Netherlands", "Guadeloup…</span>
 <span class="co">#&gt; $ current_club        &lt;chr&gt; "FC Barcelona", "Atlético de Madrid", "Valencia CF…</span>
 <span class="co">#&gt; $ contract_expiry     &lt;date&gt; 2023-06-30, 2023-06-30, 2023-06-30, 2023-06-30, 2…</span>
 <span class="co">#&gt; $ contract_option     &lt;chr&gt; "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …</span>
 <span class="co">#&gt; $ player_market_value &lt;dbl&gt; 6.0e+07, 6.0e+07, 5.0e+07, 4.5e+07, 4.0e+07, 4.0e+…</span>
-<span class="co">#&gt; $ transfer_fee        &lt;dbl&gt; NA, 16000000, NA, 0, 40000000, NA, NA, 72000000, 3…</span>
+<span class="co">#&gt; $ transfer_fee        &lt;dbl&gt; NA, 16000000, NA, 0, NA, 3900000, 72000000, 400000…</span>
 <span class="co">#&gt; $ agent               &lt;chr&gt; "Puyol, De la Peña &amp; Sostres", "Miha Mlakar", "Pro…</span>
 
 <span class="co">#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#</span>
@@ -368,22 +368,22 @@
 <code class="sourceCode R"><span class="co"># to get all current injuries for LaLiga</span>
 <span class="va">laliga_injuries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_injuries.html">tm_league_injuries</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">laliga_injuries</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 38</span>
+<span class="co">#&gt; Rows: 37</span>
 <span class="co">#&gt; Columns: 14</span>
 <span class="co">#&gt; $ comp_name           &lt;chr&gt; "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span>
 <span class="co">#&gt; $ country             &lt;chr&gt; "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span>
 <span class="co">#&gt; $ comp_url            &lt;chr&gt; "https://www.transfermarkt.com/laliga/startseite/w…</span>
-<span class="co">#&gt; $ player_name         &lt;chr&gt; "Santiago Arias", "José María Giménez", "Martín Mo…</span>
-<span class="co">#&gt; $ player_url          &lt;chr&gt; "https://www.transfermarkt.com/santiago-arias/prof…</span>
-<span class="co">#&gt; $ position            &lt;chr&gt; "Right-Back", "Centre-Back", "Right-Back", "Right-…</span>
-<span class="co">#&gt; $ current_club        &lt;chr&gt; "Granada CF", "Atlético de Madrid", "Real Betis Ba…</span>
-<span class="co">#&gt; $ age                 &lt;dbl&gt; 30, 27, 31, 28, 29, 32, 30, 20, 26, 22, 28, 36, 35…</span>
-<span class="co">#&gt; $ nationality         &lt;chr&gt; "Colombia", "Uruguay", "Spain", "Spain", "Spain", …</span>
-<span class="co">#&gt; $ second_nationality  &lt;chr&gt; NA, "Spain", NA, NA, NA, "Portugal", NA, NA, NA, N…</span>
-<span class="co">#&gt; $ injury              &lt;chr&gt; "Hamstring Injury", "Muscle Injury", "Achilles ten…</span>
-<span class="co">#&gt; $ injured_since       &lt;date&gt; 2021-12-23, 2022-04-03, 2022-01-04, 2022-03-24, 2…</span>
+<span class="co">#&gt; $ player_name         &lt;chr&gt; "José María Giménez", "Gareth Bale", "Nacho Monrea…</span>
+<span class="co">#&gt; $ player_url          &lt;chr&gt; "https://www.transfermarkt.com/jose-maria-gimenez/…</span>
+<span class="co">#&gt; $ position            &lt;chr&gt; "Centre-Back", "Right Winger", "Left-Back", "Centr…</span>
+<span class="co">#&gt; $ current_club        &lt;chr&gt; "Atlético de Madrid", "Real Madrid", "Real Socieda…</span>
+<span class="co">#&gt; $ age                 &lt;dbl&gt; 27, 32, 36, 32, 35, 28, 22, 25, 31, 20, 22, 28, 25…</span>
+<span class="co">#&gt; $ nationality         &lt;chr&gt; "Uruguay", "Wales", "Spain", "Mexico", "Uruguay", …</span>
+<span class="co">#&gt; $ second_nationality  &lt;chr&gt; "Spain", NA, NA, "Portugal", NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ injury              &lt;chr&gt; "Muscle Injury", "Back trouble", "Knee Injury", "M…</span>
+<span class="co">#&gt; $ injured_since       &lt;date&gt; 2022-04-03, 2022-04-29, 2021-08-10, 2022-04-02, 2…</span>
 <span class="co">#&gt; $ injured_until       &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ player_market_value &lt;dbl&gt; 4.0e+06, 5.0e+07, 2.0e+06, 3.0e+06, 5.0e+06, 5.0e+…</span>
+<span class="co">#&gt; $ player_market_value &lt;dbl&gt; 5.0e+07, 3.0e+06, 1.2e+06, 5.0e+06, 9.0e+05, 3.0e+…</span>
 
 <span class="co">#----- Can even do it for non-standard leagues - get all current injuries for League One in England</span>
 <span class="co"># league_one_injuries &lt;- tm_league_injuries(country_name = "",</span>
@@ -467,27 +467,27 @@
 <span class="va">a_league_valuations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_player_market_values.html">get_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Australia"</span>,
                                        start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">a_league_valuations</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 337</span>
+<span class="co">#&gt; Rows: 340</span>
 <span class="co">#&gt; Columns: 19</span>
 <span class="co">#&gt; $ comp_name                &lt;chr&gt; "A-League Men", "A-League Men", "A-League Men…</span>
 <span class="co">#&gt; $ region                   &lt;chr&gt; "Asia", "Asia", "Asia", "Asia", "Asia", "Asia…</span>
 <span class="co">#&gt; $ country                  &lt;chr&gt; "Australia", "Australia", "Australia", "Austr…</span>
 <span class="co">#&gt; $ season_start_year        &lt;int&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 202…</span>
 <span class="co">#&gt; $ squad                    &lt;chr&gt; "Melbourne City FC", "Melbourne City FC", "Me…</span>
-<span class="co">#&gt; $ player_num               &lt;chr&gt; "1", "33", "42", "4", "22", "5", "36", "34", …</span>
-<span class="co">#&gt; $ player_name              &lt;chr&gt; "Tom Glover", "Matthew Sutton", "Ahmad Taleb"…</span>
-<span class="co">#&gt; $ player_position          &lt;chr&gt; "Goalkeeper", "Goalkeeper", "Goalkeeper", "Ce…</span>
-<span class="co">#&gt; $ player_dob               &lt;date&gt; 1997-12-24, 2000-03-07, 2002-12-04, 1991-01-…</span>
-<span class="co">#&gt; $ player_age               &lt;dbl&gt; 24, 22, 19, 31, 29, 34, 19, 24, 33, 19, 30, 2…</span>
-<span class="co">#&gt; $ player_nationality       &lt;chr&gt; "Australia", "Australia", "Australia", "Portu…</span>
+<span class="co">#&gt; $ player_num               &lt;chr&gt; "47", "1", "33", "42", "4", "22", "5", "36", …</span>
+<span class="co">#&gt; $ player_name              &lt;chr&gt; "Jordi Valadon", "Tom Glover", "Matthew Sutto…</span>
+<span class="co">#&gt; $ player_position          &lt;chr&gt; "midfield", "Goalkeeper", "Goalkeeper", "Goal…</span>
+<span class="co">#&gt; $ player_dob               &lt;date&gt; 2003-03-04, 1997-12-24, 2000-03-07, 2002-12-…</span>
+<span class="co">#&gt; $ player_age               &lt;dbl&gt; 19, 24, 22, 19, 31, 29, 34, 19, 24, 33, 19, 3…</span>
+<span class="co">#&gt; $ player_nationality       &lt;chr&gt; "Australia", "Australia", "Australia", "Austr…</span>
 <span class="co">#&gt; $ current_club             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ player_height_mtrs       &lt;chr&gt; "1.96", "1.8", NA, "1.82", "1.87", "1.88", "1…</span>
-<span class="co">#&gt; $ player_foot              &lt;chr&gt; " ", " ", " ", "right", "left", "right", " ",…</span>
-<span class="co">#&gt; $ date_joined              &lt;chr&gt; "2019-08-06", "2020-09-10", "2020-12-01", "20…</span>
-<span class="co">#&gt; $ joined_from              &lt;chr&gt; "Tottenham Hotspur U23", "Melbourne Victory",…</span>
-<span class="co">#&gt; $ contract_expiry          &lt;chr&gt; "2023-06-30", "2022-06-30", "2023-06-30", "20…</span>
-<span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; 800000, 100000, 50000, 500000, 450000, 300000…</span>
-<span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/tom-glover/pro…</span>
+<span class="co">#&gt; $ player_height_mtrs       &lt;chr&gt; NA, "1.96", "1.8", NA, "1.82", "1.87", "1.88"…</span>
+<span class="co">#&gt; $ player_foot              &lt;chr&gt; " ", " ", " ", " ", "right", "left", "right",…</span>
+<span class="co">#&gt; $ date_joined              &lt;chr&gt; NA, "2019-08-06", "2020-09-10", "2020-12-01",…</span>
+<span class="co">#&gt; $ joined_from              &lt;chr&gt; NA, "Tottenham Hotspur U23", "Melbourne Victo…</span>
+<span class="co">#&gt; $ contract_expiry          &lt;chr&gt; NA, "2023-06-30", "2022-06-30", "2023-06-30",…</span>
+<span class="co">#&gt; $ player_market_value_euro &lt;dbl&gt; NA, 800000, 100000, 50000, 500000, 450000, 30…</span>
+<span class="co">#&gt; $ player_url               &lt;chr&gt; "https://www.transfermarkt.com/jordi-valadon/…</span>
 
 <span class="co">#----- Can also do it for multiple leagues: -----#</span>
 <span class="co"># big_5_valuations &lt;- get_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),</span>
@@ -586,7 +586,7 @@
 <span class="co">#----- then use the URLs to pass to the function, and select the role you wish to see results for: -----#</span>
 <span class="va">club_manager_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_staff_history.html">tm_team_staff_history</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">epl_teams</span>, staff_role <span class="op">=</span> <span class="st">"Manager"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">club_manager_history</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 536</span>
+<span class="co">#&gt; Rows: 537</span>
 <span class="co">#&gt; Columns: 17</span>
 <span class="co">#&gt; $ team_name                   &lt;chr&gt; "Manchester City", "Manchester City", "Man…</span>
 <span class="co">#&gt; $ league                      &lt;chr&gt; "Premier League", "Premier League", "Premi…</span>
@@ -599,12 +599,12 @@
 <span class="co">#&gt; $ staff_nationality_secondary &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
 <span class="co">#&gt; $ appointed                   &lt;date&gt; 2016-07-01, 2013-07-01, 2009-12-19, 2008-…</span>
 <span class="co">#&gt; $ end_date                    &lt;date&gt; NA, 2016-06-30, 2013-05-13, 2009-12-19, 2…</span>
-<span class="co">#&gt; $ days_in_post                &lt;dbl&gt; 2120, 1095, 1241, 563, 332, 794, 1386, 118…</span>
-<span class="co">#&gt; $ matches                     &lt;dbl&gt; 343, 166, 191, 77, 45, 97, 176, 95, 24, 0,…</span>
-<span class="co">#&gt; $ wins                        &lt;dbl&gt; 254, 101, 113, 37, 19, 34, 77, 39, 6, 0, 9…</span>
+<span class="co">#&gt; $ days_in_post                &lt;dbl&gt; 2129, 1095, 1241, 563, 332, 794, 1386, 118…</span>
+<span class="co">#&gt; $ matches                     &lt;dbl&gt; 345, 166, 191, 77, 45, 97, 176, 95, 24, 0,…</span>
+<span class="co">#&gt; $ wins                        &lt;dbl&gt; 256, 101, 113, 37, 19, 34, 77, 39, 6, 0, 9…</span>
 <span class="co">#&gt; $ draws                       &lt;dbl&gt; 38, 27, 38, 15, 11, 19, 39, 22, 6, 0, 11, …</span>
 <span class="co">#&gt; $ losses                      &lt;dbl&gt; 51, 38, 40, 25, 15, 44, 60, 34, 12, 0, 20,…</span>
-<span class="co">#&gt; $ ppg                         &lt;dbl&gt; 2.33, 1.99, 1.97, 1.64, 1.51, 1.25, 1.53, …</span>
+<span class="co">#&gt; $ ppg                         &lt;dbl&gt; 2.34, 1.99, 1.97, 1.64, 1.51, 1.25, 1.53, …</span>
 
 <span class="co">#----- can also get other roles: -----#</span>
 <span class="co"># club_caretaker_manager_history &lt;- tm_team_staff_history(team_urls = epl_teams, staff_role = "Caretaker Manager")</span></code></pre></div>
@@ -636,7 +636,7 @@
 <span class="co">#&gt; $ club              &lt;chr&gt; "Man City", "Málaga CF", "Real Madrid", "Real Socied…</span>
 <span class="co">#&gt; $ appointed         &lt;chr&gt; "2013-06-24", "2011-01-04", "2009-06-02", "1998-10-2…</span>
 <span class="co">#&gt; $ contract_expiry   &lt;chr&gt; NA, "2013-06-23", "2010-05-27", "2009-06-01", "1998-…</span>
-<span class="co">#&gt; $ days_in_charge    &lt;dbl&gt; 3223, 901, 359, 3874, 113, 1390, 729, 3947, 729, 142…</span>
+<span class="co">#&gt; $ days_in_charge    &lt;dbl&gt; 3232, 901, 359, 3874, 113, 1399, 729, 3956, 729, 151…</span>
 <span class="co">#&gt; $ matches           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 2, NA, N…</span>
 <span class="co">#&gt; $ wins              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 0, NA, N…</span>
 <span class="co">#&gt; $ draws             &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, N…</span>

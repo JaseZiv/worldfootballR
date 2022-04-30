@@ -20,6 +20,6 @@ Returns match report details for selected matches
 \examples{
 \dontrun{
 match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
-get_match_report(match_url = match)
+df <- get_match_report(match_url = match)
 }
 }

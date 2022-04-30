@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 class="author">Tony ElHabr</h4>
             
-            <h4 class="date">2022-04-21</h4>
+            <h4 class="date">2022-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fotmob-data.Rmd"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -185,8 +185,8 @@
 <li>“Big chances missed”</li>
 <li>“Clean sheets”</li>
 <li>“Clearances per match”</li>
-<li>“Expected Goals”</li>
-<li>“Expected Goals conceded”</li>
+<li>“Expected goals”</li>
+<li>“xG conceded”</li>
 <li>“FotMob rating”</li>
 <li>“Goals”</li>
 <li>“Goals conceded per match”</li>
@@ -209,7 +209,7 @@
   country <span class="op">=</span> <span class="st">"ENG"</span>,
   league_name <span class="op">=</span> <span class="st">"Premier League"</span>,
   season_name <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected Goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
   team_or_player <span class="op">=</span> <span class="st">"team"</span>
 <span class="op">)</span>
 
@@ -242,10 +242,10 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   league_id <span class="op">=</span> <span class="fl">47</span>,
   season_name <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected Goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
   team_or_player <span class="op">=</span> <span class="st">"team"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 20 × 19</span>
+<span class="co">#&gt; # A tibble: 20 × 20</span>
 <span class="co">#&gt;    country league_name    league_id season_name season_id stat_league_name</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           </span>
 <span class="co">#&gt;  1 ENG     Premier League        47 2020/2021   15382     Premier League  </span>
@@ -268,18 +268,18 @@
 <span class="co">#&gt; 18 ENG     Premier League        47 2020/2021   15382     Premier League  </span>
 <span class="co">#&gt; 19 ENG     Premier League        47 2020/2021   15382     Premier League  </span>
 <span class="co">#&gt; 20 ENG     Premier League        47 2020/2021   15382     Premier League  </span>
-<span class="co">#&gt; # … with 13 more variables: stat_name &lt;chr&gt;, stat &lt;chr&gt;,</span>
+<span class="co">#&gt; # … with 14 more variables: stat_name &lt;chr&gt;, stat &lt;chr&gt;,</span>
 <span class="co">#&gt; #   participant_name &lt;chr&gt;, particiant_id &lt;int&gt;, team_id &lt;int&gt;,</span>
-<span class="co">#&gt; #   stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;, minutes_played &lt;int&gt;,</span>
-<span class="co">#&gt; #   matches_played &lt;int&gt;, stat_value_count &lt;int&gt;, rank &lt;int&gt;,</span>
-<span class="co">#&gt; #   participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></code></pre></div>
+<span class="co">#&gt; #   team_color &lt;chr&gt;, stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   minutes_played &lt;int&gt;, matches_played &lt;int&gt;, stat_value_count &lt;int&gt;,</span>
+<span class="co">#&gt; #   rank &lt;int&gt;, participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></code></pre></div>
 <p>You can retrieve data for multiple leagues, seasons, or stat types at the same time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_xgs_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   country <span class="op">=</span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ITA"</span>,     <span class="st">"ESP"</span><span class="op">)</span>,
   league_name <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Serie A"</span>, <span class="st">"LaLiga"</span><span class="op">)</span>,
   season_name <span class="op">=</span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2020/2021"</span>, <span class="st">"2021/2022"</span><span class="op">)</span>,
-  stat_name <span class="op">=</span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Expected Goals"</span>, <span class="st">"Expected Goals conceded"</span><span class="op">)</span>,
+  stat_name <span class="op">=</span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Expected goals"</span>, <span class="st">"xG conceded"</span><span class="op">)</span>,
   team_or_player <span class="op">=</span> <span class="st">"team"</span>
 <span class="op">)</span>
 
@@ -291,10 +291,10 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   league_id <span class="op">=</span> <span class="fl">42</span>,
   season_name <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected Goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
   team_or_player <span class="op">=</span> <span class="st">"team"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 32 × 19</span>
+<span class="co">#&gt; # A tibble: 32 × 20</span>
 <span class="co">#&gt;    country league_name      league_id season_name season_id stat_league_name</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;                &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           </span>
 <span class="co">#&gt;  1 INT     Champions League        42 2020/2021   15237     Champions League</span>
@@ -307,18 +307,18 @@
 <span class="co">#&gt;  8 INT     Champions League        42 2020/2021   15237     Champions League</span>
 <span class="co">#&gt;  9 INT     Champions League        42 2020/2021   15237     Champions League</span>
 <span class="co">#&gt; 10 INT     Champions League        42 2020/2021   15237     Champions League</span>
-<span class="co">#&gt; # … with 22 more rows, and 13 more variables: stat_name &lt;chr&gt;, stat &lt;chr&gt;,</span>
+<span class="co">#&gt; # … with 22 more rows, and 14 more variables: stat_name &lt;chr&gt;, stat &lt;chr&gt;,</span>
 <span class="co">#&gt; #   participant_name &lt;chr&gt;, particiant_id &lt;int&gt;, team_id &lt;int&gt;,</span>
-<span class="co">#&gt; #   stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;, minutes_played &lt;int&gt;,</span>
-<span class="co">#&gt; #   matches_played &lt;int&gt;, stat_value_count &lt;int&gt;, rank &lt;int&gt;,</span>
-<span class="co">#&gt; #   participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></code></pre></div>
+<span class="co">#&gt; #   team_color &lt;chr&gt;, stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   minutes_played &lt;int&gt;, matches_played &lt;int&gt;, stat_value_count &lt;int&gt;,</span>
+<span class="co">#&gt; #   rank &lt;int&gt;, participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></code></pre></div>
 <p>You can potentially get cup data for leagues in the future, although at this time Fotmob does not have this data for most leagues, seasons, or stats.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Not run to avoid error.</span>
 <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   league_id <span class="op">=</span> <span class="fl">47</span>,
   season_name <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected Goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
   team_or_player <span class="op">=</span> <span class="st">"team"</span>,
   stat_league_name <span class="op">=</span> <span class="st">"FA Cup"</span>
 <span class="op">)</span></code></pre></div>
@@ -333,7 +333,7 @@
   country <span class="op">=</span> <span class="st">"ENG"</span>,
   league_name <span class="op">=</span> <span class="st">"Premier League"</span>,
   season <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected Goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
   team_or_player <span class="op">=</span> <span class="st">"player"</span>
 <span class="op">)</span>
 
@@ -394,7 +394,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 253</span>
+<span class="co">#&gt; Rows: 254</span>
 <span class="co">#&gt; Columns: 12</span>
 <span class="co">#&gt; $ ccode              &lt;chr&gt; "ENG", "GER", "ENG", "ESP", "ITA", "INT", "ALB", "A…</span>
 <span class="co">#&gt; $ id                 &lt;int&gt; 47, 54, 873679, 87, 55, 871358, 260, 872538, 874057…</span>
@@ -474,13 +474,13 @@
 <span class="co">#&gt; $ id            &lt;int&gt; 8456, 8455, 8650, 8586, 8602, 9825, 10204, 10260, 8654, …</span>
 <span class="co">#&gt; $ team_page_url &lt;chr&gt; "/teams/8456/overview/manchester-city", "/teams/8455/ove…</span>
 <span class="co">#&gt; $ deduction     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
-<span class="co">#&gt; $ played        &lt;int&gt; 16, 16, 16, 16, 16, 16, 17, 16, 16, 17, 16, 16, 16, 16, …</span>
-<span class="co">#&gt; $ wins          &lt;int&gt; 12, 11, 10, 8, 8, 8, 6, 6, 6, 5, 6, 4, 3, 4, 3, 3, 3, 1,…</span>
-<span class="co">#&gt; $ draws         &lt;int&gt; 3, 3, 4, 2, 2, 1, 7, 5, 3, 4, 0, 4, 6, 3, 5, 5, 4, 7, 3,…</span>
-<span class="co">#&gt; $ losses        &lt;int&gt; 1, 2, 2, 6, 6, 7, 4, 5, 7, 8, 10, 8, 7, 9, 8, 7, 9, 8, 1…</span>
-<span class="co">#&gt; $ scores_str    &lt;chr&gt; "30-8", "35-9", "40-15", "25-20", "15-12", "24-25", "19-…</span>
-<span class="co">#&gt; $ goal_con_diff &lt;int&gt; 22, 26, 25, 5, 3, -1, -1, -3, 1, -7, -3, -18, -6, -8, -1…</span>
-<span class="co">#&gt; $ pts           &lt;int&gt; 39, 36, 34, 26, 26, 25, 25, 23, 21, 19, 18, 16, 15, 15, …</span>
+<span class="co">#&gt; $ played        &lt;int&gt; 16, 17, 16, 17, 17, 16, 17, 17, 17, 17, 17, 17, 17, 16, …</span>
+<span class="co">#&gt; $ wins          &lt;int&gt; 12, 11, 10, 8, 8, 8, 6, 6, 6, 6, 5, 4, 4, 3, 4, 3, 3, 1,…</span>
+<span class="co">#&gt; $ draws         &lt;int&gt; 3, 4, 4, 3, 2, 1, 7, 5, 3, 1, 4, 5, 4, 6, 3, 6, 5, 7, 3,…</span>
+<span class="co">#&gt; $ losses        &lt;int&gt; 1, 2, 2, 6, 7, 7, 4, 6, 8, 10, 8, 8, 9, 7, 10, 8, 8, 8, …</span>
+<span class="co">#&gt; $ scores_str    &lt;chr&gt; "30-8", "36-10", "40-15", "25-20", "15-13", "24-25", "19…</span>
+<span class="co">#&gt; $ goal_con_diff &lt;int&gt; 22, 26, 25, 5, 2, -1, -1, -5, 0, -3, -7, -18, -13, -6, -…</span>
+<span class="co">#&gt; $ pts           &lt;int&gt; 39, 37, 34, 27, 26, 25, 25, 23, 21, 19, 19, 17, 16, 15, …</span>
 <span class="co">#&gt; $ idx           &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
 <span class="co">#&gt; $ qual_color    &lt;chr&gt; "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", "…</span></code></pre></div>
 <p>Note that the output of <code>fotmob_get_league_tables</code> for a tournament has more columns.</p>

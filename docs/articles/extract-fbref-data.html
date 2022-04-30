@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Extracting data from FBref</h1>
                         <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 class="date">2022-04-21</h4>
+            <h4 class="date">2022-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fbref-data.Rmd"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fbref-data.Rmd</code></div>
@@ -170,7 +170,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6,378</span>
+<span class="co">#&gt; Rows: 6,495</span>
 <span class="co">#&gt; Columns: 4</span>
 <span class="co">#&gt; $ PlayerFBref &lt;chr&gt; "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
 <span class="co">#&gt; $ UrlFBref    &lt;chr&gt; "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
@@ -761,9 +761,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.46, 0.43, 0.39, 0.06, 0.12, 0.03, 0.00, 0.50, 0.41, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 88, 96, 87, 83, 90, 89, 57, 96, 95, 94, 99, 88, 99, 92…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.41, 0.41, 0.34, 0.06, 0.13, 0.03, 0.00, 0.48, 0.38, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 85, 96, 80, 85, 90, 88, 57, 95, 92, 95, 99, 85, 99, 90…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 2873, 2873, 2873, 2873, 2873, 2873, 2873, 2873, 2873, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span>
 
 <span class="co">#----- Get scouting report for the players secondary position (second position listed in fbref): -----#</span>
@@ -775,9 +775,9 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Versus          &lt;chr&gt; "Forwards", "Forwards", "Forwards", "Forwards", "Forwa…</span>
 <span class="co">#&gt; $ StatGroup       &lt;chr&gt; "Standard", "Standard", "Standard", "Standard", "Stand…</span>
 <span class="co">#&gt; $ Statistic       &lt;chr&gt; "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick…</span>
-<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.46, 0.43, 0.39, 0.06, 0.12, 0.03, 0.00, 0.50, 0.41, …</span>
-<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 62, 98, 64, 58, 74, 90, 56, 79, 76, 99, 95, 62, 95, 78…</span>
-<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, 2963, …</span>
+<span class="co">#&gt; $ Per90           &lt;dbl&gt; 0.41, 0.41, 0.34, 0.06, 0.13, 0.03, 0.00, 0.48, 0.38, …</span>
+<span class="co">#&gt; $ Percentile      &lt;dbl&gt; 53, 98, 54, 58, 75, 92, 56, 73, 67, 99, 93, 53, 95, 77…</span>
+<span class="co">#&gt; $ BasedOnMinutes  &lt;dbl&gt; 2873, 2873, 2873, 2873, 2873, 2873, 2873, 2873, 2873, …</span>
 <span class="co">#&gt; $ scouting_period &lt;chr&gt; "Last 365 Days", "Last 365 Days", "Last 365 Days", "La…</span></code></pre></div>
 </div>
 <div id="get-player-season-stats" class="section level3">
@@ -922,25 +922,25 @@ scout &lt;- fb_player_scouting_report(player_url = "https://fbref.com/en/players
 <span class="co">#&gt; $ Squad                      &lt;chr&gt; "Fleetwood Town", "Fleetwood Town", "Fleetw…</span>
 <span class="co">#&gt; $ Comp                       &lt;chr&gt; "League One", "League One", "League One", "…</span>
 <span class="co">#&gt; $ Player                     &lt;chr&gt; "Alex Cairns", "Danny Andrew", "Tom Clarke"…</span>
-<span class="co">#&gt; $ Nation                     &lt;chr&gt; "ENG", "ENG", "ENG", "ENG", "ENG", "NIR", "…</span>
+<span class="co">#&gt; $ Nation                     &lt;chr&gt; "ENG", "ENG", "ENG", "ENG", "NIR", "ENG", "…</span>
 <span class="co">#&gt; $ Pos                        &lt;chr&gt; "GK", "DF,MF", "DF", "DF,MF", "MF", "MF", "…</span>
-<span class="co">#&gt; $ Age                        &lt;chr&gt; "29-107", "31-119", "34-121", "25-180", "26…</span>
-<span class="co">#&gt; $ MP_Playing_Time            &lt;dbl&gt; 39, 36, 33, 35, 32, 28, 28, 27, 26, 20, 17,…</span>
-<span class="co">#&gt; $ Starts_Playing_Time        &lt;dbl&gt; 39, 36, 33, 32, 26, 26, 23, 21, 19, 18, 17,…</span>
-<span class="co">#&gt; $ Min_Playing_Time           &lt;dbl&gt; 3504, 3138, 2940, 2923, 2309, 2274, 1934, 1…</span>
-<span class="co">#&gt; $ Mins_Per_90_Playing_Time   &lt;dbl&gt; 38.9, 34.9, 32.7, 32.5, 25.7, 25.3, 21.5, 2…</span>
-<span class="co">#&gt; $ Gls                        &lt;dbl&gt; 0, 6, 2, 3, 5, 2, 7, 2, 4, 1, 0, 0, 0, 4, 6…</span>
-<span class="co">#&gt; $ Ast                        &lt;dbl&gt; 0, 6, 0, 1, 2, 5, 1, 4, 8, 0, 0, 2, 1, 4, 2…</span>
-<span class="co">#&gt; $ G_minus_PK                 &lt;dbl&gt; 0, 6, 2, 3, 5, 2, 6, 2, 4, 1, 0, 0, 0, 3, 5…</span>
-<span class="co">#&gt; $ PK                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1…</span>
-<span class="co">#&gt; $ PKatt                      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1…</span>
-<span class="co">#&gt; $ CrdY                       &lt;dbl&gt; 1, 4, 4, 3, 4, 2, 2, 3, 2, 6, 3, 0, 2, 2, 2…</span>
-<span class="co">#&gt; $ CrdR                       &lt;dbl&gt; 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0…</span>
-<span class="co">#&gt; $ Gls_Per_Minutes            &lt;dbl&gt; 0.00, 0.17, 0.06, 0.09, 0.19, 0.08, 0.33, 0…</span>
-<span class="co">#&gt; $ Ast_Per_Minutes            &lt;dbl&gt; 0.00, 0.17, 0.00, 0.03, 0.08, 0.20, 0.05, 0…</span>
-<span class="co">#&gt; $ `G+A_Per_Minutes`          &lt;dbl&gt; 0.00, 0.34, 0.06, 0.12, 0.27, 0.28, 0.37, 0…</span>
-<span class="co">#&gt; $ G_minus_PK_Per_Minutes     &lt;dbl&gt; 0.00, 0.17, 0.06, 0.09, 0.19, 0.08, 0.28, 0…</span>
-<span class="co">#&gt; $ `G+A_minus_PK_Per_Minutes` &lt;dbl&gt; 0.00, 0.34, 0.06, 0.12, 0.27, 0.28, 0.33, 0…</span>
+<span class="co">#&gt; $ Age                        &lt;chr&gt; "29-116", "31-128", "34-130", "25-189", "26…</span>
+<span class="co">#&gt; $ MP_Playing_Time            &lt;dbl&gt; 41, 38, 34, 35, 30, 32, 29, 28, 26, 19, 20,…</span>
+<span class="co">#&gt; $ Starts_Playing_Time        &lt;dbl&gt; 41, 38, 34, 32, 28, 26, 23, 23, 19, 19, 18,…</span>
+<span class="co">#&gt; $ Min_Playing_Time           &lt;dbl&gt; 3684, 3318, 3030, 2923, 2454, 2309, 1979, 1…</span>
+<span class="co">#&gt; $ Mins_Per_90_Playing_Time   &lt;dbl&gt; 40.9, 36.9, 33.7, 32.5, 27.3, 25.7, 22.0, 2…</span>
+<span class="co">#&gt; $ Gls                        &lt;dbl&gt; 0, 6, 2, 3, 3, 5, 2, 7, 4, 0, 1, 0, 1, 6, 0…</span>
+<span class="co">#&gt; $ Ast                        &lt;dbl&gt; 0, 6, 0, 1, 5, 2, 5, 1, 8, 0, 0, 1, 0, 2, 2…</span>
+<span class="co">#&gt; $ G_minus_PK                 &lt;dbl&gt; 0, 6, 2, 3, 3, 5, 2, 6, 4, 0, 1, 0, 1, 5, 0…</span>
+<span class="co">#&gt; $ PK                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0…</span>
+<span class="co">#&gt; $ PKatt                      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0…</span>
+<span class="co">#&gt; $ CrdY                       &lt;dbl&gt; 1, 5, 4, 3, 2, 4, 4, 2, 2, 3, 6, 2, 4, 2, 0…</span>
+<span class="co">#&gt; $ CrdR                       &lt;dbl&gt; 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0…</span>
+<span class="co">#&gt; $ Gls_Per_Minutes            &lt;dbl&gt; 0.00, 0.16, 0.06, 0.09, 0.11, 0.19, 0.09, 0…</span>
+<span class="co">#&gt; $ Ast_Per_Minutes            &lt;dbl&gt; 0.00, 0.16, 0.00, 0.03, 0.18, 0.08, 0.23, 0…</span>
+<span class="co">#&gt; $ `G+A_Per_Minutes`          &lt;dbl&gt; 0.00, 0.33, 0.06, 0.12, 0.29, 0.27, 0.32, 0…</span>
+<span class="co">#&gt; $ G_minus_PK_Per_Minutes     &lt;dbl&gt; 0.00, 0.16, 0.06, 0.09, 0.11, 0.19, 0.09, 0…</span>
+<span class="co">#&gt; $ `G+A_minus_PK_Per_Minutes` &lt;dbl&gt; 0.00, 0.33, 0.06, 0.12, 0.29, 0.27, 0.32, 0…</span>
 <span class="co">#&gt; $ PlayerURL                  &lt;chr&gt; "https://fbref.com/en/players/1a5e36e7/Alex…</span>
 
 <span class="co">#----- Can even get stats for a series of teams: -----#</span>
