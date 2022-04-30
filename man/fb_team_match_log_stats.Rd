@@ -29,6 +29,6 @@ Returns all match statistics for a team(s) in a given season
 \dontrun{
 # for single teams:
 man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-fb_team_match_log_stats(team_urls = man_city_url, stat_tyoe = "passing")
+fb_team_match_log_stats(team_urls = man_city_url, stat_type = "passing")
 }
 }

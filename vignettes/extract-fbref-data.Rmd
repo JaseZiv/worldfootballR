@@ -194,7 +194,7 @@ big5_team_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021
 dplyr::glimpse(big5_team_shooting)
 
 #----- Get data for big five leagues for PLAYERS -----#
-big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "team")
+big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "player")
 dplyr::glimpse(big5_player_shooting)
 ```
 
@@ -361,7 +361,7 @@ Available stat types are below. Note, not all of the listed stat types are avail
 ```{r team_stat_match_logs, eval=FALSE}
 # can do it for one team:
 man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-man_city_logs <- fb_team_match_log_stats(team_urls = man_city_url, stat_tyoe = "passing")
+man_city_logs <- fb_team_match_log_stats(team_urls = man_city_url, stat_type = "passing")
 
 dplyr::glimpse(man_city_logs)
 
