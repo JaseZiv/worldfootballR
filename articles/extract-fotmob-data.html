@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.1000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.2000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-04-29</h4>
+            <h4 data-toc-skip class="date">2022-04-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -434,7 +434,7 @@
 <span class="co">#&gt; $ statusId         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6</span>
 <span class="co">#&gt; $ tournamentStage  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "6", "6", "6", "6", "6", "6", "6", "6"</span>
 <span class="co">#&gt; $ status           <span style="color: #949494; font-style: italic;">&lt;df[,7]&gt;</span> &lt;data.frame[9 x 7]&gt;</span>
-<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632555e+12, 1.632555e+12, 1.632564e+12, 1.632564e+1…</span>
+<span class="co">#&gt; $ timeTS           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632551e+12, 1.632551e+12, 1.632560e+12, 1.632560e+1…</span>
 <span class="co">#&gt; $ tv               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
 <p>You should see international tournaments in the output from <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -467,17 +467,17 @@
 <span class="co">#&gt; $ league_id     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
 <span class="co">#&gt; $ page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/leagues/47/overview/premier-league", "/leagues/47/over…</span>
 <span class="co">#&gt; $ table_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "away", "away", "away", "away", …</span>
-<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Chelsea", "Liverpool", "Tottenham", "Wolves…</span>
-<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8455, 8650, 8586, 8602, 9825, 10204, 10260, 8654, …</span>
-<span class="co">#&gt; $ team_page_url <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8455/ove…</span>
+<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Chelsea", "Brighton", "Tottenh…</span>
+<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 10204, 8586, 8602, 9825, 10260, 8654, …</span>
+<span class="co">#&gt; $ team_page_url <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8650/ove…</span>
 <span class="co">#&gt; $ deduction     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
-<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 16, 17, 16, 17, 17, 16, 17, 17, 17, 17, 17, 17, 17, 16, …</span>
-<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 12, 11, 10, 8, 8, 8, 6, 6, 6, 6, 5, 4, 4, 3, 4, 3, 3, 1,…</span>
-<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 4, 4, 3, 2, 1, 7, 5, 3, 1, 4, 5, 4, 6, 3, 6, 5, 7, 3,…</span>
-<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 6, 7, 7, 4, 6, 8, 10, 8, 8, 9, 7, 10, 8, 8, 8, …</span>
-<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "30-8", "36-10", "40-15", "25-20", "15-13", "24-25", "19…</span>
-<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 22, 26, 25, 5, 2, -1, -1, -5, 0, -3, -7, -18, -13, -6, -…</span>
-<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 39, 37, 34, 27, 26, 25, 25, 23, 21, 19, 19, 17, 16, 15, …</span>
+<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 17, 17, 17, 18, 17, 17, 16, 17, 17, 17, 17, 17, 17, 17, …</span>
+<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 13, 11, 11, 7, 8, 8, 8, 6, 6, 6, 5, 4, 4, 4, 4, 3, 3, 2,…</span>
+<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 4, 4, 7, 3, 2, 1, 5, 3, 1, 4, 6, 5, 4, 3, 6, 5, 7, 3,…</span>
+<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 4, 6, 7, 7, 6, 8, 10, 8, 7, 8, 9, 10, 8, 8, 8, …</span>
+<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "34-8", "41-15", "36-10", "22-20", "25-20", "15-13", "24…</span>
+<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 26, 26, 26, 2, 5, 2, -1, -5, 0, -3, -7, -5, -18, -13, -1…</span>
+<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 42, 37, 37, 28, 27, 26, 25, 23, 21, 19, 19, 18, 17, 16, …</span>
 <span class="co">#&gt; $ idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
 <span class="co">#&gt; $ qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", "…</span></code></pre></div>
 <p>Note that the output of <code>fotmob_get_league_tables</code> for a tournament has more columns.</p>
