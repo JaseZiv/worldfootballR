@@ -75,34 +75,7 @@ fotmob has data for just about every league that you can think of, including all
 
 ### Team Stats
 
-Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, and league. Currently the available stat types are as follows:
-
--   "Accurate passes per match"
--   "Average possession"
--   "Assists
--   "Big chances created"
--   "Big chances missed"
--   "Clean sheets"
--   "Clearances per match"
--   "Expected goals"
--   "xG conceded"
--   "FotMob rating"
--   "Goals"
--   "Goals conceded per match"
--   "Goals per match"
--   "Key passes per match"
--   "Minutes per goal"
--   "Penalties awarded"
--   "Penalties conceded"
--   "Possession won final 3rd"
--   "Red cards"
--   "Saves per match"
--   "Shots on target per match"
--   "Successful dribbles per match"
--   "Successful tackles per match"
--   "Yellow cards"
-
-Note that some of these are only available for either team or player.
+Use `fotmob_get_season_stats` to retrieve values for a specified stat, season, and league. See the docs for the function for a complete list of `stat_name`s. Note that some stats are only available for either team or player, and that some names are different for teams and players (e.g. `"Expected goals"` for `"team"` and `"Expected goals (xG)"` for `"player"`).
 
 ```{r epl_team_xg_2021}
 epl_team_xg_2021 <- fotmob_get_season_stats(
@@ -189,7 +162,7 @@ epl_player_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
   season = "2020/2021",
-  stat_name = "Expected goals",
+  stat_name = "Expected goals (xG)",
   team_or_player = "player"
 )
 

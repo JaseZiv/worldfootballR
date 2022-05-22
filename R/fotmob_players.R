@@ -54,7 +54,7 @@ fotmob_get_match_players <- function(match_ids) {
 .fotmob_get_single_match_players <- function(match_id) {
   # CRAN feedback was to remove this from the existing functions so I have for now
   # print(glue::glue("Scraping match data from fotmob for match {match_id}."))
-  main_url <- "https://www.fotmob.com/"
+  main_url <- "https://www.fotmob.com/api/"
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
   f <- function(url) {

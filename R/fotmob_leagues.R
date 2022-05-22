@@ -142,7 +142,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 }
 
 .fotmob_get_league_resp <- function(league_id, page_url) {
-  url <- sprintf("https://www.fotmob.com/leagues?id=%s", league_id)
+  url <- sprintf("https://www.fotmob.com/api/leagues?id=%s", league_id)
   res <- .safely_from_json(url)
   if(!is.null(res$result)) {
     return(res$result)
@@ -234,12 +234,12 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 #' @importFrom tibble as_tibble
 .fotmob_get_league_matches <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("fixtures" %in% names(resp)) {
+  f <- if("matches" %in% names(resp)) {
     I
   } else {
     .fotmob_extract_data_from_page_props
   }
-  f(resp)$fixtures %>%
+  f(resp)$matches %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
@@ -311,12 +311,12 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom tidyr pivot_longer unnest_longer unnest
 .fotmob_get_league_tables <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("tableData" %in% names(resp)) {
+  f <- if("table" %in% names(resp)) {
     I
   } else {
     .fotmob_extract_data_from_page_props
   }
-  table_init <- f(resp)$tableData
+  table_init <- f(resp)$table
   cols <- c("all", "home", "away")
   table <- if("table" %in% names(table_init)) {
     table_init$table %>% dplyr::select(dplyr::all_of(cols))

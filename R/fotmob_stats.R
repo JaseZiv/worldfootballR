@@ -1,11 +1,4 @@
 
-#' @importFrom dplyr filter
-.fotmob_validate_stat_type <- function(stat_name) {
-
-
-  res
-}
-
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble tibble as_tibble
 #' @importFrom dplyr select
@@ -57,6 +50,7 @@
     league_name = rlang::maybe_missing(league_name, NULL),
     league_id = rlang::maybe_missing(league_id, NULL)
   )
+
   url <- sprintf(
     "https://www.fotmob.com%s/%ss",
     stringr::str_replace(tables$page_url[1], "overview", "stats"),
@@ -98,31 +92,42 @@
 #' @param stat_name the type of statistic. Can be more than one.
 #' `stat_name` may be one of the following, although it may not be available for both \code{"team"} or \code{"player"}:
 #' \itemize{
-#' \item{"Accurate passes per match"}
-#' \item{"Average possession"}
+#' \item{"Accurate long balls per 90"}
+#' \item{"Accurate passes per 90"}
 #' \item{"Assists}
 #' \item{"Big chances created"}
 #' \item{"Big chances missed"}
+#' \item{"Blocks per 90"}
+#' \item{"Chances created}
 #' \item{"Clean sheets"}
-#' \item{"Clearances per match"}
-#' \item{"Expected Goals"}
-#' \item{"Expected Goals conceded"}
+#' \item{"Clearances per 90"}
+#' \item{"Expected assist (xA)"}
+#' \item{"Expected assist (xA) per 90"}
+#' \item{"Expected goals (xG)"}
+#' \item{"Expected goals (xG) per 90"}
+#' \item{"Expected goals on target (xGOT)"}
 #' \item{"FotMob rating"}
-#' \item{"Goals"}
-#' \item{"Goals conceded per match"}
-#' \item{"Goals per match"}
-#' \item{"Key passes per match"}
-#' \item{"Minutes per goal"}
-#' \item{"Penalties awarded"}
+#' \item{"Fouls committed per 90"}
+#' \item{"Goals + Assists"}
+#' \item{"Goals conceded per 90"}
+#' \item{"Goals per 90"}
+#' \item{"Goals prevented"}
+#' \item{"Interceptions per 90"}
 #' \item{"Penalties conceded"}
-#' \item{"Possession won final 3rd"}
+#' \item{"Penalties won"}
+#' \item{"Possession won final 3rd per 90"}
 #' \item{"Red cards"}
-#' \item{"Saves per match"}
-#' \item{"Shots on target per match"}
-#' \item{"Successful dribbles per match"}
-#' \item{"Successful tackles per match"}
+#' \item{"Saves per 90"}
+#' \item{"Shots on target per 90"}
+#' \item{"Shots per 90"}
+#' \item{"Successful dribbles per 90"}
+#' \item{"Successful tackles per 90"}
+#' \item{"Top scorer"}
+#' \item{"xG + xA per 90"}
 #' \item{"Yellow cards"}
 #' }
+#'
+#' Fotmob has changed these stat names over time, so this list may be out-dated. If you try an invalid stat name, you should see an error message indicating which ones are available.
 #'
 #' @return returns a dataframe of team or player stats
 #'
@@ -139,7 +144,7 @@
 #'   country = "ENG",
 #'   league_name = "Premier League",
 #'   season = "2020/2021",
-#'   stat_type = "xg",
+#'   stat_type = "Expected goals",
 #'   team_or_player = "team"
 #' )
 #'
@@ -149,11 +154,12 @@
 #'   season = "2016/2017"
 #' )
 #'
+#' ## Note that the `stat_type` name is slightly different.
 #' epl_player_xg_2021 <- get_epl_season_stats(
 #'   country = "ENG",
 #'   league_name = "Premier League",
 #'   season = "2020/2021",
-#'   stat_type = "xg",
+#'   stat_type = "Expected goals (xG)",
 #'   team_or_player = "player"
 #' )
 #' }
