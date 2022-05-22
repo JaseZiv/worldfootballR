@@ -2,7 +2,7 @@ context("Testing fotmob functions")
 
 
 test_that("fotmob_get_matches_by_date() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
   expect_gt(nrow(results), 0)
@@ -10,7 +10,7 @@ test_that("fotmob_get_matches_by_date() works", {
 })
 
 test_that("fotmob_get_league_matches() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   league_matches <- fotmob_get_league_matches(
     country = "ENG",
@@ -100,7 +100,7 @@ test_that("fotmob_get_league_matches() works", {
 
 
 test_that("fotmob_get_league_tables() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   n_expected_domestic_league_table_cols <- 16
   epl_league_table <- fotmob_get_league_tables(
@@ -149,7 +149,7 @@ test_that("fotmob_get_league_tables() works", {
 })
 
 test_that("fotmob_get_season_stats() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   n_expected_stat_cols <- 20
   epl_team_xg_21_a <- fotmob_get_season_stats(
@@ -291,7 +291,7 @@ test_that("fotmob_get_season_stats() works", {
 })
 
 test_that("fotmob_get_match_details() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   n_expected_match_detail_cols <- 15
   details <- fotmob_get_match_details(c(3609987, 3609979))
@@ -308,7 +308,7 @@ test_that("fotmob_get_match_details() works", {
 
 
 test_that("fotmob_get_match_players() works", {
-  # testthat::skip_on_cran()
+  testthat::skip_on_cran()
 
   n_expected_match_player_cols <- 32
   players <- fotmob_get_match_players(c(3609987, 3609979))
