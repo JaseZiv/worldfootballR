@@ -27,7 +27,7 @@ fotmob_get_season_stats(
 \item{team_or_player}{return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.}
 
 \item{stat_name}{the type of statistic. Can be more than one.
-`stat_name` may be one of the following, although it may not be available for both \code{"team"} or \code{"player"}:
+\code{stat_name} must be one of the following for \code{"player"}:
 \itemize{
 \item{"Accurate long balls per 90"}
 \item{"Accurate passes per 90"}
@@ -62,6 +62,33 @@ fotmob_get_season_stats(
 \item{"Top scorer"}
 \item{"xG + xA per 90"}
 \item{"Yellow cards"}
+}
+
+For `"team"`, `stat_name` must be one of the following:
+\itemize{
+\item{Accurate crosses per match}
+\item{Accurate long balls per match}
+\item{Accurate passes per match}
+\item{Average possession}
+\item{Big chances created}
+\item{Big chances missed}
+\item{Clean sheets}
+\item{Clearances per match}
+\item{Expected goals}
+\item{FotMob rating}
+\item{Fouls per match}
+\item{Goals conceded per match}
+\item{Goals per match}
+\item{Interceptions per match}
+\item{Penalties awarded}
+\item{Penalties conceded}
+\item{Possession won final 3rd per match}
+\item{Red cards}
+\item{Saves per match}
+\item{Shots on target per match}
+\item{Successful tackles per match}
+\item{xG conceded}
+\item{Yellow cards}
 }
 
 Fotmob has changed these stat names over time, so this list may be out-dated. If you try an invalid stat name, you should see an error message indicating which ones are available.}

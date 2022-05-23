@@ -90,41 +90,68 @@
 #'
 #' @param team_or_player return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.
 #' @param stat_name the type of statistic. Can be more than one.
-#' `stat_name` may be one of the following, although it may not be available for both \code{"team"} or \code{"player"}:
+#' `stat_name` must be one of the following for \code{"player"}:
+#' \item{Accurate long balls per 90}
+#' \item{Accurate passes per 90}
+#' \item{Assists}
+#' \item{Big chances created}
+#' \item{Big chances missed}
+#' \item{Blocks per 90}
+#' \item{Chances created}
+#' \item{Clean sheets}
+#' \item{Clearances per 90}
+#' \item{Expected assist (xA)}
+#' \item{Expected assist (xA) per 90}
+#' \item{Expected goals (xG)}
+#' \item{Expected goals (xG) per 90}
+#' \item{Expected goals on target (xGOT)}
+#' \item{FotMob rating}
+#' \item{Fouls committed per 90}
+#' \item{Goals + Assists}
+#' \item{Goals conceded per 90}
+#' \item{Goals per 90}
+#' \item{Goals prevented}
+#' \item{Interceptions per 90}
+#' \item{Penalties conceded}
+#' \item{Penalties won}
+#' \item{Possession won final 3rd per 90}
+#' \item{Red cards}
+#' \item{Save percentage}
+#' \item{Saves per 90}
+#' \item{Shots on target per 90}
+#' \item{Shots per 90}
+#' \item{Successful dribbles per 90}
+#' \item{Successful tackles per 90}
+#' \item{Top scorer}
+#' \item{xG + xA per 90}
+#' \item{Yellow cards}
+#' }
+#' 
+#' For \code{"team"}, `stat_name` must be one of the following:
 #' \itemize{
-#' \item{"Accurate long balls per 90"}
-#' \item{"Accurate passes per 90"}
-#' \item{"Assists}
-#' \item{"Big chances created"}
-#' \item{"Big chances missed"}
-#' \item{"Blocks per 90"}
-#' \item{"Chances created}
-#' \item{"Clean sheets"}
-#' \item{"Clearances per 90"}
-#' \item{"Expected assist (xA)"}
-#' \item{"Expected assist (xA) per 90"}
-#' \item{"Expected goals (xG)"}
-#' \item{"Expected goals (xG) per 90"}
-#' \item{"Expected goals on target (xGOT)"}
-#' \item{"FotMob rating"}
-#' \item{"Fouls committed per 90"}
-#' \item{"Goals + Assists"}
-#' \item{"Goals conceded per 90"}
-#' \item{"Goals per 90"}
-#' \item{"Goals prevented"}
-#' \item{"Interceptions per 90"}
-#' \item{"Penalties conceded"}
-#' \item{"Penalties won"}
-#' \item{"Possession won final 3rd per 90"}
-#' \item{"Red cards"}
-#' \item{"Saves per 90"}
-#' \item{"Shots on target per 90"}
-#' \item{"Shots per 90"}
-#' \item{"Successful dribbles per 90"}
-#' \item{"Successful tackles per 90"}
-#' \item{"Top scorer"}
-#' \item{"xG + xA per 90"}
-#' \item{"Yellow cards"}
+#' \item{Accurate crosses per match}
+#' \item{Accurate long balls per match}
+#' \item{Accurate passes per match}
+#' \item{Average possession}
+#' \item{Big chances created}
+#' \item{Big chances missed}
+#' \item{Clean sheets}
+#' \item{Clearances per match}
+#' \item{Expected goals}
+#' \item{FotMob rating}
+#' \item{Fouls per match}
+#' \item{Goals conceded per match}
+#' \item{Goals per match}
+#' \item{Interceptions per match}
+#' \item{Penalties awarded}
+#' \item{Penalties conceded}
+#' \item{Possession won final 3rd per match}
+#' \item{Red cards}
+#' \item{Saves per match}
+#' \item{Shots on target per match}
+#' \item{Successful tackles per match}
+#' \item{xG conceded}
+#' \item{Yellow cards}
 #' }
 #'
 #' Fotmob has changed these stat names over time, so this list may be out-dated. If you try an invalid stat name, you should see an error message indicating which ones are available.
