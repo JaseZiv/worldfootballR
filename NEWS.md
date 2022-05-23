@@ -1,3 +1,11 @@
+# worldfootballR 0.5.2.3000
+
+### Bugs
+
+* `fotmob_get_leage_matches()` and `fotmob_get_league_tables()` after changes to names in JSON response (`fixtures` -> `matches`, `tableData` -> `table`) [#121](https://github.com/JaseZiv/worldfootballR/issues/121), [#122](https://github.com/JaseZiv/worldfootballR/issues/122)
+* Various fotmob functions affected by addition of `api/` in URL
+* New names to player stats outdated docs for `fotmob_get_season_stats()`
+
 # worldfootballR 0.5.2.2000
 
 ### Bugs

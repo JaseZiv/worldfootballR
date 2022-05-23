@@ -164,7 +164,7 @@ test_that("fotmob_get_season_stats() works", {
   get_epl_season_stats <- function(
     season_name = "2020/2021",
     team_or_player = "team",
-    stat_name = "Expected goals"
+    stat_name = ifelse(team_or_player == "team", "Expected goals", "Expected goals (xG)")
   ) {
     fotmob_get_season_stats(
       country = "ENG",
