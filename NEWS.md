@@ -1,3 +1,14 @@
+# worldfootballR 0.5.3
+
+### Improvements
+
+Now starting to have load functions:
+
+* `load_match_results()` - function to load pre stored data similar to `get_match_results()`
+* `load_fb_big5_advanced_season_stats()` - function to load pre stored data similar to `fb_big5_advanced_season_stats()`
+
+***
+
 # worldfootballR 0.5.2.3000
 
 ### Bugs

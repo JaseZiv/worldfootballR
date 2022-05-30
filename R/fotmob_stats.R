@@ -89,8 +89,7 @@
 #' Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.
 #'
 #' @param team_or_player return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.
-#' @param stat_name the type of statistic. Can be more than one.
-#' `stat_name` must be one of the following for \code{"player"}:
+#' @param stat_name the type of statistic. Can be more than one, but must be one of the following for \code{"player"}:
 #' \item{Accurate long balls per 90}
 #' \item{Accurate passes per 90}
 #' \item{Assists}
@@ -126,7 +125,7 @@
 #' \item{xG + xA per 90}
 #' \item{Yellow cards}
 #' }
-#' 
+#'
 #' For \code{"team"}, `stat_name` must be one of the following:
 #' \itemize{
 #' \item{Accurate crosses per match}
@@ -175,20 +174,6 @@
 #'   team_or_player = "team"
 #' )
 #'
-#' ## fotmob doesn't has data for 2016/2017 for some leagues, but not all.
-#' ##   you'll see a warning about this and receive an empty dataframe
-#' get_epl_season_stats(
-#'   season = "2016/2017"
-#' )
-#'
-#' ## Note that the `stat_type` name is slightly different.
-#' epl_player_xg_2021 <- get_epl_season_stats(
-#'   country = "ENG",
-#'   league_name = "Premier League",
-#'   season = "2020/2021",
-#'   stat_type = "Expected goals (xG)",
-#'   team_or_player = "player"
-#' )
 #' }
 fotmob_get_season_stats <- function(
   country,

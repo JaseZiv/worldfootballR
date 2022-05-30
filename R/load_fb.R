@@ -1,0 +1,108 @@
+#' Load match results
+#'
+#' Loading version of \code{get_match_results}
+#' Returns the game results for a given league season(s) from FBref
+#'
+#' @param country the three character country code
+#' @param gender gender of competition, either "M" or "F"
+#' @param season_end_year the year(s) the season concludes
+#' @param tier the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on
+#'
+#' @return returns a dataframe with the results of the competition, season and gender
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#' @importFrom utils read.csv
+#'
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' df <- load_match_results(
+#' country = c("ITA"), gender = "M", season_end_year = 2021, tier = "1st"
+#' )
+#' # for results from English 1st div for men and women:
+#' df <- load_match_results(
+#' country = "ENG", gender = c("M", "F"), season_end_year = 2021, tier = "1st"
+#' )
+#'
+#' }
+
+load_match_results <- function(country, gender, season_end_year, tier) {
+  dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/", country, "_match_results.rds?raw=true")
+
+  collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
+  dat_df <- dat_urls %>% purrr::map_df(.file_reader)
+
+  dat_df <- dat_df %>%
+    dplyr::filter(.data$Country %in% country,
+                  .data$Gender %in% gender,
+                  .data$Season_End_Year %in% season_end_year,
+                  .data$Tier %in% tier)
+
+  cli::cli_alert("Data last updated {collect_date} UTC")
+
+  return(dat_df)
+
+}
+
+
+
+#' Load Big 5 Euro League Season Stats
+#'
+#' Loading version of \code{fb_big5_advanced_season_stats}
+#' Returns data frame of selected statistics for seasons of the big 5 Euro leagues, for either
+#' whole team or individual players.
+#' Multiple seasons can be passed to the function, but only one `stat_type` can be selected
+#'
+#' @param season_end_year the year(s) the season concludes
+#' @param stat_type the type of team statistics the user requires
+#' @param team_or_player result either summarised for each team, or individual players
+#'
+#' The statistic type options (stat_type) include:
+#'
+#' \emph{"standard"}, \emph{"shooting"}, \emph{"passing"}, \emph{"passing_types"},
+#' \emph{"gca"}, \emph{"defense"}, \emph{"possession"}, \emph{"playing_time"},
+#' \emph{"misc"}, \emph{"keepers"}, \emph{"keepers_adv"}
+#'
+#' @return returns a dataframe of a selected team or player statistic type for a selected season(s)
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' df <- load_fb_big5_advanced_season_stats(
+#' stat_type = "defense", team_or_player = "player"
+#' )
+#'
+#' df <- load_fb_big5_advanced_season_stats(
+#' season_end_year = 2022, stat_type = "defense", team_or_player = "player"
+#' )
+#' }
+
+load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, team_or_player) {
+
+  dat_url <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/big5_", team_or_player, "_", stat_type, ".rds?raw=true")
+  collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/scrape_time_big5_advanced_season_stats.rds?raw=true")
+
+  dat_df <- .file_reader(dat_url)
+
+  suppressWarnings(
+    if(!is.na(season_end_year)) {
+      dat_df <- dat_df %>%
+        dplyr::filter(.data$Season_End_Year %in% season_end_year)
+    } else {
+      dat_df <- dat_df
+    }
+  )
+
+
+  cli::cli_alert("Data last updated {collect_date} UTC")
+  return(dat_df)
+
+}
+
