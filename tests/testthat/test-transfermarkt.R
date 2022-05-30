@@ -3,9 +3,6 @@ context("Testing Transfermarkt functions")
 test_that("get_player_market_values() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
-  # test the functions returns the data
-  expect_type(get_player_market_values(country_name = "Australia", start_year = 2021), "list")
-
   # test that multiple countries can be passed to the function
   expect_type(get_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
@@ -38,14 +35,12 @@ test_that("tm_team_transfers() works", {
   expect_false(nrow(bayern_summer) == 0)
   expect_false(any(is.na(bayern_summer$player_name)))
 
-  bayern_all <- tm_team_transfers(team_url = "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020", transfer_window = "all")
-  expect_type(bayern_all, "list")
-  expect_false(nrow(bayern_all) == 0)
-  expect_false(any(is.na(bayern_all$player_name)))
   # test multiple urls:
   urls <- c("https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
             "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
   multi <- tm_team_transfers(team_url = urls, transfer_window = "all")
+  expect_false(nrow(multi) == 0)
+  expect_false(any(is.na(multi$player_name)))
 
 })
 
@@ -81,10 +76,6 @@ test_that("tm_squad_stats() works", {
 
 test_that("tm_player_bio() works", {
   testthat::skip_on_cran()
-  hazard_bio <- tm_player_bio(player_url = "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202")
-  expect_type(hazard_bio, "list")
-  expect_equal(ncol(hazard_bio), 21)
-
   burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020")
   # then pass all those URLs to the tm_player_bio
   burnley_bios <- tm_player_bio(player_urls = burnley_player_urls[1:3])
@@ -100,7 +91,6 @@ test_that("tm_team_staff_urls() works", {
 
   # get a list of team URLs for the EPL 2021/22 season
   teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
-             "https://www.transfermarkt.com/manchester-united/startseite/verein/985/saison_id/2021",
              "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
   # get all EPL managers for the 2021/22 season
   epl_managers <- tm_team_staff_urls(team_urls = teams, staff_role = "Manager")
@@ -122,7 +112,6 @@ test_that("tm_team_staff_history() works", {
 
   # get a list of team URLs for the EPL 2021/22 season
   teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
-            "https://www.transfermarkt.com/manchester-united/startseite/verein/985/saison_id/2021",
             "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
   # get all EPL managers for the 2021/22 season
   epl_club_managers <- tm_team_staff_history(team_urls = teams, staff_role = "Manager")
@@ -135,14 +124,12 @@ test_that("tm_team_staff_history() works", {
   testthat::skip_on_cran()
 
   managers <- c("https://www.transfermarkt.com/pep-guardiola/profil/trainer/5672",
-                "https://www.transfermarkt.com/ralf-rangnick/profil/trainer/196",
                 "https://www.transfermarkt.com/thomas-tuchel/profil/trainer/7471")
   epl_manager_job_histories <- tm_staff_job_history(staff_urls = managers)
   expect_type(epl_manager_job_histories, "list")
   expect_false(nrow(epl_manager_job_histories) == 0)
 
   gk_coaches <- c("https://www.transfermarkt.com/xabier-mancisidor/profil/trainer/17486",
-                  "https://www.transfermarkt.com/richard-wright/profil/trainer/93678",
                   "https://www.transfermarkt.com/richard-hartis/profil/trainer/19348")
 
   epl_gk_coach_job_histories <- tm_staff_job_history(staff_urls = gk_coaches)

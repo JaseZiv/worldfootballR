@@ -95,9 +95,6 @@ test_that("get_match_lineups() works", {
 test_that("get_match_report() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_df <- get_match_report(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1")
-  # test the functions returns the data
-  expect_type(test_df, "list")
 
   # test that multiple match_url can be passed to the function
   test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
@@ -118,10 +115,6 @@ test_that("get_match_report() works", {
 test_that("get_match_results() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_df <- get_match_results(country = "ENG", gender = "M", season_end_year = 2022, tier="1st")
-  # test the functions returns the data
-  expect_type(test_df, "list")
-
   # test that multiple countries can be passed to the function
   test_df <- get_match_results(country = c("ENG", "AUS"), gender = "F", season_end_year = 2021, tier="1st")
   expect_type(test_df, "list")
@@ -136,10 +129,6 @@ test_that("get_match_results() works", {
 test_that("get_match_summary() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_df <- get_match_summary(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1")
-  # test the functions returns the data
-  expect_type(test_df, "list")
-
   # test that multiple match_url can be passed to the function
   test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                  "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
@@ -178,7 +167,6 @@ test_that("get_season_team_stats() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
   # test the functions returns the data
-  expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table"), "list")
   expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "league_table_home_away"), "list")
   expect_type(get_season_team_stats(country = "AUS", gender = "F", season_end_year = 2021, tier="1st", stat_type = "standard"), "list")
   expect_type(get_season_team_stats(country = "ENG", gender = "M", season_end_year = 2021, tier="1st", stat_type = "keeper"), "list")
@@ -211,13 +199,9 @@ test_that("get_season_team_stats() works", {
 
 test_that("fb_big5_advanced_season_stats() works", {
   testthat::skip_on_cran()
-  big5_team_shooting_multiple <- fb_big5_advanced_season_stats(season_end_year= c(2019:2021), stat_type= "shooting", team_or_player= "team")
+  big5_team_shooting_multiple <- fb_big5_advanced_season_stats(season_end_year= c(2021:2022), stat_type= "shooting", team_or_player= "team")
   expect_type(big5_team_shooting_multiple, "list")
   expect_false(nrow(big5_team_shooting_multiple) == 0)
-
-  big5_team_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "shooting", team_or_player= "team")
-  expect_type(big5_team_shooting, "list")
-  expect_false(nrow(big5_team_shooting) == 0)
 
   big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "shooting", team_or_player= "player")
   expect_type(big5_player_shooting, "list")
@@ -227,10 +211,6 @@ test_that("fb_big5_advanced_season_stats() works", {
 
 test_that("get_match_shooting() works", {
   testthat::skip_on_cran()
-  shot_one_match <- get_match_shooting(match_url = "https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League")
-  expect_type(shot_one_match, "list")
-  expect_false(nrow(shot_one_match) == 0)
-
   test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
                           "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
                           "https://fbref.com/en/matches/f96cd5a0/Lorient-Strasbourg-August-23-2020-Ligue-1")
@@ -242,16 +222,9 @@ test_that("get_match_shooting() works", {
 
 test_that("get_team_match_results() works", {
   testthat::skip_on_cran()
-  # for single teams:
-  man_city_2021_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-  man_city_2021_results <- get_team_match_results(man_city_2021_url)
-  expect_type(man_city_2021_results, "list")
-  expect_false(nrow(man_city_2021_results) == 0)
-
-
   # get all team URLs for a league
   epl_2021_team_urls <- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
-  epl_2021_team_results <- get_team_match_results(team_url = epl_2021_team_urls)
+  epl_2021_team_results <- get_team_match_results(team_url = epl_2021_team_urls[1:3])
   expect_type(epl_2021_team_results, "list")
   expect_false(nrow(epl_2021_team_results) == 0)
 })
@@ -273,10 +246,6 @@ test_that("fb_player_scouting_report() works", {
 
 test_that("fb_player_season_stats() works", {
   testthat::skip_on_cran()
-  mo_shooting <- fb_player_season_stats("https://fbref.com/en/players/e342ad68/Mohamed-Salah", stat_type = 'shooting')
-  expect_type(mo_shooting, "list")
-  expect_false(nrow(mo_shooting) == 0)
-
   multiple_playing_time <- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
                                                                  "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
                                                   stat_type = "playing_time")
