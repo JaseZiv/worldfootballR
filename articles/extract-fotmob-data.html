@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.3000</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-04-30</h4>
+            <h4 data-toc-skip class="date">2022-05-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -172,34 +172,7 @@
 <div class="section level3">
 <h3 id="team-stats">Team Stats<a class="anchor" aria-label="anchor" href="#team-stats"></a>
 </h3>
-<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a specified stat, season, and league. Currently the available stat types are as follows:</p>
-<ul>
-<li>“Accurate passes per match”</li>
-<li>“Average possession”</li>
-<li>"Assists</li>
-<li>“Big chances created”</li>
-<li>“Big chances missed”</li>
-<li>“Clean sheets”</li>
-<li>“Clearances per match”</li>
-<li>“Expected goals”</li>
-<li>“xG conceded”</li>
-<li>“FotMob rating”</li>
-<li>“Goals”</li>
-<li>“Goals conceded per match”</li>
-<li>“Goals per match”</li>
-<li>“Key passes per match”</li>
-<li>“Minutes per goal”</li>
-<li>“Penalties awarded”</li>
-<li>“Penalties conceded”</li>
-<li>“Possession won final 3rd”</li>
-<li>“Red cards”</li>
-<li>“Saves per match”</li>
-<li>“Shots on target per match”</li>
-<li>“Successful dribbles per match”</li>
-<li>“Successful tackles per match”</li>
-<li>“Yellow cards”</li>
-</ul>
-<p>Note that some of these are only available for either team or player.</p>
+<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a specified stat, season, and league. See the docs for the function for a complete list of <code>stat_name</code>s. Note that some stats are only available for either team or player, and that some names are different for teams and players (e.g. <code>"Expected goals"</code> for <code>"team"</code> and <code>"Expected goals (xG)"</code> for <code>"player"</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">epl_team_xg_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   country <span class="op">=</span> <span class="st">"ENG"</span>,
@@ -231,7 +204,7 @@
 <span class="co">#&gt; $ team_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 10260, 8654, 8463, 8197, 8586, 10252,…</span>
 <span class="co">#&gt; $ team_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Liverpool", "Chelsea", "Manchester …</span>
 <span class="co">#&gt; $ matches_played <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38,…</span>
-<span class="co">#&gt; $ xg             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 68.91, 68.36, 62.95, 60.86, 56.72, 56.36, 56.11, 53.77,…</span>
+<span class="co">#&gt; $ xg             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 68.9, 68.4, 62.9, 60.9, 56.7, 56.4, 56.1, 53.8, 53.8, 5…</span>
 <span class="co">#&gt; $ g              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 83, 68, 58, 73, 62, 62, 68, 68, 55, 55, 40, 47, 46, 47,…</span></code></pre></div>
 <p>If you know the <code>league_id</code>, you can use it instead of passing in values for <code>country</code> and <code>league_name</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -329,7 +302,7 @@
   country <span class="op">=</span> <span class="st">"ENG"</span>,
   league_name <span class="op">=</span> <span class="st">"Premier League"</span>,
   season <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals (xG)"</span>,
   team_or_player <span class="op">=</span> <span class="st">"player"</span>
 <span class="op">)</span>
 
@@ -359,9 +332,9 @@
 <span class="co">#&gt; $ player_id      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 194165, 286119, 292462, 302241, 612150, 422685, 540088,…</span>
 <span class="co">#&gt; $ player_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Harry Kane", "Jamie Vardy", "Mohamed Salah", "Patrick …</span>
 <span class="co">#&gt; $ minutes_played <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3085, 2844, 3079, 3062, 2874, 3105, 3329, 2810, 1983, 2…</span>
-<span class="co">#&gt; $ matches_played <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 35, 34, 37, 38, 33, 37, 37, 35, 26, 33, 33, 26, 36, 31,…</span>
-<span class="co">#&gt; $ xg             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20.23, 19.93, 19.32, 18.27, 16.31, 16.10, 14.55, 14.17,…</span>
-<span class="co">#&gt; $ g              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 23, 15, 22, 17, 16, 18, 14, 11, 10, 8, 12, 12, 9, 13, 6…</span></code></pre></div>
+<span class="co">#&gt; $ matches_played <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 35, 34, 37, 38, 33, 37, 37, 35, 26, 33, 33, 26, 31, 36,…</span>
+<span class="co">#&gt; $ xg             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20.2, 19.9, 19.3, 18.3, 16.3, 16.1, 14.6, 14.2, 13.6, 1…</span>
+<span class="co">#&gt; $ g              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 23, 15, 22, 17, 16, 18, 14, 11, 10, 8, 12, 12, 13, 9, 6…</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="match-results">Match Results<a class="anchor" aria-label="anchor" href="#match-results"></a>
@@ -392,14 +365,14 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 268</span>
 <span class="co">#&gt; Columns: 12</span>
-<span class="co">#&gt; $ ccode              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "ENG", "GER", "ENG", "ESP", "MEX", "FRA", "U…</span>
-<span class="co">#&gt; $ id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 47, 54, 873679, 87, 874077, 53, 874044, 873…</span>
-<span class="co">#&gt; $ primary_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 47, 54, 48, 87, 230, 53, 10084, 9134, 55, 8972…</span>
-<span class="co">#&gt; $ name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Major League Soccer", "Premier League", "1. Bundes…</span>
+<span class="co">#&gt; $ ccode              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "ENG", "ESP", "ITA", "GER", "FRA", "USA", "U…</span>
+<span class="co">#&gt; $ id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 47, 87, 55, 54, 53, 8972, 873262, 872547, 8…</span>
+<span class="co">#&gt; $ primary_id         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 47, 87, 55, 54, 53, 8972, 9134, 9296, 48, 230,…</span>
+<span class="co">#&gt; $ name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Major League Soccer", "Premier League", "LaLiga", …</span>
 <span class="co">#&gt; $ matches            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[10 x 11]&gt;], [&lt;data.frame[7 x 11]&gt;], […</span>
-<span class="co">#&gt; $ parent_league_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, NA, NA, 48, NA, 230, NA, 10084, 9134, NA, NA, …</span>
-<span class="co">#&gt; $ internal_rank      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 30, 20, 29, 10, 10, 10, 0, 2, 9, 9, 8, 0, 7, 7,…</span>
-<span class="co">#&gt; $ live_rank          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 100, 101, 100, 0, 100, 0, 100, 0, 0, 100, 0, 0, 0, …</span>
+<span class="co">#&gt; $ parent_league_id   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, NA, NA, NA, NA, NA, NA, 9134, 9296, 48, 230, 1…</span>
+<span class="co">#&gt; $ internal_rank      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 30, 10, 9, 20, 10, 9, 2, 8, 29, 10, 0, 0, 7, 7,…</span>
+<span class="co">#&gt; $ live_rank          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 100, 101, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, …</span>
 <span class="co">#&gt; $ simple_league      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FA…</span>
 <span class="co">#&gt; $ is_group           <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
 <span class="co">#&gt; $ group_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
@@ -467,17 +440,17 @@
 <span class="co">#&gt; $ league_id     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
 <span class="co">#&gt; $ page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/leagues/47/overview/premier-league", "/leagues/47/over…</span>
 <span class="co">#&gt; $ table_type    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "away", "away", "away", "away", …</span>
-<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Chelsea", "Brighton", "Tottenh…</span>
-<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 10204, 8586, 8602, 9825, 10260, 8654, …</span>
+<span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Liverpool", "Chelsea", "Tottenham", "Bright…</span>
+<span class="co">#&gt; $ id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650, 8455, 8586, 10204, 9825, 8602, 8654, 10260, …</span>
 <span class="co">#&gt; $ team_page_url <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/8456/overview/manchester-city", "/teams/8650/ove…</span>
 <span class="co">#&gt; $ deduction     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
-<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 17, 17, 17, 18, 17, 17, 16, 17, 17, 17, 17, 17, 17, 17, …</span>
-<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 13, 11, 11, 7, 8, 8, 8, 6, 6, 6, 5, 4, 4, 4, 4, 3, 3, 2,…</span>
-<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 4, 4, 7, 3, 2, 1, 5, 3, 1, 4, 6, 5, 4, 3, 6, 5, 7, 3,…</span>
-<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 2, 4, 6, 7, 7, 6, 8, 10, 8, 7, 8, 9, 10, 8, 8, 8, …</span>
-<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "34-8", "41-15", "36-10", "22-20", "25-20", "15-13", "24…</span>
-<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 26, 26, 26, 2, 5, 2, -1, -5, 0, -3, -7, -5, -18, -13, -1…</span>
-<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 42, 37, 37, 28, 27, 26, 25, 23, 21, 19, 19, 18, 17, 16, …</span>
+<span class="co">#&gt; $ played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, …</span>
+<span class="co">#&gt; $ wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 14, 13, 12, 9, 7, 9, 8, 7, 6, 7, 6, 5, 4, 5, 4, 4, 3, 2,…</span>
+<span class="co">#&gt; $ draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4, 4, 4, 4, 8, 1, 3, 3, 5, 1, 4, 5, 7, 4, 6, 3, 6, 8, 4,…</span>
+<span class="co">#&gt; $ losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 6, 4, 9, 8, 9, 8, 11, 9, 9, 8, 10, 9, 12, 10, 9…</span>
+<span class="co">#&gt; $ scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "41-11", "45-17", "39-11", "31-21", "23-21", "26-31", "1…</span>
+<span class="co">#&gt; $ goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 30, 28, 28, 10, 2, -5, 0, 2, -10, -2, -9, -18, -6, -17, …</span>
+<span class="co">#&gt; $ pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 46, 43, 40, 31, 29, 28, 27, 24, 23, 22, 22, 20, 19, 19, …</span>
 <span class="co">#&gt; $ idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
 <span class="co">#&gt; $ qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", "…</span></code></pre></div>
 <p>Note that the output of <code>fotmob_get_league_tables</code> for a tournament has more columns.</p>
@@ -695,7 +668,7 @@
 <span class="co">#&gt; $ stats_touches                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 49, 41</span>
 <span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0</span>
 <span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 4</span>
-<span class="co">#&gt; $ stats_key_passes                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 2</span>
+<span class="co">#&gt; $ stats_chances_created                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 2</span>
 <span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.29, 0.04</span>
 <span class="co">#&gt; $ stats_corners                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA</span>
 <span class="co">#&gt; $ stats_dispossessed                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1</span>

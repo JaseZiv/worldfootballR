@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.3000</span>
       </span>
     </div>
 
@@ -107,31 +107,63 @@
 <dd><p>return statistics for either <code>"team"</code> or <code>"player"</code>. Can only be one or the other.</p></dd>
 <dt>stat_name</dt>
 <dd><p>the type of statistic. Can be more than one.
-`stat_name` may be one of the following, although it may not be available for both <code>"team"</code> or <code>"player"</code>:</p><ul><li><p>"Accurate passes per match"</p></li>
-<li><p>"Average possession"</p></li>
+<code>stat_name</code> must be one of the following for <code>"player"</code>:</p><ul><li><p>"Accurate long balls per 90"</p></li>
+<li><p>"Accurate passes per 90"</p></li>
 <li><p>"Assists</p></li>
 <li><p>"Big chances created"</p></li>
 <li><p>"Big chances missed"</p></li>
+<li><p>"Blocks per 90"</p></li>
+<li><p>"Chances created</p></li>
 <li><p>"Clean sheets"</p></li>
-<li><p>"Clearances per match"</p></li>
-<li><p>"Expected Goals"</p></li>
-<li><p>"Expected Goals conceded"</p></li>
+<li><p>"Clearances per 90"</p></li>
+<li><p>"Expected assist (xA)"</p></li>
+<li><p>"Expected assist (xA) per 90"</p></li>
+<li><p>"Expected goals (xG)"</p></li>
+<li><p>"Expected goals (xG) per 90"</p></li>
+<li><p>"Expected goals on target (xGOT)"</p></li>
 <li><p>"FotMob rating"</p></li>
-<li><p>"Goals"</p></li>
-<li><p>"Goals conceded per match"</p></li>
-<li><p>"Goals per match"</p></li>
-<li><p>"Key passes per match"</p></li>
-<li><p>"Minutes per goal"</p></li>
-<li><p>"Penalties awarded"</p></li>
+<li><p>"Fouls committed per 90"</p></li>
+<li><p>"Goals + Assists"</p></li>
+<li><p>"Goals conceded per 90"</p></li>
+<li><p>"Goals per 90"</p></li>
+<li><p>"Goals prevented"</p></li>
+<li><p>"Interceptions per 90"</p></li>
 <li><p>"Penalties conceded"</p></li>
-<li><p>"Possession won final 3rd"</p></li>
+<li><p>"Penalties won"</p></li>
+<li><p>"Possession won final 3rd per 90"</p></li>
 <li><p>"Red cards"</p></li>
-<li><p>"Saves per match"</p></li>
-<li><p>"Shots on target per match"</p></li>
-<li><p>"Successful dribbles per match"</p></li>
-<li><p>"Successful tackles per match"</p></li>
+<li><p>"Saves per 90"</p></li>
+<li><p>"Shots on target per 90"</p></li>
+<li><p>"Shots per 90"</p></li>
+<li><p>"Successful dribbles per 90"</p></li>
+<li><p>"Successful tackles per 90"</p></li>
+<li><p>"Top scorer"</p></li>
+<li><p>"xG + xA per 90"</p></li>
 <li><p>"Yellow cards"</p></li>
-</ul></dd>
+</ul><p>For `"team"`, `stat_name` must be one of the following:</p><ul><li><p>Accurate crosses per match</p></li>
+<li><p>Accurate long balls per match</p></li>
+<li><p>Accurate passes per match</p></li>
+<li><p>Average possession</p></li>
+<li><p>Big chances created</p></li>
+<li><p>Big chances missed</p></li>
+<li><p>Clean sheets</p></li>
+<li><p>Clearances per match</p></li>
+<li><p>Expected goals</p></li>
+<li><p>FotMob rating</p></li>
+<li><p>Fouls per match</p></li>
+<li><p>Goals conceded per match</p></li>
+<li><p>Goals per match</p></li>
+<li><p>Interceptions per match</p></li>
+<li><p>Penalties awarded</p></li>
+<li><p>Penalties conceded</p></li>
+<li><p>Possession won final 3rd per match</p></li>
+<li><p>Red cards</p></li>
+<li><p>Saves per match</p></li>
+<li><p>Shots on target per match</p></li>
+<li><p>Successful tackles per match</p></li>
+<li><p>xG conceded</p></li>
+<li><p>Yellow cards</p></li>
+</ul><p>Fotmob has changed these stat names over time, so this list may be out-dated. If you try an invalid stat name, you should see an error message indicating which ones are available.</p></dd>
 <dt>stat_league_name</dt>
 <dd><p>Same format as `league_name`. If not provided explicitly, then it takes on the same value as `league_name`. If provided explicitly, should be of the same length as `league_name` (or `league_id` if `league_name` is not provided).</p>
 <p>Note that not Fotmob currently only goes back as far as `"2016/2017"`. Some leagues may not have data for that far back.</p></dd>
@@ -150,7 +182,7 @@
 <span class="r-in">  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span class="r-in">  league_name <span class="op">=</span> <span class="st">"Premier League"</span>,</span>
 <span class="r-in">  season <span class="op">=</span> <span class="st">"2020/2021"</span>,</span>
-<span class="r-in">  stat_type <span class="op">=</span> <span class="st">"xg"</span>,</span>
+<span class="r-in">  stat_type <span class="op">=</span> <span class="st">"Expected goals"</span>,</span>
 <span class="r-in">  team_or_player <span class="op">=</span> <span class="st">"team"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -160,11 +192,12 @@
 <span class="r-in">  season <span class="op">=</span> <span class="st">"2016/2017"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
+<span class="r-in"><span class="co">## Note that the `stat_type` name is slightly different.</span></span>
 <span class="r-in"><span class="va">epl_player_xg_2021</span> <span class="op">&lt;-</span> <span class="fu">get_epl_season_stats</span><span class="op">(</span></span>
 <span class="r-in">  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span class="r-in">  league_name <span class="op">=</span> <span class="st">"Premier League"</span>,</span>
 <span class="r-in">  season <span class="op">=</span> <span class="st">"2020/2021"</span>,</span>
-<span class="r-in">  stat_type <span class="op">=</span> <span class="st">"xg"</span>,</span>
+<span class="r-in">  stat_type <span class="op">=</span> <span class="st">"Expected goals (xG)"</span>,</span>
 <span class="r-in">  team_or_player <span class="op">=</span> <span class="st">"player"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
