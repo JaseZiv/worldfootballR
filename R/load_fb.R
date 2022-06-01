@@ -38,7 +38,8 @@ load_match_results <- function(country, gender, season_end_year, tier) {
     dplyr::filter(.data$Country %in% country,
                   .data$Gender %in% gender,
                   .data$Season_End_Year %in% season_end_year,
-                  .data$Tier %in% tier)
+                  .data$Tier %in% tier) %>%
+    dplyr::select(-.data$Tier)
 
   cli::cli_alert("Data last updated {collect_date} UTC")
 
