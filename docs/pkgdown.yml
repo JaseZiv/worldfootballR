@@ -7,7 +7,7 @@ articles:
   extract-transfermarkt-data: extract-transfermarkt-data.html
   extract-understat-data: extract-understat-data.html
   fbref-data-internationals: fbref-data-internationals.html
-last_built: 2022-06-01T00:38Z
+last_built: 2022-06-01T01:03Z
 urls:
   reference: https://jaseziv.github.io/worldfootballR/reference
   article: https://jaseziv.github.io/worldfootballR/articles
