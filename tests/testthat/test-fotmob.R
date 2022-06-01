@@ -102,7 +102,7 @@ test_that("fotmob_get_league_matches() works", {
 test_that("fotmob_get_league_tables() works", {
   testthat::skip_on_cran()
 
-  n_expected_domestic_league_table_cols <- 16
+  n_expected_domestic_league_table_cols <- 17
   epl_league_table <- fotmob_get_league_tables(
     country = "ENG",
     league_name = "Premier League"
@@ -135,7 +135,7 @@ test_that("fotmob_get_league_tables() works", {
   )
 
   ## non-domestic league
-  n_expected_int_league_table_cols <- 20
+  n_expected_int_league_table_cols <- 21
   cl_league_table <- fotmob_get_league_tables(
     country =     "INT",
     league_name = "Champions League",
