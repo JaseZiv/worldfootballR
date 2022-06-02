@@ -72,7 +72,7 @@ As of version `0.5.2`, all FBref functions now come with a user-defined pause be
 
 ## Load FBref match results
 
-To load pre-scraped match results for all years the data is available the `load_match_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository. 
+To load pre-scraped match results for all years the data is available, the `load_match_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository. 
 
 This is the load function equivalent of `get_match_results()`.
 
@@ -84,7 +84,7 @@ dplyr::glimpse(eng_match_results)
 
 ## Load FBref big 5 league advanced seasdon stats
 
-to load pre-scraped advanced stats for the big five European leagues for either teams or players, the `load_fb_big5_advanced_season_stats()` can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.
+To load pre-scraped advanced stats for the big five European leagues for either teams or players, the `load_fb_big5_advanced_season_stats()` can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.
 
 This is the load function equivalent of `get_match_results()`.
 
