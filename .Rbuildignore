@@ -13,3 +13,4 @@ LICENSE
 ^revdep$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^vignettes
