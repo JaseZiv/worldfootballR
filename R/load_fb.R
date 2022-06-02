@@ -77,7 +77,7 @@ load_match_results <- function(country, gender, season_end_year, tier) {
 #' \dontrun{
 #'
 #' df <- load_fb_big5_advanced_season_stats(
-#' stat_type = "defense", team_or_player = "player"
+#' season_end_year = c(2018:2022), stat_type = "defense", team_or_player = "player"
 #' )
 #'
 #' df <- load_fb_big5_advanced_season_stats(
@@ -90,19 +90,17 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
   dat_url <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/big5_", team_or_player, "_", stat_type, ".rds?raw=true")
   collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/scrape_time_big5_advanced_season_stats.rds?raw=true")
 
-  dat_df <- .file_reader(dat_url)
+  dat_df <- tryCatch(.file_reader(dat_url), error = function(e) data.frame())
 
-  suppressWarnings(
-    if(!is.na(season_end_year)) {
-      dat_df <- dat_df %>%
-        dplyr::filter(.data$Season_End_Year %in% season_end_year)
-    } else {
-      dat_df <- dat_df
-    }
-  )
+  if(nrow(dat_df) == 0) {
+    cli::cli_alert("Data not available. Check you have the correct stat_type or team_or_player")
+  } else {
+    dat_df <- dat_df %>%
+      dplyr::filter(.data$Season_End_Year %in% season_end_year)
 
+    cli::cli_alert("Data last updated {collect_date} UTC")
+  }
 
-  cli::cli_alert("Data last updated {collect_date} UTC")
   return(dat_df)
 
 }
