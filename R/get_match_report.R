@@ -89,7 +89,7 @@
 #' df <- get_match_report(match_url = match)
 #' }
 
-get_match_report <- function(match_url, time_pause=2) {
+get_match_report <- function(match_url, time_pause=3) {
 
   time_wait <- time_pause
 

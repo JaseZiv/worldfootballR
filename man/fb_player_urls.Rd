@@ -4,7 +4,7 @@
 \alias{fb_player_urls}
 \title{Get fbref Player URLs}
 \usage{
-fb_player_urls(team_url, time_pause = 2)
+fb_player_urls(team_url, time_pause = 3)
 }
 \arguments{
 \item{team_url}{the player's team URL (can be from fb_team_urls())}

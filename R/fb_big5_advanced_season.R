@@ -29,7 +29,7 @@
 #' fb_big5_advanced_season_stats(season_end_year=2021,stat_type="possession",team_or_player="player")
 #' }
 
-fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_player, time_pause=2) {
+fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_player, time_pause=3) {
 
   stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keepers", "keepers_adv")
 

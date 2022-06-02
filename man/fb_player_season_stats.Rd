@@ -4,7 +4,7 @@
 \alias{fb_player_season_stats}
 \title{Get fbref Player Season Statistics}
 \usage{
-fb_player_season_stats(player_url, stat_type, time_pause = 2)
+fb_player_season_stats(player_url, stat_type, time_pause = 3)
 }
 \arguments{
 \item{player_url}{the URL(s) of the player(s) (can come from fb_player_urls())}

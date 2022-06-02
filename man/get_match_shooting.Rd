@@ -4,7 +4,7 @@
 \alias{get_match_shooting}
 \title{Get match shooting event data}
 \usage{
-get_match_shooting(match_url, time_pause = 2)
+get_match_shooting(match_url, time_pause = 3)
 }
 \arguments{
 \item{match_url}{the fbref.com URL for the required match}

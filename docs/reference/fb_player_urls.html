@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
       </span>
     </div>
 
@@ -127,6 +127,9 @@
     <li>
       <a href="../articles/fbref-data-internationals.html">Extracting data from FBref for International Matches</a>
     </li>
+    <li>
+      <a href="../articles/load-scraped-data.html">Load Scraped Data Functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -162,7 +165,7 @@
     <p>Returns the URLs for all players for a given team</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fb_player_urls</span><span class='op'>(</span><span class='va'>team_url</span>, time_pause <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fb_player_urls</span><span class='op'>(</span><span class='va'>team_url</span>, time_pause <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,19 +191,19 @@
 #&gt;  [2] "https://fbref.com/en/players/3925dbd6/Aleksandar-Mitrovic"       
 #&gt;  [3] "https://fbref.com/en/players/c81d773d/Tosin-Adarabioyo"          
 #&gt;  [4] "https://fbref.com/en/players/c6dc9ecd/Harry-Wilson"              
-#&gt;  [5] "https://fbref.com/en/players/17acc2ed/Marek-Rodak"               
-#&gt;  [6] "https://fbref.com/en/players/289601e6/Antonee-Robinson"          
+#&gt;  [5] "https://fbref.com/en/players/289601e6/Antonee-Robinson"          
+#&gt;  [6] "https://fbref.com/en/players/17acc2ed/Marek-Rodak"               
 #&gt;  [7] "https://fbref.com/en/players/966e28d0/Fabio-Carvalho"            
 #&gt;  [8] "https://fbref.com/en/players/803ae100/Harrison-Reed"             
 #&gt;  [9] "https://fbref.com/en/players/18b999f4/Neeskens-Kebano"           
-#&gt; [10] "https://fbref.com/en/players/10efd0e1/Jean-Seri"                 
-#&gt; [11] "https://fbref.com/en/players/0f7533cd/Bobby-Reid"                
+#&gt; [10] "https://fbref.com/en/players/0f7533cd/Bobby-Reid"                
+#&gt; [11] "https://fbref.com/en/players/10efd0e1/Jean-Seri"                 
 #&gt; [12] "https://fbref.com/en/players/f7750aa0/Denis-Odoi"                
 #&gt; [13] "https://fbref.com/en/players/a8748947/Tom-Cairney"               
-#&gt; [14] "https://fbref.com/en/players/dd323728/Neco-Williams"             
-#&gt; [15] "https://fbref.com/en/players/77d7c96f/Kenny-Tete"                
-#&gt; [16] "https://fbref.com/en/players/af69e7f0/Joe-Bryan"                 
-#&gt; [17] "https://fbref.com/en/players/63d17038/Paulo-Gazzaniga"           
+#&gt; [14] "https://fbref.com/en/players/77d7c96f/Kenny-Tete"                
+#&gt; [15] "https://fbref.com/en/players/dd323728/Neco-Williams"             
+#&gt; [16] "https://fbref.com/en/players/63d17038/Paulo-Gazzaniga"           
+#&gt; [17] "https://fbref.com/en/players/af69e7f0/Joe-Bryan"                 
 #&gt; [18] "https://fbref.com/en/players/422862ea/Nathaniel-Chalobah"        
 #&gt; [19] "https://fbref.com/en/players/6612cd8c/Josh-Onomah"               
 #&gt; [20] "https://fbref.com/en/players/979b811d/Ivan-Cavaleiro"            
@@ -213,7 +216,8 @@
 #&gt; [27] "https://fbref.com/en/players/6c679c6d/Anthony-Knockaert"         
 #&gt; [28] "https://fbref.com/en/players/4047c976/Aboubakar-Kamara"          
 #&gt; [29] "https://fbref.com/en/players/b2626673/Jay-Stansfield"            
-#&gt; [30] "https://fbref.com/en/players/2aa97663/Damian-Las"                </div><div class='input'><span class='co'># }</span>
+#&gt; [30] "https://fbref.com/en/players/af245161/Fabricio"                  
+#&gt; [31] "https://fbref.com/en/players/2aa97663/Damian-Las"                </div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

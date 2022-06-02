@@ -31,7 +31,7 @@
 #'                          stat_type = "playing_time")
 #' }
 
-fb_team_player_stats <- function(team_urls, stat_type, time_pause=2) {
+fb_team_player_stats <- function(team_urls, stat_type, time_pause=3) {
 
   stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keeper", "keeper_adv")
 

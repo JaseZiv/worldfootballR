@@ -17,7 +17,7 @@
 #' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 #' df <- get_match_lineups(match_url = match)
 #' }
-get_match_lineups <- function(match_url, time_pause=2) {
+get_match_lineups <- function(match_url, time_pause=3) {
   # .pkg_message("Scraping lineups")
 
   main_url <- "https://fbref.com"

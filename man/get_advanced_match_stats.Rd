@@ -4,7 +4,7 @@
 \alias{get_advanced_match_stats}
 \title{Get advanced match stats}
 \usage{
-get_advanced_match_stats(match_url, stat_type, team_or_player, time_pause = 2)
+get_advanced_match_stats(match_url, stat_type, team_or_player, time_pause = 3)
 }
 \arguments{
 \item{match_url}{the three character country code for all countries}

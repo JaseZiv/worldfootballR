@@ -61,7 +61,7 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 #' \donttest{
 #' fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
 #' }
-fb_teams_urls <- function(league_url, time_pause=2) {
+fb_teams_urls <- function(league_url, time_pause=3) {
 
   # .pkg_message("Scraping team URLs")
 
@@ -99,7 +99,7 @@ fb_teams_urls <- function(league_url, time_pause=2) {
 #' \donttest{
 #' fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
 #' }
-fb_player_urls <- function(team_url, time_pause=2) {
+fb_player_urls <- function(team_url, time_pause=3) {
 
   # .pkg_message("Scraping Player URLs")
 

@@ -21,7 +21,7 @@
 #'
 #' }
 
-.get_each_season_results <- function(fixture_url, time_pause=2) {
+.get_each_season_results <- function(fixture_url, time_pause=3) {
   main_url <- "https://fbref.com"
 
   # pb$tick()

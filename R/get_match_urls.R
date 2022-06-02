@@ -23,7 +23,7 @@
 #' get_match_urls(country = "", gender = "M", season_end_year = 2021, non_dom_league_url = non_dom)
 #' }
 
-get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, time_pause=2) {
+get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, time_pause=3) {
   main_url <- "https://fbref.com"
 
   # .pkg_message("Scraping match URLs")

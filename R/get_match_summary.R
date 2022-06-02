@@ -18,7 +18,7 @@
 #' df <- get_match_summary(match_url = match)
 #' }
 #'
-get_match_summary <- function(match_url, time_pause=2) {
+get_match_summary <- function(match_url, time_pause=3) {
 
   time_wait <- time_pause
 

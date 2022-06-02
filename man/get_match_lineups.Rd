@@ -4,7 +4,7 @@
 \alias{get_match_lineups}
 \title{Get match lineups}
 \usage{
-get_match_lineups(match_url, time_pause = 2)
+get_match_lineups(match_url, time_pause = 3)
 }
 \arguments{
 \item{match_url}{the fbref.com URL for the required match}

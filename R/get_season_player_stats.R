@@ -29,7 +29,7 @@
 #'            "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
 #'  stat_type = "playing_time")
 #' }
-fb_player_season_stats <- function(player_url, stat_type, time_pause=2) {
+fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
 
   main_url <- "https://fbref.com"
 

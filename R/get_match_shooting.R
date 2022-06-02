@@ -19,7 +19,7 @@
 #' }
 #'
 
-get_match_shooting <- function(match_url, time_pause=2) {
+get_match_shooting <- function(match_url, time_pause=3) {
   # .pkg_message("Scraping detailed shot and shot creation data...")
 
   time_wait <- time_pause

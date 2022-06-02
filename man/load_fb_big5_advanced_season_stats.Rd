@@ -5,7 +5,7 @@
 \title{Load Big 5 Euro League Season Stats}
 \usage{
 load_fb_big5_advanced_season_stats(
-  season_end_year = NA,
+  season_end_year = "all",
   stat_type,
   team_or_player
 )

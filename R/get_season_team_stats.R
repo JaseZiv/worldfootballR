@@ -28,7 +28,7 @@
 #' \donttest{
 #' get_season_team_stats("ITA", "M", 2021, "1st", "defense")
 #' }
-get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type, time_pause=2) {
+get_season_team_stats <- function(country, gender, season_end_year, tier, stat_type, time_pause=3) {
 
   # .pkg_message("Scraping season {stat_type} stats")
 

@@ -4,7 +4,7 @@
 \alias{fb_player_match_logs}
 \title{Get fbref Player Match Logs}
 \usage{
-fb_player_match_logs(player_url, season_end_year, stat_type, time_pause = 2)
+fb_player_match_logs(player_url, season_end_year, stat_type, time_pause = 3)
 }
 \arguments{
 \item{player_url}{the URL of the player (can come from fb_player_urls())}

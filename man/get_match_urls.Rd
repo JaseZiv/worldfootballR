@@ -10,7 +10,7 @@ get_match_urls(
   season_end_year,
   tier = "1st",
   non_dom_league_url = NA,
-  time_pause = 2
+  time_pause = 3
 )
 }
 \arguments{

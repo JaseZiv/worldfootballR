@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
       </span>
     </div>
 
@@ -81,6 +81,9 @@
     <li>
       <a href="../articles/fbref-data-internationals.html">Extracting data from FBref for International Matches</a>
     </li>
+    <li>
+      <a href="../articles/load-scraped-data.html">Load Scraped Data Functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -110,7 +113,7 @@
       <h1 data-toc-skip>Extracting data from fotmob</h1>
                         <h4 class="author">Tony ElHabr</h4>
             
-            <h4 class="date">2022-04-30</h4>
+            <h4 class="date">2022-06-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/extract-fotmob-data.Rmd"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-fotmob-data.Rmd</code></div>
@@ -159,6 +162,8 @@
 </li>
 <li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
+<li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
+</li>
 </ul>
 <p>This vignette will cover the functions to extract data from fotmob.com</p>
 <hr>
@@ -176,34 +181,7 @@
 <div id="team-stats" class="section level3">
 <h3 class="hasAnchor">
 <a href="#team-stats" class="anchor"></a>Team Stats</h3>
-<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a specified stat, season, and league. Currently the available stat types are as follows:</p>
-<ul>
-<li>“Accurate passes per match”</li>
-<li>“Average possession”</li>
-<li>“Assists</li>
-<li>“Big chances created”</li>
-<li>“Big chances missed”</li>
-<li>“Clean sheets”</li>
-<li>“Clearances per match”</li>
-<li>“Expected goals”</li>
-<li>“xG conceded”</li>
-<li>“FotMob rating”</li>
-<li>“Goals”</li>
-<li>“Goals conceded per match”</li>
-<li>“Goals per match”</li>
-<li>“Key passes per match”</li>
-<li>“Minutes per goal”</li>
-<li>“Penalties awarded”</li>
-<li>“Penalties conceded”</li>
-<li>“Possession won final 3rd”</li>
-<li>“Red cards”</li>
-<li>“Saves per match”</li>
-<li>“Shots on target per match”</li>
-<li>“Successful dribbles per match”</li>
-<li>“Successful tackles per match”</li>
-<li>“Yellow cards”</li>
-</ul>
-<p>Note that some of these are only available for either team or player.</p>
+<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a specified stat, season, and league. See the docs for the function for a complete list of <code>stat_name</code>s. Note that some stats are only available for either team or player, and that some names are different for teams and players (e.g. <code>"Expected goals"</code> for <code>"team"</code> and <code>"Expected goals (xG)"</code> for <code>"player"</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">epl_team_xg_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span>
   country <span class="op">=</span> <span class="st">"ENG"</span>,
@@ -235,7 +213,7 @@
 <span class="co">#&gt; $ team_id        &lt;int&gt; 8456, 8650, 8455, 10260, 8654, 8463, 8197, 8586, 10252,…</span>
 <span class="co">#&gt; $ team_name      &lt;chr&gt; "Manchester City", "Liverpool", "Chelsea", "Manchester …</span>
 <span class="co">#&gt; $ matches_played &lt;int&gt; 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38,…</span>
-<span class="co">#&gt; $ xg             &lt;dbl&gt; 68.91, 68.36, 62.95, 60.86, 56.72, 56.36, 56.11, 53.77,…</span>
+<span class="co">#&gt; $ xg             &lt;dbl&gt; 68.9, 68.4, 62.9, 60.9, 56.7, 56.4, 56.1, 53.8, 53.8, 5…</span>
 <span class="co">#&gt; $ g              &lt;dbl&gt; 83, 68, 58, 73, 62, 62, 68, 68, 55, 55, 40, 47, 46, 47,…</span></code></pre></div>
 <p>If you know the <code>league_id</code>, you can use it instead of passing in values for <code>country</code> and <code>league_name</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -333,7 +311,7 @@
   country <span class="op">=</span> <span class="st">"ENG"</span>,
   league_name <span class="op">=</span> <span class="st">"Premier League"</span>,
   season <span class="op">=</span> <span class="st">"2020/2021"</span>,
-  stat_name <span class="op">=</span> <span class="st">"Expected goals"</span>,
+  stat_name <span class="op">=</span> <span class="st">"Expected goals (xG)"</span>,
   team_or_player <span class="op">=</span> <span class="st">"player"</span>
 <span class="op">)</span>
 
@@ -363,9 +341,9 @@
 <span class="co">#&gt; $ player_id      &lt;int&gt; 194165, 286119, 292462, 302241, 612150, 422685, 540088,…</span>
 <span class="co">#&gt; $ player_name    &lt;chr&gt; "Harry Kane", "Jamie Vardy", "Mohamed Salah", "Patrick …</span>
 <span class="co">#&gt; $ minutes_played &lt;int&gt; 3085, 2844, 3079, 3062, 2874, 3105, 3329, 2810, 1983, 2…</span>
-<span class="co">#&gt; $ matches_played &lt;int&gt; 35, 34, 37, 38, 33, 37, 37, 35, 26, 33, 33, 26, 36, 31,…</span>
-<span class="co">#&gt; $ xg             &lt;dbl&gt; 20.23, 19.93, 19.32, 18.27, 16.31, 16.10, 14.55, 14.17,…</span>
-<span class="co">#&gt; $ g              &lt;dbl&gt; 23, 15, 22, 17, 16, 18, 14, 11, 10, 8, 12, 12, 9, 13, 6…</span></code></pre></div>
+<span class="co">#&gt; $ matches_played &lt;int&gt; 35, 34, 37, 38, 33, 37, 37, 35, 26, 33, 33, 26, 31, 36,…</span>
+<span class="co">#&gt; $ xg             &lt;dbl&gt; 20.2, 19.9, 19.3, 18.3, 16.3, 16.1, 14.6, 14.2, 13.6, 1…</span>
+<span class="co">#&gt; $ g              &lt;dbl&gt; 23, 15, 22, 17, 16, 18, 14, 11, 10, 8, 12, 12, 13, 9, 6…</span></code></pre></div>
 </div>
 <div id="match-results" class="section level3">
 <h3 class="hasAnchor">
@@ -396,15 +374,15 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 254</span>
 <span class="co">#&gt; Columns: 12</span>
-<span class="co">#&gt; $ ccode              &lt;chr&gt; "ENG", "GER", "ENG", "ESP", "ITA", "INT", "ALB", "A…</span>
-<span class="co">#&gt; $ id                 &lt;int&gt; 47, 54, 873679, 87, 55, 871358, 260, 872538, 874057…</span>
-<span class="co">#&gt; $ primary_id         &lt;int&gt; 47, 54, 48, 87, 55, 114, 260, 9213, 112, 9213, 8965…</span>
-<span class="co">#&gt; $ name               &lt;chr&gt; "Premier League", "1. Bundesliga", "Championship", …</span>
-<span class="co">#&gt; $ matches            &lt;list&gt; [&lt;data.frame[2 x 11]&gt;], [&lt;data.frame[6 x 11]&gt;], [&lt;…</span>
-<span class="co">#&gt; $ internal_rank      &lt;int&gt; 30, 20, 29, 10, 9, 0, 0, 7, 9, 7, 8, 8, 1, 11, 9, 0…</span>
-<span class="co">#&gt; $ live_rank          &lt;int&gt; 101, 100, 0, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
+<span class="co">#&gt; $ ccode              &lt;chr&gt; "ENG", "ESP", "ITA", "GER", "ENG", "INT", "ALB", "A…</span>
+<span class="co">#&gt; $ id                 &lt;int&gt; 47, 87, 55, 54, 873679, 871358, 260, 872538, 874057…</span>
+<span class="co">#&gt; $ primary_id         &lt;int&gt; 47, 87, 55, 54, 48, 114, 260, 9213, 112, 9213, 8965…</span>
+<span class="co">#&gt; $ name               &lt;chr&gt; "Premier League", "LaLiga", "Serie A", "1. Bundesli…</span>
+<span class="co">#&gt; $ matches            &lt;list&gt; [&lt;data.frame[2 x 11]&gt;], [&lt;data.frame[1 x 11]&gt;], [&lt;…</span>
+<span class="co">#&gt; $ internal_rank      &lt;int&gt; 30, 10, 9, 20, 29, 0, 0, 7, 9, 7, 8, 8, 1, 11, 9, 0…</span>
+<span class="co">#&gt; $ live_rank          &lt;int&gt; 101, 100, 100, 100, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0,…</span>
 <span class="co">#&gt; $ simple_league      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FAL…</span>
-<span class="co">#&gt; $ parent_league_id   &lt;int&gt; NA, NA, 48, NA, NA, 114, NA, 9213, 112, 9213, 8965,…</span>
+<span class="co">#&gt; $ parent_league_id   &lt;int&gt; NA, NA, NA, NA, 48, 114, NA, 9213, 112, 9213, 8965,…</span>
 <span class="co">#&gt; $ is_group           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
 <span class="co">#&gt; $ group_name         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
 <span class="co">#&gt; $ parent_league_name &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></code></pre></div>
@@ -466,21 +444,22 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">table_type</span> <span class="op">==</span> <span class="st">"away"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">away_league_tables</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 40</span>
-<span class="co">#&gt; Columns: 16</span>
+<span class="co">#&gt; Columns: 17</span>
 <span class="co">#&gt; $ league_id     &lt;int&gt; 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
 <span class="co">#&gt; $ page_url      &lt;chr&gt; "/leagues/47/overview/premier-league", "/leagues/47/over…</span>
 <span class="co">#&gt; $ table_type    &lt;chr&gt; "away", "away", "away", "away", "away", "away", "away", …</span>
-<span class="co">#&gt; $ name          &lt;chr&gt; "Man City", "Chelsea", "Liverpool", "Tottenham", "Wolves…</span>
-<span class="co">#&gt; $ id            &lt;int&gt; 8456, 8455, 8650, 8586, 8602, 9825, 10204, 10260, 8654, …</span>
-<span class="co">#&gt; $ team_page_url &lt;chr&gt; "/teams/8456/overview/manchester-city", "/teams/8455/ove…</span>
+<span class="co">#&gt; $ name          &lt;chr&gt; "Manchester City", "Liverpool", "Chelsea", "Tottenham Ho…</span>
+<span class="co">#&gt; $ short_name    &lt;chr&gt; "Man City", "Liverpool", "Chelsea", "Tottenham", "Bright…</span>
+<span class="co">#&gt; $ id            &lt;int&gt; 8456, 8650, 8455, 8586, 10204, 9825, 8602, 8654, 10260, …</span>
+<span class="co">#&gt; $ team_page_url &lt;chr&gt; "/teams/8456/overview/manchester-city", "/teams/8650/ove…</span>
 <span class="co">#&gt; $ deduction     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
-<span class="co">#&gt; $ played        &lt;int&gt; 16, 17, 16, 17, 17, 16, 17, 17, 17, 17, 17, 17, 17, 16, …</span>
-<span class="co">#&gt; $ wins          &lt;int&gt; 12, 11, 10, 8, 8, 8, 6, 6, 6, 6, 5, 4, 4, 3, 4, 3, 3, 1,…</span>
-<span class="co">#&gt; $ draws         &lt;int&gt; 3, 4, 4, 3, 2, 1, 7, 5, 3, 1, 4, 5, 4, 6, 3, 6, 5, 7, 3,…</span>
-<span class="co">#&gt; $ losses        &lt;int&gt; 1, 2, 2, 6, 7, 7, 4, 6, 8, 10, 8, 8, 9, 7, 10, 8, 8, 8, …</span>
-<span class="co">#&gt; $ scores_str    &lt;chr&gt; "30-8", "36-10", "40-15", "25-20", "15-13", "24-25", "19…</span>
-<span class="co">#&gt; $ goal_con_diff &lt;int&gt; 22, 26, 25, 5, 2, -1, -1, -5, 0, -3, -7, -18, -13, -6, -…</span>
-<span class="co">#&gt; $ pts           &lt;int&gt; 39, 37, 34, 27, 26, 25, 25, 23, 21, 19, 19, 17, 16, 15, …</span>
+<span class="co">#&gt; $ played        &lt;int&gt; 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, …</span>
+<span class="co">#&gt; $ wins          &lt;int&gt; 14, 13, 12, 9, 7, 9, 8, 7, 6, 7, 6, 5, 4, 5, 4, 4, 3, 2,…</span>
+<span class="co">#&gt; $ draws         &lt;int&gt; 4, 4, 4, 4, 8, 1, 3, 3, 5, 1, 4, 5, 7, 4, 6, 3, 6, 8, 4,…</span>
+<span class="co">#&gt; $ losses        &lt;int&gt; 1, 2, 3, 6, 4, 9, 8, 9, 8, 11, 9, 9, 8, 10, 9, 12, 10, 9…</span>
+<span class="co">#&gt; $ scores_str    &lt;chr&gt; "41-11", "45-17", "39-11", "31-21", "23-21", "26-31", "1…</span>
+<span class="co">#&gt; $ goal_con_diff &lt;int&gt; 30, 28, 28, 10, 2, -5, 0, 2, -10, -2, -9, -18, -6, -17, …</span>
+<span class="co">#&gt; $ pts           &lt;int&gt; 46, 43, 40, 31, 29, 28, 27, 24, 23, 22, 22, 20, 19, 19, …</span>
 <span class="co">#&gt; $ idx           &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…</span>
 <span class="co">#&gt; $ qual_color    &lt;chr&gt; "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046A7", "…</span></code></pre></div>
 <p>Note that the output of <code>fotmob_get_league_tables</code> for a tournament has more columns.</p>
@@ -491,7 +470,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">table_type</span> <span class="op">==</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 32</span>
-<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; Columns: 21</span>
 <span class="co">#&gt; $ league_id      &lt;int&gt; 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,…</span>
 <span class="co">#&gt; $ page_url       &lt;chr&gt; "/leagues/42/overview/champions-league", "/leagues/42/o…</span>
 <span class="co">#&gt; $ ccode          &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "", "",…</span>
@@ -499,7 +478,8 @@
 <span class="co">#&gt; $ group_page_url &lt;chr&gt; "/leagues/875009/overview/grp.-a", "/leagues/875009/ove…</span>
 <span class="co">#&gt; $ group_name     &lt;chr&gt; "Grp. A", "Grp. A", "Grp. A", "Grp. A", "Grp. B", "Grp.…</span>
 <span class="co">#&gt; $ table_type     &lt;chr&gt; "all", "all", "all", "all", "all", "all", "all", "all",…</span>
-<span class="co">#&gt; $ name           &lt;chr&gt; "Man City", "PSG", "RB Leipzig", "Club Brugge", "Liverp…</span>
+<span class="co">#&gt; $ name           &lt;chr&gt; "Manchester City", "Paris Saint-Germain", "RB Leipzig",…</span>
+<span class="co">#&gt; $ short_name     &lt;chr&gt; "Man City", "PSG", "RB Leipzig", "Club Brugge", "Liverp…</span>
 <span class="co">#&gt; $ id             &lt;int&gt; 8456, 9847, 178475, 8342, 8650, 9906, 9773, 8564, 8593,…</span>
 <span class="co">#&gt; $ team_page_url  &lt;chr&gt; "/teams/8456/overview/manchester-city", "/teams/9847/ov…</span>
 <span class="co">#&gt; $ deduction      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
@@ -698,7 +678,7 @@
 <span class="co">#&gt; $ stats_touches                        &lt;dbl&gt; 49, 41</span>
 <span class="co">#&gt; $ stats_assists                        &lt;dbl&gt; 1, 0</span>
 <span class="co">#&gt; $ stats_total_shots                    &lt;dbl&gt; 3, 4</span>
-<span class="co">#&gt; $ stats_key_passes                     &lt;dbl&gt; 2, 2</span>
+<span class="co">#&gt; $ stats_chances_created                &lt;dbl&gt; 2, 2</span>
 <span class="co">#&gt; $ stats_expected_assists_x_a           &lt;dbl&gt; 0.29, 0.04</span>
 <span class="co">#&gt; $ stats_corners                        &lt;dbl&gt; NA, NA</span>
 <span class="co">#&gt; $ stats_dispossessed                   &lt;dbl&gt; 1, 1</span>

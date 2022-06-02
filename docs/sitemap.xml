@@ -19,6 +19,9 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/dot-convert_value_to_numeric.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/dot-file_reader.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/dot-get_clean_understat_json.html</loc>
   </url>
   <url>
@@ -115,6 +118,12 @@
     <loc>https://jaseziv.github.io/worldfootballR//reference/get_team_match_results.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/load_fb_big5_advanced_season_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//reference/load_match_results.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR//reference/player_dictionary_mapping.html</loc>
   </url>
   <url>
@@ -200,5 +209,8 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR//articles/fbref-data-internationals.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR//articles/load-scraped-data.html</loc>
   </url>
 </urlset>

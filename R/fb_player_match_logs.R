@@ -25,7 +25,7 @@
 #' season_end_year = 2021, stat_type = 'summary')
 #' }
 
-fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pause=2) {
+fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pause=3) {
 
   stat_types <- c("summary", "keepers", "passing", "passing_types", "gca", "defense", "possession", "misc")
   if(!stat_type %in% stat_types) stop("check stat type")

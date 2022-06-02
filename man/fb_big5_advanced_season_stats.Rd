@@ -8,7 +8,7 @@ fb_big5_advanced_season_stats(
   season_end_year,
   stat_type,
   team_or_player,
-  time_pause = 2
+  time_pause = 3
 )
 }
 \arguments{

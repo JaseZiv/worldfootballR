@@ -4,7 +4,7 @@
 \alias{fb_player_scouting_report}
 \title{Get fbref Full Player Scouting Report}
 \usage{
-fb_player_scouting_report(player_url, pos_versus, time_pause = 2)
+fb_player_scouting_report(player_url, pos_versus, time_pause = 3)
 }
 \arguments{
 \item{player_url}{the URL of the player (can come from fb_player_urls())}

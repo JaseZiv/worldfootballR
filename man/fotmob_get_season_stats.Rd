@@ -44,7 +44,7 @@ epl_team_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
   season = "2020/2021",
-  stat_type = "Expected goals",
+  stat_name = "Expected goals",
   team_or_player = "team"
 )
 

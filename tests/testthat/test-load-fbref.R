@@ -26,7 +26,4 @@ test_that("load_fb_big5_advanced_season_stats() works", {
   expect_type(big5_team_shooting, "list")
   expect_false(nrow(big5_team_shooting) == 0)
 
-  big5_player_shooting <- load_fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "shooting", team_or_player= "player")
-  expect_type(big5_player_shooting, "list")
-  expect_false(nrow(big5_player_shooting) == 0)
 })

@@ -4,7 +4,7 @@
 \alias{fb_teams_urls}
 \title{Get fbref Team URLs}
 \usage{
-fb_teams_urls(league_url, time_pause = 2)
+fb_teams_urls(league_url, time_pause = 3)
 }
 \arguments{
 \item{league_url}{the league URL (can be from fb_league_urls())}

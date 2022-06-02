@@ -4,7 +4,7 @@
 \alias{.get_each_season_results}
 \title{Get single match results}
 \usage{
-.get_each_season_results(fixture_url, time_pause = 2)
+.get_each_season_results(fixture_url, time_pause = 3)
 }
 \arguments{
 \item{fixture_url}{URL of the league season's fixtures and results page}
