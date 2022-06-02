@@ -12,6 +12,9 @@ test_that("load_match_results() works", {
   test_df <- load_match_results(country = c("ENG", "AUS"), gender = "F", season_end_year = 2021, tier="1st")
   expect_type(test_df, "list")
 
+  # test that incorrect Country will error
+  expect_error(load_match_results(country = "BBB", gender = "F", season_end_year = 2021))
+
 
 })
 
