@@ -27,44 +27,46 @@ fotmob_get_season_stats(
 \item{team_or_player}{return statistics for either \code{"team"} or \code{"player"}. Can only be one or the other.}
 
 \item{stat_name}{the type of statistic. Can be more than one.
-\code{stat_name} must be one of the following for \code{"player"}:
+`stat_name` must be one of the following for \code{"player"}:
+
 \itemize{
-\item{"Accurate long balls per 90"}
-\item{"Accurate passes per 90"}
-\item{"Assists}
-\item{"Big chances created"}
-\item{"Big chances missed"}
-\item{"Blocks per 90"}
-\item{"Chances created}
-\item{"Clean sheets"}
-\item{"Clearances per 90"}
-\item{"Expected assist (xA)"}
-\item{"Expected assist (xA) per 90"}
-\item{"Expected goals (xG)"}
-\item{"Expected goals (xG) per 90"}
-\item{"Expected goals on target (xGOT)"}
-\item{"FotMob rating"}
-\item{"Fouls committed per 90"}
-\item{"Goals + Assists"}
-\item{"Goals conceded per 90"}
-\item{"Goals per 90"}
-\item{"Goals prevented"}
-\item{"Interceptions per 90"}
-\item{"Penalties conceded"}
-\item{"Penalties won"}
-\item{"Possession won final 3rd per 90"}
-\item{"Red cards"}
-\item{"Saves per 90"}
-\item{"Shots on target per 90"}
-\item{"Shots per 90"}
-\item{"Successful dribbles per 90"}
-\item{"Successful tackles per 90"}
-\item{"Top scorer"}
-\item{"xG + xA per 90"}
-\item{"Yellow cards"}
+#' \item{Accurate long balls per 90}
+\item{Accurate passes per 90}
+\item{Assists}
+\item{Big chances created}
+\item{Big chances missed}
+\item{Blocks per 90}
+\item{Chances created}
+\item{Clean sheets}
+\item{Clearances per 90}
+\item{Expected assist (xA)}
+\item{Expected assist (xA) per 90}
+\item{Expected goals (xG)}
+\item{Expected goals (xG) per 90}
+\item{Expected goals on target (xGOT)}
+\item{FotMob rating}
+\item{Fouls committed per 90}
+\item{Goals + Assists}
+\item{Goals conceded per 90}
+\item{Goals per 90}
+\item{Goals prevented}
+\item{Interceptions per 90}
+\item{Penalties conceded}
+\item{Penalties won}
+\item{Possession won final 3rd per 90}
+\item{Red cards}
+\item{Save percentage}
+\item{Saves per 90}
+\item{Shots on target per 90}
+\item{Shots per 90}
+\item{Successful dribbles per 90}
+\item{Successful tackles per 90}
+\item{Top scorer}
+\item{xG + xA per 90}
+\item{Yellow cards}
 }
 
-For `"team"`, `stat_name` must be one of the following:
+For \code{"team"}, `stat_name` must be one of the following:
 \itemize{
 \item{Accurate crosses per match}
 \item{Accurate long balls per match}
@@ -115,19 +117,5 @@ epl_team_xg_2021 <- fotmob_get_season_stats(
   team_or_player = "team"
 )
 
-## fotmob doesn't has data for 2016/2017 for some leagues, but not all.
-##   you'll see a warning about this and receive an empty dataframe
-get_epl_season_stats(
-  season = "2016/2017"
-)
-
-## Note that the `stat_type` name is slightly different.
-epl_player_xg_2021 <- get_epl_season_stats(
-  country = "ENG",
-  league_name = "Premier League",
-  season = "2020/2021",
-  stat_type = "Expected goals (xG)",
-  team_or_player = "player"
-)
 }
 }
