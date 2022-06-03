@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get player transfer history — player_transfer_history • worldfootballR</title>
+<title>Load match results — load_match_results • worldfootballR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Get player transfer history — player_transfer_history" />
-<meta property="og:description" content="Returns data frame of player(s) transfer history from transfermarkt.com" />
+<meta property="og:title" content="Load match results — load_match_results" />
+<meta property="og:description" content="Loading version of get_match_results
+Returns the game results for a given league season(s) from FBref" />
 <meta property="og:image" content="https://jaseziv.github.io/worldfootballR/logo.png" />
 
 
@@ -156,30 +157,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get player transfer history</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/player_transfer_history.R'><code>R/player_transfer_history.R</code></a></small>
-    <div class="hidden name"><code>player_transfer_history.Rd</code></div>
+    <h1>Load match results</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JaseZiv/worldfootballR/blob/master/R/load_fb.R'><code>R/load_fb.R</code></a></small>
+    <div class="hidden name"><code>load_match_results.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns data frame of player(s) transfer history from transfermarkt.com</p>
+    <p>Loading version of <code>get_match_results</code>
+Returns the game results for a given league season(s) from FBref</p>
     </div>
 
-    <pre class="usage"><span class='fu'>player_transfer_history</span><span class='op'>(</span><span class='va'>player_urls</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>load_match_results</span><span class='op'>(</span><span class='va'>country</span>, <span class='va'>gender</span>, <span class='va'>season_end_year</span>, <span class='va'>tier</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>player_urls</th>
-      <td><p>the player url(s) from transfermarkt</p></td>
+      <th>country</th>
+      <td><p>the three character country code</p></td>
+    </tr>
+    <tr>
+      <th>gender</th>
+      <td><p>gender of competition, either "M" or "F"</p></td>
+    </tr>
+    <tr>
+      <th>season_end_year</th>
+      <td><p>the year(s) the season concludes</p></td>
+    </tr>
+    <tr>
+      <th>tier</th>
+      <td><p>the tier of the league, ie '1st' for the EPL or '2nd' for the Championship and so on</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe of player transfers</p>
+    <p>returns a dataframe with the results of the competition, season and gender</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>load_match_results</span><span class='op'>(</span>
+country <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ITA"</span><span class='op'>)</span>, gender <span class='op'>=</span> <span class='st'>"M"</span>, season_end_year <span class='op'>=</span> <span class='fl'>2021</span>, tier <span class='op'>=</span> <span class='st'>"1st"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Data last updated 2022-06-03 04:13:26 UTC</span></div><div class='input'><span class='co'># for results from English 1st div for men and women:</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>load_match_results</span><span class='op'>(</span>
+country <span class='op'>=</span> <span class='st'>"ENG"</span>, gender <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"M"</span>, <span class='st'>"F"</span><span class='op'>)</span>, season_end_year <span class='op'>=</span> <span class='fl'>2021</span>, tier <span class='op'>=</span> <span class='st'>"1st"</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Data last updated 2022-06-03 04:10:17 UTC</span></div><div class='input'>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

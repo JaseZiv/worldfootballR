@@ -76,7 +76,7 @@ To load pre-scraped match results for all years the data is available, the `load
 
 This is the load function equivalent of `get_match_results()`.
 
-```{r load_match_results, eval=FALSE}
+```{r load_match_results}
 eng_match_results <- load_match_results(country = "ENG", gender = c("M", "F"), season_end_year = c(2020:2022), tier = "1st")
 dplyr::glimpse(eng_match_results)
 ```

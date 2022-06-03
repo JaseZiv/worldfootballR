@@ -32,8 +32,6 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -46,17 +44,23 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.3000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -77,6 +81,9 @@
     <li>
       <a href="../articles/fbref-data-internationals.html">Extracting data from FBref for International Matches</a>
     </li>
+    <li>
+      <a href="../articles/load-scraped-data.html">Load Scraped Data Functions</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -85,7 +92,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link">
+  <a href="https://github.com/JaseZiv/worldfootballR/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -100,49 +107,49 @@
 
       
 
-      </header><div class="row">
+      </header><script src="fbref-data-internationals_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Extracting data from FBref for International Matches</h1>
-                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
+                        <h4 class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-05-31</h4>
+            <h4 class="date">2022-06-04</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/fbref-data-internationals.Rmd" class="external-link"><code>vignettes/fbref-data-internationals.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/master/vignettes/fbref-data-internationals.Rmd"><code>vignettes/fbref-data-internationals.Rmd</code></a></small>
       <div class="hidden name"><code>fbref-data-internationals.Rmd</code></div>
 
     </div>
 
     
     
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
 <p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
 <ul>
-<li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
-<li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
-<li><a href="https://understat.com/" class="external-link">Understat</a></li>
-<li><a href="https://www.fotmob.com/" class="external-link">Fotmob</a></li>
+<li><a href="https://fbref.com/en/">FBref</a></li>
+<li><a href="https://www.transfermarkt.com/">Transfermarkt</a></li>
+<li><a href="https://understat.com/">Understat</a></li>
+<li><a href="https://www.fotmob.com/">Fotmob</a></li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR"><strong><code>worldfootballR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR">worldfootballR</a></span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h2>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
 <p>Package vignettes have been built to help you get started with the package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
@@ -153,25 +160,27 @@
 </li>
 <li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
+<li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
+</li>
 </ul>
 <p>This vignette will cover the functions to extract data for international matches from FBref.com.</p>
 <p>The functions in this document are all documented in the FBref data vignette, however the method for using these functions for international matches differs from those played in domestic leagues.</p>
 <p><strong>NOTE:</strong></p>
-<p>As of version <code>0.5.2</code>, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a> document for more information.</p>
+<p>As of version <code>0.5.2</code>, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See <a href="https://www.sports-reference.com/bot-traffic.html">this</a> document for more information.</p>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="important">Important<a class="anchor" aria-label="anchor" href="#important"></a>
-</h2>
-<p>To get the competition URLs needed for a lot of the functions in this document, refer to the column <code>comp_url</code> for the relevant league / competition you’re interested in, in this stored data <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">file</a>.</p>
+<div id="important" class="section level2">
+<h2 class="hasAnchor">
+<a href="#important" class="anchor"></a>Important</h2>
+<p>To get the competition URLs needed for a lot of the functions in this document, refer to the column <code>comp_url</code> for the relevant league / competition you’re interested in, in this stored data <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv">file</a>.</p>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="helper-function">Helper Function<a class="anchor" aria-label="anchor" href="#helper-function"></a>
-</h2>
-<div class="section level3">
-<h3 id="get-match-urls">Get match urls<a class="anchor" aria-label="anchor" href="#get-match-urls"></a>
-</h3>
+<div id="helper-function" class="section level2">
+<h2 class="hasAnchor">
+<a href="#helper-function" class="anchor"></a>Helper Function</h2>
+<div id="get-match-urls" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-urls" class="anchor"></a>Get match urls</h3>
 <p>To get the match URLs needed to pass in to some of the match-level functions below, <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code> can be used.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wc_2018_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_urls.html">get_match_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2018</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/1/history/World-Cup-Seasons"</span><span class="op">)</span>
@@ -184,13 +193,13 @@
 <hr>
 </div>
 </div>
-<div class="section level2">
-<h2 id="match-level-data">Match-Level Data<a class="anchor" aria-label="anchor" href="#match-level-data"></a>
-</h2>
+<div id="match-level-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#match-level-data" class="anchor"></a>Match-Level Data</h2>
 <p>The following sections outlines the functions available to extract data at the per-match level</p>
-<div class="section level3">
-<h3 id="get-match-results">Get match results<a class="anchor" aria-label="anchor" href="#get-match-results"></a>
-</h3>
+<div id="get-match-results" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-results" class="anchor"></a>Get match results</h3>
 <p>To get the match results (and additional metadata), the following function can be used.</p>
 <p>To use this functionality, simply leave <code>country = ''</code> and pass the non-domestic league URL</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -203,9 +212,9 @@
 <span class="co"># for international friendlies:</span>
 <span class="va">international_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-match-report">Get match report<a class="anchor" aria-label="anchor" href="#get-match-report"></a>
-</h3>
+<div id="get-match-report" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-report" class="anchor"></a>Get match report</h3>
 <p>This function will return similar results to that of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, however <code><a href="../reference/get_match_report.html">get_match_report()</a></code> will provide some additional information. It will also only provide it for a single match, not the whole season:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match report data for 2018 world cup</span>
@@ -213,9 +222,9 @@
 <span class="co"># function to extract match report data for 2021 international friendlies</span>
 <span class="va">friendlies_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_report.html">get_match_report</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">friendly_int_2021_urls</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-match-summaries">Get match summaries<a class="anchor" aria-label="anchor" href="#get-match-summaries"></a>
-</h3>
+<div id="get-match-summaries" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-summaries" class="anchor"></a>Get match summaries</h3>
 <p>This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># first get the URLs for the 2016 Euros</span>
@@ -224,25 +233,25 @@
 <span class="co"># then pass these to the function to get match summaries:</span>
 <span class="va">euro_2016_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_summary.html">get_match_summary</a></span><span class="op">(</span><span class="va">euro_2016_match_urls</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-match-lineups">Get match lineups<a class="anchor" aria-label="anchor" href="#get-match-lineups"></a>
-</h3>
+<div id="get-match-lineups" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-match-lineups" class="anchor"></a>Get match lineups</h3>
 <p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
 <p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match lineups</span>
 <span class="va">copa_2019_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">copa_2019_urls</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-shooting-and-shot-creation-events">Get shooting and shot creation events<a class="anchor" aria-label="anchor" href="#get-shooting-and-shot-creation-events"></a>
-</h3>
+<div id="get-shooting-and-shot-creation-events" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-shooting-and-shot-creation-events" class="anchor"></a>Get shooting and shot creation events</h3>
 <p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">shots_wc_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span><span class="va">wc_2018_urls</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-advanced-match-statistics">Get advanced match statistics<a class="anchor" aria-label="anchor" href="#get-advanced-match-statistics"></a>
-</h3>
+<div id="get-advanced-match-statistics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get-advanced-match-statistics" class="anchor"></a>Get advanced match statistics</h3>
 <p>The <code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> function allows the user to return a data frame of different stat types for matches played.</p>
 <p>Note, some stats may not be available for all comps.</p>
 <p>The following stat types can be selected:</p>
@@ -277,13 +286,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Jason Zivkovic.</p>
+  <p>Developed by Jason Zivkovic.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -291,8 +298,6 @@
 
   
 
-
-  
 
   </body>
 </html>
