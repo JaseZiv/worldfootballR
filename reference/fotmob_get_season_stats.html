@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2.3000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3</span>
       </span>
     </div>
 
@@ -51,6 +51,9 @@
     </li>
     <li>
       <a href="../articles/fbref-data-internationals.html">Extracting data from FBref for International Matches</a>
+    </li>
+    <li>
+      <a href="../articles/load-scraped-data.html">Load Scraped Data Functions</a>
     </li>
   </ul></li>
 <li>
@@ -107,40 +110,42 @@
 <dd><p>return statistics for either <code>"team"</code> or <code>"player"</code>. Can only be one or the other.</p></dd>
 <dt>stat_name</dt>
 <dd><p>the type of statistic. Can be more than one.
-<code>stat_name</code> must be one of the following for <code>"player"</code>:</p><ul><li><p>"Accurate long balls per 90"</p></li>
-<li><p>"Accurate passes per 90"</p></li>
-<li><p>"Assists</p></li>
-<li><p>"Big chances created"</p></li>
-<li><p>"Big chances missed"</p></li>
-<li><p>"Blocks per 90"</p></li>
-<li><p>"Chances created</p></li>
-<li><p>"Clean sheets"</p></li>
-<li><p>"Clearances per 90"</p></li>
-<li><p>"Expected assist (xA)"</p></li>
-<li><p>"Expected assist (xA) per 90"</p></li>
-<li><p>"Expected goals (xG)"</p></li>
-<li><p>"Expected goals (xG) per 90"</p></li>
-<li><p>"Expected goals on target (xGOT)"</p></li>
-<li><p>"FotMob rating"</p></li>
-<li><p>"Fouls committed per 90"</p></li>
-<li><p>"Goals + Assists"</p></li>
-<li><p>"Goals conceded per 90"</p></li>
-<li><p>"Goals per 90"</p></li>
-<li><p>"Goals prevented"</p></li>
-<li><p>"Interceptions per 90"</p></li>
-<li><p>"Penalties conceded"</p></li>
-<li><p>"Penalties won"</p></li>
-<li><p>"Possession won final 3rd per 90"</p></li>
-<li><p>"Red cards"</p></li>
-<li><p>"Saves per 90"</p></li>
-<li><p>"Shots on target per 90"</p></li>
-<li><p>"Shots per 90"</p></li>
-<li><p>"Successful dribbles per 90"</p></li>
-<li><p>"Successful tackles per 90"</p></li>
-<li><p>"Top scorer"</p></li>
-<li><p>"xG + xA per 90"</p></li>
-<li><p>"Yellow cards"</p></li>
-</ul><p>For `"team"`, `stat_name` must be one of the following:</p><ul><li><p>Accurate crosses per match</p></li>
+`stat_name` must be one of the following for <code>"player"</code>:</p>
+<ul><li><p>Accurate long balls per 90</p></li>
+<li><p>Accurate passes per 90</p></li>
+<li><p>Assists</p></li>
+<li><p>Big chances created</p></li>
+<li><p>Big chances missed</p></li>
+<li><p>Blocks per 90</p></li>
+<li><p>Chances created</p></li>
+<li><p>Clean sheets</p></li>
+<li><p>Clearances per 90</p></li>
+<li><p>Expected assist (xA)</p></li>
+<li><p>Expected assist (xA) per 90</p></li>
+<li><p>Expected goals (xG)</p></li>
+<li><p>Expected goals (xG) per 90</p></li>
+<li><p>Expected goals on target (xGOT)</p></li>
+<li><p>FotMob rating</p></li>
+<li><p>Fouls committed per 90</p></li>
+<li><p>Goals + Assists</p></li>
+<li><p>Goals conceded per 90</p></li>
+<li><p>Goals per 90</p></li>
+<li><p>Goals prevented</p></li>
+<li><p>Interceptions per 90</p></li>
+<li><p>Penalties conceded</p></li>
+<li><p>Penalties won</p></li>
+<li><p>Possession won final 3rd per 90</p></li>
+<li><p>Red cards</p></li>
+<li><p>Save percentage</p></li>
+<li><p>Saves per 90</p></li>
+<li><p>Shots on target per 90</p></li>
+<li><p>Shots per 90</p></li>
+<li><p>Successful dribbles per 90</p></li>
+<li><p>Successful tackles per 90</p></li>
+<li><p>Top scorer</p></li>
+<li><p>xG + xA per 90</p></li>
+<li><p>Yellow cards</p></li>
+</ul><p>For <code>"team"</code>, `stat_name` must be one of the following:</p><ul><li><p>Accurate crosses per match</p></li>
 <li><p>Accurate long balls per match</p></li>
 <li><p>Accurate passes per match</p></li>
 <li><p>Average possession</p></li>
@@ -186,20 +191,6 @@
 <span class="r-in">  team_or_player <span class="op">=</span> <span class="st">"team"</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co">## fotmob doesn't has data for 2016/2017 for some leagues, but not all.</span></span>
-<span class="r-in"><span class="co">##   you'll see a warning about this and receive an empty dataframe</span></span>
-<span class="r-in"><span class="fu">get_epl_season_stats</span><span class="op">(</span></span>
-<span class="r-in">  season <span class="op">=</span> <span class="st">"2016/2017"</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Note that the `stat_type` name is slightly different.</span></span>
-<span class="r-in"><span class="va">epl_player_xg_2021</span> <span class="op">&lt;-</span> <span class="fu">get_epl_season_stats</span><span class="op">(</span></span>
-<span class="r-in">  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
-<span class="r-in">  league_name <span class="op">=</span> <span class="st">"Premier League"</span>,</span>
-<span class="r-in">  season <span class="op">=</span> <span class="st">"2020/2021"</span>,</span>
-<span class="r-in">  stat_type <span class="op">=</span> <span class="st">"Expected goals (xG)"</span>,</span>
-<span class="r-in">  team_or_player <span class="op">=</span> <span class="st">"player"</span></span>
-<span class="r-in"><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>
