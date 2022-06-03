@@ -36,7 +36,7 @@ Multiple seasons can be passed to the function, but only one `stat_type` can be 
 \dontrun{
 
 df <- load_fb_big5_advanced_season_stats(
-stat_type = "defense", team_or_player = "player"
+season_end_year = c(2018:2022), stat_type = "defense", team_or_player = "player"
 )
 
 df <- load_fb_big5_advanced_season_stats(

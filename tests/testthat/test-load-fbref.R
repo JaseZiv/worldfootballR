@@ -11,7 +11,10 @@ test_that("load_match_results() works", {
   # test that multiple countries can be passed to the function
   test_df <- load_match_results(country = c("ENG", "AUS"), gender = "F", season_end_year = 2021, tier="1st")
   expect_type(test_df, "list")
+  expect_false(nrow(test_df) == 0)
 
+  bad_df <- load_match_results(country = "foo", gender = "M", season_end_year = 2022, tier="1st")
+  expect_true(nrow(bad_df) == 0)
 
 })
 
@@ -29,4 +32,7 @@ test_that("load_fb_big5_advanced_season_stats() works", {
   big5_player_shooting <- load_fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "shooting", team_or_player= "player")
   expect_type(big5_player_shooting, "list")
   expect_false(nrow(big5_player_shooting) == 0)
+
+  bad_df <- load_fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "foo", team_or_player= "player")
+  expect_true(nrow(bad_df) == 0)
 })

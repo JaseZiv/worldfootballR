@@ -34,14 +34,18 @@ load_match_results <- function(country, gender, season_end_year, tier) {
   collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
   dat_df <- dat_urls %>% purrr::map_df(.file_reader)
 
-  dat_df <- dat_df %>%
-    dplyr::filter(.data$Country %in% country,
-                  .data$Gender %in% gender,
-                  .data$Season_End_Year %in% season_end_year,
-                  .data$Tier %in% tier) %>%
-    dplyr::select(-.data$Tier)
+  if(nrow(dat_df) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters")
+  } else {
+    dat_df <- dat_df %>%
+      dplyr::filter(.data$Country %in% country,
+                    .data$Gender %in% gender,
+                    .data$Season_End_Year %in% season_end_year,
+                    .data$Tier %in% tier) %>%
+      dplyr::select(-.data$Tier)
 
-  cli::cli_alert("Data last updated {collect_date} UTC")
+    cli::cli_alert("Data last updated {collect_date} UTC")
+  }
 
   return(dat_df)
 
