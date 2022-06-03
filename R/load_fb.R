@@ -31,7 +31,7 @@
 load_match_results <- function(country, gender, season_end_year, tier) {
   dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/", country, "_match_results.rds?raw=true")
 
-  collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
+  # collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
   dat_df <- dat_urls %>% purrr::map_df(.file_reader)
 
   if(nrow(dat_df) == 0) {
@@ -44,7 +44,7 @@ load_match_results <- function(country, gender, season_end_year, tier) {
                     .data$Tier %in% tier) %>%
       dplyr::select(-.data$Tier)
 
-    cli::cli_alert("Data last updated {collect_date} UTC")
+    cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }
 
   return(dat_df)
@@ -92,7 +92,7 @@ load_match_results <- function(country, gender, season_end_year, tier) {
 load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, team_or_player) {
 
   dat_url <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/big5_", team_or_player, "_", stat_type, ".rds?raw=true")
-  collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/scrape_time_big5_advanced_season_stats.rds?raw=true")
+  # collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fb_big5_advanced_season_stats/scrape_time_big5_advanced_season_stats.rds?raw=true")
 
   dat_df <- tryCatch(.file_reader(dat_url), error = function(e) data.frame())
 
@@ -102,7 +102,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
     dat_df <- dat_df %>%
       dplyr::filter(.data$Season_End_Year %in% season_end_year)
 
-    cli::cli_alert("Data last updated {collect_date} UTC")
+    cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }
 
   return(dat_df)
