@@ -23,24 +23,23 @@
 
     # tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
     tryCatch( {League_URL <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_attr("href") %>% paste0("https://fbref.com", .)}, error = function(e) {League <- NA})
-    tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[3]}, error = function(e) {Match_Date <- NA})
+    tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes(".venuetime") %>% rvest::html_attr("data-venue-date")}, error = function(e) {Match_Date <- NA})
     tryCatch( {Matchweek <- each_game_page %>% rvest::html_nodes("h1+ div") %>% rvest::html_text()}, error = function(e) {Matchweek <- NA})
 
     tryCatch( {Home_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_Team <- NA})
     tryCatch( {Home_Formation <- each_game_page %>% rvest::html_nodes(".lineup#a") %>% rvest::html_nodes("th") %>% rvest::html_text() %>% .[1] %>% gsub(".*\\(", "", .) %>% gsub("\\)", "", .)}, error = function(e) {Home_Formation <- NA})
     tryCatch( {Home_Score <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_Score <- NA})
     tryCatch( {Home_xG <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score_xg") %>% rvest::html_text() %>% .[1]}, error = function(e) {Home_xG <- NA})
-    tryCatch( {Home_Goals <- each_game_page %>% rvest::html_nodes("#a") %>% .[[1]] %>% rvest::html_text()}, error = function(e) {Home_Goals <- NA}) %>%
-      stringr::str_remove_all("\n") %>% stringr::str_remove_all("\t")
+    tryCatch( {Home_Goals <- each_game_page %>% rvest::html_nodes("#a") %>% .[[1]] %>% rvest::html_text() %>%
+      stringr::str_squish()}, error = function(e) {Home_Goals <- NA})
     tryCatch( {Home_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[1] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Home_Yellow_Cards <- 0})
     tryCatch( {Home_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[1] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Home_Red_Cards <- 0})
 
-    tryCatch( {Away_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_Team <- NA})
+    tryCatch( {Away_Team <- each_game_page %>% rvest::html_nodes("div:nth-child(2) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_Team <- NA})
     tryCatch( {Away_Formation <- each_game_page %>% rvest::html_nodes(".lineup#b") %>% rvest::html_nodes("th") %>% rvest::html_text() %>% .[1] %>% gsub(".*\\(", "", .) %>% gsub("\\)", "", .)}, error = function(e) {Away_Formation <- NA})
     tryCatch( {Away_Score <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score") %>%rvest:: html_text() %>% .[2]}, error = function(e) {Away_Score <- NA})
     tryCatch( {Away_xG <- each_game_page %>% rvest::html_nodes(".scores") %>% rvest::html_nodes(".score_xg") %>% rvest::html_text() %>% .[2]}, error = function(e) {Away_xG <- NA})
-    tryCatch( {Away_Goals <- each_game_page %>% rvest::html_nodes("#b") %>% .[[1]] %>% rvest::html_text()}, error = function(e) {Away_Goals <- NA}) %>%
-      stringr::str_remove_all("\n") %>% stringr::str_remove_all("\t")
+    tryCatch( {Away_Goals <- each_game_page %>% rvest::html_nodes("#b") %>% .[[1]] %>% rvest::html_text() %>% stringr::str_squish()}, error = function(e) {Away_Goals <- NA})
     tryCatch( {Away_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Yellow_Cards <- 0})
     tryCatch( {Away_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Red_Cards <- 0})
 

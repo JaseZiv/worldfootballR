@@ -1,3 +1,14 @@
+# worldfootballR 0.5.3.1000
+
+### Bugs
+
+Now starting to have load functions:
+
+* `get_match_report()` and `get_advanced_match_stats()` - now reporting the match date and away team name again. Additionally, `Home_Goals` and `Away_Goals` text strings now clean strings (tabs and line breaks removed) [#128](https://github.com/JaseZiv/worldfootballR/issues/128)
+
+
+***
+
 # worldfootballR 0.5.3
 
 ### Improvements

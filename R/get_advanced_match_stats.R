@@ -107,7 +107,7 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_
           home_stat <- cbind(Team, Home_Away, home_stat)
 
           Team <- match_page %>%
-            rvest::html_nodes("div:nth-child(1) div strong a") %>%
+            rvest::html_nodes("div:nth-child(2) div strong a") %>%
             rvest::html_text() %>% .[2]
 
           away_stat <- stat_df[2] %>%
