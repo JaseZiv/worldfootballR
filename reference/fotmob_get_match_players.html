@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.1000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.2000</span>
       </span>
     </div>
 
@@ -99,7 +99,8 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">{</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## single match</span></span>
@@ -112,7 +113,28 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## multiple matches</span></span>
 <span class="r-in"><span class="fu">fotmob_get_match_players</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3609987</span>, <span class="fl">3609979</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 80 × 32</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    match_id team_id team_name id    using_opta_id first_name last_name image_url</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 1190… FALSE         Alex       McCarthy  https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 1107… FALSE         Valentino  Livramen… https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 4908… FALSE         Jan        Bednarek  https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 9382… FALSE         Mohammed   Salisu    https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 7340… FALSE         Kyle       Walker-P… https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2619… FALSE         Mohamed    Elyounou… https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2794… FALSE         James      Ward-Pro… https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2124… FALSE         Oriol      Romeu     https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2016… FALSE         Nathan     Redmond   https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 5993… FALSE         Che        Adams     https://…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 70 more rows, and 24 more variables: page_url &lt;chr&gt;, shirt &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   is_home_team &lt;lgl&gt;, time_subbed_on &lt;int&gt;, time_subbed_off &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   usual_position &lt;int&gt;, position_row &lt;int&gt;, role &lt;chr&gt;, is_captain &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   subbed_out &lt;int&gt;, g &lt;int&gt;, rating_num &lt;chr&gt;, rating_bgcolor &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   is_top_rating &lt;lgl&gt;, is_match_finished &lt;lgl&gt;, fantasy_score_num &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fantasy_score_bgcolor &lt;chr&gt;, home_team_id &lt;int&gt;, home_team_color &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_id &lt;int&gt;, away_team_color &lt;chr&gt;, stats &lt;df[,38]&gt;, …</span></span>
+<span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
   </div>

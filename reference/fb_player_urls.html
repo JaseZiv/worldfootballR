@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.1000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.2000</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_urls</span><span class="op">(</span><span class="va">team_url</span>, time_pause <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">fb_player_urls</span><span class="op">(</span><span class="va">team_url</span>, time_pause <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -101,40 +101,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">{</span></span>
 <span class="r-in"><span class="fu">fb_player_urls</span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "https://fbref.com/en/players/28b40c9c/Tim-Ream"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "https://fbref.com/en/players/3925dbd6/Aleksandar-Mitrovic"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "https://fbref.com/en/players/c81d773d/Tosin-Adarabioyo"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "https://fbref.com/en/players/c6dc9ecd/Harry-Wilson"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "https://fbref.com/en/players/289601e6/Antonee-Robinson"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "https://fbref.com/en/players/17acc2ed/Marek-Rodak"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "https://fbref.com/en/players/966e28d0/Fabio-Carvalho"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "https://fbref.com/en/players/803ae100/Harrison-Reed"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "https://fbref.com/en/players/18b999f4/Neeskens-Kebano"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "https://fbref.com/en/players/0f7533cd/Bobby-Reid"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "https://fbref.com/en/players/10efd0e1/Jean-Seri"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "https://fbref.com/en/players/f7750aa0/Denis-Odoi"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "https://fbref.com/en/players/a8748947/Tom-Cairney"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "https://fbref.com/en/players/77d7c96f/Kenny-Tete"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "https://fbref.com/en/players/dd323728/Neco-Williams"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "https://fbref.com/en/players/63d17038/Paulo-Gazzaniga"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "https://fbref.com/en/players/af69e7f0/Joe-Bryan"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "https://fbref.com/en/players/422862ea/Nathaniel-Chalobah"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "https://fbref.com/en/players/6612cd8c/Josh-Onomah"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "https://fbref.com/en/players/979b811d/Ivan-Cavaleiro"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "https://fbref.com/en/players/5f1a2f31/Michael-Hector"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "https://fbref.com/en/players/a755db8c/Rodrigo-Muniz"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "https://fbref.com/en/players/d368feb8/Alfie-Mawson"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "https://fbref.com/en/players/41fb0f4e/Domingos-Quina"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "https://fbref.com/en/players/6722d4f0/Tyrese-Francois"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "https://fbref.com/en/players/6bb2c084/Andre-Frank-Zambo-Anguissa"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "https://fbref.com/en/players/6c679c6d/Anthony-Knockaert"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "https://fbref.com/en/players/4047c976/Aboubakar-Kamara"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "https://fbref.com/en/players/b2626673/Jay-Stansfield"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "https://fbref.com/en/players/af245161/Fabricio"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "https://fbref.com/en/players/2aa97663/Damian-Las"                </span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>
   </div>

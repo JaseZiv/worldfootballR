@@ -24,7 +24,7 @@ Returns the game results for a given league season(s) from FBref"><meta property
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.1000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.2000</span>
       </span>
     </div>
 
@@ -108,16 +108,17 @@ Returns the game results for a given league season(s) from FBref</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="op">{</span></span>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">load_match_results</span><span class="op">(</span></span>
 <span class="r-in">country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span><span class="op">)</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → Data last updated 2022-06-03 04:13:26 UTC</span>
 <span class="r-in"><span class="co"># for results from English 1st div for men and women:</span></span>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">load_match_results</span><span class="op">(</span></span>
 <span class="r-in">country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → Data last updated 2022-06-03 04:13:26 UTC</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> → Data last updated 2022-06-03 04:10:17 UTC</span>
-<span class="r-in"></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
