@@ -1,3 +1,12 @@
+# worldfootballR 0.5.3.2000
+
+### Improvements
+
+To respect FBref's rate limiting rules, all functions have now been updatedf to have a default pause of three seconds between page loads, up from two seconds which was originally requested.
+
+
+***
+
 # worldfootballR 0.5.3.1000
 
 ### Bugs

@@ -17,7 +17,8 @@ returns a dataframe of match results
 Returns match results for all matches played on the selected date from fotmob.com
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 library(dplyr)
 library(tidyr)
 
@@ -25,6 +26,7 @@ results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
 results \%>\%
   dplyr::select(primaryId, ccode, league_name = name, matches) \%>\%
   tidyr::unnest_longer(matches)
+})
 }
 
 }

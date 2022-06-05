@@ -16,7 +16,8 @@ returns a dataframe of match players
 Returns match details from fotmob.com
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 library(dplyr)
 library(tidyr)
 ## single match
@@ -29,5 +30,6 @@ players \%>\%
 
 ## multiple matches
 fotmob_get_match_players(c(3609987, 3609979))
+})
 }
 }

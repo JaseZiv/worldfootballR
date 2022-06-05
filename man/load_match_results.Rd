@@ -24,6 +24,7 @@ Returns the game results for a given league season(s) from FBref
 }
 \examples{
 \donttest{
+try({
 df <- load_match_results(
 country = c("ITA"), gender = "M", season_end_year = 2021, tier = "1st"
 )
@@ -31,6 +32,6 @@ country = c("ITA"), gender = "M", season_end_year = 2021, tier = "1st"
 df <- load_match_results(
 country = "ENG", gender = c("M", "F"), season_end_year = 2021, tier = "1st"
 )
-
+})
 }
 }

@@ -21,6 +21,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' fb_player_season_stats("https://fbref.com/en/players/3bb7b8b4/Ederson",
 #'                        stat_type = 'standard')
 #'
@@ -28,8 +29,9 @@
 #'  player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 #'            "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
 #'  stat_type = "playing_time")
+#' })
 #' }
-fb_player_season_stats <- function(player_url, stat_type, time_pause=2) {
+fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
 
   main_url <- "https://fbref.com"
 

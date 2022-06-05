@@ -22,7 +22,8 @@ returns a dataframe of league matches
 Returns match results for all matches played on the selected date from fotmob.com.
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 library(dplyr)
 library(tidyr)
 
@@ -47,5 +48,6 @@ league_matches <- fotmob_get_league_matches(
 league_matches \%>\%
   dplyr::select(match_id = id, home, away) \%>\%
   tidyr::unnest_wider(c(home, away), names_sep = "_")
+})
 }
 }

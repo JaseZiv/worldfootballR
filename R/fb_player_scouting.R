@@ -15,6 +15,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 #' pos_versus = "primary")
 #'
@@ -29,8 +30,9 @@
 #' # for the 2020-2021 La Liga season
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 #' pos_versus = "secondary") %>% dplyr::filter(scouting_period == "2020-2021 La Liga")
+#' })
 #' }
-fb_player_scouting_report <- function(player_url, pos_versus, time_pause=2) {
+fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
 
   main_url <- "https://fbref.com"
 

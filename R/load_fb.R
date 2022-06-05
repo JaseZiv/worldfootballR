@@ -18,6 +18,7 @@
 #'
 #' @examples
 #' \donttest{
+#' try({
 #' df <- load_match_results(
 #' country = c("ITA"), gender = "M", season_end_year = 2021, tier = "1st"
 #' )
@@ -25,7 +26,7 @@
 #' df <- load_match_results(
 #' country = "ENG", gender = c("M", "F"), season_end_year = 2021, tier = "1st"
 #' )
-#'
+#' })
 #' }
 
 load_match_results <- function(country, gender, season_end_year, tier) {
@@ -78,8 +79,8 @@ load_match_results <- function(country, gender, season_end_year, tier) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
+#' \donttest{
+#' try({
 #' df <- load_fb_big5_advanced_season_stats(
 #' season_end_year = c(2018:2022), stat_type = "defense", team_or_player = "player"
 #' )
@@ -87,6 +88,7 @@ load_match_results <- function(country, gender, season_end_year, tier) {
 #' df <- load_fb_big5_advanced_season_stats(
 #' season_end_year = 2022, stat_type = "defense", team_or_player = "player"
 #' )
+#' })
 #' }
 
 load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, team_or_player) {

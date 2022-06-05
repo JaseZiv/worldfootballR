@@ -13,11 +13,13 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' player_url <- "https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"
 #' tm_player_bio(player_url)
 #' tm_player_bio(player_urls = c("https://www.transfermarkt.com/eden-hazard/profil/spieler/50202",
 #'                               "https://www.transfermarkt.com/sergio-ramos/profil/spieler/25557",
 #'                               "https://www.transfermarkt.com/ivo-grbic/profil/spieler/226073"))
+#' })
 #' }
 tm_player_bio <- function(player_urls) {
 

@@ -84,11 +84,13 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 #' df <- get_match_report(match_url = match)
+#' })
 #' }
 
-get_match_report <- function(match_url, time_pause=2) {
+get_match_report <- function(match_url, time_pause=3) {
 
   time_wait <- time_pause
 

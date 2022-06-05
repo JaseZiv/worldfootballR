@@ -22,7 +22,8 @@ returns a dataframe of league standings
 Returns league standings from fotmob.com. 3 types are returned: all, home, away
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 library(dplyr)
 library(tidyr)
 
@@ -46,5 +47,6 @@ league_tables <- fotmob_get_league_tables(
 # look at tables if only away matches are considered
 league_tables \%>\%
   dplyr::filter(table_type == "away")
+})
 }
 }

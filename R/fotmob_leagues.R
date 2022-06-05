@@ -179,7 +179,8 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' try({
 #' library(dplyr)
 #' library(tidyr)
 #'
@@ -204,6 +205,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #' league_matches %>%
 #'   dplyr::select(match_id = id, home, away) %>%
 #'   tidyr::unnest_wider(c(home, away), names_sep = "_")
+#' })
 #' }
 fotmob_get_league_matches <- function(country, league_name, league_id, cached = TRUE) {
 
@@ -259,7 +261,8 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' try({
 #' library(dplyr)
 #' library(tidyr)
 #'
@@ -283,6 +286,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 #' # look at tables if only away matches are considered
 #' league_tables %>%
 #'   dplyr::filter(table_type == "away")
+#' })
 #' }
 fotmob_get_league_tables <- function(country, league_name, league_id, cached = TRUE) {
 

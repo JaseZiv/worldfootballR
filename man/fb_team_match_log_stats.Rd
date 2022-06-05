@@ -4,7 +4,7 @@
 \alias{fb_team_match_log_stats}
 \title{Get team match log stats}
 \usage{
-fb_team_match_log_stats(team_urls, stat_type, time_pause = 2)
+fb_team_match_log_stats(team_urls, stat_type, time_pause = 3)
 }
 \arguments{
 \item{team_urls}{the URL(s) of the teams(s) (can come from fb_teams_urls())}
@@ -27,8 +27,10 @@ Returns all match statistics for a team(s) in a given season
 }
 \examples{
 \dontrun{
+try({
 # for single teams:
 man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
 fb_team_match_log_stats(team_urls = man_city_url, stat_type = "passing")
+})
 }
 }

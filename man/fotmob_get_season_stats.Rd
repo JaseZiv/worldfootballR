@@ -108,7 +108,8 @@ returns a dataframe of team or player stats
 Returns team or player season-long statistics standings from fotmob.com.
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 epl_team_xg_2021 <- fotmob_get_season_stats(
   country = "ENG",
   league_name = "Premier League",
@@ -116,6 +117,6 @@ epl_team_xg_2021 <- fotmob_get_season_stats(
   stat_type = "Expected goals",
   team_or_player = "team"
 )
-
+})
 }
 }

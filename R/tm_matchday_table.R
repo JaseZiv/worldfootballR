@@ -17,8 +17,10 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' tm_matchday_table(country_name="England", start_year="2020", matchday=1)
 #' tm_matchday_table(country_name="England", start_year="2020", matchday=c(1:5))
+#' })
 #' }
 tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA) {
 

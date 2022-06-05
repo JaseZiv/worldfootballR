@@ -16,7 +16,8 @@ returns a dataframe of match shots
 Returns match details from fotmob.com
 }
 \examples{
-\dontrun{
+\donttest{
+try({
 library(dplyr)
 library(tidyr)
 results <- fotmob_get_matches_by_date(date = "20210926")
@@ -28,5 +29,6 @@ match_ids <- results \%>\%
   dplyr::pull(id)
 match_ids # 3609987 3609979
 details <- fotmob_get_match_details(match_ids)
+})
 }
 }

@@ -22,7 +22,9 @@ returns a character vector of all fbref league URLs for selected country, season
 Returns the URLs for season leagues of a selected country
 }
 \examples{
-\donttest{
+\dontrun{
+try({
 fb_league_urls(country = "ENG", gender = "M", season_end_year = 2021, tier = '1st')
+})
 }
 }

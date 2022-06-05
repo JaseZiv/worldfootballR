@@ -15,8 +15,10 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' try({
 #' fb_league_urls(country = "ENG", gender = "M", season_end_year = 2021, tier = '1st')
+#' })
 #' }
 fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 
@@ -58,10 +60,12 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' try({
 #' fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")
+#' })
 #' }
-fb_teams_urls <- function(league_url, time_pause=2) {
+fb_teams_urls <- function(league_url, time_pause=3) {
 
   # .pkg_message("Scraping team URLs")
 
@@ -96,10 +100,12 @@ fb_teams_urls <- function(league_url, time_pause=2) {
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' try({
 #' fb_player_urls("https://fbref.com/en/squads/fd962109/Fulham-Stats")
+#' })
 #' }
-fb_player_urls <- function(team_url, time_pause=2) {
+fb_player_urls <- function(team_url, time_pause=3) {
 
   # .pkg_message("Scraping Player URLs")
 
@@ -274,8 +280,11 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
 #' @return a data.frame
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples
+##' \dontrun{
+#' try({
 #' understat_team_meta(team_name = c("Liverpool", "Manchester City"))
+#' })
 #' }
 understat_team_meta <- function(team_names) {
   f_possibly <- purrr::possibly(.understat_team_meta, otherwise = data.frame())

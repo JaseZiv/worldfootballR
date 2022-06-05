@@ -14,9 +14,10 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
+#' \donttest{
+#' try({
 #' mapped_players <- player_dictionary_mapping()
+#' })
 #' }
 
 

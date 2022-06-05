@@ -30,11 +30,13 @@ returns a dataframe with the results of the competition, season and gender
 Returns the game results for a given league season(s)
 }
 \examples{
-\donttest{
+\dontrun{
+try({
 df <- get_match_results(country = c("ITA"), gender = "M", season_end_year = 2021)
 # for results from English Championship:
 df <- get_match_results(country = "ENG", gender = "M", season_end_year = 2021, tier = "2nd")
 # for international friendlies:
 
+})
 }
 }

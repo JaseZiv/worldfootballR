@@ -4,7 +4,7 @@
 \alias{get_advanced_match_stats}
 \title{Get advanced match stats}
 \usage{
-get_advanced_match_stats(match_url, stat_type, team_or_player, time_pause = 2)
+get_advanced_match_stats(match_url, stat_type, team_or_player, time_pause = 3)
 }
 \arguments{
 \item{match_url}{the three character country code for all countries}
@@ -29,8 +29,10 @@ Multiple URLs can be passed to the function, but only one `stat_type` can be sel
 }
 \examples{
 \dontrun{
+try({
 urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")
 
 df <- get_advanced_match_stats(match_url=urls,stat_type="possession",team_or_player="player")
+})
 }
 }

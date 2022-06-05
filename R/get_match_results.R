@@ -14,14 +14,16 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' try({
 #' df <- .get_each_season_results(fixture_url =
 #' "https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures"
 #' )
 #'
+#' })
 #' }
 
-.get_each_season_results <- function(fixture_url, time_pause=2) {
+.get_each_season_results <- function(fixture_url, time_pause=3) {
   main_url <- "https://fbref.com"
 
   # pb$tick()
@@ -142,12 +144,14 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' try({
 #' df <- get_match_results(country = c("ITA"), gender = "M", season_end_year = 2021)
 #' # for results from English Championship:
 #' df <- get_match_results(country = "ENG", gender = "M", season_end_year = 2021, tier = "2nd")
 #' # for international friendlies:
 #'
+#' })
 #' }
 
 get_match_results <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA) {

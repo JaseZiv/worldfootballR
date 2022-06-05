@@ -14,12 +14,14 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' match <- "https://fbref.com/en/matches/bf52349b/Fulham-Arsenal-September-12-2020-Premier-League"
 #' df <- get_match_shooting(match_url = match)
+#' })
 #' }
 #'
 
-get_match_shooting <- function(match_url, time_pause=2) {
+get_match_shooting <- function(match_url, time_pause=3) {
   # .pkg_message("Scraping detailed shot and shot creation data...")
 
   time_wait <- time_pause

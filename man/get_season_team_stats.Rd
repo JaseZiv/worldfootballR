@@ -10,7 +10,7 @@ get_season_team_stats(
   season_end_year,
   tier,
   stat_type,
-  time_pause = 2
+  time_pause = 3
 )
 }
 \arguments{
@@ -40,7 +40,9 @@ returns a dataframe of a selected team statistic type for a selected league seas
 Returns different team season statistics results for a given league season and stat type
 }
 \examples{
-\donttest{
+\dontrun{
+try({
 get_season_team_stats("ITA", "M", 2021, "1st", "defense")
+})
 }
 }

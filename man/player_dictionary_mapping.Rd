@@ -16,8 +16,9 @@ Currently only for the players who have been in the top 5 leagues since
 the 2017-2018 season
 }
 \examples{
-\dontrun{
-
+\donttest{
+try({
 mapped_players <- player_dictionary_mapping()
+})
 }
 }

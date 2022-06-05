@@ -4,7 +4,7 @@
 \alias{get_match_summary}
 \title{Get match summary}
 \usage{
-get_match_summary(match_url, time_pause = 2)
+get_match_summary(match_url, time_pause = 3)
 }
 \arguments{
 \item{match_url}{the fbref.com URL for the required match}
@@ -19,8 +19,10 @@ Returns match summary data for selected match URLs, including goals, subs and ca
 }
 \examples{
 \dontrun{
+try({
 match <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
 df <- get_match_summary(match_url = match)
+})
 }
 
 }

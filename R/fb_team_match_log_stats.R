@@ -22,12 +22,14 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' # for single teams:
 #' man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
 #' fb_team_match_log_stats(team_urls = man_city_url, stat_type = "passing")
+#' })
 #' }
 
-fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=2) {
+fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
   # .pkg_message("Scraping team match logs...")
   main_url <- "https://fbref.com"
 

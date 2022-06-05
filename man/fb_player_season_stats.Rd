@@ -4,7 +4,7 @@
 \alias{fb_player_season_stats}
 \title{Get fbref Player Season Statistics}
 \usage{
-fb_player_season_stats(player_url, stat_type, time_pause = 2)
+fb_player_season_stats(player_url, stat_type, time_pause = 3)
 }
 \arguments{
 \item{player_url}{the URL(s) of the player(s) (can come from fb_player_urls())}
@@ -27,6 +27,7 @@ Returns the historical season stats for a selected player(s) and stat type
 }
 \examples{
 \dontrun{
+try({
 fb_player_season_stats("https://fbref.com/en/players/3bb7b8b4/Ederson",
                        stat_type = 'standard')
 
@@ -34,5 +35,6 @@ multiple_playing_time <- fb_player_season_stats(
  player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
            "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
  stat_type = "playing_time")
+})
 }
 }

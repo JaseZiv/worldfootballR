@@ -10,7 +10,7 @@ get_match_urls(
   season_end_year,
   tier = "1st",
   non_dom_league_url = NA,
-  time_pause = 2
+  time_pause = 3
 )
 }
 \arguments{
@@ -33,9 +33,11 @@ returns a character vector of all fbref match URLs for selected competition, sea
 Returns the URL for each match played for a given league season
 }
 \examples{
-\donttest{
+\dontrun{
+try({
 get_match_urls(country = "ENG", gender = "M", season_end_year = c(2019:2021), tier = "1st")
 non_dom <- "https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"
 get_match_urls(country = "", gender = "M", season_end_year = 2021, non_dom_league_url = non_dom)
+})
 }
 }

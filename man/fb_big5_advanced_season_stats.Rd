@@ -8,7 +8,7 @@ fb_big5_advanced_season_stats(
   season_end_year,
   stat_type,
   team_or_player,
-  time_pause = 2
+  time_pause = 3
 )
 }
 \arguments{
@@ -36,7 +36,8 @@ Multiple seasons can be passed to the function, but only one `stat_type` can be 
 }
 \examples{
 \dontrun{
-
+try({
 fb_big5_advanced_season_stats(season_end_year=2021,stat_type="possession",team_or_player="player")
+})
 }
 }

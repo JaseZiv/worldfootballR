@@ -17,6 +17,8 @@ Retrieve Understat team metadata, including team URLs. Similar to `understatr::g
 }
 \examples{
 \dontrun{
+try({
 understat_team_meta(team_name = c("Liverpool", "Manchester City"))
+})
 }
 }

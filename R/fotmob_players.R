@@ -23,7 +23,8 @@
 #' @return returns a dataframe of match players
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' try({
 #' library(dplyr)
 #' library(tidyr)
 #' ## single match
@@ -36,6 +37,7 @@
 #'
 #' ## multiple matches
 #' fotmob_get_match_players(c(3609987, 3609979))
+#' })
 #' }
 #' @export
 fotmob_get_match_players <- function(match_ids) {

@@ -23,12 +23,14 @@
 #'
 #' @examples
 #' \dontrun{
+#' try({
 #' urls <- get_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")
 #'
 #' df <- get_advanced_match_stats(match_url=urls,stat_type="possession",team_or_player="player")
+#' })
 #' }
 
-get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_pause=2) {
+get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_pause=3) {
   main_url <- "https://fbref.com"
 
   time_wait <- time_pause
