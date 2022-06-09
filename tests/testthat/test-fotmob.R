@@ -134,18 +134,20 @@ test_that("fotmob_get_league_tables() works", {
     c("all", "home", "away")
   )
 
-  ## non-domestic league
-  n_expected_int_league_table_cols <- 21
-  cl_league_table <- fotmob_get_league_tables(
-    country =     "INT",
-    league_name = "Champions League",
-    cached = FALSE
-  )
+  ## Can only check on CL after group stages and briefly after the final.
+  m <- lubridate::month(Sys.Date())
+  if(m >= 1 && m <= 5) {
+    ## non-domestic league
+    n_expected_int_league_table_cols <- 21
+    cl_league_table <- fotmob_get_league_tables(
+      country =     "INT",
+      league_name = "Champions League"
+    )
 
-  ## should be 32 teams x 3 table types = 96
-  expect_gt(nrow(cl_league_table), 0)
-  expect_equal(ncol(cl_league_table), n_expected_int_league_table_cols)
-
+    ## should be 32 teams x 3 table types = 96
+    expect_gt(nrow(cl_league_table), 0)
+    expect_equal(ncol(cl_league_table), n_expected_int_league_table_cols)
+  }
 })
 
 test_that("fotmob_get_season_stats() works", {
@@ -241,14 +243,17 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   ## Does this work for an international tournament?
-  cl_team_xg_21 <- fotmob_get_season_stats(
-    league_id = 42,
-    season_name = "2020/2021",
-    stat_name = "Expected goals",
-    team_or_player = "team"
-  )
-  expect_gt(nrow(cl_team_xg_21), 0)
-  expect_equal(ncol(cl_team_xg_21), n_expected_stat_cols)
+  m <- lubridate::month(Sys.Date())
+  if(m >= 1 && m <= 5) {
+    cl_team_xg_21 <- fotmob_get_season_stats(
+      league_id = 42,
+      season_name = "2020/2021",
+      stat_name = "Expected goals",
+      team_or_player = "team"
+    )
+    expect_gt(nrow(cl_team_xg_21), 0)
+    expect_equal(ncol(cl_team_xg_21), n_expected_stat_cols)
+  }
 
   ## multiple leagues
   epl_ll_team_xg_21 <- fotmob_get_season_stats(
