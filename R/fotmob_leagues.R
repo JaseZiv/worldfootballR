@@ -96,12 +96,11 @@
 #'
 #' @param cached Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.
 #'
+#' @importFrom httr POST content
 #' @importFrom purrr map_dfr
-#' @importFrom stringr str_extract
-#' @importFrom jsonlite fromJSON
-#' @importFrom tibble as_tibble
+#' @importFrom tibble enframe
 #' @importFrom dplyr rename
-#' @importFrom tidyr unnest
+#' @importFrom tidyr unnest_wider unnest_longer
 #' @importFrom janitor clean_names
 #' @export
 fotmob_get_league_ids <- function(cached = TRUE) {
@@ -109,24 +108,26 @@ fotmob_get_league_ids <- function(cached = TRUE) {
     return(.fotmob_load_csv("fotmob-leagues/all_leagues.csv"))
   }
 
-  meta <- .fotmob_extract_meta()
+  resp <- httr::POST("https://www.fotmob.com/api/allLeagues")
+  cont <- resp %>% httr::content()
 
-  .extract_leagues <- function(rgx) {
-    meta %>%
-      stringr::str_extract(rgx) %>%
-      jsonlite::fromJSON() %>%
-      tibble::as_tibble() %>%
+  .extract_leagues <- function(x) {
+    cont[[x]] %>%
+      tibble::enframe() %>%
+      dplyr::select(.data$value) %>%
+      tidyr::unnest_wider(.data$value) %>%
+      tidyr::unnest_longer(.data$leagues) %>%
       dplyr::rename(
         country = .data$name
       ) %>%
-      tidyr::unnest(.data$leagues) %>%
+      tidyr::unnest_wider(.data$leagues) %>%
       janitor::clean_names()
   }
 
   purrr::map_dfr(
     c(
-      '(?<=\\"international\\"[:]).*(?=\\,\\"countries\\")',
-      '(?<=\\"countries\\"[:]).*(?=\\,\\"userSettings\\":null[}]\\,\\"userSettings\\")'
+      "international",
+      "countries"
     ),
     .extract_leagues
   )

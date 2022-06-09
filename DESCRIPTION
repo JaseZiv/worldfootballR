@@ -1,7 +1,7 @@
 Type: Package
 Package: worldfootballR
 Title: Functions to Extract and Clean World Football (Soccer) Data
-Version: 0.5.3.2000
+Version: 0.5.3.3000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb")
@@ -23,6 +23,7 @@ Depends:
 Imports:
     dplyr,
     glue,
+    httr,
     janitor,
     jsonlite,
     lubridate,
