@@ -12,6 +12,7 @@
 #' @importFrom utils read.csv
 #'
 #' @export
+#' @noRd
 #'
 #' @examples
 #' \dontrun{

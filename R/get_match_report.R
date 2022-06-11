@@ -8,8 +8,8 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @noRd
 #'
-
 .get_match_report_page <- function(match_page) {
 
   # seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
