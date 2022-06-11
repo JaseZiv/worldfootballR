@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">worldfootballR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.2000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.3.3000</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1 data-toc-skip>Extracting data from Understat</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-06-05</h4>
+            <h4 data-toc-skip class="date">2022-06-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-understat-data.Rmd" class="external-link"><code>vignettes/extract-understat-data.Rmd</code></a></small>
       <div class="hidden name"><code>extract-understat-data.Rmd</code></div>
@@ -273,9 +273,8 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for one team:</span>
 <span class="va">man_city_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_season_shots.html">understat_team_season_shots</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span>
-<span class="co">#&gt; Shots data for match_url https://understat.com/match/14629 not available</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">man_city_shots</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 864</span>
+<span class="co">#&gt; Rows: 886</span>
 <span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "378528", "378533", "378537", "378538", "378539", "378…</span>
 <span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15, 40, 53, 55, 58, 59, 64, 73, 77, 86, 7, 10, 19, 29,…</span>
@@ -421,7 +420,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
