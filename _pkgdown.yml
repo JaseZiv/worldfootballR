@@ -23,7 +23,7 @@ navbar:
   bg: dark
   structure:
     left: [home, reference, articles, news]
-    right: [twitter, more]
+    right: [twitter, github, more]
   components:
     twitter:
       icon: "fab fa-twitter fa-lg"
