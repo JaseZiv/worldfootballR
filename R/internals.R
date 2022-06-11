@@ -8,6 +8,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @noRd
 #'
 .clean_advanced_stat_table <- function(input_table_element) {
 
@@ -60,6 +61,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @noRd
 #'
 .clean_player_season_stats <- function(input_table_element) {
 
@@ -125,8 +127,8 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @noRd
 #'
-
 .clean_match_advanced_stats_data <- function(df_in) {
 
   var_names <- df_in[1,] %>% as.character()
@@ -181,6 +183,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @noRd
 #'
 .clean_table_names <- function(df_in) {
   var_names <- df_in[1,] %>% as.character()
@@ -222,6 +225,7 @@
 #' @return a cleaned numeric data value for market and/or transfer valuation
 #'
 #' @importFrom magrittr %>%
+#' @noRd
 #'
 .convert_value_to_numeric <- function(euro_value) {
   clean_val <- gsub("[^\x20-\x7E]", "", euro_value) %>% tolower()
@@ -248,6 +252,7 @@
 #' @return a cleaned Understat data frame
 #'
 #' @importFrom magrittr %>%
+#' @noRd
 #'
 .get_clean_understat_json <- function(page_url, script_name) {
   main_url <- "https://understat.com/"
@@ -291,6 +296,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stats runif
+#' @noRd
 #'
 .understat_shooting <- function(type_url) {
   main_url <- "https://understat.com/"
@@ -325,6 +331,7 @@
 #' @return a cleaned date
 #'
 #' @importFrom magrittr %>%
+#' @noRd
 #'
 .tm_fix_dates <- function(dirty_dates) {
 
@@ -356,7 +363,7 @@
 #' @param val a value that can either be empty, or not empty
 #'
 #' @return NA_character where the extracted value is empty, or the value itself
-#'
+#' @noRd
 #'
 .replace_empty_na <- function(val) {
   if(length(val) == 0) {

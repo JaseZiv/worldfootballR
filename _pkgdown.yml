@@ -1,10 +1,51 @@
 destination: docs
 title: worldfootballR
 url: https://jaseziv.github.io/worldfootballR/
+
+authors:
+  Jason Zivkovic:
+    href: https://twitter.com/jaseziv
+  Tony ElHabr:
+    href: https://twitter.com/TonyElHabr
+
 template:
+  bootstrap: 5
+  bootswatch: yeti
+  bslib:
+    font_scale: 1
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto"}
   params:
     ganalytics: UA-145056765-3
-components:
-  twitter:
-    icon: "fab fa-twitter fa-lg"
-    href: https://twitter.com/jaseziv
+
+navbar:
+  type: dark
+  bg: dark
+  structure:
+    left: [home, reference, articles, news]
+    right: [twitter, more]
+  components:
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: https://twitter.com/jaseziv
+
+reference:
+  - title: FBRef
+    contents:
+      - starts_with("fb_")
+      - starts_with("get_")
+      - load_fb_big5_advanced_season_stats
+      - load_match_results
+  - title: Transfermarket
+    contents:
+      - player_transfer_history
+      - starts_with("tm_")
+  - title: Understat
+    contents:
+      - starts_with("understat_")
+  - title: Fotmob
+    contents:
+      - starts_with("fotmob_")
+  - title: Utility
+    contents:
+      - player_dictionary_mapping
