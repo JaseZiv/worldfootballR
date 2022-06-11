@@ -58,7 +58,7 @@ Package vignettes have been built to help you get started with the package.
 -   For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
 -   For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
 -   For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
-* For functions to load pre-scraped data, see [here](https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html)
+-   For functions to load pre-scraped data, see [here](https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html)
 
 This vignette will cover the functions to extract data from fotmob.com
 
@@ -128,15 +128,19 @@ team_xgs_2021 <- fotmob_get_season_stats(
 team_xgs_2021 %>% nrow()
 ```
 
-International tournament data can be retrieved.
+International tournament data can be retrieved, during the right time of year.
 
 ```{r cl_team_xg_2021}
-fotmob_get_season_stats(
-  league_id = 42,
-  season_name = "2020/2021",
-  stat_name = "Expected goals",
-  team_or_player = "team"
-)
+## Can only check on CL after group stages and briefly after the final.
+m <- lubridate::month(Sys.Date())
+if(m >= 1 && m <= 5) {
+  fotmob_get_season_stats(
+    league_id = 42,
+    season_name = "2020/2021",
+    stat_name = "Expected goals",
+    team_or_player = "team"
+  )
+}
 ```
 
 You can potentially get cup data for leagues in the future, although at this time Fotmob does not have this data for most leagues, seasons, or stats.
@@ -260,11 +264,14 @@ dplyr::glimpse(away_league_tables)
 Note that the output of `fotmob_get_league_tables` for a tournament has more columns.
 
 ```{r fotmob_get_league_tables_int}
-cl_table <- fotmob_get_league_tables(league_id = 42)
-
-cl_table %>%
-  dplyr::filter(table_type == "all") %>% 
-  dplyr::glimpse()
+m <- lubridate::month(Sys.Date())
+if(m >= 1 && m <= 5) {
+  cl_table <- fotmob_get_league_tables(league_id = 42)
+  
+  cl_table %>%
+    dplyr::filter(table_type == "all") %>% 
+    dplyr::glimpse()
+}
 ```
 
 ------------------------------------------------------------------------
