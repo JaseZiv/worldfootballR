@@ -30,7 +30,7 @@ fotmob_get_season_stats(
 `stat_name` must be one of the following for \code{"player"}:
 
 \itemize{
-#' \item{Accurate long balls per 90}
+\item{Accurate long balls per 90}
 \item{Accurate passes per 90}
 \item{Assists}
 \item{Big chances created}
