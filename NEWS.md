@@ -1,14 +1,20 @@
+# worldfootballR 0.5.3.4000
+
+### Bugs
+
+* `player_transfer_history()` no longer throwing errors for retired players and also addressed changed HTML on transfermarkt returning no data [#127](https://github.com/JaseZiv/worldfootballR/issues/127)
+
 # worldfootballR 0.5.3.3000
 
 ### Bugs
 
-* `fotmob_get_league_ids()` - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by `fotmob_get_league_matches()`, `fotmob_get_league_tables()`, and `fotmob_get_season_stats()`, which would have been borken if `cached=FALSE` was specified.
+* `fotmob_get_league_ids()` - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by `fotmob_get_league_matches()`, `fotmob_get_league_tables()`, and `fotmob_get_season_stats()`, which would have been broken if `cached=FALSE` was specified.
 
 # worldfootballR 0.5.3.2000
 
 ### Improvements
 
-To respect FBref's rate limiting rules, all functions have now been updatedf to have a default pause of three seconds between page loads, up from two seconds which was originally requested.
+To respect FBref's rate limiting rules, all functions have now been updated to have a default pause of three seconds between page loads, up from two seconds which was originally requested.
 
 
 ***

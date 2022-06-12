@@ -23,7 +23,7 @@ player_transfer_history <- function(player_urls) {
 
     player_name <- page %>% rvest::html_node("h1") %>% rvest::html_text() %>% gsub("#[[:digit:]]+ ", "", .) %>% stringr::str_squish()
 
-    box_holder <- page %>% rvest::html_nodes(".large-8 .viewport-tracking+ .viewport-tracking")
+    box_holder <- page %>% rvest::html_nodes(".viewport-tracking")
 
     # need to get the index of the box containing transfer history data
     box_idx <- box_holder %>% rvest::html_attr('data-viewport') %>% grep("Transferhistorie", .)
@@ -52,6 +52,10 @@ player_transfer_history <- function(player_urls) {
         # country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
         country_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt")  %>% stringr::str_squish(), error = function(e) NA_character_)
         country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt"), error = function(e) NA_character_)
+        # to handle for players that are retired, like: "https://www.transfermarkt.com/massimiliano-allegri/profil/spieler/163501":
+        if(rlang::is_empty(country_to)) {
+          country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>% stringr::str_squish(), error = function(e) NA_character_)
+        }
 
         team_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>%
                                 stringr::str_squish(), error = function(e) NA_character_)
