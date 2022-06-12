@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.3.3000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.3.4000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,17 +68,25 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.3.4000" id="worldfootballr-0534000">worldfootballR 0.5.3.4000<a class="anchor" aria-label="anchor" href="#worldfootballr-0534000"></a></h2>
+<div class="section level4">
+<h4 id="bugs-0-5-3-4000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-3-4000"></a></h4>
+<ul><li>
+<code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> no longer throwing errors for retired players and also addressed changed HTML on transfermarkt returning no data <a href="https://github.com/JaseZiv/worldfootballR/issues/127" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/127" class="external-link">#127</a>
+</li></ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.3.3000" id="worldfootballr-0533000">worldfootballR 0.5.3.3000<a class="anchor" aria-label="anchor" href="#worldfootballr-0533000"></a></h2>
 <div class="section level4">
 <h4 id="bugs-0-5-3-3000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-3-3000"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code>, <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>, and <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which would have been borken if <code>cached=FALSE</code> was specified.</li></ul></div>
+<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code>, <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>, and <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which would have been broken if <code>cached=FALSE</code> was specified.</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.3.2000" id="worldfootballr-0532000">worldfootballR 0.5.3.2000<a class="anchor" aria-label="anchor" href="#worldfootballr-0532000"></a></h2>
 <div class="section level4">
 <h4 id="improvements-0-5-3-2000">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-3-2000"></a></h4>
-<p>To respect FBref’s rate limiting rules, all functions have now been updatedf to have a default pause of three seconds between page loads, up from two seconds which was originally requested.</p>
+<p>To respect FBref’s rate limiting rules, all functions have now been updated to have a default pause of three seconds between page loads, up from two seconds which was originally requested.</p>
 <hr></div>
 </div>
     <div class="section level2">
