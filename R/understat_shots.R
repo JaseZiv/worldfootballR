@@ -2,7 +2,7 @@
 #'
 #' Returns shooting locations for all matches played in the selected league season from Understat.com
 #'
-#' @param league the avaliable leagues in Understat as outlined below
+#' @param league the available leagues in Understat as outlined below
 #' @param season_start_year the year the season started
 #'
 #' The leagues currently available for Understat are:

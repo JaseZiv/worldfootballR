@@ -1,14 +1,24 @@
+# worldfootballR 0.5.4
+
+* CRAN submission
+
+***
+
 # worldfootballR 0.5.3.4000
 
 ### Bugs
 
 * `player_transfer_history()` no longer throwing errors for retired players and also addressed changed HTML on transfermarkt returning no data [#127](https://github.com/JaseZiv/worldfootballR/issues/127)
 
+***
+
 # worldfootballR 0.5.3.3000
 
 ### Bugs
 
 * `fotmob_get_league_ids()` - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by `fotmob_get_league_matches()`, `fotmob_get_league_tables()`, and `fotmob_get_season_stats()`, which would have been broken if `cached=FALSE` was specified.
+
+***
 
 # worldfootballR 0.5.3.2000
 
@@ -62,7 +72,7 @@ Now starting to have load functions:
 ### Bugs
 
 * `tm_player_bio()` addresses where some data points don't exist for some players and returns NAs
-* `understat_team_stats_breakdown()` now resturns the correct `season_start_year` value [#119](https://github.com/JaseZiv/worldfootballR/issues/119)
+* `understat_team_stats_breakdown()` now returns the correct `season_start_year` value [#119](https://github.com/JaseZiv/worldfootballR/issues/119)
 * tests and vignettes for fotmob stat functions changed to lowercase for second word in `stat_name` [#118](https://github.com/JaseZiv/worldfootballR/issues/118)
 
 ***
@@ -85,7 +95,7 @@ Now starting to have load functions:
 ### Improvements / Breaking Changes
 
 * Additional processing logic added such that `fotmob_get_league_tables` works properly for international tournaments.
-* The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players). Previously the values came from [a custom, pre-saved dataframe](https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv).
+* The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players). 
 
 ***
 
@@ -124,7 +134,7 @@ Now starting to have load functions:
 
 ### Improvements
 
-* `fotmob_get_league_matches` and `fotmob_get_league_tables` now check 2 places for the league endpoint since it changes occassionally.
+* `fotmob_get_league_matches` and `fotmob_get_league_tables` now check 2 places for the league endpoint since it changes occasionally.
 * `fotmob_get_match_players` gets 3 additional columns: `match_id`, `team_id`, `team_name`. [#105](https://github.com/JaseZiv/worldfootballR/issues/105)
 
 ***

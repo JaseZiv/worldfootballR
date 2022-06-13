@@ -11,7 +11,7 @@ tm_league_team_urls(country_name, start_year, league_url = NA)
 
 \item{start_year}{the start year of the season (2020 for the 20/21 season)}
 
-\item{league_url}{league url from transfermarkt.com. To be used when country_name not avalilable in main function}
+\item{league_url}{league url from transfermarkt.com. To be used when country_name not available in main function}
 }
 \value{
 returns a character vector of all transfermarkt team URLs for a selected league
