@@ -1,4 +1,4 @@
-# worldfootballR 0.5.4
+# worldfootballR 0.5.5
 
 * CRAN submission
 
