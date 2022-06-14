@@ -1,6 +1,9 @@
 ## Release summary
 
-This is a re-submission
+This is a re-submission.
+
+* Package `Title` and `Description` remove redundant text
+* Package now robust against internet access issues
 
 
 ## Test environments
