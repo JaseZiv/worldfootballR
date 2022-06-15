@@ -7,7 +7,7 @@
 understat_league_season_shots(league, season_start_year)
 }
 \arguments{
-\item{league}{the avaliable leagues in Understat as outlined below}
+\item{league}{the available leagues in Understat as outlined below}
 
 \item{season_start_year}{the year the season started
 

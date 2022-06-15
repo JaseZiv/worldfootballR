@@ -82,7 +82,7 @@ dplyr::glimpse(eng_match_results)
 ```
 
 
-## Load FBref big 5 league advanced seasdon stats
+## Load FBref big 5 league advanced season stats
 
 To load pre-scraped advanced stats for the big five European leagues for either teams or players, the `load_fb_big5_advanced_season_stats()` can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.
 

@@ -1,12 +1,13 @@
 Type: Package
 Package: worldfootballR
-Title: Functions to Extract and Clean World Football (Soccer) Data
-Version: 0.5.3.4000
+Title: Extract and Clean World Football (Soccer) Data
+Version: 0.5.6
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
-    person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb")
+    person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
+      person(given = "Tan", family = "Ho", , "tan@tanho.ca", role = "ctb")
   )
-Description: A set of functions to allow users to obtain clean and tidy
+Description: Allow users to obtain clean and tidy
     football (soccer) game, team and player data. Data is collected from a
     number of popular sites, including 'FBref'<https://fbref.com/en/>,
     transfer and valuations data from
@@ -47,7 +48,5 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-VignetteBuilder: 
-    knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0

@@ -1,11 +1,14 @@
 ## Release summary
 
-This is a minor release that addressed some broken URL endpoints
+This is a re-submission.
+
+* Package `Title` and `Description` remove redundant text
+* Package now robust against internet access issues
 
 
 ## Test environments
-* local R installation, R 4.1.0
-* ubuntu 16.04 (on travis-ci), R 4.1.0
+* local R installation, R 4.2.0
+* ubuntu 20.04.4 (on GitHub Actions), R 4.2.0
 * win-builder (devel)
 
 ## R CMD check results
