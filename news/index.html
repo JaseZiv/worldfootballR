@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.3.4000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,19 +68,22 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.3.4000" id="worldfootballr-0534000">worldfootballR 0.5.3.4000<a class="anchor" aria-label="anchor" href="#worldfootballr-0534000"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.5.6" id="worldfootballr-056">worldfootballR 0.5.6<a class="anchor" aria-label="anchor" href="#worldfootballr-056"></a></h2><p class="text-muted">CRAN release: 2022-06-15</p>
+<ul><li>CRAN submission</li></ul><hr></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.3.4001" id="worldfootballr-0534001">worldfootballR 0.5.3.4001<a class="anchor" aria-label="anchor" href="#worldfootballr-0534001"></a></h2>
 <div class="section level4">
-<h4 id="bugs-0-5-3-4000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-3-4000"></a></h4>
+<h4 id="bugs-0-5-3-4001">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-3-4001"></a></h4>
 <ul><li>
 <code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> no longer throwing errors for retired players and also addressed changed HTML on transfermarkt returning no data <a href="https://github.com/JaseZiv/worldfootballR/issues/127" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/127" class="external-link">#127</a>
-</li></ul></div>
+</li></ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.3.3000" id="worldfootballr-0533000">worldfootballR 0.5.3.3000<a class="anchor" aria-label="anchor" href="#worldfootballr-0533000"></a></h2>
 <div class="section level4">
 <h4 id="bugs-0-5-3-3000">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-3-3000"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code>, <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>, and <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which would have been broken if <code>cached=FALSE</code> was specified.</li></ul></div>
+<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code>, <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>, and <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which would have been broken if <code>cached=FALSE</code> was specified.</li></ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.3.2000" id="worldfootballr-0532000">worldfootballR 0.5.3.2000<a class="anchor" aria-label="anchor" href="#worldfootballr-0532000"></a></h2>
@@ -138,7 +141,7 @@
 <ul><li>
 <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code> addresses where some data points don’t exist for some players and returns NAs</li>
 <li>
-<code><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown()</a></code> now resturns the correct <code>season_start_year</code> value <a href="https://github.com/JaseZiv/worldfootballR/issues/119" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/119" class="external-link">#119</a>
+<code><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown()</a></code> now returns the correct <code>season_start_year</code> value <a href="https://github.com/JaseZiv/worldfootballR/issues/119" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/119" class="external-link">#119</a>
 </li>
 <li>tests and vignettes for fotmob stat functions changed to lowercase for second word in <code>stat_name</code> <a href="https://github.com/JaseZiv/worldfootballR/issues/118" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/118" class="external-link">#118</a>
 </li>
@@ -161,7 +164,7 @@
 <div class="section level4">
 <h4 id="improvements--breaking-changes-0-5-1-6000">Improvements / Breaking Changes<a class="anchor" aria-label="anchor" href="#improvements--breaking-changes-0-5-1-6000"></a></h4>
 <ul><li>Additional processing logic added such that <code>fotmob_get_league_tables</code> works properly for international tournaments.</li>
-<li>The <code>stat_type</code> argument in <code>fotmob_get_seasons_stats</code> renamed to <code>stat_name</code> to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. <a href="https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players" class="external-link">the Liverpool player stats page</a>. Previously the values came from <a href="https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/fotmob-stats/stat_types.csv" class="external-link">a custom, pre-saved dataframe</a>.</li>
+<li>The <code>stat_type</code> argument in <code>fotmob_get_seasons_stats</code> renamed to <code>stat_name</code> to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. <a href="https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players" class="external-link">the Liverpool player stats page</a>.</li>
 </ul><hr></div>
 </div>
     <div class="section level2">
@@ -195,7 +198,7 @@
 <div class="section level4">
 <h4 id="improvements-0-5-1-2000">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-1-2000"></a></h4>
 <ul><li>
-<code>fotmob_get_league_matches</code> and <code>fotmob_get_league_tables</code> now check 2 places for the league endpoint since it changes occassionally.</li>
+<code>fotmob_get_league_matches</code> and <code>fotmob_get_league_tables</code> now check 2 places for the league endpoint since it changes occasionally.</li>
 <li>
 <code>fotmob_get_match_players</code> gets 3 additional columns: <code>match_id</code>, <code>team_id</code>, <code>team_name</code>. <a href="https://github.com/JaseZiv/worldfootballR/issues/105" class="external-link"></a><a href="https://github.com/JaseZiv/worldfootballR/issues/105" class="external-link">#105</a>
 </li>
