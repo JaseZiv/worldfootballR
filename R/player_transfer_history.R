@@ -50,7 +50,7 @@ player_transfer_history <- function(player_urls) {
                                     .tm_fix_dates() %>% lubridate::ymd(), error = function(e) NA_character_)
 
         # country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
-        country_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt")  %>% stringr::str_squish(), error = function(e) NA_character_)
+        country_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt")  %>% stringr::str_squish() %>% .replace_empty_na(), error = function(e) NA_character_)
         country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt"), error = function(e) NA_character_)
         # to handle for players that are retired, like: "https://www.transfermarkt.com/massimiliano-allegri/profil/spieler/163501":
         if(rlang::is_empty(country_to)) {

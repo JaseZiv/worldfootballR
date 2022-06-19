@@ -1,3 +1,12 @@
+# worldfootballR 0.5.6.1000
+
+### Bugs
+
+* `player_transfer_history()` no longer throwing errors for players without a club [#137](https://github.com/JaseZiv/worldfootballR/issues/137)
+* Increase sleep times in tests for FBref functions
+
+***
+
 # worldfootballR 0.5.6
 
 * CRAN submission
