@@ -125,7 +125,7 @@
         )
       )
     }
-    stat_options <- valid_seasons %>%
+    valid_seasons %>%
       purrr::map_dfr(extract_options) %>%
       dplyr::distinct() %>%
       dplyr::arrange(.data$option_type, .data$name)
