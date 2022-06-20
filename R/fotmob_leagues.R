@@ -142,19 +142,28 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   )
 }
 
-.fotmob_get_league_resp <- function(league_id, page_url) {
+.fotmob_get_league_resp_from_build_id <- function(page_url, stats = FALSE) {
+  build_id <- .fotmob_get_build_id()
+  url <- sprintf("https://www.fotmob.com/_next/data/%s%s.json", build_id, page_url)
+  if(stats) {
+    url <- stringr::str_replace(url, "overview", "stats")
+  }
+  .safely_from_json(url)
+}
+
+.fotmob_get_league_resp <- function(league_id, page_url, fallback = TRUE) {
   url <- sprintf("https://www.fotmob.com/api/leagues?id=%s", league_id)
   res <- .safely_from_json(url)
   if(!is.null(res$result)) {
     return(res$result)
   }
 
-  build_id <- .fotmob_get_build_id()
   first_url <- url
-  url <- sprintf("https://www.fotmob.com/_next/data/%s%s.json", build_id, page_url)
-  res <- .safely_from_json(url)
-  if(!is.null(res$result)) {
-    return(res$result)
+  if(fallback) {
+    res <- .fotmob_get_league_resp_from_build_id(page_url)
+    if(!is.null(res$result)) {
+      return(res$result)
+    }
   }
 
   stop(
