@@ -33,49 +33,103 @@
     janitor::clean_names()
 }
 
-#' @importFrom tibble tibble
+.upper1 <- function(x) {
+  x <- tolower(x)
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  x
+}
+
+#' @importFrom tibble tibble as_tibble
 #' @importFrom rvest read_html html_elements html_attr
 #' @importFrom stringr str_replace str_replace str_detect
 #' @importFrom rlang maybe_missing
+#' @importFrom dplyr distinct arrange bind_rows
+#' @importFrom purrr imap_lgl keep map_dfr
 .fotmob_get_stat_and_season_options <- function(
   country,
   league_name,
   league_id,
   team_or_player,
+  page_url,
   cached
 ) {
+
   tables <- fotmob_get_league_tables(
     cached = cached,
     country = rlang::maybe_missing(country, NULL),
     league_name = rlang::maybe_missing(league_name, NULL),
     league_id = rlang::maybe_missing(league_id, NULL)
   )
-
   url <- sprintf(
     "https://www.fotmob.com%s/%ss",
     stringr::str_replace(tables$page_url[1], "overview", "stats"),
     team_or_player
   )
   page <- url %>% rvest::read_html()
-  hrefs <- page %>% rvest::html_elements(".SeeAllButton") %>% rvest::html_attr("href")
-  next_url <- sprintf(
-    "https://www.fotmob.com%s",
-    hrefs[1]
-  )
-  next_page <- next_url %>% rvest::read_html()
-  option_elements <- next_page %>% rvest::html_elements("option")
-  labels <- option_elements %>% rvest::html_text2()
-  rgx <- "(^.*)(\\s)(20[012].*$)"
-  league_name <- labels %>% stringr::str_replace(rgx, "\\1")
-  season_name <- labels %>% stringr::str_replace(rgx, "\\3")
-  league_name <- ifelse(season_name == league_name, NA_character_, league_name)
-  is_season <- season_name %>% stringr::str_detect("^2")
-  tibble::tibble(
-    league_name = league_name,
-    option_type = ifelse(is_season, "season", "stat"),
-    name = season_name,
-    id = option_elements %>% rvest::html_attr("value")
-  )
+  see_all_button <- page %>% rvest::html_elements(".SeeAllButton")
+  has_see_all_button <- length(see_all_button) > 0
+
+  if(has_see_all_button) {
+    hrefs <- see_all_button %>% rvest::html_attr("href")
+    next_url <- sprintf(
+      "https://www.fotmob.com%s",
+      hrefs[1]
+    )
+    next_page <- next_url %>% rvest::read_html()
+    option_elements <- next_page %>% rvest::html_elements("option")
+    labels <- option_elements %>% rvest::html_text2()
+    rgx <- "(^.*)(\\s)(20[012].*$)"
+    league_name <- labels %>% stringr::str_replace(rgx, "\\1")
+    season_name <- labels %>% stringr::str_replace(rgx, "\\3")
+    league_name <- ifelse(season_name == league_name, NA_character_, league_name)
+    is_season <- season_name %>% stringr::str_detect("^2")
+    tibble::tibble(
+      league_name = league_name,
+      option_type = ifelse(is_season, "season", "stat"),
+      name = season_name,
+      id = option_elements %>% rvest::html_attr("value")
+    )
+  } else {
+    resp <- .fotmob_get_league_resp_from_build_id(page_url, stats = TRUE)
+    if(is.null(resp$result)) {
+      stop(
+        sprintf("Can't find season stats data. Failed with the following error:\n", resp$error)
+      )
+    }
+    stats <- .fotmob_extract_data_from_page_props(resp$result)$stats
+    seasons <- stats$seasons
+    label <- sprintf("%ss", .upper1(team_or_player))
+    valid_seasons <- setNames(seasons, seasons) %>%
+      purrr::imap_lgl(
+        ~label %in% stats[[.x]]$tabs
+      ) %>%
+      purrr::keep(isTRUE) %>%
+      names()
+    extract_options <- function(season) {
+      all_stats_df <- stats[[season]][[sprintf("%ss", team_or_player)]] %>%
+        dplyr::distinct(.data$header, .data$name, .data$fetchAllUrl)
+      season_id <- all_stats_df$fetchAllUrl %>% dirname() %>% basename() %>% unique()
+      stats_df <- all_stats_df %>% dplyr::distinct(.data$header, .data$name)
+      dplyr::bind_rows(
+        tibble::tibble(
+          league_name = NA_character_,
+          option_type = "season",
+          name = season,
+          id = season_id[1]
+        ),
+        tibble::tibble(
+          league_name = NA_character_,
+          option_type = "stat",
+          name = stats_df$header,
+          id = stats_df$name
+        )
+      )
+    }
+    valid_seasons %>%
+      purrr::map_dfr(extract_options) %>%
+      dplyr::distinct() %>%
+      dplyr::arrange(.data$option_type, .data$name)
+  }
 }
 
 #' Get season statistics from fotmob
@@ -227,11 +281,13 @@ fotmob_get_season_stats <- function(
     url <- urls %>% dplyr::filter(.data$id == !!league_id)
     country <-  url$ccode
     league_name <- url$name
+    page_url <- url$page_url
     options <- .fotmob_get_stat_and_season_options(
       cached = cached,
       country = country,
       league_name = league_name,
       league_id = league_id,
+      page_url = page_url,
       team_or_player = team_or_player
     )
 
@@ -329,7 +385,7 @@ fotmob_get_season_stats <- function(
 
   print_season_league_name_error <- function(stem) {
     glue::glue(
-      '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" {stem}. Try one of the following:\n{glue::glue_collapse(sprintf("%s %s", season_options$league_name, season_options$season_name), "\n")}'
+      '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" {stem}. Try one of the following `stat_league_name`, `season_name` pairs:\n{glue::glue_collapse(sprintf("%s, %s", season_options$league_name, season_options$season_name), "\n")}'
     )
   }
 

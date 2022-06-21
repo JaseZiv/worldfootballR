@@ -12,45 +12,54 @@ test_that("fotmob_get_matches_by_date() works", {
 test_that("fotmob_get_league_matches() works", {
   testthat::skip_on_cran()
 
-  league_matches <- fotmob_get_league_matches(
+  epl_league_matches <- fotmob_get_league_matches(
     country = "ENG",
     league_name = "Premier League"
   )
 
-  expect_gt(nrow(league_matches), 0)
-  expect_equal(ncol(league_matches), 11)
+  expect_gt(nrow(epl_league_matches), 0)
+  expect_equal(ncol(epl_league_matches), 11)
 
-  league_matches <- fotmob_get_league_matches(
+  epl_league_matches <- fotmob_get_league_matches(
     league_id = 47
   )
 
-  expect_gt(nrow(league_matches), 0)
-  expect_equal(ncol(league_matches), 11)
+  expect_gt(nrow(epl_league_matches), 0)
+  expect_equal(ncol(epl_league_matches), 11)
 
   ## test cached
-  league_matches <- fotmob_get_league_matches(
+  epl_league_matches <- fotmob_get_league_matches(
     league_id = 47,
     cached = FALSE
   )
 
-  expect_gt(nrow(league_matches), 0)
-  expect_equal(ncol(league_matches), 11)
+  expect_gt(nrow(epl_league_matches), 0)
+  expect_equal(ncol(epl_league_matches), 11)
 
-  league_matches <- fotmob_get_league_matches(
+  ## MLS is usually in-season when European leagues are out-of-season, so it's useful
+  ##   for checking that stats work in the off-season
+  mls_league_matches <- fotmob_get_league_matches(
+    league_id = 130
+  )
+
+  expect_gt(nrow(mls_league_matches), 0)
+  expect_equal(ncol(mls_league_matches), 11)
+
+  epl_ll_league_matches <- fotmob_get_league_matches(
     country =     c("ENG",            "ESP"   ),
     league_name = c("Premier League", "LaLiga")
   )
 
-  expect_gt(nrow(league_matches), 0)
-  expect_equal(ncol(league_matches), 11)
+  expect_gt(nrow(epl_ll_league_matches), 0)
+  expect_equal(ncol(epl_ll_league_matches), 11)
 
 
-  league_matches_unnested <- league_matches %>%
+  epl_ll_league_matches_unnested <- epl_ll_league_matches %>%
     dplyr::select(match_id = id, home, away) %>%
     tidyr::unnest_wider(c(home, away), names_sep = "_")
 
-  expect_gt(nrow(league_matches_unnested), 0)
-  expect_equal(ncol(league_matches_unnested), 7)
+  expect_gt(nrow(epl_ll_league_matches_unnested), 0)
+  expect_equal(ncol(epl_ll_league_matches_unnested), 7)
 
   # doesn't exist
   expect_error(
@@ -118,6 +127,15 @@ test_that("fotmob_get_league_tables() works", {
 
   expect_gt(nrow(epl_league_table), 0)
   expect_equal(ncol(epl_league_table), n_expected_domestic_league_table_cols)
+
+  ## see not about MLS from before
+  mls_league_table <- fotmob_get_league_tables(
+    league_id = 130
+  )
+
+  expect_gt(nrow(mls_league_table), 0)
+  ## MLS has 4 extra columns: ccode, group_id, group_page_url, group_name
+  expect_equal(ncol(mls_league_table), n_expected_domestic_league_table_cols + 4)
 
   epl_ll_league_tables <- fotmob_get_league_tables(
     country =     c("ENG",            "ESP"   ),
@@ -254,6 +272,16 @@ test_that("fotmob_get_season_stats() works", {
     expect_gt(nrow(cl_team_xg_21), 0)
     expect_equal(ncol(cl_team_xg_21), n_expected_stat_cols)
   }
+
+  ## see not about MLS from before
+  mls_team_xg_21 <- fotmob_get_season_stats(
+    league_id = 130,
+    season_name = "2021",
+    stat_name = "Expected goals",
+    team_or_player = "team"
+  )
+  expect_gt(nrow(mls_team_xg_21), 0)
+  expect_equal(ncol(mls_team_xg_21), n_expected_stat_cols)
 
   ## multiple leagues
   epl_ll_team_xg_21 <- fotmob_get_season_stats(
