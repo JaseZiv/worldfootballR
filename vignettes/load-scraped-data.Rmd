@@ -47,6 +47,7 @@ devtools::install_github("JaseZiv/worldfootballR")
 
 ```{r load_libs, warning=FALSE, message=FALSE}
 library(worldfootballR)
+library(dplyr)
 ```
 
 ***
@@ -109,7 +110,7 @@ latest_cup_seasons %>% pull(competition_name)
 
 
 
-```{r load_match_comp_results}
+```{r load_match_comp_results, eval=FALSE}
 cups <- c("FIFA Women's World Cup","FIFA World Cup")
 world_cups <- load_match_comp_results(comp_name = cups)
 dplyr::glimpse(world_cups)

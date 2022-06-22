@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto-0.4.0.9000/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from FBref">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.3.3000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6.3000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,11 +95,12 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from FBref</h1>
-                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason
+Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-06-11</h4>
+            <h4 data-toc-skip class="date">2022-06-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fbref-data.Rmd</code></div>
@@ -110,7 +111,9 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
+<p>This package is designed to allow users to extract various world
+football results and player statistics from the following popular
+football (soccer) data sites:</p>
 <ul>
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
@@ -121,10 +124,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a>
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a>
+from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a>
+with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
@@ -135,7 +141,8 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Package vignettes have been built to help you get started with the package.</p>
+<p>Package vignettes have been built to help you get started with the
+package.</p>
 <ul>
 <li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
@@ -143,61 +150,84 @@
 </li>
 <li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
-<li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
+<li>For functions to extract data for international matches from FBref,
+see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
 <li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
 </li>
 </ul>
-<p>This vignette will cover the functions to extract data from FBref.com.</p>
+<p>This vignette will cover the functions to extract data from
+FBref.com.</p>
 <p><strong>NOTE:</strong></p>
-<p>As of version <code>0.5.2</code>, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a> document for more information.</p>
+<p>As of version <code>0.5.2</code>, all FBref functions now come with a
+user-defined pause between page loads to address their new rate
+limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a>
+document for more information.</p>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="join-fbref-and-transfermarkt-data">Join FBref and Transfermarkt data<a class="anchor" aria-label="anchor" href="#join-fbref-and-transfermarkt-data"></a>
 </h2>
-<p>To be able to join data player between FBref and Transfermarkt, <code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are over 6,100 players who have been listed for teams in the Big 5 Euro leagues on FBref since the start of the 2017-18 seasons, with all of these mapped together. This is expected to be updated and grow over time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv" class="external-link">here</a></p>
+<p>To be able to join data player between FBref and Transfermarkt,
+<code><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping()</a></code> has been created. There are
+over 6,100 players who have been listed for teams in the Big 5 Euro
+leagues on FBref since the start of the 2017-18 seasons, with all of
+these mapped together. This is expected to be updated and grow over
+time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fbref-tm-player-mapping/output/fbref_to_tm_mapping.csv" class="external-link">here</a></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 6,495</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A~</span>~
-<span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h~</span>
-<span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/aaron-connolly/profil/spiel~</span>
-<span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi~</span></code></pre></div>
+<span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aaron Connolly", "Aaron Cresswell", "Aarón Escandell", "A…</span>
+<span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/27c01749/Aaron-Connolly", "h…</span>
+<span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/aaron-connolly/profil/spiel…</span>
+<span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Left-Back", "Goalkeeper", "Attacking Mi…</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fbref-helper-functions">FBref Helper Functions<a class="anchor" aria-label="anchor" href="#fbref-helper-functions"></a>
 </h2>
-<p>The following section will outline the various functions available to find different URLs to be able to pass through the FBref suite of functions outlined in this vignette.</p>
+<p>The following section will outline the various functions available to
+find different URLs to be able to pass through the FBref suite of
+functions outlined in this vignette.</p>
 <div class="section level3">
 <h3 id="league-urls">League URLs<a class="anchor" aria-label="anchor" href="#league-urls"></a>
 </h3>
-<p>To extract the URL of any country’s league(s) (provided fbref have data for the league), use the <code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code> function.</p>
-<p>This function also accepts a <code>tier</code> argument. for first-tier leagues, select ‘1st’, for second-tier select ‘2nd’ and so on.</p>
-<p>A fill list of countries available can be found in the <code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
+<p>To extract the URL of any country’s league(s) (provided fbref have
+data for the league), use the <code><a href="../reference/fb_league_urls.html">fb_league_urls()</a></code>
+function.</p>
+<p>This function also accepts a <code>tier</code> argument. for
+first-tier leagues, select ‘1st’, for second-tier select ‘2nd’ and so
+on.</p>
+<p>A fill list of countries available can be found in the
+<code>worldfootballR_data</code> repository and can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_league_urls.html">fb_league_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier <span class="op">=</span> <span class="st">'2nd'</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="team-urls">Team URLs<a class="anchor" aria-label="anchor" href="#team-urls"></a>
 </h3>
-<p>To get a list of URLs for each team in a particular season, the <code><a href="../reference/fb_teams_urls.html">fb_teams_urls()</a></code> function can be used:</p>
+<p>To get a list of URLs for each team in a particular season, the
+<code><a href="../reference/fb_teams_urls.html">fb_teams_urls()</a></code> function can be used:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_teams_urls.html">fb_teams_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/comps/9/Premier-League-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="player-urls">Player URLs<a class="anchor" aria-label="anchor" href="#player-urls"></a>
 </h3>
-<p>To get a list of player URLs for a particular team, the <code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The results of this output can be passed through to the player season stat functions <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
+<p>To get a list of player URLs for a particular team, the
+<code><a href="../reference/fb_player_urls.html">fb_player_urls()</a></code> function can be used. The results of this
+output can be passed through to the player season stat functions
+<code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> and
+<code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/fb_player_urls.html">fb_player_urls</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/squads/fd962109/Fulham-Stats"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-match-urls">Get match urls<a class="anchor" aria-label="anchor" href="#get-match-urls"></a>
 </h3>
-<p>To get the match URLs needed to pass in to some of the match-level functions below, <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code> can be used:</p>
+<p>To get the match URLs needed to pass in to some of the match-level
+functions below, <code><a href="../reference/get_match_urls.html">get_match_urls()</a></code> can be used:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">epl_2021_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_urls.html">get_match_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, tier<span class="op">=</span><span class="st">"1st"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -205,12 +235,18 @@
 <div class="section level2">
 <h2 id="league-season-level-data">League Season-Level Data<a class="anchor" aria-label="anchor" href="#league-season-level-data"></a>
 </h2>
-<p>This section will cover the functions to aid in the extraction of season team statistics.</p>
+<p>This section will cover the functions to aid in the extraction of
+season team statistics.</p>
 <div class="section level3">
 <h3 id="get-season-team-stats">Get Season Team Stats<a class="anchor" aria-label="anchor" href="#get-season-team-stats"></a>
 </h3>
-<p>The <code>get_season_team_stats</code> function allows the user to return a data frame of different stat types for all teams in Domestic leagues <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
-<p>Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats, but for those leagues, it’s more efficient to use <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code>.</p>
+<p>The <code>get_season_team_stats</code> function allows the user to
+return a data frame of different stat types for all teams in Domestic
+leagues <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>.</p>
+<p>Note, some stats may not be available for all leagues. The big five
+European leagues should have all of these stats, but for those leagues,
+it’s more efficient to use
+<code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code>.</p>
 <p>The following stat types can be selected:</p>
 <ul>
 <li><em>league_table</em></li>
@@ -231,33 +267,6 @@
 <code class="sourceCode R"><span class="co">#----- function to extract season teams stats -----#</span>
 <span class="va">prem_2020_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_season_team_stats.html">get_season_team_stats</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="st">"2020"</span>, tier <span class="op">=</span> <span class="st">"1st"</span>, stat_type <span class="op">=</span> <span class="st">"shooting"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">prem_2020_shooting</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 40</span>
-<span class="co">#&gt; Columns: 25</span>
-<span class="co">#&gt; $ Competition_Name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "Premier ~</span>
-<span class="co">#&gt; $ Gender                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", ~</span>
-<span class="co">#&gt; $ Country                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "EN~</span>
-<span class="co">#&gt; $ Season_End_Year          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 202~</span>
-<span class="co">#&gt; $ Squad                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arsenal", "Aston Villa", "Bournemouth", "Bri~</span>
-<span class="co">#&gt; $ Team_or_Opponent         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "team", "team", "team", "team", "team", "team~</span>
-<span class="co">#&gt; $ Num_Players              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 29, 28, 27, 25, 22, 27, 25, 24, 24, 24, 24, 2~</span>
-<span class="co">#&gt; $ Mins_Per_90              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 3~</span>
-<span class="co">#&gt; $ Gls_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 56, 40, 38, 35, 41, 69, 29, 42, 65, 83, 100, ~</span>
-<span class="co">#&gt; $ Sh_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 401, 453, 384, 456, 384, 619, 372, 465, 533, ~</span>
-<span class="co">#&gt; $ SoT_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 144, 146, 116, 137, 124, 210, 116, 155, 181, ~</span>
-<span class="co">#&gt; $ SoT_percent_Standard     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 35.9, 32.2, 30.2, 30.0, 32.3, 33.9, 31.2, 33.~</span>
-<span class="co">#&gt; $ Sh_per_90_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10.55, 11.92, 10.11, 12.00, 10.11, 16.29, 9.7~</span>
-<span class="co">#&gt; $ SoT_per_90_Standard      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.79, 3.84, 3.05, 3.61, 3.26, 5.53, 3.05, 4.0~</span>
-<span class="co">#&gt; $ G_per_Sh_Standard        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.13, 0.09, 0.09, 0.07, 0.10, 0.10, 0.07, 0.0~</span>
-<span class="co">#&gt; $ G_per_SoT_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.37, 0.27, 0.29, 0.25, 0.31, 0.30, 0.22, 0.2~</span>
-<span class="co">#&gt; $ Dist_Standard            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15.9, 16.9, 16.4, 17.1, 15.7, 16.2, 16.5, 15.~</span>
-<span class="co">#&gt; $ FK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19, 17, 21, 11, 17, 27, 15, 20, 20, 18, 27, 3~</span>
-<span class="co">#&gt; $ PK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 1, 4, 1, 3, 7, 3, 1, 5, 5, 6, 10, 0, 2, 1,~</span>
-<span class="co">#&gt; $ PKatt_Standard           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 3, 4, 2, 3, 7, 3, 1, 7, 5, 11, 14, 1, 2, 1~</span>
-<span class="co">#&gt; $ xG_Expected              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 49.2, 40.1, 42.7, 41.2, 43.9, 66.6, 34.0, 49.~</span>
-<span class="co">#&gt; $ npxG_Expected            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 46.9, 37.7, 39.7, 39.7, 41.6, 61.7, 31.9, 48.~</span>
-<span class="co">#&gt; $ npxG_per_Sh_Expected     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.12, 0.08, 0.10, 0.09, 0.11, 0.10, 0.09, 0.1~</span>
-<span class="co">#&gt; $ G_minus_xG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.8, -0.1, -4.7, -6.2, -2.9, 2.4, -5.0, -7.3,~</span>
-<span class="co">#&gt; $ `np:G_minus_xG_Expected` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.1, 1.3, -5.7, -5.7, -3.6, 0.3, -5.9, -7.5, ~</span>
 
 <span class="co">#----- to get shooting stats for the English Championship: -----#</span>
 <span class="co"># championship_2020_shooting &lt;- get_season_team_stats(country = "ENG", gender = "M", season_end_year = "2020", tier = "2nd", stat_type = "shooting")</span>
@@ -269,7 +278,10 @@
 <div class="section level4">
 <h4 id="the-big-5-euro-leagues">The Big 5 Euro Leagues<a class="anchor" aria-label="anchor" href="#the-big-5-euro-leagues"></a>
 </h4>
-<p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows users to extract data for any of the below listed stat types for all teams of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).</p>
+<p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows
+users to extract data for any of the below listed stat types for all
+teams of the big five European leagues (EPL, La Liga, Ligue 1, Serie A,
+Bundesliga).</p>
 <p>The stat types available for this function are below:</p>
 <ul>
 <li><em>standard</em></li>
@@ -284,71 +296,21 @@
 <li><em>keepers</em></li>
 <li><em>keepers_adv</em></li>
 </ul>
-<p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
-<p>Note that when selecting <code>team_or_player="team"</code>, results will be returned for both the team’s for and against stats. To filter on this, use the <code>Team_or_Opponent</code> column in the resulting data frame, selecting ‘team’ if you want the team’s for stats, or ‘opponent’ if you want the team’s against stats.</p>
+<p>The function also accepts a season or seasons and whether you want
+data for the player, or team.</p>
+<p>Note that when selecting <code>team_or_player="team"</code>, results
+will be returned for both the team’s for and against stats. To filter on
+this, use the <code>Team_or_Opponent</code> column in the resulting data
+frame, selecting ‘team’ if you want the team’s for stats, or ‘opponent’
+if you want the team’s against stats.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- Get data for big five leagues for TEAMS -----#</span>
 <span class="va">big5_team_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"team"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_team_shooting</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 588</span>
-<span class="co">#&gt; Columns: 24</span>
-<span class="co">#&gt; $ Season_End_Year          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 201~</span>
-<span class="co">#&gt; $ Squad                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alavés", "Alavés", "Amiens", "Amiens", "Ange~</span>e~
-<span class="co">#&gt; $ Comp                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "La Liga", "La Liga", "Ligue 1", "Ligue 1", "~</span>
-<span class="co">#&gt; $ Team_or_Opponent         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "team", "opponent", "team", "opponent", "team~</span>
-<span class="co">#&gt; $ Num_Players              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 26, 26, 26, 26, 24, 24, 28, 28, 27, 27, 27, 2~</span>
-<span class="co">#&gt; $ Mins_Per_90              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 3~</span>
-<span class="co">#&gt; $ Gls_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 39, 48, 30, 50, 42, 47, 69, 49, 75, 43, 38, 4~</span>
-<span class="co">#&gt; $ Sh_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 419, 492, 393, 498, 453, 463, 465, 492, 642, ~</span>
-<span class="co">#&gt; $ SoT_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 118, 159, 115, 155, 151, 160, 159, 174, 211, ~</span>
-<span class="co">#&gt; $ SoT_percent_Standard     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28.2, 32.3, 29.3, 31.1, 33.3, 34.6, 34.2, 35.~</span>
-<span class="co">#&gt; $ Sh_per_90_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 11.03, 12.95, 10.34, 13.11, 11.92, 12.18, 12.~</span>
-<span class="co">#&gt; $ SoT_per_90_Standard      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.11, 4.18, 3.03, 4.08, 3.97, 4.21, 4.18, 4.5~</span>
-<span class="co">#&gt; $ G_per_Sh_Standard        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.09, 0.09, 0.07, 0.09, 0.08, 0.10, 0.14, 0.0~</span>
-<span class="co">#&gt; $ G_per_SoT_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.31, 0.26, 0.24, 0.28, 0.25, 0.28, 0.41, 0.2~</span>
-<span class="co">#&gt; $ Dist_Standard            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17.7, 17.0, 19.2, 18.3, 17.9, 18.1, 16.2, 17.~</span>
-<span class="co">#&gt; $ FK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15, 26, 21, 18, 19, 30, 11, 18, 16, 17, 6, 23~</span>
-<span class="co">#&gt; $ PK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 6, 2, 6, 5, 3, 4, 7, 2, 4, 5, 5, 3, 5, 5, ~</span>
-<span class="co">#&gt; $ PKatt_Standard           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 6, 3, 9, 10, 5, 5, 7, 4, 5, 7, 5, 4, 5, 5,~</span>
-<span class="co">#&gt; $ xG_Expected              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 37.3, 51.0, 34.6, 46.4, 47.7, 46.9, 59.0, 54.~</span>
-<span class="co">#&gt; $ npxG_Expected            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 35.0, 46.8, 32.3, 39.7, 39.8, 43.2, 55.1, 48.~</span>
-<span class="co">#&gt; $ npxG_per_Sh_Expected     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.08, 0.10, 0.08, 0.08, 0.09, 0.09, 0.12, 0.1~</span>
-<span class="co">#&gt; $ G_minus_xG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.7, -3.0, -4.6, 3.6, -5.7, 0.1, 10.0, -5.1, ~</span>
-<span class="co">#&gt; $ `np:G_minus_xG_Expected` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.0, -4.8, -4.3, 4.3, -2.8, 0.8, 9.9, -6.8, 9~</span>
-<span class="co">#&gt; $ Url                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/squads/8d6fd021/2018-20~</span>
 
 <span class="co">#----- Get data for big five leagues for PLAYERS -----#</span>
 <span class="va">big5_player_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">:</span><span class="fl">2021</span><span class="op">)</span>, stat_type<span class="op">=</span> <span class="st">"shooting"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_player_shooting</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 8,210</span>
-<span class="co">#&gt; Columns: 27</span>
-<span class="co">#&gt; $ Season_End_Year          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 201~</span>
-<span class="co">#&gt; $ Squad                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alavés", "Alavés", "Alavés", "Alavés", "Alav~</span>lav~
-<span class="co">#&gt; $ Comp                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "La Liga", "La Liga", "La Liga", "La Liga", "~</span>
-<span class="co">#&gt; $ Player                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Martin Agirregabiria", "Borja Bastón", "Alej~</span>~
-<span class="co">#&gt; $ Nation                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ESP", "ESP", "ESP", "SRB", "ESP", "ARG", "ES~</span>
-<span class="co">#&gt; $ Pos                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DF", "FW", "FW,MF", "MF", "MF,FW", "FW", "DF~</span>
-<span class="co">#&gt; $ Age                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "22", "25", "19", "26", "24", "24", "22", "24~</span>
-<span class="co">#&gt; $ Born                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1996, 1992, 1998, 1992, 1993, 1993, 1995, 199~</span>
-<span class="co">#&gt; $ Mins_Per_90              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 22.6, 16.0, 0.2, 17.6, 6.2, 31.9, 30.8, 4.8, ~</span>
-<span class="co">#&gt; $ Gls_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 5, 0, 0, 1, 9, 0, 0, 2, 3, 2, 2, 4, 1, 0, ~</span>
-<span class="co">#&gt; $ Sh_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 34, 0, 8, 8, 73, 22, 3, 28, 43, 10, 16, 50~</span>
-<span class="co">#&gt; $ SoT_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 10, 0, 1, 2, 17, 7, 1, 5, 10, 5, 5, 23, 5,~</span>
-<span class="co">#&gt; $ SoT_percent_Standard     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0, 29.4, NA, 12.5, 25.0, 23.3, 31.8, 33.3, ~</span>
-<span class="co">#&gt; $ Sh_per_90_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.09, 2.13, 0.00, 0.46, 1.30, 2.29, 0.71, 0.6~</span>
-<span class="co">#&gt; $ SoT_per_90_Standard      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.63, 0.00, 0.06, 0.32, 0.53, 0.23, 0.2~</span>
-<span class="co">#&gt; $ G_per_Sh_Standard        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.15, NA, 0.00, 0.13, 0.10, 0.00, 0.00,~</span>
-<span class="co">#&gt; $ G_per_SoT_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 0.50, NA, 0.00, 0.50, 0.41, 0.00, 0.00, 0~</span>
-<span class="co">#&gt; $ Dist_Standard            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 18.5, 10.2, NA, 15.0, 22.1, 14.5, 26.7, 14.9,~</span>
-<span class="co">#&gt; $ FK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 8, 1, 0, ~</span>
-<span class="co">#&gt; $ PK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ PKatt_Standard           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ xG_Expected              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1, 5.7, 0.0, 0.5, 0.9, 7.2, 0.6, 0.1, 2.1, ~</span>
-<span class="co">#&gt; $ npxG_Expected            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.1, 5.7, 0.0, 0.5, 0.9, 5.7, 0.6, 0.1, 2.1, ~</span>
-<span class="co">#&gt; $ npxG_per_Sh_Expected     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.07, 0.17, NA, 0.06, 0.12, 0.08, 0.03, 0.02,~</span>
-<span class="co">#&gt; $ G_minus_xG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.7, 0.0, -0.5, 0.1, 1.8, -0.6, -0.1, ~</span>
-<span class="co">#&gt; $ `np:G_minus_xG_Expected` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.1, -0.7, 0.0, -0.5, 0.1, 1.3, -0.6, -0.1, ~</span>
-<span class="co">#&gt; $ Url                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/355c883a/Martin~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_player_shooting</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -356,45 +318,30 @@
 <div class="section level2">
 <h2 id="match-level-data">Match-Level Data<a class="anchor" aria-label="anchor" href="#match-level-data"></a>
 </h2>
-<p>The following sections outlines the functions available to extract data at the per-match level</p>
+<p>The following sections outlines the functions available to extract
+data at the per-match level</p>
 <div class="section level3">
 <h3 id="get-match-results">Get match results<a class="anchor" aria-label="anchor" href="#get-match-results"></a>
 </h3>
-<p>To get the match results (and additional metadata) for all leagues and comps listed <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>, the following function can be used:</p>
+<p>To get the match results (and additional metadata) for all leagues
+and comps listed <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">here</a>,
+the following function can be used:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract Serie A match results data</span>
 <span class="va">serieA_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ITA"</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serieA_2020</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 380</span>
-<span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Serie A"~</span>
-<span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"~</span>
-<span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA~</span>
-<span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020,~</span>
-<span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "10~</span>
-<span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun~</span>
-<span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-08-24, 2019-08-24, 2019-08-25, 2019-08-25, 2019~</span>
-<span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "18:00", "20:45", "18:00", "20:45", "20:45", "20:45",~</span>
-<span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Parma", "Fiorentina", "Udinese", "SPAL", "Roma", "To~</span>
-<span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 3, 1, 2, 3, 2, 1, 0, 0, 4, 0, 1, 2, 2, 4, 1, 0, 1,~</span>
-<span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 1.7, 0.9, 1.6, 1.9, 1.2, 0.2, 0.8, 1.0, 1.7, 1.3~</span>
-<span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Napoli", "Milan", "Atalanta", "Genoa", "~</span>
-<span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 4, 0, 3, 3, 1, 1, 3, 1, 0, 1, 2, 2, 1, 0, 2, 4, 1,~</span>
-<span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.3, 2.0, 0.4, 1.7, 1.3, 1.5, 1.6, 2.3, 1.5, 0.7, 0.2~</span>
-<span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20073, 33614, 24584, 11706, 38779, 16536, 16324, 1950~</span>
-<span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Stadio Ennio Tardini", "Stadio Artemio Franchi", "Da~</span>
-<span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabio Maresca", "Davide Massa", "Fabrizio Pasqua", "~</span>
-<span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2b01c68a/Parma-Juventus~</span></code></pre></div>
-<p>The function can also be used to return match URLs for a non-domestic league season. To use this functionality, simply leave <code>country = ''</code> and pass the non-domestic league URL, which can be found at <a href="https://fbref.com/en/comps/" class="external-link uri">https://fbref.com/en/comps/</a></p>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serieA_2020</span><span class="op">)</span></code></pre></div>
+<p>The function can also be used to return match URLs for a non-domestic
+league season. To use this functionality, simply leave
+<code>country = ''</code> and pass the non-domestic league URL, which
+can be found at <a href="https://fbref.com/en/comps/" class="external-link uri">https://fbref.com/en/comps/</a></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for international friendlies:</span>
 <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2018</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/218/history/Friendlies-M-Seasons"</span><span class="op">)</span></code></pre></div>
 <div class="section level4">
 <h4 id="more-than-one-league-season">More than one league season<a class="anchor" aria-label="anchor" href="#more-than-one-league-season"></a>
 </h4>
-<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data for multiple seasons/leagues/genders/etc also:</p>
+<p>The <code><a href="../reference/get_match_results.html">get_match_results()</a></code> function can be used to get data
+for multiple seasons/leagues/genders/etc also:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big_5_2020_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_results.html">get_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>, <span class="st">"ESP"</span>, <span class="st">"ITA"</span>, <span class="st">"GER"</span>, <span class="st">"FRA"</span><span class="op">)</span>,
                                         gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2020</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></code></pre></div>
@@ -403,109 +350,47 @@
 <div class="section level3">
 <h3 id="get-match-report">Get match report<a class="anchor" aria-label="anchor" href="#get-match-report"></a>
 </h3>
-<p>This function will return similar results to that of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>, however <code><a href="../reference/get_match_report.html">get_match_report()</a></code> will provide some additional information. It will also only provide it for a single match, not the whole season:</p>
+<p>This function will return similar results to that of
+<code><a href="../reference/get_match_results.html">get_match_results()</a></code>, however
+<code><a href="../reference/get_match_report.html">get_match_report()</a></code> will provide some additional
+information. It will also only provide it for a single match, not the
+whole season:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match report data</span>
 <span class="va">liv_mci_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_report.html">get_match_report</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 1</span>
-<span class="co">#&gt; Columns: 21</span>
-<span class="co">#&gt; $ League            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League"</span>
-<span class="co">#&gt; $ Gender            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M"</span>
-<span class="co">#&gt; $ Country           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG"</span>
-<span class="co">#&gt; $ Season            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2019-2020"</span>
-<span class="co">#&gt; $ Match_Date        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2019-11-10"</span>
-<span class="co">#&gt; $ Matchweek         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League (Matchweek 12)"</span>
-<span class="co">#&gt; $ Home_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool"</span>
-<span class="co">#&gt; $ Home_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3"</span>
-<span class="co">#&gt; $ Home_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3</span>
-<span class="co">#&gt; $ Home_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1</span>
-<span class="co">#&gt; $ Home_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabinho · 6&amp;rsquor; Mohamed Salah · 13&amp;rsquor; Sadi~</span>i~
-<span class="co">#&gt; $ Home_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0"</span>
-<span class="co">#&gt; $ Home_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0"</span>
-<span class="co">#&gt; $ Away_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City"</span>
-<span class="co">#&gt; $ Away_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1"</span>
-<span class="co">#&gt; $ Away_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1</span>
-<span class="co">#&gt; $ Away_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.3</span>
-<span class="co">#&gt; $ Away_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bernardo Silva · 78&amp;rsquor;"</span>"
-<span class="co">#&gt; $ Away_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2"</span>
-<span class="co">#&gt; $ Away_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0"</span>
-<span class="co">#&gt; $ Game_URL          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/47880eb7/Liverpool-Man~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-match-summaries">Get match summaries<a class="anchor" aria-label="anchor" href="#get-match-summaries"></a>
 </h3>
-<p>This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:</p>
+<p>This function will return the main events that occur during a match,
+including goals, substitutions and red/yellow cards:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match summary data</span>
 <span class="va">liv_mci_2020_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_summary.html">get_match_summary</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020_summary</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 10</span>
-<span class="co">#&gt; Columns: 30</span>
-<span class="co">#&gt; $ League            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "Premier League"~</span>
-<span class="co">#&gt; $ Gender            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"</span>
-<span class="co">#&gt; $ Country           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "EN~</span>
-<span class="co">#&gt; $ Season            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2019-2020", "2019-2020", "2019-2020", "2019-2020", ~</span>
-<span class="co">#&gt; $ Match_Date        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2019-11-10", "2019-11-10", "2019-11-10", "2019-11-1~</span>
-<span class="co">#&gt; $ Matchweek         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League (Matchweek 12)", "Premier League (Ma~</span>
-<span class="co">#&gt; $ Home_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Liverpool", "Liverpool", "Liverpool", ~</span>
-<span class="co">#&gt; $ Home_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3"~</span>
-<span class="co">#&gt; $ Home_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3</span>
-<span class="co">#&gt; $ Home_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</span>
-<span class="co">#&gt; $ Home_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabinho · 6&amp;rsquor; Mohamed Salah · 13&amp;rsquor; Sadi~</span>i~
-<span class="co">#&gt; $ Home_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"</span>
-<span class="co">#&gt; $ Home_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"</span>
-<span class="co">#&gt; $ Away_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Manchester City", "Manchester Ci~</span>
-<span class="co">#&gt; $ Away_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1~</span>
-<span class="co">#&gt; $ Away_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1</span>
-<span class="co">#&gt; $ Away_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3, 1.3</span>
-<span class="co">#&gt; $ Away_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bernardo Silva · 78&amp;rsquor;", "Bernardo Silva · 78&amp;~</span>&amp;~
-<span class="co">#&gt; $ Away_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"</span>
-<span class="co">#&gt; $ Away_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"</span>
-<span class="co">#&gt; $ Game_URL          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/47880eb7/Liverpool-Man~</span>
-<span class="co">#&gt; $ Team              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Liverpool", "Liverpool", "Liverpool", ~</span>
-<span class="co">#&gt; $ Home_Away         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Away", "Away", "Awa~</span>
-<span class="co">#&gt; $ Event_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6, 13, 51, 61, 65, 71, 78, 79, 87, 95</span>
-<span class="co">#&gt; $ Is_Pens           <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL~</span>
-<span class="co">#&gt; $ Event_Half        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 2, 2, 2, 2, 2, 2, 2, 2</span>
-<span class="co">#&gt; $ Event_Type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goal", "Goal", "Goal", "Substitute", "Yellow Card",~</span>
-<span class="co">#&gt; $ Event_Players     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabinho", "Mohamed Salah Assist: Andrew Robertson",~</span>
-<span class="co">#&gt; $ Score_Progression <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1:0", "2:0", "3:0", "3:0", "3:0", "3:0", "3:1", "3:~</span>
-<span class="co">#&gt; $ Penalty_Number    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020_summary</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-match-lineups">Get match lineups<a class="anchor" aria-label="anchor" href="#get-match-lineups"></a>
 </h3>
-<p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
-<p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
+<p>This function will return a dataframe of all players listed for that
+match, including whether they started on the pitch, or on the bench.</p>
+<p>From version 0.2.7, this function now also returns some summary
+performance data for each player that played, including their position,
+minutes played, goals, cards, etc.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to extract match lineups</span>
 <span class="va">liv_mci_2020_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_lineups.html">get_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020_lineups</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 36</span>
-<span class="co">#&gt; Columns: 17</span>
-<span class="co">#&gt; $ Matchday    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-11-10, 2019-11-10, 2019-11-10, 2019-11-10, 2019-11-1~</span>
-<span class="co">#&gt; $ Team        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Liverpool", "Liverpool", "Liverpool", "Liver~</span>
-<span class="co">#&gt; $ Home_Away   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home", "Home", "H~</span>
-<span class="co">#&gt; $ Formation   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3~</span>
-<span class="co">#&gt; $ Player_Num  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "3", "4", "5", "6", "9", "10", "11", "14", "26", "66"~</span>
-<span class="co">#&gt; $ Player_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alisson", "Fabinho", "Virgil van Dijk", "Georginio Wijnal~</span>
-<span class="co">#&gt; $ Starting    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pitch", "Pit~</span>
-<span class="co">#&gt; $ PlayerURL   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/7a2e46a8/Alisson", "https://~</span>
-<span class="co">#&gt; $ Nation      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BRA", "BRA", "NED", "NED", "CRO", "BRA", "SEN", "EGY", "E~</span>
-<span class="co">#&gt; $ Pos         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GK", "DM", "CB", "CM,DM", "CB", "FW,AM", "LW,RM,FW", "RW,~</span>
-<span class="co">#&gt; $ Age         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "27-039", "26-018", "28-125", "28-364", "30-128", "28-039"~</span>
-<span class="co">#&gt; $ Min         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 90, 90, 90, 90, 90, 78, 90, 86, 60, 90, 90, NA, 30, NA, 4,~</span>
-<span class="co">#&gt; $ Gls         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, NA, 0, NA, 0, 0, NA, NA, ~</span>
-<span class="co">#&gt; $ Ast         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, NA, 0, NA, 0, 0, NA, NA, ~</span>
-<span class="co">#&gt; $ CrdY        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NA, 0, NA, 0, 0, NA, NA, ~</span>
-<span class="co">#&gt; $ CrdR        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NA, 0, NA, 0, 0, NA, NA, ~</span>
-<span class="co">#&gt; $ MatchURL    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/47880eb7/Liverpool-Mancheste~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">liv_mci_2020_lineups</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-shooting-and-shot-creation-events">Get shooting and shot creation events<a class="anchor" aria-label="anchor" href="#get-shooting-and-shot-creation-events"></a>
 </h3>
-<p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
+<p>The below function allows users to extract shooting and shot creation
+event data for a match or selected matches. The data returned includes
+who took the shot, when, with which body part and from how far away.
+Additionally, the player creating the chance and also the creation
+before this are included in the data.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- Get shots data for a single match played: -----#</span>
 <span class="va">shot_one_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_match_shooting.html">get_match_shooting</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://fbref.com/en/matches/a3eb7a37/Sheffield-United-Wolverhampton-Wanderers-September-14-2020-Premier-League"</span><span class="op">)</span>
@@ -519,8 +404,10 @@
 <div class="section level3">
 <h3 id="get-advanced-match-statistics">Get advanced match statistics<a class="anchor" aria-label="anchor" href="#get-advanced-match-statistics"></a>
 </h3>
-<p>The <code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> function allows the user to return a data frame of different stat types for matches played.</p>
-<p>Note, some stats may not be available for all leagues. The big five European leagues should have all of these stats.</p>
+<p>The <code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> function allows the user
+to return a data frame of different stat types for matches played.</p>
+<p>Note, some stats may not be available for all leagues. The big five
+European leagues should have all of these stats.</p>
 <p>The following stat types can be selected:</p>
 <ul>
 <li><em>summary</em></li>
@@ -537,158 +424,34 @@
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"possession"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">advanced_match_stats</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 61</span>
-<span class="co">#&gt; Columns: 53</span>
-<span class="co">#&gt; $ League                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ligue 1", "Ligue 1", "Ligue 1", "Ligue 1", "Lig~</span>
-<span class="co">#&gt; $ Gender                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"~</span>
-<span class="co">#&gt; $ Country               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FRA", "FRA", "FRA", "FRA", "FRA", "FRA", "FRA",~</span>
-<span class="co">#&gt; $ Season                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-2021", "2020-2021", "2020-2021", "2020-202~</span>
-<span class="co">#&gt; $ Match_Date            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-08-21", "2020-08-21", "2020-08-21", "2020-~</span>
-<span class="co">#&gt; $ Matchweek             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ligue 1 (Matchweek 1)", "Ligue 1 (Matchweek 1)"~</span>
-<span class="co">#&gt; $ Home_Team             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bordeaux", "Bordeaux", "Bordeaux", "Bordeaux", ~</span>
-<span class="co">#&gt; $ Home_Formation        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-~</span>
-<span class="co">#&gt; $ Home_Score            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Home_xG               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4~</span>
-<span class="co">#&gt; $ Home_Goals            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mehdi Zerkane · 20&amp;rsquor;", "Mehdi Zerkane · 2~</span>2~
-<span class="co">#&gt; $ Home_Yellow_Cards     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"~</span>
-<span class="co">#&gt; $ Home_Red_Cards        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"~</span>
-<span class="co">#&gt; $ Away_Team             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Nantes", "Nantes", "Nantes", "Nantes", "Nantes"~</span>
-<span class="co">#&gt; $ Away_Formation        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-4-2", "4-4-2", "4-4-2", "4-4-2", "4-4-2", "4-~</span>
-<span class="co">#&gt; $ Away_Score            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Away_xG               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3~</span>
-<span class="co">#&gt; $ Away_Goals            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", ~</span>
-<span class="co">#&gt; $ Away_Yellow_Cards     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"~</span>
-<span class="co">#&gt; $ Away_Red_Cards        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"~</span>
-<span class="co">#&gt; $ Game_URL              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/c0996cac/Bordeaux-~</span>
-<span class="co">#&gt; $ Team                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bordeaux", "Bordeaux", "Bordeaux", "Bordeaux", ~</span>
-<span class="co">#&gt; $ Home_Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home", ~</span>
-<span class="co">#&gt; $ Player                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Josh Maja", "Remi Oudin", "Hwang Ui-jo", "Samue~</span>
-<span class="co">#&gt; $ Player_Num            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 28, 18, 10, 12, 7, 26, 17, 5, 29, 25, 6, 24, ~</span>
-<span class="co">#&gt; $ Nation                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NGA", "FRA", "KOR", "NGA", "FRA", "FRA", "CRO",~</span>
-<span class="co">#&gt; $ Pos                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FW", "FW", "LW", "LW", "RW", "RW", "CM", "CM", ~</span>
-<span class="co">#&gt; $ Age                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "21-238", "23-277", "27-359", "22-361", "29-226"~</span>
-<span class="co">#&gt; $ Min                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 45, 45, 74, 16, 63, 27, 90, 19, 90, 74, 16, 90, ~</span>
-<span class="co">#&gt; $ Touches_Touches       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 22, 34, 13, 42, 13, 48, 18, 82, 47, 10, 69, ~</span>
-<span class="co">#&gt; $ `Def Pen_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 1, 0, 0, 0, 0, 0, 2, 2, 2, 12, 11, 5, 28, ~</span>
-<span class="co">#&gt; $ `Def 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 9, 6, 2, 3, 3, 14, 0, 21, 14, 7, 52, 49, 21, ~</span>
-<span class="co">#&gt; $ `Mid 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 7, 17, 5, 27, 7, 29, 17, 50, 27, 4, 21, 36, 4~</span>
-<span class="co">#&gt; $ `Att 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5, 6, 12, 7, 14, 4, 8, 2, 16, 7, 0, 0, 1, 19, 0,~</span>
-<span class="co">#&gt; $ `Att Pen_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Live_Touches          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14, 21, 33, 13, 36, 13, 47, 17, 82, 43, 9, 69, 8~</span>
-<span class="co">#&gt; $ Succ_Dribbles         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 0, 2, 0, 0, 2, 1, 1, 0, 0, 0, 1, 0, 0, ~</span>
-<span class="co">#&gt; $ Att_Dribbles          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 3, 1, 4, 0, 2, 3, 1, 2, 0, 0, 0, 2, 0, 0, ~</span>
-<span class="co">#&gt; $ Succ_percent_Dribbles <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 0.0, 33.3, 0.0, 50.0, NA, 0.0, 66.7, 100.0, ~</span>
-<span class="co">#&gt; $ Player_NumPl_Dribbles <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 2, 0, 2, 0, 0, 2, 1, 1, 0, 0, 0, 1, 0, 0, ~</span>
-<span class="co">#&gt; $ Megs_Dribbles         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Carries_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10, 9, 24, 10, 28, 6, 36, 19, 62, 35, 6, 51, 55,~</span>
-<span class="co">#&gt; $ TotDist_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 67, 39, 94, 31, 130, 48, 179, 99, 185, 71, 25, 2~</span>
-<span class="co">#&gt; $ PrgDist_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 15, 7, 49, 15, 67, 32, 72, 54, 106, 32, 23, 82, ~</span>
-<span class="co">#&gt; $ Prog_Carries          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 5, 0, 2, 2, 2, 3, 3, 2, 0, 0, 2, 2, 0, 5, ~</span>
-<span class="co">#&gt; $ Final_Third_Carries   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, ~</span>
-<span class="co">#&gt; $ CPA_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Mis_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 4, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, ~</span>
-<span class="co">#&gt; $ Dis_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, ~</span>
-<span class="co">#&gt; $ Targ_Receiving        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 18, 22, 33, 16, 37, 16, 41, 18, 67, 35, 3, 47, 6~</span>
-<span class="co">#&gt; $ Rec_Receiving         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 12, 13, 22, 11, 28, 8, 37, 17, 64, 34, 3, 47, 60~</span>
-<span class="co">#&gt; $ Rec_percent_Receiving <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 66.7, 59.1, 66.7, 68.8, 75.7, 50.0, 90.2, 94.4, ~</span>
-<span class="co">#&gt; $ Prog_Receiving        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 0, 3, 2, 6, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 6, ~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">advanced_match_stats</span><span class="op">)</span></code></pre></div>
 <p>Or used for the team totals for each match:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_urls_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1"</span>,
                         <span class="st">"https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"</span><span class="op">)</span>
 
 <span class="va">advanced_match_stats_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">test_urls_multiple</span>, stat_type <span class="op">=</span> <span class="st">"passing_types"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">advanced_match_stats_team</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 4</span>
-<span class="co">#&gt; Columns: 49</span>
-<span class="co">#&gt; $ League            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ligue 1", "Ligue 1", "Ligue 1", "Ligue 1"</span>
-<span class="co">#&gt; $ Gender            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M"</span>
-<span class="co">#&gt; $ Country           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FRA", "FRA", "FRA", "FRA"</span>
-<span class="co">#&gt; $ Season            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-2021", "2020-2021", "2020-2021", "2020-2021"</span>
-<span class="co">#&gt; $ Match_Date        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-08-21", "2020-08-21", "2020-08-22", "2020-08-2~</span>
-<span class="co">#&gt; $ Matchweek         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ligue 1 (Matchweek 1)", "Ligue 1 (Matchweek 1)", "L~</span>
-<span class="co">#&gt; $ Home_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bordeaux", "Bordeaux", "Dijon", "Dijon"</span>
-<span class="co">#&gt; $ Home_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3"</span>
-<span class="co">#&gt; $ Home_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0</span>
-<span class="co">#&gt; $ Home_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 0.4, 0.5, 0.5</span>
-<span class="co">#&gt; $ Home_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mehdi Zerkane · 20&amp;rsquor;", "Mehdi Zerkane · 20&amp;rs~</span>s~
-<span class="co">#&gt; $ Home_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "0", "0"</span>
-<span class="co">#&gt; $ Home_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "0", "0"</span>
-<span class="co">#&gt; $ Away_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Nantes", "Nantes", "Angers", "Angers"</span>
-<span class="co">#&gt; $ Away_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-4-2", "4-4-2", "4-1-4-1", "4-1-4-1"</span>
-<span class="co">#&gt; $ Away_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 1</span>
-<span class="co">#&gt; $ Away_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3, 0.3, 2.1, 2.1</span>
-<span class="co">#&gt; $ Away_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "Ismaël Traoré · 22&amp;rsquor;", "Ismaël Traoré~</span>orÃ©~
-<span class="co">#&gt; $ Away_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "3", "0", "0"</span>
-<span class="co">#&gt; $ Away_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0"</span>
-<span class="co">#&gt; $ Game_URL          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/c0996cac/Bordeaux-Nant~</span>
-<span class="co">#&gt; $ Team              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bordeaux", "Nantes", "Dijon", "Angers"</span>
-<span class="co">#&gt; $ Home_Away         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Away", "Home", "Away"</span>
-<span class="co">#&gt; $ Min               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 919, 990, 990, 990</span>
-<span class="co">#&gt; $ Att               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 525, 662, 578, 495</span>
-<span class="co">#&gt; $ Live_Pass_Types   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 476, 623, 530, 443</span>
-<span class="co">#&gt; $ Dead_Pass_Types   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 49, 39, 48, 52</span>
-<span class="co">#&gt; $ FK_Pass_Types     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 18, 9, 8, 18</span>
-<span class="co">#&gt; $ TB_Pass_Types     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 1, 2, 3</span>
-<span class="co">#&gt; $ Press_Pass_Types  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 81, 40, 124, 28</span>
-<span class="co">#&gt; $ Sw_Pass_Types     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10, 12, 8, 15</span>
-<span class="co">#&gt; $ Crs_Pass_Types    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5, 11, 7, 15</span>
-<span class="co">#&gt; $ CK_Pass_Types     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 3, 3, 9</span>
-<span class="co">#&gt; $ In_Corner_Kicks   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 0, 2, 0</span>
-<span class="co">#&gt; $ Out_Corner_Kicks  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 3, 1, 3</span>
-<span class="co">#&gt; $ Str_Corner_Kicks  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 5</span>
-<span class="co">#&gt; $ Ground_Height     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 356, 529, 458, 369</span>
-<span class="co">#&gt; $ Low_Height        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 64, 64, 62, 46</span>
-<span class="co">#&gt; $ High_Height       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 105, 69, 58, 80</span>
-<span class="co">#&gt; $ Left_Body_Parts   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 147, 277, 146, 198</span>
-<span class="co">#&gt; $ Right_Body_Parts  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 326, 331, 377, 253</span>
-<span class="co">#&gt; $ Head_Body_Parts   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 13, 24, 11, 9</span>
-<span class="co">#&gt; $ TI_Body_Parts     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 24, 19, 25, 19</span>
-<span class="co">#&gt; $ Other_Body_Parts  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 4, 10, 10</span>
-<span class="co">#&gt; $ Cmp_Outcomes      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 431, 577, 499, 416</span>
-<span class="co">#&gt; $ Off_Outcomes      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 3, 1, 0</span>
-<span class="co">#&gt; $ Out_Outcomes      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10, 7, 7, 9</span>
-<span class="co">#&gt; $ Int_Outcomes      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 2, 6, 3</span>
-<span class="co">#&gt; $ Blocks_Outcomes   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 18, 9, 11</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">advanced_match_stats_team</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
 <div class="section level2">
 <h2 id="team-level-data">Team-Level Data<a class="anchor" aria-label="anchor" href="#team-level-data"></a>
 </h2>
-<p>This section will cover off the functions to get team-level data from FBref.</p>
+<p>This section will cover off the functions to get team-level data from
+FBref.</p>
 <div class="section level3">
 <h3 id="match-results-by-team">Match Results by team<a class="anchor" aria-label="anchor" href="#match-results-by-team"></a>
 </h3>
-<p>To get all the results a team(s) has competed in for a season, the following function can be used. The resulting data frame output will include all game results, including any cup games played, and will accept either one, or many team URLs.</p>
+<p>To get all the results a team(s) has competed in for a season, the
+following function can be used. The resulting data frame output will
+include all game results, including any cup games played, and will
+accept either one, or many team URLs.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#----- for single teams: -----#</span>
 <span class="va">man_city_2021_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span>
 <span class="va">man_city_2021_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_team_match_results.html">get_team_match_results</a></span><span class="op">(</span><span class="va">man_city_2021_url</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">man_city_2021_results</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 58</span>
-<span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ Team_Url   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats~</span>
-<span class="co">#&gt; $ Team       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Manchester City", "Manchester City", "M~</span>
-<span class="co">#&gt; $ Date       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2021-08-07", "2021-08-15", "2021-08-21", "2021-08-28", "20~</span>
-<span class="co">#&gt; $ Time       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "17:15", "16:30", "15:00", "12:30", "15:00", "20:00", "15:0~</span>
-<span class="co">#&gt; $ Comp       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Community Shield", "Premier League", "Premier League", "Pr~</span>
-<span class="co">#&gt; $ Round      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FA Community Shield", "Matchweek 1", "Matchweek 2", "Match~</span>
-<span class="co">#&gt; $ Day        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sun", "Sat", "Sat", "Sat", "Wed", "Sat", "Tue", "Sa~</span>
-<span class="co">#&gt; $ Venue      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Neutral", "Away", "Home", "Home", "Away", "Home", "Home", ~</span>
-<span class="co">#&gt; $ Result     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "L", "L", "W", "W", "W", "W", "D", "W", "W", "L", "D", "W",~</span>
-<span class="co">#&gt; $ GF         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "5", "5", "1", "6", "0", "6", "1", "0", "2", "2",~</span>
-<span class="co">#&gt; $ GA         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "0", "0", "0", "3", "0", "1", "0", "2", "2", "0",~</span>
-<span class="co">#&gt; $ Opponent   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Leicester City", "Tottenham", "Norwich City", "Arsenal", "~</span>
-<span class="co">#&gt; $ xG         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 1.9, 2.7, 3.8, 2.9, 2.1, 1.1, NA, 1.7, 1.9, 1.2, 1.9, 3~</span>
-<span class="co">#&gt; $ xGA        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 1.3, 0.1, 0.1, 0.8, 0.6, 0.4, NA, 0.3, 0.8, 1.0, 1.0, 0~</span>
-<span class="co">#&gt; $ Poss       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 57, 64, 67, 80, 61, 51, 63, 79, 60, 54, 51, 69, 63, 52, 64,~</span>
-<span class="co">#&gt; $ Attendance <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, 58262, 51437, 52276, 32087, 38062, 52698, 30959, 40036,~</span>
-<span class="co">#&gt; $ Captain    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fernandinho", "Fernandinho", "Ilkay Gündogan", "Ilkay Günd~</span>d~
-<span class="co">#&gt; $ Formation  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-~</span>
-<span class="co">#&gt; $ Referee    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Paul Tierney", "Anthony Taylor", "Graham Scott", "Martin A~</span>
-<span class="co">#&gt; $ Notes      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "", "We~</span>
 
 <span class="co">#----- get all team URLs for a league: -----#</span>
 <span class="co"># epl_2021_team_urls &lt;- fb_teams_urls("https://fbref.com/en/comps/9/Premier-League-Stats")</span>
@@ -697,8 +460,13 @@
 <div class="section level3">
 <h3 id="stat-logs-for-season">Stat Logs for Season<a class="anchor" aria-label="anchor" href="#stat-logs-for-season"></a>
 </h3>
-<p>To be able to get full match logs for all available stat types for each team(s) season, the <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code> function can be used.</p>
-<p>Available stat types are below. Note, not all of the listed stat types are available for all teams, and for teams where they are, there still may be gaps in the resulting data frame as not all competitions participated in will have the stat available:</p>
+<p>To be able to get full match logs for all available stat types for
+each team(s) season, the <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code> function
+can be used.</p>
+<p>Available stat types are below. Note, not all of the listed stat
+types are available for all teams, and for teams where they are, there
+still may be gaps in the resulting data frame as not all competitions
+participated in will have the stat available:</p>
 <ul>
 <li><em>shooting</em></li>
 <li><em>keeper</em></li>
@@ -726,20 +494,30 @@
 <div class="section level2">
 <h2 id="player-level-data">Player-Level Data<a class="anchor" aria-label="anchor" href="#player-level-data"></a>
 </h2>
-<p>This section will cover the functions available to aid in the extraction of player season data.</p>
-<p>The examples provided below in a lot of cases have the actual url (player or team) passed to them, however the suite of fbref helper functions outlined in <a href="https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html">this helpers vignette</a> could also be used.</p>
+<p>This section will cover the functions available to aid in the
+extraction of player season data.</p>
+<p>The examples provided below in a lot of cases have the actual url
+(player or team) passed to them, however the suite of fbref helper
+functions outlined in <a href="https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html">this
+helpers vignette</a> could also be used.</p>
 <div class="section level3">
 <h3 id="get-player-scouting-report">Get Player Scouting Report<a class="anchor" aria-label="anchor" href="#get-player-scouting-report"></a>
 </h3>
-<p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in two inputs;</p>
+<p>The <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> function takes in two
+inputs;</p>
 <ul>
 <li>
 <code>player_url</code> - the URL of the player’s main page</li>
 <li>
-<code>pos_versus</code> which can return the player’s comparison against players in their “primary”, OR “secondary” position</li>
+<code>pos_versus</code> which can return the player’s comparison
+against players in their “primary”, OR “secondary” position</li>
 </ul>
 <p>and returns the full scouting report for the player selected.</p>
-<p>As of version <code>0.3.6</code>, the function now returns the scouting report of ALL available periods, not just the “Last 365 Days”. As a result, there is now an additional column called <code>scouting_period</code>. This column should be used to filter out the period/season you want the scouting report for:</p>
+<p>As of version <code>0.3.6</code>, the function now returns the
+scouting report of ALL available periods, not just the “Last 365 Days”.
+As a result, there is now an additional column called
+<code>scouting_period</code>. This column should be used to filter out
+the period/season you want the scouting report for:</p>
 <pre><code><span class="co"># TO GET THE LAST 365 DAYS REPORT:</span>
 <span class="va">scout</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,
                                    pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
@@ -748,35 +526,17 @@
 <code class="sourceCode R"><span class="co">#----- Get scouting report for the players primary position (first position listed in fbref): -----#</span>
 <span class="va">messi_primary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"primary"</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">messi_primary</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 894</span>
-<span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione~</span>
-<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Att Mid / Wingers", "Att Mid / Wingers", "Att Mid / W~</span>
-<span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand~</span>
-<span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick~</span>
-<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.36, 0.45, 0.29, 0.06, 0.10, 0.03, 0.00, 0.48, 0.40, ~</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 75, 97, 70, 83, 86, 91, 56, 93, 93, 96, 98, 75, 99, 87~</span>
-<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2783, 2783, 2783, 2783, 2783, 2783, 2783, 2783, 2783, ~</span>
-<span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La~</span>
 
 <span class="co">#----- Get scouting report for the players secondary position (second position listed in fbref): -----#</span>
 <span class="va">messi_secondary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>, pos_versus <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">messi_secondary</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 894</span>
-<span class="co">#&gt; Columns: 8</span>
-<span class="co">#&gt; $ Player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Lionel Messi", "Lionel Messi", "Lionel Messi", "Lione~</span>
-<span class="co">#&gt; $ Versus          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Forwards", "Forwards", "Forwards", "Forwards", "Forwa~</span>
-<span class="co">#&gt; $ StatGroup       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Standard", "Standard", "Standard", "Standard", "Stand~</span>
-<span class="co">#&gt; $ Statistic       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goals", "Assists", "Non-Penalty Goals", "Penalty Kick~</span>
-<span class="co">#&gt; $ Per90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.36, 0.45, 0.29, 0.06, 0.10, 0.03, 0.00, 0.48, 0.40, ~</span>
-<span class="co">#&gt; $ Percentile      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 99, 40, 57, 62, 92, 55, 74, 73, 99, 93, 42, 91, 72~</span>
-<span class="co">#&gt; $ BasedOnMinutes  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2783, 2783, 2783, 2783, 2783, 2783, 2783, 2783, 2783, ~</span>
-<span class="co">#&gt; $ scouting_period <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Last 365 Days", "Last 365 Days", "Last 365 Days", "La~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">messi_secondary</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-player-season-stats">Get Player Season Stats<a class="anchor" aria-label="anchor" href="#get-player-season-stats"></a>
 </h3>
-<p>The <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> function allows for the extraction of historical season totals for selected player URLs and stat_type.</p>
+<p>The <code><a href="../reference/fb_player_season_stats.html">fb_player_season_stats()</a></code> function allows for the
+extraction of historical season totals for selected player URLs and
+stat_type.</p>
 <p>The stat_types available for use in this function are below:</p>
 <ul>
 <li><em>standard</em></li>
@@ -795,33 +555,6 @@
 <code class="sourceCode R"><span class="co">#----- can use for a single player: -----#</span>
 <span class="va">mo_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_season_stats.html">fb_player_season_stats</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/e342ad68/Mohamed-Salah"</span>, stat_type <span class="op">=</span> <span class="st">'shooting'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mo_shooting</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 39</span>
-<span class="co">#&gt; Columns: 25</span>
-<span class="co">#&gt; $ player_name              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mohamed Salah", "Mohamed Salah", "Mohamed Sa~</span>
-<span class="co">#&gt; $ player_url               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/e342ad68/Mohame~</span>
-<span class="co">#&gt; $ Season                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2012-2013", "2012-2013", "2013-2014", "2013-~</span>
-<span class="co">#&gt; $ Age                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20, 20, 21, 21, 21, 22, 22, 22, 22, 22, 22, 2~</span>
-<span class="co">#&gt; $ Squad                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Basel", "Basel", "Basel", "Basel", "Chelsea"~</span>
-<span class="co">#&gt; $ Country                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "SUI", "", "SUI", "ENG", "", "ENG", "ENG"~</span>
-<span class="co">#&gt; $ Comp                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2. Europa Lg", "1. Swiss Super League", "1. ~</span>
-<span class="co">#&gt; $ Mins_Per_90              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 10.5, 16.0, 5.9, 12.8, 5.6, 0.8, 0.8, 1.7, 0.~</span>
-<span class="co">#&gt; $ Gls_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 5, 2, 4, 2, 0, 0, 0, 0, 2, 1, 6, 1, 0, 14,~</span>
-<span class="co">#&gt; $ Sh_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ SoT_Standard             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7, 14, 6, 14, 6, 2, NA, NA, 0, NA, 5, 13, 3, ~</span>
-<span class="co">#&gt; $ SoT_percent_Standard     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ Sh_per_90_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ SoT_per_90_Standard      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.66, 0.87, 1.02, 1.10, 1.08, 2.37, NA, NA, 0~</span>
-<span class="co">#&gt; $ G_per_Sh_Standard        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ G_per_SoT_Standard       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.29, NA, 0.33, 0.29, 0.33, 0.00, NA, NA, NA,~</span>
-<span class="co">#&gt; $ Dist_Standard            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ FK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ PK_Standard              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~</span>
-<span class="co">#&gt; $ PKatt_Standard           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,~</span>
-<span class="co">#&gt; $ xG_Expected              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ npxG_Expected            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ npxG_per_Sh_Expected     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ G_minus_xG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
-<span class="co">#&gt; $ `np:G_minus_xG_Expected` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N~</span>
 
 <span class="co">#----- Or for multiple players at a time: -----#</span>
 <span class="co"># multiple_playing_time &lt;- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",</span>
@@ -831,7 +564,10 @@
 <div class="section level3">
 <h3 id="the-big-5-euro-league-players">The Big 5 Euro League Players<a class="anchor" aria-label="anchor" href="#the-big-5-euro-league-players"></a>
 </h3>
-<p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows users to extract data for any of the below listed stat types for all players of the big five European leagues (EPL, La Liga, Ligue 1, Serie A, Bundesliga).</p>
+<p>The <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> function allows
+users to extract data for any of the below listed stat types for all
+players of the big five European leagues (EPL, La Liga, Ligue 1, Serie
+A, Bundesliga).</p>
 <p>The stat types available for this function are below:</p>
 <ul>
 <li><em>standard</em></li>
@@ -846,51 +582,18 @@
 <li><em>keepers</em></li>
 <li><em>keepers_adv</em></li>
 </ul>
-<p>The function also accepts a season or seasons and whether you want data for the player, or team.</p>
+<p>The function also accepts a season or seasons and whether you want
+data for the player, or team.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big5_player_possession</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year<span class="op">=</span> <span class="fl">2021</span>, stat_type<span class="op">=</span> <span class="st">"possession"</span>, team_or_player<span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_player_possession</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 2,822</span>
-<span class="co">#&gt; Columns: 34</span>
-<span class="co">#&gt; $ Season_End_Year       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, ~</span>
-<span class="co">#&gt; $ Squad                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alavés", "Alavés", "Alavés", "Alavés", "Alavés"~</span>Ã©s"~
-<span class="co">#&gt; $ Comp                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "La Liga", "La Liga", "La Liga", "La Liga", "La ~</span>
-<span class="co">#&gt; $ Player                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Martin Agirregabiria", "Rodrigo Battaglia", "Bu~</span>
-<span class="co">#&gt; $ Nation                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ESP", "ARG", "ESP", "ESP", "BRA", "ESP", "BRA",~</span>
-<span class="co">#&gt; $ Pos                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DF,MF", "MF", "MF", "MF", "FW", "DF", "DF", "MF~</span>
-<span class="co">#&gt; $ Age                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "24", "29", "26", "23", "29", "24", "26", "34", ~</span>
-<span class="co">#&gt; $ Born                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1996, 1991, 1993, 1997, 1991, 1995, 1993, 1986, ~</span>
-<span class="co">#&gt; $ Mins_Per_90           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 17.3, 27.7, 0.2, 2.4, 9.7, 28.3, 5.2, 12.5, 0.2,~</span>
-<span class="co">#&gt; $ Touches_Touches       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 883, 1266, 12, 115, 443, 1656, 209, 521, 11, 87,~</span>
-<span class="co">#&gt; $ `Def Pen_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 48, 86, 1, 3, 13, 105, 37, 25, 0, 1, 57, 15, 0, ~</span>
-<span class="co">#&gt; $ `Def 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 306, 380, 1, 26, 58, 521, 126, 123, 0, 4, 155, 1~</span>
-<span class="co">#&gt; $ `Mid 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 454, 813, 7, 51, 226, 830, 78, 341, 7, 47, 800, ~</span>
-<span class="co">#&gt; $ `Att 3rd_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 155, 145, 6, 47, 175, 369, 10, 77, 4, 41, 565, 2~</span>
-<span class="co">#&gt; $ `Att Pen_Touches`     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8, 21, 1, 3, 31, 12, 6, 13, 1, 10, 155, 15, 0, 1~</span>
-<span class="co">#&gt; $ Live_Touches          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 706, 1227, 12, 110, 433, 1344, 196, 510, 8, 79, ~</span>
-<span class="co">#&gt; $ Succ_Dribbles         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 18, 0, 3, 6, 5, 1, 2, 0, 1, 30, 22, 0, 0, 10,~</span>
-<span class="co">#&gt; $ Att_Dribbles          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8, 23, 0, 3, 15, 11, 1, 6, 0, 2, 65, 45, 0, 0, 1~</span>
-<span class="co">#&gt; $ Succ_percent_Dribbles <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 50.0, 78.3, NA, 100.0, 40.0, 45.5, 100.0, 33.3, ~</span>
-<span class="co">#&gt; $ `#Pl_Dribbles`        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 19, 0, 3, 6, 6, 1, 4, 0, 1, 35, 27, 0, 0, 10,~</span>
-<span class="co">#&gt; $ Megs_Dribbles         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 2, 1, 0, 1, 0, 0, 3, 3, 0, 0, 1, 0, ~</span>
-<span class="co">#&gt; $ Carries_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 412, 804, 8, 62, 202, 713, 88, 281, 4, 44, 711, ~</span>
-<span class="co">#&gt; $ TotDist_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1633, 4594, 43, 225, 618, 3260, 252, 1079, 49, 1~</span>
-<span class="co">#&gt; $ PrgDist_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 843, 2104, 35, 120, 258, 1688, 98, 467, 26, 39, ~</span>
-<span class="co">#&gt; $ Prog_Carries          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 33, 78, 3, 6, 14, 82, 2, 18, 2, 2, 42, 60, 1, 29~</span>
-<span class="co">#&gt; $ Final_Third_Carries   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8, 23, 2, 2, 2, 25, 1, 6, 0, 2, 12, 25, 0, 1, 2,~</span>
-<span class="co">#&gt; $ CPA_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 0, 1, 1, 2, 1, 0, 0, 0, 0, 11, 3, 0, 0, 0, 2,~</span>
-<span class="co">#&gt; $ Mis_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 8, 15, 0, 8, 28, 8, 1, 8, 1, 5, 77, 23, 0, 3, 5,~</span>
-<span class="co">#&gt; $ Dis_Carries           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 18, 0, 6, 13, 7, 0, 11, 0, 1, 50, 21, 0, 3, 6~</span>
-<span class="co">#&gt; $ Targ_Receiving        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 501, 840, 12, 93, 530, 808, 101, 370, 7, 124, 17~</span>
-<span class="co">#&gt; $ Rec_Receiving         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 425, 778, 7, 69, 301, 755, 98, 307, 5, 67, 1129,~</span>
-<span class="co">#&gt; $ Rec_percent_Receiving <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 84.8, 92.6, 58.3, 74.2, 56.8, 93.4, 97.0, 83.0, ~</span>
-<span class="co">#&gt; $ Prog_Receiving        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 19, 16, 1, 8, 75, 15, 4, 36, 1, 12, 211, 36, 0, ~</span>
-<span class="co">#&gt; $ Url                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/355c883a/Martin-Ag~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">big5_player_possession</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="player-season-statistics-for-a-teams-season">Player Season Statistics for a teams season<a class="anchor" aria-label="anchor" href="#player-season-statistics-for-a-teams-season"></a>
 </h3>
-<p>The <code><a href="../reference/fb_team_player_stats.html">fb_team_player_stats()</a></code> function allows users to extract data for any of the below listed stat types for all players of selected team(s) seasons,</p>
+<p>The <code><a href="../reference/fb_team_player_stats.html">fb_team_player_stats()</a></code> function allows users to
+extract data for any of the below listed stat types for all players of
+selected team(s) seasons,</p>
 <p>The stat types available for this function are below:</p>
 <ul>
 <li><em>standard</em></li>
@@ -909,32 +612,6 @@
 <code class="sourceCode R"><span class="co">#----- to get stats for just a single team: -----#</span>
 <span class="va">fleetwood_standard_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_team_player_stats.html">fb_team_player_stats</a></span><span class="op">(</span>team_urls<span class="op">=</span> <span class="st">"https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats"</span>, stat_type<span class="op">=</span> <span class="st">'standard'</span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">fleetwood_standard_stats</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 41</span>
-<span class="co">#&gt; Columns: 24</span>
-<span class="co">#&gt; $ Season                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2021-2022", "2021-2022", "2021-2022", "202~</span>
-<span class="co">#&gt; $ Squad                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fleetwood Town", "Fleetwood Town", "Fleetw~</span>
-<span class="co">#&gt; $ Comp                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "League One", "League One", "League One", "~</span>
-<span class="co">#&gt; $ Player                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alex Cairns", "Danny Andrew", "Tom Clarke"~</span>
-<span class="co">#&gt; $ Nation                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "NIR", "ENG", "~</span>
-<span class="co">#&gt; $ Pos                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GK", "DF,MF", "DF", "DF,MF", "MF", "MF", "~</span>
-<span class="co">#&gt; $ Age                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "28", "30", "33", "24", "25", "25", "23", "~</span>
-<span class="co">#&gt; $ MP_Playing_Time            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 39, 35, 35, 31, 32, 30, 28, 26, 20, 20,~</span>
-<span class="co">#&gt; $ Starts_Playing_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42, 39, 35, 32, 29, 26, 23, 23, 19, 19, 18,~</span>
-<span class="co">#&gt; $ Min_Playing_Time           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3774, 3408, 3106, 2923, 2544, 2309, 2004, 1~</span>
-<span class="co">#&gt; $ Mins_Per_90_Playing_Time   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41.9, 37.9, 34.5, 32.5, 28.3, 25.7, 22.3, 2~</span>
-<span class="co">#&gt; $ Gls                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 3, 5, 2, 7, 4, 0, 0, 1, 1, 6, 0~</span>
-<span class="co">#&gt; $ Ast                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 7, 0, 1, 5, 2, 5, 1, 8, 0, 1, 0, 1, 2, 2~</span>
-<span class="co">#&gt; $ G_minus_PK                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 6, 2, 3, 3, 5, 2, 6, 4, 0, 0, 1, 1, 5, 0~</span>
-<span class="co">#&gt; $ PK                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0~</span>
-<span class="co">#&gt; $ PKatt                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0~</span>
-<span class="co">#&gt; $ CrdY                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 5, 4, 3, 2, 4, 4, 2, 2, 3, 2, 6, 4, 2, 0~</span>
-<span class="co">#&gt; $ CrdR                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0~</span>
-<span class="co">#&gt; $ Gls_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.16, 0.06, 0.09, 0.11, 0.19, 0.09, 0~</span>
-<span class="co">#&gt; $ Ast_Per_Minutes            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.18, 0.00, 0.03, 0.18, 0.08, 0.22, 0~</span>
-<span class="co">#&gt; $ `G+A_Per_Minutes`          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.34, 0.06, 0.12, 0.28, 0.27, 0.31, 0~</span>
-<span class="co">#&gt; $ G_minus_PK_Per_Minutes     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.16, 0.06, 0.09, 0.11, 0.19, 0.09, 0~</span>
-<span class="co">#&gt; $ `G+A_minus_PK_Per_Minutes` <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.00, 0.34, 0.06, 0.12, 0.28, 0.27, 0.31, 0~</span>
-<span class="co">#&gt; $ PlayerURL                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/1a5e36e7/Alex~</span>
 
 <span class="co">#----- Can even get stats for a series of teams: -----#</span>
 <span class="co"># league_url &lt;- fb_league_urls(country = "ENG", gender = "M",</span>
@@ -945,8 +622,11 @@
 <div class="section level3">
 <h3 id="player-match-logs">Player Match Logs<a class="anchor" aria-label="anchor" href="#player-match-logs"></a>
 </h3>
-<p>The <code><a href="../reference/fb_player_match_logs.html">fb_player_match_logs()</a></code> function allows the user to return a data frame of the match logs of different stat types for a player’s matches played in a season.</p>
-<p>The following stat types can be selected, depending on the player’s position (ie a striker probably won’t have “keepers” stats):</p>
+<p>The <code><a href="../reference/fb_player_match_logs.html">fb_player_match_logs()</a></code> function allows the user to
+return a data frame of the match logs of different stat types for a
+player’s matches played in a season.</p>
+<p>The following stat types can be selected, depending on the player’s
+position (ie a striker probably won’t have “keepers” stats):</p>
 <ul>
 <li><em>summary</em></li>
 <li><em>keepers</em></li>
@@ -959,48 +639,7 @@
 </ul>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">ederson_summary</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 66</span>
-<span class="co">#&gt; Columns: 39</span>
-<span class="co">#&gt; $ Player             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ederson", "Ederson", "Ederson", "Ederson", "Ederso~</span>
-<span class="co">#&gt; $ Season             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-2021", "2020-2021", "2020-2021", "2020-2021",~</span>
-<span class="co">#&gt; $ Date               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2020-09-21", "2020-09-27", "2020-09-30", "2020-10-~</span>
-<span class="co">#&gt; $ Day                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mon", "Sun", "Wed", "Sat", "Fri", "Tue", "Sat", "W~</span>
-<span class="co">#&gt; $ Comp               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "EFL Cup", "Pre~</span>
-<span class="co">#&gt; $ Round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Matchweek 2", "Matchweek 3", "Fourth round", "Matc~</span>
-<span class="co">#&gt; $ Venue              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Away", "Home", "Away", "Away", "Home", "Away", "Ho~</span>
-<span class="co">#&gt; $ Result             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "W 3–1", "L 2–5", "W 3–0", "D 1–1", "W 5–0", "W 4–2~</span>", "W 4â€“2~
-<span class="co">#&gt; $ Squad              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Manchester City", "Manchester C~</span>
-<span class="co">#&gt; $ Opponent           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Wolves", "Leicester City", "Burnley", "Leeds Unite~</span>
-<span class="co">#&gt; $ Start              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Y", "Y", "N", "Y", "N", "N", "Y", "Y", "Y", "Y", "~</span>
-<span class="co">#&gt; $ Pos                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GK", "GK", "On matchday squad, but did not play", ~</span>
-<span class="co">#&gt; $ Min                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 90, 90, NA, 90, NA, NA, 90, 90, 90, 90, 90, 90, 90,~</span>
-<span class="co">#&gt; $ Gls                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Ast                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ PK                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ PKatt              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Sh                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ SoT                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ CrdY               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ CrdR               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Touches            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 36, 19, NA, 36, NA, NA, 50, 39, 26, 22, 36, 30, 40,~</span>
-<span class="co">#&gt; $ Press              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 1~</span>
-<span class="co">#&gt; $ Tkl                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ Int                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Blocks             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ xG_Expected        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ npxG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ xA_Expected        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ SCA_SCA            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ GCA_SCA            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ Cmp_Passes         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 30, 15, NA, 24, NA, NA, 29, 31, 24, 19, 28, 24, 33,~</span>
-<span class="co">#&gt; $ Att_Passes         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 36, 15, NA, 30, NA, NA, 46, 38, 26, 21, 35, 29, 37,~</span>
-<span class="co">#&gt; $ Cmp_percent_Passes <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 83.3, 100.0, NA, 80.0, NA, NA, 63.0, 81.6, 92.3, 90~</span>
-<span class="co">#&gt; $ Prog_Passes        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ Carries_Carries    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 27, 5, NA, 17, NA, NA, 29, 24, 13, 13, 27, 20, 25, ~</span>
-<span class="co">#&gt; $ Prog_Carries       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ Succ_Dribbles      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span>
-<span class="co">#&gt; $ Att_Dribbles       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, NA, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, NA, NA, 0~</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">ederson_summary</span><span class="op">)</span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -1017,7 +656,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>

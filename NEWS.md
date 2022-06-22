@@ -2,7 +2,7 @@
 
 ### Improvements
 
-* `fotmob_get_season_stats()` no longer errors out when stats are queried for a league in its offseason [#136](https://github.com/JaseZiv/worldfootballR/issues/136)
+* `load_match_comp_results()` Functions to load pre stored match results from domestic and international cups/competitions
 
 ***
 
