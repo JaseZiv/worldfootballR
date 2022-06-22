@@ -82,6 +82,40 @@ dplyr::glimpse(eng_match_results)
 ```
 
 
+## Load FBref match results for Cups and International Comps
+
+Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the `load_match_comp_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. 
+
+The following list of competitions (`comp_name`) are available:
+
+```{r comp_list, echo=FALSE}
+seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
+
+# the below cups are one off matches so we don't need scores and fixtures for these:
+exclusion_cups <- c("UEFA Super Cup", "FA Community Shield", "Supercopa de España", "Trophée des Champions", "DFL-Supercup", "Supercoppa Italiana")
+
+latest_cup_seasons <- seasons %>%
+  # filtering out things that aren't domestic leagues:
+  filter(!stringr::str_detect(.data$competition_type, "Leagues"),
+         # and also the single match type cup games:
+         !.data$competition_name %in% exclusion_cups) %>% 
+  group_by(competition_name) %>% slice_max(season_end_year) %>% 
+  distinct() %>% 
+  select(competition_type,competition_name,country,gender,governing_body,first_season,last_season,tier)
+
+latest_cup_seasons %>% pull(competition_name)
+```
+
+
+
+
+```{r load_match_comp_results}
+cups <- c("FIFA Women's World Cup","FIFA World Cup")
+world_cups <- load_match_comp_results(comp_name = cups)
+dplyr::glimpse(world_cups)
+```
+
+
 ## Load FBref big 5 league advanced season stats
 
 To load pre-scraped advanced stats for the big five European leagues for either teams or players, the `load_fb_big5_advanced_season_stats()` can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.

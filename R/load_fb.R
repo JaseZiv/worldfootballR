@@ -53,6 +53,60 @@ load_match_results <- function(country, gender, season_end_year, tier) {
 }
 
 
+#' Load match competition results
+#'
+#' Returns the game results for a competition(s),
+#' ie League cups or international competitions from FBref.
+#' comp_name comes from https://github.com/JaseZiv/worldfootballR_data/tree/master/data/match_results_cups#readme
+#'
+#' @param comp_name the three character country code
+#'
+#' @return returns a dataframe with the results of the competition name
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+#'
+#' @examples
+#' \donttest{
+#' try({
+#' df <- load_match_comp_results(
+#' comp_name = "Coppa Italia"
+#' )
+#' # for multiple competitions:
+#' cups <- c("FIFA Women's World Cup",
+#'           "FIFA World Cup")
+#' df <- load_match_comp_results(
+#' comp_name = cups
+#' )
+#' })
+#' }
+load_match_comp_results <- function(comp_name) {
+
+  f_name <- janitor::make_clean_names(comp_name)
+
+  dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results_cups/", f_name, "_match_results.rds?raw=true")
+
+  dat_df <- dat_urls %>% purrr::map_df(.file_reader)
+
+  if(nrow(dat_df) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters")
+  } else {
+    dat_df <- dat_df %>%
+      # dplyr::filter(.data$Country %in% country,
+      #               .data$Gender %in% gender,
+      #               .data$Season_End_Year %in% season_end_year,
+      #               .data$Tier %in% tier) %>%
+      dplyr::select(-.data$Tier)
+
+    cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
+  }
+
+  return(dat_df)
+
+}
+
 
 #' Load Big 5 Euro League Season Stats
 #'

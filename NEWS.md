@@ -1,3 +1,11 @@
+# worldfootballR 0.5.6.3000
+
+### Improvements
+
+* `fotmob_get_season_stats()` no longer errors out when stats are queried for a league in its offseason [#136](https://github.com/JaseZiv/worldfootballR/issues/136)
+
+***
+
 # worldfootballR 0.5.6.2000
 
 ### Bugs
