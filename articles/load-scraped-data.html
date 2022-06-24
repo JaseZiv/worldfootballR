@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6.3000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Load Scraped Data Functions</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-06-15</h4>
+            <h4 data-toc-skip class="date">2022-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -122,13 +122,14 @@
 </h2>
 <p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></span></code></pre></div>
 <p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/worldfootballR" class="external-link">worldfootballR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -158,42 +159,101 @@
 <p>To load pre-scraped match results for all years the data is available, the <code><a href="../reference/load_match_results.html">load_match_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository.</p>
 <p>This is the load function equivalent of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eng_match_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_results.html">load_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, season_end_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">:</span><span class="fl">2022</span><span class="op">)</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">eng_match_results</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 1,536</span>
-<span class="co">#&gt; Columns: 20</span>
-<span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FA Women's Super League", "FA Women's Super League",…</span>
-<span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span>
-<span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG…</span>
-<span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020,…</span>
-<span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun…</span>
-<span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-09-07, 2019-09-07, 2019-09-08, 2019-09-08, 2019…</span>
-<span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "15:00", "15:00", "12:30", "14:00", "14:00", "14:30",…</span>
-<span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Bristol City", "Chelsea", "Birmin…</span>
-<span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 1, 0, 0, 2, 0, 2, 1, 1, 1, 0, 2, 4, 0, 0, 0, 3,…</span>
-<span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3, 0.4, 1.4, 0.7, 0.8, 2.0, 0.2, 1.2, 1.2, 0.3, 0.8…</span>
-<span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester Utd", "Brighton", "Tottenham", "Everton",…</span>
-<span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 1, 1, 1, 2, 0, 0, 1, 0, 1, 0, 0, 1, 2, 4, 0,…</span>
-<span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.6, 2.0, 0.3, 0.9, 1.2, 0.9, 2.3, 0.7, 0.3, 1.5, 0.8…</span>
-<span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 31213, 3041, 24564, 873, 1445, 1795, 897, 441, 996, 1…</span>
-<span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Etihad Stadium", "Stoke Gifford Stadium", "Stamford …</span>
-<span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Rebecca Welch", "Abigail Bryne", "Jack Packman", "El…</span>
-<span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "…</span>
-<span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/f116cea0/Manchester-Der…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">eng_match_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_results.html">load_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, season_end_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">:</span><span class="fl">2022</span><span class="op">)</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">eng_match_results</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1,536</span></span>
+<span><span class="co">#&gt; Columns: 20</span></span>
+<span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FA Women's Super League", "FA Women's Super League",…</span></span>
+<span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
+<span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020,…</span></span>
+<span><span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun…</span></span>
+<span><span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-09-07, 2019-09-07, 2019-09-08, 2019-09-08, 2019…</span></span>
+<span><span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "15:00", "15:00", "12:30", "14:00", "14:00", "14:30",…</span></span>
+<span><span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Bristol City", "Chelsea", "Birmin…</span></span>
+<span><span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 0, 1, 0, 0, 2, 0, 2, 1, 1, 1, 0, 2, 4, 0, 0, 0, 3,…</span></span>
+<span><span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.3, 0.4, 1.4, 0.7, 0.8, 2.0, 0.2, 1.2, 1.2, 0.3, 0.8…</span></span>
+<span><span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester Utd", "Brighton", "Tottenham", "Everton",…</span></span>
+<span><span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 1, 1, 1, 2, 0, 0, 1, 0, 1, 0, 0, 1, 2, 4, 0,…</span></span>
+<span><span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.6, 2.0, 0.3, 0.9, 1.2, 0.9, 2.3, 0.7, 0.3, 1.5, 0.8…</span></span>
+<span><span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 31213, 3041, 24564, 873, 1445, 1795, 897, 441, 996, 1…</span></span>
+<span><span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Etihad Stadium", "Stoke Gifford Stadium", "Stamford …</span></span>
+<span><span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Rebecca Welch", "Abigail Bryne", "Jack Packman", "El…</span></span>
+<span><span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "…</span></span>
+<span><span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/f116cea0/Manchester-Der…</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="load-fbref-match-results-for-cups-and-international-comps">Load FBref match results for Cups and International Comps<a class="anchor" aria-label="anchor" href="#load-fbref-match-results-for-cups-and-international-comps"></a>
+</h2>
+<p>Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the <code><a href="../reference/load_match_comp_results.html">load_match_comp_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
+<p>The following list of competitions (<code>comp_name</code>) are available:</p>
+<pre><code><span><span class="co">#&gt;  [1] "AFC Asian Cup"                              </span></span>
+<span><span class="co">#&gt;  [2] "AFC Asian Cup qualification"                </span></span>
+<span><span class="co">#&gt;  [3] "AFC Women's Asian Cup"                      </span></span>
+<span><span class="co">#&gt;  [4] "AFC Women's Asian Cup Qualification"        </span></span>
+<span><span class="co">#&gt;  [5] "Africa Cup of Nations"                      </span></span>
+<span><span class="co">#&gt;  [6] "Africa Cup of Nations qualification"        </span></span>
+<span><span class="co">#&gt;  [7] "Africa Women Cup of Nations"                </span></span>
+<span><span class="co">#&gt;  [8] "Algarve Cup"                                </span></span>
+<span><span class="co">#&gt;  [9] "CONCACAF Gold Cup"                          </span></span>
+<span><span class="co">#&gt; [10] "CONCACAF W Championship"                    </span></span>
+<span><span class="co">#&gt; [11] "Copa America"                               </span></span>
+<span><span class="co">#&gt; [12] "Copa América Femenina"                      </span></span>
+<span><span class="co">#&gt; [13] "Copa del Rey"                               </span></span>
+<span><span class="co">#&gt; [14] "Copa Libertadores de América"               </span></span>
+<span><span class="co">#&gt; [15] "Copa Sudamericana"                          </span></span>
+<span><span class="co">#&gt; [16] "Coppa Italia"                               </span></span>
+<span><span class="co">#&gt; [17] "Coupe de France"                            </span></span>
+<span><span class="co">#&gt; [18] "Coupe de la Ligue"                          </span></span>
+<span><span class="co">#&gt; [19] "DFB-Pokal"                                  </span></span>
+<span><span class="co">#&gt; [20] "DFB-Pokal Frauen"                           </span></span>
+<span><span class="co">#&gt; [21] "English Football League Cup"                </span></span>
+<span><span class="co">#&gt; [22] "European Championship"                      </span></span>
+<span><span class="co">#&gt; [23] "FA Cup"                                     </span></span>
+<span><span class="co">#&gt; [24] "FIFA Confederations Cup"                    </span></span>
+<span><span class="co">#&gt; [25] "FIFA Women's World Cup"                     </span></span>
+<span><span class="co">#&gt; [26] "FIFA Women's World Cup Qualification (UEFA)"</span></span>
+<span><span class="co">#&gt; [27] "FIFA World Cup"                             </span></span>
+<span><span class="co">#&gt; [28] "FIFA World Cup Qualification — AFC"         </span></span>
+<span><span class="co">#&gt; [29] "FIFA World Cup Qualification — CAF"         </span></span>
+<span><span class="co">#&gt; [30] "FIFA World Cup Qualification — CONCACAF"    </span></span>
+<span><span class="co">#&gt; [31] "FIFA World Cup Qualification — CONMEBOL"    </span></span>
+<span><span class="co">#&gt; [32] "FIFA World Cup Qualification — OFC"         </span></span>
+<span><span class="co">#&gt; [33] "FIFA World Cup Qualification — UEFA"        </span></span>
+<span><span class="co">#&gt; [34] "International Friendlies (M)"               </span></span>
+<span><span class="co">#&gt; [35] "International Friendlies (W)"               </span></span>
+<span><span class="co">#&gt; [36] "NWSL Challenge Cup"                         </span></span>
+<span><span class="co">#&gt; [37] "NWSL Fall Series"                           </span></span>
+<span><span class="co">#&gt; [38] "OFC Nations Cup"                            </span></span>
+<span><span class="co">#&gt; [39] "OFC Women's Nations Cup"                    </span></span>
+<span><span class="co">#&gt; [40] "Olympics – Women's Tournament"              </span></span>
+<span><span class="co">#&gt; [41] "SheBelieves Cup"                            </span></span>
+<span><span class="co">#&gt; [42] "UEFA Champions League"                      </span></span>
+<span><span class="co">#&gt; [43] "UEFA Euro Qualification"                    </span></span>
+<span><span class="co">#&gt; [44] "UEFA Europa Conference League"              </span></span>
+<span><span class="co">#&gt; [45] "UEFA Europa League"                         </span></span>
+<span><span class="co">#&gt; [46] "UEFA Nations League"                        </span></span>
+<span><span class="co">#&gt; [47] "UEFA Women's Champions League"              </span></span>
+<span><span class="co">#&gt; [48] "UEFA Women's Championship"                  </span></span>
+<span><span class="co">#&gt; [49] "UEFA Women's Euro Qualification"</span></span></code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
+<span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="load-fbref-big-5-league-advanced-season-stats">Load FBref big 5 league advanced season stats<a class="anchor" aria-label="anchor" href="#load-fbref-big-5-league-advanced-season-stats"></a>
 </h2>
 <p>To load pre-scraped advanced stats for the big five European leagues for either teams or players, the <code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
 <p>This is the load function equivalent of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">all_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-<span class="va">current_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span>
-
-<span class="va">all_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span>
-<span class="va">current_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">all_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
+<span><span class="va">current_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">all_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span>
+<span><span class="va">current_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -208,7 +268,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>
