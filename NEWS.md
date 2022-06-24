@@ -1,3 +1,11 @@
+# worldfootballR 0.5.6.3000
+
+### Improvements
+
+* `load_match_comp_results()` Functions to load pre stored match results from domestic and international cups/competitions
+
+***
+
 # worldfootballR 0.5.6.2000
 
 ### Bugs
