@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6.3000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.6.4000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-06-22</h4>
+            <h4 data-toc-skip class="date">2022-07-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -145,6 +145,8 @@ with:</p>
 <p>Package vignettes have been built to help you get started with the
 package.</p>
 <ul>
+<li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
+</li>
 <li>For functions to extract data from Transfermarkt, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html">here</a>
 </li>
 <li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
@@ -153,8 +155,6 @@ package.</p>
 </li>
 <li>For functions to extract data for international matches from FBref,
 see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
-</li>
-<li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
 </li>
 </ul>
 <p>This vignette will cover the functions to load scraped data from the
@@ -168,8 +168,13 @@ document for more information.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="load-fbref-match-results">Load FBref match results<a class="anchor" aria-label="anchor" href="#load-fbref-match-results"></a>
+<h2 id="load-fbref">Load FBref<a class="anchor" aria-label="anchor" href="#load-fbref"></a>
 </h2>
+<p>The following section demonstrates the different loading functions of
+FBref data.</p>
+<div class="section level3">
+<h3 id="load-fbref-match-results">Load FBref match results<a class="anchor" aria-label="anchor" href="#load-fbref-match-results"></a>
+</h3>
 <p>To load pre-scraped match results for all years the data is
 available, the <code><a href="../reference/load_match_results.html">load_match_results()</a></code> function can be used.
 This data is scheduled to be updated most days and a print statement
@@ -203,9 +208,9 @@ leagues are included in the data repository.</p>
 <span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "…</span>
 <span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/f116cea0/Manchester-Der…</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="load-fbref-match-results-for-cups-and-international-comps">Load FBref match results for Cups and International Comps<a class="anchor" aria-label="anchor" href="#load-fbref-match-results-for-cups-and-international-comps"></a>
-</h2>
+<div class="section level3">
+<h3 id="load-fbref-match-results-for-cups-and-international-comps">Load FBref match results for Cups and International Comps<a class="anchor" aria-label="anchor" href="#load-fbref-match-results-for-cups-and-international-comps"></a>
+</h3>
 <p>Similarly, to load pre-scraped match results for cups and
 international matches in all years the data is available, the
 <code><a href="../reference/load_match_comp_results.html">load_match_comp_results()</a></code> function can be used. This data
@@ -265,11 +270,33 @@ available:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span>
 <span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span></code></pre></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 1,232</span>
+<span class="co">#&gt; Columns: 20</span>
+<span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FIFA Women's World Cup", "FIFA Women's World Cup", "…</span>
+<span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span>
+<span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1991, 1991, 1991, 1991, 1991, 1991, 1991, 1991, 1991,…</span>
+<span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Group stage", "Group stage", "Group stage", "Group s…</span>
+<span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Tue", "Tue…</span>
+<span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1991-11-16, 1991-11-17, 1991-11-17, 1991-11-17, 1991…</span>
+<span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "20:45", "15:30", "19:45", "19:45", "19:45", "19:45",…</span>
+<span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "China PR cn", "Germany de", "Japan jp", "Chinese Tai…</span>
+<span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 4, 0, 0, 3, 2, 4, 1, 2, 0, 0, 0, 0, 0, 2, 4, 2, 0,…</span>
+<span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "no Norway", "ng Nigeria", "br Brazil", "it Italy", "…</span>
+<span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 5, 0, 3, 0, 0, 2, 5, 8, 3, 3, 2, 0, 1, 1, 2,…</span>
+<span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span>
+<span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 65000, 14000, 14000, 11000, 14000, 14000, 12000, 1200…</span>
+<span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Tianhe Stadium (Neutral Site)", "Jiangmen Stadium (N…</span>
+<span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Salvador Imperatore Marcone", "Rafael Rodriguez", "L…</span>
+<span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "…</span>
+<span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/0d9e0f26/China-PR-Norwa…</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="load-fbref-big-5-league-advanced-season-stats">Load FBref big 5 league advanced season stats<a class="anchor" aria-label="anchor" href="#load-fbref-big-5-league-advanced-season-stats"></a>
-</h2>
+<div class="section level3">
+<h3 id="load-fbref-big-5-league-advanced-season-stats">Load FBref big 5 league advanced season stats<a class="anchor" aria-label="anchor" href="#load-fbref-big-5-league-advanced-season-stats"></a>
+</h3>
 <p>To load pre-scraped advanced stats for the big five European leagues
 for either teams or players, the
 <code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> can be used. This data
@@ -283,6 +310,36 @@ the user of when the data was last updated.</p>
 
 <span class="va">all_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span>
 <span class="va">current_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="load-understat">Load Understat<a class="anchor" aria-label="anchor" href="#load-understat"></a>
+</h2>
+<p>The following section demonstrates the different loading functions of
+Understat data.</p>
+<div class="section level3">
+<h3 id="load-league-shots">Load League Shots<a class="anchor" aria-label="anchor" href="#load-league-shots"></a>
+</h3>
+<p>To be able to rapidly load pre-collected chooting locations for whole
+leagues, the <code><a href="../reference/load_understat_league_shots.html">load_understat_league_shots()</a></code> functions is now
+available. Supported leagues on Understat are:</p>
+<ul>
+<li>“EPL”</li>
+<li>“La liga”</li>
+<li>“Bundesliga”</li>
+<li>“Serie A”</li>
+<li>“Ligue 1”</li>
+<li>“RFPL”</li>
+</ul>
+<p>This is effectively the loading equivalent of the
+<code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function, however rather
+than needing to be scraped a season at a time, this data loads rapidly
+for all seasons for the selected league since the 2014/15 seasons.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">serie_a_shot_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_understat_league_shots.html">load_understat_league_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Serie A"</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serie_a_shot_locations</span><span class="op">)</span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

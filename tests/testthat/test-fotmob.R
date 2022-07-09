@@ -59,7 +59,7 @@ test_that("fotmob_get_league_matches() works", {
     tidyr::unnest_wider(c(home, away), names_sep = "_")
 
   expect_gt(nrow(epl_ll_league_matches_unnested), 0)
-  expect_equal(ncol(epl_ll_league_matches_unnested), 7)
+  expect_equal(ncol(epl_ll_league_matches_unnested), 5)
 
   # doesn't exist
   expect_error(

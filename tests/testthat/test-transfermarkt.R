@@ -80,7 +80,7 @@ test_that("tm_player_bio() works", {
   # then pass all those URLs to the tm_player_bio
   burnley_bios <- tm_player_bio(player_urls = burnley_player_urls[1:3])
   expect_type(burnley_bios, "list")
-  expect_equal(ncol(burnley_bios), 21)
+  expect_equal(ncol(burnley_bios), 20)
 
 })
 

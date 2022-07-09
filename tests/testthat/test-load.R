@@ -36,3 +36,36 @@ test_that("load_fb_big5_advanced_season_stats() works", {
   bad_df <- load_fb_big5_advanced_season_stats(season_end_year= c(2022), stat_type= "foo", team_or_player= "player")
   expect_true(nrow(bad_df) == 0)
 })
+
+
+test_that("load_match_comp_results() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  test_df <- load_match_comp_results(comp_name = "Coppa Italia")
+  # test the functions returns the data
+  expect_type(test_df, "list")
+
+  # test that multiple comps can be passed to the function
+  cups <- c("FIFA Women's World Cup", "FIFA World Cup")
+  test_df <- load_match_comp_results(comp_name = cups)
+  expect_type(test_df, "list")
+  expect_false(nrow(test_df) == 0)
+
+  bad_df <- load_match_comp_results(comp_name = "foo")
+  expect_true(nrow(bad_df) == 0)
+
+})
+
+
+test_that("load_understat_league_shots() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  test_df <- load_understat_league_shots(league = "Serie A")
+  # test the functions returns the data
+  expect_type(test_df, "list")
+  expect_true(ncol(test_df) == 21)
+
+  # test for error also:
+  expect_error(load_understat_league_shots(league = "foo"))
+
+})
