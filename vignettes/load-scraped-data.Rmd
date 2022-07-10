@@ -56,11 +56,11 @@ library(dplyr)
 
 Package vignettes have been built to help you get started with the package.
 
+* For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
 * For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
 * For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
 * For functions to extract data from fotmob, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
 * For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
-* For functions to load pre-scraped data, see [here](https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html)
 
 This vignette will cover the functions to load scraped data from the [`worldfootballR_data`](https://github.com/JaseZiv/worldfootballR_data) data repository.
 
@@ -71,7 +71,11 @@ As of version `0.5.2`, all FBref functions now come with a user-defined pause be
 
 ***
 
-## Load FBref match results
+## Load FBref
+
+The following section demonstrates the different loading functions of FBref data.
+
+### Load FBref match results
 
 To load pre-scraped match results for all years the data is available, the `load_match_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository. 
 
@@ -83,7 +87,7 @@ dplyr::glimpse(eng_match_results)
 ```
 
 
-## Load FBref match results for Cups and International Comps
+### Load FBref match results for Cups and International Comps
 
 Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the `load_match_comp_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. 
 
@@ -110,14 +114,14 @@ latest_cup_seasons %>% pull(competition_name)
 
 
 
-```{r load_match_comp_results, eval=FALSE}
+```{r load_match_comp_results}
 cups <- c("FIFA Women's World Cup","FIFA World Cup")
 world_cups <- load_match_comp_results(comp_name = cups)
 dplyr::glimpse(world_cups)
 ```
 
 
-## Load FBref big 5 league advanced season stats
+### Load FBref big 5 league advanced season stats
 
 To load pre-scraped advanced stats for the big five European leagues for either teams or players, the `load_fb_big5_advanced_season_stats()` can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.
 
@@ -130,5 +134,32 @@ current_season_player <- load_fb_big5_advanced_season_stats(season_end_year = 20
 all_season_team <- load_fb_big5_advanced_season_stats(stat_type = "defense", team_or_player = "team")
 current_season_team <- load_fb_big5_advanced_season_stats(season_end_year = 2022, stat_type = "defense", team_or_player = "team")
 ```
+
+
+
+***
+
+## Load Understat
+
+The following section demonstrates the different loading functions of Understat data.
+
+### Load League Shots
+
+To be able to rapidly load pre-collected chooting locations for whole leagues, the `load_understat_league_shots()` functions is now available. Supported leagues on Understat are:
+
+* "EPL"
+* "La liga"
+* "Bundesliga"
+* "Serie A"
+* "Ligue 1"
+* "RFPL"
+
+This is effectively the loading equivalent of the `understat_league_season_shots()` function, however rather than needing to be scraped a season at a time, this data loads rapidly for all seasons for the selected league since the 2014/15 seasons.
+
+```{r, eval=FALSE}
+serie_a_shot_locations <- load_understat_league_shots(league = "Serie A")
+dplyr::glimpse(serie_a_shot_locations)
+```
+
 
 

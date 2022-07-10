@@ -228,7 +228,7 @@
 #'   country = "ENG",
 #'   league_name = "Premier League",
 #'   season = "2020/2021",
-#'   stat_type = "Expected goals",
+#'   stat_name = "Expected goals",
 #'   team_or_player = "team"
 #' )
 #' })

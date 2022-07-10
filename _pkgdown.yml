@@ -34,19 +34,20 @@ reference:
     contents:
       - starts_with("fb_")
       - starts_with("get_")
-      - load_fb_big5_advanced_season_stats
-      - load_match_results
-      - load_match_comp_results
   - title: Transfermarket
     contents:
       - player_transfer_history
       - starts_with("tm_")
+      - get_player_market_values
   - title: Understat
     contents:
       - starts_with("understat_")
   - title: Fotmob
     contents:
       - starts_with("fotmob_")
+  - title: Load
+    contents:
+      - starts_with("load_")
   - title: Utility
     contents:
       - player_dictionary_mapping
