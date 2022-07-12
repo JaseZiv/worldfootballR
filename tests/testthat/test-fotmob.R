@@ -6,7 +6,7 @@ test_that("fotmob_get_matches_by_date() works", {
 
   results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
   expect_gt(nrow(results), 0)
-  expect_equal(ncol(results), 12)
+  expect_equal(ncol(results), 39)
 })
 
 test_that("fotmob_get_league_matches() works", {
@@ -326,7 +326,7 @@ test_that("fotmob_get_season_stats() works", {
 test_that("fotmob_get_match_details() works", {
   testthat::skip_on_cran()
 
-  n_expected_match_detail_cols <- 15
+  n_expected_match_detail_cols <- 41
   details <- fotmob_get_match_details(c(3609987, 3609979))
 
   ## 1 row per match
@@ -343,7 +343,7 @@ test_that("fotmob_get_match_details() works", {
 test_that("fotmob_get_match_players() works", {
   testthat::skip_on_cran()
 
-  n_expected_match_player_cols <- 32
+  n_expected_match_player_cols <- 69
   players <- fotmob_get_match_players(c(3609987, 3609979))
   expect_gt(nrow(players), 0)
   expect_equal(ncol(players), n_expected_match_player_cols)
