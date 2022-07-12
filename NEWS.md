@@ -1,29 +1,14 @@
-# worldfootballR 0.5.6.4000
+# worldfootballR 0.5.7
 
 ### Improvements
 
 * `load_understat_league_shots()` Functions to load pre stored shooting locations for all matches played since the 2014/15 season for the five leagues available on the Understat site.
-
-***
-
-# worldfootballR 0.5.6.3000
-
-### Improvements
-
 * `load_match_comp_results()` Functions to load pre stored match results from domestic and international cups/competitions
 
-***
-
-# worldfootballR 0.5.6.2000
 
 ### Bugs
 
 * `fotmob_get_season_stats()` no longer errors out when stats are queried for a league in its offseason [#136](https://github.com/JaseZiv/worldfootballR/issues/136)
-
-# worldfootballR 0.5.6.1000
-
-### Bugs
-
 * `player_transfer_history()` no longer throwing errors for players without a club [#137](https://github.com/JaseZiv/worldfootballR/issues/137)
 * Increase sleep times in tests for FBref functions
 

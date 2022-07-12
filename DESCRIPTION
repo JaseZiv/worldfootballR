@@ -1,7 +1,7 @@
 Type: Package
 Package: worldfootballR
 Title: Extract and Clean World Football (Soccer) Data
-Version: 0.5.6.4000
+Version: 0.5.7
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
@@ -9,7 +9,7 @@ Authors@R: c(
   )
 Description: Allow users to obtain clean and tidy
     football (soccer) game, team and player data. Data is collected from a
-    number of popular sites, including 'FBref'<https://fbref.com/en/>,
+    number of popular sites, including 'FBref',
     transfer and valuations data from
     'Transfermarkt'<https://www.transfermarkt.com/> and shooting location
     and other match stats data from 'Understat'<https://understat.com/>
