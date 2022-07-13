@@ -2,7 +2,7 @@
 
 ### Improvements
 
-* `load_fotmob_match_details()` Function to load pre stored match details since the 2020/21 season for the five leagues available on the fotmob site.
+* `load_fotmob_matches_by_date()`, `load_fotmob_match_details()`: Functions to load pre stored match ids and match details.
 * `fotmob_get_match_details()`, `fotmob_get_matches_by_date()`, and `fotmob_get_match_players()`: Nested list columns are unnested by default. The lone exception is `shotmap` in the output for `fotmob_get_match_players()`.
 
 # worldfootballR 0.5.7
