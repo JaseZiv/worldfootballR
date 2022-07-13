@@ -1,3 +1,41 @@
+#' @importFrom purrr possibly map_dfr
+#' @importFrom cli cli_alert
+.load_fotmob <- function(country = NULL, league_name = NULL, league_id = NULL, cached = NULL, url_stem) {
+
+  fotmob_urls <- .fotmob_get_league_ids(
+    cached = cached,
+    country = country,
+    league_name = league_name,
+    league_id = league_id
+  )
+
+  url_format <- sprintf(
+    "https://github.com/JaseZiv/worldfootballR_data/blob/master/data/%s.rds?raw=true",
+    url_stem
+  )
+
+  urls <- sprintf(
+    url_format,
+    fotmob_urls$id
+  )
+
+  fp <- purrr::possibly(
+    .file_reader,
+    quiet = FALSE,
+    otherwise = data.frame()
+  )
+
+  res <- purrr::map_dfr(urls, fp)
+
+  if(nrow(res) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters")
+  } else {
+    ## when there are multiple data sets loaded in, seems like this is the attribute for the first
+    cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
+  }
+  res
+}
+
 #' Load fotmob match details
 #'
 #' Loading version of \code{fotmob_get_match_details}, but for all seasons
@@ -36,32 +74,21 @@
 #' }
 #' @export
 load_fotmob_match_details <- function(country, league_name, league_id, cached = TRUE) {
-
-  fotmob_urls <- .fotmob_get_league_ids(
-    cached = cached,
+  .load_fotmob(
     country = rlang::maybe_missing(country, NULL),
     league_name = rlang::maybe_missing(league_name, NULL),
-    league_id = rlang::maybe_missing(league_id, NULL)
+    league_id = rlang::maybe_missing(league_id, NULL),
+    cached = cached,
+    url_stem = "fotmob_match_details/%s_match_details"
   )
+}
 
-  urls <- sprintf(
-    "https://github.com/JaseZiv/worldfootballR_data/blob/master/data/fotmob_match_details/%s_match_details.rds?raw=true",
-    fotmob_urls$id
+load_fotmob_matches_by_date <- function(country, league_name, league_id, cached = TRUE) {
+  .load_fotmob(
+    country = rlang::maybe_missing(country, NULL),
+    league_name = rlang::maybe_missing(league_name, NULL),
+    league_id = rlang::maybe_missing(league_id, NULL),
+    cached = cached,
+    url_stem = "fotmob_matches_by_date/%s_matches_by_date"
   )
-
-  fp <- purrr::possibly(
-    .file_reader,
-    quiet = FALSE,
-    otherwise = data.frame()
-  )
-
-  res <- purrr::map_dfr(urls, fp)
-
-  if(nrow(res) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
-  } else {
-    ## when there are multiple data sets loaded in, seems like this is the attribute for the first
-    cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
-  }
-  res
 }
