@@ -36,19 +36,16 @@
   res
 }
 
-#' Load fotmob match details
+#' Load pre saved fotmob match details
 #'
-#' Loading version of \code{fotmob_get_match_details}, but for all seasons
-#' List columns have been unnested in a sensible manner. Note that fotmob
-#' only has match details going back to the 2020-21 season for most leagues.
+#' Loading version of \code{fotmob_get_match_details}, but for all seasons for which
+#' data is available, not just the current season.
+#' Note that fotmobonly has match details going back to the 2020-21 season for most leagues.
 #'
 #' @inheritParams fotmob_get_league_matches
 #'
 #' @return returns a dataframe of league matches
-#'
-#' @importFrom purrr possibly map_dfr
 #' @importFrom rlang maybe_missing
-#' @importFrom cli cli_alert
 #'
 #' @examples
 #' \dontrun{
@@ -83,6 +80,30 @@ load_fotmob_match_details <- function(country, league_name, league_id, cached = 
   )
 }
 
+#' Load pre saved fotmob match ids by date
+#'
+#' Loading version of \code{fotmob_get_matches_by_date}. Goes back to August 2017.
+#'
+#' @inheritParams load_fotmob_match_details
+#' @return returns a dataframe of league match ids
+#' @importFrom rlang maybe_missing
+#' @examples
+#' \dontrun{
+#' try({
+#' ## just load match ids
+#' load_fotmob_matches_by_date(
+#'   country = "ENG",
+#'   league_name = "Premier League"
+#' )
+#'
+#' ## can also do it for multiple leagues
+#' load_fotmob_matches_by_date(
+#'   country =     c("ENG",            "ESP"   ),
+#'   league_name = c("Premier League", "LaLiga")
+#' )
+#' })
+#' }
+#' @export
 load_fotmob_matches_by_date <- function(country, league_name, league_id, cached = TRUE) {
   .load_fotmob(
     country = rlang::maybe_missing(country, NULL),

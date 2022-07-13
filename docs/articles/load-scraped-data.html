@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-07-12</h4>
+            <h4 data-toc-skip class="date">2022-07-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -376,13 +376,18 @@ Understat data.</p>
 back to the 2020/21 season (some matches may be missing) for each of the
 following leagues:</p>
 <ul>
+<li>EURO: 50</li>
+<li>Champions League: 42</li>
+<li>Copa America: 44</li>
+<li>Europa League: 73</li>
 <li>Premier League: 47</li>
-<li>Serie A: 55</li>
 <li><ol style="list-style-type: decimal">
 <li>Bundesliga: 54</li>
 </ol></li>
-<li>Ligue 1: 53</li>
 <li>LaLiga: 87</li>
+<li>Ligue 1: 53</li>
+<li>MLS: 130</li>
+<li>Serie A: 55</li>
 </ul>
 <p>This is effectively the loading equivalent of the
 <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function for all matches for
@@ -444,6 +449,60 @@ these leagues back to the beginning of the 2020/21 season.</p>
 <span class="va">epl_ll_match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details</a></span><span class="op">(</span>league_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">47</span>, <span class="fl">87</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Note that fotmob does not currently have match details prior to
 2020/21.</p>
+<p><code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code> can be used to retrieve
+fotmob match ids dating back to August 2017.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">epl_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date</a></span><span class="op">(</span>
+  country <span class="op">=</span> <span class="st">"ENG"</span>,
+  league_name <span class="op">=</span> <span class="st">"Premier League"</span>
+<span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 2,037</span>
+<span class="co">#&gt; Columns: 41</span>
+<span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span>
+<span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span>
+<span class="co">#&gt; $ id                                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
+<span class="co">#&gt; $ primary_id                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
+<span class="co">#&gt; $ name                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", …</span>
+<span class="co">#&gt; $ match_id                          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2522743, 2522751, 2522745, 2522746, …</span>
+<span class="co">#&gt; $ match_league_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, …</span>
+<span class="co">#&gt; $ match_time                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "11.08.2017 20:45", "12.08.2017 13:3…</span>
+<span class="co">#&gt; $ home_id                           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 9825, 9817, 8455, 9826, 8668, 8466, …</span>
+<span class="co">#&gt; $ home_score                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4, 3, 2, 0, 1, 0, 1, 0, 0, 4, 0, 0, …</span>
+<span class="co">#&gt; $ home_name                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arsenal", "Watford", "Chelsea", "Cr…</span>
+<span class="co">#&gt; $ home_long_name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arsenal", "Watford", "Chelsea", "Cr…</span>
+<span class="co">#&gt; $ home_pen_score                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ away_id                           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8197, 8650, 8191, 9796, 10194, 10003…</span>
+<span class="co">#&gt; $ away_score                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 3, 0, 0, 0, 2, 2, 0, 4, 2, …</span>
+<span class="co">#&gt; $ away_name                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Leicester", "Liverpool", "Burnley",…</span>
+<span class="co">#&gt; $ away_long_name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Leicester City", "Liverpool", "Burn…</span>
+<span class="co">#&gt; $ away_pen_score                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ match_eliminated_team_id          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ match_status_id                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, …</span>
+<span class="co">#&gt; $ match_tournament_stage            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "…</span>
+<span class="co">#&gt; $ match_status_finished             <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …</span>
+<span class="co">#&gt; $ match_status_started              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …</span>
+<span class="co">#&gt; $ match_status_cancelled            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, F…</span>
+<span class="co">#&gt; $ match_status_score_str            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4 - 3", "3 - 3", "2 - 3", "0 - 3", …</span>
+<span class="co">#&gt; $ match_status_start_date_str       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aug 11, 2017", "Aug 12, 2017", "Aug…</span>
+<span class="co">#&gt; $ match_status_start_date_str_short <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "11. Aug.", "12. Aug.", "12. Aug.", …</span>
+<span class="co">#&gt; $ short                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FT", "FT", "FT", "FT", "FT", "FT", …</span>
+<span class="co">#&gt; $ long                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Full-Time", "Full-Time", "Full-Time…</span>
+<span class="co">#&gt; $ match_status_start_time_str       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ match_status_aggregated_str       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ match_status_awarded              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ match_time_ts                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.502459e+12, 1.502519e+12, 1.502528…</span>
+<span class="co">#&gt; $ match_tv                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span>
+<span class="co">#&gt; $ internal_rank                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 10, 10, 10, 10, 10, 10, 10, 10, …</span>
+<span class="co">#&gt; $ live_rank                         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 101, 101, 101, 101, 101, 101, 101, 1…</span>
+<span class="co">#&gt; $ simple_league                     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, F…</span>
+<span class="co">#&gt; $ parent_league_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ is_group                          <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ group_name                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+<span class="co">#&gt; $ parent_league_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span>
+
+<span class="co">## multiple leagues at once</span>
+<span class="va">epl_ll_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date</a></span><span class="op">(</span>league_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">47</span>, <span class="fl">87</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

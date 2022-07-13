@@ -217,8 +217,7 @@ You should see international tournaments in the output from `fotmob_get_matches_
 ```{r fotmob_get_matches_by_date_int}
 results <- fotmob_get_matches_by_date("20220412")
 results %>%
-  dplyr::select(primary_id, ccode, league_name = name, match_id) %>%
-  dplyr::filter(league_name == "Champions League Final Stage", ccode == "INT")
+  dplyr::filter(name == "Champions League Final Stage", ccode == "INT")
 ```
 
 ### Standings
