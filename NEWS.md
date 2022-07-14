@@ -1,3 +1,10 @@
+# worldfootballR 0.5.8
+
+### Improvements
+
+* `load_fotmob_matches_by_date()`, `load_fotmob_match_details()`: Functions to load pre stored match ids and match details.
+* `fotmob_get_match_details()`, `fotmob_get_matches_by_date()`, and `fotmob_get_match_players()`: Nested list columns are unnested by default. The lone exception is `shotmap` in the output for `fotmob_get_match_players()`.
+
 # worldfootballR 0.5.7
 
 ### Improvements

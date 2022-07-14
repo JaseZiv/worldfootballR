@@ -156,9 +156,58 @@ To be able to rapidly load pre-collected chooting locations for whole leagues, t
 
 This is effectively the loading equivalent of the `understat_league_season_shots()` function, however rather than needing to be scraped a season at a time, this data loads rapidly for all seasons for the selected league since the 2014/15 seasons.
 
-```{r, eval=FALSE}
+```{r load_understat_league_shots}
 serie_a_shot_locations <- load_understat_league_shots(league = "Serie A")
 dplyr::glimpse(serie_a_shot_locations)
+```
+
+## Load fotmob
+
+The following section demonstrates the different loading functions of Understat data.
+
+### Load fotmob Big 5 Match Shots
+
+`load_fotmob_match_details()` returns match details dating back to the 2020/21 season (some matches may be missing) for each of the following leagues:
+
+-   EURO: 50
+-   Champions League: 42
+-   Copa America: 44
+-   Europa League: 73
+-   Premier League: 47
+-   1.  Bundesliga: 54
+-   LaLiga: 87
+-   Ligue 1: 53
+-   MLS: 130
+-   Serie A: 55
+
+This is effectively the loading equivalent of the `fotmob_get_match_details()` function for all matches for these leagues back to the beginning of the 2020/21 season.
+
+```{r load_fotmob_match_details}
+epl_match_details <- load_fotmob_match_details(
+  country = "ENG",
+  league_name = "Premier League"
+)
+## or
+## load_fotmob_match_details(league_id = 47)
+dplyr::glimpse(epl_match_details)
+
+## multiple leagues at once
+epl_ll_match_details <- load_fotmob_match_details(league_id = c(47, 87))
+```
+
+Note that fotmob does not currently have match details prior to 2020/21.
+
+`load_fotmob_matches_by_date()` can be used to retrieve fotmob match ids dating back to August 2017.
+
+```{r load_fotmob_matches_by_date}
+epl_matches <- load_fotmob_matches_by_date(
+  country = "ENG",
+  league_name = "Premier League"
+)
+dplyr::glimpse(epl_matches)
+
+## multiple leagues at once
+epl_ll_matches <- load_fotmob_matches_by_date(league_id = c(47, 87))
 ```
 
 

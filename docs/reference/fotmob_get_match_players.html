@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,26 +107,9 @@
 <span class="r-in"><span class="co">## multiple matches</span></span>
 <span class="r-in"><span class="fu">fotmob_get_match_players</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3609987</span>, <span class="fl">3609979</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 80 × 32</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    match_id team_id team_name id    using_opta_id first_name last_name image_url</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 1190… FALSE         Alex       McCarthy  https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 1107… FALSE         Valentino  Livramen… https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 4908… FALSE         Jan        Bednarek  https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 9382… FALSE         Mohammed   Salisu    https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 7340… FALSE         Kyle       Walker-P… https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2619… FALSE         Mohamed    Elyounou… https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2794… FALSE         James      Ward-Pro… https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2124… FALSE         Oriol      Romeu     https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 2016… FALSE         Nathan     Redmond   https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  3<span style="text-decoration: underline;">609</span>987    <span style="text-decoration: underline;">8</span>466 Southamp… 5993… FALSE         Che        Adams     https://…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 70 more rows, and 24 more variables: page_url &lt;chr&gt;, shirt &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   is_home_team &lt;lgl&gt;, time_subbed_on &lt;int&gt;, time_subbed_off &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   usual_position &lt;int&gt;, position_row &lt;int&gt;, role &lt;chr&gt;, is_captain &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   subbed_out &lt;int&gt;, g &lt;int&gt;, rating_num &lt;chr&gt;, rating_bgcolor &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   is_top_rating &lt;lgl&gt;, is_match_finished &lt;lgl&gt;, fantasy_score_num &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fantasy_score_bgcolor &lt;chr&gt;, home_team_id &lt;int&gt;, home_team_color &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_id &lt;int&gt;, away_team_color &lt;chr&gt;, stats &lt;df[,38]&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in dplyr::select(., player_id = id, stats) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Can't subset columns that don't exist.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Column `stats` doesn't exist.</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
@@ -139,7 +122,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

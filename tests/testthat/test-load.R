@@ -69,3 +69,41 @@ test_that("load_understat_league_shots() works", {
   expect_error(load_understat_league_shots(league = "foo"))
 
 })
+
+test_that("load_fotmob_matches_by_date() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+
+  n_cols_match_details <- 41
+  epl_matches <- load_fotmob_matches_by_date(league_id = 47)
+  expect_type(epl_matches, "list")
+  n_rows_epl_matches <- nrow(epl_matches)
+  expect_gt(n_rows_epl_matches, 0)
+  expect_equal(ncol(epl_matches), n_cols_match_details)
+
+  epl_ll_matches <- load_fotmob_matches_by_date(league_id = c(47, 87))
+  expect_gt(nrow(epl_ll_matches), n_rows_epl_matches)
+  expect_equal(ncol(epl_matches), n_cols_match_details)
+
+  expect_error(load_fotmob_matches_by_date(league_id = 0))
+})
+
+test_that("load_fotmob_match_details() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+
+  n_cols_match_details <- 42
+  epl_match_details <- load_fotmob_match_details(league_id = 47)
+  expect_type(epl_match_details, "list")
+  n_rows_epl_match_details <- nrow(epl_match_details)
+  expect_gt(n_rows_epl_match_details, 0)
+  expect_equal(ncol(epl_match_details), n_cols_match_details)
+
+  epl_ll_match_details <- load_fotmob_match_details(league_id = c(47, 87))
+  expect_gt(nrow(epl_ll_match_details), n_rows_epl_match_details)
+  expect_equal(ncol(epl_ll_match_details), n_cols_match_details)
+
+  expect_error(load_fotmob_match_details(league_id = 0))
+})
+
+

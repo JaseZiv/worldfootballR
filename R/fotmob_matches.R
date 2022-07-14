@@ -35,6 +35,10 @@ fotmob_get_matches_by_date <- function(dates) {
 #' @importFrom janitor clean_names
 #' @importFrom purrr possibly
 #' @importFrom tibble as_tibble tibble
+#' @importFrom tidyr unnest
+#' @importFrom dplyr rename select
+#' @importFrom tidyselect vars_select_helpers
+#' @importFrom magrittr %>%
 .fotmob_get_matches_by_single_date <- function(date) {
   # CRAN feedback was to remove this from the existing functions so I have for now
   # print(glue::glue('Scraping match results data from fotmob for "{date}".'))
@@ -49,9 +53,20 @@ fotmob_get_matches_by_date <- function(dates) {
   url <- paste0(main_url, "matches?date=", date)
   f <- function(url) {
     resp <- jsonlite::fromJSON(url)
-    resp$leagues %>%
+    res <- resp$leagues %>%
       janitor::clean_names() %>%
       tibble::as_tibble()
+    if(nrow(res) == 0) {
+      return(res)
+    }
+    res %>%
+      dplyr::rename(match = .data$matches) %>%
+      tidyr::unnest(.data$match, names_sep = "_") %>%
+      dplyr::rename(home = .data$match_home, away = .data$match_away) %>%
+      tidyr::unnest(c(.data$home, .data$away, .data$match_status), names_sep = "_") %>%
+      tidyr::unnest(c(.data$match_status_reason)) %>%
+      dplyr::select(-tidyselect::vars_select_helpers$where(is.list)) %>%
+      janitor::clean_names()
   }
   fp <- purrr::possibly(f, otherwise = tibble::tibble())
   fp(url)
@@ -92,6 +107,7 @@ fotmob_get_match_details <- function(match_ids) {
 #' @importFrom janitor clean_names
 #' @importFrom rlang .data
 #' @importFrom tibble as_tibble tibble
+#' @importFrom tidyr unnest unnest_wider
 .fotmob_get_single_match_details <- function(match_id) {
   # CRAN feedback was to remove this from the existing functions so I have for now
   # print(glue::glue("Scraping match data from fotmob for match {match_id}."))
@@ -105,16 +121,20 @@ fotmob_get_match_details <- function(match_ids) {
       general$scalars,
       general$teams
     )
-    # browser()
-    shots <- general$resp$content$shotmap$shots %>% janitor::clean_names()
 
-    if(length(shots) > 0) {
+    shots <- general$resp$content$shotmap$shots %>% janitor::clean_names()
+    has_shots <- length(shots) > 0
+    df <- tibble::as_tibble(df)
+    if(isTRUE(has_shots)) {
       df$shots <- list(shots)
+      df <- df %>%
+        tidyr::unnest(.data$shots) |>
+        tidyr::unnest_wider(.data$on_goal_shot, names_sep = "_") |>
+        janitor::clean_names()
     } else {
       df$shots <- NULL
     }
-
-    tibble::as_tibble(df)
+    df
   }
 
   fp <- purrr::possibly(f, otherwise = tibble::tibble())
@@ -151,4 +171,3 @@ fotmob_get_match_details <- function(match_ids) {
     teams = teams
   )
 }
-

@@ -40,6 +40,7 @@
 #' })
 #' }
 #' @export
+
 fotmob_get_match_players <- function(match_ids) {
   .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_players)
 }
@@ -49,7 +50,7 @@ fotmob_get_match_players <- function(match_ids) {
 #' @importFrom tibble as_tibble tibble
 #' @importFrom purrr pluck map_dfr map2_dfr possibly
 #' @importFrom dplyr bind_cols select filter distinct any_of
-#' @importFrom tidyr pivot_longer pivot_wider
+#' @importFrom tidyr pivot_longer pivot_wider unnest_wider
 #' @importFrom rlang .data
 #' @importFrom janitor make_clean_names
 #' @importFrom tibble as_tibble tibble
@@ -221,6 +222,7 @@ fotmob_get_match_players <- function(match_ids) {
     }
     res <- coerce_team_id(res, "home")
     res <- coerce_team_id(res, "away")
+    res <- res %>% tidyr::unnest_wider(.data$stats)
     res
   }
 
