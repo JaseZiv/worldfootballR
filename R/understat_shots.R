@@ -33,11 +33,15 @@ understat_league_season_shots <- function(league, season_start_year) {
 
   shots_data <- .understat_shooting(type_url = league_url)
 
-  shots_data <- cbind(league, shots_data)
+  if(nrow(shots_data) == 0) {
+    shots_data <- shots_data
+  } else {
+    shots_data <- cbind(league, shots_data)
 
-  shots_data <- shots_data %>%
-    dplyr::rename(home_team=.data$h_team, away_team=.data$a_team, home_goals=.data$h_goals, away_goals=.data$a_goals) %>%
-    dplyr::mutate_at(c("X", "Y", "xG", "home_goals", "away_goals"), as.numeric)
+    shots_data <- shots_data %>%
+      dplyr::rename(home_team=.data$h_team, away_team=.data$a_team, home_goals=.data$h_goals, away_goals=.data$a_goals) %>%
+      dplyr::mutate_at(c("X", "Y", "xG", "home_goals", "away_goals"), as.numeric)
+  }
 
   return(shots_data)
 }
