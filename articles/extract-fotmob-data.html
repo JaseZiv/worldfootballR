@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from fotmob">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8.1000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-07-14</h4>
+            <h4 data-toc-skip class="date">2022-07-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fotmob-data.Rmd</code></div>
@@ -208,33 +208,35 @@
 <span>  team_or_player <span class="op">=</span> <span class="st">"team"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 20</span></span></span>
-<span><span class="co">#&gt;    country league_name    league_id season_name season_id stat_league_name</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 14 more variables: stat_name &lt;chr&gt;, stat &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   participant_name &lt;chr&gt;, particiant_id &lt;int&gt;, team_id &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   team_color &lt;chr&gt;, stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   minutes_played &lt;int&gt;, matches_played &lt;int&gt;, stat_value_count &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   rank &lt;int&gt;, participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt;    country leagu…¹ leagu…² seaso…³ seaso…⁴ stat_…⁵ stat_…⁶ stat  parti…⁷ parti…⁸</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Manche…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Liverp…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Chelsea       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Manche…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… West H…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Leeds …       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Leices…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Totten…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Aston …       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Arsenal       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Bright…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Everton       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Newcas…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Southa…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Fulham        0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Burnley       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Wolver…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… West B…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Crysta…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> ENG     Premie…      47 2020/2… 15382   Premie… Expect… expe… Sheffi…       0</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 10 more variables: team_id &lt;int&gt;, team_color &lt;chr&gt;, stat_value &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   sub_stat_value &lt;dbl&gt;, minutes_played &lt;int&gt;, matches_played &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   stat_value_count &lt;int&gt;, rank &lt;int&gt;, participant_country_code &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   team_name &lt;lgl&gt;, and abbreviated variable names ¹​league_name, ²​league_id,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ³​season_name, ⁴​season_id, ⁵​stat_league_name, ⁶​stat_name, ⁷​participant_name,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁸​particiant_id</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span></code></pre></div>
 <p>You can retrieve data for multiple leagues, seasons, or stat types at the same time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_xgs_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
@@ -387,17 +389,18 @@
 <span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Champions League Final Stage"</span>, <span class="va">ccode</span> <span class="op">==</span> <span class="st">"INT"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 37</span></span></span>
-<span><span class="co">#&gt;   ccode     id primary_id name       match_id match_league_id match_time home_id</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champions…  3<span style="text-decoration: underline;">846</span>346          <span style="text-decoration: underline;">875</span>880 12.04.202…    <span style="text-decoration: underline;">9</span>823</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champions…  3<span style="text-decoration: underline;">846</span>342          <span style="text-decoration: underline;">875</span>880 12.04.202…    <span style="text-decoration: underline;">8</span>633</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 29 more variables: home_score &lt;int&gt;, home_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   home_long_name &lt;chr&gt;, away_id &lt;int&gt;, away_score &lt;int&gt;, away_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   away_long_name &lt;chr&gt;, match_eliminated_team_id &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_id &lt;int&gt;, match_tournament_stage &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_finished &lt;lgl&gt;, match_status_started &lt;lgl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_cancelled &lt;lgl&gt;, match_status_score_str &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_start_date_str &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   ccode     id primary_id name   match…¹ match…² match…³ home_id home_…⁴ home_…⁵</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champ… 3<span style="text-decoration: underline;">846</span>346  <span style="text-decoration: underline;">875</span>880 12.04.…    <span style="text-decoration: underline;">9</span>823       1 Bayern…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champ… 3<span style="text-decoration: underline;">846</span>342  <span style="text-decoration: underline;">875</span>880 12.04.…    <span style="text-decoration: underline;">8</span>633       2 Real M…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 27 more variables: home_long_name &lt;chr&gt;, away_id &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   away_score &lt;int&gt;, away_name &lt;chr&gt;, away_long_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_eliminated_team_id &lt;int&gt;, match_status_id &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_tournament_stage &lt;chr&gt;, match_status_finished &lt;lgl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_started &lt;lgl&gt;, match_status_cancelled &lt;lgl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_score_str &lt;chr&gt;, match_status_start_date_str &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_start_date_str_short &lt;chr&gt;, short &lt;chr&gt;, long &lt;chr&gt;, …</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standings">Standings<a class="anchor" aria-label="anchor" href="#standings"></a>
@@ -630,7 +633,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
