@@ -1,3 +1,10 @@
+# worldfootballR 0.5.8.1000
+
+### Bug fixes
+
+* `get_match_lineups()` wasn't returning the away team name [#147](https://github.com/JaseZiv/worldfootballR/issues/147)
+* `understat_league_season_shots()` would error when passing in a new `season_start_year` value for seasons that haven't yet started but match fixtures are available on Understat [#148](https://github.com/JaseZiv/worldfootballR/issues/148)
+
 # worldfootballR 0.5.8
 
 ### Improvements

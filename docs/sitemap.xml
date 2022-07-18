@@ -112,13 +112,13 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_urls.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fb_teams_urls.html</loc>
-  </url>
-  <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_team_match_log_stats.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_team_player_stats.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/fb_teams_urls.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_league_ids.html</loc>
@@ -130,13 +130,13 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_league_tables.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_matches_by_date.html</loc>
-  </url>
-  <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_details.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_players.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_matches_by_date.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_season_stats.html</loc>
@@ -178,10 +178,10 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/load_fb_big5_advanced_season_stats.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_matches_by_date.html</loc>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_match_details.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_match_details.html</loc>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_matches_by_date.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/load_match_comp_results.html</loc>
@@ -238,10 +238,10 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/tm_team_staff_urls.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/tm_team_transfers.html</loc>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/tm_team_transfer_balances.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/tm_team_transfer_balances.html</loc>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/tm_team_transfers.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/understat_league_match_results.html</loc>
