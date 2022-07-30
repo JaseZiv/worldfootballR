@@ -282,3 +282,12 @@ salah_shotmap <- salah %>%
   tidyr::unnest(shotmap)
 dplyr::glimpse(salah_shotmap)
 ```
+
+Note that `stats_` columns are returned as characters (**changed in `0.5.9`**).
+
+```{r salah_stats}
+salah_stats <- salah %>% 
+  dplyr::select(player_id = id, tidyselect::vars_select_helpers$starts_with("stats_")) %>% 
+  janitor::remove_empty(which = "cols")
+dplyr::glimpse(salah_stats)
+```
