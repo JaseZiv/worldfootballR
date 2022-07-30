@@ -343,7 +343,7 @@ test_that("fotmob_get_match_details() works", {
 test_that("fotmob_get_match_players() works", {
   testthat::skip_on_cran()
 
-  n_expected_match_player_cols <- 69
+  n_expected_match_player_cols <- 73
   players <- fotmob_get_match_players(c(3609987, 3609979))
   expect_gt(nrow(players), 0)
   expect_equal(ncol(players), n_expected_match_player_cols)
