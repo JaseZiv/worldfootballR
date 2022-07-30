@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8.1000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.8.2000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Load Scraped Data Functions</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-07-18</h4>
+            <h4 data-toc-skip class="date">2022-07-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -193,55 +193,56 @@
 </h3>
 <p>Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the <code><a href="../reference/load_match_comp_results.html">load_match_comp_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
 <p>The following list of competitions (<code>comp_name</code>) are available:</p>
-<pre><code><span><span class="co">#&gt;  [1] "AFC Asian Cup"                              </span></span>
-<span><span class="co">#&gt;  [2] "AFC Asian Cup qualification"                </span></span>
-<span><span class="co">#&gt;  [3] "AFC Women's Asian Cup"                      </span></span>
-<span><span class="co">#&gt;  [4] "AFC Women's Asian Cup Qualification"        </span></span>
-<span><span class="co">#&gt;  [5] "Africa Cup of Nations"                      </span></span>
-<span><span class="co">#&gt;  [6] "Africa Cup of Nations qualification"        </span></span>
-<span><span class="co">#&gt;  [7] "Africa Women Cup of Nations"                </span></span>
-<span><span class="co">#&gt;  [8] "Algarve Cup"                                </span></span>
-<span><span class="co">#&gt;  [9] "CONCACAF Gold Cup"                          </span></span>
-<span><span class="co">#&gt; [10] "CONCACAF W Championship"                    </span></span>
-<span><span class="co">#&gt; [11] "Copa America"                               </span></span>
-<span><span class="co">#&gt; [12] "Copa América Femenina"                      </span></span>
-<span><span class="co">#&gt; [13] "Copa del Rey"                               </span></span>
-<span><span class="co">#&gt; [14] "Copa Libertadores de América"               </span></span>
-<span><span class="co">#&gt; [15] "Copa Sudamericana"                          </span></span>
-<span><span class="co">#&gt; [16] "Coppa Italia"                               </span></span>
-<span><span class="co">#&gt; [17] "Coupe de France"                            </span></span>
-<span><span class="co">#&gt; [18] "Coupe de la Ligue"                          </span></span>
-<span><span class="co">#&gt; [19] "DFB-Pokal"                                  </span></span>
-<span><span class="co">#&gt; [20] "DFB-Pokal Frauen"                           </span></span>
-<span><span class="co">#&gt; [21] "English Football League Cup"                </span></span>
-<span><span class="co">#&gt; [22] "European Championship"                      </span></span>
-<span><span class="co">#&gt; [23] "FA Cup"                                     </span></span>
-<span><span class="co">#&gt; [24] "FIFA Confederations Cup"                    </span></span>
-<span><span class="co">#&gt; [25] "FIFA Women's World Cup"                     </span></span>
-<span><span class="co">#&gt; [26] "FIFA Women's World Cup Qualification (UEFA)"</span></span>
-<span><span class="co">#&gt; [27] "FIFA World Cup"                             </span></span>
-<span><span class="co">#&gt; [28] "FIFA World Cup Qualification — AFC"         </span></span>
-<span><span class="co">#&gt; [29] "FIFA World Cup Qualification — CAF"         </span></span>
-<span><span class="co">#&gt; [30] "FIFA World Cup Qualification — CONCACAF"    </span></span>
-<span><span class="co">#&gt; [31] "FIFA World Cup Qualification — CONMEBOL"    </span></span>
-<span><span class="co">#&gt; [32] "FIFA World Cup Qualification — OFC"         </span></span>
-<span><span class="co">#&gt; [33] "FIFA World Cup Qualification — UEFA"        </span></span>
-<span><span class="co">#&gt; [34] "International Friendlies (M)"               </span></span>
-<span><span class="co">#&gt; [35] "International Friendlies (W)"               </span></span>
-<span><span class="co">#&gt; [36] "NWSL Challenge Cup"                         </span></span>
-<span><span class="co">#&gt; [37] "NWSL Fall Series"                           </span></span>
-<span><span class="co">#&gt; [38] "OFC Nations Cup"                            </span></span>
-<span><span class="co">#&gt; [39] "OFC Women's Nations Cup"                    </span></span>
-<span><span class="co">#&gt; [40] "Olympics – Women's Tournament"              </span></span>
-<span><span class="co">#&gt; [41] "SheBelieves Cup"                            </span></span>
-<span><span class="co">#&gt; [42] "UEFA Champions League"                      </span></span>
-<span><span class="co">#&gt; [43] "UEFA Euro Qualification"                    </span></span>
-<span><span class="co">#&gt; [44] "UEFA Europa Conference League"              </span></span>
-<span><span class="co">#&gt; [45] "UEFA Europa League"                         </span></span>
-<span><span class="co">#&gt; [46] "UEFA Nations League"                        </span></span>
-<span><span class="co">#&gt; [47] "UEFA Women's Champions League"              </span></span>
-<span><span class="co">#&gt; [48] "UEFA Women's Championship"                  </span></span>
-<span><span class="co">#&gt; [49] "UEFA Women's Euro Qualification"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt;  [1] "AFC Asian Cup"                                               </span></span>
+<span><span class="co">#&gt;  [2] "AFC Asian Cup qualification"                                 </span></span>
+<span><span class="co">#&gt;  [3] "AFC Women's Asian Cup"                                       </span></span>
+<span><span class="co">#&gt;  [4] "AFC Women's Asian Cup Qualification"                         </span></span>
+<span><span class="co">#&gt;  [5] "Africa Cup of Nations"                                       </span></span>
+<span><span class="co">#&gt;  [6] "Africa Cup of Nations qualification"                         </span></span>
+<span><span class="co">#&gt;  [7] "Africa Women Cup of Nations"                                 </span></span>
+<span><span class="co">#&gt;  [8] "Algarve Cup"                                                 </span></span>
+<span><span class="co">#&gt;  [9] "CONCACAF Gold Cup"                                           </span></span>
+<span><span class="co">#&gt; [10] "CONCACAF W Championship"                                     </span></span>
+<span><span class="co">#&gt; [11] "Copa America"                                                </span></span>
+<span><span class="co">#&gt; [12] "Copa América Femenina"                                       </span></span>
+<span><span class="co">#&gt; [13] "Copa del Rey"                                                </span></span>
+<span><span class="co">#&gt; [14] "Copa Libertadores de América"                                </span></span>
+<span><span class="co">#&gt; [15] "Copa Sudamericana"                                           </span></span>
+<span><span class="co">#&gt; [16] "Coppa Italia"                                                </span></span>
+<span><span class="co">#&gt; [17] "Coupe de France"                                             </span></span>
+<span><span class="co">#&gt; [18] "Coupe de la Ligue"                                           </span></span>
+<span><span class="co">#&gt; [19] "DFB-Pokal"                                                   </span></span>
+<span><span class="co">#&gt; [20] "DFB-Pokal Frauen"                                            </span></span>
+<span><span class="co">#&gt; [21] "English Football League Cup"                                 </span></span>
+<span><span class="co">#&gt; [22] "European Championship"                                       </span></span>
+<span><span class="co">#&gt; [23] "FA Cup"                                                      </span></span>
+<span><span class="co">#&gt; [24] "FIFA Confederations Cup"                                     </span></span>
+<span><span class="co">#&gt; [25] "FIFA Women's World Cup"                                      </span></span>
+<span><span class="co">#&gt; [26] "FIFA Women's World Cup Qualification (UEFA)"                 </span></span>
+<span><span class="co">#&gt; [27] "FIFA World Cup"                                              </span></span>
+<span><span class="co">#&gt; [28] "FIFA World Cup Qualification — AFC"                          </span></span>
+<span><span class="co">#&gt; [29] "FIFA World Cup Qualification — CAF"                          </span></span>
+<span><span class="co">#&gt; [30] "FIFA World Cup Qualification — CONCACAF"                     </span></span>
+<span><span class="co">#&gt; [31] "FIFA World Cup Qualification — CONMEBOL"                     </span></span>
+<span><span class="co">#&gt; [32] "FIFA World Cup Qualification — Inter-confederation play-offs"</span></span>
+<span><span class="co">#&gt; [33] "FIFA World Cup Qualification — OFC"                          </span></span>
+<span><span class="co">#&gt; [34] "FIFA World Cup Qualification — UEFA"                         </span></span>
+<span><span class="co">#&gt; [35] "International Friendlies (M)"                                </span></span>
+<span><span class="co">#&gt; [36] "International Friendlies (W)"                                </span></span>
+<span><span class="co">#&gt; [37] "NWSL Challenge Cup"                                          </span></span>
+<span><span class="co">#&gt; [38] "NWSL Fall Series"                                            </span></span>
+<span><span class="co">#&gt; [39] "OFC Nations Cup"                                             </span></span>
+<span><span class="co">#&gt; [40] "OFC Women's Nations Cup"                                     </span></span>
+<span><span class="co">#&gt; [41] "Olympics – Women's Tournament"                               </span></span>
+<span><span class="co">#&gt; [42] "SheBelieves Cup"                                             </span></span>
+<span><span class="co">#&gt; [43] "UEFA Champions League"                                       </span></span>
+<span><span class="co">#&gt; [44] "UEFA Euro Qualification"                                     </span></span>
+<span><span class="co">#&gt; [45] "UEFA Europa Conference League"                               </span></span>
+<span><span class="co">#&gt; [46] "UEFA Europa League"                                          </span></span>
+<span><span class="co">#&gt; [47] "UEFA Nations League"                                         </span></span>
+<span><span class="co">#&gt; [48] "UEFA Women's Champions League"                               </span></span>
+<span><span class="co">#&gt; [49] "UEFA Women's Championship"                                   </span></span>
+<span><span class="co">#&gt; [50] "UEFA Women's Euro Qualification"</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
@@ -307,7 +308,7 @@
 <span><span class="co">#&gt; Columns: 21</span></span>
 <span><span class="co">#&gt; $ league          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie_A", "Serie_A", "Serie_A", "Serie_A", "Serie_A",…</span></span>
 <span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 41439, 41444, 41445, 41446, 41451, 41452, 41461, 41462…</span></span>
-<span><span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 5, 7, 8, 19, 24, 76, 76, 0, 3, 3, 3, 5, 10, 15, 15,…</span></span>
+<span><span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 5, 7, 8, 19, 24, 76, 76, 0, 3, 3, 3, 5, 10, 15, 15,…</span></span>
 <span><span class="co">#&gt; $ result          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MissedShots", "OwnGoal", "SavedShot", "MissedShots", …</span></span>
 <span><span class="co">#&gt; $ X               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.845, 0.009, 0.896, 0.875, 0.813, 0.780, 0.780, 0.867…</span></span>
 <span><span class="co">#&gt; $ Y               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.641, 0.539, 0.373, 0.661, 0.180, 0.374, 0.499, 0.520…</span></span>
