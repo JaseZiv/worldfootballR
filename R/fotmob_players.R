@@ -54,6 +54,7 @@ fotmob_get_match_players <- function(match_ids) {
 #' @importFrom rlang .data
 #' @importFrom janitor make_clean_names
 #' @importFrom tibble as_tibble tibble
+#' @importFrom stringr str_detect
 .fotmob_get_single_match_players <- function(match_id) {
   # CRAN feedback was to remove this from the existing functions so I have for now
   # print(glue::glue("Scraping match data from fotmob for match {match_id}."))
@@ -87,7 +88,7 @@ fotmob_get_match_players <- function(match_ids) {
         rn <- rownames(xt)
         suppressWarnings(
           xt2 <- matrix(
-            as.numeric(gsub("%", "", xt)),
+            as.character(xt),
             ncol = ncol(xt)
           ) %>%
             tibble::as_tibble()
@@ -102,7 +103,7 @@ fotmob_get_match_players <- function(match_ids) {
           dplyr::select(
             -.data$name
           ) %>%
-          dplyr::filter(!is.na(.data$value)) %>%
+          dplyr::filter(stringr::str_detect(.data$col, "^stats_"), !is.na(.data$value)) %>%
           dplyr::distinct(.data$col, .data$value) %>%
           tidyr::pivot_wider(
             names_from = "col",
