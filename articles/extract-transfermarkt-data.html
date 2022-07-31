@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from Transfermarkt</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-07-30</h4>
+            <h4 data-toc-skip class="date">2022-07-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -332,16 +332,16 @@
 <span><span class="co">#&gt; $ comp_name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span></span>
 <span><span class="co">#&gt; $ country             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span></span>
 <span><span class="co">#&gt; $ comp_url            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/laliga/startseite/w…</span></span>
-<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gavi", "Carlos Soler", "Jan Oblak", "José Gayà", …</span></span>
+<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gavi", "Carlos Soler", "Jan Oblak", "Marco Asensi…</span></span>
 <span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/gavi/profil/spieler…</span></span>
 <span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Central Midfield", "Central Midfield", "Goalkeepe…</span></span>
 <span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Slovenia", "Spain", "France", "…</span></span>
-<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, "Guadeloupe", "Netherlands", "Ghan…</span></span>
+<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Netherlands", "Guadeloupe", NA, "Ghan…</span></span>
 <span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FC Barcelona", "Valencia CF", "Atlético de Madrid…</span></span>
 <span><span class="co">#&gt; $ contract_expiry     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-30, 2023-06-30, 2023-06-30, 2023-06-30, 2…</span></span>
 <span><span class="co">#&gt; $ contract_option     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …</span></span>
 <span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.0e+07, 5.0e+07, 4.5e+07, 4.0e+07, 4.0e+07, 4.0e+…</span></span>
-<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 16000000, NA, 72000000, 3900000, 0, 350000…</span></span>
+<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 16000000, 3900000, 72000000, NA, 0, 350000…</span></span>
 <span><span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Puyol, De la Peña &amp; Sostres", "Promoesport", "Mih…</span></span>
 <span></span>
 <span><span class="co">#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#</span></span>
@@ -588,11 +588,11 @@
 <span><span class="co">#&gt; $ staff_nationality_secondary <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Italy", NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span><span class="co">#&gt; $ appointed                   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2016-07-01, 2013-07-01, 2009-12-19, 2008-…</span></span>
 <span><span class="co">#&gt; $ end_date                    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, 2016-06-30, 2013-05-13, 2009-12-19, 2…</span></span>
-<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2220, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
-<span><span class="co">#&gt; $ matches                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 351, 166, 191, 77, 45, 97, 176, 106, 31, 0…</span></span>
+<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2221, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
+<span><span class="co">#&gt; $ matches                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 352, 166, 191, 77, 45, 97, 176, 106, 31, 0…</span></span>
 <span><span class="co">#&gt; $ wins                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 260, 101, 113, 37, 19, 34, 77, 44, 7, 0, 9…</span></span>
 <span><span class="co">#&gt; $ draws                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 39, 27, 38, 15, 11, 19, 39, 23, 9, 0, 11, …</span></span>
-<span><span class="co">#&gt; $ losses                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 52, 38, 40, 25, 15, 44, 60, 39, 15, 0, 20,…</span></span>
+<span><span class="co">#&gt; $ losses                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 53, 38, 40, 25, 15, 44, 60, 39, 15, 0, 20,…</span></span>
 <span><span class="co">#&gt; $ ppg                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.33, 1.99, 1.97, 1.64, 1.51, 1.25, 1.53, …</span></span>
 <span></span>
 <span><span class="co">#----- can also get other roles: -----#</span></span>
@@ -625,7 +625,7 @@
 <span><span class="co">#&gt; $ club              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Málaga CF", "Real Madrid", "Real Socied…</span></span>
 <span><span class="co">#&gt; $ appointed         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2013-07-01", "2011-01-04", "2009-06-02", "1998-10-2…</span></span>
 <span><span class="co">#&gt; $ contract_expiry   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2013-06-30", "2010-05-27", "2009-06-01", "1998-…</span></span>
-<span><span class="co">#&gt; $ days_in_charge    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3316, 908, 359, 3874, 113, 1490, 729, 4047, 729, 242…</span></span>
+<span><span class="co">#&gt; $ days_in_charge    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3317, 908, 359, 3874, 113, 1491, 729, 4048, 729, 243…</span></span>
 <span><span class="co">#&gt; $ matches           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 2, NA, N…</span></span>
 <span><span class="co">#&gt; $ wins              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 0, NA, N…</span></span>
 <span><span class="co">#&gt; $ draws             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, N…</span></span>
