@@ -330,7 +330,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
   } else {
     .fotmob_extract_data_from_page_props
   }
-  table_init <- f(resp)$table
+  table_init <- f(resp)$table$data
   cols <- c("all", "home", "away")
   table <- if("table" %in% names(table_init)) {
     table_init$table %>% dplyr::select(dplyr::all_of(cols))
@@ -367,13 +367,11 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
       .data$table
     ) %>%
     tidyr::unnest(
-      .data$table
+      .data$table,
+      names_sep = "_"
     ) %>%
     janitor::clean_names() %>%
-    tibble::as_tibble() %>%
-    dplyr::rename(
-      team_page_url = .data$page_url
-    )
+    tibble::as_tibble()
 
   res %>%
     dplyr::mutate(
