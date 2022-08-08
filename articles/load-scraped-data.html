@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.9.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Load Scraped Data Functions</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-07-31</h4>
+            <h4 data-toc-skip class="date">2022-08-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -239,10 +239,11 @@
 <span><span class="co">#&gt; [44] "UEFA Euro Qualification"                                     </span></span>
 <span><span class="co">#&gt; [45] "UEFA Europa Conference League"                               </span></span>
 <span><span class="co">#&gt; [46] "UEFA Europa League"                                          </span></span>
-<span><span class="co">#&gt; [47] "UEFA Nations League"                                         </span></span>
-<span><span class="co">#&gt; [48] "UEFA Women's Champions League"                               </span></span>
-<span><span class="co">#&gt; [49] "UEFA Women's Championship"                                   </span></span>
-<span><span class="co">#&gt; [50] "UEFA Women's Euro Qualification"</span></span></code></pre>
+<span><span class="co">#&gt; [47] "UEFA Europa League"                                          </span></span>
+<span><span class="co">#&gt; [48] "UEFA Nations League"                                         </span></span>
+<span><span class="co">#&gt; [49] "UEFA Women's Champions League"                               </span></span>
+<span><span class="co">#&gt; [50] "UEFA Women's Championship"                                   </span></span>
+<span><span class="co">#&gt; [51] "UEFA Women's Euro Qualification"</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
@@ -360,7 +361,7 @@
 <span><span class="co">## or</span></span>
 <span><span class="co">## load_fotmob_match_details(league_id = 47)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_details</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 19,013</span></span>
+<span><span class="co">#&gt; Rows: 19,184</span></span>
 <span><span class="co">#&gt; Columns: 42</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3411352, 3411352, 3411352, 3411352, 3411352, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
@@ -415,7 +416,7 @@
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,037</span></span>
+<span><span class="co">#&gt; Rows: 2,044</span></span>
 <span><span class="co">#&gt; Columns: 41</span></span>
 <span><span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span></span>
