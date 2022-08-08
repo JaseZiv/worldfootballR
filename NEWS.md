@@ -1,3 +1,12 @@
+# worldfootballR 0.5.9.9000
+
+### Improvements
+
+* Improve fotmob tests by checking for column names instead of just number of columns.
+### Bug fixes
+
+* `fotmob_get_league_tables()`: Fix unnesting to accomodate additional nesting and identical names at different levels. This bug affected `fotmob_get_season_stats()`, which calls `fotmob_get_league_tables()` [#155](https://github.com/JaseZiv/worldfootballR/issues/155)
+
 # worldfootballR 0.5.9
 
 ### Bug fixes
