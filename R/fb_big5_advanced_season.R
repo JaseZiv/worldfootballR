@@ -106,10 +106,10 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
         rvest::html_nodes("table")
 
       stat_df_for <- stat_df[1] %>%
-        rvest::html_table() %>%
+        # rvest::html_table() %>%
         data.frame()
       stat_df_against <- stat_df[2] %>%
-        rvest::html_table() %>%
+        # rvest::html_table() %>%
         data.frame()
 
       stat_df <- rbind(stat_df_for, stat_df_against)
@@ -167,7 +167,7 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
         dplyr::select(-.data$Rk)
 
       stat_df <- stat_df %>%
-        dplyr::select(-.data$Matches)
+        dplyr::select(-.data$MP)
 
       cols_to_transform <- stat_df %>%
         dplyr::select(-.data$Squad, -.data$Player, -.data$Nation, -.data$Pos, -.data$Comp, -.data$Age, -.data$Url) %>% names()

@@ -143,20 +143,20 @@
 # })
 #
 # Sys.sleep(3)
-# test_that("get_match_summary() works", {
-#   testthat::skip_on_cran()
-#   testthat::skip_if_offline()
-#   # test that multiple match_url can be passed to the function
-#   test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-#                  "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
-#   test_df <- get_match_summary(match_url = test_urls, time_pause = 4)
-#   expect_type(test_df, "list")
-#
-#   # test that incorrect url will error
-#   expect_error(get_match_summary(match_url = "aaa.aaa"))
-#
-#
-# })
+test_that("get_match_summary() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  # test that multiple match_url can be passed to the function
+  test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                 "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
+  test_df <- get_match_summary(match_url = test_urls, time_pause = 4)
+  expect_type(test_df, "list")
+
+  # test that incorrect url will error
+  expect_error(get_match_summary(match_url = "aaa.aaa"))
+
+
+})
 #
 #
 # Sys.sleep(3)
