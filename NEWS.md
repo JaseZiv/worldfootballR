@@ -1,3 +1,7 @@
+# worldfootballR 0.5.10.1000
+
+* reverses the fix pushed to `v 0.5.10` as changed again on FBref
+
 # worldfootballR 0.5.10
 
 ### Bug fixes
