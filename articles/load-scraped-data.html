@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.10.1000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.11</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Load Scraped Data Functions</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-08-10</h4>
+            <h4 data-toc-skip class="date">2022-08-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -161,7 +161,7 @@
 <h3 id="load-fbref-match-results">Load FBref match results<a class="anchor" aria-label="anchor" href="#load-fbref-match-results"></a>
 </h3>
 <p>To load pre-scraped match results for all years the data is available, the <code><a href="../reference/load_match_results.html">load_match_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository.</p>
-<p>This is the load function equivalent of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>.</p>
+<p>This is the load function equivalent of <code><a href="../reference/fb_match_results.html">fb_match_results()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eng_match_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_results.html">load_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, season_end_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">:</span><span class="fl">2022</span><span class="op">)</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">eng_match_results</span><span class="op">)</span></span>
@@ -275,7 +275,7 @@
 <h3 id="load-fbref-big-5-league-advanced-season-stats">Load FBref big 5 league advanced season stats<a class="anchor" aria-label="anchor" href="#load-fbref-big-5-league-advanced-season-stats"></a>
 </h3>
 <p>To load pre-scraped advanced stats for the big five European leagues for either teams or players, the <code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
-<p>This is the load function equivalent of <code><a href="../reference/get_match_results.html">get_match_results()</a></code>.</p>
+<p>This is the load function equivalent of <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
 <span><span class="va">current_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
@@ -308,7 +308,7 @@
 <span><span class="co">#&gt; Rows: 80,802</span></span>
 <span><span class="co">#&gt; Columns: 21</span></span>
 <span><span class="co">#&gt; $ league          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie_A", "Serie_A", "Serie_A", "Serie_A", "Serie_A",…</span></span>
-<span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 41439, 41444, 41445, 41446, 41451, 41452, 41461, 41462…</span></span>
+<span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41439, 41444, 41445, 41446, 41451, 41452, 41461, 41462…</span></span>
 <span><span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 5, 7, 8, 19, 24, 76, 76, 0, 3, 3, 3, 5, 10, 15, 15,…</span></span>
 <span><span class="co">#&gt; $ result          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MissedShots", "OwnGoal", "SavedShot", "MissedShots", …</span></span>
 <span><span class="co">#&gt; $ X               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.845, 0.009, 0.896, 0.875, 0.813, 0.780, 0.780, 0.867…</span></span>
@@ -316,11 +316,11 @@
 <span><span class="co">#&gt; $ xG              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.009113184, 0.000000000, 0.019183254, 0.042726491, 0.…</span></span>
 <span><span class="co">#&gt; $ player          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Maxi López", "Cristiano Biraghi", "Ezequiel Schelotto…</span></span>
 <span><span class="co">#&gt; $ h_a             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "h", "h", "h", "h", "h", "h", "h", "h", "a", "a", "a",…</span></span>
-<span><span class="co">#&gt; $ player_id       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1188, 1164, 3873, 1188, 1336, 3873, 716, 1188, 3848, 1…</span></span>
+<span><span class="co">#&gt; $ player_id       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1188, 1164, 3873, 1188, 1336, 3873, 716, 1188, 3848, 1…</span></span>
 <span><span class="co">#&gt; $ situation       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "OpenPlay", "FromCorner", "OpenPlay", "SetPiece", "Fro…</span></span>
-<span><span class="co">#&gt; $ season          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, …</span></span>
+<span><span class="co">#&gt; $ season          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, …</span></span>
 <span><span class="co">#&gt; $ shotType        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Head", "OtherBodyPart", "Head", "RightFoot", "LeftFoo…</span></span>
-<span><span class="co">#&gt; $ match_id        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 5149, 5149, 5149, 5149, 5149, 5149, 5149, 5149, 5149, …</span></span>
+<span><span class="co">#&gt; $ match_id        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5149, 5149, 5149, 5149, 5149, 5149, 5149, 5149, 5149, …</span></span>
 <span><span class="co">#&gt; $ home_team       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Chievo", "Chievo", "Chievo", "Chievo", "Chievo", "Chi…</span></span>
 <span><span class="co">#&gt; $ away_team       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Juventus", "Juventus", "Juventus", "Juven…</span></span>
 <span><span class="co">#&gt; $ home_goals      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span></span>
