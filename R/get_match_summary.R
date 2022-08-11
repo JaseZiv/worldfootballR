@@ -35,8 +35,8 @@ fb_match_summary <- function(match_url, time_pause=3) {
 
     if(!is.na(each_game_page)) {
       match_report <- .get_match_report_page(match_page = each_game_page)
-      Home_Team <- tryCatch(each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1], error = function(e) NA)
-      Away_Team <- tryCatch(each_game_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2], error = function(e) NA)
+      Home_Team <- tryCatch(each_game_page %>% rvest::html_nodes(".logo+ strong a") %>% rvest::html_text() %>% .[1], error = function(e) NA)
+      Away_Team <- tryCatch(each_game_page %>% rvest::html_nodes(".logo+ strong a") %>% rvest::html_text() %>% .[2], error = function(e) NA)
 
       events <- each_game_page %>% rvest::html_nodes("#events_wrap")
 

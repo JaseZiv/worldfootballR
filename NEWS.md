@@ -1,5 +1,16 @@
 # worldfootballR 0.5.11
 
+### Bugs
+
+Elements changed on FBref somewhere in the same time `v 0.5.11` was being released!
+
+* `fb_advanced_match_stats()`
+* `fb_match_summary()`
+
+***
+
+# worldfootballR 0.5.11
+
 ### New functions (and deprecated old ones)
 
 * `fb_advanced_match_stats()` replaces `get_advanced_match_stats`

@@ -49,7 +49,6 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
       league <- match_page %>%
         rvest::html_nodes("#content") %>%
         rvest::html_node("a") %>% rvest::html_text()
-      rvest::html_attr("href") %>% paste0(main_url, .)
 
       all_tables <- match_page %>%
         rvest::html_nodes(".table_container")
