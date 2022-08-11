@@ -1,29 +1,29 @@
 context("Testing Transfermarkt functions")
 
-test_that("get_player_market_values() works", {
+test_that("tm_player_market_values() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
   # test that multiple countries can be passed to the function
-  expect_type(get_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
+  expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
   # test that an invalid country will error
-  expect_error(get_player_market_values(country_name = "Fake Country", start_year = 2020))
+  expect_error(tm_player_market_values(country_name = "Fake Country", start_year = 2020))
 
 })
 
 
 
-test_that("player_transfer_history() works", {
+test_that("tm_player_transfer_history() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
 
-  transfer_data <- player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
+  transfer_data <- tm_player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
   # test the functions returns the data
   expect_type(transfer_data, "list")
   expect_true(ncol(transfer_data) != 0)
 
   # test that an invalid country will error
-  expect_error(player_transfer_history("aaa.com.au"))
+  expect_error(tm_player_transfer_history("aaa.com.au"))
 
 })
 
