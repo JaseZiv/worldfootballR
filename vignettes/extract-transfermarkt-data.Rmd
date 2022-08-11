@@ -243,20 +243,20 @@ dplyr::glimpse(bayern)
 
 ### Player Valuations
 
-To get player valuations for all teams in a league season, use the `get_player_market_values()` function:
+To get player valuations for all teams in a league season, use the `tm_player_market_values()` function:
 
 ```{r, player_vals}
 #----- Can do it for a single league: -----#
-a_league_valuations <- get_player_market_values(country_name = "Australia",
+a_league_valuations <- tm_player_market_values(country_name = "Australia",
                                        start_year = 2021)
 dplyr::glimpse(a_league_valuations)
 
 #----- Can also do it for multiple leagues: -----#
-# big_5_valuations <- get_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),
+# big_5_valuations <- tm_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"),
 #                                        start_year = 2021)
 
 #----- Can also do it for non standard leagues: -----#
-# league_one_valuations <- get_player_market_values(country_name = "",
+# league_one_valuations <- tm_player_market_values(country_name = "",
 #                                        start_year = 2021,
 #                                        league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
 ```

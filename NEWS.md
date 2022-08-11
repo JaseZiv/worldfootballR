@@ -1,3 +1,29 @@
+# worldfootballR 0.5.2
+
+### New functions (and deprecated old ones)
+
+* `fb_advanced_match_stats()` replaces `get_advanced_match_stats`
+* `fb_match_lineups()` replaces `get_match_lineups`
+* `fb_match_results()` replaces `get_match_results`
+* `fb_match_report()` replaces `get_match_report`
+* `fb_match_shooting()` replaces `get_match_shooting`
+* `fb_match_summary()` replaces `get_match_summary`
+* `fb_match_urls()` replaces `get_match_urls`
+* `fb_season_team_stats()` replaces `get_season_team_stats`
+* `fb_team_match_results()` replaces `get_team_match_results`
+* `tm_player_market_values()` replaces `get_player_market_values`
+* `tm_player_transfer_history` replaces `player_transfer_history`
+
+## Improvements
+
+The following functions now no longer return league/season metadata, including columns `League`, `Gender`, `Country`, `Season`:
+
+* `fb_match_summary()`
+* `fb_advanced_match_stats()`
+* `fb_match_report()`
+
+***
+
 # worldfootballR 0.5.10.1000
 
 * reverses the fix pushed to `v 0.5.10` as changed again on FBref
