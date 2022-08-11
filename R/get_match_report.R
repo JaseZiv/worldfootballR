@@ -22,7 +22,7 @@
     game <- each_game_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
     # tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
-    tryCatch( {League_URL <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_attr("href") %>% paste0("https://fbref.com", .)}, error = function(e) {League <- NA})
+    tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
     tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes(".venuetime") %>% rvest::html_attr("data-venue-date")}, error = function(e) {Match_Date <- NA})
     tryCatch( {Matchweek <- each_game_page %>% rvest::html_nodes("h1+ div") %>% rvest::html_text()}, error = function(e) {Matchweek <- NA})
 
@@ -43,7 +43,7 @@
     tryCatch( {Away_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Yellow_Cards <- 0})
     tryCatch( {Away_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Red_Cards <- 0})
 
-    suppressWarnings(each_game <- cbind(League_URL, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Home_Yellow_Cards, Home_Red_Cards, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
+    suppressWarnings(each_game <- cbind(League, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Home_Yellow_Cards, Home_Red_Cards, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
                        dplyr::as_tibble() %>%
                        dplyr::mutate(Home_Score = as.numeric(.data$Home_Score),
                                      Home_xG = as.numeric(.data$Home_xG),
@@ -52,18 +52,67 @@
     )
 
 
-    # seasons <- seasons %>%
-    #   dplyr::filter(.data$seasons_urls %in% each_game$League_URL) %>%
-    #   dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons)
-
-    # each_game <- cbind(seasons, each_game) %>%
-    #   dplyr::select(-.data$League_URL)
   } else {
     print(glue::glue("{Game_URL} is not available"))
     each_game <- data.frame()
   }
 
   return(each_game)
+}
+
+
+
+#' Get FBref match report
+#'
+#' Returns match report details for selected matches.
+#' Replaces the deprecated function get_match_report
+#'
+#' @param match_url the fbref.com URL for the required match
+#' @param time_pause the wait time (in seconds) between page loads
+#'
+#' @return returns a dataframe with the match details for a selected match
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' try({
+#' match <- fb_match_urls(country = "AUS", gender = "F", season_end_year = 2021, tier = "1st")[1]
+#' df <- fb_match_report(match_url = match)
+#' })
+#' }
+
+fb_match_report <- function(match_url, time_pause=3) {
+
+  time_wait <- time_pause
+
+  each_match_report <- function(match_url, time_pause=time_wait) {
+    pb$tick()
+
+    # put sleep in as per new user agreement on FBref
+    Sys.sleep(time_pause)
+
+    match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
+
+    if(!is.na(match_page)) {
+      each_game <- .get_match_report_page(match_page)
+    } else {
+      print(glue::glue("{match_url} is not available"))
+      each_game <- data.frame()
+    }
+    return(each_game)
+  }
+
+  # create the progress bar with a progress function.
+  pb <- progress::progress_bar$new(total = length(match_url))
+
+  all_games <- match_url %>%
+    purrr::map_df(each_match_report)
+
+  return(all_games)
 }
 
 
@@ -91,6 +140,8 @@
 #' }
 
 get_match_report <- function(match_url, time_pause=3) {
+
+  .Deprecated("fb_match_report")
 
   time_wait <- time_pause
 
