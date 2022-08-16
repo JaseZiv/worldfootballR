@@ -254,6 +254,26 @@ if(m >= 1 && m <= 5) {
 
 ## Match-Level Data
 
+### Team-level Stats
+
+To get team-level team stats for a match, use the `fotmob_get_match_team_stats()` function.
+
+```{r fotmob_match_team_stats}
+fotmob_matches <- c(3609994, 3610132)
+match_team_stats <- fotmob_get_match_team_stats(fotmob_matches)
+match_team_stats %>%
+  dplyr::select(match_id, title:dplyr::last_col()) %>%
+  dplyr::glimpse()
+```
+
+Stats are categorized into one of several groups, by `title`.
+
+```{r}
+match_team_stats %>%
+  dplyr::filter(match_id == dplyr::first(match_id)) %>%
+  dplyr::count(title)
+```
+
 ### Match Shooting Locations
 
 To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the `fotmob_get_match_details()` function.

@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.12</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,87 @@
       <small>Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.12" id="worldfootballr-0512">worldfootballR 0.5.12<a class="anchor" aria-label="anchor" href="#worldfootballr-0512"></a></h2>
+<div class="section level4">
+<h4 id="improvmeents-0-5-12">Improvmeents<a class="anchor" aria-label="anchor" href="#improvmeents-0-5-12"></a></h4>
+<ul><li>
+<code><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats()</a></code> added. # worldfootballR 0.5.11.1000</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bugs-0-5-12">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-12"></a></h4>
+<p>Elements changed on FBref somewhere in the same time <code>v 0.5.11</code> was being released!</p>
+<ul><li><code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code></li>
+<li><code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code></li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.11" id="worldfootballr-0511">worldfootballR 0.5.11<a class="anchor" aria-label="anchor" href="#worldfootballr-0511"></a></h2>
+<div class="section level4">
+<h4 id="new-functions-and-deprecated-old-ones-0-5-11">New functions (and deprecated old ones)<a class="anchor" aria-label="anchor" href="#new-functions-and-deprecated-old-ones-0-5-11"></a></h4>
+<ul><li>
+<code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code> replaces <code>get_advanced_match_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_lineups.html">fb_match_lineups()</a></code> replaces <code>get_match_lineups</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_results.html">fb_match_results()</a></code> replaces <code>get_match_results</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_report.html">fb_match_report()</a></code> replaces <code>get_match_report</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_shooting.html">fb_match_shooting()</a></code> replaces <code>get_match_shooting</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code> replaces <code>get_match_summary</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_urls.html">fb_match_urls()</a></code> replaces <code>get_match_urls</code>
+</li>
+<li>
+<code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> replaces <code>get_season_team_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_team_match_results.html">fb_team_match_results()</a></code> replaces <code>get_team_match_results</code>
+</li>
+<li>
+<code><a href="../reference/tm_player_market_values.html">tm_player_market_values()</a></code> replaces <code>get_player_market_values</code>
+</li>
+<li>
+<code>tm_player_transfer_history</code> replaces <code>player_transfer_history</code>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-0-5-11">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-11"></a></h3>
+<p>The following functions now no longer return league/season metadata, including columns <code>League</code>, <code>Gender</code>, <code>Country</code>, <code>Season</code>:</p>
+<ul><li><code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code></li>
+<li><code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code></li>
+<li><code><a href="../reference/fb_match_report.html">fb_match_report()</a></code></li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.10.1000" id="worldfootballr-05101000">worldfootballR 0.5.10.1000<a class="anchor" aria-label="anchor" href="#worldfootballr-05101000"></a></h2>
+<ul><li>reverses the fix pushed to <code>v 0.5.10</code> as changed again on FBref</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.10" id="worldfootballr-0510">worldfootballR 0.5.10<a class="anchor" aria-label="anchor" href="#worldfootballr-0510"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes-0-5-10">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-5-10"></a></h4>
+<ul><li>
+<code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> throwing error as <code>Matches played</code> column now names <code>MP</code> <a href="https://github.com/JaseZiv/worldfootballR/issues/158" class="external-link">#158</a>
+</li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.9.9000" id="worldfootballr-0599000">worldfootballR 0.5.9.9000<a class="anchor" aria-label="anchor" href="#worldfootballr-0599000"></a></h2>
+<div class="section level4">
+<h4 id="improvements-0-5-9-9000">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-9-9000"></a></h4>
+<ul><li><p>Improve fotmob tests by checking for column names instead of just number of columns. ### Bug fixes</p></li>
+<li><p><code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>: Fix unnesting to accommodate additional nesting and identical names at different levels. This bug affected <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which calls <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> <a href="https://github.com/JaseZiv/worldfootballR/issues/155" class="external-link">#155</a></p></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.9" id="worldfootballr-059">worldfootballR 0.5.9<a class="anchor" aria-label="anchor" href="#worldfootballr-059"></a></h2>
 <div class="section level4">

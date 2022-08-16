@@ -19,8 +19,7 @@
 #'
 #' results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
 #' results %>%
-#'   dplyr::select(primaryId, ccode, league_name = name, matches) %>%
-#'   tidyr::unnest_longer(matches)
+#'   dplyr::select(primary_id, ccode, league_name = name, match_id)
 #' })
 #' }
 #'
@@ -87,11 +86,9 @@ fotmob_get_matches_by_date <- function(dates) {
 #' library(tidyr)
 #' results <- fotmob_get_matches_by_date(date = "20210926")
 #' match_ids <- results %>%
-#'   dplyr::select(primaryId, ccode, league_name = name, matches) %>%
+#'   dplyr::select(primary_id, ccode, league_name = name, match_id) %>%
 #'   dplyr::filter(league_name == "Premier League", ccode == "ENG") %>%
-#'   tidyr::unnest_longer(matches) %>%
-#'   dplyr::pull(matches) %>%
-#'   dplyr::pull(id)
+#'   dplyr::pull(match_id)
 #' match_ids # 3609987 3609979
 #' details <- fotmob_get_match_details(match_ids)
 #' })
@@ -128,8 +125,8 @@ fotmob_get_match_details <- function(match_ids) {
     if(isTRUE(has_shots)) {
       df$shots <- list(shots)
       df <- df %>%
-        tidyr::unnest(.data$shots) |>
-        tidyr::unnest_wider(.data$on_goal_shot, names_sep = "_") |>
+        tidyr::unnest(.data$shots)  %>%
+        tidyr::unnest_wider(.data$on_goal_shot, names_sep = "_")  %>%
         janitor::clean_names()
     } else {
       df$shots <- NULL
@@ -140,6 +137,79 @@ fotmob_get_match_details <- function(match_ids) {
   fp <- purrr::possibly(f, otherwise = tibble::tibble())
   fp(url)
 }
+
+#' Get fotmob match team stats by match id
+#'
+#' Returns match top stats from fotmob.com
+#'
+#' @param match_ids a vector of strings or numbers representing matches
+#'
+#' @return returns a dataframe of match shots
+#'
+#' @examples
+#' \donttest{
+#' try({
+#' library(dplyr)
+#' library(tidyr)
+#' results <- fotmob_get_matches_by_date(date = "20210926")
+#' match_ids <- results %>%
+#'   dplyr::select(primary_id, ccode, league_name = name, match_id) %>%
+#'   dplyr::filter(league_name == "Premier League", ccode == "ENG") %>%
+#'   dplyr::pull(match_id)
+#' match_ids # 3609987 3609979
+#' details <- fotmob_get_match_team_stats(match_ids)
+#' })
+#' }
+#' @export
+fotmob_get_match_team_stats <- function(match_ids) {
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_team_stats)
+}
+
+#' @importFrom purrr possibly
+#' @importFrom dplyr bind_cols mutate across rename
+#' @importFrom janitor clean_names
+#' @importFrom rlang .data
+#' @importFrom tibble as_tibble
+#' @importFrom tidyr unnest unnest_wider hoist
+.fotmob_get_single_match_team_stats <- function(match_id) {
+
+  main_url <- "https://www.fotmob.com/api/"
+  url <- paste0(main_url, "matchDetails?matchId=", match_id)
+
+  f <- function(url) {
+
+    general <- .extract_fotmob_match_general(url)
+    df <- dplyr::bind_cols(
+      general$scalars,
+      general$teams
+    )
+
+    stats <- general$resp$content$stats$stats %>% janitor::clean_names()
+    has_stats <- length(stats) > 0
+    df <- tibble::as_tibble(df)
+    if(isTRUE(has_stats)) {
+      wide_stats <- stats  %>%
+        tidyr::unnest_wider(stats, names_sep = '_')  %>%
+        tidyr::unnest(vars_select_helpers$where(is.list))
+      clean_stats <- wide_stats  %>%
+        tidyr::hoist(
+          .data$stats_stats,
+          "home_value" = 1
+        )  %>%
+        dplyr::rename("away_value" = .data$stats_stats)  %>%
+        dplyr::mutate(
+          dplyr::across(c(.data$home_value, .data$away_value), as.character)
+        )  %>%
+        tidyr::unnest(c(.data$home_value, .data$away_value))
+      df <- dplyr::bind_cols(df, clean_stats)
+    }
+    df
+  }
+
+  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp(url)
+}
+
 
 #' @importFrom jsonlite fromJSON
 .extract_fotmob_match_general <- function(url) {

@@ -329,13 +329,27 @@ test_that("fotmob_get_season_stats() works", {
   expect_equal(colnames(epl_ll_team_xgs_2122), expected_stat_cols)
 })
 
+test_that("fotmob_get_match_team_stats() works", {
+  testthat::skip_on_cran()
+
+  expected_match_team_stats_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color", "title", "stats_title", "home_value", "away_value", "stats_type", "stats_highlighted")
+  match_team_stats <- fotmob_get_match_team_stats(c(3609987, 3609979))
+
+  expect_gt(nrow(match_team_stats), 0)
+  expect_equal(colnames(match_team_stats), expected_match_team_stats_cols)
+
+  ## non-domestic match
+  match_team_stats <- fotmob_get_match_team_stats(3846342)
+  expect_gt(nrow(match_team_stats), 0)
+  expect_equal(colnames(match_team_stats), expected_match_team_stats_cols)
+})
+
 test_that("fotmob_get_match_details() works", {
   testthat::skip_on_cran()
 
   expected_match_detail_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color", "id", "event_type", "team_id", "player_id", "player_name", "x", "y", "min", "min_added", "is_blocked", "is_on_target", "blocked_x", "blocked_y", "goal_crossed_y", "goal_crossed_z", "expected_goals", "expected_goals_on_target", "shot_type", "situation", "period", "is_own_goal", "on_goal_shot_x", "on_goal_shot_y", "on_goal_shot_zoom_ratio", "first_name", "last_name", "team_color")
   details <- fotmob_get_match_details(c(3609987, 3609979))
 
-  ## 1 row per match
   expect_gt(nrow(details), 0)
   expect_equal(colnames(details), expected_match_detail_cols)
 
@@ -344,7 +358,6 @@ test_that("fotmob_get_match_details() works", {
   expect_gt(nrow(details), 0)
   expect_equal(colnames(details), expected_match_detail_cols)
 })
-
 
 test_that("fotmob_get_match_players() works", {
   testthat::skip_on_cran()

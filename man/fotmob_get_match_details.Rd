@@ -22,11 +22,9 @@ library(dplyr)
 library(tidyr)
 results <- fotmob_get_matches_by_date(date = "20210926")
 match_ids <- results \%>\%
-  dplyr::select(primaryId, ccode, league_name = name, matches) \%>\%
+  dplyr::select(primary_id, ccode, league_name = name, match_id) \%>\%
   dplyr::filter(league_name == "Premier League", ccode == "ENG") \%>\%
-  tidyr::unnest_longer(matches) \%>\%
-  dplyr::pull(matches) \%>\%
-  dplyr::pull(id)
+  dplyr::pull(match_id)
 match_ids # 3609987 3609979
 details <- fotmob_get_match_details(match_ids)
 })
