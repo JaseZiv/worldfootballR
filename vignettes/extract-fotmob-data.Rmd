@@ -271,7 +271,7 @@ Stats are categorized into one of several groups, by `title`.
 ```{r}
 match_team_stats %>%
   dplyr::filter(match_id == dplyr::first(match_id)) %>%
-  dplyr::count(match_id, title)
+  dplyr::count(title)
 ```
 
 ### Match Shooting Locations

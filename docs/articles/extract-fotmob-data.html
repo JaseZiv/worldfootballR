@@ -516,17 +516,17 @@ tournament has more columns.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">match_team_stats</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">match_id</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">match_id</span>, <span class="va">title</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 3</span></span>
-<span class="co">#&gt;   match_id title                   n</span>
-<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  3<span style="text-decoration: underline;">609</span>994 DEFENCE                 6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3<span style="text-decoration: underline;">609</span>994 DISCIPLINE              3</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  3<span style="text-decoration: underline;">609</span>994 DUELS                   5</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  3<span style="text-decoration: underline;">609</span>994 EXPECTED GOALS (xG)     7</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  3<span style="text-decoration: underline;">609</span>994 PASSES                  8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  3<span style="text-decoration: underline;">609</span>994 SHOTS                   8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  3<span style="text-decoration: underline;">609</span>994 TOP STATS               9</span></code></pre></div>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 2</span></span>
+<span class="co">#&gt;   title                   n</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DEFENCE                 6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> DISCIPLINE              3</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> DUELS                   5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> EXPECTED GOALS (xG)     7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> PASSES                  8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> SHOTS                   8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">7</span> TOP STATS               9</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="match-shooting-locations">Match Shooting Locations<a class="anchor" aria-label="anchor" href="#match-shooting-locations"></a>
