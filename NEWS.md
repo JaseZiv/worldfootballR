@@ -1,7 +1,15 @@
+# worldfootballR 0.5.12.1000
+
+### Bugs
+
+* `fb_big5_advanced_season_stats()` throwing error for team stats. Also updated to only have one page load, hopefully minimising the risk of being blocked for excessive page loads
+
 # worldfootballR 0.5.12
-### Improvmeents
+
+### Improvments
 
 * `fotmob_get_match_team_stats()` added.
+
 # worldfootballR 0.5.11.1000
 
 ### Bugs
