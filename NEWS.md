@@ -1,3 +1,7 @@
+# worldfootballR 0.5.12
+### Improvmeents
+
+* `fotmob_get_match_team_stats()` added.
 # worldfootballR 0.5.11.1000
 
 ### Bugs

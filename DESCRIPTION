@@ -1,11 +1,11 @@
 Type: Package
 Package: worldfootballR
 Title: Extract and Clean World Football (Soccer) Data
-Version: 0.5.11.1000
+Version: 0.5.12
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
-      person(given = "Tan", family = "Ho", , "tan@tanho.ca", role = "ctb")
+    person(given = "Tan", family = "Ho", , "tan@tanho.ca", role = "ctb")
   )
 Description: Allow users to obtain clean and tidy
     football (soccer) game, team and player data. Data is collected from a
