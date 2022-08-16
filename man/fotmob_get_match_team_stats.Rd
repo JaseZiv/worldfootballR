@@ -2,7 +2,7 @@
 % Please edit documentation in R/fotmob_matches.R
 \name{fotmob_get_match_team_stats}
 \alias{fotmob_get_match_team_stats}
-\title{Get fotmob match top stats by match id}
+\title{Get fotmob match team stats by match id}
 \usage{
 fotmob_get_match_team_stats(match_ids)
 }

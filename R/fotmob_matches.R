@@ -138,7 +138,7 @@ fotmob_get_match_details <- function(match_ids) {
   fp(url)
 }
 
-#' Get fotmob match top stats by match id
+#' Get fotmob match team stats by match id
 #'
 #' Returns match top stats from fotmob.com
 #'
