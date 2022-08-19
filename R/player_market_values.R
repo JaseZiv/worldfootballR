@@ -34,7 +34,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
 
   } else {
 
-    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
 
     if(length(league_page) == 0) {
       stop(glue::glue("League URL(s) {league_url} not found. Please check transfermarkt.com for the correct league URL"))
@@ -72,7 +72,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
   all_seasons_df <- data.frame()
 
   for(each_season in all_seasons_urls) {
-    season_page <- .load_page(each_season)
+    season_page <- xml2::read_html(each_season)
 
     team_urls <- season_page %>%
       rvest::html_nodes("#yw1 .hauptlink a") %>% rvest::html_attr("href") %>%
@@ -94,7 +94,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
     league_season_df <- data.frame()
 
     for(each_team in team_urls) {
-      team_page <- .load_page(each_team)
+      team_page <- xml2::read_html(each_team)
 
       team_data <- team_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes(".items") %>% rvest::html_node("tbody")
 

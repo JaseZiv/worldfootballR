@@ -393,6 +393,6 @@
 #' @noRd
 #'
 .load_page <- function(page_url) {
-  ua <- httr::user_agent("RStudio Desktop (2022.7.1.554)")
+  ua <- httr::user_agent("RStudio Desktop (2022.7.1.554); R (4.1.1 x86_64-w64-mingw32 x86_64 mingw32)")
   rvest::session(url = page_url, ua) %>% xml2::read_html()
 }
