@@ -52,7 +52,7 @@ fb_team_player_stats <- function(team_urls, stat_type, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    page <- xml2::read_html(team_url)
+    page <- .load_page(team_url)
 
     team_season <- page %>% rvest::html_nodes("h1") %>% rvest::html_nodes("span") %>% .[1] %>% rvest::html_text()
     season <- team_season %>% stringr::str_extract(., "(\\d+)-(\\d+)")
