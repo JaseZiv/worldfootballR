@@ -379,3 +379,20 @@
 #   if(getOption("mypackage.verbose", default = TRUE)) message(glue::glue(msg))
 #   return(NULL)
 # }
+
+
+#' Load Page with headers
+#'
+#' loads webpages with a header passed to read_html
+#'
+#' @param page_url url of the page wanted to be loaded
+#'
+#' @return a html webpage
+#'
+#' @importFrom magrittr %>%
+#' @noRd
+#'
+.load_page <- function(page_url) {
+  ua <- httr::user_agent("RStudio Desktop (2022.7.1.554)")
+  rvest::session(url = page_url, ua) %>% xml2::read_html()
+}

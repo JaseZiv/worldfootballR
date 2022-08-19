@@ -23,7 +23,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
     pb$tick()
     xfers_url <- gsub("startseite", "transfers", each_team_url)
 
-    team_page <- xml2::read_html(xfers_url)
+    team_page <- .load_page(xfers_url)
 
     team_name <- team_page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
     league <- team_page %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
@@ -50,7 +50,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
     for(each_window in summer_winter){
       xfers_window_url <- xfers_window_box %>% rvest::html_nodes(".content") %>% rvest::html_children() %>% rvest::html_attr("action")
       xfers_window_url <- xfers_window_url %>% paste0(main_url, ., "?saison_id=", season, "&pos=&detailpos=&w_s=", each_window)
-      team_page_window <- xml2::read_html(xfers_window_url)
+      team_page_window <- .load_page(xfers_window_url)
       tab_box_window <- team_page_window %>% rvest::html_nodes(".box")
       # need to isolate the arrivals and departures tables
       tab_names <- tab_box_window %>% rvest::html_nodes("h2") %>% rvest::html_text() %>% stringr::str_squish()
@@ -139,7 +139,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
 
     #----- Get player stats including goals and appearances: -----#
     team_data_url <- gsub("startseite", "leistungsdaten", each_team_url)
-    team_data_page <- xml2::read_html(team_data_url)
+    team_data_page <- .load_page(team_data_url)
 
     team_data_table <- team_data_page %>% rvest::html_nodes("#yw1") %>% rvest::html_node("table") %>% rvest::html_nodes("tbody") %>% rvest::html_children()
 

@@ -42,7 +42,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
     season_url <- meta_df_seasons$season_urls
 
   } else {
-    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country_name <- league_page %>%
       rvest::html_nodes(".profilheader") %>%
@@ -72,7 +72,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
       matchday_url <- paste0(season_url, "?saison_id=", start_year, "&spieltag=", each_matchday)
     }
 
-    tab <- xml2::read_html(matchday_url)
+    tab <- .load_page(matchday_url)
 
     league_name <- tab %>% rvest::html_node("h1") %>% rvest::html_text()
 

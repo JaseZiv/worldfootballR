@@ -28,7 +28,7 @@ tm_player_bio <- function(player_urls) {
   each_bio <- function(player_url) {
     pb$tick()
 
-    player_page <- tryCatch(xml2::read_html(player_url), error = function(e) NA)
+    player_page <- tryCatch(.load_page(player_url), error = function(e) NA)
 
     if(!is.na(player_page)) {
       player_name <- player_page %>% rvest::html_nodes("div h1") %>% rvest::html_text()

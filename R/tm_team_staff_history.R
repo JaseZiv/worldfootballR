@@ -27,7 +27,7 @@ tm_team_staff_history <- function(team_urls, staff_role = "Manager") {
     pb$tick()
     manager_history_url <- gsub("startseite", "mitarbeiterhistorie", team_url) %>% gsub("saison_id.*", "", .) %>% paste0(., "personalie_id/", tm_staff_idx, "/plus/1")
 
-    history_pg <- xml2::read_html(manager_history_url)
+    history_pg <- .load_page(manager_history_url)
 
     team_name <- history_pg %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
     league <- history_pg %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()

@@ -32,7 +32,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     comp_url <- meta_df_seasons$comp_url %>% unique() %>% .[1]
 
   } else {
-    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
       rvest::html_nodes(".profilheader") %>%

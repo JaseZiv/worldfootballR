@@ -31,7 +31,7 @@ fb_match_summary <- function(match_url, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    each_game_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
+    each_game_page <- tryCatch(.load_page(match_url), error = function(e) NA)
 
     if(!is.na(each_game_page)) {
       match_report <- .get_match_report_page(match_page = each_game_page)

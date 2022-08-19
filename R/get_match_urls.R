@@ -66,7 +66,7 @@ fb_match_urls <- function(country, gender, season_end_year, tier = "1st", non_do
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    match_report_urls <- xml2::read_html(fixture_url) %>%
+    match_report_urls <- .load_page(fixture_url) %>%
       rvest::html_nodes("td.left~ .left+ .left a") %>%
       rvest::html_attr("href") %>%
       paste0(main_url, .) %>% unique()

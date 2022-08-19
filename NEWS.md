@@ -1,3 +1,9 @@
+# worldfootballR 0.5.12.2000
+
+### Improvements
+
+* FBref functions now pass user agent to headers under the hood
+
 # worldfootballR 0.5.12.1000
 
 ### Bugs

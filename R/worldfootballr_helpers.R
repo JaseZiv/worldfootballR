@@ -72,7 +72,7 @@ fb_teams_urls <- function(league_url, time_pause=3) {
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  league_season_page <- xml2::read_html(league_url)
+  league_season_page <- .load_page(league_url)
 
   main_url <- "https://fbref.com"
 
@@ -114,7 +114,7 @@ fb_player_urls <- function(team_url, time_pause=3) {
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  player_page <- xml2::read_html(team_url)
+  player_page <- .load_page(team_url)
 
   player_urls <- player_page %>%
     rvest::html_nodes("#all_stats_standard th a") %>%
@@ -157,7 +157,7 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
     season_url <- meta_df_seasons$season_urls
 
   } else {
-    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country_name <- league_page %>%
       rvest::html_nodes(".profilheader") %>%
@@ -172,7 +172,7 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
 
   }
 
-  season_page <- xml2::read_html(season_url)
+  season_page <- .load_page(season_url)
 
   team_urls <- season_page %>%
     rvest::html_nodes("#yw1 .hauptlink a") %>% rvest::html_attr("href") %>%
@@ -204,7 +204,7 @@ tm_team_player_urls <- function(team_url) {
 
   main_url <- "https://www.transfermarkt.com"
 
-  tryCatch({team_page <- xml2::read_html(team_url)}, error = function(e) {team_page <- c()})
+  tryCatch({team_page <- .load_page(team_url)}, error = function(e) {team_page <- c()})
 
   player_urls <- team_page %>%
     rvest::html_nodes(".nowrap a") %>% rvest::html_attr("href") %>%
@@ -240,7 +240,7 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
 
     manager_history_url <- gsub("startseite", "mitarbeiter", team_url) %>% gsub("/saison_id.*", "", .)
 
-    history_pg <- xml2::read_html(manager_history_url)
+    history_pg <- .load_page(manager_history_url)
 
 
     coaching <- history_pg %>% rvest::html_nodes(".large-8") %>% rvest::html_nodes(".box") %>% .[1]
