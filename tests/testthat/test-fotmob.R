@@ -209,7 +209,7 @@ test_that("fotmob_get_season_stats() works", {
   liga_mx_team_xg_21 <- fotmob_get_season_stats(
     country = "MEX",
     league_name = "Liga MX",
-    season = "2021/2022",
+    season = "2021/2022-Clausura",
     stat_name = "Expected goals",
     team_or_player = "team"
   )

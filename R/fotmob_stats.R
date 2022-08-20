@@ -44,19 +44,28 @@
   x
 }
 
-
+#' @importFrom rvest html_text2 html_attr
+#' @importFrom stringr str_detect str_remove_all
 .extract_seasons_and_stats_from_options <- function(options) {
-  labels <- options %>% rvest::html_text2()
+  labels <- rvest::html_text2(options)
   rgx <- "(^.*)(\\s)(20[012].*$)"
   league_name <- labels %>% stringr::str_replace(rgx, "\\1")
-  season_name <- labels %>% stringr::str_replace(rgx, "\\3")
-  league_name <- ifelse(season_name == league_name, NA_character_, league_name)
-  is_season <- season_name %>% stringr::str_detect("^2")
+  season_or_stat_name <- labels %>% stringr::str_replace(rgx, "\\3")
+  league_name <- ifelse(season_or_stat_name == league_name, NA_character_, league_name)
+  is_season <- season_or_stat_name %>% stringr::str_detect("^2")
+  ids <- options %>% rvest::html_attr("value")
+  has_dash <- any(stringr::str_detect(ids[is_season], "-"))
+  if (has_dash) {
+    season_or_stat_name <- c(
+      paste0(season_or_stat_name[is_season], "-", stringr::str_remove_all(ids[is_season], "^.*-")),
+      season_or_stat_name[!is_season]
+    )
+  }
   tibble::tibble(
     league_name = league_name,
     option_type = ifelse(is_season, "season", "stat"),
-    name = season_name,
-    id = options %>% rvest::html_attr("value")
+    name = season_or_stat_name,
+    id = ids
   )
 }
 
@@ -431,8 +440,7 @@ fotmob_get_season_stats <- function(
       .data$season_name == !!season_name
     )
 
-  n_season_options <- nrow(filt_season_options)
-
+    n_season_options <- nrow(filt_season_options)
   print_season_league_name_error <- function(stem) {
     glue::glue(
       '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" {stem}. Try one of the following `stat_league_name`, `season_name` pairs:\n{glue::glue_collapse(sprintf("%s, %s", season_options$league_name, season_options$season_name), "\n")}'
