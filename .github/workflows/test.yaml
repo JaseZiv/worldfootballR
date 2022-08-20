@@ -1,12 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-#
-# See https://github.com/r-lib/actions/tree/master/examples#readme for
-# additional example workflows available for the R community.
-
-name: R
+name: spoof_test
 
 on:
   push:
@@ -31,4 +23,4 @@ jobs:
       - name: Package Installation
         run: Rscript -e 'install.packages(c("rstudioapi", "utils", "httr", "xml2", "rvest"))'
       - name: Run set agent
-        run: Rscript -e 'source("test/test2.R", echo = TRUE)'
+        run: Rscript -e 'source("test.R", echo = TRUE)'
