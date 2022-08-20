@@ -14,4 +14,3 @@ LICENSE
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^vignettes
-test.R
