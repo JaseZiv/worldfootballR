@@ -5,6 +5,7 @@
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
 #' @importFrom purrr safely
+#' @importFrom stringr str_detect str_replace_all
 .fotmob_get_single_season_stats <- function(league_id, season_id, stat) {
 
   if (stringr::str_detect(season_id, '-')) {
