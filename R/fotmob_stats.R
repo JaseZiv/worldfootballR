@@ -6,6 +6,10 @@
 #' @importFrom janitor clean_names
 #' @importFrom purrr safely
 .fotmob_get_single_season_stats <- function(league_id, season_id, stat) {
+
+  if (stringr::str_detect(season_id, '-')) {
+    season_id <- stringr::str_replace_all(season_id, '-', '\\/')
+  }
   url <- sprintf(
     "https://data.fotmob.com/stats/%s/season/%s/%s.json",
     league_id,
@@ -84,13 +88,23 @@
   )
   page <- url %>% rvest::read_html()
 
-  options <- page |> rvest::html_elements("option")
-  has_options <- length(options) > 0
-
   see_all_button <- page %>% rvest::html_elements(".SeeAllButton")
   has_see_all_button <- length(see_all_button) > 0
 
-  if (has_options) {
+  options <- page |> rvest::html_elements("option")
+  has_options <- length(options) > 0
+
+  if (has_see_all_button) {
+
+    hrefs <- see_all_button %>% rvest::html_attr("href")
+    next_url <- sprintf(
+      "https://www.fotmob.com%s",
+      hrefs[1]
+    )
+    next_page <- next_url %>% rvest::read_html()
+    options <- next_page %>% rvest::html_elements("option")
+    .extract_seasons_and_stats_from_options(options)
+    } else if (has_options) {
 
     values <- options |> rvest::html_attr("value")
 
@@ -102,7 +116,7 @@
       rlang::abort(glue::glue("Could not parse season ids from {url}."))
     }
 
-    if(length(parts[[1]]) != 5) {
+    if(length(parts[[1]]) < 5) {
       rlang::abort(glue::glue("Season ids not stored in expected format at {url}."))
     }
 
@@ -111,7 +125,7 @@
 
     ## protect against the current season being in the offseason, unless there is no other season.
     season_id <- ifelse(length(season_ids) > 1, season_ids[2], season_ids[1])
-
+    # browser()
     next_url <- sprintf(
       "https://www.fotmob.com/leagues/%s/stats/season/%s/%ss/saves_team",
       tables$league_id[1],
@@ -123,16 +137,6 @@
     next_options <- next_page |> rvest::html_elements("option")
     .extract_seasons_and_stats_from_options(next_options)
 
-  } else if (has_see_all_button) {
-
-    hrefs <- see_all_button %>% rvest::html_attr("href")
-    next_url <- sprintf(
-      "https://www.fotmob.com%s",
-      hrefs[1]
-    )
-    next_page <- next_url %>% rvest::read_html()
-    options <- next_page %>% rvest::html_elements("option")
-    .extract_seasons_and_stats_from_options(options)
   } else {
     resp <- .fotmob_get_league_resp_from_build_id(page_url, stats = TRUE)
     if(is.null(resp$result)) {
@@ -337,6 +341,7 @@ fotmob_get_season_stats <- function(
       team_or_player = team_or_player
     )
 
+    # browser()
     stat_options <- options %>%
       dplyr::filter(.data$option_type == "stat") %>%
       dplyr::select(stat_name = .data$name, stat = .data$id)
