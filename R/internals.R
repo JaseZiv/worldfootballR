@@ -380,6 +380,11 @@
 #   return(NULL)
 # }
 
+.upper1 <- function(x) {
+  x <- tolower(x)
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  x
+}
 
 #' Load Page with headers
 #'
@@ -393,6 +398,28 @@
 #' @noRd
 #'
 .load_page <- function(page_url) {
-  ua <- httr::user_agent("RStudio Desktop (2022.7.1.554); R (4.1.1 x86_64-w64-mingw32 x86_64 mingw32)")
+  prefix <- if(interactive() & rstudioapi::isAvailable()) {
+    version_info <- rstudioapi::versionInfo()
+    sprintf(
+      "RStudio %s (%s)",
+      .upper1(version_info$mode),
+      version_info$version
+    )
+  } else {
+    "RStudio Desktop (2022.7.1.554)"
+  }
+  session_info <- utils::sessionInfo()
+  r_version <- session_info$R.version
+  agent <- sprintf(
+    "%s; R (%s.%s %s %s %s)",
+    prefix,
+    r_version$major,
+    r_version$minor,
+    r_version$platform,
+    r_version$arch,
+    r_version$arch
+  )
+
+  ua <- httr::user_agent(agent)
   rvest::session(url = page_url, ua) %>% xml2::read_html()
 }
