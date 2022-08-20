@@ -28,6 +28,7 @@ agent <- sprintf(
   r_version$arch,
   r_version$arch
 )
+print(agent)
 
 ua <- httr::user_agent(agent)
 session <- rvest::session(url = url, ua)
