@@ -6,6 +6,7 @@ on:
       - main
       - master
       - cran_ready
+      - spoof_headers_gha
   workflow_dispatch:
   pull_request:
     branches:
