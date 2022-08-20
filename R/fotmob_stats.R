@@ -126,7 +126,6 @@
 
     ## protect against the current season being in the offseason, unless there is no other season.
     season_id <- ifelse(length(season_ids) > 1, season_ids[2], season_ids[1])
-    # browser()
     next_url <- sprintf(
       "https://www.fotmob.com/leagues/%s/stats/season/%s/%ss/saves_team",
       tables$league_id[1],
@@ -342,7 +341,6 @@ fotmob_get_season_stats <- function(
       team_or_player = team_or_player
     )
 
-    # browser()
     stat_options <- options %>%
       dplyr::filter(.data$option_type == "stat") %>%
       dplyr::select(stat_name = .data$name, stat = .data$id)
