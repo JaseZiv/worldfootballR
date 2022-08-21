@@ -5,7 +5,12 @@
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
 #' @importFrom purrr safely
+#' @importFrom stringr str_detect str_replace_all
 .fotmob_get_single_season_stats <- function(league_id, season_id, stat) {
+
+  if (stringr::str_detect(season_id, '-')) {
+    season_id <- stringr::str_replace_all(season_id, '-', '\\/')
+  }
   url <- sprintf(
     "https://data.fotmob.com/stats/%s/season/%s/%s.json",
     league_id,
@@ -39,19 +44,28 @@
   x
 }
 
-
+#' @importFrom rvest html_text2 html_attr
+#' @importFrom stringr str_detect str_remove_all
 .extract_seasons_and_stats_from_options <- function(options) {
-  labels <- options %>% rvest::html_text2()
+  labels <- rvest::html_text2(options)
   rgx <- "(^.*)(\\s)(20[012].*$)"
   league_name <- labels %>% stringr::str_replace(rgx, "\\1")
-  season_name <- labels %>% stringr::str_replace(rgx, "\\3")
-  league_name <- ifelse(season_name == league_name, NA_character_, league_name)
-  is_season <- season_name %>% stringr::str_detect("^2")
+  season_or_stat_name <- labels %>% stringr::str_replace(rgx, "\\3")
+  league_name <- ifelse(season_or_stat_name == league_name, NA_character_, league_name)
+  is_season <- season_or_stat_name %>% stringr::str_detect("^2")
+  ids <- options %>% rvest::html_attr("value")
+  has_dash <- any(stringr::str_detect(ids[is_season], "-"))
+  if (has_dash) {
+    season_or_stat_name <- c(
+      paste0(season_or_stat_name[is_season], "-", stringr::str_remove_all(ids[is_season], "^.*-")),
+      season_or_stat_name[!is_season]
+    )
+  }
   tibble::tibble(
     league_name = league_name,
     option_type = ifelse(is_season, "season", "stat"),
-    name = season_name,
-    id = options %>% rvest::html_attr("value")
+    name = season_or_stat_name,
+    id = ids
   )
 }
 
@@ -84,13 +98,23 @@
   )
   page <- url %>% rvest::read_html()
 
-  options <- page |> rvest::html_elements("option")
-  has_options <- length(options) > 0
-
   see_all_button <- page %>% rvest::html_elements(".SeeAllButton")
   has_see_all_button <- length(see_all_button) > 0
 
-  if (has_options) {
+  options <- page |> rvest::html_elements("option")
+  has_options <- length(options) > 0
+
+  if (has_see_all_button) {
+
+    hrefs <- see_all_button %>% rvest::html_attr("href")
+    next_url <- sprintf(
+      "https://www.fotmob.com%s",
+      hrefs[1]
+    )
+    next_page <- next_url %>% rvest::read_html()
+    options <- next_page %>% rvest::html_elements("option")
+    .extract_seasons_and_stats_from_options(options)
+    } else if (has_options) {
 
     values <- options |> rvest::html_attr("value")
 
@@ -102,7 +126,7 @@
       rlang::abort(glue::glue("Could not parse season ids from {url}."))
     }
 
-    if(length(parts[[1]]) != 5) {
+    if(length(parts[[1]]) < 5) {
       rlang::abort(glue::glue("Season ids not stored in expected format at {url}."))
     }
 
@@ -111,7 +135,6 @@
 
     ## protect against the current season being in the offseason, unless there is no other season.
     season_id <- ifelse(length(season_ids) > 1, season_ids[2], season_ids[1])
-
     next_url <- sprintf(
       "https://www.fotmob.com/leagues/%s/stats/season/%s/%ss/saves_team",
       tables$league_id[1],
@@ -123,16 +146,6 @@
     next_options <- next_page |> rvest::html_elements("option")
     .extract_seasons_and_stats_from_options(next_options)
 
-  } else if (has_see_all_button) {
-
-    hrefs <- see_all_button %>% rvest::html_attr("href")
-    next_url <- sprintf(
-      "https://www.fotmob.com%s",
-      hrefs[1]
-    )
-    next_page <- next_url %>% rvest::read_html()
-    options <- next_page %>% rvest::html_elements("option")
-    .extract_seasons_and_stats_from_options(options)
   } else {
     resp <- .fotmob_get_league_resp_from_build_id(page_url, stats = TRUE)
     if(is.null(resp$result)) {
@@ -427,8 +440,7 @@ fotmob_get_season_stats <- function(
       .data$season_name == !!season_name
     )
 
-  n_season_options <- nrow(filt_season_options)
-
+    n_season_options <- nrow(filt_season_options)
   print_season_league_name_error <- function(stem) {
     glue::glue(
       '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" {stem}. Try one of the following `stat_league_name`, `season_name` pairs:\n{glue::glue_collapse(sprintf("%s, %s", season_options$league_name, season_options$season_name), "\n")}'

@@ -205,6 +205,17 @@ test_that("fotmob_get_season_stats() works", {
 
   expect_identical(epl_team_xg_21_a, epl_team_xg_21_b)
 
+  ## Liga MX has season ids with hyphens
+  liga_mx_team_xg_21 <- fotmob_get_season_stats(
+    country = "MEX",
+    league_name = "Liga MX",
+    season = "2021/2022-Clausura",
+    stat_name = "Expected goals",
+    team_or_player = "team"
+  )
+  expect_gt(nrow(liga_mx_team_xg_21), 0)
+  expect_equal(colnames(liga_mx_team_xg_21), expected_stat_cols)
+
   ## fotmob has data for 2016/2017 for some leagues and stats, but not all
   expect_warning(
     get_epl_season_stats(
