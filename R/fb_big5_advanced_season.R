@@ -73,24 +73,6 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
       stat_type <- "keepersadv"
     }
 
-    # season_stats_page <- xml2::read_html(season_url)
-    #
-    # if(team_or_player == "player") {
-    #   player_squad_ixd <- 1
-    # } else {
-    #   player_squad_ixd <- 2
-    # }
-    #
-    # stat_urls <- season_stats_page %>%
-    #   rvest::html_nodes(".hoversmooth") %>%
-    #   rvest::html_nodes(".full") %>%
-    #   rvest::html_nodes("ul") %>% .[player_squad_ixd] %>%
-    #   rvest::html_nodes("a") %>%
-    #   rvest::html_attr("href") %>%
-    #   paste0(main_url, .)
-    #
-    # stat_urls <- stat_urls[grepl(paste0(stat_type, "/"), stat_urls)]
-
     start_part <- sub('/[^/]*$', '', season_url)
     end_part <- gsub(".*/", "", season_url)
 
@@ -104,7 +86,7 @@ fb_big5_advanced_season_stats <- function(season_end_year, stat_type, team_or_pl
 
 
     team_page <- stat_urls %>%
-      xml2::read_html()
+      .load_page()
 
     if(team_or_player == "player") {
       stat_df <- team_page %>%

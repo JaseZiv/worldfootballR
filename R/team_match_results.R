@@ -34,7 +34,7 @@ fb_team_match_results <- function(team_url, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    team_page <- xml2::read_html(team_url)
+    team_page <- .load_page(team_url)
 
     team_name <- sub('.*\\/', '', team_url) %>% gsub("-Stats", "", .) %>% gsub("-", " ", .)
 

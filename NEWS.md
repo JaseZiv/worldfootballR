@@ -1,8 +1,18 @@
+# worldfootballR 0.5.12.3000
+
+### Improvements
+
+* FBref functions now pass user agent to headers under the hood
+
+***
+
 # worldfootballR 0.5.12.2000
 
 ### Bugs
 
 * `fotmob_get_season_stats()`: Fixed bug in `.fotmob_get_single_season_stats()` where season ids with dashes, e.g. `"17709-Apertura"` for Liga MX 2022/2023 would error.
+
+***
 
 # worldfootballR 0.5.12.1000
 
@@ -10,11 +20,15 @@
 
 * `fb_big5_advanced_season_stats()` throwing error for team stats. Also updated to only have one page load, hopefully minimising the risk of being blocked for excessive page loads
 
+***
+
 # worldfootballR 0.5.12
 
 ### Improvments
 
 * `fotmob_get_match_team_stats()` added.
+
+***
 
 # worldfootballR 0.5.11.1000
 

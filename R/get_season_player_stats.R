@@ -47,7 +47,7 @@ fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
 
     if(!stat_type %in% stat_types) stop("check stat type")
 
-    player_page <- xml2::read_html(player_url)
+    player_page <- .load_page(player_url)
 
     player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
@@ -66,7 +66,7 @@ fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
 
       Sys.sleep(time_pause)
 
-      all_comps_page <- xml2::read_html(all_comps_url)
+      all_comps_page <- .load_page(all_comps_url)
 
       expanded_table_elements <- all_comps_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table")
 

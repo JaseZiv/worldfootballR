@@ -38,7 +38,7 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  player_page <- xml2::read_html(player_url)
+  player_page <- .load_page(player_url)
 
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
@@ -98,7 +98,7 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
   # Get match logs for stat -------------------------------------------------
 
   Sys.sleep(1)
-  stat_page <- xml2::read_html(paste0(main_url, log_url))
+  stat_page <- .load_page(paste0(main_url, log_url))
 
   tab <- stat_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
 

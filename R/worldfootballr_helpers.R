@@ -72,7 +72,7 @@ fb_teams_urls <- function(league_url, time_pause=3) {
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  league_season_page <- xml2::read_html(league_url)
+  league_season_page <- .load_page(league_url)
 
   main_url <- "https://fbref.com"
 
@@ -114,7 +114,7 @@ fb_player_urls <- function(team_url, time_pause=3) {
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  player_page <- xml2::read_html(team_url)
+  player_page <- .load_page(team_url)
 
   player_urls <- player_page %>%
     rvest::html_nodes("#all_stats_standard th a") %>%

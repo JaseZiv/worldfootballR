@@ -32,7 +32,7 @@
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  fixtures_page <- xml2::read_html(fixture_url)
+  fixtures_page <- .load_page(fixture_url)
 
   season_name <- fixtures_page %>% rvest::html_nodes("h2 span") %>% rvest::html_text() %>% .[1]
 

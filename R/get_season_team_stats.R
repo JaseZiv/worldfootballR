@@ -60,7 +60,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    season_stats_page <- xml2::read_html(season_url)
+    season_stats_page <- .load_page(season_url)
 
     league_standings <- season_stats_page %>% rvest::html_nodes("table")
 

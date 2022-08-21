@@ -34,7 +34,7 @@ fb_match_shooting <- function(match_url, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    match_page <- xml2::read_html(match_url)
+    match_page <- .load_page(match_url)
 
     tryCatch( {home_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {home_team <- NA})
     tryCatch( {away_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {away_team <- NA})

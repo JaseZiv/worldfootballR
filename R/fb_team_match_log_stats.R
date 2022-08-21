@@ -44,7 +44,7 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    team_page <- xml2::read_html(team_url)
+    team_page <- .load_page(team_url)
 
     team_name <- sub('.*\\/', '', team_url) %>% gsub("-Stats", "", .) %>% gsub("-", " ", .)
 
@@ -58,7 +58,8 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
 
     selected_url <- paste0(main_url, selected_url)
 
-    stat_page <- xml2::read_html(selected_url)
+    Sys.sleep(time_pause)
+    stat_page <- .load_page(selected_url)
 
     for_against <- stat_page %>%
       rvest::html_nodes("#all_matchlogs #switcher_matchlogs .table_container")

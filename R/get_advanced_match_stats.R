@@ -41,7 +41,7 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
+    match_page <- tryCatch(.load_page(match_url), error = function(e) NA)
 
     if(!is.na(match_page)) {
       match_report <- .get_match_report_page(match_page = match_page)

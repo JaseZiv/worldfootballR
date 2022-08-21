@@ -33,7 +33,7 @@ fb_match_lineups <- function(match_url, time_pause=3) {
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    match_page <- tryCatch(xml2::read_html(match_url), error = function(e) NA)
+    match_page <- tryCatch(.load_page(match_url), error = function(e) NA)
 
     if(!is.na(match_page)) {
       match_date <- match_page %>% rvest::html_nodes(".venuetime") %>% rvest::html_attr("data-venue-date")
