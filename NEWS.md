@@ -1,3 +1,9 @@
+# worldfootballR 0.5.12.2000
+
+### Bugs
+
+* `fotmob_get_season_stats()`: Fixed bug in `.fotmob_get_single_season_stats()` where season ids with dashes, e.g. `"17709-Apertura"` for Liga MX 2022/2023 would error.
+
 # worldfootballR 0.5.12.1000
 
 ### Bugs
