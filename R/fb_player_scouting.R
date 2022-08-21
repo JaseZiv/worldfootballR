@@ -39,7 +39,7 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  player_page <- .load_page(player_url)
+  player_page <- xml2::read_html(player_url)
 
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
@@ -59,7 +59,7 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
   for(each_scout_url in scout_level1_url) {
     Sys.sleep(time_pause)
 
-    scout_pg <- .load_page(each_scout_url)
+    scout_pg <- xml2::read_html(each_scout_url)
 
     period <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".section_heading_text") %>% rvest::html_text() %>%
       unique() %>% stringr::str_squish()

@@ -108,9 +108,20 @@ fb_team_player_stats <- function(team_urls, stat_type, time_pause=3) {
         dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
         dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
 
-      player_urls <- tabs[tab_idx] %>% rvest::html_node("table") %>% rvest::html_nodes("tbody") %>%
-        rvest::html_nodes("th a") %>% rvest::html_attr("href") %>%
-        paste0(main_url, .)
+      # this is a new fix and more robust to occasions when some players don't have a URL
+      tab_player_urls <- tabs[tab_idx] %>% rvest::html_node("table")
+      url_rows <- tab_player_urls %>% rvest::html_elements("tbody tr")
+
+      player_urls <- c()
+      for(i in url_rows) {
+        each_url <- i %>% rvest::html_elements("th a") %>% rvest::html_attr("href") %>%
+          paste0(main_url, .)
+        # the below will catch when there is no player URL and it returns NA
+        if(each_url == "https://fbref.com") {
+          each_url <- NA_character_
+        }
+        player_urls <- c(player_urls, each_url)
+      }
 
 
       tab <- tab %>%
