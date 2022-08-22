@@ -156,7 +156,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
     cli::cli_alert("Data not available. Check you have the correct stat_type or team_or_player")
   } else {
 
-    if(!is.na(season_end_year)) {
+    if(!all(is.na(season_end_year))) {
       dat_df <- dat_df %>%
         dplyr::filter(.data$Season_End_Year %in% season_end_year)
     }

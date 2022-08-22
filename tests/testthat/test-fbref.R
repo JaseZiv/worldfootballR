@@ -308,3 +308,13 @@ test_that("fb_team_match_log_stats() works", {
   # expect_error(fb_team_player_stats(team_urls= "https://fbref.com/en/squads/d6a369a2/Fleetwood-Town-Stats", stat_type= 'shooooooting', time_pause = 4))
 
 })
+
+
+
+Sys.sleep(3)
+test_that("fb_squad_wages() works", {
+  testthat::skip_on_cran()
+  liv_wages <- fb_squad_wages(team_url= "https://fbref.com/en/squads/822bd0ba/Liverpool-Stats", stat_type= 'passing', time_pause = 4)
+  expect_type(liv_wages, "list")
+  expect_false(nrow(liv_wages) == 0)
+})

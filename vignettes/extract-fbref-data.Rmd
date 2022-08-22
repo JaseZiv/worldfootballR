@@ -524,6 +524,16 @@ dplyr::glimpse(ederson_summary)
 ```
 
 
+### Player Wages
+
+To be able to extract player wages for all players of a team from FBref (via Capology), use the `fb_squad_wages()` function below. Notw, this can be used with multiple `team_urls`.
+
+```{r player_wages, eval=FALSE}
+man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
+man_city_wages <- fb_squad_wages(team_urls = man_city_url)
+```
+
+
 ***
 
 
