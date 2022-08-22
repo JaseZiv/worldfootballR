@@ -1,3 +1,11 @@
+# worldfootballR 0.5.12.4000
+
+### Bugs
+
+* `load_fb_big5_advanced_season_stats()` returning zero row df when no season selected. Now rectified
+
+***
+
 # worldfootballR 0.5.12.3000
 
 ### Improvements
