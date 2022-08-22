@@ -327,7 +327,7 @@
 <code class="sourceCode R"><span><span class="co">#----- LaLiga players with expiring contracts in 2022: -----#</span></span>
 <span><span class="va">laliga_expiring</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_expiring_contracts.html">tm_expiring_contracts</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span>, contract_end_year <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">laliga_expiring</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 121</span></span>
+<span><span class="co">#&gt; Rows: 122</span></span>
 <span><span class="co">#&gt; Columns: 14</span></span>
 <span><span class="co">#&gt; $ comp_name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span></span>
 <span><span class="co">#&gt; $ country             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span></span>
@@ -335,13 +335,13 @@
 <span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gavi", "Carlos Soler", "Jan Oblak", "Marco Asensi…</span></span>
 <span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/gavi/profil/spieler…</span></span>
 <span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Central Midfield", "Central Midfield", "Goalkeepe…</span></span>
-<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Slovenia", "Spain", "France", "…</span></span>
-<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Netherlands", "Guadeloupe", NA, "Ghan…</span></span>
+<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Slovenia", "Spain", "Spain", "F…</span></span>
+<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Netherlands", NA, "Guadeloupe", "Ghan…</span></span>
 <span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FC Barcelona", "Valencia CF", "Atlético de Madrid…</span></span>
 <span><span class="co">#&gt; $ contract_expiry     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-30, 2023-06-30, 2023-06-30, 2023-06-30, 2…</span></span>
 <span><span class="co">#&gt; $ contract_option     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …</span></span>
 <span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.0e+07, 5.0e+07, 4.5e+07, 4.0e+07, 4.0e+07, 4.0e+…</span></span>
-<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 16000000, 3900000, 72000000, NA, 0, 350000…</span></span>
+<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 16000000, 3900000, NA, 72000000, 0, 350000…</span></span>
 <span><span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Puyol, De la Peña &amp; Sostres", "Promoesport", "Mih…</span></span>
 <span></span>
 <span><span class="co">#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#</span></span>
@@ -357,22 +357,22 @@
 <code class="sourceCode R"><span><span class="co"># to get all current injuries for LaLiga</span></span>
 <span><span class="va">laliga_injuries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_injuries.html">tm_league_injuries</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">laliga_injuries</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 25</span></span>
+<span><span class="co">#&gt; Rows: 24</span></span>
 <span><span class="co">#&gt; Columns: 14</span></span>
 <span><span class="co">#&gt; $ comp_name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span></span>
 <span><span class="co">#&gt; $ country             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span></span>
 <span><span class="co">#&gt; $ comp_url            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/laliga/startseite/w…</span></span>
-<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Martín Montoya", "Fede San Emeterio", "Julen Agir…</span></span>
-<span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/martin-montoya/prof…</span></span>
-<span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Right-Back", "Central Midfield", "Goalkeeper", "C…</span></span>
-<span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Real Betis Balompié", "Cádiz CF", "Athletic Bilba…</span></span>
-<span><span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 31, 25, 21, 27, 32, 34, 26, 34, 29, 26, 31, 31, 22…</span></span>
-<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Uruguay", "Spain", "Sp…</span></span>
-<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Spain", NA, NA, "Portugal", "Spain", …</span></span>
-<span><span class="co">#&gt; $ injury              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Achilles tendon problems", "Mensical Laceration",…</span></span>
-<span><span class="co">#&gt; $ injured_since       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-01-04, 2022-05-01, 2022-07-26, 2022-08-07, 2…</span></span>
+<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Jon Ander Garrido", "Martín Montoya", "Ibrahima K…</span></span>
+<span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/jon-ander-garrido/p…</span></span>
+<span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Defensive Midfield", "Right-Back", "Defensive Mid…</span></span>
+<span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cádiz CF", "Real Betis Balompié", "Girona FC", "G…</span></span>
+<span><span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 32, 31, 22, 34, 23, 21, 27, 34, 27, 29, 31, 26, 31…</span></span>
+<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Mali", "Uruguay", "Spain", "Spa…</span></span>
+<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, "Spain", NA, NA, NA, NA, "Spain", NA, …</span></span>
+<span><span class="co">#&gt; $ injury              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Patella problems", "Achilles tendon problems", "K…</span></span>
+<span><span class="co">#&gt; $ injured_since       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-07-15, 2022-01-04, 2022-06-01, 2022-08-12, 2…</span></span>
 <span><span class="co">#&gt; $ injured_until       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.5e+06, 1.5e+06, 5.0e+06, 5.0e+07, 4.0e+05, 1.2e+…</span></span>
+<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4.0e+05, 1.5e+06, 6.0e+05, 1.5e+06, 3.0e+05, 5.0e+…</span></span>
 <span></span>
 <span><span class="co">#----- Can even do it for non-standard leagues - get all current injuries for League One in England</span></span>
 <span><span class="co"># league_one_injuries &lt;- tm_league_injuries(country_name = "",</span></span>

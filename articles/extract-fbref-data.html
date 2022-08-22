@@ -544,6 +544,14 @@
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">ederson_summary</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="player-wages">Player Wages<a class="anchor" aria-label="anchor" href="#player-wages"></a>
+</h3>
+<p>To be able to extract player wages for all players of a team from FBref (via Capology), use the <code><a href="../reference/fb_squad_wages.html">fb_squad_wages()</a></code> function below. Notw, this can be used with multiple <code>team_urls</code>.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">man_city_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"</span></span>
+<span><span class="va">man_city_wages</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_squad_wages.html">fb_squad_wages</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">man_city_url</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 </div>
