@@ -1,3 +1,9 @@
+# worldfootballR 0.5.12.5000
+
+### New Functions
+
+* `fotmob_get_match_info()` added. ([#166](https://github.com/JaseZiv/worldfootballR/issues/166))
+  
 # worldfootballR 0.5.12.4000
 
 ### New Functions
