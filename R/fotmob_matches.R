@@ -1,3 +1,34 @@
+#' @importFrom jsonlite fromJSON
+.extract_fotmob_match_general <- function(url) {
+  resp <- jsonlite::fromJSON(url)
+  general <- resp$general
+  scalars <- data.frame(
+    stringsAsFactors = FALSE,
+    match_id = general$matchId, ## don't technically need this since `.fotmob_get_single_match_details` is wrapped with `.wrap_fotmob_match_id_f`
+    match_round = ifelse(is.null(general$matchRound), "", general$matchRound),
+    league_id = general$leagueId,
+    league_name = general$leagueName,
+    league_round_name = general$leagueRoundName,
+    parent_league_id = general$parentLeagueId,
+    parent_league_season = general$parentLeagueSeason,
+    match_time_utc = general$matchTimeUTC
+  )
+  teams <- data.frame(
+    stringsAsFactors = FALSE,
+    home_team_id = unlist(general$homeTeam$id),
+    home_team = unlist(general$homeTeam$name),
+    home_team_color = unlist(general$teamColors$home),
+    away_team_id = unlist(general$awayTeam$id),
+    away_team = unlist(general$awayTeam$name),
+    away_team_color = unlist(general$teamColors$away)
+  )
+  list(
+    resp = resp,
+    scalars = scalars,
+    teams = teams
+  )
+}
+
 #' Get fotmob match results by date
 #'
 #' Returns match results for all matches played on the selected date from fotmob.com
@@ -138,13 +169,13 @@ fotmob_get_match_details <- function(match_ids) {
   fp(url)
 }
 
-#' Get fotmob match team stats by match id
+#' Get fotmob match top team stats by match id
 #'
-#' Returns match top stats from fotmob.com
+#' Returns match top team stats from fotmob.com
 #'
 #' @param match_ids a vector of strings or numbers representing matches
 #'
-#' @return returns a dataframe of match shots
+#' @return returns a dataframe of match top team stats
 #'
 #' @examples
 #' \donttest{
@@ -210,34 +241,76 @@ fotmob_get_match_team_stats <- function(match_ids) {
   fp(url)
 }
 
+#' Get fotmob match info by match id
+#'
+#' Returns match info from fotmob.com
+#'
+#' @param match_ids a vector of strings or numbers representing matches
+#'
+#' @return returns a dataframe of match info
+#'
+#' @examples
+#' \donttest{
+#' try({
+#' library(dplyr)
+#' library(tidyr)
+#' results <- fotmob_get_matches_by_date(date = "20210926")
+#' match_ids <- results %>%
+#'   dplyr::select(primary_id, ccode, league_name = name, match_id) %>%
+#'   dplyr::filter(league_name == "Premier League", ccode == "ENG") %>%
+#'   dplyr::pull(match_id)
+#' match_ids # 3609987 3609979
+#' details <- fotmob_get_match_info(match_ids)
+#' })
+#' }
+#' @export
+fotmob_get_match_info <- function(match_ids) {
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_info)
+}
 
-#' @importFrom jsonlite fromJSON
-.extract_fotmob_match_general <- function(url) {
-  resp <- jsonlite::fromJSON(url)
-  general <- resp$general
-  scalars <- data.frame(
-    stringsAsFactors = FALSE,
-    match_id = general$matchId, ## don't technically need this since `.fotmob_get_single_match_details` is wrapped with `.wrap_fotmob_match_id_f`
-    match_round = ifelse(is.null(general$matchRound), "", general$matchRound),
-    league_id = general$leagueId,
-    league_name = general$leagueName,
-    league_round_name = general$leagueRoundName,
-    parent_league_id = general$parentLeagueId,
-    parent_league_season = general$parentLeagueSeason,
-    match_time_utc = general$matchTimeUTC
-  )
-  teams <- data.frame(
-    stringsAsFactors = FALSE,
-    home_team_id = unlist(general$homeTeam$id),
-    home_team = unlist(general$homeTeam$name),
-    home_team_color = unlist(general$teamColors$home),
-    away_team_id = unlist(general$awayTeam$id),
-    away_team = unlist(general$awayTeam$name),
-    away_team_color = unlist(general$teamColors$away)
-  )
-  list(
-    resp = resp,
-    scalars = scalars,
-    teams = teams
-  )
+#' @importFrom purrr possibly
+#' @importFrom dplyr bind_cols
+#' @importFrom janitor clean_names
+#' @importFrom rlang .data
+#' @importFrom tibble tibble enframe
+#' @importFrom tidyr pivot_wider unnest unnest_wider
+.fotmob_get_single_match_info <- function(match_id) {
+  main_url <- "https://www.fotmob.com/api/"
+  url <- paste0(main_url, "matchDetails?matchId=", match_id)
+
+  f <- function(url) {
+
+    general <- .extract_fotmob_match_general(url)
+    df <- dplyr::bind_cols(
+      general$scalars,
+      general$teams
+    )
+
+    info <- general$resp$content$matchFacts$infoBox
+
+    unnested_info <- info %>%
+      tibble::enframe() %>%
+      tidyr::pivot_wider(
+        names_from = .data$name,
+        values_from = .data$value
+      ) %>%
+      janitor::clean_names() %>%
+      tidyr::unnest_wider(
+        c(tidyselect::vars_select_helpers$where(is.list), -tidyselect::vars_select_helpers$any_of("attendance")),
+        names_sep = "_"
+      ) %>%
+      tidyr::unnest(
+        tidyselect::vars_select_helpers$any_of("attendance")
+      ) %>%
+      janitor::clean_names()
+
+    if (nrow(df) != 1) {
+      return(tibble::tibble())
+    }
+
+    dplyr::bind_cols(df, unnested_info)
+  }
+
+  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp(url)
 }

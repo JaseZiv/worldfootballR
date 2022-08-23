@@ -340,6 +340,21 @@ test_that("fotmob_get_season_stats() works", {
   expect_equal(colnames(epl_ll_team_xgs_2122), expected_stat_cols)
 })
 
+test_that("fotmob_get_match_info() works", {
+  testthat::skip_on_cran()
+
+  expected_match_info_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color", "match_date_date_formatted", "match_date_time_formatted", "tournament_id", "tournament_link", "tournament_league_name", "tournament_round", "stadium_name", "stadium_city", "stadium_country", "stadium_lat", "stadium_long", "referee_img_url", "referee_text", "referee_country", "attendance")
+  match_info <- fotmob_get_match_info(c(3609987, 3609979))
+
+  expect_gt(nrow(match_info), 0)
+  expect_equal(colnames(match_info), expected_match_info_cols)
+
+  ## non-domestic match
+  match_info <- fotmob_get_match_info(3846342)
+  expect_gt(nrow(match_info), 0)
+  expect_equal(colnames(match_info), expected_match_info_cols)
+})
+
 test_that("fotmob_get_match_team_stats() works", {
   testthat::skip_on_cran()
 

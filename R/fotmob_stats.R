@@ -101,7 +101,7 @@
   see_all_button <- page %>% rvest::html_elements(".SeeAllButton")
   has_see_all_button <- length(see_all_button) > 0
 
-  options <- page |> rvest::html_elements("option")
+  options <- page %>% rvest::html_elements("option")
   has_options <- length(options) > 0
 
   if (has_see_all_button) {
@@ -116,10 +116,10 @@
     .extract_seasons_and_stats_from_options(options)
     } else if (has_options) {
 
-    values <- options |> rvest::html_attr("value")
+    values <- options %>% rvest::html_attr("value")
 
-    parts <- values |>
-      purrr::keep(~stringr::str_detect(.x, "season")) |>
+    parts <- values %>%
+      purrr::keep(~stringr::str_detect(.x, "season")) %>%
       stringr::str_split("/")
 
     if(length(parts) == 0) {
@@ -130,7 +130,7 @@
       rlang::abort(glue::glue("Season ids not stored in expected format at {url}."))
     }
 
-    season_ids <- parts |>
+    season_ids <- parts %>%
       purrr::map_chr(~purrr::pluck(.x, 4))
 
     ## protect against the current season being in the offseason, unless there is no other season.
@@ -142,8 +142,8 @@
       team_or_player
     )
 
-    next_page <- next_url |> rvest::read_html()
-    next_options <- next_page |> rvest::html_elements("option")
+    next_page <- next_url %>% rvest::read_html()
+    next_options <- next_page %>% rvest::html_elements("option")
     .extract_seasons_and_stats_from_options(next_options)
 
   } else {
