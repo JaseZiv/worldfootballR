@@ -94,7 +94,7 @@ fb_squad_wages <- function(team_urls, time_pause=3) {
           TRUE ~ NA_character_
         )) %>%
         dplyr::mutate(pay_type = gsub("\\d+", "", .data$pay_type)) %>%
-        dplyr::mutate(pay_type = case_when(
+        dplyr::mutate(pay_type = dplyr::case_when(
           is.na(.data$currency) ~ NA_character_,
           !is.na(.data$currency) ~ paste0(.data$pay_type, .data$currency)
         )) %>%
@@ -103,13 +103,13 @@ fb_squad_wages <- function(team_urls, time_pause=3) {
       # finally convert it back to a wide df, doing this only for players who have a value in wages
       dat_wide <- dat_long %>%
         dplyr::filter(!is.na(.data$value)) %>%
-        tidyr::pivot_wider(id_cols = c(.data$Player, .data$Nation, .data$Pos, .data$Age, .data$Verification, .data$Url),
+        tidyr::pivot_wider(id_cols = c(.data$Player, .data$Nation, .data$Pos, .data$Age, .data$Notes, .data$Url),
                            names_from = .data$pay_type, values_from = .data$value) %>%
         # then we join back the empty wage players so as not to stuff up our pivot_wider
         dplyr::bind_rows(
           dat_long %>%
             dplyr::filter(is.na(.data$value)) %>%
-            dplyr::select(.data$Player, .data$Nation, .data$Pos, .data$Age, .data$Verification, .data$Url) %>% dplyr::distinct()
+            dplyr::select(.data$Player, .data$Nation, .data$Pos, .data$Age, .data$Notes, .data$Url) %>% dplyr::distinct()
         )
 
       # now add metadata
@@ -117,7 +117,7 @@ fb_squad_wages <- function(team_urls, time_pause=3) {
         dplyr::mutate(Team = team_name,
                Comp = league,
                Season = season) %>%
-        select(.data$Team, .data$Comp, .data$Season, .data$Player, .data$Nation, .data$Pos, .data$Age, tidyselect::contains("Wage"), .data$Verification, .data$Url)
+        dplyr::select(.data$Team, .data$Comp, .data$Season, .data$Player, .data$Nation, .data$Pos, .data$Age, tidyselect::contains("Wage"), .data$Notes, .data$Url)
 
     } else {
       print(glue::glue("NOTE: Wage data is not available for {team_url}. Check {team_url} to see if it exists."))
