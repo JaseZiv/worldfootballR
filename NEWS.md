@@ -1,8 +1,3 @@
-# worldfootbalR (Dev version)
-
-
-***
-
 # worldfootbalR 0.6.0
 
 ### New functions (and deprecated old ones)
