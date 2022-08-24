@@ -1,4 +1,4 @@
-# worldfootbalR (0.6.0 (Dev verion)
+# worldfootbalR (Dev version)
 
 
 ***
