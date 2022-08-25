@@ -68,6 +68,134 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="worldfootballr-060">worldfootballR 0.6.0<a class="anchor" aria-label="anchor" href="#worldfootballr-060"></a></h2><p class="text-muted">CRAN release: 2022-08-24</p>
+<div class="section level4">
+<h4 id="new-functions-and-deprecated-old-ones-0-6-0">New functions (and deprecated old ones)<a class="anchor" aria-label="anchor" href="#new-functions-and-deprecated-old-ones-0-6-0"></a></h4>
+<ul><li>
+<code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code> replaces <code>get_advanced_match_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_lineups.html">fb_match_lineups()</a></code> replaces <code>get_match_lineups</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_results.html">fb_match_results()</a></code> replaces <code>get_match_results</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_report.html">fb_match_report()</a></code> replaces <code>get_match_report</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_shooting.html">fb_match_shooting()</a></code> replaces <code>get_match_shooting</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code> replaces <code>get_match_summary</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_urls.html">fb_match_urls()</a></code> replaces <code>get_match_urls</code>
+</li>
+<li>
+<code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> replaces <code>get_season_team_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_team_match_results.html">fb_team_match_results()</a></code> replaces <code>get_team_match_results</code>
+</li>
+<li>
+<code><a href="../reference/tm_player_market_values.html">tm_player_market_values()</a></code> replaces <code>get_player_market_values</code>
+</li>
+<li>
+<code>tm_player_transfer_history</code> replaces <code>player_transfer_history</code>
+</li>
+<li>Improve fotmob tests by checking for column names instead of just number of columns.</li>
+<li>
+<code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code>, <code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code>: Functions to load pre stored match ids and match details.</li>
+<li>
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code>, <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>, and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+</li>
+<li>
+<code><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info()</a></code> added. (<a href="https://github.com/JaseZiv/worldfootballR/issues/166" class="external-link">#166</a>)</li>
+<li>
+<code><a href="../reference/fb_squad_wages.html">fb_squad_wages()</a></code> designed to get player wage estimates from FBref via Capology</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bugs-0-6-0">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-6-0"></a></h4>
+<ul><li>
+<code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> returning zero row df when no season selected. Now rectified</li>
+<li>
+<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>: Fixed bug in <code>.fotmob_get_single_season_stats()</code> where season ids with dashes, e.g. <code>"17709-Apertura"</code> for Liga MX 2022/2023 would error.</li>
+<li>
+<code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> throwing error for team stats. Also updated to only have one page load, hopefully minimising the risk of being blocked for excessive page loads</li>
+</ul><p>Elements changed on FBref somewhere in the same time <code>v 0.5.11</code> was being released!</p>
+<ul><li><code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code></li>
+<li><code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code></li>
+<li>
+<code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> throwing error as <code>Matches played</code> column now names <code>MP</code> <a href="https://github.com/JaseZiv/worldfootballR/issues/158" class="external-link">#158</a>
+</li>
+<li>
+<code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>: Fix unnesting to accommodate additional nesting and identical names at different levels. This bug affected <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which calls <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> <a href="https://github.com/JaseZiv/worldfootballR/issues/155" class="external-link">#155</a>
+</li>
+<li>
+<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> returns stats as characters <a href="https://github.com/JaseZiv/worldfootballR/issues/150" class="external-link">#150</a>
+</li>
+<li>
+<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>: Address logic for extracting season ids from season stats pages that was failing due to blank stats pages in the offseason for a league.</li>
+<li>
+<code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code> wasn’t returning the away team name <a href="https://github.com/JaseZiv/worldfootballR/issues/147" class="external-link">#147</a>
+</li>
+<li>
+<code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> would error when passing in a new <code>season_start_year</code> value for seasons that haven’t yet started but match fixtures are available on Understat <a href="https://github.com/JaseZiv/worldfootballR/issues/148" class="external-link">#148</a>
+</li>
+</ul></div>
+<div class="section level4">
+<h4 id="improvements-0-6-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-6-0"></a></h4>
+<ul><li><p>FBref functions now pass user agent to headers under the hood</p></li>
+<li><p><code><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats()</a></code> added. The following functions now no longer return league/season metadata, including columns <code>League</code>, <code>Gender</code>, <code>Country</code>, <code>Season</code>:</p></li>
+<li><p><code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code></p></li>
+<li><p><code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code></p></li>
+<li><p><code><a href="../reference/fb_match_report.html">fb_match_report()</a></code></p></li>
+</ul></div>
+<div class="section level4">
+<h4 id="new-functions-and-deprecated-old-ones-0-6-0-1">New functions (and deprecated old ones)<a class="anchor" aria-label="anchor" href="#new-functions-and-deprecated-old-ones-0-6-0-1"></a></h4>
+<ul><li>
+<code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code> replaces <code>get_advanced_match_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_lineups.html">fb_match_lineups()</a></code> replaces <code>get_match_lineups</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_results.html">fb_match_results()</a></code> replaces <code>get_match_results</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_report.html">fb_match_report()</a></code> replaces <code>get_match_report</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_shooting.html">fb_match_shooting()</a></code> replaces <code>get_match_shooting</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code> replaces <code>get_match_summary</code>
+</li>
+<li>
+<code><a href="../reference/fb_match_urls.html">fb_match_urls()</a></code> replaces <code>get_match_urls</code>
+</li>
+<li>
+<code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> replaces <code>get_season_team_stats</code>
+</li>
+<li>
+<code><a href="../reference/fb_team_match_results.html">fb_team_match_results()</a></code> replaces <code>get_team_match_results</code>
+</li>
+<li>
+<code><a href="../reference/tm_player_market_values.html">tm_player_market_values()</a></code> replaces <code>get_player_market_values</code>
+</li>
+<li>
+<code>tm_player_transfer_history</code> replaces <code>player_transfer_history</code>
+</li>
+<li>Improve fotmob tests by checking for column names instead of just number of columns.</li>
+<li>
+<code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code>, <code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code>: Functions to load pre stored match ids and match details.</li>
+<li>
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code>, <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>, and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+</li>
+</ul><hr></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.7" id="worldfootballr-057">worldfootballR 0.5.7<a class="anchor" aria-label="anchor" href="#worldfootballr-057"></a></h2><p class="text-muted">CRAN release: 2022-07-11</p>
 <div class="section level4">
 <h4 id="improvements-0-5-7">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-7"></a></h4>
