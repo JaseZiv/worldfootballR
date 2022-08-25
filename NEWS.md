@@ -1,4 +1,4 @@
-# worldfootbalR 0.6.0
+# worldfootballR 0.6.0
 
 ### New functions (and deprecated old ones)
 
