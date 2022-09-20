@@ -18,7 +18,7 @@
 #' try({
 #' # for single teams:
 #' man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-#' fb_team_shot_logs(team_urls = man_city_url)
+#' fb_team_goal_logs(team_urls = man_city_url)
 #' })
 #' }
 
