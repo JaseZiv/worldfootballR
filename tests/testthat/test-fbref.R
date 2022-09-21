@@ -318,3 +318,11 @@ test_that("fb_squad_wages() works", {
   expect_type(liv_wages, "list")
   expect_false(nrow(liv_wages) == 0)
 })
+
+Sys.sleep(3)
+test_that("fb_team_goal_logs() works", {
+  testthat::skip_on_cran()
+  mc_goal_log <- fb_team_goal_logs(team_url= "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats", time_pause = 4)
+  expect_type(mc_goal_log, "list")
+  expect_false(nrow(mc_goal_log) == 0)
+})
