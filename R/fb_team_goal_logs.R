@@ -1,8 +1,8 @@
 #' Get team goal logs
 #'
-#' Returns the team's season shot logs
+#' Returns the team's season goal logs
 #'
-#' @param team_urls the URL(s) of the teams(s) (can come from fb_teams_urls())
+#' @param team_urls the URL(s) of the team(s) (can come from fb_teams_urls())
 #' @param time_pause the wait time (in seconds) between page loads
 #' @param for_or_against select whether to return data of goals "for" (the default), goals "against", or "both"
 #'
