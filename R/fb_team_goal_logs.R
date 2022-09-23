@@ -18,7 +18,7 @@
 #' try({
 #' # for single teams:
 #' man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-#' fb_team_goal_logs(team_urls = man_city_url, for_or_against="for")
+#' fb_team_goal_logs(team_urls = man_city_url, for_or_against = "for")
 #' })
 #' }
 
@@ -35,9 +35,6 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
     Sys.sleep(time_pause)
 
     page <- .load_page(team_url)
-    # team_name <- sub('.*\\/', '', team_url) %>% gsub("-Stats", "", .) %>% gsub("-", " ", .)
-    # league <- page %>% rvest::html_elements(".prevnext+ p a") %>% rvest::html_text()
-    # season <- page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish() %>% sub(" .*", "", .)
     page_urls <- page %>% rvest::html_elements("#inner_nav .hoversmooth a")
 
     # this is a hack for now - the goals log is the last of four "All Competitions" urls
@@ -81,7 +78,8 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
       goals <-
         dplyr::bind_rows(goals_for,goals_against) %>%
         dplyr::rename(Body_Part=Body.Part,GCA_Type1=Type,GCA_Type2=Type.1) %>%
-        dplyr::arrange(For_or_Against,Date,Minute)
+        filter(!is.na(Rk)) %>%
+        dplyr::arrange(desc(For_or_Against),Date,Minute)
 
       return(goals)
     }
