@@ -1,6 +1,6 @@
 #' Get player goal logs
 #'
-#' Returns the player's season goal and assist logs
+#' Returns the player's career goal and assist logs
 #'
 #' @param player_urls the URL(s) of the player(s)
 #' @param time_pause the wait time (in seconds) between page loads
