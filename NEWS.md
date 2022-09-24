@@ -1,4 +1,4 @@
-# worldfootballR 0.6.0.1000
+# worldfootballR 0.6.0 (dev version)
 
 ### New functions
 
