@@ -1,3 +1,12 @@
+# worldfootballR (dev version)
+
+### New functions
+
+* `fb_team_goal_logs` - returns the team's season goals for and goals against logs
+* `fb_player_goal_logs` - returns the player's career goal and assist logs
+
+***
+
 # worldfootballR 0.6.0
 
 ### New functions (and deprecated old ones)

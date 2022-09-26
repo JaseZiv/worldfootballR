@@ -229,7 +229,7 @@ The `fb_match_results()` function can be used to get data for multiple seasons/l
 
 ```{r get_match_results_multiple, eval=FALSE}
 big_5_2020_results <- fb_match_results(country = c("ENG", "ESP", "ITA", "GER", "FRA"),
-                                        gender = "M", season_end_year = 2020, tier = "1st")
+                                       gender = "M", season_end_year = 2020, tier = "1st")
 ```
 
 
@@ -373,6 +373,16 @@ urls <- c("https://fbref.com/en/squads/822bd0ba/Liverpool-Stats",
 shooting_logs <- fb_team_match_log_stats(team_urls = urls, stat_type = "shooting")
 ```
 
+### Season goal logs
+
+Use the `fb_team_goal_logs()` function to get goal logs "for" (the default), "against", or "both", for a team.
+
+```
+man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
+goal_log <- function(team_urls = man_city_url, for_or_against="both")
+
+dplyr::glimpse(goal_log)
+```
 
 ***
 
@@ -398,8 +408,8 @@ As of version `0.3.6`, the function now returns the scouting report of ALL avail
 ```
 # TO GET THE LAST 365 DAYS REPORT:
 scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                   pos_versus = "primary") %>% 
-               dplyr::filter(scouting_period == "Last 365 Days")
+pos_versus = "primary") %>% 
+dplyr::filter(scouting_period == "Last 365 Days")
 ```
 
 ```{r get_player_scouting_report, eval=FALSE}
@@ -500,7 +510,16 @@ dplyr::glimpse(fleetwood_standard_stats)
 # multiple_playing_time <- fb_team_player_stats(team_urls= teams, stat_type= "playing_time")
 ```
 
+### Goal and assist logs
 
+Use the `fb_player_goal_logs()` function to get logs of "goals" (the default), "assists", or "both".
+
+```
+jwp_url <- "https://fbref.com/en/players/3515d404/James-Ward-Prowse"
+goal_log <- function(team_urls = jwp_url, goals_or_assists="both")
+
+dplyr::glimpse(goal_log)
+```
 
 ### Player Match Logs
 
