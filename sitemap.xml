@@ -61,6 +61,9 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_match_urls.html</loc>
   </url>
   <url>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_goal_logs.html</loc>
+  </url>
+  <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_match_logs.html</loc>
   </url>
   <url>
@@ -77,6 +80,9 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_squad_wages.html</loc>
+  </url>
+  <url>
+    <loc>https://jaseziv.github.io/worldfootballR/reference/fb_team_goal_logs.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_team_match_log_stats.html</loc>
