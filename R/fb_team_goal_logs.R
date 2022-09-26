@@ -63,15 +63,17 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
           else data.frame()
         }
 
-      # turn html tables into data frames, and label the goals
+      # turn html tables into data frames, force minute to be a character, and label the goals
       goals_for <-
         tab_box_goals_for %>%
         data.frame() %>%
+        mutate(across(contains("Minute"), as.character)) %>%
         dplyr::mutate(For_or_Against="for")
 
       goals_against <-
         tab_box_goals_against %>%
         data.frame() %>%
+        mutate(across(contains("Minute"), as.character)) %>%
         dplyr::mutate(For_or_Against="against")
 
       # bind the tables together

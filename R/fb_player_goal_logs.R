@@ -63,15 +63,17 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
           else data.frame()
         }
 
-      # turn html tables into data frames, and label the goals and assists
+      # turn html tables into data frames, force minute to be a character, and label the goals and assists
       goals <-
         tab_box_goals %>%
         data.frame() %>%
+        mutate(across(contains("Minute"), as.character)) %>%
         dplyr::mutate(Goal_or_Assist="goal")
 
       assists <-
         tab_box_assists %>%
         data.frame() %>%
+        mutate(across(contains("Minute"), as.character)) %>%
         dplyr::mutate(Goal_or_Assist="assist")
 
       # bind the tables together
