@@ -67,21 +67,21 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
       goals_for <-
         tab_box_goals_for %>%
         data.frame() %>%
-        mutate(across(contains("Minute"), as.character)) %>%
+        mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
         dplyr::mutate(For_or_Against="for")
 
       goals_against <-
         tab_box_goals_against %>%
         data.frame() %>%
-        mutate(across(contains("Minute"), as.character)) %>%
+        dplyr::mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
         dplyr::mutate(For_or_Against="against")
 
       # bind the tables together
       goals <-
         dplyr::bind_rows(goals_for,goals_against) %>%
-        dplyr::rename(Body_Part=Body.Part,GCA_Type1=Type,GCA_Type2=Type.1) %>%
-        filter(!is.na(Rk)) %>%
-        dplyr::arrange(desc(For_or_Against),Date,Minute)
+        dplyr::rename(Body_Part=.data$Body.Part,GCA_Type1=.data$Type,GCA_Type2=.data$Type.1) %>%
+        dplyr::filter(!is.na(.data$Rk)) %>%
+        dplyr::arrange(dplyr::desc(.data$For_or_Against),.data$Date,.data$Minute)
 
       return(goals)
     }
