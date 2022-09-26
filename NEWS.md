@@ -1,4 +1,4 @@
-# worldfootballR (dev version)
+# worldfootballR (development version)
 
 ### New functions
 
