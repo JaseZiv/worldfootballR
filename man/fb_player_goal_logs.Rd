@@ -11,7 +11,7 @@ fb_player_goal_logs(player_urls, time_pause = 3, goals_or_assists = "goals")
 
 \item{time_pause}{the wait time (in seconds) between page loads}
 
-\item{for_or_against}{select whether to return data of "goals" (the default), "assists", or "both"}
+\item{goals_or_assists}{select whether to return data of "goals" (the default), "assists", or "both"}
 }
 \value{
 returns a dataframe of the player's goals and assists

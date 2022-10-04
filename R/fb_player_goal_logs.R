@@ -4,7 +4,7 @@
 #'
 #' @param player_urls the URL(s) of the player(s)
 #' @param time_pause the wait time (in seconds) between page loads
-#' @param for_or_against select whether to return data of "goals" (the default), "assists", or "both"
+#' @param goals_or_assists select whether to return data of "goals" (the default), "assists", or "both"
 #'
 #' @return returns a dataframe of the player's goals and assists
 #'
@@ -75,21 +75,21 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
       goals <-
         tab_box_goals %>%
         data.frame() %>%
-        mutate(across(contains("Minute"), as.character)) %>%
+        dplyr::mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
         dplyr::mutate(Goal_or_Assist="goal")
 
       assists <-
         tab_box_assists %>%
         data.frame() %>%
-        mutate(across(contains("Minute"), as.character)) %>%
+        dplyr::mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
         dplyr::mutate(Goal_or_Assist="assist")
 
       # bind the tables together
       goals_and_assists <-
         dplyr::bind_rows(goals,assists) %>%
-        dplyr::rename(Body_Part=Body.Part,GCA_Type1=Type,GCA_Type2=Type.1) %>%
-        filter(!is.na(Rk)) %>%
-        dplyr::arrange(desc(Goal_or_Assist),Rk)
+        dplyr::rename(Body_Part=.data$Body.Part,GCA_Type1=.data$Type,GCA_Type2=.data$Type.1) %>%
+        dplyr::filter(!is.na(.data$Rk)) %>%
+        dplyr::arrange(dplyr::desc(.data$Goal_or_Assist),.data$Rk)
 
       return(goals_and_assists)
     }
@@ -103,8 +103,3 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
 
   return(goals_map)
 }
-
-# man_city_url <- "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats"
-# liverpool_url <- "https://fbref.com/en/squads/822bd0ba/Liverpool-Stats"
-# d1 <- fb_team_goal_logs(team_urls = man_city_url)
-# d2 <- fb_team_goal_logs(team_urls = c(man_city_url,liverpool_url))
