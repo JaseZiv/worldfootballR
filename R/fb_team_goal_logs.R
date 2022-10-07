@@ -37,8 +37,16 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
     page <- .load_page(team_url)
     page_urls <- page %>% rvest::html_elements("#inner_nav .hoversmooth a")
 
-    # this is a hack for now - the goals log is the last of four "All Competitions" urls
-    index <- grep("All Competitions", rvest::html_text(page_urls))[4]
+    # if there is only one competition the "Goal Logs" text is a url
+    # if there is more than one competitions it is a drop down menu
+    # access from the "All Competitions" url instead
+    # (may be better ways to get the All Competitions url)
+
+    index <- ifelse(
+      !is.na(grep("Goal Logs", rvest::html_text(page_urls))[1]),
+      grep("Goal Logs", rvest::html_text(page_urls))[1],
+      grep("All Competitions", rvest::html_text(page_urls))[4]
+    )
 
     goal_log_url <- page_urls[index] %>% rvest::html_attr("href") %>% unique() %>% paste0("https://fbref.com", .)
     goal_log_page <- tryCatch(.load_page(goal_log_url), error = function(e) NA)
