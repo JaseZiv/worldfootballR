@@ -46,7 +46,8 @@ Imports:
     withr,
     xml2,
     tibble,
-    cli
+    cli,
+    curl
 Suggests: 
     knitr,
     rmarkdown,

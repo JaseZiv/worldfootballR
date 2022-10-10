@@ -398,7 +398,9 @@
   xml2::read_html(session)
 }
 
+# Use 1.8.0 version of jsonlite::fromJSON since 1.8.2's version (that uses base::url()) doesn't work for some cases
 #' @importFrom jsonlite validate parse_json
+#' @importFrom curl new_handle handle_setheaders curl
 .fromJSON <- function(txt, simplifyVector = TRUE, simplifyDataFrame = simplifyVector, simplifyMatrix = simplifyVector, flatten = FALSE, ...) {
 
   # check type
@@ -410,12 +412,9 @@
   if (is.character(txt) && length(txt) == 1 && nchar(txt, type="bytes") < 2084 && !jsonlite::validate(txt)) {
     if (grepl("^https?://", txt, useBytes=TRUE)) {
       agent <- getOption("worldfootballR.agent", default = "RStudio Desktop (2022.7.1.554); R (4.1.1 x86_64-w64-mingw32 x86_64 mingw32)")
-      txt <- if(R.version$major < 4){
-        base::url(txt, c(`User-Agent` = agent))
-      } else {
-
-        base::url(txt, headers = c(Accept = "application/json, text/*, */*", `User-Agent` = agent))
-      }
+      h <- curl::new_handle(useragent = agent)
+      curl::handle_setheaders(h, Accept = "application/json, text/*, */*")
+      txt <- curl::curl(txt, handle = h)
     } else if (file.exists(txt)) {
       # With files we can never know for sure the encoding. Lets try UTF8 first.
       # txt <- raw_to_json(readBin(txt, raw(), file.info(txt)$size));
