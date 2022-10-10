@@ -142,17 +142,21 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   )
 }
 
+#' @importFrom purrr safely
 .fotmob_get_league_resp_from_build_id <- function(page_url, stats = FALSE) {
   build_id <- .fotmob_get_build_id()
   url <- sprintf("https://www.fotmob.com/_next/data/%s%s.json", build_id, page_url)
   if(stats) {
     url <- stringr::str_replace(url, "overview", "stats")
   }
+  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
   .safely_from_json(url)
 }
 
+#' @importFrom purrr safely
 .fotmob_get_league_resp <- function(league_id, page_url, fallback = TRUE) {
   url <- sprintf("https://www.fotmob.com/api/leagues?id=%s", league_id)
+  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
   res <- .safely_from_json(url)
   if(!is.null(res$result)) {
     return(res$result)

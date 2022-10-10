@@ -1,9 +1,3 @@
-
-
-#' @importFrom purrr safely
-#' @importFrom jsonlite fromJSON
-.safely_from_json <- purrr::safely(jsonlite::fromJSON, otherwise = NULL, quiet = TRUE)
-
 #' @importFrom rvest read_html html_elements html_text
 #' @importFrom purrr keep
 #' @importFrom stringr str_detect
@@ -18,11 +12,10 @@
 }
 
 #' @importFrom stringr str_extract
-#' @importFrom jsonlite fromJSON
 .fotmob_get_build_id <- function() {
   meta <- .fotmob_extract_meta()
   meta %>%
     stringr::str_extract('(?<=\\"buildId\\"[:]).*(?=\\,\\"isFallback\\")') %>%
-    jsonlite::fromJSON()
+    .fromJSON()
 
 }
