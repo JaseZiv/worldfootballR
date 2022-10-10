@@ -7,10 +7,10 @@ test_that("fotmob_get_matches_by_date() works", {
   td <- Sys.Date()
   results <- fotmob_get_matches_by_date(date = as.character(c(td, td-1)))
   expect_gt(nrow(results), 0)
+  ## There have been issues where the columns are not in the same exact order depending on the day, so rely on sort
   expect_equal(
-    colnames(results),
-    c("ccode", "id", "primary_id", "name", "match_id", "match_league_id", "match_time", "home_id", "home_score", "home_name", "home_long_name", "home_pen_score", "away_id", "away_score", "away_name", "away_long_name", "away_pen_score", "match_eliminated_team_id", "match_status_id", "match_tournament_stage", "match_status_finished", "match_status_started", "match_status_cancelled", "match_status_score_str", "match_status_start_date_str", "match_status_start_date_str_short", "short", "long", "match_status_ongoing", "match_status_start_time_str", "match_status_awarded", "match_status_aggregated_str", "match_time_ts", "parent_league_id", "internal_rank", "live_rank", "simple_league", "is_group", "group_name", "parent_league_name")
-
+    sort(colnames(results)),
+    c("away_id", "away_long_name", "away_name", "away_pen_score", "away_score", "ccode", "group_name", "home_id", "home_long_name", "home_name", "home_pen_score", "home_score", "id", "internal_rank", "is_group", "live_rank", "long", "match_eliminated_team_id", "match_id", "match_league_id", "match_status_aggregated_str", "match_status_awarded", "match_status_cancelled", "match_status_finished", "match_status_id", "match_status_ongoing", "match_status_score_str", "match_status_start_date_str", "match_status_start_date_str_short", "match_status_start_time_str", "match_status_started", "match_time", "match_time_ts", "match_tournament_stage", "name", "parent_league_id", "parent_league_name", "primary_id", "short", "simple_league")
   )
 })
 
