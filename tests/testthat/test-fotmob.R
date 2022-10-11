@@ -5,12 +5,12 @@ test_that("fotmob_get_matches_by_date() works", {
   testthat::skip_on_cran()
 
   td <- Sys.Date()
-  results <- fotmob_get_matches_by_date(date = as.character(c(td, td-1)))
+  results <- fotmob_get_matches_by_date(date = as.character(c(td-7, td-8)))
   expect_gt(nrow(results), 0)
   ## There have been issues where the columns are not in the same exact order depending on the day, so rely on sort
-  expect_equal(
-    sort(colnames(results)),
-    c("away_id", "away_long_name", "away_name", "away_pen_score", "away_score", "ccode", "group_name", "home_id", "home_long_name", "home_name", "home_pen_score", "home_score", "id", "internal_rank", "is_group", "live_rank", "long", "match_eliminated_team_id", "match_id", "match_league_id", "match_status_aggregated_str", "match_status_awarded", "match_status_cancelled", "match_status_finished", "match_status_id", "match_status_ongoing", "match_status_score_str", "match_status_start_date_str", "match_status_start_date_str_short", "match_status_start_time_str", "match_status_started", "match_time", "match_time_ts", "match_tournament_stage", "name", "parent_league_id", "parent_league_name", "primary_id", "short", "simple_league")
+  expect_true(
+    all(c("away_id", "away_long_name", "away_name", "away_score", "ccode", "group_name", "home_id", "home_long_name", "home_name", "home_score", "id", "internal_rank", "is_group", "live_rank", "long", "match_eliminated_team_id", "match_id", "match_league_id", "match_status_id", "match_status_ongoing", "match_status_score_str", "match_time", "match_time_ts", "match_tournament_stage", "name", "parent_league_id", "parent_league_name", "primary_id", "short", "simple_league") %in% colnames(results)
+    )
   )
 })
 
