@@ -5,8 +5,11 @@
 * `fb_team_goal_logs` - returns the team's season goals for and goals against logs (0.6.0.2000)
 * `fb_player_goal_logs` - returns the player's career goal and assist logs (0.6.0.2000)
 
-***
+### Improvements
 
+* Fotmob functions now pass user agent to headers under the hood (0.6.0.4000)
+
+***
 # worldfootballR 0.6.0
 
 ### New functions (and deprecated old ones)
