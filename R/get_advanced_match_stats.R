@@ -124,11 +124,11 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
             if(!stat_type %in% c("keeper", "shots")) {
               if(team_or_player == "team") {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
-                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Nation, -.data$Pos, -.data$Age)
+                  dplyr::filter(stringr::str_detect(.data[["Player"]], " Players")) %>%
+                  dplyr::select(-.data[["Player"]], -.data[["Player_Num"]], -.data[["Nation"]], -.data[["Pos"]], -.data[["Age"]])
               } else {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+                  dplyr::filter(!stringr::str_detect(.data[["Player"]], " Players"))
               }
 
             }
@@ -136,11 +136,11 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
             if(!stat_type %in% c("keeper", "shots")) {
               if(team_or_player == "team") {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
-                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Pos, -.data$Age)
+                  dplyr::filter(stringr::str_detect(.data[["Player"]], " Players")) %>%
+                  dplyr::select(-.data[["Player"]], -.data[["Player_Num"]], -.data[["Pos"]], -.data[["Age"]])
               } else {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+                  dplyr::filter(!stringr::str_detect(.data[["Player"]], " Players"))
               }
 
             }
@@ -308,11 +308,11 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_
             if(!stat_type %in% c("keeper", "shots")) {
               if(team_or_player == "team") {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
-                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Nation, -.data$Pos, -.data$Age)
+                  dplyr::filter(stringr::str_detect(.data[["Player"]], " Players")) %>%
+                  dplyr::select(-.data[["Player"]], -.data[["Player_Num"]], -.data[["Nation"]], -.data[["Pos"]], -.data[["Age"]])
               } else {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+                  dplyr::filter(!stringr::str_detect(.data[["Player"]], " Players"))
               }
 
             }
@@ -320,11 +320,11 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_
             if(!stat_type %in% c("keeper", "shots")) {
               if(team_or_player == "team") {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(stringr::str_detect(.data$Player, " Players")) %>%
-                  dplyr::select(-.data$Player, -.data$Player_Num, -.data$Pos, -.data$Age)
+                  dplyr::filter(stringr::str_detect(.data[["Player"]], " Players")) %>%
+                  dplyr::select(-.data[["Player"]], -.data[["Player_Num"]], -.data[["Pos"]], -.data[["Age"]])
               } else {
                 stat_df_output <- stat_df_output %>%
-                  dplyr::filter(!stringr::str_detect(.data$Player, " Players"))
+                  dplyr::filter(!stringr::str_detect(.data[["Player"]], " Players"))
               }
 
             }
@@ -358,12 +358,12 @@ get_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons <- seasons %>%
-    dplyr::filter(.data$seasons_urls %in% final_df$League_URL) %>%
-    dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
+    dplyr::filter(.data[["seasons_urls"]] %in% final_df$League_URL) %>%
+    dplyr::select(League=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season=.data[["seasons"]], League_URL=.data[["seasons_urls"]])
 
   final_df <- seasons %>%
     dplyr::left_join(final_df, by = "League_URL") %>%
-    dplyr::select(-.data$League_URL) %>% dplyr::distinct(.keep_all = T)
+    dplyr::select(-.data[["League_URL"]]) %>% dplyr::distinct(.keep_all = T)
 
   return(final_df)
 }

@@ -41,7 +41,7 @@ fb_match_urls <- function(country, gender, season_end_year, tier = "1st", non_do
 
   if(is.na(cups_url)) {
     fixtures_url <- seasons %>%
-      dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
       dplyr::filter(country %in% country_abbr,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
@@ -51,7 +51,7 @@ fb_match_urls <- function(country, gender, season_end_year, tier = "1st", non_do
       dplyr::pull(fixtures_url) %>% unique()
   } else {
     fixtures_url <- seasons %>%
-      dplyr::filter(.data$comp_url %in% cups_url,
+      dplyr::filter(.data[["comp_url"]] %in% cups_url,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
                     !is.na(fixtures_url)) %>%
@@ -138,7 +138,7 @@ get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_d
 
   if(is.na(cups_url)) {
     fixtures_url <- seasons %>%
-      dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
       dplyr::filter(country %in% country_abbr,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
@@ -148,7 +148,7 @@ get_match_urls <- function(country, gender, season_end_year, tier = "1st", non_d
       dplyr::pull(fixtures_url) %>% unique()
   } else {
     fixtures_url <- seasons %>%
-      dplyr::filter(.data$comp_url %in% cups_url,
+      dplyr::filter(.data[["comp_url"]] %in% cups_url,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
                     !is.na(fixtures_url)) %>%

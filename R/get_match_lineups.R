@@ -91,25 +91,25 @@ fb_match_lineups <- function(match_url, time_pause=3) {
 
         additional_info <- additional_info %>%
           .clean_match_advanced_stats_data() %>%
-          dplyr::filter(!is.na(.data$Player_Num)) %>%
+          dplyr::filter(!is.na(.data[["Player_Num"]])) %>%
           dplyr::bind_cols(Team=team, Home_Away=home_or_away, .) %>%
-          dplyr::mutate(Player_Num = as.character(.data$Player_Num))
+          dplyr::mutate(Player_Num = as.character(.data[["Player_Num"]]))
 
         if(any(grepl("Nation", colnames(additional_info)))) {
           additional_info <- additional_info %>%
-            dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Nation, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
+            dplyr::select(.data[["Team"]], .data[["Home_Away"]], .data[["Player"]], .data[["Player_Num"]], .data[["Nation"]], .data[["Pos"]], .data[["Age"]], .data[["Min"]], .data[["Gls"]], .data[["Ast"]], .data[["CrdY"]], .data[["CrdR"]])
         } else {
           additional_info <- additional_info %>%
-            dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
+            dplyr::select(.data[["Team"]], .data[["Home_Away"]], .data[["Player"]], .data[["Player_Num"]], .data[["Pos"]], .data[["Age"]], .data[["Min"]], .data[["Gls"]], .data[["Ast"]], .data[["CrdY"]], .data[["CrdR"]])
         }
 
 
         lineup <- lineup %>%
-          dplyr::mutate(Player_Num = as.character(.data$Player_Num)) %>%
+          dplyr::mutate(Player_Num = as.character(.data[["Player_Num"]])) %>%
           dplyr::left_join(additional_info, by = c("Team", "Player_Name" = "Player", "Player_Num")) %>%
-          dplyr::mutate(Home_Away = ifelse(is.na(.data$Home_Away), home_or_away, .data$Home_Away)) %>%
-          dplyr::select(.data$Matchday, .data$Team, .data$Home_Away, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting, dplyr::everything()) %>%
-          dplyr::mutate(Matchday = lubridate::ymd(.data$Matchday)) %>%
+          dplyr::mutate(Home_Away = ifelse(is.na(.data[["Home_Away"]]), home_or_away, .data[["Home_Away"]])) %>%
+          dplyr::select(.data[["Matchday"]], .data[["Team"]], .data[["Home_Away"]], .data[["Formation"]], .data[["Player_Num"]], .data[["Player_Name"]], .data[["Starting"]], dplyr::everything()) %>%
+          dplyr::mutate(Matchday = lubridate::ymd(.data[["Matchday"]])) %>%
           dplyr::mutate(MatchURL = match_url)
 
         return(lineup)
@@ -238,25 +238,25 @@ get_match_lineups <- function(match_url, time_pause=3) {
 
         additional_info <- additional_info %>%
           .clean_match_advanced_stats_data() %>%
-          dplyr::filter(!is.na(.data$Player_Num)) %>%
+          dplyr::filter(!is.na(.data[["Player_Num"]])) %>%
           dplyr::bind_cols(Team=team, Home_Away=home_or_away, .) %>%
-          dplyr::mutate(Player_Num = as.character(.data$Player_Num))
+          dplyr::mutate(Player_Num = as.character(.data[["Player_Num"]]))
 
         if(any(grepl("Nation", colnames(additional_info)))) {
           additional_info <- additional_info %>%
-            dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Nation, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
+            dplyr::select(.data[["Team"]], .data[["Home_Away"]], .data[["Player"]], .data[["Player_Num"]], .data[["Nation"]], .data[["Pos"]], .data[["Age"]], .data[["Min"]], .data[["Gls"]], .data[["Ast"]], .data[["CrdY"]], .data[["CrdR"]])
         } else {
           additional_info <- additional_info %>%
-            dplyr::select(.data$Team, .data$Home_Away, .data$Player, .data$Player_Num, .data$Pos, .data$Age, .data$Min, .data$Gls, .data$Ast, .data$CrdY, .data$CrdR)
+            dplyr::select(.data[["Team"]], .data[["Home_Away"]], .data[["Player"]], .data[["Player_Num"]], .data[["Pos"]], .data[["Age"]], .data[["Min"]], .data[["Gls"]], .data[["Ast"]], .data[["CrdY"]], .data[["CrdR"]])
         }
 
 
         lineup <- lineup %>%
-          dplyr::mutate(Player_Num = as.character(.data$Player_Num)) %>%
+          dplyr::mutate(Player_Num = as.character(.data[["Player_Num"]])) %>%
           dplyr::left_join(additional_info, by = c("Team", "Player_Name" = "Player", "Player_Num")) %>%
-          dplyr::mutate(Home_Away = ifelse(is.na(.data$Home_Away), home_or_away, .data$Home_Away)) %>%
-          dplyr::select(.data$Matchday, .data$Team, .data$Home_Away, .data$Formation, .data$Player_Num, .data$Player_Name, .data$Starting, dplyr::everything()) %>%
-          dplyr::mutate(Matchday = lubridate::ymd(.data$Matchday)) %>%
+          dplyr::mutate(Home_Away = ifelse(is.na(.data[["Home_Away"]]), home_or_away, .data[["Home_Away"]])) %>%
+          dplyr::select(.data[["Matchday"]], .data[["Team"]], .data[["Home_Away"]], .data[["Formation"]], .data[["Player_Num"]], .data[["Player_Name"]], .data[["Starting"]], dplyr::everything()) %>%
+          dplyr::mutate(Matchday = lubridate::ymd(.data[["Matchday"]])) %>%
           dplyr::mutate(MatchURL = match_url)
 
         return(lineup)

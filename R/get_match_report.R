@@ -45,10 +45,10 @@
 
     suppressWarnings(each_game <- cbind(League, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Score, Home_xG, Home_Goals, Home_Yellow_Cards, Home_Red_Cards, Away_Team, Away_Formation, Away_Score, Away_xG, Away_Goals, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
                        dplyr::as_tibble() %>%
-                       dplyr::mutate(Home_Score = as.numeric(.data$Home_Score),
-                                     Home_xG = as.numeric(.data$Home_xG),
-                                     Away_Score = as.numeric(.data$Away_Score),
-                                     Away_xG = as.numeric(.data$Away_xG))
+                       dplyr::mutate(Home_Score = as.numeric(.data[["Home_Score"]]),
+                                     Home_xG = as.numeric(.data[["Home_xG"]]),
+                                     Away_Score = as.numeric(.data[["Away_Score"]]),
+                                     Away_xG = as.numeric(.data[["Away_xG"]]))
     )
 
 
@@ -171,12 +171,12 @@ get_match_report <- function(match_url, time_pause=3) {
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons <- seasons %>%
-    dplyr::filter(.data$seasons_urls %in% all_games$League_URL) %>%
-    dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
+    dplyr::filter(.data[["seasons_urls"]] %in% all_games$League_URL) %>%
+    dplyr::select(League=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season=.data[["seasons"]], League_URL=.data[["seasons_urls"]])
 
   all_games <- seasons %>%
     dplyr::left_join(all_games, by = "League_URL") %>%
-    dplyr::select(-.data$League_URL) %>% dplyr::distinct(.keep_all = T)
+    dplyr::select(-.data[["League_URL"]]) %>% dplyr::distinct(.keep_all = T)
 
   return(all_games)
 }

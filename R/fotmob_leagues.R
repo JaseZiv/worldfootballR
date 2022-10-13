@@ -48,12 +48,12 @@
       pairs,
       ~dplyr::filter(
         leagues,
-        .data$ccode == .x$country, .data$name == .x$league_name
+        .data[["ccode"]] == .x$country, .data[["name"]] == .x$league_name
       )
     )
   } else {
     leagues %>%
-      dplyr::filter(.data$id %in% league_id)
+      dplyr::filter(.data[["id"]] %in% league_id)
   }
 
   n_urls <- nrow(urls)
@@ -114,13 +114,13 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   .extract_leagues <- function(x) {
     cont[[x]] %>%
       tibble::enframe() %>%
-      dplyr::select(.data$value) %>%
-      tidyr::unnest_wider(.data$value) %>%
-      tidyr::unnest_longer(.data$leagues) %>%
+      dplyr::select(.data[["value"]]) %>%
+      tidyr::unnest_wider(.data[["value"]]) %>%
+      tidyr::unnest_longer(.data[["leagues"]]) %>%
       dplyr::rename(
-        country = .data$name
+        country = .data[["name"]]
       ) %>%
-      tidyr::unnest_wider(.data$leagues) %>%
+      tidyr::unnest_wider(.data[["leagues"]]) %>%
       janitor::clean_names()
   }
 
@@ -345,12 +345,12 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
     tables$away <- tables$table$away
     tables %>%
       dplyr::rename(
-        group_id = .data$leagueId,
-        group_page_url = .data$pageUrl,
-        group_name = .data$leagueName
+        group_id = .data[["leagueId"]],
+        group_page_url = .data[["pageUrl"]],
+        group_name = .data[["leagueName"]]
       ) %>%
       dplyr::select(
-        -c(.data$table, .data$legend)
+        -c(.data[["table"]], .data[["legend"]])
       )
   } else {
     stop(
@@ -368,10 +368,10 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
       values_to = "table"
     ) %>%
     tidyr::unnest_longer(
-      .data$table
+      .data[["table"]]
     ) %>%
     tidyr::unnest(
-      .data$table,
+      .data[["table"]],
       names_sep = "_"
     ) %>%
     janitor::clean_names() %>%

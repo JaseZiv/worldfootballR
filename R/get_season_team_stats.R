@@ -45,7 +45,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons_urls <- seasons %>%
-    dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+    dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
     dplyr::filter(country %in% country_abbr,
                   gender %in% gender_M_F,
                   season_end_year %in% season_end_year_num,
@@ -127,11 +127,11 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
         stat_df <- stat_df[-1,]
 
         stat_df <- stat_df %>%
-          dplyr::filter(.data$Rk != "Rk") %>%
-          dplyr::rename(Conference = .data$Conference_Conference)
+          dplyr::filter(.data[["Rk"]] != "Rk") %>%
+          dplyr::rename(Conference = .data[["Conference_Conference"]])
 
         cols_to_transform <- stat_df %>%
-          dplyr::select(-.data$Squad, -.data$Conference) %>% names()
+          dplyr::select(-.data[["Squad"]], -.data[["Conference"]]) %>% names()
 
         stat_df <- stat_df %>%
           dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
@@ -204,22 +204,22 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
 
       stat_df <- stat_df %>%
-        dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
-        dplyr::filter(.data$Team_or_Opponent == "team") %>%
+        dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
+        dplyr::filter(.data[["Team_or_Opponent"]] == "team") %>%
         dplyr::bind_rows(
           stat_df %>%
-            dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
-            dplyr::filter(.data$Team_or_Opponent == "opponent")
+            dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
+            dplyr::filter(.data[["Team_or_Opponent"]] == "opponent")
         ) %>%
         dplyr::mutate(season_url = season_url) %>%
-        dplyr::select(.data$season_url, .data$Squad, .data$Team_or_Opponent, dplyr::everything())
+        dplyr::select(.data[["season_url"]], .data[["Squad"]], .data[["Team_or_Opponent"]], dplyr::everything())
 
       stat_df <- seasons %>%
-        dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls) %>%
+        dplyr::select(Competition_Name=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season_End_Year=.data[["season_end_year"]], .data[["seasons_urls"]]) %>%
         dplyr::left_join(stat_df, by = c("seasons_urls" = "season_url")) %>%
-        dplyr::select(-.data$seasons_urls) %>%
-        dplyr::filter(!is.na(.data$Squad)) %>%
-        dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad) %>% dplyr::distinct(.keep_all = T)
+        dplyr::select(-.data[["seasons_urls"]]) %>%
+        dplyr::filter(!is.na(.data[["Squad"]])) %>%
+        dplyr::arrange(.data[["Country"]], .data[["Competition_Name"]], .data[["Gender"]], .data[["Season_End_Year"]], dplyr::desc(.data[["Team_or_Opponent"]]), .data[["Squad"]]) %>% dplyr::distinct(.keep_all = T)
     }
 
 
@@ -285,7 +285,7 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons_urls <- seasons %>%
-    dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+    dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
     dplyr::filter(country %in% country_abbr,
                   gender %in% gender_M_F,
                   season_end_year %in% season_end_year_num,
@@ -367,11 +367,11 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
         stat_df <- stat_df[-1,]
 
         stat_df <- stat_df %>%
-          dplyr::filter(.data$Rk != "Rk") %>%
-          dplyr::rename(Conference = .data$Conference_Conference)
+          dplyr::filter(.data[["Rk"]] != "Rk") %>%
+          dplyr::rename(Conference = .data[["Conference_Conference"]])
 
         cols_to_transform <- stat_df %>%
-          dplyr::select(-.data$Squad, -.data$Conference) %>% names()
+          dplyr::select(-.data[["Squad"]], -.data[["Conference"]]) %>% names()
 
         stat_df <- stat_df %>%
           dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
@@ -444,22 +444,22 @@ get_season_team_stats <- function(country, gender, season_end_year, tier, stat_t
 
 
       stat_df <- stat_df %>%
-        dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
-        dplyr::filter(.data$Team_or_Opponent == "team") %>%
+        dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
+        dplyr::filter(.data[["Team_or_Opponent"]] == "team") %>%
         dplyr::bind_rows(
           stat_df %>%
-            dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data$Squad, "vs "), "team", "opponent")) %>%
-            dplyr::filter(.data$Team_or_Opponent == "opponent")
+            dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
+            dplyr::filter(.data[["Team_or_Opponent"]] == "opponent")
         ) %>%
         dplyr::mutate(season_url = season_url) %>%
-        dplyr::select(.data$season_url, .data$Squad, .data$Team_or_Opponent, dplyr::everything())
+        dplyr::select(.data[["season_url"]], .data[["Squad"]], .data[["Team_or_Opponent"]], dplyr::everything())
 
       stat_df <- seasons %>%
-        dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls) %>%
+        dplyr::select(Competition_Name=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season_End_Year=.data[["season_end_year"]], .data[["seasons_urls"]]) %>%
         dplyr::left_join(stat_df, by = c("seasons_urls" = "season_url")) %>%
-        dplyr::select(-.data$seasons_urls) %>%
-        dplyr::filter(!is.na(.data$Squad)) %>%
-        dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, dplyr::desc(.data$Team_or_Opponent), .data$Squad) %>% dplyr::distinct(.keep_all = T)
+        dplyr::select(-.data[["seasons_urls"]]) %>%
+        dplyr::filter(!is.na(.data[["Squad"]])) %>%
+        dplyr::arrange(.data[["Country"]], .data[["Competition_Name"]], .data[["Gender"]], .data[["Season_End_Year"]], dplyr::desc(.data[["Team_or_Opponent"]]), .data[["Squad"]]) %>% dplyr::distinct(.keep_all = T)
     }
 
 

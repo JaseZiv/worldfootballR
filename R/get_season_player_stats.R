@@ -134,7 +134,7 @@ fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
       stat_df <- stat_df %>%
         dplyr::mutate(player_name = player_name,
                       player_url = player_url,
-                      Country = gsub("^.*? ([A-Z])", "\\1", .data$Country)) %>%
+                      Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]])) %>%
         dplyr::select(player_name, player_url, dplyr::everything())
     }
 

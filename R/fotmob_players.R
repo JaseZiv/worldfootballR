@@ -10,7 +10,7 @@
     .id = "match_id"
   ) %>%
     dplyr::mutate(
-      dplyr::across(.data$match_id, as.integer)
+      dplyr::across(.data[["match_id"]], as.integer)
     )
 }
 
@@ -97,13 +97,13 @@ fotmob_get_match_players <- function(match_ids) {
             col = janitor::make_clean_names(rn)
           ) %>%
           tidyr::pivot_longer(
-            -.data$col
+            -.data[["col"]]
           ) %>%
           dplyr::select(
-            -.data$name
+            -.data[["name"]]
           ) %>%
-          dplyr::filter(stringr::str_detect(.data$col, "^stats_"), !is.na(.data$value)) %>%
-          dplyr::distinct(.data$col, .data$value) %>%
+          dplyr::filter(stringr::str_detect(.data[["col"]], "^stats_"), !is.na(.data[["value"]])) %>%
+          dplyr::distinct(.data[["col"]], .data[["value"]]) %>%
           tidyr::pivot_wider(
             names_from = "col",
             values_from = "value"
@@ -180,8 +180,8 @@ fotmob_get_match_players <- function(match_ids) {
       res$team_name <- lineup$teamName[i]
       res %>%
         dplyr::relocate(
-          .data$team_id,
-          .data$team_name,
+          .data[["team_id"]],
+          .data[["team_name"]],
           .before = 1
         )
     }
@@ -222,7 +222,7 @@ fotmob_get_match_players <- function(match_ids) {
     }
     res <- coerce_team_id(res, "home")
     res <- coerce_team_id(res, "away")
-    res <- res %>% tidyr::unnest_wider(.data$stats)
+    res <- res %>% tidyr::unnest_wider(.data[["stats"]])
     res
   }
 

@@ -129,12 +129,12 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
 
     # cleaning up final output data
     team_df <- team_df %>%
-      dplyr::mutate(transfer_fee = ifelse(stringr::str_detect(.data$transfer_fee_dup, "Loan fee:"), .data$transfer_fee_notes1, .data$transfer_fee)) %>%
-      dplyr::mutate(transfer_fee = mapply(.convert_value_to_numeric, euro_value = .data$transfer_fee)) %>%
-      dplyr::mutate(transfer_fee_dup = ifelse(is.na(.data$transfer_fee), .data$transfer_fee_dup, NA_character_),
-                    transfer_fee_dup = gsub("End of loan", "End of loan ", .data$transfer_fee_dup)) %>%
-      dplyr::rename(transfer_notes = .data$transfer_fee_dup) %>%
-      dplyr::select(-.data$transfer_fee_notes1)
+      dplyr::mutate(transfer_fee = ifelse(stringr::str_detect(.data[["transfer_fee_dup"]], "Loan fee:"), .data[["transfer_fee_notes1"]], .data[["transfer_fee"]])) %>%
+      dplyr::mutate(transfer_fee = mapply(.convert_value_to_numeric, euro_value = .data[["transfer_fee"]])) %>%
+      dplyr::mutate(transfer_fee_dup = ifelse(is.na(.data[["transfer_fee"]]), .data[["transfer_fee_dup"]], NA_character_),
+                    transfer_fee_dup = gsub("End of loan", "End of loan ", .data[["transfer_fee_dup"]])) %>%
+      dplyr::rename(transfer_notes = .data[["transfer_fee_dup"]]) %>%
+      dplyr::select(-.data[["transfer_fee_notes1"]])
 
 
     #----- Get player stats including goals and appearances: -----#
@@ -171,7 +171,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
     purrr::map_df(each_team_xfer)
 
   final_output <- final_output %>%
-    dplyr::filter(!is.na(.data$player_name))
+    dplyr::filter(!is.na(.data[["player_name"]]))
 
   return(final_output)
 }

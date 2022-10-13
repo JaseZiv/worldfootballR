@@ -42,13 +42,13 @@ tm_player_bio <- function(player_urls) {
 
       a <- cbind(X1, X2) %>% data.frame()
 
-      a <- a %>% dplyr::filter(!stringr::str_detect(.data$X1, "Social-Media")) %>%
-        dplyr::mutate(X1 = gsub(":", "", .data$X1))
+      a <- a %>% dplyr::filter(!stringr::str_detect(.data[["X1"]], "Social-Media")) %>%
+        dplyr::mutate(X1 = gsub(":", "", .data[["X1"]]))
 
       X2 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("href"), error = function(e) NA_character_) %>% .replace_empty_na()
       X1 <- tryCatch(player_page %>% rvest::html_nodes(".socialmedia-icons") %>% rvest::html_nodes("a") %>% rvest::html_attr("title"), error = function(e) NA_character_) %>% .replace_empty_na()
       socials <- cbind(X1, X2)
-      a <- rbind(a, socials) %>% dplyr::mutate(X1 = ifelse(.data$X1 == "", "Website", .data$X1))
+      a <- rbind(a, socials) %>% dplyr::mutate(X1 = ifelse(.data[["X1"]] == "", "Website", .data[["X1"]]))
       # handle for duplicate socials
       a <- a %>% dplyr::distinct(X1, .keep_all = TRUE)
 
@@ -63,11 +63,11 @@ tm_player_bio <- function(player_urls) {
 
       a <- a %>%
         dplyr::mutate(player_name = player_name) %>%
-        tidyr::pivot_wider(names_from = .data$X1, values_from = .data$X2) %>%
+        tidyr::pivot_wider(names_from = .data[["X1"]], values_from = .data[["X2"]]) %>%
         janitor::clean_names() %>%
-        dplyr::mutate(player_valuation = .convert_value_to_numeric(euro_value = .data$player_valuation),
-                      max_player_valuation = .convert_value_to_numeric(euro_value = .data$max_player_valuation),
-                      max_player_valuation_date = .tm_fix_dates(dirty_dates = .data$max_player_valuation_date)) %>%
+        dplyr::mutate(player_valuation = .convert_value_to_numeric(euro_value = .data[["player_valuation"]]),
+                      max_player_valuation = .convert_value_to_numeric(euro_value = .data[["max_player_valuation"]]),
+                      max_player_valuation_date = .tm_fix_dates(dirty_dates = .data[["max_player_valuation_date"]])) %>%
         dplyr::mutate(URL = player_url)
     } else {
       a <- data.frame()
@@ -86,27 +86,27 @@ tm_player_bio <- function(player_urls) {
   # some of the following columns may not exist, so this series of if statements will handle for this:
   if(any(grepl("date_of_birth", colnames(full_bios)))) {
     full_bios <- full_bios %>%
-      dplyr::mutate(date_of_birth = .tm_fix_dates(.data$date_of_birth))
+      dplyr::mutate(date_of_birth = .tm_fix_dates(.data[["date_of_birth"]]))
   }
 
   if(any(grepl("joined", colnames(full_bios)))) {
     full_bios <- full_bios %>%
-      dplyr::mutate(joined = .tm_fix_dates(.data$joined))
+      dplyr::mutate(joined = .tm_fix_dates(.data[["joined"]]))
   }
 
   if(any(grepl("contract_expires", colnames(full_bios)))) {
     full_bios <- full_bios %>%
-      dplyr::mutate(contract_expires = .tm_fix_dates(.data$contract_expires))
+      dplyr::mutate(contract_expires = .tm_fix_dates(.data[["contract_expires"]]))
   }
 
   if(any(grepl("date_of_last_contract_extension", colnames(full_bios)))) {
     full_bios <- full_bios %>%
-      dplyr::mutate(date_of_last_contract_extension = .tm_fix_dates(.data$date_of_last_contract_extension))
+      dplyr::mutate(date_of_last_contract_extension = .tm_fix_dates(.data[["date_of_last_contract_extension"]]))
   }
 
   if(any(grepl("height", colnames(full_bios)))) {
     full_bios <- full_bios %>%
-      dplyr::mutate(height = gsub(",", "\\.", .data$height) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric())
+      dplyr::mutate(height = gsub(",", "\\.", .data[["height"]]) %>% gsub("m", "", .) %>% stringr::str_squish() %>% as.numeric())
   }
 
   return(full_bios)

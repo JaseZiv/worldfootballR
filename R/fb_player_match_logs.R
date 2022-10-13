@@ -69,7 +69,7 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
   }
 
   all_logs <- all_logs %>%
-    dplyr::mutate(season_end = gsub(".*-", "", .data$season),
+    dplyr::mutate(season_end = gsub(".*-", "", .data[["season"]]),
            stat = dplyr::case_when(
              log_name == "Summary" ~ "summary",
              log_name == "Goalkeeping" ~ "keepers",
@@ -83,16 +83,16 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
            ))
 
   log_url <- all_logs %>%
-    dplyr::filter(.data$stat == stat_type,
-                  .data$season_end == season_end_year) %>%
+    dplyr::filter(.data[["stat"]] == stat_type,
+                  .data[["season_end"]] == season_end_year) %>%
     dplyr::pull(log_urls)
 
   if(length(log_url) == 0) stop(glue::glue("check stat type: {stat_type} or season end: {season_end_year} exists"))
 
 
   season <- all_logs %>%
-    dplyr::filter(.data$stat == stat_type,
-                  .data$season_end == season_end_year) %>%
+    dplyr::filter(.data[["stat"]] == stat_type,
+                  .data[["season_end"]] == season_end_year) %>%
     dplyr::pull(season)
 
   # Get match logs for stat -------------------------------------------------
@@ -105,12 +105,12 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
   tab <- .clean_table_names(tab)
 
   tab <- tab %>%
-    dplyr::filter(.data$Date != "") %>%
-    dplyr::mutate(Squad = sub("^.*?([A-Z])", "\\1", .data$Squad),
-           Opponent = sub("^.*?([A-Z])", "\\1", .data$Opponent),
+    dplyr::filter(.data[["Date"]] != "") %>%
+    dplyr::mutate(Squad = sub("^.*?([A-Z])", "\\1", .data[["Squad"]]),
+           Opponent = sub("^.*?([A-Z])", "\\1", .data[["Opponent"]]),
            Player = player_name,
            Season = season) %>%
-    dplyr::select(.data$Player, .data$Season, dplyr::everything(), -.data$`Match Report`)
+    dplyr::select(.data[["Player"]], .data[["Season"]], dplyr::everything(), -.data[["Match Report"]])
 
 
 

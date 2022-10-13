@@ -33,7 +33,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name, .data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -105,18 +105,18 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
       dplyr::mutate(Matchday = each_matchday,
                     Country=country_name,
                     League = league_name) %>%
-      dplyr::select(.data$Country, .data$League, .data$Matchday, Rk=.data$`X.`, Team=.data$club.1,
-                    P=.data$Var.4, .data$W, .data$D, .data$L, .data$Goals, G_Diff=.data$`X...`, .data$Pts) %>%
-      tidyr::separate(.data$Goals, into = c("GF", "GA"), sep = ":") %>%
-      dplyr::mutate(GF = as.numeric(.data$GF),
-                    GA = as.numeric(.data$GA)) %>% suppressWarnings()
+      dplyr::select(.data[["Country"]], .data[["League"]], .data[["Matchday"]], Rk=.data$`X.`, Team=.data[["club.1"]],
+                    P=.data[["Var.4"]], .data[["W"]], .data[["D"]], .data[["L"]], .data[["Goals"]], G_Diff=.data$`X...`, .data[["Pts"]]) %>%
+      tidyr::separate(.data[["Goals"]], into = c("GF", "GA"), sep = ":") %>%
+      dplyr::mutate(GF = as.numeric(.data[["GF"]]),
+                    GA = as.numeric(.data[["GA"]])) %>% suppressWarnings()
 
     matchday_table <- matchday_table %>%
       dplyr::mutate_at(.vars = c("P", "W", "D", "L", "GF", "GA", "G_Diff", "Pts"), as.numeric) %>% suppressWarnings()
 
     matchday_table <- matchday_table %>%
       janitor::clean_names() %>%
-      dplyr::rename(squad = .data$team)
+      dplyr::rename(squad = .data[["team"]])
 
     all_matchdays <- rbind(all_matchdays, matchday_table)
   }
