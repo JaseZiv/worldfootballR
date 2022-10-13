@@ -1,6 +1,5 @@
-#' @importFrom jsonlite fromJSON
 .extract_fotmob_match_general <- function(url) {
-  resp <- jsonlite::fromJSON(url)
+  resp <- .fromJSON(url)
   general <- resp$general
   scalars <- data.frame(
     stringsAsFactors = FALSE,
@@ -61,7 +60,6 @@ fotmob_get_matches_by_date <- function(dates) {
 #' @importFrom lubridate is.Date ymd
 #' @importFrom stringr str_remove_all
 #' @importFrom glue glue
-#' @importFrom jsonlite fromJSON
 #' @importFrom janitor clean_names
 #' @importFrom purrr possibly
 #' @importFrom tibble as_tibble tibble
@@ -82,7 +80,7 @@ fotmob_get_matches_by_date <- function(dates) {
   date <- stringr::str_remove_all(as.character(date), "-")
   url <- paste0(main_url, "matches?date=", date)
   f <- function(url) {
-    resp <- jsonlite::fromJSON(url)
+    resp <- .fromJSON(url)
     res <- resp$leagues %>%
       janitor::clean_names() %>%
       tibble::as_tibble()

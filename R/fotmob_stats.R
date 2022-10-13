@@ -1,5 +1,4 @@
 
-#' @importFrom jsonlite fromJSON
 #' @importFrom tibble tibble as_tibble
 #' @importFrom dplyr select
 #' @importFrom tidyr unnest
@@ -19,6 +18,7 @@
   )
 
   ## This still print out HTTP error 403 even with `quiet = TRUE`?!?
+  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
   resp <- .safely_from_json(url)
   if(!is.null(resp$error)) {
     warning(

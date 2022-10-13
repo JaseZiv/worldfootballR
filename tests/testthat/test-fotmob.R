@@ -4,9 +4,15 @@ context("Testing fotmob functions")
 test_that("fotmob_get_matches_by_date() works", {
   testthat::skip_on_cran()
 
-  results <- fotmob_get_matches_by_date(date = c("20210925", "20210926"))
+  td <- Sys.Date()
+  results <- fotmob_get_matches_by_date(date = as.character(c(td-7, td-8)))
   expect_gt(nrow(results), 0)
-  expect_equal(ncol(results), 39)
+  ## There have been issues where the columns are not in the same exact order depending on the day, so rely on sort
+  expect_true(
+    all(
+      c("away_id", "away_name", "away_score", "ccode", "home_id", "home_name", "home_score", "id", "match_id", "match_league_id") %in% colnames(results)
+    )
+  )
 })
 
 test_that("fotmob_get_league_matches() works", {
@@ -53,7 +59,6 @@ test_that("fotmob_get_league_matches() works", {
 
   expect_gt(nrow(epl_ll_league_matches), 0)
   expect_equal(colnames(epl_ll_league_matches), expected_league_matches_cols)
-
 
   epl_ll_league_matches_unnested <- epl_ll_league_matches %>%
     dplyr::select(match_id = id, home, away) %>%
