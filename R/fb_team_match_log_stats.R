@@ -103,7 +103,7 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
       team_log <- team_log %>%
         dplyr::mutate(Team_Url = team_url,
                       Team = team_name) %>%
-        dplyr::select(.data[["Team_Url"]], .data[["Team"]], .data[["ForAgainst"]], dplyr::everything(), -.data$`Match Report`)
+        dplyr::select(.data[["Team_Url"]], .data[["Team"]], .data[["ForAgainst"]], dplyr::everything(), -.data[["Match Report"]])
 
 
       cols_to_transform <- team_log %>%

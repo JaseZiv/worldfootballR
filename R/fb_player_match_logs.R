@@ -110,7 +110,7 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
            Opponent = sub("^.*?([A-Z])", "\\1", .data[["Opponent"]]),
            Player = player_name,
            Season = season) %>%
-    dplyr::select(.data[["Player"]], .data[["Season"]], dplyr::everything(), -.data$`Match Report`)
+    dplyr::select(.data[["Player"]], .data[["Season"]], dplyr::everything(), -.data[["Match Report"]])
 
 
 

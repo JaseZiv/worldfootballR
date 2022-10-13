@@ -87,9 +87,9 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
       # bind the tables together
       goals_and_assists <-
         dplyr::bind_rows(goals,assists) %>%
-        dplyr::rename(Body_Part=.data$Body.Part,GCA_Type1=.data$Type,GCA_Type2=.data$Type.1) %>%
-        dplyr::filter(!is.na(.data$Rk)) %>%
-        dplyr::arrange(dplyr::desc(.data$Goal_or_Assist),.data$Rk)
+        dplyr::rename(Body_Part=.data[["Body.Part"]],GCA_Type1=.data[["Type"]],GCA_Type2=.data[["Type.1"]]) %>%
+        dplyr::filter(!is.na(.data[["Rk"]])) %>%
+        dplyr::arrange(dplyr::desc(.data[["Goal_or_Assist"]]),.data[["Rk"]])
 
       return(goals_and_assists)
     }
