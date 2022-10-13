@@ -9,7 +9,8 @@ test_that("fotmob_get_matches_by_date() works", {
   expect_gt(nrow(results), 0)
   ## There have been issues where the columns are not in the same exact order depending on the day, so rely on sort
   expect_true(
-    all(c("away_id", "away_long_name", "away_name", "away_score", "ccode", "group_name", "home_id", "home_long_name", "home_name", "home_score", "id", "internal_rank", "is_group", "live_rank", "long", "match_eliminated_team_id", "match_id", "match_league_id", "match_status_id", "match_status_ongoing", "match_status_score_str", "match_time", "match_time_ts", "match_tournament_stage", "name", "parent_league_id", "parent_league_name", "primary_id", "short", "simple_league") %in% colnames(results)
+    all(
+      c("away_id", "away_name", "away_score", "ccode", "home_id", "home_name", "home_score", "id", "match_id", "match_league_id") %in% colnames(results)
     )
   )
 })
