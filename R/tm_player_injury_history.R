@@ -66,15 +66,15 @@ tm_player_injury_history <- function(player_urls) {
         suppressWarnings() %>% data.frame()
 
       out_df <- out_df %>%
-        dplyr::mutate(player_name = as.character(.data$player_name),
-                      player_url = as.character(.data$player_url),
-                      season_injured = as.character(.data$season_injured),
-                      injury = as.character(.data$injury),
-                      injured_since = lubridate::ymd(.data$injured_since),
-                      injured_until = lubridate::ymd(.data$injured_until),
-                      duration = as.character(.data$duration),
-                      games_missed = as.character(.data$games_missed),
-                      club = as.character(.data$club))
+        dplyr::mutate(player_name = as.character(.data[["player_name"]]),
+                      player_url = as.character(.data[["player_url"]]),
+                      season_injured = as.character(.data[["season_injured"]]),
+                      injury = as.character(.data[["injury"]]),
+                      injured_since = lubridate::ymd(.data[["injured_since"]]),
+                      injured_until = lubridate::ymd(.data[["injured_until"]]),
+                      duration = as.character(.data[["duration"]]),
+                      games_missed = as.character(.data[["games_missed"]]),
+                      club = as.character(.data[["club"]]))
 
       # # ----- use the below if want to include player bio data to injury histories -----#
       #
@@ -82,13 +82,13 @@ tm_player_injury_history <- function(player_urls) {
       #   suppressWarnings() %>% data.frame()
 
       # out_df <- out_df %>%
-      #   dplyr::mutate(season_injured = as.character(.data$season_injured),
-      #                 injury = as.character(.data$injury),
-      #                 injured_since = lubridate::ymd(.data$injured_since),
-      #                 injured_until = lubridate::ymd(.data$injured_until),
-      #                 duration = as.character(.data$duration),
-      #                 games_missed = as.character(.data$games_missed),
-      #                 club = as.character(.data$club))
+      #   dplyr::mutate(season_injured = as.character(.data[["season_injured"]]),
+      #                 injury = as.character(.data[["injury"]]),
+      #                 injured_since = lubridate::ymd(.data[["injured_since"]]),
+      #                 injured_until = lubridate::ymd(.data[["injured_until"]]),
+      #                 duration = as.character(.data[["duration"]]),
+      #                 games_missed = as.character(.data[["games_missed"]]),
+      #                 club = as.character(.data[["club"]]))
 
       return(out_df)
     }

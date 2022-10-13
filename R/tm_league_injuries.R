@@ -21,7 +21,7 @@ tm_league_injuries <- function(country_name, league_url = NA) {
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -90,23 +90,23 @@ tm_league_injuries <- function(country_name, league_url = NA) {
                   injury, injured_since, injured_until, player_market_value) %>% data.frame()
 
   if(is.na(league_url)) {
-    out_df <- meta_df_seasons %>% dplyr::select(.data$comp_name, .data$country, .data$comp_url) %>% dplyr::distinct() %>%
+    out_df <- meta_df_seasons %>% dplyr::select(.data[["comp_name"]], .data[["country"]], .data[["comp_url"]]) %>% dplyr::distinct() %>%
       cbind(out_df)
   } else {
     out_df <- cbind(comp_name, country, comp_url, out_df)
   }
 
   out_df <- out_df %>%
-    dplyr::mutate(player_name = as.character(.data$player_name),
-                  player_url = as.character(.data$player_url),
-                  position = as.character(.data$position),
-                  current_club = as.character(.data$current_club),
-                  age = as.numeric(.data$age),
-                  nationality = as.character(.data$nationality),
-                  second_nationality = as.character(.data$second_nationality),
-                  injury = as.character(.data$injury),
-                  injured_since = lubridate::ymd(.data$injured_since),
-                  injured_until = lubridate::ymd(.data$injured_until),
-                  player_market_value = mapply(.convert_value_to_numeric, .data$player_market_value))
+    dplyr::mutate(player_name = as.character(.data[["player_name"]]),
+                  player_url = as.character(.data[["player_url"]]),
+                  position = as.character(.data[["position"]]),
+                  current_club = as.character(.data[["current_club"]]),
+                  age = as.numeric(.data[["age"]]),
+                  nationality = as.character(.data[["nationality"]]),
+                  second_nationality = as.character(.data[["second_nationality"]]),
+                  injury = as.character(.data[["injury"]]),
+                  injured_since = lubridate::ymd(.data[["injured_since"]]),
+                  injured_until = lubridate::ymd(.data[["injured_until"]]),
+                  player_market_value = mapply(.convert_value_to_numeric, .data[["player_market_value"]]))
 
 }

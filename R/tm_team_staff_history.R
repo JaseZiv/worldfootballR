@@ -70,15 +70,15 @@ tm_team_staff_history <- function(team_urls, staff_role = "Manager") {
     mgr_df <- cbind(team_name, league, country, staff_role, mgr_df)
 
     mgr_df <- mgr_df %>%
-     dplyr:: mutate(matches = dplyr::case_when( is.na(.data$matches) ~ 0, TRUE ~ .data$matches),
-             wins = dplyr::case_when( is.na(.data$wins) ~ 0, TRUE ~ .data$wins),
-             draws = dplyr::case_when( is.na(.data$draws) ~ 0, TRUE ~ .data$draws),
-             losses = dplyr::case_when( is.na(.data$losses) ~ 0, TRUE ~ .data$losses),
-             ppg = dplyr::case_when( is.na(.data$ppg) ~ 0, TRUE ~ .data$ppg),
+     dplyr:: mutate(matches = dplyr::case_when( is.na(.data[["matches"]]) ~ 0, TRUE ~ .data[["matches"]]),
+             wins = dplyr::case_when( is.na(.data[["wins"]]) ~ 0, TRUE ~ .data[["wins"]]),
+             draws = dplyr::case_when( is.na(.data[["draws"]]) ~ 0, TRUE ~ .data[["draws"]]),
+             losses = dplyr::case_when( is.na(.data[["losses"]]) ~ 0, TRUE ~ .data[["losses"]]),
+             ppg = dplyr::case_when( is.na(.data[["ppg"]]) ~ 0, TRUE ~ .data[["ppg"]]),
              ) %>%
-      dplyr::mutate(appointed = lubridate::ymd(.data$appointed),
-             end_date = lubridate::ymd(.data$end_date)) %>%
-      dplyr::mutate(days_in_post = dplyr::case_when(is.na(.data$end_date) ~ as.numeric(lubridate::today() - .data$appointed), TRUE ~ as.numeric(.data$end_date - .data$appointed)))
+      dplyr::mutate(appointed = lubridate::ymd(.data[["appointed"]]),
+             end_date = lubridate::ymd(.data[["end_date"]])) %>%
+      dplyr::mutate(days_in_post = dplyr::case_when(is.na(.data[["end_date"]]) ~ as.numeric(lubridate::today() - .data[["appointed"]]), TRUE ~ as.numeric(.data[["end_date"]] - .data[["appointed"]])))
 
     return(mgr_df)
   }

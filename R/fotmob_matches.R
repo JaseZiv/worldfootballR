@@ -90,11 +90,11 @@ fotmob_get_matches_by_date <- function(dates) {
       return(res)
     }
     res %>%
-      dplyr::rename(match = .data$matches) %>%
-      tidyr::unnest(.data$match, names_sep = "_") %>%
-      dplyr::rename(home = .data$match_home, away = .data$match_away) %>%
-      tidyr::unnest(c(.data$home, .data$away, .data$match_status), names_sep = "_") %>%
-      tidyr::unnest(c(.data$match_status_reason)) %>%
+      dplyr::rename(match = .data[["matches"]]) %>%
+      tidyr::unnest(.data[["match"]], names_sep = "_") %>%
+      dplyr::rename(home = .data[["match_home"]], away = .data[["match_away"]]) %>%
+      tidyr::unnest(c(.data[["home"]], .data[["away"]], .data[["match_status"]]), names_sep = "_") %>%
+      tidyr::unnest(c(.data[["match_status_reason"]])) %>%
       dplyr::select(-tidyselect::vars_select_helpers$where(is.list)) %>%
       janitor::clean_names()
   }
@@ -156,8 +156,8 @@ fotmob_get_match_details <- function(match_ids) {
     if(isTRUE(has_shots)) {
       df$shots <- list(shots)
       df <- df %>%
-        tidyr::unnest(.data$shots)  %>%
-        tidyr::unnest_wider(.data$on_goal_shot, names_sep = "_")  %>%
+        tidyr::unnest(.data[["shots"]])  %>%
+        tidyr::unnest_wider(.data[["on_goal_shot"]], names_sep = "_")  %>%
         janitor::clean_names()
     } else {
       df$shots <- NULL
@@ -224,14 +224,14 @@ fotmob_get_match_team_stats <- function(match_ids) {
         tidyr::unnest(vars_select_helpers$where(is.list))
       clean_stats <- wide_stats  %>%
         tidyr::hoist(
-          .data$stats_stats,
+          .data[["stats_stats"]],
           "home_value" = 1
         )  %>%
-        dplyr::rename("away_value" = .data$stats_stats)  %>%
+        dplyr::rename("away_value" = .data[["stats_stats"]])  %>%
         dplyr::mutate(
-          dplyr::across(c(.data$home_value, .data$away_value), as.character)
+          dplyr::across(c(.data[["home_value"]], .data[["away_value"]]), as.character)
         )  %>%
-        tidyr::unnest(c(.data$home_value, .data$away_value))
+        tidyr::unnest(c(.data[["home_value"]], .data[["away_value"]]))
       df <- dplyr::bind_cols(df, clean_stats)
     }
     df
@@ -291,8 +291,8 @@ fotmob_get_match_info <- function(match_ids) {
     unnested_info <- info %>%
       tibble::enframe() %>%
       tidyr::pivot_wider(
-        names_from = .data$name,
-        values_from = .data$value
+        names_from = .data[["name"]],
+        values_from = .data[["value"]]
       ) %>%
       janitor::clean_names() %>%
       tidyr::unnest_wider(

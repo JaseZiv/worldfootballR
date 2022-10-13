@@ -87,9 +87,9 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
       # bind the tables together
       goals <-
         dplyr::bind_rows(goals_for,goals_against) %>%
-        dplyr::rename(Body_Part=.data$Body.Part,GCA_Type1=.data$Type,GCA_Type2=.data$Type.1) %>%
-        dplyr::filter(!is.na(.data$Rk)) %>%
-        dplyr::arrange(dplyr::desc(.data$For_or_Against),.data$Date,.data$Minute)
+        dplyr::rename(Body_Part=.data[["Body.Part"]],GCA_Type1=.data[["Type"]],GCA_Type2=.data[["Type.1"]]) %>%
+        dplyr::filter(!is.na(.data[["Rk"]])) %>%
+        dplyr::arrange(dplyr::desc(.data[["For_or_Against"]]),.data[["Date"]],.data[["Minute"]])
 
       return(goals)
     }

@@ -50,39 +50,39 @@ fb_match_summary <- function(match_url, time_pause=3) {
 
       if(nrow(events_df) > 0) {
         events_df <- events_df %>%
-          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data$events_string)) %>%
-          dplyr::mutate(Is_Pens = stringr::str_detect(.data$Event_Time, "[A-Z]"))
+          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data[["events_string"]])) %>%
+          dplyr::mutate(Is_Pens = stringr::str_detect(.data[["Event_Time"]], "[A-Z]"))
 
         suppressWarnings(
           events_df <- events_df %>%
             dplyr::mutate(Event_Half = dplyr::case_when(
-              !.data$Is_Pens & as.numeric(gsub("\\+.*", "", .data$Event_Time)) <= 45 ~ 1,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 46, 90) ~ 2,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 91, 105) ~ 3,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 106, 120) ~ 4,
+              !.data[["Is_Pens"]] & as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])) <= 45 ~ 1,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 46, 90) ~ 2,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 91, 105) ~ 3,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 106, 120) ~ 4,
               TRUE ~ 5
             ))
         )
 
         events_df <- events_df %>%
-          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data$events_string) %>% ifelse(stringr::str_detect(., "\\+"), (as.numeric(gsub("\\+.*", "", .)) + as.numeric(gsub(".*\\+", "", .))), .),
-                        Event_Time = ifelse(.data$Is_Pens, 121, .data$Event_Time),
-                        Event_Time = as.numeric(.data$Event_Time),
-                        Event_Type = ifelse(stringr::str_detect(tolower(.data$events_string), "penalty"), "Penalty",
-                                            ifelse(stringr::str_detect(tolower(.data$events_string), "own goal"), "Own Goal",
-                                                   gsub(".* [^\x20-\x7E] ", "", .data$events_string) %>% gsub("[[:digit:]]:[[:digit:]]", "", .))) %>% stringr::str_squish(),
-                        Event_Players = gsub(".*\\;", "", .data$events_string) %>% gsub(" [^\x20-\x7E] .*", "", .),
-                        Score_Progression = stringr::str_extract(.data$Event_Players, "[[:digit:]]:[[:digit:]]"),
-                        Event_Players = gsub("[[:digit:]]:[[:digit:]]", "", .data$Event_Players) %>% stringr::str_squish(),
+          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data[["events_string"]]) %>% ifelse(stringr::str_detect(., "\\+"), (as.numeric(gsub("\\+.*", "", .)) + as.numeric(gsub(".*\\+", "", .))), .),
+                        Event_Time = ifelse(.data[["Is_Pens"]], 121, .data[["Event_Time"]]),
+                        Event_Time = as.numeric(.data[["Event_Time"]]),
+                        Event_Type = ifelse(stringr::str_detect(tolower(.data[["events_string"]]), "penalty"), "Penalty",
+                                            ifelse(stringr::str_detect(tolower(.data[["events_string"]]), "own goal"), "Own Goal",
+                                                   gsub(".* [^\x20-\x7E] ", "", .data[["events_string"]]) %>% gsub("[[:digit:]]:[[:digit:]]", "", .))) %>% stringr::str_squish(),
+                        Event_Players = gsub(".*\\;", "", .data[["events_string"]]) %>% gsub(" [^\x20-\x7E] .*", "", .),
+                        Score_Progression = stringr::str_extract(.data[["Event_Players"]], "[[:digit:]]:[[:digit:]]"),
+                        Event_Players = gsub("[[:digit:]]:[[:digit:]]", "", .data[["Event_Players"]]) %>% stringr::str_squish(),
                         Penalty_Number = dplyr::case_when(
-                          .data$Is_Pens ~ gsub("([0-9]+).*$", "\\1", .data$Event_Players),
+                          .data[["Is_Pens"]] ~ gsub("([0-9]+).*$", "\\1", .data[["Event_Players"]]),
                           TRUE ~ NA_character_
                         ),
-                        Penalty_Number = as.numeric(.data$Penalty_Number),
-                        Event_Players = gsub("[[:digit:]]+\\s", "", .data$Event_Players),
-                        Event_Type = ifelse(.data$Is_Pens, "Penalty Shootout", .data$Event_Type)) %>%
-          dplyr::select(-.data$events_string) %>%
-          dplyr::arrange(.data$Event_Half, .data$Event_Time)
+                        Penalty_Number = as.numeric(.data[["Penalty_Number"]]),
+                        Event_Players = gsub("[[:digit:]]+\\s", "", .data[["Event_Players"]]),
+                        Event_Type = ifelse(.data[["Is_Pens"]], "Penalty Shootout", .data[["Event_Type"]])) %>%
+          dplyr::select(-.data[["events_string"]]) %>%
+          dplyr::arrange(.data[["Event_Half"]], .data[["Event_Time"]])
 
 
         events_df <- cbind(match_report, events_df)
@@ -165,39 +165,39 @@ get_match_summary <- function(match_url, time_pause=3) {
 
       if(nrow(events_df) > 0) {
         events_df <- events_df %>%
-          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data$events_string)) %>%
-          dplyr::mutate(Is_Pens = stringr::str_detect(.data$Event_Time, "[A-Z]"))
+          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data[["events_string"]])) %>%
+          dplyr::mutate(Is_Pens = stringr::str_detect(.data[["Event_Time"]], "[A-Z]"))
 
         suppressWarnings(
           events_df <- events_df %>%
             dplyr::mutate(Event_Half = dplyr::case_when(
-              !.data$Is_Pens & as.numeric(gsub("\\+.*", "", .data$Event_Time)) <= 45 ~ 1,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 46, 90) ~ 2,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 91, 105) ~ 3,
-              !.data$Is_Pens & dplyr::between(as.numeric(gsub("\\+.*", "", .data$Event_Time)), 106, 120) ~ 4,
+              !.data[["Is_Pens"]] & as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])) <= 45 ~ 1,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 46, 90) ~ 2,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 91, 105) ~ 3,
+              !.data[["Is_Pens"]] & dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Event_Time"]])), 106, 120) ~ 4,
               TRUE ~ 5
             ))
         )
 
         events_df <- events_df %>%
-          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data$events_string) %>% ifelse(stringr::str_detect(., "\\+"), (as.numeric(gsub("\\+.*", "", .)) + as.numeric(gsub(".*\\+", "", .))), .),
-                        Event_Time = ifelse(.data$Is_Pens, 121, .data$Event_Time),
-                        Event_Time = as.numeric(.data$Event_Time),
-                        Event_Type = ifelse(stringr::str_detect(tolower(.data$events_string), "penalty"), "Penalty",
-                                            ifelse(stringr::str_detect(tolower(.data$events_string), "own goal"), "Own Goal",
-                                                   gsub(".* [^\x20-\x7E] ", "", .data$events_string) %>% gsub("[[:digit:]]:[[:digit:]]", "", .))) %>% stringr::str_squish(),
-                        Event_Players = gsub(".*\\;", "", .data$events_string) %>% gsub(" [^\x20-\x7E] .*", "", .),
-                        Score_Progression = stringr::str_extract(.data$Event_Players, "[[:digit:]]:[[:digit:]]"),
-                        Event_Players = gsub("[[:digit:]]:[[:digit:]]", "", .data$Event_Players) %>% stringr::str_squish(),
+          dplyr::mutate(Event_Time = gsub("&rsquor.*", "", .data[["events_string"]]) %>% ifelse(stringr::str_detect(., "\\+"), (as.numeric(gsub("\\+.*", "", .)) + as.numeric(gsub(".*\\+", "", .))), .),
+                        Event_Time = ifelse(.data[["Is_Pens"]], 121, .data[["Event_Time"]]),
+                        Event_Time = as.numeric(.data[["Event_Time"]]),
+                        Event_Type = ifelse(stringr::str_detect(tolower(.data[["events_string"]]), "penalty"), "Penalty",
+                                            ifelse(stringr::str_detect(tolower(.data[["events_string"]]), "own goal"), "Own Goal",
+                                                   gsub(".* [^\x20-\x7E] ", "", .data[["events_string"]]) %>% gsub("[[:digit:]]:[[:digit:]]", "", .))) %>% stringr::str_squish(),
+                        Event_Players = gsub(".*\\;", "", .data[["events_string"]]) %>% gsub(" [^\x20-\x7E] .*", "", .),
+                        Score_Progression = stringr::str_extract(.data[["Event_Players"]], "[[:digit:]]:[[:digit:]]"),
+                        Event_Players = gsub("[[:digit:]]:[[:digit:]]", "", .data[["Event_Players"]]) %>% stringr::str_squish(),
                         Penalty_Number = dplyr::case_when(
-                          .data$Is_Pens ~ gsub("([0-9]+).*$", "\\1", .data$Event_Players),
+                          .data[["Is_Pens"]] ~ gsub("([0-9]+).*$", "\\1", .data[["Event_Players"]]),
                           TRUE ~ NA_character_
                         ),
-                        Penalty_Number = as.numeric(.data$Penalty_Number),
-                        Event_Players = gsub("[[:digit:]]+\\s", "", .data$Event_Players),
-                        Event_Type = ifelse(.data$Is_Pens, "Penalty Shootout", .data$Event_Type)) %>%
-          dplyr::select(-.data$events_string) %>%
-          dplyr::arrange(.data$Event_Half, .data$Event_Time)
+                        Penalty_Number = as.numeric(.data[["Penalty_Number"]]),
+                        Event_Players = gsub("[[:digit:]]+\\s", "", .data[["Event_Players"]]),
+                        Event_Type = ifelse(.data[["Is_Pens"]], "Penalty Shootout", .data[["Event_Type"]])) %>%
+          dplyr::select(-.data[["events_string"]]) %>%
+          dplyr::arrange(.data[["Event_Half"]], .data[["Event_Time"]])
 
 
         events_df <- cbind(match_report, events_df)
@@ -222,13 +222,13 @@ get_match_summary <- function(match_url, time_pause=3) {
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   seasons <- seasons %>%
-    dplyr::filter(.data$seasons_urls %in% all_events_df$League_URL) %>%
-    dplyr::select(League=.data$competition_name, Gender=.data$gender, Country=.data$country, Season=.data$seasons, League_URL=.data$seasons_urls)
+    dplyr::filter(.data[["seasons_urls"]] %in% all_events_df$League_URL) %>%
+    dplyr::select(League=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season=.data[["seasons"]], League_URL=.data[["seasons_urls"]])
 
 
   all_events_df <- seasons %>%
     dplyr::left_join(all_events_df, by = "League_URL") %>%
-    dplyr::select(-.data$League_URL) %>% dplyr::distinct(.keep_all = T)
+    dplyr::select(-.data[["League_URL"]]) %>% dplyr::distinct(.keep_all = T)
 
   return(all_events_df)
 }

@@ -26,7 +26,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name, .data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -58,7 +58,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
     meta_df_seasons <- data.frame(comp_name=as.character(comp_name), region=NA_character_, country=as.character(country), comp_url=as.character(league_url), season_start_year=as.numeric(season_start_year), season_urls=as.character(season_urls))
 
     tryCatch({meta_df_seasons <- meta_df_seasons %>%
-      dplyr::filter(.data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("League URL(s) {league_urls} or seasons {start_year} not found. Please check transfermarkt.com for the correct league URL"))
@@ -223,17 +223,17 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
 
   all_seasons_df <- all_seasons_df %>%
     dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
-    dplyr::mutate(date_joined = .tm_fix_dates(.data$date_joined),
-                  contract_expiry = .tm_fix_dates(.data$contract_expiry)) %>%
+    dplyr::mutate(date_joined = .tm_fix_dates(.data[["date_joined"]]),
+                  contract_expiry = .tm_fix_dates(.data[["contract_expiry"]])) %>%
     tidyr::separate(., player_birthday, into = c("Month", "Day", "Year"), sep = " ", remove = F) %>%
-    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", .data$Year),
-                  Day = gsub(",", "", .data$Day) %>% as.numeric(),
-                  Year = as.numeric(gsub("\\(.*", "", .data$Year)),
-                  Month = match(.data$Month, month.abb),
-                  player_dob = suppressWarnings(lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-")))) %>%
-    dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
-    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$current_club,
-                  .data$player_height_mtrs, .data$player_foot, .data$date_joined, .data$joined_from, .data$contract_expiry, .data$player_market_value_euro, .data$player_url)
+    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", .data[["Year"]]),
+                  Day = gsub(",", "", .data[["Day"]]) %>% as.numeric(),
+                  Year = as.numeric(gsub("\\(.*", "", .data[["Year"]])),
+                  Month = match(.data[["Month"]], month.abb),
+                  player_dob = suppressWarnings(lubridate::ymd(paste(.data[["Year"]], .data[["Month"]], .data[["Day"]], sep = "-")))) %>%
+    dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data[["player_age"]]))) %>%
+    dplyr::select(.data[["comp_name"]], .data[["region"]], .data[["country"]], .data[["season_start_year"]], .data[["squad"]], .data[["player_num"]], .data[["player_name"]], .data[["player_position"]], .data[["player_dob"]], .data[["player_age"]], .data[["player_nationality"]], .data[["current_club"]],
+                  .data[["player_height_mtrs"]], .data[["player_foot"]], .data[["date_joined"]], .data[["joined_from"]], .data[["contract_expiry"]], .data[["player_market_value_euro"]], .data[["player_url"]])
 
 
   return(all_seasons_df)
@@ -271,7 +271,7 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name, .data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -303,7 +303,7 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
     meta_df_seasons <- data.frame(comp_name=as.character(comp_name), region=NA_character_, country=as.character(country), comp_url=as.character(league_url), season_start_year=as.numeric(season_start_year), season_urls=as.character(season_urls))
 
     tryCatch({meta_df_seasons <- meta_df_seasons %>%
-      dplyr::filter(.data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("League URL(s) {league_urls} or seasons {start_year} not found. Please check transfermarkt.com for the correct league URL"))
@@ -468,17 +468,17 @@ get_player_market_values <- function(country_name, start_year, league_url = NA) 
 
   all_seasons_df <- all_seasons_df %>%
     dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
-    dplyr::mutate(date_joined = .tm_fix_dates(.data$date_joined),
-                  contract_expiry = .tm_fix_dates(.data$contract_expiry)) %>%
+    dplyr::mutate(date_joined = .tm_fix_dates(.data[["date_joined"]]),
+                  contract_expiry = .tm_fix_dates(.data[["contract_expiry"]])) %>%
     tidyr::separate(., player_birthday, into = c("Month", "Day", "Year"), sep = " ", remove = F) %>%
-    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", .data$Year),
-                  Day = gsub(",", "", .data$Day) %>% as.numeric(),
-                  Year = as.numeric(gsub("\\(.*", "", .data$Year)),
-                  Month = match(.data$Month, month.abb),
-                  player_dob = suppressWarnings(lubridate::ymd(paste(.data$Year, .data$Month, .data$Day, sep = "-")))) %>%
-    dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data$player_age))) %>%
-    dplyr::select(.data$comp_name, .data$region, .data$country, .data$season_start_year, .data$squad, .data$player_num, .data$player_name, .data$player_position, .data$player_dob, .data$player_age, .data$player_nationality, .data$current_club,
-                  .data$player_height_mtrs, .data$player_foot, .data$date_joined, .data$joined_from, .data$contract_expiry, .data$player_market_value_euro, .data$player_url)
+    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", .data[["Year"]]),
+                  Day = gsub(",", "", .data[["Day"]]) %>% as.numeric(),
+                  Year = as.numeric(gsub("\\(.*", "", .data[["Year"]])),
+                  Month = match(.data[["Month"]], month.abb),
+                  player_dob = suppressWarnings(lubridate::ymd(paste(.data[["Year"]], .data[["Month"]], .data[["Day"]], sep = "-")))) %>%
+    dplyr::mutate(player_age = as.numeric(gsub("\\D", "", .data[["player_age"]]))) %>%
+    dplyr::select(.data[["comp_name"]], .data[["region"]], .data[["country"]], .data[["season_start_year"]], .data[["squad"]], .data[["player_num"]], .data[["player_name"]], .data[["player_position"]], .data[["player_dob"]], .data[["player_age"]], .data[["player_nationality"]], .data[["current_club"]],
+                  .data[["player_height_mtrs"]], .data[["player_foot"]], .data[["date_joined"]], .data[["joined_from"]], .data[["contract_expiry"]], .data[["player_market_value_euro"]], .data[["player_url"]])
 
 
   return(all_seasons_df)

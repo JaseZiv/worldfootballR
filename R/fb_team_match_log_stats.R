@@ -71,7 +71,7 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
       colnames(df_for)[grep("For.", colnames(df_for))] <- ""
       df_for <- .clean_table_names(df_for)
       df_for <- df_for %>%
-        dplyr::filter(.data$Date != "")
+        dplyr::filter(.data[["Date"]] != "")
 
       df_for$ForAgainst <- "For"
 
@@ -91,7 +91,7 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
       colnames(df_against)[grep("Against.", colnames(df_against))] <- ""
       df_against <- .clean_table_names(df_against)
       df_against <- df_against %>%
-        dplyr::filter(.data$Date != "")
+        dplyr::filter(.data[["Date"]] != "")
 
       df_against$ForAgainst <- "Against"
       df_against$Opponent <- opponent_names
@@ -103,12 +103,12 @@ fb_team_match_log_stats <- function(team_urls, stat_type, time_pause=3) {
       team_log <- team_log %>%
         dplyr::mutate(Team_Url = team_url,
                       Team = team_name) %>%
-        dplyr::select(.data$Team_Url, .data$Team, .data$ForAgainst, dplyr::everything(), -.data$`Match Report`)
+        dplyr::select(.data[["Team_Url"]], .data[["Team"]], .data[["ForAgainst"]], dplyr::everything(), -.data$`Match Report`)
 
 
       cols_to_transform <- team_log %>%
-        dplyr::select(-.data$Team_Url, -.data$Team, -.data$ForAgainst, -.data$Date, -.data$Time, -.data$Comp, -.data$Round, -.data$Day,
-                      -.data$Venue, -.data$Result, -.data$GF, -.data$GA, -.data$Opponent) %>% names()
+        dplyr::select(-.data[["Team_Url"]], -.data[["Team"]], -.data[["ForAgainst"]], -.data[["Date"]], -.data[["Time"]], -.data[["Comp"]], -.data[["Round"]], -.data[["Day"]],
+                      -.data[["Venue"]], -.data[["Result"]], -.data[["GF"]], -.data[["GA"]], -.data[["Opponent"]]) %>% names()
 
       team_log <- team_log %>%
         dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%

@@ -57,14 +57,14 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
         shot_df <- shot_df %>%
           dplyr::mutate(Match_Half = dplyr::case_when(
-            as.numeric(gsub("\\+.*", "", .data$Minute)) <= 45 ~ 1,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 46, 90) ~ 2,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 91, 105) ~ 3,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 106, 120) ~ 4,
+            as.numeric(gsub("\\+.*", "", .data[["Minute"]])) <= 45 ~ 1,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 46, 90) ~ 2,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 91, 105) ~ 3,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 106, 120) ~ 4,
             TRUE ~ 5))
 
         shot_df <- shot_df %>%
-          dplyr::filter(.data$Minute != "")
+          dplyr::filter(.data[["Minute"]] != "")
 
         shot_df <- dplyr::bind_cols(Date=match_date, shot_df)
 
@@ -85,8 +85,8 @@ fb_match_shooting <- function(match_url, time_pause=3) {
         rbind(away_shot_df)
 
       all_shot_df <- all_shot_df %>%
-        dplyr::mutate(Home_Away = ifelse(.data$Squad == home_team, "Home", "Away")) %>%
-        dplyr::select(.data$Date, .data$Squad, .data$Home_Away, .data$Match_Half, dplyr::everything())
+        dplyr::mutate(Home_Away = ifelse(.data[["Squad"]] == home_team, "Home", "Away")) %>%
+        dplyr::select(.data[["Date"]], .data[["Squad"]], .data[["Home_Away"]], .data[["Match_Half"]], dplyr::everything())
     } else {
       print(glue::glue("Detailed shot data unavailable for {match_url}"))
       all_shot_df <- data.frame()
@@ -170,14 +170,14 @@ get_match_shooting <- function(match_url, time_pause=3) {
 
         shot_df <- shot_df %>%
           dplyr::mutate(Match_Half = dplyr::case_when(
-            as.numeric(gsub("\\+.*", "", .data$Minute)) <= 45 ~ 1,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 46, 90) ~ 2,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 91, 105) ~ 3,
-            dplyr::between(as.numeric(gsub("\\+.*", "", .data$Minute)), 106, 120) ~ 4,
+            as.numeric(gsub("\\+.*", "", .data[["Minute"]])) <= 45 ~ 1,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 46, 90) ~ 2,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 91, 105) ~ 3,
+            dplyr::between(as.numeric(gsub("\\+.*", "", .data[["Minute"]])), 106, 120) ~ 4,
             TRUE ~ 5))
 
         shot_df <- shot_df %>%
-          dplyr::filter(.data$Minute != "")
+          dplyr::filter(.data[["Minute"]] != "")
 
         shot_df <- dplyr::bind_cols(Date=match_date, shot_df)
 
@@ -198,8 +198,8 @@ get_match_shooting <- function(match_url, time_pause=3) {
         rbind(away_shot_df)
 
       all_shot_df <- all_shot_df %>%
-        dplyr::mutate(Home_Away = ifelse(.data$Squad == home_team, "Home", "Away")) %>%
-        dplyr::select(.data$Date, .data$Squad, .data$Home_Away, .data$Match_Half, dplyr::everything())
+        dplyr::mutate(Home_Away = ifelse(.data[["Squad"]] == home_team, "Home", "Away")) %>%
+        dplyr::select(.data[["Date"]], .data[["Squad"]], .data[["Home_Away"]], .data[["Match_Half"]], dplyr::everything())
     } else {
       print(glue::glue("Detailed shot data unavailable for {match_url}"))
       all_shot_df <- data.frame()

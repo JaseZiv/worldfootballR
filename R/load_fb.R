@@ -39,11 +39,11 @@ load_match_results <- function(country, gender, season_end_year, tier) {
     cli::cli_alert("Data not loaded. Please check parameters")
   } else {
     dat_df <- dat_df %>%
-      dplyr::filter(.data$Country %in% country,
-                    .data$Gender %in% gender,
-                    .data$Season_End_Year %in% season_end_year,
-                    .data$Tier %in% tier) %>%
-      dplyr::select(-.data$Tier)
+      dplyr::filter(.data[["Country"]] %in% country,
+                    .data[["Gender"]] %in% gender,
+                    .data[["Season_End_Year"]] %in% season_end_year,
+                    .data[["Tier"]] %in% tier) %>%
+      dplyr::select(-.data[["Tier"]])
 
     cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }
@@ -94,11 +94,11 @@ load_match_comp_results <- function(comp_name) {
     cli::cli_alert("Data not loaded. Please check parameters")
   } else {
     dat_df <- dat_df %>%
-      # dplyr::filter(.data$Country %in% country,
-      #               .data$Gender %in% gender,
-      #               .data$Season_End_Year %in% season_end_year,
-      #               .data$Tier %in% tier) %>%
-      dplyr::select(-.data$Tier)
+      # dplyr::filter(.data[["Country"]] %in% country,
+      #               .data[["Gender"]] %in% gender,
+      #               .data[["Season_End_Year"]] %in% season_end_year,
+      #               .data[["Tier"]] %in% tier) %>%
+      dplyr::select(-.data[["Tier"]])
 
     cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }
@@ -158,7 +158,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
 
     if(!all(is.na(season_end_year))) {
       dat_df <- dat_df %>%
-        dplyr::filter(.data$Season_End_Year %in% season_end_year)
+        dplyr::filter(.data[["Season_End_Year"]] %in% season_end_year)
     }
 
     cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")

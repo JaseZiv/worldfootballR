@@ -24,7 +24,7 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -127,7 +127,7 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
                     appearances, goals, minutes_played) %>% data.frame()
 
     if(is.na(league_url)) {
-      out_df <- meta_df_seasons %>% dplyr::select(.data$comp_name, .data$country, .data$comp_url) %>% dplyr::distinct() %>%
+      out_df <- meta_df_seasons %>% dplyr::select(.data[["comp_name"]], .data[["country"]], .data[["comp_url"]]) %>% dplyr::distinct() %>%
         cbind(out_df)
     } else {
       out_df <- cbind(comp_name, country, comp_url, out_df)
@@ -136,22 +136,22 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
 
 
     out_df <- out_df %>%
-      dplyr::mutate(player_name = as.character(.data$player_name),
-                    player_url = as.character(.data$player_url),
-                    position = as.character(.data$position),
-                    nationality = as.character(.data$nationality),
-                    second_nationality = as.character(.data$second_nationality),
-                    debut_for = as.character(.data$debut_for),
-                    debut_date = lubridate::ymd(.data$debut_date),
-                    opponent = as.character(.data$opponent),
-                    goals_for = as.numeric(.data$goals_for),
-                    goals_against = as.numeric(.data$goals_against),
-                    age_debut = as.character(.data$age_debut),
-                    value_at_debut = mapply(.convert_value_to_numeric, .data$value_at_debut),
-                    player_market_value = mapply(.convert_value_to_numeric, .data$player_market_value),
-                    appearances = as.numeric(.data$appearances),
-                    goals = as.numeric(.data$goals),
-                    minutes_played = as.numeric(.data$minutes_played))
+      dplyr::mutate(player_name = as.character(.data[["player_name"]]),
+                    player_url = as.character(.data[["player_url"]]),
+                    position = as.character(.data[["position"]]),
+                    nationality = as.character(.data[["nationality"]]),
+                    second_nationality = as.character(.data[["second_nationality"]]),
+                    debut_for = as.character(.data[["debut_for"]]),
+                    debut_date = lubridate::ymd(.data[["debut_date"]]),
+                    opponent = as.character(.data[["opponent"]]),
+                    goals_for = as.numeric(.data[["goals_for"]]),
+                    goals_against = as.numeric(.data[["goals_against"]]),
+                    age_debut = as.character(.data[["age_debut"]]),
+                    value_at_debut = mapply(.convert_value_to_numeric, .data[["value_at_debut"]]),
+                    player_market_value = mapply(.convert_value_to_numeric, .data[["player_market_value"]]),
+                    appearances = as.numeric(.data[["appearances"]]),
+                    goals = as.numeric(.data[["goals"]]),
+                    minutes_played = as.numeric(.data[["minutes_played"]]))
 
     out_df <- out_df %>%
       dplyr::mutate(debut_type = debut_type)

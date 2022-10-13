@@ -50,12 +50,12 @@ fb_team_match_results <- function(team_url, time_pause=3) {
     team_log <- team_log %>%
       dplyr::mutate(Team_Url = team_url,
                     Team = team_name) %>%
-      dplyr::select(.data$Team_Url, .data$Team, dplyr::everything(), -.data$Match.Report)
+      dplyr::select(.data[["Team_Url"]], .data[["Team"]], dplyr::everything(), -.data[["Match.Report"]])
 
     team_log <- team_log %>%
-      dplyr::mutate(Attendance = gsub(",", "", .data$Attendance) %>% as.numeric(),
-                    GF = as.character(.data$GF),
-                    GA = as.character(.data$GA))
+      dplyr::mutate(Attendance = gsub(",", "", .data[["Attendance"]]) %>% as.numeric(),
+                    GF = as.character(.data[["GF"]]),
+                    GA = as.character(.data[["GA"]]))
 
     return(team_log)
   }
@@ -123,12 +123,12 @@ get_team_match_results <- function(team_url, time_pause=3) {
     team_log <- team_log %>%
       dplyr::mutate(Team_Url = team_url,
                     Team = team_name) %>%
-      dplyr::select(.data$Team_Url, .data$Team, dplyr::everything(), -.data$Match.Report)
+      dplyr::select(.data[["Team_Url"]], .data[["Team"]], dplyr::everything(), -.data[["Match.Report"]])
 
     team_log <- team_log %>%
-      dplyr::mutate(Attendance = gsub(",", "", .data$Attendance) %>% as.numeric(),
-             GF = as.character(.data$GF),
-             GA = as.character(.data$GA))
+      dplyr::mutate(Attendance = gsub(",", "", .data[["Attendance"]]) %>% as.numeric(),
+             GF = as.character(.data[["GF"]]),
+             GA = as.character(.data[["GA"]]))
 
     return(team_log)
   }

@@ -82,17 +82,17 @@
 
   suppressWarnings(
     season_summary <- season_summary %>%
-      dplyr::filter(is.na(.data$Time) | .data$Time != "Time") %>%
-      dplyr::mutate(Score = iconv(.data$Score, 'utf-8', 'ascii', sub=' ') %>% stringr::str_squish()) %>%
-      tidyr::separate(.data$Score, into = c("HomeGoals", "AwayGoals"), sep = " ") %>%
-      dplyr::mutate(HomeGoals = as.numeric(.data$HomeGoals),
-                    AwayGoals = as.numeric(.data$AwayGoals),
-                    Attendance = as.numeric(gsub(",", "", .data$Attendance)))
+      dplyr::filter(is.na(.data[["Time"]]) | .data[["Time"]] != "Time") %>%
+      dplyr::mutate(Score = iconv(.data[["Score"]], 'utf-8', 'ascii', sub=' ') %>% stringr::str_squish()) %>%
+      tidyr::separate(.data[["Score"]], into = c("HomeGoals", "AwayGoals"), sep = " ") %>%
+      dplyr::mutate(HomeGoals = as.numeric(.data[["HomeGoals"]]),
+                    AwayGoals = as.numeric(.data[["AwayGoals"]]),
+                    Attendance = as.numeric(gsub(",", "", .data[["Attendance"]])))
   )
 
   season_summary <- season_summary %>%
-    dplyr::mutate(HomeGoals = ifelse(is.na(.data$HomeGoals) & !is.na(.data$AwayGoals), .data$AwayGoals, .data$HomeGoals),
-                  AwayGoals = ifelse(is.na(.data$AwayGoals) & !is.na(.data$HomeGoals), .data$HomeGoals, .data$AwayGoals))
+    dplyr::mutate(HomeGoals = ifelse(is.na(.data[["HomeGoals"]]) & !is.na(.data[["AwayGoals"]]), .data[["AwayGoals"]], .data[["HomeGoals"]]),
+                  AwayGoals = ifelse(is.na(.data[["AwayGoals"]]) & !is.na(.data[["HomeGoals"]]), .data[["HomeGoals"]], .data[["AwayGoals"]]))
 
   season_summary <- cbind(fixture_url, season_summary)
 
@@ -108,16 +108,16 @@
 
   if(any(stringr::str_detect(names(season_summary), "xG"))) {
     season_summary <- season_summary %>%
-      dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, Home_xG=.data$xG, .data$Away, .data$AwayGoals, Away_xG=.data$xG.1, .data$Attendance, .data$Venue, .data$Referee, .data$Notes) %>%
-      dplyr::mutate(Home_xG = as.numeric(.data$Home_xG),
-                    Away_xG = as.numeric(.data$Away_xG))
+      dplyr::select(.data[["fixture_url"]], Round, .data[["Wk"]], .data[["Day"]], .data[["Date"]], .data[["Time"]], .data[["Home"]], .data[["HomeGoals"]], Home_xG=.data[["xG"]], .data[["Away"]], .data[["AwayGoals"]], Away_xG=.data[["xG.1"]], .data[["Attendance"]], .data[["Venue"]], .data[["Referee"]], .data[["Notes"]]) %>%
+      dplyr::mutate(Home_xG = as.numeric(.data[["Home_xG"]]),
+                    Away_xG = as.numeric(.data[["Away_xG"]]))
   } else {
     season_summary <- season_summary %>%
-      dplyr::select(.data$fixture_url, Round, .data$Wk, .data$Day, .data$Date, .data$Time, .data$Home, .data$HomeGoals, .data$Away, .data$AwayGoals, .data$Attendance, .data$Venue, .data$Referee, .data$Notes)
+      dplyr::select(.data[["fixture_url"]], Round, .data[["Wk"]], .data[["Day"]], .data[["Date"]], .data[["Time"]], .data[["Home"]], .data[["HomeGoals"]], .data[["Away"]], .data[["AwayGoals"]], .data[["Attendance"]], .data[["Venue"]], .data[["Referee"]], .data[["Notes"]])
   }
 
   season_summary <- season_summary %>%
-    dplyr::mutate(Wk = as.character(.data$Wk)) %>%
+    dplyr::mutate(Wk = as.character(.data[["Wk"]])) %>%
     dplyr::mutate(MatchURL = match_urls)
 
   return(season_summary)
@@ -171,22 +171,22 @@ fb_match_results <- function(country, gender, season_end_year, tier = "1st", non
 
   if(is.na(cups_url)) {
     fixtures_urls <- seasons %>%
-      dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
       dplyr::filter(country %in% country_abbr,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
                     tier %in% comp_tier,
-                    !is.na(.data$fixtures_url)) %>%
+                    !is.na(.data[["fixtures_url"]])) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url) %>% unique()
+      dplyr::pull(.data[["fixtures_url"]]) %>% unique()
   } else {
     fixtures_urls <- seasons %>%
-      dplyr::filter(.data$comp_url %in% cups_url,
+      dplyr::filter(.data[["comp_url"]] %in% cups_url,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
-                    !is.na(.data$fixtures_url)) %>%
+                    !is.na(.data[["fixtures_url"]])) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url) %>% unique()
+      dplyr::pull(.data[["fixtures_url"]]) %>% unique()
   }
 
   stopifnot("Data not available for the season(s) selected" = length(fixtures_urls) > 0)
@@ -198,11 +198,11 @@ fb_match_results <- function(country, gender, season_end_year, tier = "1st", non
     purrr::map_df(.get_each_season_results)
 
   all_results <- seasons %>%
-    dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls, .data$fixtures_url) %>%
+    dplyr::select(Competition_Name=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season_End_Year=.data[["season_end_year"]], .data[["seasons_urls"]], .data[["fixtures_url"]]) %>%
     dplyr::right_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
-    dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%
-    dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
-    dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time) %>% dplyr::distinct(.keep_all = T)
+    dplyr::select(-.data[["seasons_urls"]], -.data[["fixtures_url"]]) %>%
+    dplyr::mutate(Date = lubridate::ymd(.data[["Date"]])) %>%
+    dplyr::arrange(.data[["Country"]], .data[["Competition_Name"]], .data[["Gender"]], .data[["Season_End_Year"]], .data[["Wk"]], .data[["Date"]], .data[["Time"]]) %>% dplyr::distinct(.keep_all = T)
 
 
   # .pkg_message("Match results finished scraping")
@@ -260,22 +260,22 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
 
   if(is.na(cups_url)) {
     fixtures_urls <- seasons %>%
-      dplyr::filter(stringr::str_detect(.data$competition_type, "Leagues")) %>%
+      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
       dplyr::filter(country %in% country_abbr,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
                     tier %in% comp_tier,
-                    !is.na(.data$fixtures_url)) %>%
+                    !is.na(.data[["fixtures_url"]])) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url) %>% unique()
+      dplyr::pull(.data[["fixtures_url"]]) %>% unique()
   } else {
     fixtures_urls <- seasons %>%
-      dplyr::filter(.data$comp_url %in% cups_url,
+      dplyr::filter(.data[["comp_url"]] %in% cups_url,
                     gender %in% gender_M_F,
                     season_end_year %in% season_end_year_num,
-                    !is.na(.data$fixtures_url)) %>%
+                    !is.na(.data[["fixtures_url"]])) %>%
       dplyr::arrange(season_end_year) %>%
-      dplyr::pull(.data$fixtures_url) %>% unique()
+      dplyr::pull(.data[["fixtures_url"]]) %>% unique()
   }
 
   stopifnot("Data not available for the season(s) selected" = length(fixtures_urls) > 0)
@@ -287,11 +287,11 @@ get_match_results <- function(country, gender, season_end_year, tier = "1st", no
     purrr::map_df(.get_each_season_results)
 
   all_results <- seasons %>%
-    dplyr::select(Competition_Name=.data$competition_name, Gender=.data$gender, Country=.data$country, Season_End_Year=.data$season_end_year, .data$seasons_urls, .data$fixtures_url) %>%
+    dplyr::select(Competition_Name=.data[["competition_name"]], Gender=.data[["gender"]], Country=.data[["country"]], Season_End_Year=.data[["season_end_year"]], .data[["seasons_urls"]], .data[["fixtures_url"]]) %>%
     dplyr::right_join(all_results, by = c("fixtures_url" = "fixture_url")) %>%
-    dplyr::select(-.data$seasons_urls, -.data$fixtures_url) %>%
-    dplyr::mutate(Date = lubridate::ymd(.data$Date)) %>%
-    dplyr::arrange(.data$Country, .data$Competition_Name, .data$Gender, .data$Season_End_Year, .data$Wk, .data$Date, .data$Time) %>% dplyr::distinct(.keep_all = T)
+    dplyr::select(-.data[["seasons_urls"]], -.data[["fixtures_url"]]) %>%
+    dplyr::mutate(Date = lubridate::ymd(.data[["Date"]])) %>%
+    dplyr::arrange(.data[["Country"]], .data[["Competition_Name"]], .data[["Gender"]], .data[["Season_End_Year"]], .data[["Wk"]], .data[["Date"]], .data[["Time"]]) %>% dplyr::distinct(.keep_all = T)
 
 
   # .pkg_message("Match results finished scraping")

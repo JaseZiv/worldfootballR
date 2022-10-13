@@ -129,7 +129,7 @@ fb_team_player_stats <- function(team_urls, stat_type, time_pause=3) {
                       Squad=Squad,
                       Comp=league,
                       PlayerURL = player_urls) %>%
-        dplyr::select(.data$Season, .data$Squad, .data$Comp, dplyr::everything())
+        dplyr::select(.data[["Season"]], .data[["Squad"]], .data[["Comp"]], dplyr::everything())
     }
 
     return(tab)

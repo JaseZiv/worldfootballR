@@ -34,11 +34,11 @@ fb_league_urls <- function(country, gender, season_end_year, tier = "1st") {
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   league_seasons_urls <- seasons %>%
-    dplyr::filter(.data$country %in% country_abbr,
-           .data$gender %in% gender_M_F,
-           .data$season_end_year %in% season_end_year_num,
-           .data$tier %in% comp_tier) %>%
-    dplyr::pull(.data$seasons_urls) %>% unique()
+    dplyr::filter(.data[["country"]] %in% country_abbr,
+           .data[["gender"]] %in% gender_M_F,
+           .data[["season_end_year"]] %in% season_end_year_num,
+           .data[["tier"]] %in% comp_tier) %>%
+    dplyr::pull(.data[["seasons_urls"]]) %>% unique()
 
   return(league_seasons_urls)
 
@@ -148,7 +148,7 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name, .data$season_start_year %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name, .data[["season_start_year"]] %in% start_year)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} or season {start_year} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -251,9 +251,9 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
     coaching_df <- data.frame(name, url, position)
 
     if(staff_role == "Manager") {
-      url <- coaching_df %>% dplyr::filter(position %in% c("Manager", "Caretaker Manager")) %>% dplyr::pull(.data$url)
+      url <- coaching_df %>% dplyr::filter(position %in% c("Manager", "Caretaker Manager")) %>% dplyr::pull(.data[["url"]])
     } else {
-      url <- coaching_df %>% dplyr::filter(position == staff_role) %>% dplyr::pull(.data$url)
+      url <- coaching_df %>% dplyr::filter(position == staff_role) %>% dplyr::pull(.data[["url"]])
     }
 
     return(url)

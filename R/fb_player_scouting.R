@@ -132,9 +132,9 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
     scout_pos <- scout_pos %>%
       dplyr::mutate(Player=player_name,
                     Versus=gsub("vs. ", "", versus),
-                    Per90 = gsub("\\+", "", .data$Per90) %>% gsub("\\%", "", .) %>% gsub("\\,", "", .) %>% as.numeric(),
-                    Percentile = as.numeric(.data$Percentile)) %>%
-      dplyr::select(.data$Player, .data$Versus, StatGroup=.data$stat_group, dplyr::everything())
+                    Per90 = gsub("\\+", "", .data[["Per90"]]) %>% gsub("\\%", "", .) %>% gsub("\\,", "", .) %>% as.numeric(),
+                    Percentile = as.numeric(.data[["Percentile"]])) %>%
+      dplyr::select(.data[["Player"]], .data[["Versus"]], StatGroup=.data[["stat_group"]], dplyr::everything())
 
     mins_played <- scout_pg %>% rvest::html_nodes(".footer") %>% rvest::html_nodes("strong") %>%
       rvest::html_text() %>% gsub(" minutes", "", .) %>% as.numeric() %>% unique()

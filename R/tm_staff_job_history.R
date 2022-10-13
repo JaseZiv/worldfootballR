@@ -33,8 +33,8 @@ tm_staff_job_history <- function(staff_urls) {
       tidyr::pivot_wider(names_from = data_head, values_from = data_vals) %>%
       janitor::clean_names()
 
-    meta_df <- meta_df %>% tidyr::separate(.data$date_of_birth_age, into = "date_of_birth", sep = " \\(") %>% suppressWarnings()
-    meta_df <- meta_df %>% dplyr::select(-.data$appointed, -.data$contract_until)
+    meta_df <- meta_df %>% tidyr::separate(.data[["date_of_birth_age"]], into = "date_of_birth", sep = " \\(") %>% suppressWarnings()
+    meta_df <- meta_df %>% dplyr::select(-.data[["appointed"]], -.data[["contract_until"]])
 
     staff_hist <- staff_pg %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 
@@ -63,8 +63,8 @@ tm_staff_job_history <- function(staff_urls) {
 
     staff_df <- staff_df %>%
       dplyr::mutate(position = mapply(clean_role, dirty_string=position, dirt=club)) %>%
-      dplyr::mutate(appointed = .tm_fix_dates(.data$appointed),
-             contract_expiry = .tm_fix_dates(.data$contract_expiry)) %>%
+      dplyr::mutate(appointed = .tm_fix_dates(.data[["appointed"]]),
+             contract_expiry = .tm_fix_dates(.data[["contract_expiry"]])) %>%
       dplyr::mutate(staff_url = main_staff_url)
   }
 

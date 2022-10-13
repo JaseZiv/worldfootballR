@@ -41,7 +41,7 @@
   stat_df <- stat_df[-1,]
 
   cols_to_transform <- stat_df %>%
-    dplyr::select(-.data$Squad) %>% names()
+    dplyr::select(-.data[["Squad"]]) %>% names()
 
   stat_df <- stat_df %>%
     dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
@@ -93,7 +93,7 @@
   names(stat_df) <- new_names
   stat_df <- stat_df[-1,]
 
-  stat_df <- stat_df %>% dplyr::select(-.data$Matches)
+  stat_df <- stat_df %>% dplyr::select(-.data[["Matches"]])
 
   remove_rows <- min(grep("Season", stat_df$Season)):nrow(stat_df)
 
@@ -101,10 +101,10 @@
 
   if(any(grepl("LgRank", names(stat_df)))){
     cols_to_transform <- stat_df %>%
-      dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp, -.data$LgRank) %>% names()
+      dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]], -.data[["LgRank"]]) %>% names()
   } else {
     cols_to_transform <- stat_df %>%
-      dplyr::select(-.data$Season, -.data$Squad, -.data$Country, -.data$Comp) %>% names()
+      dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]]) %>% names()
   }
 
   stat_df <- stat_df %>%
@@ -159,7 +159,7 @@
   }
 
   # cols_to_transform <- df_in %>%
-  #   dplyr::select(-.data$Player, -.data$Nation, -.data$Pos, -.data$Age) %>% names()
+  #   dplyr::select(-.data[["Player"]], -.data[["Nation"]], -.data[["Pos"]], -.data[["Age"]]) %>% names()
 
   non_num_vars <- c("Player", "Nation", "Pos", "Age")
   cols_to_transform <- names(df_in)[!names(df_in) %in% non_num_vars]
@@ -302,7 +302,7 @@
   main_url <- "https://understat.com/"
   # need to get the game IDs first, filtering out matches not yet played as these URLs will error
   games <-  .get_clean_understat_json(page_url = type_url, script_name = "datesData") %>%
-    dplyr::filter(.data$isResult)
+    dplyr::filter(.data[["isResult"]])
   # then create a chr vector of match URLs
   match_urls <- paste0(main_url, "match/", games$id)
 

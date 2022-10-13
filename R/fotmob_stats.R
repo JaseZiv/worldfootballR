@@ -31,10 +31,10 @@
 
   resp$result %>%
     tibble::as_tibble() %>%
-    dplyr::select(.data$TopLists) %>%
-    tidyr::unnest(.data$TopLists) %>%
-    dplyr::select(.data$StatList) %>%
-    tidyr::unnest(.data$StatList) %>%
+    dplyr::select(.data[["TopLists"]]) %>%
+    tidyr::unnest(.data[["TopLists"]]) %>%
+    dplyr::select(.data[["StatList"]]) %>%
+    tidyr::unnest(.data[["StatList"]]) %>%
     janitor::clean_names()
 }
 
@@ -166,9 +166,9 @@
 
     extract_options <- function(season) {
       all_stats_df <- stats[[season]][[sprintf("%ss", team_or_player)]] %>%
-        dplyr::distinct(.data$header, .data$name, .data$fetchAllUrl)
+        dplyr::distinct(.data[["header"]], .data[["name"]], .data[["fetchAllUrl"]])
       season_id <- all_stats_df$fetchAllUrl %>% dirname() %>% basename() %>% unique()
-      stats_df <- all_stats_df %>% dplyr::distinct(.data$header, .data$name)
+      stats_df <- all_stats_df %>% dplyr::distinct(.data[["header"]], .data[["name"]])
       dplyr::bind_rows(
         tibble::tibble(
           league_name = NA_character_,
@@ -187,7 +187,7 @@
     valid_seasons %>%
       purrr::map_dfr(extract_options) %>%
       dplyr::distinct() %>%
-      dplyr::arrange(.data$option_type, .data$name)
+      dplyr::arrange(.data[["option_type"]], .data[["name"]])
   }
 }
 
@@ -337,7 +337,7 @@ fotmob_get_season_stats <- function(
   ##   (if we have multiple stats or seasons for a given league).
   g <- function(stat_name, season_name, league_id) {
 
-    url <- urls %>% dplyr::filter(.data$id == !!league_id)
+    url <- urls %>% dplyr::filter(.data[["id"]] == !!league_id)
     country <-  url$ccode
     league_name <- url$name
     page_url <- url$page_url
@@ -351,11 +351,11 @@ fotmob_get_season_stats <- function(
     )
 
     stat_options <- options %>%
-      dplyr::filter(.data$option_type == "stat") %>%
-      dplyr::select(stat_name = .data$name, stat = .data$id)
+      dplyr::filter(.data[["option_type"]] == "stat") %>%
+      dplyr::select(stat_name = .data[["name"]], stat = .data[["id"]])
 
     filt_stat_options <- stat_options %>%
-      dplyr::filter(.data$stat_name == !!stat_name)
+      dplyr::filter(.data[["stat_name"]] == !!stat_name)
 
     if(nrow(filt_stat_options) == 0) {
       stop(
@@ -364,8 +364,8 @@ fotmob_get_season_stats <- function(
     }
 
     season_options <- options %>%
-      dplyr::filter(.data$option_type == "season") %>%
-      dplyr::select(.data$league_name, season_name = .data$name, season_id = .data$id)
+      dplyr::filter(.data[["option_type"]] == "season") %>%
+      dplyr::select(.data[["league_name"]], season_name = .data[["name"]], season_id = .data[["id"]])
 
     if(nrow(season_options) == 0) {
       stop(
@@ -389,8 +389,8 @@ fotmob_get_season_stats <- function(
         league_id = league_id,
         stat_name = stat_name,
         stat = filt_stat_options %>%
-          dplyr::filter(.data$stat_name == !!stat_name) %>%
-          dplyr::pull(.data$stat),
+          dplyr::filter(.data[["stat_name"]] == !!stat_name) %>%
+          dplyr::pull(.data[["stat"]]),
         stat_league_name = url$stat_league_name,
         season_name = .x,
         season_options = season_options
@@ -436,8 +436,8 @@ fotmob_get_season_stats <- function(
 
   filt_season_options <- season_options %>%
     dplyr::filter(
-      .data$league_name == !!stat_league_name,
-      .data$season_name == !!season_name
+      .data[["league_name"]] == !!stat_league_name,
+      .data[["season_name"]] == !!season_name
     )
 
     n_season_options <- nrow(filt_season_options)

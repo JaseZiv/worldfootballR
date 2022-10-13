@@ -23,7 +23,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
                         stringsAsFactors = F)
 
     tryCatch({meta_df_seasons <- meta_df %>%
-      dplyr::filter(.data$country %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
+      dplyr::filter(.data[["country"]] %in% country_name)}, error = function(e) {meta_df_seasons <- data.frame()})
 
     if(nrow(meta_df_seasons) == 0) {
       stop(glue::glue("Country {country_name} not found. Check that the country and season exists at https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv"))
@@ -111,24 +111,24 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
                     current_club, contract_expiry, contract_option, player_market_value, transfer_fee, agent) %>% data.frame()
 
     if(is.na(league_url)) {
-      out_df <- meta_df_seasons %>% dplyr::select(.data$comp_name, .data$country, .data$comp_url) %>% dplyr::distinct() %>%
+      out_df <- meta_df_seasons %>% dplyr::select(.data[["comp_name"]], .data[["country"]], .data[["comp_url"]]) %>% dplyr::distinct() %>%
         cbind(out_df)
     } else {
       out_df <- cbind(comp_name, country, comp_url, out_df)
     }
 
     out_df <- out_df %>%
-      dplyr::mutate(player_name = as.character(.data$player_name),
-                    player_url = as.character(.data$player_url),
-                    position = as.character(.data$position),
-                    nationality = as.character(.data$nationality),
-                    second_nationality = as.character(.data$second_nationality),
-                    current_club = as.character(.data$current_club),
-                    contract_expiry = lubridate::ymd(.data$contract_expiry),
-                    contract_option = as.character(.data$contract_option),
-                    player_market_value = mapply(.convert_value_to_numeric, .data$player_market_value),
-                    transfer_fee = mapply(.convert_value_to_numeric, .data$transfer_fee),
-                    agent = as.character(.data$agent))
+      dplyr::mutate(player_name = as.character(.data[["player_name"]]),
+                    player_url = as.character(.data[["player_url"]]),
+                    position = as.character(.data[["position"]]),
+                    nationality = as.character(.data[["nationality"]]),
+                    second_nationality = as.character(.data[["second_nationality"]]),
+                    current_club = as.character(.data[["current_club"]]),
+                    contract_expiry = lubridate::ymd(.data[["contract_expiry"]]),
+                    contract_option = as.character(.data[["contract_option"]]),
+                    player_market_value = mapply(.convert_value_to_numeric, .data[["player_market_value"]]),
+                    transfer_fee = mapply(.convert_value_to_numeric, .data[["transfer_fee"]]),
+                    agent = as.character(.data[["agent"]]))
 
 
 
