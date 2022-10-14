@@ -197,7 +197,7 @@
     gsub("_Var", "", .) %>%
     gsub("#", "Num_", .) %>%
     gsub("%", "_percent", .) %>%
-    gsub("_Performance", "", .) %>%
+    # gsub("_Performance", "", .) %>%
     gsub("_Penalty", "", .) %>%
     gsub("1/3", "Final_Third", .) %>%
     gsub("\\+/-", "Plus_Minus", .) %>%

@@ -24,9 +24,9 @@ tm_squad_stats <- function(team_url) {
 
     if(!is.na(team_data_page)) {
 
-      team_name <- team_data_page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish()
-      league <- team_data_page %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish()
-      country <- team_data_page %>% rvest::html_nodes(".mediumpunkt img") %>% rvest::html_attr("title")
+      team_name <- team_data_page %>% rvest::html_nodes(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish()
+      league <- team_data_page %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% stringr::str_squish()
+      country <- team_data_page %>% rvest::html_nodes(".vm") %>% rvest::html_attr("title")
 
       team_data_table <- team_data_page %>% rvest::html_nodes("#yw1") %>% rvest::html_node("table") %>% rvest::html_nodes("tbody") %>% rvest::html_children()
 

@@ -298,7 +298,7 @@ test_that("fb_team_player_stats() works", {
 Sys.sleep(3)
 test_that("fb_team_match_log_stats() works", {
   testthat::skip_on_cran()
-  liv_passing_log <- fb_team_match_log_stats(team_url= "https://fbref.com/en/squads/822bd0ba/Liverpool-Stats", stat_type= 'passing', time_pause = 4)
+  liv_passing_log <- fb_team_match_log_stats(team_url= "https://fbref.com/en/squads/822bd0ba/Liverpool-Stats", stat_type= 'keeper', time_pause = 4)
   expect_type(liv_passing_log, "list")
   expect_false(nrow(liv_passing_log) == 0)
 

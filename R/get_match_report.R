@@ -22,7 +22,7 @@
     game <- each_game_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
     # tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
-    tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a") %>% rvest::html_text()}, error = function(e) {League <- NA})
+    tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a:nth-child(1)") %>% rvest::html_text()}, error = function(e) {League <- NA})
     tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes(".venuetime") %>% rvest::html_attr("data-venue-date")}, error = function(e) {Match_Date <- NA})
     tryCatch( {Matchweek <- each_game_page %>% rvest::html_nodes("h1+ div") %>% rvest::html_text()}, error = function(e) {Matchweek <- NA})
 
