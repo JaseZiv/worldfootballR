@@ -92,7 +92,6 @@ fotmob_get_matches_by_date <- function(dates) {
       tidyr::unnest(.data[["match"]], names_sep = "_") %>%
       dplyr::rename(home = .data[["match_home"]], away = .data[["match_away"]]) %>%
       tidyr::unnest(c(.data[["home"]], .data[["away"]], .data[["match_status"]]), names_sep = "_") %>%
-      tidyr::unnest(c(.data[["match_status_reason"]])) %>%
       dplyr::select(-tidyselect::vars_select_helpers$where(is.list)) %>%
       janitor::clean_names()
   }
