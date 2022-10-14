@@ -1,19 +1,19 @@
-# worldfootballR (development version)
+# worldfootballR 0.6.1
 
 ### New functions
 
-* `fb_team_goal_logs` - returns the team's season goals for and goals against logs (0.6.0.2000)
-* `fb_player_goal_logs` - returns the player's career goal and assist logs (0.6.0.2000)
+* `fb_team_goal_logs` - returns the team's season goals for and goals against logs
+* `fb_player_goal_logs` - returns the player's career goal and assist logs
 
 ### Improvements
 
-* Fotmob functions now pass user agent to headers under the hood (0.6.0.4000)
+* Fotmob functions now pass user agent to headers under the hood
 
 ### Bugs
 
-* `tm_squad_stats()` throwing differing number of rows error [#187](https://github.com/JaseZiv/worldfootballR/issues/187) (0.6.0.5000)
-* `.get_match_report_page()` internal function used in a number of `fb_` functions throwing errors for cup tie legs [#174](https://github.com/JaseZiv/worldfootballR/issues/174) (0.6.0.5000)
-* `.clean_table_names()` change to internal function that will include '*_performance*' to some column names in `fb_team_match_log_stats()` to address duplicated column names for `stat_type = 'keeper'` [#184](https://github.com/JaseZiv/worldfootballR/issues/184) (0.6.0.5000)
+* `tm_squad_stats()` throwing differing number of rows error [#187](https://github.com/JaseZiv/worldfootballR/issues/187)
+* `.get_match_report_page()` internal function used in a number of `fb_` functions throwing errors for cup tie legs [#174](https://github.com/JaseZiv/worldfootballR/issues/174)
+* `.clean_table_names()` change to internal function that will include '*_performance*' to some column names in `fb_team_match_log_stats()` to address duplicated column names for `stat_type = 'keeper'` [#184](https://github.com/JaseZiv/worldfootballR/issues/184)
 
 
 ### Breaking Changes
