@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.4000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0.5000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from fotmob</h1>
                         <h4 data-toc-skip class="author">Tony ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-10-13</h4>
+            <h4 data-toc-skip class="date">2022-10-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fotmob-data.Rmd</code></div>
@@ -343,8 +343,8 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1,004</span></span>
-<span><span class="co">#&gt; Columns: 39</span></span>
+<span><span class="co">#&gt; Rows: 1,005</span></span>
+<span><span class="co">#&gt; Columns: 37</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "USA", "USA", "USA", "USA", "…</span></span>
 <span><span class="co">#&gt; $ id                                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 872390, 872390, 872390, 872390, 8723…</span></span>
 <span><span class="co">#&gt; $ primary_id                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 130, 130, 130, 130, 130, 130, 1…</span></span>
@@ -371,11 +371,9 @@
 <span><span class="co">#&gt; $ match_status_score_str            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1 - 0", "2 - 1", "2 - 1", "4 - 2", …</span></span>
 <span><span class="co">#&gt; $ match_status_start_date_str       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sep 25, 2021", "Sep 25, 2021", "Sep…</span></span>
 <span><span class="co">#&gt; $ match_status_start_date_str_short <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "25. Sep.", "25. Sep.", "25. Sep.", …</span></span>
-<span><span class="co">#&gt; $ short                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FT", "FT", "FT", "FT", "FT", "FT", …</span></span>
-<span><span class="co">#&gt; $ long                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Full-Time", "Full-Time", "Full-Time…</span></span>
 <span><span class="co">#&gt; $ match_status_awarded              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
 <span><span class="co">#&gt; $ match_status_start_time_str       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
-<span><span class="co">#&gt; $ match_time_ts                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632580e+12, 1.632593e+12, 1.632595…</span></span>
+<span><span class="co">#&gt; $ match_time_ts                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.632584e+12, 1.632596e+12, 1.632598…</span></span>
 <span><span class="co">#&gt; $ match_tv                          <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
 <span><span class="co">#&gt; $ parent_league_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 130, 130, 130, 130, 130, 130, 130, 1…</span></span>
 <span><span class="co">#&gt; $ internal_rank                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 10, 10, 10, 10, 10, 10, 10, 10, 10, …</span></span>
@@ -389,18 +387,18 @@
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span><span class="st">"20220412"</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Champions League Final Stage"</span>, <span class="va">ccode</span> <span class="op">==</span> <span class="st">"INT"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 37</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 35</span></span></span>
 <span><span class="co">#&gt;   ccode     id primary_id name   match…¹ match…² match…³ home_id home_…⁴ home_…⁵</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champ… 3<span style="text-decoration: underline;">846</span>346  <span style="text-decoration: underline;">875</span>880 12.04.…    <span style="text-decoration: underline;">9</span>823       1 Bayern…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> INT   <span style="text-decoration: underline;">875</span>880         42 Champ… 3<span style="text-decoration: underline;">846</span>342  <span style="text-decoration: underline;">875</span>880 12.04.…    <span style="text-decoration: underline;">8</span>633       2 Real M…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 27 more variables: home_long_name &lt;chr&gt;, away_id &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 25 more variables: home_long_name &lt;chr&gt;, away_id &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   away_score &lt;int&gt;, away_name &lt;chr&gt;, away_long_name &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   match_eliminated_team_id &lt;int&gt;, match_status_id &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   match_tournament_stage &lt;chr&gt;, match_status_finished &lt;lgl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   match_status_started &lt;lgl&gt;, match_status_cancelled &lt;lgl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   match_status_score_str &lt;chr&gt;, match_status_start_date_str &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_start_date_str_short &lt;chr&gt;, short &lt;chr&gt;, long &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   match_status_start_date_str_short &lt;chr&gt;, …</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standings">Standings<a class="anchor" aria-label="anchor" href="#standings"></a>
@@ -464,7 +462,7 @@
 <span><span class="co">#&gt; Columns: 16</span></span>
 <span><span class="co">#&gt; $ match_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609994, 3610132</span></span>
 <span><span class="co">#&gt; $ match_date_date_formatted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sun, Oct 3 2021", "Sun, Jan 2 2022"</span></span>
-<span><span class="co">#&gt; $ match_date_time_formatted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10:30 a.m.", "10:30 a.m."</span></span>
+<span><span class="co">#&gt; $ match_date_time_formatted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "11:30 a.m.", "11:30 a.m."</span></span>
 <span><span class="co">#&gt; $ tournament_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47</span></span>
 <span><span class="co">#&gt; $ tournament_link           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/leagues/47/overview/premier-league", "/lea…</span></span>
 <span><span class="co">#&gt; $ tournament_league_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League"</span></span>
