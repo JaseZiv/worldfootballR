@@ -10,7 +10,7 @@
   )
 
   url_format <- sprintf(
-    "https://github.com/JaseZiv/worldfootballR_data/blob/master/data/%s.rds?raw=true",
+    "https://github.com/JaseZiv/worldfootballR_data/releases/download/%s.rds",
     url_stem
   )
 
