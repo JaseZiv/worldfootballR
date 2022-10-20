@@ -26,8 +26,8 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
     team_page <- xml2::read_html(xfers_url)
 
     team_name <- team_page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
-    league <- team_page %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
-    country <- team_page %>% rvest::html_nodes(".mediumpunkt img") %>% rvest::html_attr("title") %>% .replace_empty_na()
+    league <- team_page %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
+    country <- team_page %>% rvest::html_nodes(".data-header__content img") %>% rvest::html_attr("title") %>% .replace_empty_na()
     season <- xfers_url %>% gsub(".*saison_id/", "", .) %>% .replace_empty_na()
 
 

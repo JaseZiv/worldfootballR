@@ -1,3 +1,12 @@
+# worldfootballR (development version)
+
+### Bugs
+
+* `tm_player_market_values()` returning `NAs` in the `squad` column
+* `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt
+
+***
+
 # worldfootballR 0.6.1
 
 ### New functions

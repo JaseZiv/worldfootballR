@@ -36,11 +36,11 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
     tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
-      rvest::html_nodes(".profilheader") %>%
+      rvest::html_nodes(".data-header") %>%
       rvest::html_node("img") %>%
-      rvest::html_attr("alt") %>% .[!is.na(.)]}, error = function(e) {country_name <- NA_character_})
+      rvest::html_attr("alt") %>% .[!is.na(.)] %>% stringr::str_squish()}, error = function(e) {country_name <- NA_character_})
 
-    tryCatch({comp_name <- league_page %>% rvest::html_nodes(".headerfoto img") %>% rvest::html_attr("title")},
+    tryCatch({comp_name <- league_page %>% rvest::html_nodes(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish()},
     error = function(e) {country_name <- comp_name})
 
     comp_url <- league_url
@@ -64,7 +64,7 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
 
   debutants_page <- xml2::read_html(comp_url)
 
-  debutants_pages <- debutants_page %>% html_nodes(".tm-pagination__list-item a") %>% html_attr("href") %>%
+  debutants_pages <- debutants_page %>% rvest::html_nodes(".tm-pagination__list-item a") %>% rvest::html_attr("href") %>%
     paste0(main_url, .)
 
 

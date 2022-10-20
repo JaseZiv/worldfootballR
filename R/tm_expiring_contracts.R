@@ -35,12 +35,12 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
-      rvest::html_nodes(".profilheader") %>%
+      rvest::html_nodes(".data-header") %>%
       rvest::html_node("img") %>%
-      rvest::html_attr("alt") %>% .[!is.na(.)]}, error = function(e) {country_name <- NA_character_})
+      rvest::html_attr("alt") %>% .[!is.na(.)] %>% stringr::str_squish()}, error = function(e) {country_name <- NA_character_})
 
-    tryCatch({comp_name <- league_page %>% rvest::html_nodes(".headerfoto img") %>% rvest::html_attr("title")},
-             error = function(e) {comp_name <- NA_character_})
+    tryCatch({comp_name <- league_page %>% rvest::html_nodes(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish()},
+             error = function(e) {country_name <- comp_name})
 
     comp_url <- league_url
 
@@ -85,7 +85,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
                            error = function(e) player_url <- NA_character_)
     position <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text(),
                          error = function(e) position <- NA_character_)
-    nationality <- tryCatch(exp_pg %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% html_attr("title"),
+    nationality <- tryCatch(exp_pg %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% rvest::html_attr("title"),
                             error = function(e) nationality <- NA_character_)
     second_nationality <- c()
     for(i in exp_pg) {
