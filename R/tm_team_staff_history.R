@@ -30,8 +30,8 @@ tm_team_staff_history <- function(team_urls, staff_role = "Manager") {
     history_pg <- xml2::read_html(manager_history_url)
 
     team_name <- history_pg %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
-    league <- history_pg %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
-    country <- history_pg %>% rvest::html_nodes(".mediumpunkt img") %>% rvest::html_attr("title") %>% .replace_empty_na()
+    league <- history_pg %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
+    country <- history_pg %>% rvest::html_nodes(".data-header__content img") %>% rvest::html_attr("title") %>% .replace_empty_na()
 
     mgrs <- history_pg %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 

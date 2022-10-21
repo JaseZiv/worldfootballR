@@ -41,10 +41,9 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
 
     }
 
-    comp_name <- league_page %>% rvest::html_nodes(".spielername-profil") %>% rvest::html_text()
+    comp_name <- league_page %>% rvest::html_nodes(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
 
-    country <- league_page %>% rvest::html_nodes(".miniflagge")
-    country <- xml2::xml_attrs(country[[1]])[["title"]]
+    country <- league_page %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
 
     seasons <- league_page %>% rvest::html_nodes(".chzn-select") %>% rvest::html_nodes("option")
 
@@ -101,7 +100,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
       tab_head_names <- team_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes(".items") %>% rvest::html_nodes("th") %>% rvest::html_text()
 
       # team name
-      squad <- team_page %>% rvest::html_node(".dataName") %>% rvest::html_text() %>% stringr::str_squish()
+      squad <- team_page %>% rvest::html_node(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish()
       # numbers
       player_num <- team_data %>% rvest::html_nodes(".rn_nummer") %>% rvest::html_text()
       if(length(player_num) == 0) {

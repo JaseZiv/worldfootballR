@@ -45,9 +45,9 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
     tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country_name <- league_page %>%
-      rvest::html_nodes(".profilheader") %>%
+      rvest::html_nodes(".data-header") %>%
       rvest::html_node("img") %>%
-      rvest::html_attr("alt") %>% .[!is.na(.)]}, error = function(e) {country_name <- NA_character_})
+      rvest::html_attr("alt") %>% .[!is.na(.)] %>% stringr::str_squish()}, error = function(e) {country_name <- NA_character_})
 
     if(length(league_page) == 0) {
       stop(glue::glue("League URL(s) {league_url} not found. Please check transfermarkt.com for the correct league URL"))
