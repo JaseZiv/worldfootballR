@@ -52,8 +52,13 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
       # function to clean home and away df
       prep_shot_df <- function(shot_df) {
-        names(shot_df) <- c("Minute", "Shooting_Player", "Squad", "Outcome", "Distance", "Body_Part", "Shot_Notes", "SCA1_Player", "SCA1_Event", "SCA2_Player", "SCA2_Event")
-        shot_df <- shot_df[-1, ]
+
+        var_names <- shot_df[1,] %>% as.character()
+        new_names <- paste(var_names, names(shot_df), sep = "_")
+        new_names <- gsub("_Var.[0-9]", "", new_names) %>% gsub(".1.1", ".1", .) %>% gsub(".2.1", ".2", .) %>% gsub("\\.", "_", .)
+
+        names(shot_df) <- new_names
+        shot_df <- shot_df[-1,]
 
         shot_df <- shot_df %>%
           dplyr::mutate(Match_Half = dplyr::case_when(
