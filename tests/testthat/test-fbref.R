@@ -322,8 +322,8 @@ test_that("fb_squad_wages() works", {
 Sys.sleep(3)
 test_that("fb_team_goal_logs() works", {
   testthat::skip_on_cran()
-  mc_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats", time_pause = 4, for_or_against = "for")
-  granada_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/a0435291/Granada-Stats", time_pause = 4, for_or_against = "for")
+  mc_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/b8fd03ef/2021-2022/Manchester-City-Stats", time_pause = 4, for_or_against = "for")
+  granada_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/a0435291/2022-2023/Granada-Stats", time_pause = 4, for_or_against = "for")
   expect_type(mc_goal_log, "list")
   expect_type(granada_goal_log, "list")
   expect_false(nrow(mc_goal_log) == 0)
