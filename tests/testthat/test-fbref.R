@@ -322,15 +322,21 @@ test_that("fb_squad_wages() works", {
 Sys.sleep(3)
 test_that("fb_team_goal_logs() works", {
   testthat::skip_on_cran()
-  mc_goal_log <- fb_team_goal_logs(team_url= "https://fbref.com/en/squads/b8fd03ef/Manchester-City-Stats", time_pause = 4, for_or_against = "for")
+  mc_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/b8fd03ef/2021-2022/Manchester-City-Stats", time_pause = 4, for_or_against = "for")
+  granada_goal_log <- fb_team_goal_logs(team_url = "https://fbref.com/en/squads/a0435291/2022-2023/Granada-Stats", time_pause = 4, for_or_against = "for")
   expect_type(mc_goal_log, "list")
+  expect_type(granada_goal_log, "list")
   expect_false(nrow(mc_goal_log) == 0)
+  expect_false(nrow(granada_goal_log) == 0)
 })
 
 Sys.sleep(3)
 test_that("fb_player_goal_logs() works", {
   testthat::skip_on_cran()
-  jwp_goal_log <- fb_player_goal_logs(player_url= "https://fbref.com/en/players/3515d404/James-Ward-Prowse", time_pause = 4, goals_or_assists="goals")
+  jwp_goal_log <- fb_player_goal_logs(player_url = "https://fbref.com/en/players/3515d404/James-Ward-Prowse", time_pause = 4, goals_or_assists = "goals")
+  gnahoua_goal_log <- fb_player_goal_logs(player_urls = "https://fbref.com/en/players/7440346f/Arthur-Gnahoua", time_pause = 4, goals_or_assists = "both") # works
   expect_type(jwp_goal_log, "list")
+  expect_type(gnahoua_goal_log, "list")
   expect_false(nrow(jwp_goal_log) == 0)
+  expect_false(nrow(gnahoua_goal_log) == 0)
 })

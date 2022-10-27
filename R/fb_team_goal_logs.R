@@ -71,23 +71,26 @@ fb_team_goal_logs <- function(team_urls, time_pause=3, for_or_against="for") {
           else data.frame()
         }
 
+      # new column names
+      new_names <- c(Body_Part="Body.Part",Type1="Type",Type2="Type.1")
+
       # turn html tables into data frames, force minute to be a character, and label the goals
       goals_for <-
         tab_box_goals_for %>%
         data.frame() %>%
-        mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
+        dplyr::mutate(dplyr::across(tidyselect::contains(c("Minute","Goalkeeper","Assist","Notes")), as.character)) %>%
         dplyr::mutate(For_or_Against="for")
 
       goals_against <-
         tab_box_goals_against %>%
         data.frame() %>%
-        dplyr::mutate(dplyr::across(tidyselect::contains("Minute"), as.character)) %>%
+        dplyr::mutate(dplyr::across(tidyselect::contains(c("Minute","Goalkeeper","Assist","Notes")), as.character)) %>%
         dplyr::mutate(For_or_Against="against")
 
       # bind the tables together
       goals <-
         dplyr::bind_rows(goals_for,goals_against) %>%
-        dplyr::rename(Body_Part=.data[["Body.Part"]],GCA_Type1=.data[["Type"]],GCA_Type2=.data[["Type.1"]]) %>%
+        dplyr::rename(tidyselect::any_of(new_names)) %>%
         dplyr::filter(!is.na(.data[["Rk"]])) %>%
         dplyr::arrange(dplyr::desc(.data[["For_or_Against"]]),.data[["Date"]],.data[["Minute"]])
 
