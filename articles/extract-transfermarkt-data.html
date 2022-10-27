@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.3000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.4000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from Transfermarkt</h1>
                         <h4 data-toc-skip class="author">Jason Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-10-26</h4>
+            <h4 data-toc-skip class="date">2022-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -312,7 +312,7 @@
 <span><span class="co">#&gt; $ goals_against       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 2, 1, 2, 1, 2, 4, 1, 2, 1, 1, 2, 1, 4, 1, 2, 2,…</span></span>
 <span><span class="co">#&gt; $ age_debut           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "16 years 07 months 12 days", "16 years 11 months …</span></span>
 <span><span class="co">#&gt; $ value_at_debut      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
-<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 100000, NA, NA, NA, NA, NA, NA, NA, 300000…</span></span>
+<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, 100000, NA, NA, NA, NA, NA, NA, NA, 400000…</span></span>
 <span><span class="co">#&gt; $ appearances         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 1, 1, 1, 8, 2, 1, 1, 19, 1, 36, 3, 17, 1, 5, 2,…</span></span>
 <span><span class="co">#&gt; $ goals               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0,…</span></span>
 <span><span class="co">#&gt; $ minutes_played      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 16, 2, 0, 4, 316, 8, 83, 13, 1552, 90, 3097, 78, 1…</span></span>
@@ -335,14 +335,14 @@
 <span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Thomas Lemar", "Marco Asensio", "Karim Benzema", …</span></span>
 <span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/thomas-lemar/profil…</span></span>
 <span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Attacking Midfield", "Right Winger", "Centre-Forw…</span></span>
-<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "France", "Spain", "France", "Netherlands", "Germa…</span></span>
+<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "France", "Spain", "France", "Netherlands", "Spain…</span></span>
 <span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Guadeloupe", "Netherlands", "Algeria", "Ghana", N…</span></span>
 <span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Atlético de Madrid", "Real Madrid", "Real Madrid"…</span></span>
 <span><span class="co">#&gt; $ contract_expiry     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-06-30, 2023-06-30, 2023-06-30, 2023-06-30, 2…</span></span>
 <span><span class="co">#&gt; $ contract_option     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", …</span></span>
 <span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.5e+07, 3.5e+07, 3.0e+07, 2.5e+07, 2.0e+07, 2.0e+…</span></span>
-<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 72000000, 3900000, 35000000, 0, 25000000, 0, 32000…</span></span>
-<span><span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kemari", "Gestifute", "", "TEAM DEPAY", "Sports36…</span></span>
+<span><span class="co">#&gt; $ transfer_fee        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 72000000, 3900000, 35000000, 0, 32000000, 25000000…</span></span>
+<span><span class="co">#&gt; $ agent               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Kemari", "Gestifute", "", "TEAM DEPAY", "Carmelo …</span></span>
 <span></span>
 <span><span class="co">#----- Can even do it for non-standard leagues - English League One players with expiring contracts in 2022: -----#</span></span>
 <span><span class="co"># league_one_expiring &lt;- tm_expiring_contracts(country_name = "",</span></span>
@@ -541,7 +541,7 @@
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">hazard_injuries</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 30</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ player_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "\n                                        \n          …</span></span>
+<span><span class="co">#&gt; $ player_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "\n                                    \n              …</span></span>
 <span><span class="co">#&gt; $ player_url     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/eden-hazard/profil/spiel…</span></span>
 <span><span class="co">#&gt; $ season_injured <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "21/22", "21/22", "21/22", "21/22", "20/21", "20/21", "…</span></span>
 <span><span class="co">#&gt; $ injury         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fissure of the fibula", "Abdominal Influenza", "Muscul…</span></span>
@@ -588,11 +588,11 @@
 <span><span class="co">#&gt; $ staff_nationality_secondary <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Italy", NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span><span class="co">#&gt; $ appointed                   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2016-07-01, 2013-07-01, 2009-12-19, 2008-…</span></span>
 <span><span class="co">#&gt; $ end_date                    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, 2016-06-30, 2013-05-13, 2009-12-19, 2…</span></span>
-<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2308, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
-<span><span class="co">#&gt; $ matches                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 369, 166, 191, 77, 45, 97, 176, 112, 47, 6…</span></span>
-<span><span class="co">#&gt; $ wins                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 272, 101, 113, 37, 19, 34, 77, 46, 14, 2, …</span></span>
-<span><span class="co">#&gt; $ draws                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43, 27, 38, 15, 11, 19, 39, 25, 15, 1, 11,…</span></span>
-<span><span class="co">#&gt; $ losses                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 54, 38, 40, 25, 15, 44, 60, 41, 18, 3, 22,…</span></span>
+<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2309, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
+<span><span class="co">#&gt; $ matches                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 369, 166, 191, 77, 45, 97, 176, 112, 52, 6…</span></span>
+<span><span class="co">#&gt; $ wins                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 272, 101, 113, 37, 19, 34, 77, 46, 16, 2, …</span></span>
+<span><span class="co">#&gt; $ draws                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43, 27, 38, 15, 11, 19, 39, 25, 17, 1, 11,…</span></span>
+<span><span class="co">#&gt; $ losses                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 54, 38, 40, 25, 15, 44, 60, 41, 19, 3, 22,…</span></span>
 <span><span class="co">#&gt; $ ppg                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.33, 1.99, 1.97, 1.64, 1.51, 1.25, 1.53, …</span></span>
 <span></span>
 <span><span class="co">#----- can also get other roles: -----#</span></span>
