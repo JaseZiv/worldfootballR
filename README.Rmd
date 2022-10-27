@@ -90,11 +90,12 @@ To stay up-to-date with the latest changes, see the package [change log](https:/
 
 ## Leagues and Seasons
 
-### Fbref
+### FBref
 
 For FBref.com data (match and season data), a list of leagues and seasons included in the package can be found in the `worldfootballR_data` repository and can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv)
 
 ### Transfermarkt
+
 For transfermarkt.com data (valuations and transfers), a list of leagues and seasons included in the package can be found in the `worldfootballR_data` repository and can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv)
 
 ### Understat
@@ -116,11 +117,10 @@ When using the functions in the package, **please ensure you attribute the sourc
 
 Data providers are listed below:
 
-* [StatsBomb via FBref](https://fbref.com/en/)
+* [FBref](https://fbref.com/en/) partnered with StatsPerform Opta
 * [Transfermarkt](https://www.transfermarkt.com/)
 * [Understat](https://understat.com/)
 * [Fotmob](https://www.fotmob.com/)
-
 
 ### Acknowledgements
 
