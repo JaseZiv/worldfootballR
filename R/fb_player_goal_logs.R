@@ -71,6 +71,9 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
           else data.frame()
         }
 
+      # new column names
+      new_names <- c(Body_Part="Body.Part",Type1="Type",Type2="Type.1")
+
       # turn html tables into data frames, force minute to be a character, and label the goals and assists
       goals <-
         tab_box_goals %>%
@@ -87,7 +90,7 @@ fb_player_goal_logs <- function(player_urls, time_pause=3, goals_or_assists="goa
       # bind the tables together
       goals_and_assists <-
         dplyr::bind_rows(goals,assists) %>%
-        dplyr::rename(Body_Part=.data[["Body.Part"]],GCA_Type1=.data[["Type"]],GCA_Type2=.data[["Type.1"]]) %>%
+        dplyr::rename(tidyselect::any_of(new_names)) %>%
         dplyr::filter(!is.na(.data[["Rk"]])) %>%
         dplyr::arrange(dplyr::desc(.data[["Goal_or_Assist"]]),.data[["Rk"]])
 
