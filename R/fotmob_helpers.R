@@ -8,7 +8,7 @@
   page %>%
     rvest::html_elements("script") %>%
     rvest::html_text(trim = TRUE) %>%
-    purrr::keep(stringr::str_detect, "lsLeague")
+    purrr::keep(stringr::str_detect, "props")
 }
 
 #' @importFrom stringr str_extract
@@ -16,6 +16,6 @@
   meta <- .fotmob_extract_meta()
   meta %>%
     stringr::str_extract('(?<=\\"buildId\\"[:]).*(?=\\,\\"isFallback\\")') %>%
-    .fromJSON()
-
+    safely_from_json() %>%
+    pluck("result")
 }

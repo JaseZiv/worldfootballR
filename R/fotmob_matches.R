@@ -1,5 +1,5 @@
 .extract_fotmob_match_general <- function(url) {
-  resp <- .fromJSON(url)
+  resp <- safely_from_json(url)$result
   general <- resp$general
   scalars <- data.frame(
     stringsAsFactors = FALSE,
@@ -80,7 +80,7 @@ fotmob_get_matches_by_date <- function(dates) {
   date <- stringr::str_remove_all(as.character(date), "-")
   url <- paste0(main_url, "matches?date=", date)
   f <- function(url) {
-    resp <- .fromJSON(url)
+    resp <- safely_from_json(url)$result
     res <- resp$leagues %>%
       janitor::clean_names() %>%
       tibble::as_tibble()

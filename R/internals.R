@@ -443,6 +443,5 @@ safely_from_json <- function(...) {
   if (!is.null(resp)) {
     return(resp)
   }
-  f <- purrr::safely(jsonlite::fromJSON, otherwise = NULL, quiet = TRUE)
-  f(...)
+  jsonlite::fromJSON(...)
 }
