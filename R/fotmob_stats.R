@@ -3,7 +3,6 @@
 #' @importFrom dplyr select
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
-#' @importFrom purrr safely
 #' @importFrom stringr str_detect str_replace_all
 .fotmob_get_single_season_stats <- function(league_id, season_id, stat) {
 
@@ -17,9 +16,7 @@
     stat
   )
 
-  ## This still print out HTTP error 403 even with `quiet = TRUE`?!?
-  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
-  resp <- .safely_from_json(url)
+  resp <- safely_from_json(url)
   if(!is.null(resp$error)) {
     warning(
       sprintf(
