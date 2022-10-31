@@ -20,7 +20,7 @@ test_that("fotmob_get_matches_by_date() works", {
 test_that("fotmob_get_league_matches() works", {
   testthat::skip_on_cran()
 
-  expected_league_matches_cols <- c("id", "page_url", "opponent", "home", "away", "display_tournament", "lname_arr", "color", "not_started", "tournament", "status")
+  expected_league_matches_cols <- c("month_key", "round", "round_name", "page_url", "id", "home", "away", "status")
   epl_league_matches <- fotmob_get_league_matches(
     country = "ENG",
     league_name = "Premier League"
@@ -68,8 +68,8 @@ test_that("fotmob_get_league_matches() works", {
 
   expect_gt(nrow(epl_ll_league_matches_unnested), 0)
   expect_equal(
-    colnames(epl_ll_league_matches_unnested),
-    c("match_id", "home_id", "home_name", "home_score", "away_id", "away_name", "away_score")
+    sort(colnames(epl_ll_league_matches_unnested)),
+    sort(c("match_id", "home_name", "home_shortName", "home_id", "away_name", "away_shortName", "away_id"))
   )
 
   # doesn't exist
