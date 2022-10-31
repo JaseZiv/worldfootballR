@@ -168,7 +168,7 @@
       topstats_url <- sprintf("https://data.fotmob.com/%s", link$RelativePath)
       topstats <- purrr::map_dfr(topstats_url, safely_from_json) ## Liga MX will have two rows
       toplists <- topstats$result$TopLists %>%
-        dplyr::distinct(header = .data[["Title"]], name = .data[["StatName"]], url = .data[["StatLocation"]])
+        dplyr::distinct(header = .data[["Title"]], name = .data[["StatName"]])
 
       negate <- ifelse(team_or_player == "team", FALSE, TRUE)
 
