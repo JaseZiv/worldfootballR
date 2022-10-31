@@ -3,12 +3,11 @@
 #' @importFrom dplyr select
 #' @importFrom tidyr unnest
 #' @importFrom janitor clean_names
-#' @importFrom purrr safely
 #' @importFrom stringr str_detect str_replace_all
 .fotmob_get_single_season_stats <- function(league_id, season_id, stat) {
 
-  if (stringr::str_detect(season_id, '-')) {
-    season_id <- stringr::str_replace_all(season_id, '-', '\\/')
+  if (stringr::str_detect(season_id, "-")) {
+    season_id <- stringr::str_replace_all(season_id, "-", "\\/")
   }
   url <- sprintf(
     "https://data.fotmob.com/stats/%s/season/%s/%s.json",
@@ -17,9 +16,7 @@
     stat
   )
 
-  ## This still print out HTTP error 403 even with `quiet = TRUE`?!?
-  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
-  resp <- .safely_from_json(url)
+  resp <- safely_from_json(url)
   if(!is.null(resp$error)) {
     warning(
       sprintf(
@@ -73,8 +70,8 @@
 #' @importFrom rvest read_html html_elements html_attr
 #' @importFrom stringr str_replace str_replace str_detect
 #' @importFrom rlang maybe_missing
-#' @importFrom dplyr distinct arrange bind_rows
-#' @importFrom purrr imap_lgl keep map_dfr
+#' @importFrom dplyr distinct arrange bind_rows select filter
+#' @importFrom purrr keep map_dfr
 .fotmob_get_stat_and_season_options <- function(
     country,
     league_name,
@@ -114,7 +111,7 @@
     next_page <- next_url %>% rvest::read_html()
     options <- next_page %>% rvest::html_elements("option")
     .extract_seasons_and_stats_from_options(options)
-    } else if (has_options) {
+  } else if (has_options) {
 
     values <- options %>% rvest::html_attr("value")
 
@@ -153,39 +150,60 @@
         sprintf("Can't find season stats data. Failed with the following error:\n", resp$error)
       )
     }
-    stats <- .fotmob_extract_data_from_page_props(resp$result)$stats
+    stats <- resp$result$pageProps$stats
     seasons <- stats$seasonStatLinks$Name
 
     label <- sprintf("%ss", .upper1(team_or_player))
     valid_seasons <- setNames(seasons, seasons) %>%
-      purrr::imap_lgl(
-        ~label %in% stats[[.x]]$tabs
+      purrr::keep(
+        ~.x %in% stats$seasonStatLinks$Name
       ) %>%
-      purrr::keep(isTRUE) %>%
       names()
 
     extract_options <- function(season) {
-      all_stats_df <- stats[[season]][[sprintf("%ss", team_or_player)]] %>%
-        dplyr::distinct(.data[["header"]], .data[["name"]], .data[["fetchAllUrl"]])
-      season_id <- all_stats_df$fetchAllUrl %>% dirname() %>% basename() %>% unique()
-      stats_df <- all_stats_df %>% dplyr::distinct(.data[["header"]], .data[["name"]])
+
+      link <- stats$seasonStatLinks |>
+        filter(.data[["Name"]] == !!season)
+
+      topstats_url <- sprintf("https://data.fotmob.com/%s", link$RelativePath)
+      topstats <- purrr::map_dfr(topstats_url, safely_from_json) ## Liga MX will have two rows
+      toplists <- topstats$result$TopLists %>%
+        dplyr::distinct(header = .data[["Title"]], name = .data[["StatName"]])
+
+      negate <- ifelse(team_or_player == "team", FALSE, TRUE)
+
+      toplists <- toplists %>%
+        dplyr::filter(stringr::str_detect(.data[["name"]], "team", negate = !!negate))
+
+      season_name <- season
+      if (any(colnames(link) == "Group")) {
+        season_name <- sprintf("%s-%s", season_name, link$Group)
+      }
+
+      season_id <- as.character(link$TournamentId)
+      if (any(colnames(link) == "Group")) {
+        season_id <- sprintf("%s-%s", season_id, link$Group)
+      }
+
       dplyr::bind_rows(
         tibble::tibble(
           league_name = NA_character_,
           option_type = "season",
-          name = season,
-          id = season_id[1]
+          name = season_name,
+          id = season_id
         ),
         tibble::tibble(
           league_name = NA_character_,
           option_type = "stat",
-          name = stats_df$header,
-          id = stats_df$name
+          name = toplists$header,
+          id = toplists$name
         )
       )
     }
+    possibly_extract_options <- purrr::possibly(extract_options, otherwise = tibble::tibble(), quiet = TRUE)
+
     valid_seasons %>%
-      purrr::map_dfr(extract_options) %>%
+      purrr::map_dfr(possibly_extract_options) %>%
       dplyr::distinct() %>%
       dplyr::arrange(.data[["option_type"]], .data[["name"]])
   }
@@ -390,7 +408,8 @@ fotmob_get_season_stats <- function(
         stat_name = stat_name,
         stat = filt_stat_options %>%
           dplyr::filter(.data[["stat_name"]] == !!stat_name) %>%
-          dplyr::pull(.data[["stat"]]),
+          dplyr::select(.data[["stat"]]) |>
+          unique(),
         stat_league_name = url$stat_league_name,
         season_name = .x,
         season_options = season_options
@@ -440,7 +459,7 @@ fotmob_get_season_stats <- function(
       .data[["season_name"]] == !!season_name
     )
 
-    n_season_options <- nrow(filt_season_options)
+  n_season_options <- nrow(filt_season_options)
   print_season_league_name_error <- function(stem) {
     glue::glue(
       '`season_name` = "{season_name}", `stat_league_name` = "{stat_league_name}" {stem}. Try one of the following `stat_league_name`, `season_name` pairs:\n{glue::glue_collapse(sprintf("%s, %s", season_options$league_name, season_options$season_name), "\n")}'

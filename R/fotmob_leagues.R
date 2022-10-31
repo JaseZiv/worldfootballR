@@ -142,31 +142,29 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   )
 }
 
-#' @importFrom purrr safely
+#' @importFrom stringr str_replace
 .fotmob_get_league_resp_from_build_id <- function(page_url, stats = FALSE) {
   build_id <- .fotmob_get_build_id()
   url <- sprintf("https://www.fotmob.com/_next/data/%s%s.json", build_id, page_url)
   if(stats) {
     url <- stringr::str_replace(url, "overview", "stats")
   }
-  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
-  .safely_from_json(url)
+  safely_from_json(url)
 }
 
 #' @importFrom purrr safely
 .fotmob_get_league_resp <- function(league_id, page_url, fallback = TRUE) {
   url <- sprintf("https://www.fotmob.com/api/leagues?id=%s", league_id)
-  .safely_from_json <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
-  res <- .safely_from_json(url)
-  if(!is.null(res$result)) {
-    return(res$result)
+  resp <- safely_from_json(url)
+  if(!is.null(resp$result)) {
+    return(resp$result)
   }
 
   first_url <- url
   if(fallback) {
-    res <- .fotmob_get_league_resp_from_build_id(page_url)
-    if(!is.null(res$result)) {
-      return(res$result)
+    resp <- .fotmob_get_league_resp_from_build_id(page_url)
+    if(!is.null(resp$result)) {
+      return(resp$result)
     }
   }
 
@@ -241,21 +239,18 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
   )
 }
 
-.fotmob_extract_data_from_page_props <- function(resp) {
-  league_id <- names(resp$pageProps$initialState$league)
-  resp$pageProps$initialState$league[[league_id]]$data
-}
-
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr bind_rows
 .fotmob_get_league_matches <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("matches" %in% names(resp)) {
-    I
-  } else {
-    .fotmob_extract_data_from_page_props
-  }
-  f(resp)$matches %>%
+  rounds <- resp$matches$data$matchesCombinedByRound
+  rounds %>%
+    purrr::map_dfr(
+      ~purrr::map_dfr(.x, dplyr::bind_rows) %>%
+        dplyr::mutate(across(.data[["roundName"]], as.character))
+    ) %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
@@ -329,12 +324,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom tidyr pivot_longer unnest_longer unnest
 .fotmob_get_league_tables <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("table" %in% names(resp)) {
-    I
-  } else {
-    .fotmob_extract_data_from_page_props
-  }
-  table_init <- f(resp)$table$data
+  table_init <- resp$table$data
   cols <- c("all", "home", "away")
   table <- if("table" %in% names(table_init)) {
     table_init$table %>% dplyr::select(dplyr::all_of(cols))
