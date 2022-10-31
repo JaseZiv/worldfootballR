@@ -9,13 +9,6 @@
 * `fotmob_get_season_stats` returning lexical error [#281](https://github.com/JaseZiv/worldfootballR/issues/281) (0.6.1.5000)
 * `fotmob_get_season_stats` internals changed to handle new data format  (0.6.1.5000)
 
-# worldfootballR 0.6.2
-
-### Bugs
-
-* `tm_player_market_values()` returning `NAs` in the `squad` column
-* `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt
-
 ***
 
 # worldfootballR 0.6.1
