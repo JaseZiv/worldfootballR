@@ -239,11 +239,6 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
   )
 }
 
-.fotmob_extract_data_from_page_props <- function(resp) {
-  league_id <- names(resp$pageProps$initialState$league)
-  resp$pageProps$initialState$league[[league_id]]$data
-}
-
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom purrr map_dfr

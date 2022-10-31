@@ -12,6 +12,7 @@
 }
 
 #' @importFrom stringr str_extract
+#' @importFrom purrr pluck
 .fotmob_get_build_id <- function() {
   meta <- .fotmob_extract_meta()
   meta %>%
