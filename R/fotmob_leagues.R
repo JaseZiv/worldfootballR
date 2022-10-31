@@ -246,14 +246,16 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr bind_rows
 .fotmob_get_league_matches <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("matches" %in% names(resp)) {
-    I
-  } else {
-    .fotmob_extract_data_from_page_props
-  }
-  f(resp)$matches %>%
+  rounds <- resp$matches$data$matchesCombinedByRound
+  rounds %>%
+    purrr::map_dfr(
+      ~purrr::map_dfr(.x, dplyr::bind_rows) %>%
+        dplyr::mutate(across(.data[["roundName"]], as.character))
+    ) %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
@@ -327,12 +329,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom tidyr pivot_longer unnest_longer unnest
 .fotmob_get_league_tables <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
-  f <- if("table" %in% names(resp)) {
-    I
-  } else {
-    .fotmob_extract_data_from_page_props
-  }
-  table_init <- f(resp)$table$data
+  table_init <- resp$table$data
   cols <- c("all", "home", "away")
   table <- if("table" %in% names(table_init)) {
     table_init$table %>% dplyr::select(dplyr::all_of(cols))
