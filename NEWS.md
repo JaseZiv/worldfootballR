@@ -6,6 +6,15 @@
 * `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt (0.6.1.2000)
 * `fb_match_shooting()` throwing errors for duplicate column names after switch from StatsBomb to Opta on FBRef (0.6.1.3000)
 * `fb_team_goal_logs` and `fb_player_goal_logs` gave errors when columns were not present (0.6.1.4000)
+* `fotmob_get_season_stats` returning lexical error [#281](https://github.com/JaseZiv/worldfootballR/issues/281) (0.6.1.5000)
+* `fotmob_get_season_stats` internals changed to handle new data format  (0.6.1.5000)
+
+# worldfootballR 0.6.2
+
+### Bugs
+
+* `tm_player_market_values()` returning `NAs` in the `squad` column
+* `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt
 
 ***
 
