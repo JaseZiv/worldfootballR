@@ -16,6 +16,7 @@
 * `load_fb_big5_advanced_season_stats()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
 * `load_match_results()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
 * `load_match_comp_results()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
+* `load_understat_league_shots()` now loads data from GitHub releases (0.6.1.6000)
 
 
 ***
