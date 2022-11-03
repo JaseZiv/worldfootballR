@@ -30,8 +30,7 @@
 #' }
 
 load_match_results <- function(country, gender, season_end_year, tier) {
-  "https://github.com/JaseZiv/worldfootballR_data/releases/download/match_results/ARG_match_results.rds"
-
+  
   dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/releases/download/match_results/", country, "_match_results.rds")
 
   # collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
