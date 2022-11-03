@@ -36,7 +36,7 @@ load_understat_league_shots <- function(league) {
   league_name_clean <- janitor::make_clean_names(league)
   # then read in data
 
-  dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/understat_shots/", league_name_clean, "_shot_data.rds?raw=true")
+  dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/", league_name_clean, "_shot_data.rds?raw=true")
 
   dat_df <- .file_reader(dat_urls)
 

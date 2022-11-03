@@ -21,20 +21,20 @@ tm_staff_job_history <- function(staff_urls) {
 
     staff_pg <- xml2::read_html(staff_url)
 
-    name <- staff_pg %>% rvest::html_nodes("h1") %>% rvest::html_text()
-    current_club <- staff_pg %>% rvest::html_nodes(".hauptpunkt a") %>% rvest::html_text() %>% .replace_empty_na()
-    current_role <- staff_pg %>% rvest::html_nodes(".mediumpunkt b") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
-    metadata <- staff_pg %>% rvest::html_nodes(".dataDaten")
+    name <- staff_pg %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish()
+    current_club <- staff_pg %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% .replace_empty_na()
+    current_role <- staff_pg %>% rvest::html_nodes(".data-header__label b") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
+    metadata <- staff_pg %>% rvest::html_nodes(".data-header__details")
 
-    data_head <- metadata %>% rvest::html_nodes(".dataItem") %>% rvest::html_text() %>% stringr::str_squish()
-    data_vals <- metadata %>% rvest::html_nodes(".dataValue") %>% rvest::html_text() %>% stringr::str_squish()
+    data_head_top <- metadata %>% rvest::html_nodes(".data-header__items li") %>% rvest::html_text() %>% stringr::str_squish()
+    # data_vals <- metadata %>% rvest::html_nodes(".data-header__content") %>% rvest::html_text() %>% stringr::str_squish()
 
-    meta_df <- data.frame(data_head, data_vals) %>%
+    meta_df <- data.frame(data_head_top) %>%
+      tidyr::separate(data_head_top, into = c("data_head", "data_vals"), sep = ":") %>%
       tidyr::pivot_wider(names_from = data_head, values_from = data_vals) %>%
       janitor::clean_names()
 
     meta_df <- meta_df %>% tidyr::separate(.data[["date_of_birth_age"]], into = "date_of_birth", sep = " \\(") %>% suppressWarnings()
-    meta_df <- meta_df %>% dplyr::select(-.data[["appointed"]], -.data[["contract_until"]])
 
     staff_hist <- staff_pg %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 
