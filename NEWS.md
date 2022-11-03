@@ -8,6 +8,15 @@
 * `fb_team_goal_logs` and `fb_player_goal_logs` gave errors when columns were not present (0.6.1.4000)
 * `fotmob_get_season_stats` returning lexical error [#201](https://github.com/JaseZiv/worldfootballR/issues/201) (0.6.1.5000)
 * `fotmob_get_season_stats` internals changed to handle new data format  (0.6.1.5000)
+* `tm_staff_job_history()` code changed due to HTML changes on transfermarkt.com (0.6.1.6000)
+
+
+### Improvements
+
+* `load_fb_big5_advanced_season_stats()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
+* `load_match_results()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
+* `load_match_comp_results()` now loads FBRef data provided by Stats Perform (Opta) (0.6.1.6000)
+
 
 ***
 
