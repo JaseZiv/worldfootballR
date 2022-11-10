@@ -31,7 +31,7 @@ tm_staff_job_history <- function(staff_urls) {
 
     meta_df <- data.frame(data_head_top) %>%
       tidyr::separate(data_head_top, into = c("data_head", "data_vals"), sep = ":") %>%
-      tidyr::pivot_wider(names_from = data_head, values_from = data_vals) %>%
+      tidyr::pivot_wider(names_from = .data[["data_head"]], values_from = .data[["data_vals"]]) %>%
       janitor::clean_names()
 
     meta_df <- meta_df %>% tidyr::separate(.data[["date_of_birth_age"]], into = "date_of_birth", sep = " \\(") %>% suppressWarnings()

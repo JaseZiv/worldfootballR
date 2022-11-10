@@ -162,7 +162,7 @@
 
     extract_options <- function(season) {
 
-      link <- stats$seasonStatLinks |>
+      link <- stats$seasonStatLinks %>%
         filter(.data[["Name"]] == !!season)
 
       topstats_url <- sprintf("https://data.fotmob.com/%s", link$RelativePath)
@@ -408,7 +408,7 @@ fotmob_get_season_stats <- function(
         stat_name = stat_name,
         stat = filt_stat_options %>%
           dplyr::filter(.data[["stat_name"]] == !!stat_name) %>%
-          dplyr::select(.data[["stat"]]) |>
+          dplyr::select(.data[["stat"]]) %>%
           unique(),
         stat_league_name = url$stat_league_name,
         season_name = .x,
