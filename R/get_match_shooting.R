@@ -78,19 +78,20 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
       home_shot_df <- tryCatch(all_shots[2] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame(), error = function(e) data.frame())
       if(nrow(home_shot_df > 0)) {
-        home_shot_df <- prep_shot_df(home_shot_df)
+        home_shot_df <- prep_shot_df(home_shot_df) %>%
+          dplyr::mutate(Home_Away = "Home")
       }
 
       away_shot_df <- tryCatch(all_shots[3] %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame(), error = function(e) data.frame())
       if(nrow(away_shot_df > 0)) {
-        away_shot_df <- prep_shot_df(away_shot_df)
+        away_shot_df <- prep_shot_df(away_shot_df) %>%
+          dplyr::mutate(Home_Away = "Away")
       }
 
       all_shot_df <- home_shot_df %>%
         rbind(away_shot_df)
 
       all_shot_df <- all_shot_df %>%
-        dplyr::mutate(Home_Away = ifelse(.data[["Squad"]] == home_team, "Home", "Away")) %>%
         dplyr::select(.data[["Date"]], .data[["Squad"]], .data[["Home_Away"]], .data[["Match_Half"]], dplyr::everything())
     } else {
       print(glue::glue("Detailed shot data unavailable for {match_url}"))

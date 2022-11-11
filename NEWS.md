@@ -10,6 +10,7 @@
 * `fotmob_get_season_stats` internals changed to handle new data format  (0.6.1.5000)
 * `tm_staff_job_history()` code changed due to HTML changes on transfermarkt.com (0.6.1.6000)
 * All FBRef functions calling internal function `.get_match_report_page()` were returning 'Major League Soccer' as the away team (0.6.1.7000) [#216](https://github.com/JaseZiv/worldfootballR/issues/216)
+* `fb_match_shooting()` was returning the wrong home or away designation in games where team names were inconsistent on the page (0.6.1.8000) [#219](https://github.com/JaseZiv/worldfootballR/issues/219)
 
 
 ### Improvements
