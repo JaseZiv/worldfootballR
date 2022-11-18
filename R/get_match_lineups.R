@@ -58,7 +58,7 @@ fb_match_lineups <- function(match_url, time_pause=3) {
         if(is_diamond) {
           formation <- paste0(formation, "-diamond")
         }
-        tryCatch( {team <- match_page %>% rvest::html_nodes("div:nth-child(2) div strong a") %>% rvest::html_text() %>% .[home_away]}, error = function(e) {team <- NA})
+        tryCatch( {team <- match_page %>% rvest::html_nodes("div+ strong a") %>% rvest::html_text() %>% .[home_away]}, error = function(e) {team <- NA})
 
         bench_index <- which(lineup[,1] == "Bench")
 

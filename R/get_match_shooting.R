@@ -36,8 +36,8 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
     match_page <- .load_page(match_url)
 
-    tryCatch( {home_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {home_team <- NA})
-    tryCatch( {away_team <- match_page %>% rvest::html_nodes("div:nth-child(1) div strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {away_team <- NA})
+    tryCatch( {home_team <- match_page %>% rvest::html_nodes("div+ strong a") %>% rvest::html_text() %>% .[1]}, error = function(e) {home_team <- NA})
+    tryCatch( {away_team <- match_page %>% rvest::html_nodes("div+ strong a") %>% rvest::html_text() %>% .[2]}, error = function(e) {away_team <- NA})
 
     # home_away_df <- data.frame(Team=home_team, Home_Away="Home") %>%
     #   rbind(data.frame(Team=away_team, Home_Away = "Away"))
