@@ -74,7 +74,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
 
     tab <- xml2::read_html(matchday_url)
 
-    league_name <- tab %>% rvest::html_node("h1") %>% rvest::html_text()
+    league_name <- tab %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
    weekly_table <- tab %>%
       rvest::html_nodes(".box")
@@ -105,7 +105,7 @@ tm_matchday_table <- function(country_name, start_year, matchday, league_url=NA)
       dplyr::mutate(Matchday = each_matchday,
                     Country=country_name,
                     League = league_name) %>%
-      dplyr::select(.data[["Country"]], .data[["League"]], .data[["Matchday"]], Rk=.data$`X.`, Team=.data[["club.1"]],
+      dplyr::select(.data[["Country"]], .data[["League"]], .data[["Matchday"]], Rk=.data$`X.`, Team=.data[["Club.1"]],
                     P=.data[["Var.4"]], .data[["W"]], .data[["D"]], .data[["L"]], .data[["Goals"]], G_Diff=.data$`X...`, .data[["Pts"]]) %>%
       tidyr::separate(.data[["Goals"]], into = c("GF", "GA"), sep = ":") %>%
       dplyr::mutate(GF = as.numeric(.data[["GF"]]),
