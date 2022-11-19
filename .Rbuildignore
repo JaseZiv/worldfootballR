@@ -14,3 +14,4 @@ LICENSE
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^vignettes
+^\.github$
