@@ -1,26 +1,26 @@
-# worldfootballR (development version)
+# worldfootballR 0.6.2
 
 ### Bugs
 
-* `tm_player_market_values()` returning `NAs` in the `squad` column (0.6.1.2000)
-* `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt (0.6.1.2000)
-* `fb_match_shooting()` throwing errors for duplicate column names after switch from StatsBomb to Opta on FBRef (0.6.1.3000)
-* `fb_team_goal_logs` and `fb_player_goal_logs` gave errors when columns were not present (0.6.1.4000)
-* `fotmob_get_season_stats` returning lexical error [#201](https://github.com/JaseZiv/worldfootballR/issues/201) (0.6.1.5000)
-* `fotmob_get_season_stats` internals changed to handle new data format  (0.6.1.5000)
-* `tm_staff_job_history()` code changed due to HTML changes on transfermarkt.com (0.6.1.6000)
-* All FBRef functions calling internal function `.get_match_report_page()` were returning 'Major League Soccer' as the away team (0.6.1.7000) [#216](https://github.com/JaseZiv/worldfootballR/issues/216)
-* `fb_match_shooting()` was returning the wrong home or away designation in games where team names were inconsistent on the page (0.6.1.8000) [#219](https://github.com/JaseZiv/worldfootballR/issues/219)
-* `fb_match_summary()`, `fb_match_shooting()` not returning returning Away Team name for international matches (0.6.1.9000)
-* `fb_match_lineups()` returning 'Major League Soccer' as the away team for international matches (0.6.1.9000) [#221](https://github.com/JaseZiv/worldfootballR/issues/221)
+* `tm_player_market_values()` returning `NAs` in the `squad` column 
+* `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt
+* `fb_match_shooting()` throwing errors for duplicate column names after switch from StatsBomb to Opta on FBRef
+* `fb_team_goal_logs` and `fb_player_goal_logs` gave errors when columns were not present
+* `fotmob_get_season_stats` returning lexical error [#201](https://github.com/JaseZiv/worldfootballR/issues/201)
+* `fotmob_get_season_stats` internals changed to handle new data format
+* `tm_staff_job_history()` code changed due to HTML changes on transfermarkt.com
+* All FBRef functions calling internal function `.get_match_report_page()` were returning 'Major League Soccer' as the away team [#216](https://github.com/JaseZiv/worldfootballR/issues/216)
+* `fb_match_shooting()` was returning the wrong home or away designation in games where team names were inconsistent on the page [#219](https://github.com/JaseZiv/worldfootballR/issues/219)
+* `fb_match_summary()`, `fb_match_shooting()` not returning returning Away Team name for international matches
+* `fb_match_lineups()` returning 'Major League Soccer' as the away team for international matches [#221](https://github.com/JaseZiv/worldfootballR/issues/221)
 
 
 ### Improvements
 
-* `load_fb_big5_advanced_season_stats()` now loads FBRef data provided by Stats Perform (Opta) via Github releases (0.6.1.6000)
-* `load_match_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases (0.6.1.6000)
-* `load_match_comp_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases (0.6.1.6000)
-* `load_understat_league_shots()` now loads data from GitHub releases (0.6.1.6000)
+* `load_fb_big5_advanced_season_stats()` now loads FBRef data provided by Stats Perform (Opta) via Github releases
+* `load_match_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases
+* `load_match_comp_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases
+* `load_understat_league_shots()` now loads data from GitHub releases
 
 
 ***

@@ -2,9 +2,8 @@
 
 This is a minor release
 
-* Address `tidyselect 1.2.0` warnings by converting all instances of `.data$var` to `.data[["var"]]`
-* New functions: `fb_team_goal_logs` and `fb_player_goal_logs`
-* Bug fixes
+* Minor bug fixes
+* Data loads from GitHub Releases
 
 
 ## Test environments
