@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.3/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.4/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Load Scraped Data Functions">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,12 +93,14 @@
 
 
 
-<script src="load-scraped-data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Load Scraped Data Functions</h1>
-                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason
+Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-11-20</h4>
+            <h4 data-toc-skip class="date">2022-11-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -109,7 +111,9 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
+<p>This package is designed to allow users to extract various world
+football results and player statistics from the following popular
+football (soccer) data sites:</p>
 <ul>
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
@@ -120,10 +124,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a>
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a>
+from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a>
+with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></span></code></pre></div>
@@ -135,7 +142,8 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Package vignettes have been built to help you get started with the package.</p>
+<p>Package vignettes have been built to help you get started with the
+package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
 </li>
@@ -145,23 +153,35 @@
 </li>
 <li>For functions to extract data from fotmob, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html">here</a>
 </li>
-<li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
+<li>For functions to extract data for international matches from FBref,
+see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
 </ul>
-<p>This vignette will cover the functions to load scraped data from the <a href="https://github.com/JaseZiv/worldfootballR_data" class="external-link"><code>worldfootballR_data</code></a> data repository.</p>
+<p>This vignette will cover the functions to load scraped data from the
+<a href="https://github.com/JaseZiv/worldfootballR_data" class="external-link"><code>worldfootballR_data</code></a>
+data repository.</p>
 <p><strong>NOTE:</strong></p>
-<p>As of version <code>0.5.2</code>, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a> document for more information.</p>
+<p>As of version <code>0.5.2</code>, all FBref functions now come with a
+user-defined pause between page loads to address their new rate
+limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a>
+document for more information.</p>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="load-fbref">Load FBref<a class="anchor" aria-label="anchor" href="#load-fbref"></a>
 </h2>
-<p>The following section demonstrates the different loading functions of FBref data.</p>
+<p>The following section demonstrates the different loading functions of
+FBref data.</p>
 <div class="section level3">
 <h3 id="load-fbref-match-results">Load FBref match results<a class="anchor" aria-label="anchor" href="#load-fbref-match-results"></a>
 </h3>
-<p>To load pre-scraped match results for all years the data is available, the <code><a href="../reference/load_match_results.html">load_match_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository.</p>
-<p>This is the load function equivalent of <code><a href="../reference/fb_match_results.html">fb_match_results()</a></code>.</p>
+<p>To load pre-scraped match results for all years the data is
+available, the <code><a href="../reference/load_match_results.html">load_match_results()</a></code> function can be used.
+This data is scheduled to be updated most days and a print statement
+will inform the user of when the data was last updated. All domestic
+leagues are included in the data repository.</p>
+<p>This is the load function equivalent of
+<code><a href="../reference/fb_match_results.html">fb_match_results()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">eng_match_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_results.html">load_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"ENG"</span>, gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, season_end_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">:</span><span class="fl">2022</span><span class="op">)</span>, tier <span class="op">=</span> <span class="st">"1st"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">eng_match_results</span><span class="op">)</span></span>
@@ -191,8 +211,13 @@
 <div class="section level3">
 <h3 id="load-fbref-match-results-for-cups-and-international-comps">Load FBref match results for Cups and International Comps<a class="anchor" aria-label="anchor" href="#load-fbref-match-results-for-cups-and-international-comps"></a>
 </h3>
-<p>Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the <code><a href="../reference/load_match_comp_results.html">load_match_comp_results()</a></code> function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
-<p>The following list of competitions (<code>comp_name</code>) are available:</p>
+<p>Similarly, to load pre-scraped match results for cups and
+international matches in all years the data is available, the
+<code><a href="../reference/load_match_comp_results.html">load_match_comp_results()</a></code> function can be used. This data
+is scheduled to be updated most days and a print statement will inform
+the user of when the data was last updated.</p>
+<p>The following list of competitions (<code>comp_name</code>) are
+available:</p>
 <pre><code><span><span class="co">#&gt;  [1] "AFC Asian Cup"                                               </span></span>
 <span><span class="co">#&gt;  [2] "AFC Asian Cup qualification"                                 </span></span>
 <span><span class="co">#&gt;  [3] "AFC Women's Asian Cup"                                       </span></span>
@@ -273,8 +298,13 @@
 <div class="section level3">
 <h3 id="load-fbref-big-5-league-advanced-season-stats">Load FBref big 5 league advanced season stats<a class="anchor" aria-label="anchor" href="#load-fbref-big-5-league-advanced-season-stats"></a>
 </h3>
-<p>To load pre-scraped advanced stats for the big five European leagues for either teams or players, the <code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.</p>
-<p>This is the load function equivalent of <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code>.</p>
+<p>To load pre-scraped advanced stats for the big five European leagues
+for either teams or players, the
+<code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> can be used. This data
+is scheduled to be updated most days and a print statement will inform
+the user of when the data was last updated.</p>
+<p>This is the load function equivalent of
+<code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
 <span><span class="va">current_season_player</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"player"</span><span class="op">)</span></span>
@@ -287,11 +317,14 @@
 <div class="section level2">
 <h2 id="load-understat">Load Understat<a class="anchor" aria-label="anchor" href="#load-understat"></a>
 </h2>
-<p>The following section demonstrates the different loading functions of Understat data.</p>
+<p>The following section demonstrates the different loading functions of
+Understat data.</p>
 <div class="section level3">
 <h3 id="load-league-shots">Load League Shots<a class="anchor" aria-label="anchor" href="#load-league-shots"></a>
 </h3>
-<p>To be able to rapidly load pre-collected chooting locations for whole leagues, the <code><a href="../reference/load_understat_league_shots.html">load_understat_league_shots()</a></code> functions is now available. Supported leagues on Understat are:</p>
+<p>To be able to rapidly load pre-collected chooting locations for whole
+leagues, the <code><a href="../reference/load_understat_league_shots.html">load_understat_league_shots()</a></code> functions is now
+available. Supported leagues on Understat are:</p>
 <ul>
 <li>“EPL”</li>
 <li>“La liga”</li>
@@ -300,7 +333,10 @@
 <li>“Ligue 1”</li>
 <li>“RFPL”</li>
 </ul>
-<p>This is effectively the loading equivalent of the <code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function, however rather than needing to be scraped a season at a time, this data loads rapidly for all seasons for the selected league since the 2014/15 seasons.</p>
+<p>This is effectively the loading equivalent of the
+<code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function, however rather
+than needing to be scraped a season at a time, this data loads rapidly
+for all seasons for the selected league since the 2014/15 seasons.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">serie_a_shot_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_understat_league_shots.html">load_understat_league_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Serie A"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serie_a_shot_locations</span><span class="op">)</span></span>
@@ -332,11 +368,14 @@
 <div class="section level2">
 <h2 id="load-fotmob">Load fotmob<a class="anchor" aria-label="anchor" href="#load-fotmob"></a>
 </h2>
-<p>The following section demonstrates the different loading functions of Understat data.</p>
+<p>The following section demonstrates the different loading functions of
+Understat data.</p>
 <div class="section level3">
 <h3 id="load-fotmob-big-5-match-shots">Load fotmob Big 5 Match Shots<a class="anchor" aria-label="anchor" href="#load-fotmob-big-5-match-shots"></a>
 </h3>
-<p><code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code> returns match details dating back to the 2020/21 season (some matches may be missing) for each of the following leagues:</p>
+<p><code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code> returns match details dating
+back to the 2020/21 season (some matches may be missing) for each of the
+following leagues:</p>
 <ul>
 <li>EURO: 50</li>
 <li>Champions League: 42</li>
@@ -351,7 +390,9 @@
 <li>MLS: 130</li>
 <li>Serie A: 55</li>
 </ul>
-<p>This is effectively the loading equivalent of the <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function for all matches for these leagues back to the beginning of the 2020/21 season.</p>
+<p>This is effectively the loading equivalent of the
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function for all matches for
+these leagues back to the beginning of the 2020/21 season.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
@@ -407,8 +448,10 @@
 <span></span>
 <span><span class="co">## multiple leagues at once</span></span>
 <span><span class="va">epl_ll_match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details</a></span><span class="op">(</span>league_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">47</span>, <span class="fl">87</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Note that fotmob does not currently have match details prior to 2020/21.</p>
-<p><code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code> can be used to retrieve fotmob match ids dating back to August 2017.</p>
+<p>Note that fotmob does not currently have match details prior to
+2020/21.</p>
+<p><code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code> can be used to retrieve
+fotmob match ids dating back to August 2017.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>

@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.3/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.4/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from fotmob">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,12 +93,14 @@
 
 
 
-<script src="extract-fotmob-data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from fotmob</h1>
-                        <h4 data-toc-skip class="author">Tony ElHabr</h4>
+                        <h4 data-toc-skip class="author">Tony
+ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2022-11-20</h4>
+            <h4 data-toc-skip class="date">2022-11-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fotmob-data.Rmd</code></div>
@@ -109,7 +111,9 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
+<p>This package is designed to allow users to extract various world
+football results and player statistics from the following popular
+football (soccer) data sites:</p>
 <ul>
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
@@ -120,10 +124,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a>
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a>
+from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a>
+with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></span></code></pre></div>
@@ -136,7 +143,8 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Package vignettes have been built to help you get started with the package.</p>
+<p>Package vignettes have been built to help you get started with the
+package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
 </li>
@@ -144,12 +152,14 @@
 </li>
 <li>For functions to extract data from Understat, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html">here</a>
 </li>
-<li>For functions to extract data for international matches from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
+<li>For functions to extract data for international matches from FBref,
+see <a href="https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html">here</a>
 </li>
 <li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
 </li>
 </ul>
-<p>This vignette will cover the functions to extract data from fotmob.com</p>
+<p>This vignette will cover the functions to extract data from
+fotmob.com</p>
 <hr>
 </div>
 <div class="section level2">
@@ -161,11 +171,18 @@
 <div class="section level2">
 <h2 id="league-season-level-data">League Season-Level Data<a class="anchor" aria-label="anchor" href="#league-season-level-data"></a>
 </h2>
-<p>fotmob has data for just about every league that you can think of, including all of the Big 5 leagues.</p>
+<p>fotmob has data for just about every league that you can think of,
+including all of the Big 5 leagues.</p>
 <div class="section level3">
 <h3 id="team-stats">Team Stats<a class="anchor" aria-label="anchor" href="#team-stats"></a>
 </h3>
-<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a specified stat, season, and league. See the docs for the function for a complete list of <code>stat_name</code>s. Note that some stats are only available for either team or player, and that some names are different for teams and players (e.g. <code>"Expected goals"</code> for <code>"team"</code> and <code>"Expected goals (xG)"</code> for <code>"player"</code>).</p>
+<p>Use <code>fotmob_get_season_stats</code> to retrieve values for a
+specified stat, season, and league. See the docs for the function for a
+complete list of <code>stat_name</code>s. Note that some stats are only
+available for either team or player, and that some names are different
+for teams and players (e.g. <code>"Expected goals"</code> for
+<code>"team"</code> and <code>"Expected goals (xG)"</code> for
+<code>"player"</code>).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_team_xg_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
@@ -199,7 +216,9 @@
 <span><span class="co">#&gt; $ matches_played <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38,…</span></span>
 <span><span class="co">#&gt; $ xg             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 68.9, 68.4, 62.9, 60.9, 56.7, 56.4, 56.1, 53.8, 53.8, 5…</span></span>
 <span><span class="co">#&gt; $ g              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 83, 68, 58, 73, 62, 62, 68, 68, 55, 55, 40, 47, 46, 47,…</span></span></code></pre></div>
-<p>If you know the <code>league_id</code>, you can use it instead of passing in values for <code>country</code> and <code>league_name</code>.</p>
+<p>If you know the <code>league_id</code>, you can use it instead of
+passing in values for <code>country</code> and
+<code>league_name</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
 <span>  league_id <span class="op">=</span> <span class="fl">47</span>,</span>
@@ -236,7 +255,8 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   rank &lt;int&gt;, participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;, and</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​league_id, ²​season_name, ³​season_id,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​stat_league_name, ⁵​stat_name, ⁶​stat$stat, ⁷​participant_name</span></span></span></code></pre></div>
-<p>You can retrieve data for multiple leagues, seasons, or stat types at the same time.</p>
+<p>You can retrieve data for multiple leagues, seasons, or stat types at
+the same time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_xgs_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>,     <span class="st">"ESP"</span><span class="op">)</span>,</span>
@@ -249,7 +269,8 @@
 <span><span class="co">## 2 leagues x 20 teams x 2 seasons x 2 stats = 160 rows</span></span>
 <span><span class="va">team_xgs_2021</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 160</span></span></code></pre></div>
-<p>International tournament data can be retrieved, during the right time of year.</p>
+<p>International tournament data can be retrieved, during the right time
+of year.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Can only check on CL after group stages and briefly after the final.</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -261,7 +282,9 @@
 <span>    team_or_player <span class="op">=</span> <span class="st">"team"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>You can potentially get cup data for leagues in the future, although at this time Fotmob does not have this data for most leagues, seasons, or stats.</p>
+<p>You can potentially get cup data for leagues in the future, although
+at this time Fotmob does not have this data for most leagues, seasons,
+or stats.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Not run to avoid error.</span></span>
 <span><span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
@@ -271,12 +294,14 @@
 <span>  team_or_player <span class="op">=</span> <span class="st">"team"</span>,</span>
 <span>  stat_league_name <span class="op">=</span> <span class="st">"FA Cup"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>At this time, only one <code>team_or_player</code> can be retrieved at a time.</p>
+<p>At this time, only one <code>team_or_player</code> can be retrieved
+at a time.</p>
 </div>
 <div class="section level3">
 <h3 id="player-stats">Player Stats<a class="anchor" aria-label="anchor" href="#player-stats"></a>
 </h3>
-<p>You can also use <code>fotmob_get_season_stats</code> to retrieve stats for players.</p>
+<p>You can also use <code>fotmob_get_season_stats</code> to retrieve
+stats for players.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_player_xg_2021</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
@@ -319,7 +344,9 @@
 <div class="section level3">
 <h3 id="match-results">Match Results<a class="anchor" aria-label="anchor" href="#match-results"></a>
 </h3>
-<p>Matches for one or multiple leagues can be retrieved with <code>fotmob_get_league_matches</code>. Only the current season’s matches can be retrieved with this function.</p>
+<p>Matches for one or multiple leagues can be retrieved with
+<code>fotmob_get_league_matches</code>. Only the current season’s
+matches can be retrieved with this function.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">league_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>,            <span class="st">"ESP"</span>   <span class="op">)</span>,</span>
@@ -339,7 +366,12 @@
 <span><span class="co">#&gt; $ away_name      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arsenal", "Liverpool", "Aston Villa", "Wolverhampton W…</span></span>
 <span><span class="co">#&gt; $ away_shortName <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arsenal", "Liverpool", "Aston Villa", "Wolves", "Nottm…</span></span>
 <span><span class="co">#&gt; $ away_id        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "9825", "8650", "10252", "8602", "10203", "8466", "8455…</span></span></code></pre></div>
-<p>fotmob also lists data for all leagues by date. Use <code>fotmob_get_matches_by_date</code> to select matches occurring on specific day(s) and filter down to the league(s) that you care about. Since <code>fotmob_get_league_matches</code> does not allow for selecting seasons, the only way to get matches from prior seasons is to use <code>fotmob_get_matches_by_date</code></p>
+<p>fotmob also lists data for all leagues by date. Use
+<code>fotmob_get_matches_by_date</code> to select matches occurring on
+specific day(s) and filter down to the league(s) that you care about.
+Since <code>fotmob_get_league_matches</code> does not allow for
+selecting seasons, the only way to get matches from prior seasons is to
+use <code>fotmob_get_matches_by_date</code></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20210925"</span>, <span class="st">"20210926"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
@@ -382,7 +414,8 @@
 <span><span class="co">#&gt; $ is_group                          <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
 <span><span class="co">#&gt; $ group_name                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
 <span><span class="co">#&gt; $ parent_league_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span></code></pre></div>
-<p>You should see international tournaments in the output from <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>.</p>
+<p>You should see international tournaments in the output from
+<code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date</a></span><span class="op">(</span><span class="st">"20220412"</span><span class="op">)</span></span>
 <span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -403,7 +436,9 @@
 <div class="section level3">
 <h3 id="standings">Standings<a class="anchor" aria-label="anchor" href="#standings"></a>
 </h3>
-<p>Standings for one or multiple leagues can be retrieved with <code>fotmob_get_league_tables</code>. Currently only the current season’s standings can be retrieved.</p>
+<p>Standings for one or multiple leagues can be retrieved with
+<code>fotmob_get_league_tables</code>. Currently only the current
+season’s standings can be retrieved.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">league_tables</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>,            <span class="st">"ESP"</span>   <span class="op">)</span>,</span>
@@ -435,7 +470,8 @@
 <span><span class="co">#&gt; $ table_pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 19, 13, 12, 11, 11, 10, 10, 9, 7, 7, 6, 6, 6, 5, 5…</span></span>
 <span><span class="co">#&gt; $ table_idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…</span></span>
 <span><span class="co">#&gt; $ table_qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046…</span></span></code></pre></div>
-<p>Note that the output of <code>fotmob_get_league_tables</code> for a tournament has more columns.</p>
+<p>Note that the output of <code>fotmob_get_league_tables</code> for a
+tournament has more columns.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/month.html" class="external-link">month</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="va">m</span> <span class="op">&gt;=</span> <span class="fl">1</span> <span class="op">&amp;&amp;</span> <span class="va">m</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
@@ -451,7 +487,8 @@
 <div class="section level2">
 <h2 id="match-level-data">Match-Level Data<a class="anchor" aria-label="anchor" href="#match-level-data"></a>
 </h2>
-<p>To get general info for a match, use the <code><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info()</a></code> function.</p>
+<p>To get general info for a match, use the
+<code><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info()</a></code> function.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fotmob_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3609994</span>, <span class="fl">3610132</span><span class="op">)</span></span>
 <span><span class="va">match_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span></span>
@@ -479,7 +516,8 @@
 <div class="section level3">
 <h3 id="team-level-stats">Team-level Stats<a class="anchor" aria-label="anchor" href="#team-level-stats"></a>
 </h3>
-<p>To get team-level team stats for a match, use the <code><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats()</a></code> function.</p>
+<p>To get team-level team stats for a match, use the
+<code><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats()</a></code> function.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">match_team_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span></span>
 <span><span class="va">match_team_stats</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -494,7 +532,8 @@
 <span><span class="co">#&gt; $ away_value        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "52", "1.66", "12", "1", "1", "443 (84%)", "12", "5"…</span></span>
 <span><span class="co">#&gt; $ stats_type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "graph", "text", "text", "text", "text", "text", "te…</span></span>
 <span><span class="co">#&gt; $ stats_highlighted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "away", "away", "away", "home", "equal", "away", "ho…</span></span></code></pre></div>
-<p>Stats are categorized into one of several groups, by <code>title</code>.</p>
+<p>Stats are categorized into one of several groups, by
+<code>title</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">match_team_stats</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_id</span> <span class="op">==</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">match_id</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -513,7 +552,9 @@
 <div class="section level3">
 <h3 id="match-shooting-locations">Match Shooting Locations<a class="anchor" aria-label="anchor" href="#match-shooting-locations"></a>
 </h3>
-<p>To get shooting locations for an individual match along with expected goals (xG), expected goals on target (xGoT), etc., use the <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function.</p>
+<p>To get shooting locations for an individual match along with expected
+goals (xG), expected goals on target (xGoT), etc., use the
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">match_details</span><span class="op">)</span></span>
@@ -560,12 +601,16 @@
 <span><span class="co">#&gt; $ first_name               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mohamed", "Jack", "Phil", "Kevin", "Kevin", …</span></span>
 <span><span class="co">#&gt; $ last_name                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Salah", "Grealish", "Foden", "De Bruyne", "D…</span></span>
 <span><span class="co">#&gt; $ team_color               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#69A8D8", "#69A8D8", "#69A8D8", "…</span></span></code></pre></div>
-<p>Be very careful with interpreting <code>x</code> and <code>y</code> from <code>on_goal_shot</code>. They’re not on the same scale as <code>x</code> and <code>y</code> in the top-level of the result returned from <code>fotmob_get_match_details</code>!</p>
+<p>Be very careful with interpreting <code>x</code> and <code>y</code>
+from <code>on_goal_shot</code>. They’re not on the same scale as
+<code>x</code> and <code>y</code> in the top-level of the result
+returned from <code>fotmob_get_match_details</code>!</p>
 </div>
 <div class="section level3">
 <h3 id="players">Players<a class="anchor" aria-label="anchor" href="#players"></a>
 </h3>
-<p>You can also extract players from matches with the <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> function.</p>
+<p>You can also extract players from matches with the
+<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> function.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">players</span><span class="op">)</span></span>
@@ -679,7 +724,8 @@
 <span><span class="co">#&gt; $ isOwnGoal             <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE</span></span>
 <span><span class="co">#&gt; $ onGoalShot            <span style="color: #949494; font-style: italic;">&lt;df[,3]&gt;</span> &lt;data.frame[7 x 3]&gt;</span></span>
 <span><span class="co">#&gt; $ teamColor             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#d3171e", "#d3171e", "#d3171e", "#d3…</span></span></code></pre></div>
-<p>Note that <code>stats_</code> columns are returned as characters (<strong>changed in <code>0.5.9</code></strong>).</p>
+<p>Note that <code>stats_</code> columns are returned as characters
+(<strong>changed in <code>0.5.9</code></strong>).</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">salah_stats</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>player_id <span class="op">=</span> <span class="va">id</span>, <span class="fu">tidyselect</span><span class="fu">::</span><span class="va"><a href="https://tidyselect.r-lib.org/reference/vars_select_helpers.html" class="external-link">vars_select_helpers</a></span><span class="op">$</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"stats_"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>

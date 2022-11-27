@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.3/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.4/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from FBref for International Matches">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,12 +93,14 @@
 
 
 
-<script src="fbref-data-internationals_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Extracting data from FBref for International Matches</h1>
-                        <h4 data-toc-skip class="author">Jason Zivkovic</h4>
+                        <h4 data-toc-skip class="author">Jason
+Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2022-11-20</h4>
+            <h4 data-toc-skip class="date">2022-11-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/fbref-data-internationals.Rmd" class="external-link"><code>vignettes/fbref-data-internationals.Rmd</code></a></small>
       <div class="d-none name"><code>fbref-data-internationals.Rmd</code></div>
@@ -109,7 +111,9 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package is designed to allow users to extract various world football results and player statistics from the following popular football (soccer) data sites:</p>
+<p>This package is designed to allow users to extract various world
+football results and player statistics from the following popular
+football (soccer) data sites:</p>
 <ul>
 <li><a href="https://fbref.com/en/" class="external-link">FBref</a></li>
 <li><a href="https://www.transfermarkt.com/" class="external-link">Transfermarkt</a></li>
@@ -120,10 +124,13 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a> with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=worldfootballR" class="external-link"><strong><code>worldfootballR</code></strong></a>
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"worldfootballR"</span><span class="op">)</span></span></code></pre></div>
-<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a> from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/JaseZiv/worldfootballR/" class="external-link"><strong><code>worldfootballR</code></strong></a>
+from <a href="https://github.com/JaseZiv/worldfootballR" class="external-link">GitHub</a>
+with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JaseZiv/worldfootballR"</span><span class="op">)</span></span></code></pre></div>
@@ -134,7 +141,8 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Package vignettes have been built to help you get started with the package.</p>
+<p>Package vignettes have been built to help you get started with the
+package.</p>
 <ul>
 <li>For functions to extract data from FBref, see <a href="https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html">here</a>
 </li>
@@ -147,16 +155,24 @@
 <li>For functions to load pre-scraped data, see <a href="https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html">here</a>
 </li>
 </ul>
-<p>This vignette will cover the functions to extract data for international matches from FBref.com.</p>
-<p>The functions in this document are all documented in the FBref data vignette, however the method for using these functions for international matches differs from those played in domestic leagues.</p>
+<p>This vignette will cover the functions to extract data for
+international matches from FBref.com.</p>
+<p>The functions in this document are all documented in the FBref data
+vignette, however the method for using these functions for international
+matches differs from those played in domestic leagues.</p>
 <p><strong>NOTE:</strong></p>
-<p>As of version <code>0.5.2</code>, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a> document for more information.</p>
+<p>As of version <code>0.5.2</code>, all FBref functions now come with a
+user-defined pause between page loads to address their new rate
+limiting. See <a href="https://www.sports-reference.com/bot-traffic.html" class="external-link">this</a>
+document for more information.</p>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="important">Important<a class="anchor" aria-label="anchor" href="#important"></a>
 </h2>
-<p>To get the competition URLs needed for a lot of the functions in this document, refer to the column <code>comp_url</code> for the relevant league / competition you’re interested in, in this stored data <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">file</a>.</p>
+<p>To get the competition URLs needed for a lot of the functions in this
+document, refer to the column <code>comp_url</code> for the relevant
+league / competition you’re interested in, in this stored data <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv" class="external-link">file</a>.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -165,7 +181,8 @@
 <div class="section level3">
 <h3 id="get-match-urls">Get match urls<a class="anchor" aria-label="anchor" href="#get-match-urls"></a>
 </h3>
-<p>To get the match URLs needed to pass in to some of the match-level functions below, <code><a href="../reference/fb_match_urls.html">fb_match_urls()</a></code> can be used.</p>
+<p>To get the match URLs needed to pass in to some of the match-level
+functions below, <code><a href="../reference/fb_match_urls.html">fb_match_urls()</a></code> can be used.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wc_2018_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_urls.html">fb_match_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2018</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/1/history/World-Cup-Seasons"</span><span class="op">)</span></span>
 <span></span>
@@ -180,12 +197,15 @@
 <div class="section level2">
 <h2 id="match-level-data">Match-Level Data<a class="anchor" aria-label="anchor" href="#match-level-data"></a>
 </h2>
-<p>The following sections outlines the functions available to extract data at the per-match level</p>
+<p>The following sections outlines the functions available to extract
+data at the per-match level</p>
 <div class="section level3">
 <h3 id="get-match-results">Get match results<a class="anchor" aria-label="anchor" href="#get-match-results"></a>
 </h3>
-<p>To get the match results (and additional metadata), the following function can be used.</p>
-<p>To use this functionality, simply leave <code>country = ''</code> and pass the non-domestic league URL</p>
+<p>To get the match results (and additional metadata), the following
+function can be used.</p>
+<p>To use this functionality, simply leave <code>country = ''</code> and
+pass the non-domestic league URL</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># euro 2016 results</span></span>
 <span><span class="va">euro_2016_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_results.html">fb_match_results</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2016</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/676/history/European-Championship-Seasons"</span><span class="op">)</span></span>
@@ -199,7 +219,10 @@
 <div class="section level3">
 <h3 id="get-match-report">Get match report<a class="anchor" aria-label="anchor" href="#get-match-report"></a>
 </h3>
-<p>This function will return similar results to that of <code><a href="../reference/fb_match_results.html">fb_match_results()</a></code>, however <code><a href="../reference/fb_match_report.html">fb_match_report()</a></code> will provide some additional information. It will also only provide it for a single match, not the whole season:</p>
+<p>This function will return similar results to that of
+<code><a href="../reference/fb_match_results.html">fb_match_results()</a></code>, however <code><a href="../reference/fb_match_report.html">fb_match_report()</a></code>
+will provide some additional information. It will also only provide it
+for a single match, not the whole season:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># function to extract match report data for 2018 world cup</span></span>
 <span><span class="va">wc_2018_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_report.html">fb_match_report</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">wc_2018_urls</span><span class="op">)</span></span>
@@ -209,7 +232,8 @@
 <div class="section level3">
 <h3 id="get-match-summaries">Get match summaries<a class="anchor" aria-label="anchor" href="#get-match-summaries"></a>
 </h3>
-<p>This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:</p>
+<p>This function will return the main events that occur during a match,
+including goals, substitutions and red/yellow cards:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># first get the URLs for the 2016 Euros</span></span>
 <span><span class="va">euro_2016_match_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_urls.html">fb_match_urls</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">""</span>, gender <span class="op">=</span> <span class="st">"M"</span>, season_end_year <span class="op">=</span> <span class="fl">2016</span>, tier <span class="op">=</span> <span class="st">""</span>, non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/676/history/European-Championship-Seasons"</span><span class="op">)</span></span>
@@ -220,8 +244,11 @@
 <div class="section level3">
 <h3 id="get-match-lineups">Get match lineups<a class="anchor" aria-label="anchor" href="#get-match-lineups"></a>
 </h3>
-<p>This function will return a dataframe of all players listed for that match, including whether they started on the pitch, or on the bench.</p>
-<p>From version 0.2.7, this function now also returns some summary performance data for each player that played, including their position, minutes played, goals, cards, etc.</p>
+<p>This function will return a dataframe of all players listed for that
+match, including whether they started on the pitch, or on the bench.</p>
+<p>From version 0.2.7, this function now also returns some summary
+performance data for each player that played, including their position,
+minutes played, goals, cards, etc.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># function to extract match lineups</span></span>
 <span><span class="va">copa_2019_lineups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_lineups.html">fb_match_lineups</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="va">copa_2019_urls</span><span class="op">)</span></span></code></pre></div>
@@ -229,14 +256,19 @@
 <div class="section level3">
 <h3 id="get-shooting-and-shot-creation-events">Get shooting and shot creation events<a class="anchor" aria-label="anchor" href="#get-shooting-and-shot-creation-events"></a>
 </h3>
-<p>The below function allows users to extract shooting and shot creation event data for a match or selected matches. The data returned includes who took the shot, when, with which body part and from how far away. Additionally, the player creating the chance and also the creation before this are included in the data.</p>
+<p>The below function allows users to extract shooting and shot creation
+event data for a match or selected matches. The data returned includes
+who took the shot, when, with which body part and from how far away.
+Additionally, the player creating the chance and also the creation
+before this are included in the data.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">shots_wc_2018</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_match_shooting.html">fb_match_shooting</a></span><span class="op">(</span><span class="va">wc_2018_urls</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-advanced-match-statistics">Get advanced match statistics<a class="anchor" aria-label="anchor" href="#get-advanced-match-statistics"></a>
 </h3>
-<p>The <code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code> function allows the user to return a data frame of different stat types for matches played.</p>
+<p>The <code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code> function allows the user
+to return a data frame of different stat types for matches played.</p>
 <p>Note, some stats may not be available for all comps.</p>
 <p>The following stat types can be selected:</p>
 <ul>
