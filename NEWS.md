@@ -1,3 +1,8 @@
+# worldfootballR 0.6.2.1000
+### Bugs
+
+* `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column [#226](https://github.com/JaseZiv/worldfootballR/issues/226)
+
 # worldfootballR 0.6.2
 
 ### Bugs

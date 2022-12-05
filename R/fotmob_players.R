@@ -112,7 +112,7 @@ fotmob_get_match_players <- function(match_ids) {
       }
 
       stats <- if(is.null(ps)) {
-        NULL
+        list(NULL)
       } else {
 
         pss <- ps %>% purrr::map_dfr(.clean_stats)
@@ -222,8 +222,7 @@ fotmob_get_match_players <- function(match_ids) {
     }
     res <- coerce_team_id(res, "home")
     res <- coerce_team_id(res, "away")
-    res <- res %>% tidyr::unnest_wider(.data[["stats"]])
-    res
+    tidyr::unnest_wider(res, .data[["stats"]])
   }
 
   fp <- purrr::possibly(f, otherwise = tibble::tibble())
