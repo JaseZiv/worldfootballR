@@ -29,11 +29,12 @@ jobs:
           # - {os: macOS-latest,   r: 'release'}
           # - {os: windows-latest, r: 'release'}
           # - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           # - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -45,27 +46,11 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Query dependencies
-        run: |
-          install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
-          saveRDS(pak::pkg_deps("local::.", dependencies = TRUE), ".github/r-depends.rds")
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
-      - name: Install system dependencies
-        run: |
-          pak::local_system_requirements(sudo = TRUE, execute =  TRUE)
-          pak::local_install_dev_deps()
-          pak::pak("rcmdcheck")
-        shell: Rscript {0}
+          cache-version: 1
+          extra-packages: |
+            any::rcmdcheck
 
       - name: Check
         env:
