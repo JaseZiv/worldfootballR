@@ -29,7 +29,7 @@ jobs:
           # - {os: macOS-latest,   r: 'release'}
           # - {os: windows-latest, r: 'release'}
           # - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-22.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"}
           # - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
@@ -48,7 +48,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
+          cache-version: 1
           extra-packages: |
             any::rcmdcheck
 
