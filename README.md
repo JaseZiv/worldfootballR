@@ -23,10 +23,10 @@ This package is designed to allow users to extract various world
 football results and player statistics from the following popular
 football (soccer) data sites:
 
--   [FBref](https://fbref.com/en/)
--   [Transfermarkt](https://www.transfermarkt.com/)
--   [Understat](https://understat.com/)
--   [Fotmob](https://www.fotmob.com/)
+- FBref
+- [Transfermarkt](https://www.transfermarkt.com/)
+- [Understat](https://understat.com/)
+- [Fotmob](https://www.fotmob.com/)
 
 ## Installation
 
@@ -58,19 +58,19 @@ library(worldfootballR)
 Package vignettes have been built to help you get started with the
 package.
 
--   For functions to extract data from FBref, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
--   For functions to extract data from Transfermarkt, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
--   For functions to extract data from Understat, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
--   For functions to extract data from fotmob, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
--   For functions to extract data for international matches from FBref,
-    see
-    [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
--   For functions to load pre-scraped data, see
-    [here](https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html)
+- For functions to extract data from FBref, see
+  [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+- For functions to extract data from Transfermarkt, see
+  [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
+- For functions to extract data from Understat, see
+  [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
+- For functions to extract data from fotmob, see
+  [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
+- For functions to extract data for international matches from FBref,
+  see
+  [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
+- For functions to load pre-scraped data, see
+  [here](https://jaseziv.github.io/worldfootballR/articles/load-scraped-data.html)
 
 ### Loading Data
 
@@ -98,7 +98,7 @@ log](https://jaseziv.github.io/worldfootballR/news/index.html)
 
 ## Leagues and Seasons
 
-### Fbref
+### FBref
 
 For FBref.com data (match and season data), a list of leagues and
 seasons included in the package can be found in the
@@ -118,12 +118,12 @@ The following leagues are currently supported by Understat (these values
 can be passed in to the `league` arguments of most `understat_`
 functions):
 
--   “EPL”
--   “La liga”
--   “Bundesliga”
--   “Serie A”
--   “Ligue 1”
--   “RFPL”
+- “EPL”
+- “La liga”
+- “Bundesliga”
+- “Serie A”
+- “Ligue 1”
+- “RFPL”
 
 ------------------------------------------------------------------------
 
@@ -134,10 +134,10 @@ the source of the data based on the function you use**.
 
 Data providers are listed below:
 
--   [StatsBomb via FBref](https://fbref.com/en/)
--   [Transfermarkt](https://www.transfermarkt.com/)
--   [Understat](https://understat.com/)
--   [Fotmob](https://www.fotmob.com/)
+- [FBref](https://fbref.com/en/) partnered with StatsPerform Opta
+- [Transfermarkt](https://www.transfermarkt.com/)
+- [Understat](https://understat.com/)
+- [Fotmob](https://www.fotmob.com/)
 
 ### Acknowledgements
 
@@ -155,12 +155,12 @@ in this package.
 
 When creating an issue, please include:
 
--   Reproducible examples
--   A brief description of what the expected results are
--   If applicable, the fbref.com, transfermarkt.com or understat.com
-    page the observed behaviour is occurring on
--   For improvement suggestions, what features are being requested and
-    their purpose
+- Reproducible examples
+- A brief description of what the expected results are
+- If applicable, the fbref.com, transfermarkt.com or understat.com page
+  the observed behaviour is occurring on
+- For improvement suggestions, what features are being requested and
+  their purpose
 
 Feel free to get in touch via email or twitter
 <https://twitter.com/jaseziv> if you aren’t able to create an issue.
@@ -170,4 +170,9 @@ Feel free to get in touch via email or twitter
 Follow me on Twitter ([jaseziv](https://twitter.com/jaseziv)) for
 updates
 
-If this package helps you, all I ask is that you star this repo
+If this package helps you, all I ask is that you star this repo. If you
+did want to show your support and contribute to server time and data
+storage costs, feel free to send a small donation through the link
+below.
+
+<a href="https://www.buymeacoffee.com/jaseziv83A" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Coffee (Server Time)" height="41" width="174"></a>
