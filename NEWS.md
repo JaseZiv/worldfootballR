@@ -1,3 +1,8 @@
+# worldfootballR 0.6.2.2000
+### Bugs
+
+* `fotmob_get_league_matches()` was failing due to an extra `purrr::map_dfr` that is no longer needed [#229](https://github.com/JaseZiv/worldfootballR/issues/229)
+
 # worldfootballR 0.6.2.1000
 ### Bugs
 
