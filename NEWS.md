@@ -1,7 +1,9 @@
-# worldfootballR 0.6.2.1000
+# worldfootballR (development version)
+
 ### Bugs
 
-* `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column [#226](https://github.com/JaseZiv/worldfootballR/issues/226)
+* `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column [#226](https://github.com/JaseZiv/worldfootballR/issues/226) (0.6.2.1000)
+* `tm_team_transfer_balances()` failing because of empty team boxes being collected (0.6.2.1000) [228](https://github.com/JaseZiv/worldfootballR/issues/228)
 
 # worldfootballR 0.6.2
 
