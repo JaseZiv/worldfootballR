@@ -10,10 +10,10 @@
 #' @importFrom purrr transpose map_dfr
 #' @importFrom dplyr filter
 .fotmob_get_league_urls <- function(
-  leagues,
-  league_id = NULL,
-  country = NULL,
-  league_name = NULL
+    leagues,
+    league_id = NULL,
+    country = NULL,
+    league_name = NULL
 ) {
   has_country <- !is.null(country)
   has_league_name <- !is.null(league_name)
@@ -246,11 +246,10 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 .fotmob_get_league_matches <- function(league_id, page_url) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
   rounds <- resp$matches$data$matchesCombinedByRound
-  rounds %>%
-    purrr::map_dfr(
-      ~purrr::map_dfr(.x, dplyr::bind_rows) %>%
-        dplyr::mutate(across(.data[["roundName"]], as.character))
-    ) %>%
+  purrr::map_dfr(
+    rounds,
+    ~dplyr::mutate(.x, dplyr::across(.data[["roundName"]], as.character)),
+   ) %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
