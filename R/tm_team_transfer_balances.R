@@ -55,6 +55,11 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 
   team_transfers <- page %>% rvest::html_nodes(".large-8") %>% rvest::html_nodes(".box")
 
+  # change in html means there are also empty boxes being picked up... will remove these if they don't have a 'team_name'
+  rem_boxes <- team_transfers %>% rvest::html_element("a+ a") %>% rvest::html_text()
+
+  team_transfers <- team_transfers[!is.na(rem_boxes)]
+
   tryCatch({country_name <- page %>%
     rvest::html_nodes(".data-header") %>%
     rvest::html_node("img") %>%
@@ -63,7 +68,7 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
   league_name <- page %>% rvest::html_nodes(".data-header__headline-wrapper--oswald") %>% rvest::html_text() %>% stringr::str_squish()
 
   tryCatch({season <- team_transfers[1] %>%
-    rvest::html_node(".table-header") %>%
+    rvest::html_node(".content-box-headline") %>%
     rvest::html_text() %>%
     stringr::str_squish() %>% gsub("Transfers ", "", .)}, error = function(e) {country_name <- NA_character_})
 
@@ -71,7 +76,7 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 
   for(i in team_transfers) {
     team_name <- i %>%
-      rvest::html_nodes(".table-header") %>%
+      rvest::html_element("a+ a") %>%
       rvest::html_text()
 
     if(length(team_name) == 0 || grepl("Transfer", team_name)) {
