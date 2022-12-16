@@ -1,3 +1,11 @@
+LEAGUES <- list(
+  "EPL" = "EPL",
+  "La liga" = "La_liga",
+  "Bundesliga" = "Bundesliga",
+  "Serie A" = "Serie_A",
+  "Ligue 1"="Ligue_1",
+  "RFPL"="RFPL"
+)
 #' Load Understat league shot locations
 #'
 #' Loading version of \code{understat_league_season_shots}, but for all seasons
@@ -22,16 +30,9 @@
 #' @export
 load_understat_league_shots <- function(league) {
 
-  leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")
-  if(!league %in% leagues) stop("Check league name")
+  check_league_name(league)
+  league <- LEAGUES[[league]]
 
-  if(league == "La liga") {
-    league <- "La_liga"
-  } else if (league == "Serie A") {
-    league <- "Serie_A"
-  } else if (league == "Ligue 1") {
-    league <- "Ligue_1"
-  }
 
   league_name_clean <- janitor::make_clean_names(league)
   # then read in data
@@ -49,4 +50,9 @@ load_understat_league_shots <- function(league) {
 
   return(dat_df)
 
+}
+
+check_league_name <- function(league_name) {
+  leagues <- names(LEAGUES)
+  if(!league_name %in% leagues) stop("Check league name")
 }

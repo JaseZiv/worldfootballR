@@ -70,6 +70,20 @@ test_that("load_understat_league_shots() works", {
 
 })
 
+
+test_that("check_league_name() works", {
+  expect_error(check_league_name(league_name = "foo"))
+  expect_no_error(check_league_name(league_name = "Serie A"))
+})
+
+
+test_that("Change if statement by list", {
+  expect_equal(LEAGUES[["La liga"]], "La_liga")
+  expect_equal(LEAGUES[["Ligue 1"]], "Ligue_1")
+  expect_equal(LEAGUES[["Serie A"]], "Serie_A")
+})
+
+
 test_that("load_fotmob_matches_by_date() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
