@@ -72,8 +72,8 @@ test_that("load_understat_league_shots() works", {
 
 
 test_that("check_league_name() works", {
-  expect_error(check_league_name(league_name = "foo"))
-  expect_success(check_league_name(league_name = "Serie A"))
+  expect_error(check_league_name(league = "foo"))
+  expect_success(check_league_name(league = "Serie A"))
 })
 
 

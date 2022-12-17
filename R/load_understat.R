@@ -52,7 +52,7 @@ load_understat_league_shots <- function(league) {
 
 }
 
-check_league_name <- function(league_name) {
+check_league_name <- function(league) {
   leagues <- names(LEAGUES)
-  rlang::arg_match0(league_name, leagues)
+  rlang::arg_match0(league, leagues)
 }
