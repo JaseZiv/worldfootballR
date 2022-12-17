@@ -47,3 +47,6 @@ test_that("understat_team_stats_breakdown() works", {
   expect_gt(nrow(team_stats), 0)
 })
 
+test_that("understat_league_season_shots() works", {
+  testthat::skip_on_cran()
+})
