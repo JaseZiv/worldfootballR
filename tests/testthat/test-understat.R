@@ -5,6 +5,7 @@ test_that("understat_league_match_results() works", {
   testthat::skip_on_cran()
   epl_results <- understat_league_match_results(league = "EPL", season_start_year = 2020)
   expect_type(epl_results, "list")
+  expect_error(understat_league_match_results(league = "foo", season_start_year = 2022))
 })
 
 

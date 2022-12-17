@@ -20,16 +20,8 @@ understat_league_match_results <- function(league, season_start_year) {
   # .pkg_message("Scraping match results data for {league} {season_start_year} season. Please acknowledge understat.com as the data source")
   main_url <- "https://understat.com/"
 
-  leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")
-  if(!league %in% leagues) stop("Check league name")
-
-  if(league == "La liga") {
-    league <- "La_liga"
-  } else if (league == "Serie A") {
-    league <- "Serie_A"
-  } else if (league == "Ligue 1") {
-    league <- "Ligue_1"
-  }
+  check_league_name(league)
+  league <- LEAGUES[[league]]
 
   league_url <- paste0(main_url, "league/", league, "/", season_start_year)
 
