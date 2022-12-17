@@ -54,5 +54,5 @@ load_understat_league_shots <- function(league) {
 
 check_league_name <- function(league_name) {
   leagues <- names(LEAGUES)
-  if(!league_name %in% leagues) stop("Check league name")
+  rlang::arg_match0(league_name, leagues)
 }
