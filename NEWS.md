@@ -29,6 +29,8 @@
 * `load_match_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases
 * `load_match_comp_results()` now loads FBRef data provided by Stats Perform (Opta) via Github releases
 * `load_understat_league_shots()` now loads data from GitHub releases
+* `check_league_name()` refactor repeated code. Check that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* Add varible `LEAGUES` to change **if** statement by list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 
 
 ***
