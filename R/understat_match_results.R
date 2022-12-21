@@ -36,9 +36,11 @@ understat_league_match_results <- function(league, season_start_year) {
   match_results <- cbind(league, match_results)
 
   match_results <- match_results %>%
-    dplyr::rename(match_id=.data[["id"]], home_id=.data[["h.id"]], home_team=.data[["h.title"]], home_abbr=.data[["h.short_title"]], away_id=.data[["a.id"]], away_team=.data[["a.title"]], away_abbr=.data[["a.short_title"]],
-                  home_goals=.data[["goals.h"]], away_goals=.data[["goals.a"]], home_xG=.data[["xG.h"]], away_xG=.data[["xG.a"]],
-                  forecast_win=.data[["forecast.w"]], forecast_draw=.data[["forecast.d"]], forecast_loss=.data[["forecast.l"]])
+    dplyr::rename(
+      match_id = .data[["id"]], home_id = .data[["h.id"]], home_team = .data[["h.title"]], home_abbr = .data[["h.short_title"]], away_id = .data[["a.id"]], away_team = .data[["a.title"]], away_abbr = .data[["a.short_title"]],
+      home_goals = .data[["goals.h"]], away_goals = .data[["goals.a"]], home_xG = .data[["xG.h"]], away_xG = .data[["xG.a"]],
+      forecast_win = .data[["forecast.w"]], forecast_draw = .data[["forecast.d"]], forecast_loss = .data[["forecast.l"]]
+    )
 
   match_results <- match_results %>%
     dplyr::mutate_at(c("home_goals", "away_goals", "home_xG", "away_xG", "forecast_win", "forecast_draw", "forecast_loss"), as.numeric)

@@ -3,8 +3,8 @@ LEAGUES <- list(
   "La liga" = "La_liga",
   "Bundesliga" = "Bundesliga",
   "Serie A" = "Serie_A",
-  "Ligue 1"="Ligue_1",
-  "RFPL"="RFPL"
+  "Ligue 1" = "Ligue_1",
+  "RFPL" = "RFPL"
 )
 #' Load Understat league shot locations
 #'
@@ -24,12 +24,11 @@ LEAGUES <- list(
 #' @examples
 #' \dontrun{
 #' try({
-#' df <- load_understat_league_shots(league="Serie A")
+#'   df <- load_understat_league_shots(league = "Serie A")
 #' })
 #' }
 #' @export
 load_understat_league_shots <- function(league) {
-
   check_league_name(league)
   league <- LEAGUES[[league]]
 
@@ -42,14 +41,13 @@ load_understat_league_shots <- function(league) {
   dat_df <- .file_reader(dat_urls)
 
 
-  if(nrow(dat_df) == 0) {
+  if (nrow(dat_df) == 0) {
     cli::cli_alert("Data not loaded. Please check parameters")
   } else {
     cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }
 
   return(dat_df)
-
 }
 
 check_league_name <- function(league) {
