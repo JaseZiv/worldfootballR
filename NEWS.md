@@ -8,8 +8,8 @@
 
 ### Improvements
 
-* `check_league_name()` remove repeated code extracting function. Check that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
-* Add varible `LEAGUES` to change **if** statement with list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `check_league_name()` removes repeated code. It checks that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `LEAGUES` replaces **if** statement with list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 
 # worldfootballR 0.6.2
 
