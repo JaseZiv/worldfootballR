@@ -6,6 +6,11 @@
 * `tm_team_transfer_balances()` failing because of empty team boxes being collected (0.6.2.1000) [228](https://github.com/JaseZiv/worldfootballR/issues/228)
 * `fotmob_get_league_matches()` was failing due to an extra `purrr::map_dfr` that is no longer needed (0.6.2.2000) [#229](https://github.com/JaseZiv/worldfootballR/issues/229)
 
+### Improvements
+
+* `check_league_name()` removes repeated code. It checks that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `LEAGUES` replaces **if** statement with list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+
 # worldfootballR 0.6.2
 
 ### Bugs

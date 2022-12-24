@@ -5,6 +5,7 @@ test_that("understat_league_match_results() works", {
   testthat::skip_on_cran()
   epl_results <- understat_league_match_results(league = "EPL", season_start_year = 2020)
   expect_type(epl_results, "list")
+  expect_error(understat_league_match_results(league = "foo", season_start_year = 2022))
 })
 
 
@@ -46,4 +47,3 @@ test_that("understat_team_stats_breakdown() works", {
   expect_equal(ncol(team_stats), 11)
   expect_gt(nrow(team_stats), 0)
 })
-
