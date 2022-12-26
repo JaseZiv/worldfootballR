@@ -8,7 +8,6 @@ test_that("tm_player_market_values() works", {
 
   # test that an invalid country will error
   expect_error(tm_player_market_values(country_name = "Fake Country", start_year = 2020))
-
 })
 
 
@@ -24,7 +23,6 @@ test_that("tm_player_transfer_history() works", {
 
   # test that an invalid country will error
   expect_error(tm_player_transfer_history("aaa.com.au"))
-
 })
 
 
@@ -36,19 +34,20 @@ test_that("tm_team_transfers() works", {
   expect_false(any(is.na(bayern_summer$player_name)))
 
   # test multiple urls:
-  urls <- c("https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
-            "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020")
+  urls <- c(
+    "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2020",
+    "https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2020"
+  )
   multi <- tm_team_transfers(team_url = urls, transfer_window = "all")
   expect_false(nrow(multi) == 0)
   expect_false(any(is.na(multi$player_name)))
-
 })
 
 
 test_that("tm_matchday_table() works", {
   testthat::skip_on_cran()
-  expect_type(tm_matchday_table(country_name="England", start_year="2021", matchday=1), "list")
-  expect_type(tm_matchday_table(country_name="England", start_year="2021", matchday=c(1:5)), "list")
+  expect_type(tm_matchday_table(country_name = "England", start_year = "2021", matchday = 1), "list")
+  expect_type(tm_matchday_table(country_name = "England", start_year = "2021", matchday = c(1:5)), "list")
 })
 
 
@@ -81,7 +80,6 @@ test_that("tm_player_bio() works", {
   burnley_bios <- tm_player_bio(player_urls = burnley_player_urls[1:3])
   expect_type(burnley_bios, "list")
   expect_equal(ncol(burnley_bios), 20)
-
 })
 
 
@@ -90,8 +88,10 @@ test_that("tm_team_staff_urls() works", {
   testthat::skip_on_cran()
 
   # get a list of team URLs for the EPL 2021/22 season
-  teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
-             "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
+  teams <- c(
+    "https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
+    "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021"
+  )
   # get all EPL managers for the 2021/22 season
   epl_managers <- tm_team_staff_urls(team_urls = teams, staff_role = "Manager")
   expect_type(epl_managers, "character")
@@ -103,7 +103,6 @@ test_that("tm_team_staff_urls() works", {
   expect_type(epl_gk_coaches, "character")
   # test that there is more than just the baseline URL
   expect_false(all(grepl("https://www.transfermarkt.com$", epl_gk_coaches)))
-
 })
 
 
@@ -111,8 +110,10 @@ test_that("tm_team_staff_history() works", {
   testthat::skip_on_cran()
 
   # get a list of team URLs for the EPL 2021/22 season
-  teams <- c("https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
-            "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021")
+  teams <- c(
+    "https://www.transfermarkt.com/manchester-city/startseite/verein/281/saison_id/2021",
+    "https://www.transfermarkt.com/fc-chelsea/startseite/verein/631/saison_id/2021"
+  )
   # get all EPL managers for the 2021/22 season
   epl_club_managers <- tm_team_staff_history(team_urls = teams, staff_role = "Manager")
   expect_type(epl_club_managers, "list")
@@ -123,14 +124,18 @@ test_that("tm_team_staff_history() works", {
 test_that("tm_team_staff_history() works", {
   testthat::skip_on_cran()
 
-  managers <- c("https://www.transfermarkt.com/pep-guardiola/profil/trainer/5672",
-                "https://www.transfermarkt.com/thomas-tuchel/profil/trainer/7471")
+  managers <- c(
+    "https://www.transfermarkt.com/pep-guardiola/profil/trainer/5672",
+    "https://www.transfermarkt.com/thomas-tuchel/profil/trainer/7471"
+  )
   epl_manager_job_histories <- tm_staff_job_history(staff_urls = managers)
   expect_type(epl_manager_job_histories, "list")
   expect_false(nrow(epl_manager_job_histories) == 0)
 
-  gk_coaches <- c("https://www.transfermarkt.com/xabier-mancisidor/profil/trainer/17486",
-                  "https://www.transfermarkt.com/richard-hartis/profil/trainer/19348")
+  gk_coaches <- c(
+    "https://www.transfermarkt.com/xabier-mancisidor/profil/trainer/17486",
+    "https://www.transfermarkt.com/richard-hartis/profil/trainer/19348"
+  )
 
   epl_gk_coach_job_histories <- tm_staff_job_history(staff_urls = gk_coaches)
   expect_type(epl_gk_coach_job_histories, "list")
@@ -146,9 +151,11 @@ test_that("tm_league_debutants() works", {
   expect_equal(ncol(laliga_debutants), 20)
   expect_false(nrow(laliga_debutants) == 0)
 
-  league_one_PRO_debutants <- tm_league_debutants(country_name = "",
-                                                  league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3",
-                                                  debut_type = "pro", debut_start_year = 2021, debut_end_year = 2021)
+  league_one_PRO_debutants <- tm_league_debutants(
+    country_name = "",
+    league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3",
+    debut_type = "pro", debut_start_year = 2021, debut_end_year = 2021
+  )
   expect_type(league_one_PRO_debutants, "list")
   expect_equal(ncol(league_one_PRO_debutants), 20)
   expect_false(nrow(league_one_PRO_debutants) == 0)
@@ -164,13 +171,14 @@ test_that("tm_expiring_contracts() works", {
   expect_false(nrow(laliga_expiring) == 0)
 
 
-  league_one_expiring <- tm_expiring_contracts(country_name = "",
-                                               contract_end_year = 2023,
-                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+  league_one_expiring <- tm_expiring_contracts(
+    country_name = "",
+    contract_end_year = 2023,
+    league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"
+  )
   expect_type(league_one_expiring, "list")
   expect_equal(ncol(league_one_expiring), 14)
   expect_false(nrow(league_one_expiring) == 0)
-
 })
 
 
@@ -183,12 +191,13 @@ test_that("tm_league_injuries() works", {
   expect_false(nrow(laliga_injuries) == 0)
 
 
-  league_one_injuries <- tm_league_injuries(country_name = "",
-                                               league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
+  league_one_injuries <- tm_league_injuries(
+    country_name = "",
+    league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3"
+  )
   expect_type(league_one_injuries, "list")
   expect_equal(ncol(league_one_injuries), 14)
   expect_false(nrow(league_one_injuries) == 0)
-
 })
 
 
@@ -199,5 +208,4 @@ test_that("tm_player_injury_history() works", {
   expect_type(hazard_injuries, "list")
   expect_equal(ncol(hazard_injuries), 9)
   expect_false(nrow(hazard_injuries) == 0)
-
 })
