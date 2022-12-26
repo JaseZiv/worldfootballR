@@ -173,20 +173,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
       out_df <- cbind(comp_name, country, comp_url, out_df)
     }
 
-    out_df <- out_df %>%
-      dplyr::mutate(
-        player_name = as.character(.data[["player_name"]]),
-        player_url = as.character(.data[["player_url"]]),
-        position = as.character(.data[["position"]]),
-        nationality = as.character(.data[["nationality"]]),
-        second_nationality = as.character(.data[["second_nationality"]]),
-        current_club = as.character(.data[["current_club"]]),
-        contract_expiry = lubridate::ymd(.data[["contract_expiry"]]),
-        contract_option = as.character(.data[["contract_option"]]),
-        player_market_value = mapply(.convert_value_to_numeric, .data[["player_market_value"]]),
-        transfer_fee = mapply(.convert_value_to_numeric, .data[["transfer_fee"]]),
-        agent = as.character(.data[["agent"]])
-      )
+    out_df <- clean_up_values_columns(out_df)
 
 
 
@@ -199,4 +186,22 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     expiring_pages,
     f_possibly
   )
+}
+
+clean_up_values_columns <- function(out_df) {
+  out_df_with_cleaned_values <- out_df %>%
+    dplyr::mutate(
+      player_name = as.character(.data[["player_name"]]),
+      player_url = as.character(.data[["player_url"]]),
+      position = as.character(.data[["position"]]),
+      nationality = as.character(.data[["nationality"]]),
+      second_nationality = as.character(.data[["second_nationality"]]),
+      current_club = as.character(.data[["current_club"]]),
+      contract_expiry = lubridate::ymd(.data[["contract_expiry"]]),
+      contract_option = as.character(.data[["contract_option"]]),
+      player_market_value = mapply(.convert_value_to_numeric, .data[["player_market_value"]]),
+      transfer_fee = mapply(.convert_value_to_numeric, .data[["transfer_fee"]]),
+      agent = as.character(.data[["agent"]])
+    )
+  return(out_df_with_cleaned_values)
 }
