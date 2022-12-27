@@ -235,6 +235,8 @@
     clean_val <- suppressWarnings(gsub("m", "", clean_val) %>% as.numeric() * 1000000)
   } else if(grepl("th.", clean_val)) {
     clean_val <- suppressWarnings(gsub("th.", "", clean_val) %>% as.numeric() * 1000)
+  } else if(grepl("k", clean_val)) {
+    clean_val <- suppressWarnings(gsub("k", "", clean_val) %>% as.numeric() * 1000)
   } else {
     clean_val <- suppressWarnings(as.numeric(clean_val) * 1)
   }

@@ -12,7 +12,7 @@
 #'
 #' @export
 #'
-tm_player_transfer_history <- function(player_urls) {
+tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
   # .pkg_message("Extracting player transfer history data. Please acknowledge transfermarkt.com as the data source.")
 
   single_player_transfer_history <- function(player_url) {
@@ -50,14 +50,6 @@ tm_player_transfer_history <- function(player_urls) {
         transfer_date <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__date") %>% rvest::html_text() %>% stringr::str_squish() %>%
                                     .tm_fix_dates() %>% lubridate::ymd(), error = function(e) NA_character_)
 
-        # country_flags <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".flagge"), error = function(e) NA)
-        country_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt")  %>% stringr::str_squish() %>% .replace_empty_na(), error = function(e) NA_character_)
-        country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__flag") %>% rvest::html_attr("alt"), error = function(e) NA_character_)
-        # to handle for players that are retired, like: "https://www.transfermarkt.com/massimiliano-allegri/profil/spieler/163501":
-        if(rlang::is_empty(country_to)) {
-          country_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>% stringr::str_squish(), error = function(e) NA_character_)
-        }
-
         team_from <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__old-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>%
                                 stringr::str_squish(), error = function(e) NA_character_)
         team_to <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__new-club .tm-player-transfer-history-grid__club-link") %>% rvest::html_text() %>%
@@ -70,32 +62,56 @@ tm_player_transfer_history <- function(player_urls) {
                                      stringr::str_squish() %>%
                                      .convert_value_to_numeric, error = function(e) NA_character_)
 
-        # to get contract length, which isn't on the main page listing all transfers:
-        extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__link") %>% rvest::html_attr("href") %>% paste0(main_url, .)
-        extra_info <- tryCatch(xml2::read_html(extra_info_url), error = function(e) NA)
-        contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
-        contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
-        if(is.na(extra_info)) {
-          contract_expiry <- NA
-          days_remaining <- NA
-        } else {
-          text_to_remove <- contract_box[contract_idx] %>% rvest::html_nodes("b") %>% rvest::html_text()
-          if(length(text_to_remove) == 0) {
+
+        # Executed if the user wants to get more info. Contains: Contract Expiring date + Days remaining. From which countries was the transfer.
+        if(get_extra_info == TRUE){
+
+          extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__link") %>% rvest::html_attr("href") %>% paste0(main_url, .)
+          extra_info <- tryCatch(xml2::read_html(extra_info_url), error = function(e) NA)
+          contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
+          contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
+          if(is.na(extra_info)) {
             contract_expiry <- NA
             days_remaining <- NA
           } else {
-            contract_expiry <- contract_box[contract_idx] %>% rvest::html_text() %>%
-              gsub(text_to_remove, "", .) %>% stringr::str_squish() %>% gsub(".*\\((.*)\\).*", "\\1", .) %>% .tm_fix_dates() %>% lubridate::ymd()
-            days_remaining <- difftime(contract_expiry, transfer_date, units = c("days")) %>% as.numeric()
+            text_to_remove <- contract_box[contract_idx] %>% rvest::html_nodes("b") %>% rvest::html_text()
+            if(length(text_to_remove) == 0) {
+              contract_expiry <- NA
+              days_remaining <- NA
+            } else {
+              contract_expiry <- contract_box[contract_idx] %>% rvest::html_text() %>%
+                gsub(text_to_remove, "", .) %>% stringr::str_squish() %>% gsub(".*\\((.*)\\).*", "\\1", .) %>% .tm_fix_dates() %>% lubridate::ymd()
+              days_remaining <- difftime(contract_expiry, transfer_date, units = c("days")) %>% as.numeric()
+            }
           }
 
+          country_to <- tryCatch(extra_info %>% rvest::html_nodes(".large-4.columns table .rechts .flaggenrahmen") %>% rvest::html_attr("title"), error = function(e) NA)
+
+          if(length(country_to) < 1){
+            country_to <- NA
+          }
+
+          countries <- tryCatch(extra_info %>% rvest::html_nodes(".large-4.columns table .flaggenrahmen") %>% rvest::html_attr("title"), error = function(e) NA)
+          if(length(countries) < 2){
+            if(is.na(country_to)){
+              country_from <- countries[1]
+            } else {
+              country_from <- NA
+            }
+          } else {
+            country_from <- countries[1]
+          }
         }
 
-
-        each_row_df <- data.frame(player_name=as.character(player_name), season=as.character(season), transfer_date=lubridate::ymd(transfer_date),
+        if(get_extra_info == TRUE){
+          each_row_df <- data.frame(player_name=as.character(player_name), season=as.character(season), transfer_date=lubridate::ymd(transfer_date),
                                   country_from=as.character(country_from), team_from=as.character(team_from), country_to=as.character(country_to),
                                   team_to=as.character(team_to), market_value=as.numeric(market_value), transfer_value=as.numeric(transfer_value),
                                   contract_expiry=lubridate::ymd(contract_expiry), days_remaining=as.numeric(days_remaining))
+        } else {
+          each_row_df <- data.frame(player_name=as.character(player_name), season=as.character(season), transfer_date=lubridate::ymd(transfer_date),
+                                    team_from=as.character(team_from), team_to=as.character(team_to), market_value=as.numeric(market_value), transfer_value=as.numeric(transfer_value))
+        }
 
       }
 
@@ -108,8 +124,7 @@ tm_player_transfer_history <- function(player_urls) {
   # create the progress bar with a progress function.
   pb <- progress::progress_bar$new(total = length(player_urls))
 
-  all_players <- player_urls %>%
-    purrr::map_df(single_player_transfer_history)
+  all_players <- player_urls %>% purrr::map_df(single_player_transfer_history)
 
   return(all_players)
 }
