@@ -4,6 +4,7 @@
 #' Replaces the deprecated function player_transfer_history
 #'
 #' @param player_urls the player url(s) from transfermarkt
+#' @param get_extra_info allows users to decide if they want to scrape extra info (contract length, countries involved) or not
 #'
 #' @return returns a dataframe of player transfers
 #'

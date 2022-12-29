@@ -10,6 +10,7 @@
 
 * `check_league_name()` removes repeated code. It checks that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 * `LEAGUES` replaces **if** statement with list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `tm_player_transfer_history()` added information about countries involved in the transfer, added possibility to skip extra info extraction. [#235](https://github.com/JaseZiv/worldfootballR/pull/235)
 
 # worldfootballR 0.6.2
 
