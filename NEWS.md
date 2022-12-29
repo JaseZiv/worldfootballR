@@ -1,6 +1,6 @@
 # worldfootballR (development version)
 
-### Improvements / Breaking Changes
+### Breaking Changes
 
 * `tm_player_transfer_history()` now contains an additional column in the returned dataframe (`transfer_type`). This column differentiate between regular transfers, free transfers, loans and paid loans and transfers due to players returning from loan.
 

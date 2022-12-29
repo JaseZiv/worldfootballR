@@ -4,10 +4,12 @@
 \alias{tm_player_transfer_history}
 \title{Get Transfermarkt player transfer history}
 \usage{
-tm_player_transfer_history(player_urls)
+tm_player_transfer_history(player_urls, get_extra_info = TRUE)
 }
 \arguments{
 \item{player_urls}{the player url(s) from transfermarkt}
+
+\item{get_extra_info}{allows users to decide if they want to scrape extra info (contract length, countries involved) or not}
 }
 \value{
 returns a dataframe of player transfers
