@@ -1,5 +1,9 @@
 # worldfootballR (development version)
 
+### Improvements / Breaking Changes
+
+* `tm_player_transfer_history()` now contains an additional column in the returned dataframe (`transfer_type`). This column differentiate between regular transfers, free transfers, loans and paid loans and transfers due to players returning from loan.
+
 ### Bugs
 
 * `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column (0.6.2.1000) [#226](https://github.com/JaseZiv/worldfootballR/issues/226)
