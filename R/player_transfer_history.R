@@ -59,10 +59,29 @@ tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
         market_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__market-value") %>% rvest::html_text() %>%
                                    stringr::str_squish() %>%
                                    .convert_value_to_numeric(), error = function(e) NA_character_)
-        transfer_value <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__fee") %>% rvest::html_text() %>%
-                                     stringr::str_squish() %>%
-                                     .convert_value_to_numeric, error = function(e) NA_character_)
 
+        transfer_value_info <- tryCatch(all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__fee") %>% rvest::html_text() %>%
+                                     stringr::str_squish() %>% tolower, error = function(e) NA_character_)
+
+        transfer_value <- transfer_value_info %>% .convert_value_to_numeric
+
+        if(grepl("free", transfer_value_info)) {
+          transfer_type <- 'Free transfer'
+        } else if(grepl("end of", transfer_value_info)) {
+          transfer_type <- 'End of loan'
+        } else if(grepl("fee", transfer_value_info)) {
+          transfer_type <- 'Paid loan'
+        } else if(grepl("loan", transfer_value_info)) {
+          transfer_type <- 'Loan'
+        } else if(grepl("m", transfer_value_info)) {
+          transfer_type <- 'Transfer'
+        } else if(grepl("th.", transfer_value_info)) {
+          transfer_type <- 'Transfer'
+        } else if(grepl("k", transfer_value_info)) {
+          transfer_type <- 'Transfer'
+        } else {
+          transfer_type <- NA_character_
+        }
 
         # Executed if the user wants to get more info. Contains: Contract Expiring date + Days remaining. From which countries was the transfer.
         if(get_extra_info == TRUE){
@@ -71,6 +90,7 @@ tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
           extra_info <- tryCatch(xml2::read_html(extra_info_url), error = function(e) NA)
           contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
           contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
+
           if(is.na(extra_info)) {
             contract_expiry <- NA
             days_remaining <- NA
@@ -108,10 +128,12 @@ tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
           each_row_df <- data.frame(player_name=as.character(player_name), season=as.character(season), transfer_date=lubridate::ymd(transfer_date),
                                   country_from=as.character(country_from), team_from=as.character(team_from), country_to=as.character(country_to),
                                   team_to=as.character(team_to), market_value=as.numeric(market_value), transfer_value=as.numeric(transfer_value),
-                                  contract_expiry=lubridate::ymd(contract_expiry), days_remaining=as.numeric(days_remaining))
+                                  transfer_type = as.character(transfer_type), contract_expiry=lubridate::ymd(contract_expiry),
+                                  days_remaining=as.numeric(days_remaining))
         } else {
           each_row_df <- data.frame(player_name=as.character(player_name), season=as.character(season), transfer_date=lubridate::ymd(transfer_date),
-                                    team_from=as.character(team_from), team_to=as.character(team_to), market_value=as.numeric(market_value), transfer_value=as.numeric(transfer_value))
+                                    team_from=as.character(team_from), team_to=as.character(team_to), market_value=as.numeric(market_value),
+                                    transfer_value=as.numeric(transfer_value), transfer_type = as.character(transfer_type))
         }
 
       }

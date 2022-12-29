@@ -231,6 +231,8 @@
   clean_val <- gsub("[^\x20-\x7E]", "", euro_value) %>% tolower()
   if(grepl("free", clean_val)) {
     clean_val <- 0
+  } else if(grepl("loan fee", clean_val)) {
+    clean_val <- suppressWarnings(gsub("loan fee:", "", clean_val)) %>% .convert_value_to_numeric
   } else if(grepl("m", clean_val)) {
     clean_val <- suppressWarnings(gsub("m", "", clean_val) %>% as.numeric() * 1000000)
   } else if(grepl("th.", clean_val)) {
