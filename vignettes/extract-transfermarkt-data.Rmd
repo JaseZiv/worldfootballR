@@ -304,6 +304,29 @@ dplyr::glimpse(hazard_injuries)
 ```
 
 
+### Player Transfer History
+
+To be able to get an individual player(s) transfer history from transfermarkt, use the `tm_player_transfer_history()` function.
+
+The parameter `get_extra_info` allows users to decide if they want to scrape the extra info regarding the transfer. This will give additional information regarding contract length and nations involved, but will require more time. The default value is `TRUE`.
+
+
+```{r player_transfer_history}
+#----- for a single player, get_extra_info defaulting TRUE: -----#
+jack_rodwell_transfer_history <- tm_player_transfer_history(player_urls = "https://www.transfermarkt.com/jack-rodwell/profil/spieler/57079")
+dplyr::glimpse(jack_rodwell_transfer_history)
+
+#----- for a single player, get_extra_info FALSE: -----#
+jack_rodwell_transfer_history <- tm_player_transfer_history(player_urls = "https://www.transfermarkt.com/jack-rodwell/profil/spieler/57079", get_extra_info = FALSE)
+dplyr::glimpse(jack_rodwell_transfer_history)
+
+#----- for multiple players, get_extra_info FALSE: -----#
+all_leeds_united_links <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/leeds-united/startseite/verein/399")
+all_leeds_united_players_transfer_history <- tm_player_transfer_history(all_leeds_united_links, get_extra_info = FALSE)
+dplyr::glimpse(all_leeds_united_players_transfer_history)
+```
+
+
 ***
 
 
