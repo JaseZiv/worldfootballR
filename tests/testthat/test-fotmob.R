@@ -170,6 +170,8 @@ test_that("fotmob_get_league_tables() works", {
   ## Can only check on CL after group stages and briefly after the final.
   m <- lubridate::month(Sys.Date())
   if(m >= 1 && m <= 5) {
+    expected_international_league_table_cols <- c("league_id", "page_url", "ccode", "group_id", "group_page_url", "group_name", "ongoing", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_deduction", "table_ongoing", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
+
     cl_league_table <- fotmob_get_league_tables(
       country =     "INT",
       league_name = "Champions League"
@@ -177,7 +179,7 @@ test_that("fotmob_get_league_tables() works", {
 
     ## should be 32 teams x 3 table types = 96
     expect_gt(nrow(cl_league_table), 0)
-    expect_equal(sort(colnames(cl_league_table)), sort(expected_league_matches_cols))
+    expect_equal(sort(colnames(cl_league_table)), sort(expected_international_league_table_cols))
   }
 })
 
