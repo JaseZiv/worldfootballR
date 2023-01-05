@@ -61,7 +61,7 @@ test_that("load_understat_league_shots() works", {
   test_df <- load_understat_league_shots(league = "Serie A")
   # test the functions returns the data
   expect_type(test_df, "list")
-  expect_true(ncol(test_df) == 21)
+  expect_equal(ncol(test_df), 21)
 
   # test for error also:
   expect_error(load_understat_league_shots(league = "foo"))
