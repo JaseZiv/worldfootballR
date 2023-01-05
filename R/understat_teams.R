@@ -54,7 +54,8 @@ understat_team_stats_breakdown <- function(team_urls) {
 .understat_team_stats_breakdown <- function(team_url) {
   data_html <-
     team_url %>%
-    rvest::read_html()
+    httr::GET(httr::set_cookies(.cookies = c('beget' = 'begetok'))) %>%
+    httr::content()
 
   team_name <- data_html %>% rvest::html_nodes(".breadcrumb") %>% rvest::html_nodes("li") %>% .[3] %>% rvest::html_text()
 
