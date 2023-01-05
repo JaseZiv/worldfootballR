@@ -9,12 +9,13 @@
 * `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column (0.6.2.1000) [#226](https://github.com/JaseZiv/worldfootballR/issues/226)
 * `tm_team_transfer_balances()` failing because of empty team boxes being collected (0.6.2.1000) [228](https://github.com/JaseZiv/worldfootballR/issues/228)
 * `fotmob_get_league_matches()` was failing due to an extra `purrr::map_dfr` that is no longer needed (0.6.2.2000) [#229](https://github.com/JaseZiv/worldfootballR/issues/229)
+* All understat functions were failing due to a new cookie requirement (0.6.2.5000) [#239](https://github.com/JaseZiv/worldfootballR/issues/239)
 
 ### Improvements
 
-* `check_league_name()` removes repeated code. It checks that the name of the leagues is correct [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
-* `LEAGUES` replaces **if** statement with list [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
-* `tm_player_transfer_history()` added more information, added possibility to skip extraction of info that requires additional page load time. [#235](https://github.com/JaseZiv/worldfootballR/pull/235)
+* `check_league_name()` removes repeated code. It checks that the name of the leagues is correct (0.6.2.3000) [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `LEAGUES` replaces **if** statement with list (0.6.2.3000) [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
+* `tm_player_transfer_history()` added more information, added possibility to skip extraction of info that requires additional page load time. (0.6.2.4000) [#235](https://github.com/JaseZiv/worldfootballR/pull/235)
 
 # worldfootballR 0.6.2
 

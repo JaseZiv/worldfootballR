@@ -23,7 +23,7 @@ Returns shooting locations for all matches played in the selected league
 \examples{
 \dontrun{
 try({
-df <- load_understat_league_shots(league="Serie A")
+  df <- load_understat_league_shots(league = "Serie A")
 })
 }
 }

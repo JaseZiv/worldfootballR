@@ -245,6 +245,13 @@
   return(clean_val)
 }
 
+.get_understat_json <- function(page_url) {
+  tryCatch(
+    httr::GET(page_url, httr::set_cookies(.cookies = c("beget" = "begetok"))) %>% httr::content(),
+    error = function(e) NA
+  )
+}
+
 
 #' Clean Understat JSON data
 #'
@@ -256,12 +263,13 @@
 #' @return a cleaned Understat data frame
 #'
 #' @importFrom magrittr %>%
+#' @importFrom httr GET set_cookies content
 #' @noRd
 #'
 .get_clean_understat_json <- function(page_url, script_name) {
-  main_url <- "https://understat.com/"
-  page <-  tryCatch( xml2::read_html(page_url), error = function(e) NA)
+  page <- .get_understat_json(page_url)
 
+  out_df <- data.frame()
   if(!is.na(page)) {
     # locate script tags
     clean_json <- page %>% rvest::html_nodes("script") %>% as.character()
@@ -279,11 +287,8 @@
       out_df <- cbind(season, out_df)
     }
 
-  } else {
-    out_df <- data.frame()
+    out_df <- do.call(data.frame, out_df)
   }
-
-  out_df <- do.call(data.frame, out_df)
 
   return(out_df)
 
