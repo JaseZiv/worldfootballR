@@ -29,8 +29,6 @@ fb_league_stats(
 \item{stat_type}{the type of statistic required. Must be one of the following:
 \itemize{
 \item{standard}
-\item{keepers}
-\item{keepersadv}
 \item{shooting}
 \item{passing}
 \item{passing_types}
@@ -39,6 +37,8 @@ fb_league_stats(
 \item{possession}
 \item{playing_time}
 \item{misc}
+\item{keepers}
+\item{keepersadv}
 }}
 
 \item{team_or_player}{result either summarised for each team, or individual players}
