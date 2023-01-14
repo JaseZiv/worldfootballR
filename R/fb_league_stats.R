@@ -44,6 +44,7 @@
 #' Get the season stats for all teams / players in a selected league
 #'
 #' @inheritParams fb_match_urls
+#' @inheritParams fb_advanced_match_stats
 #' @param stat_type the type of statistic required. Must be one of the following:
 #' \itemize{
 #' \item{standard}
@@ -64,10 +65,11 @@
 #' @importFrom rlang arg_match0 .data .env
 #' @importFrom magrittr %>%
 #' @importFrom dplyr filter pull transmute
+#' @importFrom stringr str_detect
 #' @importFrom tibble tibble
 #' @importFrom tidyr crossing
 #' @importFrom purrr possibly map_dfr
-#' @importFrom stats setNames
+#' @importFrom progress progress_bar
 #'
 #' @export
 #'
@@ -84,28 +86,27 @@
 #' )
 #' })
 #' }
-fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, stat_type, team_or_player) {
+fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, stat_type, team_or_player, time_pause=3) {
 
-  purrr::map_chr(
+  stopifnot("`stat_type` must have length 1", length(stat_type) == 1)
+  rlang::arg_match0(
     stat_type,
-    ~rlang::arg_match0(
-      .x,
-      c(
-        "standard",
-        "keepers",
-        "keepersadv",
-        "shooting",
-        "passing",
-        "passing_types",
-        "gca",
-        "defense",
-        "possession",
-        "playing_time",
-        "misc"
-      )
+    c(
+      "standard",
+      "keepers",
+      "keepersadv",
+      "shooting",
+      "passing",
+      "passing_types",
+      "gca",
+      "defense",
+      "possession",
+      "playing_time",
+      "misc"
     )
   )
 
+  stopifnot("`team_or_player` must have length 1", length(team_or_player) == 1)
   rlang::arg_match0(
     team_or_player,
     c("team", "player")
@@ -114,20 +115,18 @@ fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
   league_urls <- seasons %>%
-    # dplyr::filter(.data$country == .env$country)
     dplyr::filter(
-      # stringr::str_detect(.data[["competition_type"]], "Leagues"),
+      stringr::str_detect(.data[["competition_type"]], "Leagues"),
       .data[["country"]] %in% .env[["country"]],
       .data[["gender"]]  %in% .env[["gender"]],
       .data[["season_end_year"]] %in% .env[["season_end_year"]],
       .data[["tier"]] %in% .env[["tier"]]
     ) %>%
-    dplyr::pull(seasons_urls) %>%
+    dplyr::pull(.data[["seasons_urls"]]) %>%
     unique()
 
-  if (nrow(league_urls) == 0) {
-    warning("Could not find any URLs matching input parameters")
-    return(tibble::tibble())
+  if (length(league_urls) == 0) {
+    stop("Could not find any URLs matching input parameters")
   }
 
   urls <- tidyr::crossing(
@@ -136,15 +135,25 @@ fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_
   ) %>%
     dplyr::transmute(
       "url" = sprintf("%s/%s/%s", dirname(.data[["league_url"]]), .data[["stat_type"]], basename(.data[["league_url"]]))
-    )
+    ) %>%
+    dplyr::pull(.data[["url"]])
 
   fp <- purrr::possibly(.fb_single_league_stats, otherwise = tibble::tibble())
 
+  n_urls <- length(urls)
+  pb <- progress::progress_bar$new(total = n_urls)
   purrr::map_dfr(
-    stats::setNames(urls, urls),
-    fp,
-    team_or_player = team_or_player,
-    .id = "url"
+    seq_along(urls),
+    ~{
+      if (.x > 1) {
+        Sys.sleep(time_pause)
+      }
+      pb$tick()
+      url <- urls[.x]
+      res <- fp(url, team_or_player = team_or_player)
+      res[["url"]] <- url
+      res
+    }
   )
 
 }

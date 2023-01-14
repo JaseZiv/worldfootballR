@@ -11,7 +11,8 @@ fb_league_stats(
   tier = "1st",
   non_dom_league_url = NA,
   stat_type,
-  team_or_player
+  team_or_player,
+  time_pause = 3
 )
 }
 \arguments{
@@ -39,6 +40,10 @@ fb_league_stats(
 \item{playing_time}
 \item{misc}
 }}
+
+\item{team_or_player}{result either summarised for each team, or individual players}
+
+\item{time_pause}{the wait time (in seconds) between page loads}
 }
 \value{
 a dataframe of season stats for all teams / players in a league
