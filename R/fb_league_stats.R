@@ -15,7 +15,7 @@
 
       renamed_table <- .rename_fb_cols(table)
 
-      renamed_table <- if (team_or_player == "player") {
+      clean_table <- if (team_or_player == "player") {
         renamed_table[renamed_table$Rk != "Rk", ]
       } else {
         renamed_table %>%
@@ -28,7 +28,7 @@
 
       suppressMessages(
         readr::type_convert(
-          renamed_table,
+          clean_table,
           guess_integer = TRUE,
           na = "",
           trim_ws = TRUE
