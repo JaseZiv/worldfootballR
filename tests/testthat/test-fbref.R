@@ -542,4 +542,4 @@ test_that("fb_league_stats() works", {
     regexp = "length"
   )
 
-}
+})
