@@ -1,25 +1,7 @@
-#' Clean advanced statistic tables
-#'
-#' Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()
-#'
-#' @param input_table_element element of the html table on the league season page
-#'
-#' @return a data frame for the selected league seasons advanced statistic
-#'
-#' @importFrom magrittr %>%
-#' @importFrom rlang .data
-#' @noRd
-#'
-.clean_advanced_stat_table <- function(input_table_element) {
+.rename_fb_cols <- function(df) {
+  var_names <- df[1,] %>% as.character()
 
-
-  stat_df <- input_table_element %>%
-    rvest::html_table() %>%
-    data.frame()
-
-  var_names <- stat_df[1,] %>% as.character()
-
-  new_names <- paste(var_names, names(stat_df), sep = "_")
+  new_names <- paste(var_names, names(df), sep = "_")
 
   new_names <- new_names %>%
     gsub("\\..[0-9]", "", .) %>%
@@ -35,10 +17,32 @@
     gsub("/", "_per_", .) %>%
     gsub("-", "_minus_", .) %>%
     gsub("90s", "Mins_Per_90", .) %>%
-    gsub("__", "_", .)
+    gsub("__", "_", .) %>%
+    gsub("_$", "", .)
 
-  names(stat_df) <- new_names
-  stat_df <- stat_df[-1,]
+  names(df) <- new_names
+  df[-1,]
+}
+
+#' Clean advanced statistic tables
+#'
+#' Returns cleaned dataframe for each of the team statistic tables used by get_season_team_stats()
+#'
+#' @param input_table_element element of the html table on the league season page
+#'
+#' @return a data frame for the selected league seasons advanced statistic
+#'
+#' @importFrom magrittr %>%
+#' @importFrom rlang .data
+#' @noRd
+#'
+.clean_advanced_stat_table <- function(input_table_element) {
+
+  stat_df <- input_table_element %>%
+    rvest::html_table() %>%
+    data.frame()
+
+  stat_df <- .rename_fb_cols(stat_df)
 
   cols_to_transform <- stat_df %>%
     dplyr::select(-.data[["Squad"]]) %>% names()
