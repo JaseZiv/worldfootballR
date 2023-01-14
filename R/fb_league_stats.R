@@ -48,8 +48,6 @@
 #' @param stat_type the type of statistic required. Must be one of the following:
 #' \itemize{
 #' \item{standard}
-#' \item{keepers}
-#' \item{keepersadv}
 #' \item{shooting}
 #' \item{passing}
 #' \item{passing_types}
@@ -58,6 +56,8 @@
 #' \item{possession}
 #' \item{playing_time}
 #' \item{misc}
+#' \item{keepers}
+#' \item{keepersadv}
 #' }
 #'
 #' @return a dataframe of season stats for all teams / players in a league
@@ -88,13 +88,11 @@
 #' }
 fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, stat_type, team_or_player, time_pause=3) {
 
-  stopifnot("`stat_type` must have length 1", length(stat_type) == 1)
+  stopifnot("`stat_type` must have length 1" = length(stat_type) == 1)
   rlang::arg_match0(
     stat_type,
     c(
       "standard",
-      "keepers",
-      "keepersadv",
       "shooting",
       "passing",
       "passing_types",
@@ -102,11 +100,13 @@ fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_
       "defense",
       "possession",
       "playing_time",
-      "misc"
+      "misc",
+      "keepers",
+      "keepersadv"
     )
   )
 
-  stopifnot("`team_or_player` must have length 1", length(team_or_player) == 1)
+  stopifnot("`team_or_player` must have length 1" = length(team_or_player) == 1)
   rlang::arg_match0(
     team_or_player,
     c("team", "player")

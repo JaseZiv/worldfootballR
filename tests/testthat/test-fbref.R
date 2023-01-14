@@ -341,6 +341,7 @@ test_that("fb_player_goal_logs() works", {
   expect_false(nrow(gnahoua_goal_log) == 0)
 })
 
+Sys.sleep(3)
 test_that("fb_league_stats() works", {
   testthat::skip_on_cran()
 
@@ -441,17 +442,6 @@ test_that("fb_league_stats() works", {
       stat_type = "shooting"
     ),
     regexp = "input"
-  )
-
-  expect_error(
-    fb_league_stats(
-      country = "ENG",
-      gender = "M",
-      season_end_year = 2022,
-      team_or_player = "team",
-      stat_type = "shooting"
-    ),
-    regexp = "tier"
   )
 
   expect_error(
