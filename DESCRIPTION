@@ -1,7 +1,7 @@
 Type: Package
 Package: worldfootballR
 Title: Extract and Clean World Football (Soccer) Data
-Version: 0.6.2.5000
+Version: 0.6.2.6000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
@@ -49,6 +49,8 @@ Imports:
     cli,
     curl
 Suggests: 
+    chromote,
+    R6,
     knitr,
     rmarkdown,
     testthat
