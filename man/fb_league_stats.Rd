@@ -12,7 +12,8 @@ fb_league_stats(
   non_dom_league_url = NA,
   stat_type,
   team_or_player,
-  time_pause = 3
+  time_pause = 3,
+  rate = purrr::rate_backoff(max_times = 3)
 )
 }
 \arguments{
@@ -44,6 +45,8 @@ fb_league_stats(
 \item{team_or_player}{result either summarised for each team, or individual players}
 
 \item{time_pause}{the wait time (in seconds) between page loads}
+
+\item{rate}{passed to `purrr::insistently`. The function can be brittle, and works only on a second or third try. This parameter controls how much the function will retry to get a result.}
 }
 \value{
 a dataframe of season stats for all teams / players in a league

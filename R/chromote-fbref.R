@@ -14,8 +14,8 @@ WorldfootballRDynamicPage <- R6::R6Class("WorldfootballRDynamicPage", public = l
   initialize = function(url) {
     self$session <- chromote::ChromoteSession$new()
 
-    p <- self$session$Page$loadEventFired(wait_ = TRUE)
-    self$session$Page$navigate(url, wait_ = TRUE)
+    p <- self$session$Page$loadEventFired(wait_ = FALSE)
+    self$session$Page$navigate(url, wait_ = FALSE, timeout_ = 5)
     self$session$wait_for(p)
 
     self$root_id <- self$session$DOM$getDocument(0)$root$nodeId

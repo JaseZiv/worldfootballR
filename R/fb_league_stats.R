@@ -5,6 +5,7 @@
 
   session <- worldfootballr_chromote_session(url)
   tables <- worldfootballr_html_table(session)
+  session$session$close(wait_ = FALSE)
 
   idx <- if(team_or_player == "player") { 3 } else { 1:2 }
 
@@ -45,6 +46,7 @@
 #'
 #' @inheritParams fb_match_urls
 #' @inheritParams fb_advanced_match_stats
+#' @param rate passed to `purrr::insistently`. The function can be brittle, and works only on a second or third try. This parameter controls how much the function will retry to get a result.
 #' @param stat_type the type of statistic required. Must be one of the following:
 #' \itemize{
 #' \item{standard}
@@ -66,9 +68,9 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr filter pull transmute
 #' @importFrom stringr str_detect
-#' @importFrom tibble tibble
 #' @importFrom tidyr crossing
-#' @importFrom purrr possibly map_dfr
+#' @importFrom tibble tibble
+#' @importFrom purrr possibly map_dfr insistently rate_backoff
 #' @importFrom progress progress_bar
 #'
 #' @export
@@ -86,7 +88,20 @@
 #' )
 #' })
 #' }
-fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_dom_league_url = NA, stat_type, team_or_player, time_pause=3) {
+fb_league_stats <- function(
+    country,
+    gender,
+    season_end_year,
+    tier = "1st",
+    non_dom_league_url = NA,
+    stat_type,
+    team_or_player,
+    time_pause = 3,
+    rate = purrr::rate_backoff(
+      max_times =  3
+    )
+) {
+
 
   stopifnot("`stat_type` must have length 1" = length(stat_type) == 1)
   rlang::arg_match0(
@@ -138,7 +153,15 @@ fb_league_stats <- function(country, gender, season_end_year, tier = "1st", non_
     ) %>%
     dplyr::pull(.data[["url"]])
 
-  fp <- purrr::possibly(.fb_single_league_stats, otherwise = tibble::tibble())
+  fi <- purrr::insistently(
+    .fb_single_league_stats,
+    quiet = TRUE
+  )
+
+  fp <- purrr::possibly(
+    fi,
+    otherwise = tibble::tibble()
+  )
 
   n_urls <- length(urls)
   pb <- progress::progress_bar$new(total = n_urls)
