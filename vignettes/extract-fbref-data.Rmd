@@ -199,6 +199,70 @@ big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:20
 dplyr::glimpse(big5_player_shooting)
 ```
 
+### Get Season Player Stats
+
+The `fb_league_stats` function allows the user to return a data frame of different stat types for all players in leagues [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/all_leages_and_cups/all_competitions.csv).
+
+Note, some stats may not be available for all leagues.
+
+The following stat types can be selected:
+
+* *standard*
+* *shooting*
+* *passing*
+* *passing_types*
+* *gca*
+* *defense*
+* *possession*
+* *playing_time*
+* *misc*
+* *keepers*
+* *keepers_adv*
+
+```{r fb_league_stats-player, eval=FALSE}
+prem_2020_player_shooting <- fb_league_stats(
+  country = "ENG",
+  gender = "M",
+  season_end_year = 2020,
+  tier = "1st",
+  non_dom_league_url = NA,
+  stat_type = "shooting",
+  team_or_player = "player"
+)
+dplyr::glimpse(prem_2020_player_shooting)
+```
+
+`fb_league_stats` retrieves data in one page load, e.g. from [here](https://fbref.com/en/comps/9/shooting/Premier-League-Stats). This is much more efficient than iterating over a vector of player URLs to get data for all players in a league (i.e. with `fb_player_season_stats()`).
+
+Note that the same function can be used to retrieve team data for a season in a manner similar to `fb_season_team_stats()`.
+
+```{r fb_league_stats-team, eval=FALSE}
+prem_2020_team_shooting <- fb_league_stats(
+  country = "ENG",
+  gender = "M",
+  season_end_year = 2020,
+  tier = "1st",
+  non_dom_league_url = NA,
+  stat_type = "shooting",
+  team_or_player = "team"
+)
+dplyr::glimpse(prem_2020_team_shooting)
+```
+
+Multiple values for `country`, `gender`, `season_end_year`, and `tier` can be provided at the same time, although only one value should be specified for `stat_type` and `team_or_player`.
+
+
+```{r fb_league_stats-player-multiple, eval=FALSE}
+# fb_league_stats(
+#   country = c("ENG", "ESP")
+#   gender = c("M", "F")
+#   season_end_year = 2020:2021,
+#   tier = c("1st", "2nd"),
+#   non_dom_league_url = NA,
+#   stat_type = "shooting",
+#   team_or_player = "player"
+# )
+```
 
 ***
 

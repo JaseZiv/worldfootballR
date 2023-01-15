@@ -340,3 +340,206 @@ test_that("fb_player_goal_logs() works", {
   expect_false(nrow(jwp_goal_log) == 0)
   expect_false(nrow(gnahoua_goal_log) == 0)
 })
+
+Sys.sleep(3)
+test_that("fb_league_stats() works", {
+  testthat::skip_on_cran()
+
+  expected_player_shooting_cols <- c("Rk", "Player", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "Gls", "Sh_Standard", "SoT_Standard", "SoT_percent_Standard", "Sh_per_90_Standard", "SoT_per_90_Standard", "G_per_Sh_Standard", "G_per_SoT_Standard", "Dist_Standard", "FK_Standard", "PK", "PKatt", "xG_Expected", "npxG_Expected", "npxG_per_Sh_Expected", "G_minus_xG_Expected", "np:G_minus_xG_Expected", "Matches", "url")
+  epl_player_shooting_22 <- fb_league_stats(
+    country = "ENG",
+    gender = "M",
+    season_end_year = 2022,
+    tier = "1st",
+    non_dom_league_url = NA,
+    stat_type = "shooting",
+    team_or_player = "player"
+  )
+  expect_gt(nrow(epl_player_shooting_22), 0)
+  expect_equal(sort(colnames(epl_player_shooting_22)), sort(expected_player_shooting_cols))
+
+  expected_team_shooting_cols <- c("Team_or_Opponent", "Squad", "Num_Players", "Mins_Per_90", "Gls_Standard", "Sh_Standard", "SoT_Standard", "SoT_percent_Standard", "Sh_per_90_Standard", "SoT_per_90_Standard", "G_per_Sh_Standard", "G_per_SoT_Standard", "Dist_Standard", "FK_Standard", "PK_Standard", "PKatt_Standard", "xG_Expected", "npxG_Expected", "npxG_per_Sh_Expected", "G_minus_xG_Expected", "np:G_minus_xG_Expected", "url")
+  epl_team_shooting_22 <- fb_league_stats(
+    country = "ENG",
+    gender = "M",
+    season_end_year = 2022,
+    tier = "1st",
+    team_or_player = "team",
+    stat_type = "shooting"
+  )
+  expect_gt(nrow(epl_team_shooting_22), 0)
+  expect_equal(sort(colnames(epl_team_shooting_22)), sort(expected_team_shooting_cols))
+
+  expected_player_misc_cols <- c("Rk", "Player", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "Matches", "url")
+  ## testing a lot would take too long, so just test multiple years since that is the most likely input param to have multiple values
+  multi_season_player_misc <- fb_league_stats(
+    # country = c("ITA", "ESP"),
+    country = "ESP",
+    # gender = c("M", "F"),
+    gender = "M",
+    season_end_year = 2021:2022,
+    # tier = c("1st", "2nd"),
+    tier = "1st",
+    team_or_player = "player",
+    stat_type = "misc"
+  )
+  expect_gt(nrow(multi_season_player_misc), 0)
+  expect_equal(sort(colnames(multi_season_player_misc)), sort(expected_player_misc_cols))
+  expect_equal(length(unique(multi_season_player_misc$url)), 2)
+
+  expected_team_misc_cols <- c("Team_or_Opponent", "Squad", "Num_Players", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "url")
+  ## testing a lot would take too long, so just test multiple years since that is the most likely input param to have multiple values
+  multi_season_team_misc <- fb_league_stats(
+    country = "ESP",
+    gender = "M",
+    season_end_year = 2021:2022,
+    tier = "1st",
+    team_or_player = "team",
+    stat_type = "misc"
+  )
+  expect_gt(nrow(multi_season_team_misc), 0)
+  expect_equal(sort(colnames(multi_season_team_misc)), sort(expected_team_misc_cols))
+  expect_equal(length(unique(multi_season_team_misc$url)), 2)
+
+  expect_error(
+    fb_league_stats(
+      country = "England",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "input"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = NA_character_,
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "input"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "gender.*missing"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2032,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "input"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "season_end_year"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "10th",
+      team_or_player = "team",
+      stat_type = "shooting"
+    ),
+    regexp = "input"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "both",
+      stat_type = "shooting"
+    ),
+    regexp = "both"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = c("team", "player"),
+      stat_type = "shooting"
+    ),
+    regexp = "length"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      stat_type = "shooting"
+    ),
+    regexp = "team_or_player"
+  )
+
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = "foo"
+    ),
+    regexp = "foo"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team"
+    ),
+    regexp = "stat_type"
+  )
+
+  expect_error(
+    fb_league_stats(
+      country = "ENG",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      team_or_player = "team",
+      stat_type = c("shooting", "misc")
+    ),
+    regexp = "length"
+  )
+
+})

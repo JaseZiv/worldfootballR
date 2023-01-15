@@ -16,6 +16,7 @@
 * `check_league_name()` removes repeated code. It checks that the name of the leagues is correct (0.6.2.3000) [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 * `LEAGUES` replaces **if** statement with list (0.6.2.3000) [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 * `tm_player_transfer_history()` added more information, added possibility to skip extraction of info that requires additional page load time. (0.6.2.4000) [#235](https://github.com/JaseZiv/worldfootballR/pull/235)
+* `fb_league_stats()` added. Gets season stats for all teams / players in a selected league from FBref in a single scrape. (0.6.2.6000) [#243](https://github.com/JaseZiv/worldfootballR/pull/243)
 
 # worldfootballR 0.6.2
 
