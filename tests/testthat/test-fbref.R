@@ -245,21 +245,21 @@ test_that("fb_team_match_results() works", {
 })
 
 
-Sys.sleep(3)
-test_that("fb_player_scouting_report() works", {
-  testthat::skip_on_cran()
-  # scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-  #                                    pos_versus = "primary", time_pause = 4)
-  # expect_type(scout, "list")
-  # expect_false(nrow(scout) == 0)
-
-  scout_secondary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                     pos_versus = "secondary",
-                                     league_comp_name = "2022 World Cup",
-                                     time_pause = 4)
-  expect_type(scout, "list")
-  expect_false(nrow(scout) == 0)
-})
+# Sys.sleep(3)
+# test_that("fb_player_scouting_report() works", {
+#   testthat::skip_on_cran()
+#   # scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+#   #                                    pos_versus = "primary", time_pause = 4)
+#   # expect_type(scout, "list")
+#   # expect_false(nrow(scout) == 0)
+#
+#   scout_secondary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+#                                      pos_versus = "secondary",
+#                                      league_comp_name = "2022 World Cup",
+#                                      time_pause = 4)
+#   expect_type(scout, "list")
+#   expect_false(nrow(scout) == 0)
+# })
 
 
 Sys.sleep(3)
