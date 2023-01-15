@@ -260,7 +260,7 @@ To get general info for a match, use the `fotmob_get_match_info()` function.
 fotmob_matches <- c(3609994, 3610132)
 match_info <- fotmob_get_match_info(fotmob_matches)
 match_info %>%
-  dplyr::select(match_id, match_date_date_formatted:dplyr::last_col()) %>%
+  dplyr::select(match_id, match_time_utc:dplyr::last_col()) %>%
   dplyr::glimpse()
 ```
 
