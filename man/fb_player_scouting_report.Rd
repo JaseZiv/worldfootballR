@@ -4,12 +4,19 @@
 \alias{fb_player_scouting_report}
 \title{Get fbref Full Player Scouting Report}
 \usage{
-fb_player_scouting_report(player_url, pos_versus, time_pause = 3)
+fb_player_scouting_report(
+  player_url,
+  pos_versus,
+  league_comp_name = NULL,
+  time_pause = 3
+)
 }
 \arguments{
 \item{player_url}{the URL of the player (can come from fb_player_urls())}
 
 \item{pos_versus}{either "primary" or "secondary" as fbref offer comparisons against multiple positions}
+
+\item{league_comp_name}{the league or competition name(s) you want the scouting report for. Defaults to all}
 
 \item{time_pause}{the wait time (in seconds) between page loads}
 }
@@ -27,15 +34,16 @@ pos_versus = "primary")
 
 # to filter for the last 365 days:
 fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-pos_versus = "primary") \%>\% dplyr::filter(scouting_period == "Last 365 Days")
+pos_versus = "primary", league_comp_name = "Last 365 Days Men's Big 5 Leagues, UCL, UEL")
 
 # to get secondary positions
 fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 pos_versus = "secondary")
 
-# for the 2020-2021 La Liga season
+# for the last 365 days and also the 2022 WC
 fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-pos_versus = "secondary") \%>\% dplyr::filter(scouting_period == "2020-2021 La Liga")
+pos_versus = "secondary",
+league_comp_name = c("Last 365 Days Men's Big 5 Leagues, UCL, UEL", "2022 World Cup"))
 })
 }
 }

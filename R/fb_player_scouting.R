@@ -4,6 +4,7 @@
 #'
 #' @param player_url the URL of the player (can come from fb_player_urls())
 #' @param pos_versus either "primary" or "secondary" as fbref offer comparisons against multiple positions
+#' @param league_comp_name the league or competition name(s) you want the scouting report for. Defaults to all
 #' @param time_pause the wait time (in seconds) between page loads
 #'
 #' @return returns a dataframe of a player's full scouting information for all seasons available on FBref
@@ -21,25 +22,27 @@
 #'
 #' # to filter for the last 365 days:
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-#' pos_versus = "primary") %>% dplyr::filter(scouting_period == "Last 365 Days")
+#' pos_versus = "primary", league_comp_name = "Last 365 Days Men's Big 5 Leagues, UCL, UEL")
 #'
 #' # to get secondary positions
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
 #' pos_versus = "secondary")
 #'
-#' # for the 2020-2021 La Liga season
+#' # for the last 365 days and also the 2022 WC
 #' fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-#' pos_versus = "secondary") %>% dplyr::filter(scouting_period == "2020-2021 La Liga")
+#' pos_versus = "secondary",
+#' league_comp_name = c("Last 365 Days Men's Big 5 Leagues, UCL, UEL", "2022 World Cup"))
 #' })
 #' }
-fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
+fb_player_scouting_report <- function(player_url, pos_versus, league_comp_name=NULL, time_pause=3) {
 
   main_url <- "https://fbref.com"
 
   # put sleep in as per new user agreement on FBref
   Sys.sleep(time_pause)
 
-  player_page <- xml2::read_html(player_url)
+  # player_page <- xml2::read_html(player_url)
+  player_page <- .load_page(player_url)
 
   player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
 
@@ -53,20 +56,32 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
   scout_level1_url <- main_cats %>% rvest::html_nodes("ul li") %>%
     rvest::html_nodes("a") %>% rvest::html_attr("href") %>% paste0(main_url, .)
 
+  league_comp_names <- main_cats %>% rvest::html_nodes("ul li") %>% rvest::html_text() %>% stringr::str_squish()
+
+  if(!is.null(league_comp_name)) {
+    league_comp_name_regex <- league_comp_name %>% paste0(collapse = "|")
+
+    if(!any(grep(league_comp_name_regex, league_comp_names))) {
+      stop(glue::glue("'{league_comp_name}' not a valid value for `league_comp_name`. Please re-copy and paste the correct value(s)"))
+    } else {
+      scout_level1_url <- scout_level1_url[grep(league_comp_name_regex, league_comp_names)]
+    }
+  }
+
 
   all_scout_pos <- data.frame()
 
-  for(each_scout_url in scout_level1_url) {
+  for(each_scout_url in 1:length(scout_level1_url)) {
     Sys.sleep(time_pause)
 
-    scout_pg <- xml2::read_html(each_scout_url)
+    scout_pg <- .load_page(scout_level1_url[each_scout_url])
 
-    period <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".section_heading_text") %>% rvest::html_text() %>%
-      unique() %>% stringr::str_squish()
+    period <- scout_pg %>% rvest::html_nodes(".filter") %>% .[1] %>% rvest::html_elements("div") %>% rvest::html_text() %>%
+      unique() %>% stringr::str_squish() %>% .[each_scout_url]
 
     # .pkg_message("Scraping full scouting report for {player_name} for period: {period}")
 
-    outer <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".filter.switcher") %>% rvest::html_nodes("div")
+    outer <- scout_pg %>% rvest::html_nodes(".filter.switcher") %>% rvest::html_elements("div")
 
     # if(pos_versus == "primary") {
     #   pos_versus <- 1
@@ -100,7 +115,7 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
     }
 
 
-    scouting_all <- scout_pg %>% rvest::html_nodes("#all_scout") %>% rvest::html_nodes(".table_container")
+    scouting_all <- scout_pg %>% rvest::html_nodes("#all_scout_full") %>% rvest::html_nodes(".table_container")
 
 
     scout_pos <- scouting_all[pos_versus_idx] %>%
@@ -111,7 +126,7 @@ fb_player_scouting_report <- function(player_url, pos_versus, time_pause=3) {
 
     names(scout_pos) <- scout_pos[1,]
     scout_pos <- scout_pos %>%
-      dplyr::rename(Per90=.data$`Per 90`)
+      dplyr::rename(Per90=.data[["Per 90"]])
 
     df <- data.frame(Statistic="Standard", Per90="Standard", Percentile="Standard")
     scout_pos <- rbind(df, scout_pos)

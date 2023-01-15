@@ -460,26 +460,31 @@ The examples provided below in a lot of cases have the actual url (player or tea
 
 ### Get Player Scouting Report
 
-The `fb_player_scouting_report()` function takes in two inputs;
+The `fb_player_scouting_report()` function takes in three inputs;
 
 * `player_url` - the URL of the player's main page
-* `pos_versus`  which can return the player's comparison against players in their "primary", OR "secondary" position
+* `pos_versus` - which can return the player's comparison against players in their "primary", OR "secondary" position
+* `league_comp_name` - the name of the competition/league season you want the player comparisons for. If no value is supplied, then this will just return for all scouting periods. This information needs to be copied exactly as the tabs appear on the player scouting page on FBref.
 
-and returns the full scouting report for the player selected.
+This results in the full scouting report for the player selected.
 
-As of version `0.3.6`, the function now returns the scouting report of ALL available periods, not just the "Last 365 Days". As a result, there is now an additional column called `scouting_period`. This column should be used to filter out the period/season you want the scouting report for:
-
-```
-# TO GET THE LAST 365 DAYS REPORT:
-scout <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-pos_versus = "primary") %>% 
-dplyr::filter(scouting_period == "Last 365 Days")
-```
 
 ```{r get_player_scouting_report, eval=FALSE}
 #----- Get scouting report for the players primary position (first position listed in fbref): -----#
 messi_primary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "primary")
 dplyr::glimpse(messi_primary)
+
+
+# TO GET THE LAST 365 DAYS REPORT:
+messi_last_365 <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+                                   pos_versus = "primary", 
+                                   league_comp_name = "Last 365 Days Men's Big 5 Leagues, UCL, UEL")
+
+# TO GET SCOUTING REPORT FOR MULTIPLE COMPS/LEAGUES:
+messi_multiple <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+                                   pos_versus = "primary", 
+                                   league_comp_name = c("Last 365 Days Men's Big 5 Leagues, UCL, UEL", "2022 World Cup"))
+
 
 #----- Get scouting report for the players secondary position (second position listed in fbref): -----#
 messi_secondary <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi", pos_versus = "secondary")
