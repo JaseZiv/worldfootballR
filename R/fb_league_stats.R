@@ -1,48 +1,69 @@
+#' @imprtFrom rvest html_table
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate
+#' @importFrom tibble tibble
 #' @importFrom readr type_convert
 .fb_single_league_stats <- function(url, team_or_player) {
 
-  session <- worldfootballr_chromote_session(url)
-  tables <- worldfootballr_html_table(session)
-  session$session$close(wait_ = FALSE)
+  clean_table <- if (team_or_player == "team") {
+    page <- .load_page(url)
 
-  idx <- if(team_or_player == "player") { 3 } else { 1:2 }
+    tables <- rvest::html_table(page)
 
-  purrr::map_dfr(
-    idx,
-    ~{
-      table <- tables[[.x]]
+    n_tables <- length(tables)
+    if (n_tables != 2) {
+      warning(sprintf("Did not find the expected number of tables on the page (2). Found %s.", n_tables))
+      return(tibble::tibble())
+    }
 
-      renamed_table <- .rename_fb_cols(table)
-
-      clean_table <- if (team_or_player == "player") {
-        renamed_table[renamed_table$Rk != "Rk", ]
-      } else {
-        renamed_table %>%
+    purrr::map_dfr(
+      seq_along(n_tables),
+      ~{
+        tables[[.x]] %>%
+          .rename_fb_cols() %>%
           dplyr::mutate(
             "Team_or_Opponent" = ifelse(.x == 1, "team", "opponent"),
             .before = 1
           )
-
       }
+    )
 
-      suppressMessages(
-        readr::type_convert(
-          clean_table,
-          guess_integer = TRUE,
-          na = "",
-          trim_ws = TRUE
-        )
-      )
+  } else {
+
+    rlang::inform(
+      'Please be aware that `fb_league_stats(..., team_or_player = "player")` depends on promises, which may not always work.',
+      .frequency = "once",
+      .frequency_id = "fb_league_stats-player"
+    )
+    session <- worldfootballr_chromote_session(url)
+    tables <- worldfootballr_html_table(session)
+    session$session$close(wait_ = FALSE)
+
+    n_tables <- length(tables)
+    if (n_tables != 3) {
+      warning(sprintf("Did not find the expected number of tables on the page (3). Found %s.", n_tables))
+      return(tibble::tibble())
     }
-  )
+    renamed_table <- .rename_fb_cols(tables[[3]])
+    renamed_table[renamed_table$Rk != "Rk", ]
+  }
 
+  suppressMessages(
+    readr::type_convert(
+      clean_table,
+      guess_integer = TRUE,
+      na = "",
+      trim_ws = TRUE
+    )
+  )
 }
+
 
 #' Get FBref Team or Player Season Statistics for an Entire League
 #'
 #' Get the season stats for all teams / players in a selected league
+#'
+#' \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 #'
 #' @inheritParams fb_match_urls
 #' @inheritParams fb_advanced_match_stats
@@ -160,7 +181,8 @@ fb_league_stats <- function(
 
   fp <- purrr::possibly(
     fi,
-    otherwise = tibble::tibble()
+    otherwise = tibble::tibble(),
+    quiet = FALSE
   )
 
   n_urls <- length(urls)
