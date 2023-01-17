@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.7000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.7100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,9 @@
 </li>
 <li>
 <code><a href="../reference/fb_league_stats.html">fb_league_stats()</a></code> added. Gets season stats for all teams / players in a selected league from FBref in a single scrape. (0.6.2.6000) <a href="https://github.com/JaseZiv/worldfootballR/pull/243" class="external-link">#243</a>
-</li>
+<ul><li>
+<code><a href="../reference/fb_league_stats.html">fb_league_stats()</a></code> uses <code>rvest::htm_table()</code> if <code>team_or_player = "table"</code> (faster and more reliable), and only uses chromote if <code>team_or_player = "player"</code>. (0.6.2.7100)</li>
+</ul></li>
 </ul></div>
 </div>
     <div class="section level2">
