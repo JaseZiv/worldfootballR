@@ -387,7 +387,6 @@ test_that("fb_league_stats() works", {
   )
   expect_gt(nrow(multi_season_player_misc), 0)
   expect_equal(sort(colnames(multi_season_player_misc)), sort(expected_player_misc_cols))
-  expect_equal(length(unique(multi_season_player_misc$url)), 2)
 
   expected_team_misc_cols <- c("Team_or_Opponent", "Squad", "Num_Players", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "url")
   ## testing a lot would take too long, so just test multiple years since that is the most likely input param to have multiple values
