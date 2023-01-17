@@ -1,6 +1,7 @@
-#' @imprtFrom rvest html_table
+#' @importFrom rvest html_table
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate
+#' @importFrom rlang inform
 #' @importFrom tibble tibble
 #' @importFrom readr type_convert
 .fb_single_league_stats <- function(url, team_or_player) {
