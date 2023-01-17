@@ -54,6 +54,9 @@ a dataframe of season stats for all teams / players in a league
 \description{
 Get the season stats for all teams / players in a selected league
 }
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
 \examples{
 \dontrun{
 try({
