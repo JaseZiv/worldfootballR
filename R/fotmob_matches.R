@@ -86,14 +86,16 @@ fotmob_get_matches_by_date <- function(dates) {
     url <- paste0(main_url, "matches?date=", date)
 
     resp <- safely_from_json(url)$result
-    res <- resp$leagues %>%
-      janitor::clean_names() %>%
-      tibble::as_tibble()
-    if(nrow(res) == 0) {
-      stop(sprintf("Couldn't find match data for `date = %d`.", orig_date))
+
+    res <- resp$leagues
+    if(is.null(res)) {
+      stop(sprintf("Couldn't find match data for `date = %s`.", orig_date))
       return(res)
     }
+
     res %>%
+      janitor::clean_names() %>%
+      tibble::as_tibble() %>%
       dplyr::rename(match = .data[["matches"]]) %>%
       tidyr::unnest(.data[["match"]], names_sep = "_") %>%
       dplyr::rename(home = .data[["match_home"]], away = .data[["match_away"]]) %>%
