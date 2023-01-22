@@ -225,6 +225,10 @@ fotmob_get_match_players <- function(match_ids) {
     tidyr::unnest_wider(res, .data[["stats"]])
   }
 
-  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp <- purrr::possibly(
+    f,
+    quiet = FALSE,
+    otherwise = tibble::tibble()
+  )
   fp(url)
 }

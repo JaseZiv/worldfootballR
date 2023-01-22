@@ -287,7 +287,7 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
 #' })
 #' }
 understat_team_meta <- function(team_names) {
-  f_possibly <- purrr::possibly(.understat_team_meta, otherwise = data.frame())
+  f_possibly <- purrr::possibly(.understat_team_meta, otherwise = data.frame(), quiet = FALSE)
   purrr::map_dfr(team_names, f_possibly)
 }
 

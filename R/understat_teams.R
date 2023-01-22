@@ -47,7 +47,7 @@ understat_team_players_stats <- function(team_url) {
 #'
 #' @export
 understat_team_stats_breakdown <- function(team_urls) {
-  f_possibly <- purrr::possibly(.understat_team_stats_breakdown, otherwise = data.frame())
+  f_possibly <- purrr::possibly(.understat_team_stats_breakdown, otherwise = data.frame(), quiet = FALSE)
   purrr::map_dfr(team_urls, f_possibly)
 }
 
