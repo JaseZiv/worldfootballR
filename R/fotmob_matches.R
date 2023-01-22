@@ -89,7 +89,7 @@ fotmob_get_matches_by_date <- function(dates) {
 
     res <- resp$leagues
     if(is.null(res)) {
-      stop(sprintf("Couldn't find match data for `date = %s`.", orig_date))
+      stop(sprintf('Couldn\'t find match data for `date = "%s"`.', orig_date))
       return(res)
     }
 
