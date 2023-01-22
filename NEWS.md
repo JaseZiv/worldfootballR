@@ -19,8 +19,8 @@
 * `LEAGUES` replaces **if** statement with list (0.6.2.3000) [#232](https://github.com/JaseZiv/worldfootballR/pull/232)
 * `tm_player_transfer_history()` added more information, added possibility to skip extraction of info that requires additional page load time. (0.6.2.4000) [#235](https://github.com/JaseZiv/worldfootballR/pull/235)
 * `fb_league_stats()` added. Gets season stats for all teams / players in a selected league from FBref in a single scrape. (0.6.2.6000) [#243](https://github.com/JaseZiv/worldfootballR/pull/243)
-  * `fb_league_stats()` uses `rvest::htm_table()` if `team_or_player = "table"` (faster and more reliable), and only uses chromote if `team_or_player = "player"`. (0.6.2.7100)
-  * Use `quiet = FALSE` in all `purrr::possibly()` calls internally. Improve messaging for unexpected outcomes in `fotmob_get_matches_by_date()` and `fotmob_get_match_info()`. (0.6.2.8000) [#244](https://github.com/JaseZiv/worldfootballR/pull/244)
+* `fb_league_stats()` uses `rvest::htm_table()` if `team_or_player = "table"` (faster and more reliable), and only uses chromote if `team_or_player = "player"`. (0.6.2.7100)
+* Use `quiet = FALSE` in all `purrr::possibly()` calls internally. Improve messaging for unexpected outcomes in `fotmob_get_matches_by_date()` and `fotmob_get_match_info()`. (0.6.2.8000) [#244](https://github.com/JaseZiv/worldfootballR/pull/244)
 
 # worldfootballR 0.6.2
 
