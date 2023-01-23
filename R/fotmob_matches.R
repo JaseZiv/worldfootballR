@@ -73,21 +73,29 @@ fotmob_get_matches_by_date <- function(dates) {
 
   main_url <- "https://www.fotmob.com/api/"
 
-  is_date <- lubridate::is.Date(date)
-  if(is_date) {
-    date <- lubridate::ymd(date)
-  }
-  date <- stringr::str_remove_all(as.character(date), "-")
-  url <- paste0(main_url, "matches?date=", date)
-  f <- function(url) {
+  f <- function(date) {
+
+    orig_date <- date
+    is_date <- lubridate::is.Date(date)
+    if(is_date) {
+      date <- lubridate::ymd(date)
+    }
+
+    date <- stringr::str_remove_all(as.character(date), "-")
+
+    url <- paste0(main_url, "matches?date=", date)
+
     resp <- safely_from_json(url)$result
-    res <- resp$leagues %>%
-      janitor::clean_names() %>%
-      tibble::as_tibble()
-    if(nrow(res) == 0) {
+
+    res <- resp$leagues
+    if(is.null(res)) {
+      stop(sprintf('Couldn\'t find match data for `date = "%s"`.', orig_date))
       return(res)
     }
+
     res %>%
+      janitor::clean_names() %>%
+      tibble::as_tibble() %>%
       dplyr::rename(match = .data[["matches"]]) %>%
       tidyr::unnest(.data[["match"]], names_sep = "_") %>%
       dplyr::rename(home = .data[["match_home"]], away = .data[["match_away"]]) %>%
@@ -95,8 +103,12 @@ fotmob_get_matches_by_date <- function(dates) {
       dplyr::select(-tidyselect::vars_select_helpers$where(is.list)) %>%
       janitor::clean_names()
   }
-  fp <- purrr::possibly(f, otherwise = tibble::tibble())
-  fp(url)
+  fp <- purrr::possibly(
+    f,
+    otherwise = tibble::tibble(),
+    quiet = FALSE
+  )
+  fp(date)
 }
 
 #' Get fotmob match details by match id
@@ -162,7 +174,11 @@ fotmob_get_match_details <- function(match_ids) {
     df
   }
 
-  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp <- purrr::possibly(
+    f,
+    quiet = FALSE,
+    otherwise = tibble::tibble()
+  )
   fp(url)
 }
 
@@ -234,7 +250,11 @@ fotmob_get_match_team_stats <- function(match_ids) {
     df
   }
 
-  fp <- purrr::possibly(f, otherwise = tibble::tibble())
+  fp <- purrr::possibly(
+    f,
+    quiet = FALSE,
+    otherwise = tibble::tibble()
+  )
   fp(url)
 }
 
@@ -273,9 +293,10 @@ fotmob_get_match_info <- function(match_ids) {
 #' @importFrom tidyr pivot_wider unnest unnest_wider
 .fotmob_get_single_match_info <- function(match_id) {
   main_url <- "https://www.fotmob.com/api/"
-  url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
-  f <- function(url) {
+  f <- function(match_id) {
+
+    url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
     general <- .extract_fotmob_match_general(url)
     df <- dplyr::bind_cols(
@@ -302,12 +323,17 @@ fotmob_get_match_info <- function(match_ids) {
       janitor::clean_names()
 
     if (nrow(df) != 1) {
+      stopf(sprintf("Could not find match info for `match_id = %s`", match_id))
       return(tibble::tibble())
     }
 
     dplyr::bind_cols(df, unnested_info)
   }
 
-  fp <- purrr::possibly(f, otherwise = tibble::tibble())
-  fp(url)
+  fp <- purrr::possibly(
+    f,
+    quiet = FALSE,
+    otherwise = tibble::tibble()
+  )
+  fp(match_id)
 }

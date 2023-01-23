@@ -200,7 +200,12 @@
         )
       )
     }
-    possibly_extract_options <- purrr::possibly(extract_options, otherwise = tibble::tibble(), quiet = TRUE)
+
+    possibly_extract_options <- purrr::possibly(
+      extract_options,
+      otherwise = tibble::tibble(),
+      quiet = FALSE
+    )
 
     valid_seasons %>%
       purrr::map_dfr(possibly_extract_options) %>%
