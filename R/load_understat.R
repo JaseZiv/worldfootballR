@@ -42,7 +42,7 @@ load_understat_league_shots <- function(league) {
 
 
   if (nrow(dat_df) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
   } else {
     cli::cli_alert("Data last updated {attr(dat_df, 'scrape_timestamp')} UTC")
   }

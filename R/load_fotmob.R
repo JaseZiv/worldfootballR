@@ -22,7 +22,7 @@
   res <- purrr::map_dfr(urls, .file_reader)
 
   if(nrow(res) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
   } else {
     ## when there are multiple data sets loaded in, seems like this is the attribute for the first
     cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")

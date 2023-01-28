@@ -37,7 +37,7 @@ load_match_results <- function(country, gender, season_end_year, tier) {
   dat_df <- dat_urls %>% purrr::map_df(.file_reader)
 
   if(nrow(dat_df) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
   } else {
     dat_df <- dat_df %>%
       dplyr::filter(.data[["Country"]] %in% country,
@@ -92,7 +92,7 @@ load_match_comp_results <- function(comp_name) {
   dat_df <- dat_urls %>% purrr::map_df(.file_reader)
 
   if(nrow(dat_df) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
   } else {
     dat_df <- dat_df %>%
       # dplyr::filter(.data[["Country"]] %in% country,
@@ -154,7 +154,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
   dat_df <- tryCatch(.file_reader(dat_url), error = function(e) data.frame())
 
   if(nrow(dat_df) == 0) {
-    cli::cli_alert("Data not available. Check you have the correct stat_type or team_or_player")
+    cli::cli_alert("Data not available. Check you have the correct stat_type or team_or_player.")
   } else {
 
     if(!all(is.na(season_end_year))) {
@@ -210,7 +210,7 @@ load_fb_match_shooting <- function(country, gender, tier, season_end_year = NA) 
   res <- purrr::map_dfr(urls, .file_reader)
 
   if(nrow(res) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
     return(res)
   } else {
     cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")

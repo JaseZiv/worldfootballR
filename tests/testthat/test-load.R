@@ -65,7 +65,8 @@ test_that("load_fb_match_shooting() works", {
       gender = "M",
       season_end_year = 2022,
       tier = "1st"
-    )
+    ),
+    regexp = "Data not loaded[.] Please check parameters[.]"
   )
   expect_true(nrow(bad_df) == 0)
 
