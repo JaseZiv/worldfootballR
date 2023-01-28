@@ -39,17 +39,46 @@ test_that("load_fb_big5_advanced_season_stats() works", {
 test_that("load_fb_match_shooting() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
-  test_df <- load_fb_match_shooting(country = "ENG", gender = "M", tier = "1st")
+  test_df <- load_fb_match_shooting(
+    country = "ENG",
+    gender = "M",
+    tier = "1st"
+  )
   # test the functions returns the data
   expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
 
   # test that multiple countries can be passed to the function
-  test_df <- load_fb_match_shooting(country = c("ESP", "USA"), gender = "M", season_end_year = 2021, tier = "1st")
+  test_df <- load_fb_match_shooting(
+    country = c("ESP", "USA"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st"
+  )
   expect_type(test_df, "list")
-  expect_false(nrow(test_df) == 0)
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 2)
 
-  bad_df <- load_fb_match_shooting(country = "foo", gender = "M", season_end_year = 2022, tier = "1st")
+  expect_message(
+    bad_df <- load_fb_match_shooting(
+      country = "foo",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st"
+    )
+  )
   expect_true(nrow(bad_df) == 0)
+
+  ## won't error here. instead, will silently not load anything for "foo"
+  test_df <- load_fb_match_shooting(
+    country = c("ITA", "foo"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st"
+  )
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 1)
 })
 
 
