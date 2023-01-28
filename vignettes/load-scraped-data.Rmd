@@ -150,7 +150,7 @@ load_fb_match_shooting(
 
 ## just 2019, for multiple leagues at the same time
 load_fb_match_shooting(
-  country = c("ITA", "ESP")
+  country = c("ITA", "ESP"),
   gender = "M",
   tier = "1st",
   season_end_year = 2019

@@ -189,7 +189,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
 #' )
 #'
 #' load_fb_match_shooting(
-#'   country = c("ITA", "ESP")
+#'   country = c("ITA", "ESP"),
 #'   gender = "M",
 #'   tier = "1st",
 #'   season_end_year = 2019
