@@ -135,7 +135,27 @@ all_season_team <- load_fb_big5_advanced_season_stats(stat_type = "defense", tea
 current_season_team <- load_fb_big5_advanced_season_stats(season_end_year = 2022, stat_type = "defense", team_or_player = "team")
 ```
 
+### Load FBref match shooting
 
+`load_fb_match_shooting()` can be used to load pre-scraped match shooting logs from FBref, use 
+This is the load function equivalent of `fb_match_shooting()`. Only a handful of leagues are supported.
+
+```{r load_fb_match_shooting}
+## 2018 - current season for EPL
+load_fb_match_shooting(
+  country = "ENG",
+  gender = "M",
+  tier = "1st"
+)
+
+## just 2019, for multiple leagues at the same time
+load_fb_match_shooting(
+  country = c("ITA", "ESP")
+  gender = "M",
+  tier = "1st",
+  season_end_year = 2019
+)
+```
 
 ***
 

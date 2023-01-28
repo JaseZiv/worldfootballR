@@ -21,7 +21,7 @@ returns a dataframe of league matches
 \description{
 Loading version of \code{fotmob_get_match_details}, but for all seasons for which
 data is available, not just the current season.
-Note that fotmobonly has match details going back to the 2020-21 season for most leagues.
+Note that fotmob only has match details going back to the 2020-21 season for most leagues.
 }
 \examples{
 \dontrun{
