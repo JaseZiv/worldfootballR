@@ -30,7 +30,7 @@
 #' }
 
 load_match_results <- function(country, gender, season_end_year, tier) {
-  
+
   dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/releases/download/match_results/", country, "_match_results.rds")
 
   # collect_date <- .file_reader("https://github.com/JaseZiv/worldfootballR_data/blob/master/data/match_results/scrape_time_match_results.rds?raw=true")
@@ -166,6 +166,67 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
   }
 
   return(dat_df)
+
+}
+
+#' Load pre-saved FBref match shooting event data
+#'
+#' Loading version of \code{fb_match_shooting}.
+#'
+#' @inheritParams load_match_results
+#' @importFrom purrr possibly map_dfr
+#' @importFrom cli cli_alert
+#' @importFrom dplyr filter
+#' @importFrom rlang .data
+#' @return returns a dataframe
+#' @examples
+#' \donttest{
+#' try({
+#' load_fb_match_shooting(
+#'   country = "ENG",
+#'   gender = "M",
+#'   tier = "1st"
+#' )
+#' 
+#' load_fb_match_shooting(
+#'   country = c("ITA", "ESP")
+#'   gender = "M",
+#'   tier = "1st",
+#'   season_end_year = 2019
+#' )
+#' })
+#' }
+#' @export
+load_fb_match_shooting <- function(country, gender, tier, season_end_year = NA) {
+
+  ## plural because there could be multiple
+  urls <- sprintf(
+    "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_match_shooting/%s_%s_%s_match_shooting.rds",
+    country,
+    gender,
+    tier
+  )
+
+  fp <- purrr::possibly(
+    .file_reader,
+    quiet = FALSE,
+    otherwise = data.frame()
+  )
+
+  res <- purrr::map_dfr(urls, fp)
+
+  if(nrow(res) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters")
+  } else {
+    cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
+  }
+
+  if (!all(is.na(season_end_year))) {
+    res <- res %>%
+      dplyr::filter(.data[["Season_End_Year"]] %in% season_end_year)
+  }
+
+  res
 
 }
 
