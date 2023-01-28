@@ -40,7 +40,7 @@
 #'
 #' Loading version of \code{fotmob_get_match_details}, but for all seasons for which
 #' data is available, not just the current season.
-#' Note that fotmobonly has match details going back to the 2020-21 season for most leagues.
+#' Note that fotmob only has match details going back to the 2020-21 season for most leagues.
 #'
 #' @inheritParams fotmob_get_league_matches
 #'
