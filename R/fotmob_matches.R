@@ -323,7 +323,7 @@ fotmob_get_match_info <- function(match_ids) {
       janitor::clean_names()
 
     if (nrow(df) != 1) {
-      stopf(sprintf("Could not find match info for `match_id = %s`", match_id))
+      stop(sprintf("Could not find match info for `match_id = %s`", match_id))
       return(tibble::tibble())
     }
 
