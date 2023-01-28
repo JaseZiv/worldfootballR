@@ -171,7 +171,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
 
 #' Load pre-saved FBref match shooting event data
 #'
-#' Loading version of \code{fb_match_shooting}.
+#' Loading version of \code{fb_match_shooting}. Only some leagues available.
 #'
 #' @inheritParams load_match_results
 #' @importFrom purrr possibly map_dfr
@@ -187,7 +187,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
 #'   gender = "M",
 #'   tier = "1st"
 #' )
-#' 
+#'
 #' load_fb_match_shooting(
 #'   country = c("ITA", "ESP")
 #'   gender = "M",
@@ -207,16 +207,11 @@ load_fb_match_shooting <- function(country, gender, tier, season_end_year = NA) 
     tier
   )
 
-  fp <- purrr::possibly(
-    .file_reader,
-    quiet = FALSE,
-    otherwise = data.frame()
-  )
-
-  res <- purrr::map_dfr(urls, fp)
+  res <- purrr::map_dfr(urls, .file_reader)
 
   if(nrow(res) == 0) {
     cli::cli_alert("Data not loaded. Please check parameters")
+    return(res)
   } else {
     cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
   }

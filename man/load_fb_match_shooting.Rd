@@ -19,7 +19,7 @@ load_fb_match_shooting(country, gender, tier, season_end_year = NA)
 returns a dataframe
 }
 \description{
-Loading version of \code{fb_match_shooting}.
+Loading version of \code{fb_match_shooting}. Only some leagues available.
 }
 \examples{
 \donttest{
@@ -29,11 +29,12 @@ load_fb_match_shooting(
   gender = "M",
   tier = "1st"
 )
-# for results from English 1st div for men and women:
+
 load_fb_match_shooting(
   country = c("ITA", "ESP")
   gender = "M",
-  tier = "1st"
+  tier = "1st",
+  season_end_year = 2019
 )
 })
 }
