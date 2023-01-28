@@ -19,16 +19,10 @@
     fotmob_urls$id
   )
 
-  fp <- purrr::possibly(
-    .file_reader,
-    quiet = FALSE,
-    otherwise = data.frame()
-  )
-
-  res <- purrr::map_dfr(urls, fp)
+  res <- purrr::map_dfr(urls, .file_reader)
 
   if(nrow(res) == 0) {
-    cli::cli_alert("Data not loaded. Please check parameters")
+    cli::cli_alert("Data not loaded. Please check parameters.")
   } else {
     ## when there are multiple data sets loaded in, seems like this is the attribute for the first
     cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
@@ -40,7 +34,7 @@
 #'
 #' Loading version of \code{fotmob_get_match_details}, but for all seasons for which
 #' data is available, not just the current season.
-#' Note that fotmobonly has match details going back to the 2020-21 season for most leagues.
+#' Note that fotmob only has match details going back to the 2020-21 season for most leagues.
 #'
 #' @inheritParams fotmob_get_league_matches
 #'
