@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.4/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.5/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Load Scraped Data Functions">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.8000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-01-23</h4>
+            <h4 data-toc-skip class="date">2023-01-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -311,6 +311,65 @@ the user of when the data was last updated.</p>
 <span></span>
 <span><span class="va">all_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span>
 <span><span class="va">current_season_team</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats</a></span><span class="op">(</span>season_end_year <span class="op">=</span> <span class="fl">2022</span>, stat_type <span class="op">=</span> <span class="st">"defense"</span>, team_or_player <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="load-fbref-match-shooting">Load FBref match shooting<a class="anchor" aria-label="anchor" href="#load-fbref-match-shooting"></a>
+</h3>
+<p><code><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting()</a></code> can be used to load pre-scraped
+match shooting logs from FBref, use This is the load function equivalent
+of <code><a href="../reference/fb_match_shooting.html">fb_match_shooting()</a></code>. Only a handful of leagues are
+supported.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## 2018 - current season for EPL</span></span>
+<span><span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
+<span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
+<span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 57,185 × 21</span></span></span>
+<span><span class="co">#&gt;    Match…¹ Date  Squad Home_…² Match…³ Minute Player xG    PSxG  Outcome Dista…⁴</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https:… 2017… Arse… Home          1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal    13     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https:… 2017… Arse… Home          1 8      Alex … 0.04  <span style="color: #949494;">""</span>    Off Ta… 24     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https:… 2017… Arse… Home          1 14     Alex … 0.03  <span style="color: #949494;">"</span>0.3… Saved   25     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https:… 2017… Arse… Home          1 22     Danny… 0.34  <span style="color: #949494;">""</span>    Blocked 11     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https:… 2017… Arse… Home          1 22     Grani… 0.02  <span style="color: #949494;">""</span>    Off Ta… 37     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https:… 2017… Arse… Home          1 26     Danny… 0.07  <span style="color: #949494;">""</span>    Blocked 15     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https:… 2017… Arse… Home          1 27     Sead … 0.05  <span style="color: #949494;">"</span>0.5… Saved   15     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https:… 2017… Arse… Home          1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta… 29     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https:… 2017… Arse… Home          1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked 31     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https:… 2017… Arse… Home          1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked 17     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 57,175 more rows, 10 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;, and abbreviated variable names ¹​MatchURL,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​Home_Away, ³​Match_Half, ⁴​Distance</span></span></span>
+<span></span>
+<span><span class="co">## just 2019, for multiple leagues at the same time</span></span>
+<span><span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"ESP"</span><span class="op">)</span>,</span>
+<span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
+<span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span>
+<span>  season_end_year <span class="op">=</span> <span class="fl">2019</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19,810 × 21</span></span></span>
+<span><span class="co">#&gt;    Match…¹ Date  Squad Home_…² Match…³ Minute Player xG    PSxG  Outcome Dista…⁴</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https:… 2018… Chie… Home          1 15     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta… 30     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https:… 2018… Chie… Home          1 22     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https:… 2018… Chie… Home          1 38     Mariu… 0.23  <span style="color: #949494;">"</span>0.5… Goal    12     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https:… 2018… Chie… Home          2 56     Emanu… 0.79  <span style="color: #949494;">"</span>0.9… Goal    13     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https:… 2018… Chie… Home          2 67     Ivan … 0.03  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https:… 2018… Chie… Home          2 84     Fabri… 0.02  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https:… 2018… Juve… Away          1 3      Sami … 0.20  <span style="color: #949494;">"</span>0.1… Goal    9      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https:… 2018… Juve… Away          1 5      Paulo… 0.04  <span style="color: #949494;">"</span>0.1… Saved   22     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https:… 2018… Juve… Away          1 6      Sami … 0.07  <span style="color: #949494;">""</span>    Off Ta… 10     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https:… 2018… Juve… Away          1 9      João … 0.66  <span style="color: #949494;">""</span>    Off Ta… 5      </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 19,800 more rows, 10 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;, and abbreviated variable names ¹​MatchURL,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​Home_Away, ³​Match_Half, ⁴​Distance</span></span></span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -337,7 +396,7 @@ available. Supported leagues on Understat are:</p>
 <code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function, however rather
 than needing to be scraped a season at a time, this data loads rapidly
 for all seasons for the selected league since the 2014/15 seasons.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">serie_a_shot_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_understat_league_shots.html">load_understat_league_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Serie A"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serie_a_shot_locations</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 80,802</span></span>
@@ -393,7 +452,7 @@ following leagues:</p>
 <p>This is effectively the loading equivalent of the
 <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> function for all matches for
 these leagues back to the beginning of the 2020/21 season.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
@@ -401,7 +460,7 @@ these leagues back to the beginning of the 2020/21 season.</p>
 <span><span class="co">## or</span></span>
 <span><span class="co">## load_fotmob_match_details(league_id = 47)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_details</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 23,908</span></span>
+<span><span class="co">#&gt; Rows: 23,997</span></span>
 <span><span class="co">#&gt; Columns: 42</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3411352, 3411352, 3411352, 3411352, 3411352, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
@@ -452,13 +511,13 @@ these leagues back to the beginning of the 2020/21 season.</p>
 2020/21.</p>
 <p><code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code> can be used to retrieve
 fotmob match ids dating back to August 2017.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epl_matches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,246</span></span>
+<span><span class="co">#&gt; Rows: 2,250</span></span>
 <span><span class="co">#&gt; Columns: 40</span></span>
 <span><span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span></span>
