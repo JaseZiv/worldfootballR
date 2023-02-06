@@ -12,6 +12,7 @@
 * `fotmob_get_league_matches()` was failing due to an extra `purrr::map_dfr` that is no longer needed (0.6.2.2000) [#229](https://github.com/JaseZiv/worldfootballR/issues/229)
 * All understat functions were failing due to a new cookie requirement (0.6.2.5000) [#239](https://github.com/JaseZiv/worldfootballR/issues/239)
 * `fb_player_scouting_report()` failing due to HTML changes on FBRef (0.6.2.7000) [#242](https://github.com/JaseZiv/worldfootballR/issues/242)
+* `fb_league_stats(team_or_player = "player", stat_type = "standard")` failing since `"standard"` should be translated to `"stats"` (0.6.2.9100) [#252](https://github.com/JaseZiv/worldfootballR/issues/252)
 
 ### Improvements
 
