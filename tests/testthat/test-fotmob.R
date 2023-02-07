@@ -27,14 +27,14 @@ test_that("fotmob_get_league_matches() works", {
   )
 
   expect_gt(nrow(epl_league_matches), 0)
-  expect_equal(sort(colnames(epl_league_matches)), sort(expected_league_matches_cols))
+  expect_setequal(colnames(epl_league_matches), expected_league_matches_cols)
 
   epl_league_matches <- fotmob_get_league_matches(
     league_id = 47
   )
 
   expect_gt(nrow(epl_league_matches), 0)
-  expect_equal(sort(colnames(epl_league_matches)), sort(expected_league_matches_cols))
+  expect_setequal(colnames(epl_league_matches), expected_league_matches_cols)
 
   ## test cached
   epl_league_matches <- fotmob_get_league_matches(
@@ -43,7 +43,7 @@ test_that("fotmob_get_league_matches() works", {
   )
 
   expect_gt(nrow(epl_league_matches), 0)
-  expect_equal(sort(colnames(epl_league_matches)), sort(expected_league_matches_cols))
+  expect_setequal(colnames(epl_league_matches), expected_league_matches_cols)
 
   ## MLS is usually in-season when European leagues are out-of-season, so it's useful
   ##   for checking that stats work in the off-season
@@ -52,7 +52,7 @@ test_that("fotmob_get_league_matches() works", {
   )
 
   expect_gt(nrow(mls_league_matches), 0)
-  expect_equal(colnames(mls_league_matches), expected_league_matches_cols)
+  expect_setequal(expected_league_matches_cols, colnames(mls_league_matches))
 
   epl_ll_league_matches <- fotmob_get_league_matches(
     country =     c("ENG",            "ESP"   ),
@@ -60,16 +60,16 @@ test_that("fotmob_get_league_matches() works", {
   )
 
   expect_gt(nrow(epl_ll_league_matches), 0)
-  expect_equal(sort(colnames(epl_ll_league_matches)), sort(expected_league_matches_cols))
+  expect_setequal(colnames(epl_ll_league_matches), expected_league_matches_cols)
 
   epl_ll_league_matches_unnested <- epl_ll_league_matches %>%
     dplyr::select(match_id = id, home, away) %>%
     tidyr::unnest_wider(c(home, away), names_sep = "_")
 
   expect_gt(nrow(epl_ll_league_matches_unnested), 0)
-  expect_equal(
-    sort(colnames(epl_ll_league_matches_unnested)),
-    sort(c("match_id", "home_name", "home_shortName", "home_id", "away_name", "away_shortName", "away_id"))
+  expect_setequal(
+    colnames(epl_ll_league_matches_unnested),
+    c("match_id", "home_name", "home_shortName", "home_id", "away_name", "away_shortName", "away_id")
   )
 
   # doesn't exist
@@ -130,14 +130,14 @@ test_that("fotmob_get_league_tables() works", {
 
   ## should be 20 teams x 3 table types = 60
   expect_gt(nrow(epl_league_table), 0)
-  expect_equal(sort(colnames(epl_league_table)), sort(expected_domestic_league_table_cols))
+  expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
 
   epl_league_table <- fotmob_get_league_tables(
     league_id = 47
   )
 
   expect_gt(nrow(epl_league_table), 0)
-  expect_equal(sort(colnames(epl_league_table)), sort(expected_domestic_league_table_cols))
+  expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
 
   ## see not about MLS from before
   mls_league_table <- fotmob_get_league_tables(
@@ -146,9 +146,9 @@ test_that("fotmob_get_league_tables() works", {
 
   expect_gt(nrow(mls_league_table), 0)
   ## MLS typically has 4 extra columns, sometimes 5. Don't check for the fifth, "ongoing", since it depends on the time of year.
-  expect_equal(
-    sort(setdiff(colnames(mls_league_table), "ongoing")),
-    sort(c(expected_domestic_league_table_cols, "ccode", "group_id", "group_page_url", "group_name"))
+  expect_setequal(
+    setdiff(colnames(mls_league_table), "ongoing"),
+    c(expected_domestic_league_table_cols, "ccode", "group_id", "group_page_url", "group_name")
   )
 
   epl_ll_league_tables <- fotmob_get_league_tables(
@@ -158,7 +158,7 @@ test_that("fotmob_get_league_tables() works", {
 
   ## should be 2 leagues x 20 teams x 3 table types = 120
   expect_gt(nrow(epl_ll_league_tables), 0)
-  expect_equal(sort(colnames(epl_ll_league_tables)), sort(expected_domestic_league_table_cols))
+  expect_setequal(colnames(epl_ll_league_tables), expected_domestic_league_table_cols)
 
   table_types <- dplyr::distinct(epl_ll_league_tables, table_type)
   expect_equal(
@@ -179,7 +179,7 @@ test_that("fotmob_get_league_tables() works", {
 
     ## should be 32 teams x 3 table types = 96
     expect_gt(nrow(cl_league_table), 0)
-    expect_equal(sort(colnames(cl_league_table)), sort(expected_international_league_table_cols))
+    expect_setequal(colnames(cl_league_table), expected_international_league_table_cols)
   }
 })
 
@@ -194,7 +194,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(epl_team_xg_21_a), 0)
-  expect_equal(sort(colnames(epl_team_xg_21_a)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_team_xg_21_a), expected_stat_cols)
 
   get_epl_season_stats <- function(
     season_name = "2020/2021",
@@ -223,7 +223,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(liga_mx_team_xg_21), 0)
-  expect_equal(sort(colnames(liga_mx_team_xg_21)), sort(expected_stat_cols))
+  expect_setequal(colnames(liga_mx_team_xg_21), expected_stat_cols)
 
   ## fotmob has data for 2016/2017 for some leagues and stats, but not all
   expect_warning(
@@ -245,7 +245,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "player"
   )
   expect_gt(nrow(epl_player_xg_21), 0)
-  expect_equal(sort(colnames(epl_player_xg_21)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_player_xg_21), expected_stat_cols)
 
   ## similar to team test
   expect_warning(
@@ -296,7 +296,7 @@ test_that("fotmob_get_season_stats() works", {
       team_or_player = "team"
     )
     expect_gt(nrow(cl_team_xg_21), 0)
-    expect_equal(sort(colnames(cl_team_xg_21)), sort(expected_stat_cols))
+    expect_setequal(colnames(cl_team_xg_21), expected_stat_cols)
   }
 
   ## see not about MLS from before
@@ -307,7 +307,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(mls_team_xg_21), 0)
-  expect_equal(sort(colnames(mls_team_xg_21)), sort(expected_stat_cols))
+  expect_setequal(colnames(mls_team_xg_21), expected_stat_cols)
 
   ## multiple leagues
   epl_ll_team_xg_21 <- fotmob_get_season_stats(
@@ -318,7 +318,7 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   expect_gt(nrow(epl_ll_team_xg_21), nrow(epl_team_xg_21_a))
-  expect_equal(sort(colnames(epl_ll_team_xg_21)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_ll_team_xg_21), expected_stat_cols)
 
   ## multiple seasons
   epl_team_xg_2122 <- get_epl_season_stats(
@@ -326,14 +326,14 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   expect_gt(nrow(epl_team_xg_2122), nrow(epl_team_xg_21_a))
-  expect_equal(sort(colnames(epl_team_xg_2122)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_team_xg_2122), expected_stat_cols)
 
   ## more than one stat
   epl_team_xgs_21 <- get_epl_season_stats(
     stat_name = c("Expected goals", "xG conceded")
   )
   expect_gt(nrow(epl_team_xgs_21), nrow(epl_team_xg_21_a))
-  expect_equal(sort(colnames(epl_team_xgs_21)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_team_xgs_21), expected_stat_cols)
 
   ## multiple leagues, seasons, and stats
   epl_ll_team_xgs_2122 <- fotmob_get_season_stats(
@@ -346,7 +346,7 @@ test_that("fotmob_get_season_stats() works", {
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_ll_team_xg_21))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xg_2122))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xgs_21))
-  expect_equal(sort(colnames(epl_ll_team_xgs_2122)), sort(expected_stat_cols))
+  expect_setequal(colnames(epl_ll_team_xgs_2122), expected_stat_cols)
 })
 
 test_that("fotmob_get_match_info() works", {
@@ -356,12 +356,12 @@ test_that("fotmob_get_match_info() works", {
   match_info <- fotmob_get_match_info(c(3609987, 3609979))
 
   expect_gt(nrow(match_info), 0)
-  expect_equal(sort(colnames(match_info)), sort(expected_match_info_cols))
+  expect_setequal(colnames(match_info), expected_match_info_cols)
 
   ## non-domestic match
   match_info <- fotmob_get_match_info(3846342)
   expect_gt(nrow(match_info), 0)
-  expect_equal(sort(colnames(match_info)), sort(expected_match_info_cols))
+  expect_setequal(colnames(match_info), expected_match_info_cols)
 })
 
 test_that("fotmob_get_match_team_stats() works", {
@@ -371,12 +371,12 @@ test_that("fotmob_get_match_team_stats() works", {
   match_team_stats <- fotmob_get_match_team_stats(c(3609987, 3609979))
 
   expect_gt(nrow(match_team_stats), 0)
-  expect_equal(sort(colnames(match_team_stats)), sort(expected_match_team_stats_cols))
+  expect_setequal(colnames(match_team_stats), expected_match_team_stats_cols)
 
   ## non-domestic match
   match_team_stats <- fotmob_get_match_team_stats(3846342)
   expect_gt(nrow(match_team_stats), 0)
-  expect_equal(sort(colnames(match_team_stats)), sort(expected_match_team_stats_cols))
+  expect_setequal(colnames(match_team_stats), expected_match_team_stats_cols)
 })
 
 test_that("fotmob_get_match_details() works", {
@@ -386,19 +386,19 @@ test_that("fotmob_get_match_details() works", {
   details <- fotmob_get_match_details(c(3609987, 3609979))
 
   expect_gt(nrow(details), 0)
-  expect_equal(sort(colnames(details)), sort(expected_match_detail_cols))
+  expect_setequal(colnames(details), expected_match_detail_cols)
 
   ## non-domestic match
   details <- fotmob_get_match_details(3846342)
   expect_gt(nrow(details), 0)
-  expect_equal(sort(colnames(details)), sort(expected_match_detail_cols))
+  expect_setequal(colnames(details), expected_match_detail_cols)
 })
 
 test_that("fotmob_get_match_players() works", {
   testthat::skip_on_cran()
 
   ## shouldn't test for exact equality since not all stats may appear for a game (if a no player in the game registers a value for a given stat)
-  expected_match_player_cols <- c("match_id", "team_id", "team_name", "id", "using_opta_id", "first_name", "last_name", "image_url", "page_url", "shirt", "is_home_team", "time_subbed_on", "time_subbed_off", "usual_position", "position_row", "role", "is_captain", "subbed_out", "g", "rating_num", "rating_bgcolor", "is_top_rating", "is_match_finished", "fantasy_score_num", "fantasy_score_bgcolor", "home_team_id", "home_team_color", "away_team_id", "away_team_color", "stats_fot_mob_rating", "stats_minutes_played", "stats_saves", "stats_goals", "stats_goals_conceded", "stats_x_got_faced", "stats_accurate_passes", "stats_accurate_long_balls", "stats_diving_save", "stats_saves_inside_box", "stats_acted_as_sweeper", "stats_punches", "stats_throws", "stats_high_claim", "stats_recoveries", "stats_fantasy_points", "stats_touches", "stats_assists", "stats_total_shots", "stats_shotmap", "stats_chances_created", "stats_expected_goals_x_g", "stats_expected_goals_on_target_x_got", "stats_expected_assists_x_a", "stats_shot_accuracy", "stats_successful_dribbles", "stats_accurate_crosses", "stats_dispossessed", "stats_tackles_won", "stats_clearances", "stats_dribbled_past", "stats_ground_duels_won", "stats_aerial_duels_won", "stats_was_fouled", "stats_fouls_committed", "stats_blocks", "stats_interceptions", "stats_blocked_shots", "stats_corners", "stats_offsides", "stats_headed_clearance", "stats_big_chance_missed", "shotmap", "is_starter", "stats_error_led_to_goal")
+  expected_match_player_cols <- c("match_id", "team_id", "team_name", "id", "using_opta_id", "first_name", "last_name", "image_url", "page_url", "shirt", "is_home_team", "time_subbed_on", "time_subbed_off", "usual_position", "position_row", "role", "is_captain", "subbed_out", "g", "rating_num", "rating_bgcolor", "is_top_rating", "is_match_finished", "fantasy_score_num", "fantasy_score_bgcolor", "home_team_id", "home_team_color", "away_team_id", "away_team_color", "stats_fot_mob_rating", "stats_minutes_played", "stats_saves", "stats_goals_conceded", "stats_x_got_faced", "stats_accurate_passes", "stats_accurate_long_balls", "stats_diving_save", "stats_saves_inside_box", "stats_acted_as_sweeper", "stats_punches", "stats_throws", "stats_high_claim", "stats_recoveries", "stats_fantasy_points", "stats_touches", "stats_goals", "stats_assists", "stats_total_shots", "stats_shotmap", "stats_chances_created", "stats_expected_goals_x_g", "stats_expected_goals_on_target_x_got", "stats_expected_assists_x_a", "stats_shot_accuracy", "stats_successful_dribbles", "stats_passes_into_final_third", "stats_accurate_crosses", "stats_dispossessed", "stats_tackles_won", "stats_clearances", "stats_dribbled_past", "stats_ground_duels_won", "stats_aerial_duels_won", "stats_was_fouled", "stats_fouls_committed", "stats_blocks", "stats_interceptions", "stats_blocked_shots", "stats_corners", "stats_offsides", "stats_headed_clearance", "stats_big_chance_missed", "shotmap", "is_starter")
 
   players <- fotmob_get_match_players(c(3609987, 3609979))
   expect_gt(nrow(players), 0)
