@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-01-28</h4>
+            <h4 data-toc-skip class="date">2023-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fbref-data.Rmd</code></div>
@@ -177,12 +177,12 @@ time. The raw data is stored <a href="https://github.com/JaseZiv/worldfootballR_
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mapped_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/player_dictionary_mapping.html">player_dictionary_mapping</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">mapped_players</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 12,934</span></span>
+<span><span class="co">#&gt; Rows: 14,049</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
-<span><span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ömer Faruk Beyaz", "Ömer Toprak", "Özgür Aktas", "Šime Vr…</span></span>
-<span><span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/8307b663/Omer-Faruk-Beyaz", …</span></span>
-<span><span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/omer-beyaz/profil/spieler/5…</span></span>
-<span><span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Attacking Midfield", "Centre-Back", "Centre-Back", "Right…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ PlayerFBref <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "A.J. DeLaGarza", "Aapo Halme", "Aaron Bastiaans", "Aaron …</span></span>
+<span><span class="co">#&gt; $ UrlFBref    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/players/171b3c37/AJ-DeLaGarza", "htt…</span></span>
+<span><span class="co">#&gt; $ UrlTmarkt   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/a-j-delagarza/profil/spiele…</span></span>
+<span><span class="co">#&gt; $ TmPos       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Right-Back", "Centre-Back", "Left Winger", "Centre-Forwar…</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fbref-helper-functions">FBref Helper Functions<a class="anchor" aria-label="anchor" href="#fbref-helper-functions"></a>

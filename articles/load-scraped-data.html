@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-01-28</h4>
+            <h4 data-toc-skip class="date">2023-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -230,9 +230,9 @@ available:</p>
 <span><span class="co">#&gt; [10] "CONCACAF W Championship"                                     </span></span>
 <span><span class="co">#&gt; [11] "CONMEBOL Copa América"                                       </span></span>
 <span><span class="co">#&gt; [12] "Copa América Femenina"                                       </span></span>
-<span><span class="co">#&gt; [13] "Copa del Rey"                                                </span></span>
-<span><span class="co">#&gt; [14] "Copa Libertadores de América"                                </span></span>
-<span><span class="co">#&gt; [15] "Copa Sudamericana"                                           </span></span>
+<span><span class="co">#&gt; [13] "Copa Libertadores de América"                                </span></span>
+<span><span class="co">#&gt; [14] "Copa Sudamericana"                                           </span></span>
+<span><span class="co">#&gt; [15] "Copa del Rey"                                                </span></span>
 <span><span class="co">#&gt; [16] "Coppa Italia"                                                </span></span>
 <span><span class="co">#&gt; [17] "Coupe de France"                                             </span></span>
 <span><span class="co">#&gt; [18] "Coupe de la Ligue"                                           </span></span>
@@ -272,7 +272,7 @@ available:</p>
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1,246</span></span>
+<span><span class="co">#&gt; Rows: 1,285</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FIFA Women's World Cup", "FIFA Women's World Cup", "…</span></span>
 <span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
@@ -326,7 +326,7 @@ supported.</p>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 57,185 × 21</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 58,188 × 21</span></span></span>
 <span><span class="co">#&gt;    Match…¹ Date  Squad Home_…² Match…³ Minute Player xG    PSxG  Outcome Dista…⁴</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https:… 2017… Arse… Home          1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal    13     </span></span>
@@ -339,7 +339,7 @@ supported.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https:… 2017… Arse… Home          1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta… 29     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https:… 2017… Arse… Home          1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked 31     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https:… 2017… Arse… Home          1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked 17     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 57,175 more rows, 10 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 58,178 more rows, 10 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;, and abbreviated variable names ¹​MatchURL,</span></span></span>
@@ -460,7 +460,7 @@ these leagues back to the beginning of the 2020/21 season.</p>
 <span><span class="co">## or</span></span>
 <span><span class="co">## load_fotmob_match_details(league_id = 47)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_details</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 23,997</span></span>
+<span><span class="co">#&gt; Rows: 24,255</span></span>
 <span><span class="co">#&gt; Columns: 42</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3411352, 3411352, 3411352, 3411352, 3411352, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
@@ -517,7 +517,7 @@ fotmob match ids dating back to August 2017.</p>
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,250</span></span>
+<span><span class="co">#&gt; Rows: 2,260</span></span>
 <span><span class="co">#&gt; Columns: 40</span></span>
 <span><span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span></span>
