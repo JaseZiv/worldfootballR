@@ -168,7 +168,7 @@ fb_league_stats <- function(
 
   urls <- tidyr::crossing(
     "league_url" = league_urls,
-    "stat_type" = stat_type
+    "stat_type" = ifelse(stat_type == "standard", "stats", stat_type)
   ) %>%
     dplyr::transmute(
       "url" = sprintf("%s/%s/%s", dirname(.data[["league_url"]]), .data[["stat_type"]], basename(.data[["league_url"]]))
