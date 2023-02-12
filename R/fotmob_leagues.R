@@ -154,6 +154,8 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 
 #' @importFrom purrr safely
 #' @importFrom httr parse_url build_url
+#' @importFrom rlang inform
+#' @importFrom glue glue
 .fotmob_get_league_resp <- function(league_id, page_url, season = NULL, fallback = TRUE) {
   url <- httr::parse_url("https://www.fotmob.com/api/leagues")
   url$query <- list(
@@ -170,7 +172,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   if(fallback) {
     if (!is.null(season)) {
       rlang::inform(
-        '`season` ignored in call to "{page_url}".'
+        glue::glue('`season` ignored in call to "{page_url}".')
       )
     }
     resp <- .fotmob_get_league_resp_from_build_id(page_url)
@@ -270,9 +272,8 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
 .fotmob_message_for_season <- function(resp, season = NULL) {
 
   if (is.null(season)) {
-    season <- resp$allAvailableSeasons[1]
     rlang::inform(
-      glue::glue('Defaulting `season` to latest ("{season}").'),
+      glue::glue('Defaulting `season` to latest ("{resp$allAvailableSeasons[1]}").'),
       .frequency = "once",
       .frequency_id = ".fotmob_get_league_(matches|tables)"
     )
