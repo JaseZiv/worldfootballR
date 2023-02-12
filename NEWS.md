@@ -23,7 +23,7 @@
 * `fb_league_stats()` uses `rvest::htm_table()` if `team_or_player = "table"` (faster and more reliable), and only uses chromote if `team_or_player = "player"`. (0.6.2.7100)
 * Use `quiet = FALSE` in all `purrr::possibly()` calls internally. Improve messaging for unexpected outcomes in `fotmob_get_matches_by_date()` and `fotmob_get_match_info()`. (0.6.2.8000) [#244](https://github.com/JaseZiv/worldfootballR/pull/244)
 * `load_fb_match_shooting()` added. (0.6.2.9000) [#249](https://github.com/JaseZiv/worldfootballR/pull/249)
-* `fotmob_get_league_matches()` and `fotmob_get_league_tables` gain a `season` parameter. (0.6.2.9200) [#255](https://github.com/JaseZiv/worldfootballR/pull/255)
+* `fotmob_get_league_matches()` and `fotmob_get_league_tables` gain a `season` parameter. (0.6.2.9200) [#256](https://github.com/JaseZiv/worldfootballR/pull/256)
 
 # worldfootballR 0.6.2
 
