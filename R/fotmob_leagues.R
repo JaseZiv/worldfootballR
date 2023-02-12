@@ -272,7 +272,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
   if (is.null(season)) {
     season <- resp$allAvailableSeasons[1]
     rlang::inform(
-      'Defaulting `season` to latest ("{season}").',
+      glue::glue('Defaulting `season` to latest ("{season}").'),
       .frequency = "once",
       .frequency_id = ".fotmob_get_league_(matches|tables)"
     )
