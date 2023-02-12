@@ -167,7 +167,7 @@ test_that("fotmob_get_league_tables() works", {
   expect_gt(nrow(epl_league_table_2021), 0)
   expect_setequal(colnames(epl_league_table_2021), expected_domestic_league_table_cols)
   expect_false(
-    epl_league_table_2021$table_scores_str[1:2] != epl_league_table$table_scores_str[1:2]
+    all(epl_league_table_2021$table_scores_str[1:20] == epl_league_table$table_scores_str[1:20])
   )
 
   expect_error(
