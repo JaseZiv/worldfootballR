@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9100</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9200</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fotmob_get_league_tables</span><span class="op">(</span><span class="va">country</span>, <span class="va">league_name</span>, <span class="va">league_id</span>, cached <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fotmob_get_league_tables</span><span class="op">(</span></span>
+<span>  <span class="va">country</span>,</span>
+<span>  <span class="va">league_name</span>,</span>
+<span>  <span class="va">league_id</span>,</span>
+<span>  season <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cached <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -89,6 +95,10 @@
 
 <dt>league_id</dt>
 <dd><p>Fotmob ID for the league. Only used if `country` and `league_name` are not specified.</p></dd>
+
+
+<dt>season</dt>
+<dd><p>Season, e.g. `"2021/2022"`. Can be one or multiple. If left as `NULL` (default), data for the latest season available will be pulled.</p></dd>
 
 
 <dt>cached</dt>
@@ -120,6 +130,13 @@
 <span class="r-in"><span>  league_id <span class="op">=</span> <span class="fl">47</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># one league, past season</span></span></span>
+<span class="r-in"><span><span class="fu">fotmob_get_league_tables</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  country <span class="op">=</span> <span class="st">"GER"</span>,</span></span>
+<span class="r-in"><span>  league_name <span class="op">=</span> <span class="st">"1. Bundesliga"</span>,</span></span>
+<span class="r-in"><span>  season <span class="op">=</span> <span class="st">"2020/2021"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># multiple leagues (could also use ids)</span></span></span>
 <span class="r-in"><span><span class="va">league_tables</span> <span class="op">&lt;-</span> <span class="fu">fotmob_get_league_tables</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  country <span class="op">=</span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENG"</span>,            <span class="st">"ESP"</span>   <span class="op">)</span>,</span></span>
@@ -134,14 +151,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>    league_id page_url    table…¹ table…² table…³ table…⁴ table…⁵ table…⁶ table…⁷</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>        47 /leagues/4… away    Arsenal Arsenal    <span style="text-decoration: underline;">9</span>825 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>        47 /leagues/4… away    Totten… Totten…    <span style="text-decoration: underline;">8</span>586 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>        47 /leagues/4… away    Manche… Man Un…   <span style="text-decoration: underline;">10</span>260 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>        47 /leagues/4… away    Newcas… Newcas…   <span style="text-decoration: underline;">10</span>261 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>        47 /leagues/4… away    Manche… Man Ci…    <span style="text-decoration: underline;">8</span>456 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>        47 /leagues/4… away    Bright… Bright…   <span style="text-decoration: underline;">10</span>204 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>        47 /leagues/4… away    Manche… Man Un…   <span style="text-decoration: underline;">10</span>260 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>        47 /leagues/4… away    Bright… Bright…   <span style="text-decoration: underline;">10</span>204 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>        47 /leagues/4… away    Totten… Totten…    <span style="text-decoration: underline;">8</span>586 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>        47 /leagues/4… away    Manche… Man Ci…    <span style="text-decoration: underline;">8</span>456 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>        47 /leagues/4… away    Fulham  Fulham     <span style="text-decoration: underline;">9</span>879 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>        47 /leagues/4… away    Leices… Leices…    <span style="text-decoration: underline;">8</span>197 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        47 /leagues/4… away    Chelsea Chelsea    <span style="text-decoration: underline;">8</span>455 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>        47 /leagues/4… away    Chelsea Chelsea    <span style="text-decoration: underline;">8</span>455 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        47 /leagues/4… away    Leices… Leices…    <span style="text-decoration: underline;">8</span>197 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        47 /leagues/4… away    Brentf… Brentf…    <span style="text-decoration: underline;">9</span>937 /teams… <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 30 more rows, 9 more variables: table_played &lt;int&gt;, table_wins &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   table_draws &lt;int&gt;, table_losses &lt;int&gt;, table_scores_str &lt;chr&gt;,</span></span>
