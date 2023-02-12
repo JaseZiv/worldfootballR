@@ -45,6 +45,25 @@ test_that("fotmob_get_league_matches() works", {
   expect_gt(nrow(epl_league_matches), 0)
   expect_setequal(colnames(epl_league_matches), expected_league_matches_cols)
 
+  epl_league_matches_2021 <- fotmob_get_league_matches(
+    league_id = 47,
+    season = "2021/2022"
+  )
+
+  expect_gt(nrow(epl_league_matches_2021), 0)
+  expect_setequal(colnames(epl_league_matches_2021), expected_league_matches_cols)
+  expect_false(
+    epl_league_matches$page_url[1] == epl_league_matches_2021$page_url[1]
+  )
+
+  expect_message(
+    fotmob_get_league_matches(
+      league_id = 47,
+      season = "2021"
+    ),
+    regexp = "`season` should be one of the following"
+  )
+
   ## MLS is usually in-season when European leagues are out-of-season, so it's useful
   ##   for checking that stats work in the off-season
   mls_league_matches <- fotmob_get_league_matches(

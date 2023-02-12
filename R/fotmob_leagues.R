@@ -153,8 +153,14 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 }
 
 #' @importFrom purrr safely
-.fotmob_get_league_resp <- function(league_id, page_url, fallback = TRUE) {
-  url <- sprintf("https://www.fotmob.com/api/leagues?id=%s", league_id)
+#' @importFrom httr parse_url build_url
+.fotmob_get_league_resp <- function(league_id, page_url, season = NULL, fallback = TRUE) {
+  url <- httr::parse_url("https://www.fotmob.com/api/leagues")
+  url$query <- list(
+    "id" = league_id,
+    "season" = season
+  )
+  url <- httr::build_url(url)
   resp <- safely_from_json(url)
   if(!is.null(resp$result)) {
     return(resp$result)
@@ -162,6 +168,11 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 
   first_url <- url
   if(fallback) {
+    if (!is.null(season)) {
+      rlang::inform(
+        '`season` ignored in call to "{page_url}".'
+      )
+    }
     resp <- .fotmob_get_league_resp_from_build_id(page_url)
     if(!is.null(resp$result)) {
       return(resp$result)
@@ -265,11 +276,16 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
 #' @importFrom dplyr bind_rows
 #' @importFrom glue glue
 #' @importFrom rlang inform
-.fotmob_get_league_matches <- function(league_id, page_url, season) {
-  resp <- .fotmob_get_league_resp(league_id, page_url)
-
+.fotmob_get_league_matches <- function(league_id, page_url, season = NULL) {
+  missing_season <- is.null(season)
+  resp <- .fotmob_get_league_resp(
+    league_id = league_id,
+    page_url = page_url,
+    season = season
+  )
+  latest_season <- resp$allAvailableSeasons[1]
   if (is.na(season)) {
-    season <- resp$allAvailableSeasons[1]
+    season <- latest_season
     rlang::inform(
       'Defaulting `season` to latest ("{season}").',
       .frequency = "once",
@@ -277,11 +293,10 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
     )
   } else {
     is_valid_season <- season %in% resp$allAvailableSeasons
-
     if (isFALSE(is_valid_season)) {
       stop(
         glue::glue(
-          "`season` should be one of the following:\n{glue::glue_collapse(stat_options$stat_name, '\n')}"
+          "`season` should be one of the following:\n{glue::glue_collapse(resp$allAvailableSeasons, '\n')}"
         )
       )
     }
