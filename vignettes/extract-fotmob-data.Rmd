@@ -191,7 +191,7 @@ epl_player_xg_2021 %>%
 
 ### Match Results
 
-Matches for one or multiple leagues can be retrieved with `fotmob_get_league_matches`. Only the current season's matches can be retrieved with this function.
+Matches for one or multiple leagues can be retrieved with `fotmob_get_league_matches`.
 
 ```{r fotmob_get_league_matches}
 league_matches <- fotmob_get_league_matches(
@@ -203,6 +203,16 @@ league_matches_unnested <- league_matches %>%
   dplyr::select(match_id = id, home, away) %>%
   tidyr::unnest_wider(c(home, away), names_sep = "_")
 dplyr::glimpse(league_matches_unnested)
+```
+
+Data can even be retrieved for past seasons.
+
+```{r fotmob_get_league_matches-past}
+fotmob_get_league_matches(
+  country = "GER",
+  league_name = "1. Bundesliga",
+  season = "2020/2021"
+)
 ```
 
 fotmob also lists data for all leagues by date. Use `fotmob_get_matches_by_date` to select matches occurring on specific day(s) and filter down to the league(s) that you care about. Since `fotmob_get_league_matches` does not allow for selecting seasons, the only way to get matches from prior seasons is to use `fotmob_get_matches_by_date`
