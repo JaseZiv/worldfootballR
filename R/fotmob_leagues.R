@@ -323,6 +323,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
 #' @importFrom purrr possibly map2_dfr
 #' @importFrom tibble tibble
 #' @importFrom rlang maybe_missing
+#' @importFrom tidyr crossing
 #'
 #' @export
 #'
