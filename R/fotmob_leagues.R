@@ -191,7 +191,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #' @param country Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)
 #' @param league_name League names. If provided, `country` must also be provided (of the same length).
 #' @param league_id Fotmob ID for the league. Only used if `country` and `league_name` are not specified.
-#' @param season Season, e.g. `"2021/2022"`. Can be one or multiple. If not specified, data for the latest season availabe will be pulled.
+#' @param season Season, e.g. `"2021/2022"`. Can be one or multiple. If left as `NULL` (default), data for the latest season available will be pulled.
 #' @inheritParams fotmob_get_league_ids
 #'
 #' @return returns a dataframe of league matches
@@ -239,7 +239,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #'   tidyr::unnest_wider(c(home, away), names_sep = "_")
 #' })
 #' }
-fotmob_get_league_matches <- function(country, league_name, league_id, season, cached = TRUE) {
+fotmob_get_league_matches <- function(country, league_name, league_id, season = NULL, cached = TRUE) {
 
   urls <- .fotmob_get_league_ids(
     cached = cached,
@@ -248,16 +248,11 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
     league_id = rlang::maybe_missing(league_id, NULL)
   )
 
-  season <- rlang::maybe_missing(season, NA_character_)
+  # Need to coerce to `NA_character` since crossing doesn't like `NULL`
+  season <- ifelse(is.null(season), NA_character_, season)
   urls <- tidyr::crossing(
     urls,
     "season" = season
-  )
-
-  fp <- purrr::possibly(
-    .fotmob_get_league_matches,
-    quiet = FALSE,
-    otherwise = tibble::tibble()
   )
 
   purrr::pmap_dfr(
@@ -266,34 +261,23 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
       urls$page_url,
       urls$season
     ),
-    fp
+    .fotmob_get_league_matches
   )
 }
 
-#' @importFrom janitor clean_names
-#' @importFrom tibble as_tibble
-#' @importFrom purrr map_dfr
-#' @importFrom dplyr bind_rows
-#' @importFrom glue glue
+#' @importFrom glue glue glue_collapse
 #' @importFrom rlang inform
-.fotmob_get_league_matches <- function(league_id, page_url, season = NULL) {
-  missing_season <- is.null(season)
-  resp <- .fotmob_get_league_resp(
-    league_id = league_id,
-    page_url = page_url,
-    season = season
-  )
-  latest_season <- resp$allAvailableSeasons[1]
-  if (is.na(season)) {
-    season <- latest_season
+.fotmob_message_for_season <- function(resp, season = NULL) {
+
+  if (is.null(season)) {
+    season <- resp$allAvailableSeasons[1]
     rlang::inform(
       'Defaulting `season` to latest ("{season}").',
       .frequency = "once",
-      .frequency_id = ".fotmob_get_league_matches-season"
+      .frequency_id = ".fotmob_get_league_(matches|tables)"
     )
   } else {
-    is_valid_season <- season %in% resp$allAvailableSeasons
-    if (isFALSE(is_valid_season)) {
+    if (isFALSE(season %in% resp$allAvailableSeasons)) {
       stop(
         glue::glue(
           "`season` should be one of the following:\n{glue::glue_collapse(resp$allAvailableSeasons, '\n')}"
@@ -301,6 +285,23 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
       )
     }
   }
+
+}
+
+
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr bind_rows
+.fotmob_get_league_matches <- function(league_id, page_url, season = NULL) {
+  # And now coerce NA back to NULL
+  season <- switch(!is.na(season), season, NULL)
+  resp <- .fotmob_get_league_resp(
+    league_id = league_id,
+    page_url = page_url,
+    season = season
+  )
+  .fotmob_message_for_season(resp, season)
   rounds <- resp$matches$data$matchesCombinedByRound
   purrr::map_dfr(
     rounds,
@@ -341,6 +342,13 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
 #'   league_id = 47
 #' )
 #'
+#' # one league, past season
+#' fotmob_get_league_tables(
+#'   country = "GER",
+#'   league_name = "1. Bundesliga",
+#'   season = "2020/2021"
+#' )
+#'
 #' # multiple leagues (could also use ids)
 #' league_tables <- fotmob_get_league_tables(
 #'   country =     c("ENG",            "ESP"   ),
@@ -352,7 +360,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season, c
 #'   dplyr::filter(table_type == "away")
 #' })
 #' }
-fotmob_get_league_tables <- function(country, league_name, league_id, cached = TRUE) {
+fotmob_get_league_tables <- function(country, league_name, league_id, season = NULL, cached = TRUE) {
 
   urls <- .fotmob_get_league_ids(
     cached = cached,
@@ -361,14 +369,19 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
     league_id = rlang::maybe_missing(league_id, NULL)
   )
 
-  fp <- purrr::possibly(
-    .fotmob_get_league_tables,
-    quiet = FALSE,
-    otherwise = tibble::tibble()
+  season <- ifelse(is.null(season), NA_character_, season)
+  urls <- tidyr::crossing(
+    urls,
+    "season" = season
   )
-  purrr::map2_dfr(
-    urls$id, urls$page_url,
-    fp
+
+  purrr::pmap_dfr(
+    list(
+      urls$id,
+      urls$page_url,
+      urls$season
+    ),
+    .fotmob_get_league_tables
   )
 }
 
@@ -377,9 +390,20 @@ fotmob_get_league_tables <- function(country, league_name, league_id, cached = T
 #' @importFrom rlang .data
 #' @importFrom dplyr select all_of bind_rows rename mutate
 #' @importFrom tidyr pivot_longer unnest_longer unnest
-.fotmob_get_league_tables <- function(league_id, page_url) {
-  resp <- .fotmob_get_league_resp(league_id, page_url)
+.fotmob_get_league_tables <- function(league_id, page_url, season = NULL) {
+
+  season <- switch(!is.na(season), season, NULL)
+  resp <- .fotmob_get_league_resp(
+    league_id = league_id,
+    page_url = page_url,
+    season = season
+  )
+  .fotmob_message_for_season(resp, season)
+
   table_init <- resp$table$data
+  # TODO:
+  # - Use purrr::flatten_chr(resp$table$data$tableFilterTypes) instead of hard-coding `cols`?
+  # - Extract "form" as well?
   cols <- c("all", "home", "away")
   table <- if("table" %in% names(table_init)) {
     table_init$table %>% dplyr::select(dplyr::all_of(cols))

@@ -8,7 +8,7 @@ fotmob_get_league_matches(
   country,
   league_name,
   league_id,
-  season,
+  season = NULL,
   cached = TRUE
 )
 }
@@ -19,7 +19,7 @@ fotmob_get_league_matches(
 
 \item{league_id}{Fotmob ID for the league. Only used if `country` and `league_name` are not specified.}
 
-\item{season}{Season, e.g. `"2021/2022"`. Can be one or multiple. If not specified, data for the latest season availabe will be pulled.}
+\item{season}{Season, e.g. `"2021/2022"`. Can be one or multiple. If left as `NULL` (default), data for the latest season available will be pulled.}
 
 \item{cached}{Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.}
 }

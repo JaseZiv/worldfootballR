@@ -56,7 +56,7 @@ test_that("fotmob_get_league_matches() works", {
     epl_league_matches$page_url[1] == epl_league_matches_2021$page_url[1]
   )
 
-  expect_message(
+  expect_error(
     fotmob_get_league_matches(
       league_id = 47,
       season = "2021"
@@ -157,6 +157,26 @@ test_that("fotmob_get_league_tables() works", {
 
   expect_gt(nrow(epl_league_table), 0)
   expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
+
+  ## past season
+  epl_league_table_2021 <- fotmob_get_league_tables(
+    league_id = 47,
+    season = "2021/2022"
+  )
+
+  expect_gt(nrow(epl_league_table_2021), 0)
+  expect_setequal(colnames(epl_league_table_2021), expected_domestic_league_table_cols)
+  expect_false(
+    epl_league_table_2021$table_scores_str[1:2] != epl_league_table$table_scores_str[1:2]
+  )
+
+  expect_error(
+    fotmob_get_league_tables(
+      league_id = 47,
+      season = "2021"
+    ),
+    regexp = "`season` should be one of the following"
+  )
 
   ## see not about MLS from before
   mls_league_table <- fotmob_get_league_tables(

@@ -4,7 +4,13 @@
 \alias{fotmob_get_league_tables}
 \title{Get standings from fotmob}
 \usage{
-fotmob_get_league_tables(country, league_name, league_id, cached = TRUE)
+fotmob_get_league_tables(
+  country,
+  league_name,
+  league_id,
+  season = NULL,
+  cached = TRUE
+)
 }
 \arguments{
 \item{country}{Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)}
@@ -12,6 +18,8 @@ fotmob_get_league_tables(country, league_name, league_id, cached = TRUE)
 \item{league_name}{League names. If provided, `country` must also be provided (of the same length).}
 
 \item{league_id}{Fotmob ID for the league. Only used if `country` and `league_name` are not specified.}
+
+\item{season}{Season, e.g. `"2021/2022"`. Can be one or multiple. If left as `NULL` (default), data for the latest season available will be pulled.}
 
 \item{cached}{Whether to load the dataframe from the \href{https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/fotmob-leagues/all_leagues.csv}{data CSV}. This is faster and most likely what you want to do, unless you identify a league that's being tracked by fotmob that's not in this pre-saved CSV.}
 }
@@ -36,6 +44,13 @@ fotmob_get_league_tables(
 # one league, by id
 fotmob_get_league_tables(
   league_id = 47
+)
+
+# one league, past season
+fotmob_get_league_tables(
+  country = "GER",
+  league_name = "1. Bundesliga",
+  season = "2020/2021"
 )
 
 # multiple leagues (could also use ids)
