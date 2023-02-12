@@ -175,18 +175,20 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 
 #' Get fotmob match results by league
 #'
-#' Returns match results for all matches played on the selected date from fotmob.com.
+#' Returns match status given a league and season
 #'
 #' @param country Three character country code. Can be one or multiple. If provided, `league_name` must also be provided (of the same length)
 #' @param league_name League names. If provided, `country` must also be provided (of the same length).
 #' @param league_id Fotmob ID for the league. Only used if `country` and `league_name` are not specified.
+#' @param season Season, e.g. `"2021/2022"`. Can be one or multiple. If not specified, data for the latest season availabe will be pulled.
 #' @inheritParams fotmob_get_league_ids
 #'
 #' @return returns a dataframe of league matches
 #'
-#' @importFrom purrr possibly map2_dfr
+#' @importFrom purrr possibly pmap_dfr
 #' @importFrom tibble tibble
 #' @importFrom rlang maybe_missing
+#' @importFrom tidyr crossing
 #'
 #' @export
 #'
@@ -207,6 +209,13 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #'   league_id = 47
 #' )
 #'
+#' # can specify past seasons
+#' fotmob_get_league_matches(
+#'   country = "GER",
+#'   league_name = "1. Bundesliga",
+#'   season = "2020/2021"
+#' )
+#'
 #' # multiple leagues (could also use ids)
 #' league_matches <- fotmob_get_league_matches(
 #'   country =     c("ENG",            "ESP"   ),
@@ -219,7 +228,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
 #'   tidyr::unnest_wider(c(home, away), names_sep = "_")
 #' })
 #' }
-fotmob_get_league_matches <- function(country, league_name, league_id, cached = TRUE) {
+fotmob_get_league_matches <- function(country, league_name, league_id, season, cached = TRUE) {
 
   urls <- .fotmob_get_league_ids(
     cached = cached,
@@ -228,14 +237,25 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
     league_id = rlang::maybe_missing(league_id, NULL)
   )
 
+  season <- rlang::maybe_missing(season, NA_character_)
+  urls <- tidyr::crossing(
+    urls,
+    "season" = season
+  )
+
   fp <- purrr::possibly(
     .fotmob_get_league_matches,
     quiet = FALSE,
     otherwise = tibble::tibble()
   )
-  purrr::map2_dfr(
-    urls$id, urls$page_url,
-    .fotmob_get_league_matches
+
+  purrr::pmap_dfr(
+    list(
+      urls$id,
+      urls$page_url,
+      urls$season
+    ),
+    fp
   )
 }
 
@@ -243,13 +263,34 @@ fotmob_get_league_matches <- function(country, league_name, league_id, cached = 
 #' @importFrom tibble as_tibble
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr bind_rows
-.fotmob_get_league_matches <- function(league_id, page_url) {
+#' @importFrom glue glue
+#' @importFrom rlang inform
+.fotmob_get_league_matches <- function(league_id, page_url, season) {
   resp <- .fotmob_get_league_resp(league_id, page_url)
+
+  if (is.na(season)) {
+    season <- resp$allAvailableSeasons[1]
+    rlang::inform(
+      'Defaulting `season` to latest ("{season}").',
+      .frequency = "once",
+      .frequency_id = ".fotmob_get_league_matches-season"
+    )
+  } else {
+    is_valid_season <- season %in% resp$allAvailableSeasons
+
+    if (isFALSE(is_valid_season)) {
+      stop(
+        glue::glue(
+          "`season` should be one of the following:\n{glue::glue_collapse(stat_options$stat_name, '\n')}"
+        )
+      )
+    }
+  }
   rounds <- resp$matches$data$matchesCombinedByRound
   purrr::map_dfr(
     rounds,
     ~dplyr::mutate(.x, dplyr::across(.data[["roundName"]], as.character)),
-   ) %>%
+  ) %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
