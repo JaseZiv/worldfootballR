@@ -13,6 +13,7 @@
 * All understat functions were failing due to a new cookie requirement (0.6.2.5000) [#239](https://github.com/JaseZiv/worldfootballR/issues/239)
 * `fb_player_scouting_report()` failing due to HTML changes on FBRef (0.6.2.7000) [#242](https://github.com/JaseZiv/worldfootballR/issues/242)
 * `fb_league_stats(team_or_player = "player", stat_type = "standard", ...)` failing since `"standard"` should be translated to `"stats"` (0.6.2.9100) [#252](https://github.com/JaseZiv/worldfootballR/issues/252)
+* `fotmob_get_match_details()` returned 0 rows instead of 1 when there are no shots available (0.6.2.9300)
 
 ### Improvements
 
