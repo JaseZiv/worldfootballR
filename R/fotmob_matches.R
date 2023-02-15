@@ -158,11 +158,12 @@ fotmob_get_match_details <- function(match_ids) {
       general$scalars,
       general$teams
     )
-
-    shots <- general$resp$content$shotmap$shots %>% janitor::clean_names()
-    has_shots <- length(shots) > 0
     df <- tibble::as_tibble(df)
+    shots <- general$resp$content$shotmap$shots
+    has_shots <- length(shots) > 0
+
     if(isTRUE(has_shots)) {
+      shots <- janitor::clean_names(shots)
       df$shots <- list(shots)
       df <- df %>%
         tidyr::unnest(.data[["shots"]])  %>%
