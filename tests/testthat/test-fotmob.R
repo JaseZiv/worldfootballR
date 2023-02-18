@@ -391,7 +391,7 @@ test_that("fotmob_get_season_stats() works", {
 test_that("fotmob_get_match_info() works", {
   testthat::skip_on_cran()
 
-  expected_match_info_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color", "match_date_utc_time", "tournament_id", "tournament_link", "tournament_league_name", "tournament_round", "stadium_name", "stadium_city", "stadium_country", "stadium_lat", "stadium_long", "referee_img_url", "referee_text", "referee_country", "attendance")
+  expected_match_info_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color", "match_date_utc_time", "tournament_id", "tournament_link", "tournament_league_name", "tournament_round", "tournament_selected_season", "tournament_is_current_season", "stadium_name", "stadium_city", "stadium_country", "stadium_lat", "stadium_long", "referee_img_url", "referee_text", "referee_country", "attendance")
   match_info <- fotmob_get_match_info(c(3609987, 3609979))
 
   expect_gt(nrow(match_info), 0)
