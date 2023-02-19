@@ -303,11 +303,8 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
     season = season
   )
   .fotmob_message_for_season(resp, season)
-  rounds <- resp$matches$data$matchesCombinedByRound
-  purrr::map_dfr(
-    rounds,
-    ~dplyr::mutate(.x, dplyr::across(.data[["roundName"]], as.character)),
-  ) %>%
+  matches <- resp$matches$allMatches
+  matches %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 }
