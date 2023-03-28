@@ -15,6 +15,7 @@
 * `fb_league_stats(team_or_player = "player", stat_type = "standard", ...)` failing since `"standard"` should be translated to `"stats"` (0.6.2.9100) [#252](https://github.com/JaseZiv/worldfootballR/issues/252)
 * `fotmob_get_match_details()` returned 0 rows instead of 1 when there are no shots available (0.6.2.9300)
 * `fotmob_get_league_matches()` changed to use `matches.allMatches` JSON element (0.6.2.9400) [#258](https://github.com/JaseZiv/worldfootballR/issues/258)
+* All fotmob functions updated to use `httr::GET()` with appropriate post-processing of JSON instead of `jsonlite::fromJSON()` with raw URLs (0.6.3.0000) [#262](https://github.com/JaseZiv/worldfootballR/issues/262)
 
 ### Improvements
 
