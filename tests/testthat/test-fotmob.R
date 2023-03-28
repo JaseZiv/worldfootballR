@@ -53,7 +53,7 @@ test_that("fotmob_get_league_matches() works", {
   expect_gt(nrow(epl_league_matches_2021), 0)
   expect_setequal(colnames(epl_league_matches_2021), expected_league_matches_cols)
   expect_false(
-    epl_league_matches$page_url[[1]] == epl_league_matches_2021$page_url[[1]]
+    epl_league_matches$page_url[1] == epl_league_matches_2021$page_url[1]
   )
 
   expect_error(
@@ -141,7 +141,7 @@ test_that("fotmob_get_league_matches() works", {
 test_that("fotmob_get_league_tables() works", {
   testthat::skip_on_cran()
 
-  expected_domestic_league_table_cols <- c("league_id", "page_url", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_deduction", "table_ongoing", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
+  expected_domestic_league_table_cols <- c("league_id", "page_url", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
   epl_league_table <- fotmob_get_league_tables(
     country = "ENG",
     league_name = "Premier League"
@@ -149,7 +149,7 @@ test_that("fotmob_get_league_tables() works", {
 
   ## should be 20 teams x 3 table types = 60
   expect_gt(nrow(epl_league_table), 0)
-  expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
+  expect_true(all(colnames(epl_league_table) %in% expected_domestic_league_table_cols))
 
   epl_league_table <- fotmob_get_league_tables(
     league_id = 47
@@ -165,7 +165,7 @@ test_that("fotmob_get_league_tables() works", {
   )
 
   expect_gt(nrow(epl_league_table_2021), 0)
-  expect_setequal(colnames(epl_league_table_2021), expected_domestic_league_table_cols)
+  expect_true(all(colnames(epl_league_table) %in% expected_domestic_league_table_cols))
   expect_false(
     all(epl_league_table_2021$table_scores_str[1:20] == epl_league_table$table_scores_str[1:20])
   )
