@@ -61,10 +61,14 @@ fotmob_get_match_players <- function(match_ids) {
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
   f <- function(url) {
-    resp <- safely_from_json(url)$result
+    resp <- get_json_from_content(url)$result
+    if (!is.null(resp$error)) {
+      stop(sprintf("Error in `.fotmob_get_single_match_players`:\n%s", resp$error))
+    }
 
-    table <- resp$content$table
-    lineup <- resp$content$lineup$lineup
+    res <- resp$result
+    table <- res$content$table
+    lineup <- res$content$lineup$lineup
     starters <- lineup$players
     bench <- lineup$bench
     stopifnot(length(starters) == 2) ## 2 teams

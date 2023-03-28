@@ -1,6 +1,9 @@
 .extract_fotmob_match_general <- function(url) {
-  resp <- safely_from_json(url)$result
-  general <- resp$general
+  resp <- get_json_from_content(url)
+  if (!is.null(resp$error)) {
+    stop(sprintf("Error in `.extract_fotmob_match_general`:\n%s:", resp$error))
+  }
+  general <- resp$result$general
   scalars <- data.frame(
     stringsAsFactors = FALSE,
     match_id = general$matchId, ## don't technically need this since `.fotmob_get_single_match_details` is wrapped with `.wrap_fotmob_match_id_f`
@@ -85,21 +88,21 @@ fotmob_get_matches_by_date <- function(dates) {
 
     url <- paste0(main_url, "matches?date=", date)
 
-    resp <- safely_from_json(url)$result
-
+    resp <- get_content(url)
     res <- resp$leagues
-    if(is.null(res)) {
+    if (is.null(res)) {
       stop(sprintf('Couldn\'t find match data for `date = "%s"`.', orig_date))
       return(res)
     }
 
     res %>%
+      dplyr::bind_rows() |>
       janitor::clean_names() %>%
       tibble::as_tibble() %>%
       dplyr::rename(match = .data[["matches"]]) %>%
-      tidyr::unnest(.data[["match"]], names_sep = "_") %>%
+      tidyr::unnest_wider(.data[["match"]], names_sep = "_") %>%
       dplyr::rename(home = .data[["match_home"]], away = .data[["match_away"]]) %>%
-      tidyr::unnest(c(.data[["home"]], .data[["away"]], .data[["match_status"]]), names_sep = "_") %>%
+      tidyr::unnest_wider(c(.data[["home"]], .data[["away"]], .data[["match_status"]]), names_sep = "_") %>%
       dplyr::select(-tidyselect::vars_select_helpers$where(is.list)) %>%
       janitor::clean_names()
   }

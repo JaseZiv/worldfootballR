@@ -2,8 +2,7 @@
 #' @importFrom purrr keep
 #' @importFrom stringr str_detect
 .fotmob_extract_meta <- function() {
-  page <- "https://www.fotmob.com/" %>%
-    rvest::read_html()
+  page <- safely_get("https://www.fotmob.com/")
 
   page %>%
     rvest::html_elements("script") %>%

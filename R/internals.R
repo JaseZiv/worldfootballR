@@ -448,13 +448,32 @@
 # Sometimes .fromJSON doesn't work, but jsonlite::fromJSON will. See https://github.com/JaseZiv/worldfootballR/issues/201
 #' @importFrom purrr safely
 #' @importFrom jsonlite fromJSON
-#'
-#' @noRd
 safely_from_json <- function(...) {
   f <- purrr::safely(.fromJSON, otherwise = NULL, quiet = TRUE)
   resp <- f(...)
-  if (!is.null(resp)) {
+  if (!is.null(resp$result)) {
     return(resp)
   }
-  jsonlite::fromJSON(...)
+
+  f <- purrr::safely(jsonlite::fromJSON, otherwise = NULL, quiet = TRUE)
+  f(...)
 }
+
+#' @importFrom httr GET content
+get_content <- function(..., simplifyVector = FALSE) {
+  httr::content(
+    httr::GET(
+      ...
+    ),
+    as = NULL,
+    type = NULL,
+    encoding = NULL,
+    simplifyVector = TRUE,
+    simplifyDataFrame = simplifyVector,
+    simplifyMatrix = simplifyVector,
+    flatten = FALSE
+  )
+}
+
+#' #' @importFrom purrr safely
+safely_get_content <- purrr::safely(get_content, otherwise = NULL, quiet = TRUE)
