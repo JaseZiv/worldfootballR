@@ -96,7 +96,7 @@ fotmob_get_matches_by_date <- function(dates) {
     }
 
     res %>%
-      dplyr::bind_rows() |>
+      dplyr::bind_rows() %>%
       janitor::clean_names() %>%
       tibble::as_tibble() %>%
       dplyr::rename(match = .data[["matches"]]) %>%
