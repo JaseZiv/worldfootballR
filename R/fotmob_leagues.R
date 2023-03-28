@@ -293,6 +293,22 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
 
 }
 
+#' @importFrom purrr map_lgl
+all_len1 <- function(x) {
+  is.list(x) & all(
+    purrr::map_lgl(
+      x,
+      ~length(.x) == 1L
+    )
+  )
+}
+
+#' @importFrom tidyr unnest
+#' @importFrom tidyselect vars_select_helpers
+unnest_where_all_len1 <- function(df) {
+  df %>%
+    tidyr::unnest(tidyselect::vars_select_helpers$where(all_len1))
+}
 
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
@@ -312,7 +328,7 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
   matches %>%
     jsonlite::toJSON() %>%
     jsonlite::fromJSON() %>%
-    # tidyr::unnest(where(is.list), names_sep = "_") %>%
+    unnest_where_all_len1() %>%
     janitor::clean_names()
 }
 
@@ -406,7 +422,8 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
   )
   .fotmob_message_for_season(resp, season)
 
-  table_init <- resp$table$data
+  table_init <- jsonlite::fromJSON(jsonlite::toJSON(resp$table))
+  table_init <- dplyr::bind_rows(table_init$data)
   # TODO:
   # - Use purrr::flatten_chr(resp$table$data$tableFilterTypes) instead of hard-coding `cols`?
   # - Extract "form" as well?
@@ -436,6 +453,7 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
     janitor::clean_names() %>%
     tibble::as_tibble()
 
+  browser()
   res <- table %>%
     tidyr::pivot_longer(
       dplyr::all_of(cols),
@@ -457,5 +475,6 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
       league_id = !!league_id,
       page_url = !!page_url,
       .before = 1
-    )
+    ) %>%
+    unnest_where_all_len1()
 }
