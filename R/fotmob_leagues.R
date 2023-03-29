@@ -293,23 +293,6 @@ fotmob_get_league_matches <- function(country, league_name, league_id, season = 
 
 }
 
-#' @importFrom purrr map_lgl
-all_len1 <- function(x) {
-  is.list(x) & all(
-    purrr::map_lgl(
-      x,
-      ~length(.x) == 1L
-    )
-  )
-}
-
-#' @importFrom tidyr unnest
-#' @importFrom tidyselect vars_select_helpers
-unnest_where_all_len1 <- function(df) {
-  df %>%
-    tidyr::unnest(tidyselect::vars_select_helpers$where(all_len1))
-}
-
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom purrr map_dfr
@@ -328,8 +311,7 @@ unnest_where_all_len1 <- function(df) {
   matches %>%
     jsonlite::toJSON() %>%
     jsonlite::fromJSON() %>%
-    unnest_where_all_len1() %>%
-    janitor::clean_names()
+    auto_unnest_df()
 }
 
 #' Get standings from fotmob
@@ -407,6 +389,11 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
   )
 }
 
+lightweight_remove_empty_cols <- function(df) {
+  mask <- purrr::map_lgl(colnames(df), ~any(length(df[[.x]]) > 0))
+  df[, mask, drop = FALSE]
+}
+
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom rlang .data
@@ -449,16 +436,20 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
       "Expected to find `table` or `tables` element but did not."
     )
   }
+
   table <- table %>%
     janitor::clean_names() %>%
     tibble::as_tibble()
 
-  browser()
   res <- table %>%
     tidyr::pivot_longer(
       dplyr::all_of(cols),
       names_to = "table_type",
       values_to = "table"
+    ) %>%
+    ## issues with unnesting list cols with data and empty data frames
+    dplyr::mutate(
+      "table" = purrr::map(.data[["table"]], lightweight_remove_empty_cols)
     ) %>%
     tidyr::unnest_longer(
       .data[["table"]]
@@ -476,5 +467,5 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
       page_url = !!page_url,
       .before = 1
     ) %>%
-    unnest_where_all_len1()
+    auto_unnest_df()
 }

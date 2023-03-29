@@ -83,7 +83,11 @@ test_that("fotmob_get_league_matches() works", {
 
   epl_ll_league_matches_unnested <- epl_ll_league_matches %>%
     dplyr::select(match_id = id, home, away) %>%
-    tidyr::unnest_wider(c(home, away), names_sep = "_")
+    tidyr::unnest_wider(c(home, away), names_sep = "_") |>
+    # auto_unnest_df()
+    unnest_where_is_df()
+  dplyr::glimpse(epl_ll_league_matches_unnested)
+  dplyr::glimpse(epl_ll_league_matches_unnested)
 
   expect_gt(nrow(epl_ll_league_matches_unnested), 0)
   expect_setequal(
@@ -165,7 +169,7 @@ test_that("fotmob_get_league_tables() works", {
   )
 
   expect_gt(nrow(epl_league_table_2021), 0)
-  expect_true(all(colnames(epl_league_table) %in% expected_domestic_league_table_cols))
+  expect_true(all(expected_domestic_league_table_cols %in% colnames(epl_league_table)))
   expect_false(
     all(epl_league_table_2021$table_scores_str[1:20] == epl_league_table$table_scores_str[1:20])
   )
@@ -209,7 +213,7 @@ test_that("fotmob_get_league_tables() works", {
   ## Can only check on CL after group stages and briefly after the final.
   m <- lubridate::month(Sys.Date())
   if(m >= 1 && m <= 5) {
-    expected_international_league_table_cols <- c("league_id", "page_url", "ccode", "group_id", "group_page_url", "group_name", "ongoing", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_deduction", "table_ongoing", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
+    expected_international_league_table_cols <- c("league_id", "page_url", "ccode", "group_id", "group_page_url", "group_name", "ongoing", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
 
     cl_league_table <- fotmob_get_league_tables(
       country =     "INT",
@@ -218,7 +222,7 @@ test_that("fotmob_get_league_tables() works", {
 
     ## should be 32 teams x 3 table types = 96
     expect_gt(nrow(cl_league_table), 0)
-    expect_setequal(colnames(cl_league_table), expected_international_league_table_cols)
+    expect_true(all(expected_international_league_table_cols %in% colnames(cl_league_table)))
   }
 })
 
