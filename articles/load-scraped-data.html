@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9400</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-02-19</h4>
+            <h4 data-toc-skip class="date">2023-03-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -272,7 +272,7 @@ available:</p>
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1,285</span></span>
+<span><span class="co">#&gt; Rows: 1,294</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FIFA Women's World Cup", "FIFA Women's World Cup", "…</span></span>
 <span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
@@ -326,24 +326,24 @@ supported.</p>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 52,788 × 22</span></span></span>
-<span><span class="co">#&gt;    Match…¹ Date  Squad Home_…² Match…³ Minute Player xG    PSxG  Outcome Dista…⁴</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https:… 2017… Arse… Home          1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal    13     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https:… 2017… Arse… Home          1 8      Alex … 0.04  <span style="color: #949494;">""</span>    Off Ta… 24     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https:… 2017… Arse… Home          1 14     Alex … 0.03  <span style="color: #949494;">"</span>0.3… Saved   25     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https:… 2017… Arse… Home          1 22     Danny… 0.34  <span style="color: #949494;">""</span>    Blocked 11     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https:… 2017… Arse… Home          1 22     Grani… 0.02  <span style="color: #949494;">""</span>    Off Ta… 37     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https:… 2017… Arse… Home          1 26     Danny… 0.07  <span style="color: #949494;">""</span>    Blocked 15     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https:… 2017… Arse… Home          1 27     Sead … 0.05  <span style="color: #949494;">"</span>0.5… Saved   15     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https:… 2017… Arse… Home          1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta… 29     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https:… 2017… Arse… Home          1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked 31     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https:… 2017… Arse… Home          1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked 17     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 52,778 more rows, 11 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 53,983 × 21</span></span></span>
+<span><span class="co">#&gt;    MatchURL   Date  Squad Home_Away Match_Half Minute Player xG    PSxG  Outcome</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://f… 2017… Arse… Home               1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://f… 2017… Arse… Home               1 8      Alex … 0.04  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://f… 2017… Arse… Home               1 14     Alex … 0.03  <span style="color: #949494;">"</span>0.3… Saved  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://f… 2017… Arse… Home               1 22     Danny… 0.34  <span style="color: #949494;">""</span>    Blocked</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://f… 2017… Arse… Home               1 22     Grani… 0.02  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://f… 2017… Arse… Home               1 26     Danny… 0.07  <span style="color: #949494;">""</span>    Blocked</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://f… 2017… Arse… Home               1 27     Sead … 0.05  <span style="color: #949494;">"</span>0.5… Saved  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://f… 2017… Arse… Home               1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://f… 2017… Arse… Home               1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://f… 2017… Arse… Home               1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 53,973 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: Distance &lt;chr&gt;, `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;, n &lt;int&gt;, and abbreviated variable names ¹​MatchURL,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ²​Home_Away, ³​Match_Half, ⁴​Distance</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;</span></span></span>
 <span></span>
 <span><span class="co">## just 2019, for multiple leagues at the same time</span></span>
 <span><span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
@@ -353,23 +353,23 @@ supported.</p>
 <span>  season_end_year <span class="op">=</span> <span class="fl">2019</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19,810 × 21</span></span></span>
-<span><span class="co">#&gt;    Match…¹ Date  Squad Home_…² Match…³ Minute Player xG    PSxG  Outcome Dista…⁴</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https:… 2018… Chie… Home          1 15     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta… 30     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https:… 2018… Chie… Home          1 22     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https:… 2018… Chie… Home          1 38     Mariu… 0.23  <span style="color: #949494;">"</span>0.5… Goal    12     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https:… 2018… Chie… Home          2 56     Emanu… 0.79  <span style="color: #949494;">"</span>0.9… Goal    13     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https:… 2018… Chie… Home          2 67     Ivan … 0.03  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https:… 2018… Chie… Home          2 84     Fabri… 0.02  <span style="color: #949494;">""</span>    Off Ta… 28     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https:… 2018… Juve… Away          1 3      Sami … 0.20  <span style="color: #949494;">"</span>0.1… Goal    9      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https:… 2018… Juve… Away          1 5      Paulo… 0.04  <span style="color: #949494;">"</span>0.1… Saved   22     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https:… 2018… Juve… Away          1 6      Sami … 0.07  <span style="color: #949494;">""</span>    Off Ta… 10     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https:… 2018… Juve… Away          1 9      João … 0.66  <span style="color: #949494;">""</span>    Off Ta… 5      </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 19,800 more rows, 10 more variables: `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt;    MatchURL   Date  Squad Home_Away Match_Half Minute Player xG    PSxG  Outcome</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://f… 2018… Chie… Home               1 15     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://f… 2018… Chie… Home               1 22     Ivan … 0.02  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://f… 2018… Chie… Home               1 38     Mariu… 0.23  <span style="color: #949494;">"</span>0.5… Goal   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://f… 2018… Chie… Home               2 56     Emanu… 0.79  <span style="color: #949494;">"</span>0.9… Goal   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://f… 2018… Chie… Home               2 67     Ivan … 0.03  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://f… 2018… Chie… Home               2 84     Fabri… 0.02  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://f… 2018… Juve… Away               1 3      Sami … 0.20  <span style="color: #949494;">"</span>0.1… Goal   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://f… 2018… Juve… Away               1 5      Paulo… 0.04  <span style="color: #949494;">"</span>0.1… Saved  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://f… 2018… Juve… Away               1 6      Sami … 0.07  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://f… 2018… Juve… Away               1 9      João … 0.66  <span style="color: #949494;">""</span>    Off Ta…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 19,800 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: Distance &lt;chr&gt;, `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;, and abbreviated variable names ¹​MatchURL,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ²​Home_Away, ³​Match_Half, ⁴​Distance</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   Season_End_Year &lt;int&gt;</span></span></span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -460,7 +460,7 @@ these leagues back to the beginning of the 2020/21 season.</p>
 <span><span class="co">## or</span></span>
 <span><span class="co">## load_fotmob_match_details(league_id = 47)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_details</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 24,562</span></span>
+<span><span class="co">#&gt; Rows: 25,763</span></span>
 <span><span class="co">#&gt; Columns: 42</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3411352, 3411352, 3411352, 3411352, 3411352, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
@@ -517,7 +517,7 @@ fotmob match ids dating back to August 2017.</p>
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,272</span></span>
+<span><span class="co">#&gt; Rows: 2,325</span></span>
 <span><span class="co">#&gt; Columns: 40</span></span>
 <span><span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span></span>

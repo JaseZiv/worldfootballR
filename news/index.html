@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9400</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,6 +100,8 @@
 <li>
 <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> changed to use <code>matches.allMatches</code> JSON element (0.6.2.9400) <a href="https://github.com/JaseZiv/worldfootballR/issues/258" class="external-link">#258</a>
 </li>
+<li>All fotmob functions updated to use <code><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">httr::GET()</a></code> with appropriate post-processing of JSON instead of <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">jsonlite::fromJSON()</a></code> with raw URLs (0.6.3.0000) <a href="https://github.com/JaseZiv/worldfootballR/issues/262" class="external-link">#262</a>
+</li>
 </ul></div>
 <div class="section level4">
 <h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
@@ -125,6 +127,8 @@
 <li>
 <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> and <code>fotmob_get_league_tables</code> gain a <code>season</code> parameter. (0.6.2.9200) <a href="https://github.com/JaseZiv/worldfootballR/pull/256" class="external-link">#256</a>
 </li>
+<li>
+<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code> internals improved (0.6.3.0000)</li>
 </ul></div>
 </div>
     <div class="section level2">
