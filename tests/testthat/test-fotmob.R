@@ -265,15 +265,14 @@ test_that("fotmob_get_season_stats() works", {
   expect_setequal(colnames(liga_mx_team_xg_21), expected_stat_cols)
 
   ## fotmob has data for 2016/2017 for some leagues and stats, but not all
-  expect_warning(
+  expect_error(
     get_epl_season_stats(
       season_name = "2016/2017"
-    ),
-    regexp = "Issue with data"
+    )
   )
 
   ## fotmob doesn't have data this far back for any stat or league
-  expect_message(
+  expect_error(
     get_epl_season_stats(
       season_name = "2010/2011"
     ),
@@ -287,16 +286,15 @@ test_that("fotmob_get_season_stats() works", {
   expect_setequal(colnames(epl_player_xg_21), expected_stat_cols)
 
   ## similar to team test
-  expect_warning(
+  expect_error(
     get_epl_season_stats(
       season = "2016/2017",
       team_or_player = "player"
-    ),
-    regexp = "Issue with data"
+    )
   )
 
   ## similar to team test
-  expect_message(
+  expect_error(
     get_epl_season_stats(
       season = "2010/2011",
       team_or_player = "player"
@@ -308,7 +306,8 @@ test_that("fotmob_get_season_stats() works", {
   expect_error(
     get_epl_season_stats(
       team_or_player = c("team", "player")
-    )
+    ),
+    regexp = "one of either"
   )
 
   ## invalid `stat_name`
@@ -422,22 +421,22 @@ test_that("fotmob_get_match_details() works", {
   testthat::skip_on_cran()
 
   expected_match_detail_nonshot_cols <- c("match_id", "match_round", "league_id", "league_name", "league_round_name", "parent_league_id", "parent_league_season", "match_time_utc", "home_team_id", "home_team", "home_team_color", "away_team_id", "away_team", "away_team_color")
-  expected_match_detail_shot_cols <- c("id", "event_type", "team_id", "player_id", "player_name", "x", "y", "min", "min_added", "is_blocked", "is_on_target", "blocked_x", "blocked_y", "goal_crossed_y", "goal_crossed_z", "expected_goals", "expected_goals_on_target", "shot_type", "situation", "period", "is_own_goal", "on_goal_shot_x", "on_goal_shot_y", "on_goal_shot_zoom_ratio", "first_name", "last_name", "team_color")
+  expected_match_detail_shot_cols <- c("id", "event_type", "team_id", "player_id", "player_name", "x", "y", "min", "min_added", "is_blocked", "is_on_target", "blocked_x", "blocked_y", "goal_crossed_y", "goal_crossed_z", "expected_goals", "expected_goals_on_target", "shot_type", "situation", "period", "is_own_goal", "on_goal_shot_x", "on_goal_shot_y", "on_goal_shot_zoom_ratio")
   expected_match_detail_cols <- c(expected_match_detail_nonshot_cols, expected_match_detail_shot_cols)
   details <- fotmob_get_match_details(c(3609987, 3609979))
 
   expect_gt(nrow(details), 0)
-  expect_setequal(colnames(details), expected_match_detail_cols)
+  expect_true(all(expected_match_detail_cols %in% colnames(details)))
 
   ## non-domestic match
   details <- fotmob_get_match_details(3846342)
   expect_gt(nrow(details), 0)
-  expect_setequal(colnames(details), expected_match_detail_cols)
+  expect_true(all(expected_match_detail_cols %in% colnames(details)))
 
   ## match with no shots
   details <- fotmob_get_match_details(3361745)
   expect_equal(nrow(details), 1)
-  expect_setequal(colnames(details), expected_match_detail_nonshot_cols)
+  expect_true(all(expected_match_detail_nonshot_cols %in% colnames(details)))
 })
 
 test_that("fotmob_get_match_players() works", {

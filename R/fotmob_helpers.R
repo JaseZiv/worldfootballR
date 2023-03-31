@@ -17,6 +17,6 @@
   meta <- .fotmob_extract_meta()
   meta %>%
     stringr::str_extract('(?<=\\"buildId\\"[:]).*(?=\\,\\"isFallback\\")') %>%
-    safely_from_json() %>%
+    safely_get_content() %>%
     pluck("result")
 }

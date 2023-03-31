@@ -142,16 +142,6 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   )
 }
 
-#' @importFrom stringr str_replace
-.fotmob_get_league_resp_from_build_id <- function(page_url, stats = FALSE) {
-  build_id <- .fotmob_get_build_id()
-  url <- sprintf("https://www.fotmob.com/_next/data/%s%s.json", build_id, page_url)
-  if(stats) {
-    url <- stringr::str_replace(url, "overview", "stats")
-  }
-  safely_from_json(url)
-}
-
 #' @importFrom purrr safely
 #' @importFrom httr parse_url build_url
 #' @importFrom rlang inform
@@ -163,26 +153,13 @@ fotmob_get_league_ids <- function(cached = TRUE) {
     "season" = season
   )
   url <- httr::build_url(url)
-  resp <- safely_from_json(url)
+  resp <- safely_get_content(url)
   if(!is.null(resp$result)) {
     return(resp$result)
   }
 
-  first_url <- url
-  if(fallback) {
-    if (!is.null(season)) {
-      rlang::inform(
-        glue::glue('`season` ignored in call to "{page_url}".')
-      )
-    }
-    resp <- .fotmob_get_league_resp_from_build_id(page_url)
-    if(!is.null(resp$result)) {
-      return(resp$result)
-    }
-  }
-
   stop(
-    sprintf("Could not identify the league endpoint at either %s or %s. Stopping with the following error from jsonlite::fromJSON:\n", first_url, url, res$error)
+    sprintf("Could not identify the league endpoint at %s. Error:\n", url, res$error)
   )
 }
 

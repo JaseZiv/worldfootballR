@@ -61,7 +61,7 @@ fotmob_get_match_players <- function(match_ids) {
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
   f <- function(url) {
-    resp <- safely_from_json(url)$result
+    resp <- safely_get_content(url)$result
 
     table <- resp$content$table
     lineup <- resp$content$lineup$lineup
