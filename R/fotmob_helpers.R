@@ -89,3 +89,16 @@ auto_unnest_df <- function(df) {
     unnest_where_is_df() %>%
     janitor::clean_names()
 }
+
+#' Re-parse JSON
+#'
+#' This is for backwards compatability with result formats when we used jsonlite::fromJSON({raw url})
+#' Sometimes httr::content() doesn't parse the result in the same manner, so we can "reset" the JSON resul
+#' to a format closer to what it would have been before.
+#'
+#' @param x list to re-parse
+#' @importFrom jsonlite toJSON fromJSON
+#' @noRd
+reset_json <- function(x) {
+  jsonlite::fromJSON(jsonlite::toJSON(x))
+}

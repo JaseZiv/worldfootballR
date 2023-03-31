@@ -61,7 +61,7 @@ fotmob_get_match_players <- function(match_ids) {
   url <- paste0(main_url, "matchDetails?matchId=", match_id)
 
   f <- function(url) {
-    resp <- get_json_from_content(url)$result
+    resp <- safely_get_content(url)
     if (!is.null(resp$error)) {
       stop(sprintf("Error in `.fotmob_get_single_match_players`:\n%s", resp$error))
     }

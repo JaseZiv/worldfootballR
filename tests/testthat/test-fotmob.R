@@ -229,7 +229,7 @@ test_that("fotmob_get_league_tables() works", {
 test_that("fotmob_get_season_stats() works", {
   testthat::skip_on_cran()
 
-  expected_stat_cols <- c("country", "league_name", "league_id", "season_name", "season_id", "stat_league_name", "stat_name", "stat", "participant_name", "particiant_id", "team_id", "team_color", "stat_value", "sub_stat_value", "minutes_played", "matches_played", "stat_value_count", "rank", "participant_country_code", "team_name")
+  expected_team_stat_cols <- c("country", "league_name", "league_id", "season_name", "season_id", "stat_league_name", "stat_name", "stat", "participant_name", "particiant_id", "team_id", "team_color", "stat_value", "sub_stat_value", "minutes_played", "matches_played", "stat_value_count", "rank", "participant_country_code")
   epl_team_xg_21_a <- fotmob_get_season_stats(
     league_id = 47,
     season_name = "2020/2021",
@@ -237,7 +237,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(epl_team_xg_21_a), 0)
-  expect_setequal(colnames(epl_team_xg_21_a), expected_stat_cols)
+  expect_setequal(colnames(epl_team_xg_21_a), expected_team_stat_cols)
 
   get_epl_season_stats <- function(
     season_name = "2020/2021",
@@ -266,14 +266,14 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(liga_mx_team_xg_21), 0)
-  expect_setequal(colnames(liga_mx_team_xg_21), expected_stat_cols)
+  expect_setequal(colnames(liga_mx_team_xg_21), expected_team_stat_cols)
 
   ## fotmob has data for 2016/2017 for some leagues and stats, but not all
-  expect_warning(
+  expect_message(
     get_epl_season_stats(
       season_name = "2016/2017"
     ),
-    regexp = "Issue with data"
+    regexp = "Error" ## xml2 error
   )
 
   ## fotmob doesn't have data this far back for any stat or league
@@ -284,19 +284,20 @@ test_that("fotmob_get_season_stats() works", {
     regexp = "not found"
   )
 
+  expected_player_stat_cols <- c(expected_team_stat_cols, "team_name")
   epl_player_xg_21 <- get_epl_season_stats(
     team_or_player = "player"
   )
   expect_gt(nrow(epl_player_xg_21), 0)
-  expect_setequal(colnames(epl_player_xg_21), expected_stat_cols)
+  expect_setequal(colnames(epl_player_xg_21), expected_player_stat_cols)
 
   ## similar to team test
-  expect_warning(
+  expect_message(
     get_epl_season_stats(
       season = "2016/2017",
       team_or_player = "player"
     ),
-    regexp = "Issue with data"
+    regexp = "Error"
   )
 
   ## similar to team test
@@ -339,7 +340,7 @@ test_that("fotmob_get_season_stats() works", {
       team_or_player = "team"
     )
     expect_gt(nrow(cl_team_xg_21), 0)
-    expect_setequal(colnames(cl_team_xg_21), expected_stat_cols)
+    expect_setequal(colnames(cl_team_xg_21), expected_team_stat_cols)
   }
 
   ## see not about MLS from before
@@ -350,7 +351,7 @@ test_that("fotmob_get_season_stats() works", {
     team_or_player = "team"
   )
   expect_gt(nrow(mls_team_xg_21), 0)
-  expect_setequal(colnames(mls_team_xg_21), expected_stat_cols)
+  expect_setequal(colnames(mls_team_xg_21), expected_team_stat_cols)
 
   ## multiple leagues
   epl_ll_team_xg_21 <- fotmob_get_season_stats(
@@ -361,7 +362,7 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   expect_gt(nrow(epl_ll_team_xg_21), nrow(epl_team_xg_21_a))
-  expect_setequal(colnames(epl_ll_team_xg_21), expected_stat_cols)
+  expect_setequal(colnames(epl_ll_team_xg_21), expected_team_stat_cols)
 
   ## multiple seasons
   epl_team_xg_2122 <- get_epl_season_stats(
@@ -369,14 +370,14 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   expect_gt(nrow(epl_team_xg_2122), nrow(epl_team_xg_21_a))
-  expect_setequal(colnames(epl_team_xg_2122), expected_stat_cols)
+  expect_setequal(colnames(epl_team_xg_2122), expected_team_stat_cols)
 
   ## more than one stat
   epl_team_xgs_21 <- get_epl_season_stats(
     stat_name = c("Expected goals", "xG conceded")
   )
   expect_gt(nrow(epl_team_xgs_21), nrow(epl_team_xg_21_a))
-  expect_setequal(colnames(epl_team_xgs_21), expected_stat_cols)
+  expect_setequal(colnames(epl_team_xgs_21), expected_team_stat_cols)
 
   ## multiple leagues, seasons, and stats
   epl_ll_team_xgs_2122 <- fotmob_get_season_stats(
@@ -389,7 +390,7 @@ test_that("fotmob_get_season_stats() works", {
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_ll_team_xg_21))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xg_2122))
   expect_gt(nrow(epl_ll_team_xgs_2122), nrow(epl_team_xgs_21))
-  expect_setequal(colnames(epl_ll_team_xgs_2122), expected_stat_cols)
+  expect_setequal(colnames(epl_ll_team_xgs_2122), expected_team_stat_cols)
 })
 
 test_that("fotmob_get_match_info() works", {

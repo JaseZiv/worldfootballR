@@ -475,5 +475,5 @@ get_content <- function(..., simplifyVector = FALSE) {
   )
 }
 
-#' #' @importFrom purrr safely
+#' @importFrom purrr safely
 safely_get_content <- purrr::safely(get_content, otherwise = NULL, quiet = TRUE)

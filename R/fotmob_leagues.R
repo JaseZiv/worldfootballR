@@ -409,7 +409,7 @@ lightweight_remove_empty_cols <- function(df) {
   )
   .fotmob_message_for_season(resp, season)
 
-  table_init <- jsonlite::fromJSON(jsonlite::toJSON(resp$table))
+  table_init <- reset_json(resp$table)
   table_init <- dplyr::bind_rows(table_init$data)
   # TODO:
   # - Use purrr::flatten_chr(resp$table$data$tableFilterTypes) instead of hard-coding `cols`?

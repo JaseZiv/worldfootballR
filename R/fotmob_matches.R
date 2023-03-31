@@ -1,5 +1,5 @@
 .extract_fotmob_match_general <- function(url) {
-  resp <- get_json_from_content(url)
+  resp <- safely_get_content(url)
   if (!is.null(resp$error)) {
     stop(sprintf("Error in `.extract_fotmob_match_general`:\n%s:", resp$error))
   }
@@ -25,7 +25,7 @@
     away_team_color = unlist(general$teamColors$away)
   )
   list(
-    resp = resp,
+    resp = resp$result,
     scalars = scalars,
     teams = teams
   )
@@ -143,7 +143,7 @@ fotmob_get_match_details <- function(match_ids) {
 
 #' @importFrom glue glue
 #' @importFrom purrr possibly
-#' @importFrom dplyr bind_cols mutate case_when
+#' @importFrom dplyr bind_rows bind_cols mutate case_when
 #' @importFrom janitor clean_names
 #' @importFrom rlang .data
 #' @importFrom tibble as_tibble tibble
@@ -163,10 +163,16 @@ fotmob_get_match_details <- function(match_ids) {
     )
     df <- tibble::as_tibble(df)
     shots <- general$resp$content$shotmap$shots
+
     has_shots <- length(shots) > 0
 
-    if(isTRUE(has_shots)) {
-      shots <- janitor::clean_names(shots)
+    if (isTRUE(has_shots)) {
+      shots <- reset_json(shots) %>%
+        auto_unnest_df()
+      shots <- shots %>%
+        janitor::clean_names() %>%
+        select(on_goal_shot:last_col())
+        tidyr::unnest_wider(.data[["on_goal_shot"]])
       df$shots <- list(shots)
       df <- df %>%
         tidyr::unnest(.data[["shots"]])  %>%
@@ -214,7 +220,7 @@ fotmob_get_match_team_stats <- function(match_ids) {
 }
 
 #' @importFrom purrr possibly
-#' @importFrom dplyr bind_cols mutate across rename
+#' @importFrom dplyr bind_rows bind_cols mutate across rename
 #' @importFrom janitor clean_names
 #' @importFrom rlang .data
 #' @importFrom tibble as_tibble
@@ -232,13 +238,14 @@ fotmob_get_match_team_stats <- function(match_ids) {
       general$teams
     )
 
-    stats <- general$resp$content$stats$stats %>% janitor::clean_names()
-    has_stats <- length(stats) > 0
+    stats <- general$resp$content$stats$stats %>%
+      dplyr::bind_rows() %>%
+      janitor::clean_names()
+    has_stats <- nrow(stats) > 0
     df <- tibble::as_tibble(df)
-    if(isTRUE(has_stats)) {
+    if (isTRUE(has_stats)) {
       wide_stats <- stats  %>%
-        tidyr::unnest_wider(stats, names_sep = '_')  %>%
-        tidyr::unnest(vars_select_helpers$where(is.list))
+        tidyr::unnest_wider(stats, names_sep = "_")
       clean_stats <- wide_stats  %>%
         tidyr::hoist(
           .data[["stats_stats"]],
