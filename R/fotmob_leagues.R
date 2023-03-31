@@ -149,7 +149,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   if(stats) {
     url <- stringr::str_replace(url, "overview", "stats")
   }
-  safely_from_json(url)
+  safely_get_content(url)
 }
 
 #' @importFrom purrr safely
@@ -163,7 +163,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
     "season" = season
   )
   url <- httr::build_url(url)
-  resp <- safely_from_json(url)
+  resp <- safely_get_content(url)
   if(!is.null(resp$result)) {
     return(resp$result)
   }

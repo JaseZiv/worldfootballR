@@ -16,7 +16,7 @@
     stat
   )
 
-  resp <- safely_from_json(url)
+  resp <- safely_get_content(url)
   if(!is.null(resp$error)) {
     warning(
       sprintf(
@@ -166,7 +166,7 @@
         filter(.data[["Name"]] == !!season)
 
       topstats_url <- sprintf("https://data.fotmob.com/%s", link$RelativePath)
-      topstats <- purrr::map_dfr(topstats_url, safely_from_json) ## Liga MX will have two rows
+      topstats <- purrr::map_dfr(topstats_url, safely_get_content) ## Liga MX will have two rows
       toplists <- topstats$result$TopLists %>%
         dplyr::distinct(header = .data[["Title"]], name = .data[["StatName"]])
 
