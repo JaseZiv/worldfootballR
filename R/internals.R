@@ -268,6 +268,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom httr GET set_cookies content
+#' @importFrom jsonlite fromJSON
 #' @noRd
 #'
 .get_clean_understat_json <- function(page_url, script_name) {
@@ -280,7 +281,7 @@
     clean_json <- clean_json[grep(script_name, clean_json)] %>% stringi::stri_unescape_unicode()
     clean_json <- qdapRegex::rm_square(clean_json, extract = TRUE, include.markers = TRUE) %>% unlist() %>% stringr::str_subset("\\[\\]", negate = TRUE)
 
-    out_df <- lapply(clean_json, .fromJSON) %>% do.call("rbind", .)
+    out_df <- lapply(clean_json, jsonlite::fromJSON) %>% do.call("rbind", .)
     # some outputs don't come with the season present, so add it in if not
     if(!any(grepl("season", colnames(out_df)))) {
       season_element <- page %>% rvest::html_nodes(xpath = '//*[@name="season"]') %>%
@@ -409,40 +410,6 @@
   ua <- httr::user_agent(agent)
   session <- rvest::session(url = page_url, ua)
   xml2::read_html(session)
-}
-
-# Use 1.8.0 version of jsonlite::fromJSON since 1.8.2's version (that uses base::url()) doesn't work for some cases
-#' @importFrom jsonlite validate parse_json
-#' @importFrom curl new_handle handle_setheaders curl
-.fromJSON <- function(txt, simplifyVector = TRUE, simplifyDataFrame = simplifyVector, simplifyMatrix = simplifyVector, flatten = FALSE, ...) {
-
-  # check type
-  if (!is.character(txt) && !inherits(txt, "connection")) {
-    stop("Argument 'txt' must be a JSON string, URL or file.")
-  }
-
-  # overload for URL or path
-  if (is.character(txt) && length(txt) == 1 && nchar(txt, type="bytes") < 2084 && !jsonlite::validate(txt)) {
-    if (grepl("^https?://", txt, useBytes=TRUE)) {
-      agent <- getOption("worldfootballR.agent", default = "RStudio Desktop (2022.7.1.554); R (4.1.1 x86_64-w64-mingw32 x86_64 mingw32)")
-      h <- curl::new_handle(useragent = agent)
-      curl::handle_setheaders(h, Accept = "application/json, text/*, */*")
-      txt <- curl::curl(txt, handle = h)
-    } else if (file.exists(txt)) {
-      # With files we can never know for sure the encoding. Lets try UTF8 first.
-      # txt <- raw_to_json(readBin(txt, raw(), file.info(txt)$size));
-      txt <- file(txt)
-    }
-  }
-
-  jsonlite::parse_json(
-    txt = txt,
-    flatten = flatten,
-    simplifyVector = simplifyVector,
-    simplifyDataFrame = simplifyDataFrame,
-    simplifyMatrix = simplifyMatrix,
-    ...
-  )
 }
 
 #' @importFrom httr GET content
