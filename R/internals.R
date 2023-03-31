@@ -450,7 +450,8 @@
 #' @noRd
 get_content <- function(url) {
   resp <- httr::GET(url)
-  cont <- httr::content(resp, as = "text")
+  ## suppress encoding messages
+  suppressMessages(cont <- httr::content(resp, as = "text"))
   jsonlite::fromJSON(cont)
 }
 
