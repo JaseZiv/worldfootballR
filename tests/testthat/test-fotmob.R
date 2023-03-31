@@ -272,7 +272,7 @@ test_that("fotmob_get_season_stats() works", {
   )
 
   ## fotmob doesn't have data this far back for any stat or league
-  expect_message(
+  expect_error(
     get_epl_season_stats(
       season_name = "2010/2011"
     ),
@@ -436,7 +436,7 @@ test_that("fotmob_get_match_details() works", {
   ## match with no shots
   details <- fotmob_get_match_details(3361745)
   expect_equal(nrow(details), 1)
-  expect_true(expected_match_detail_nonshot_cols %in% colnames(details))
+  expect_true(all(expected_match_detail_nonshot_cols %in% colnames(details)))
 })
 
 test_that("fotmob_get_match_players() works", {
