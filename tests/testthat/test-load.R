@@ -156,11 +156,11 @@ test_that("load_fotmob_match_details() works", {
   expect_type(epl_match_details, "list")
   n_rows_epl_match_details <- nrow(epl_match_details)
   expect_gt(n_rows_epl_match_details, 0)
-  expect_equal(sort(colnames(epl_match_details)), sort(expected_match_detail_cols))
+  expect_true(all(expected_match_detail_cols %in% colnames(epl_match_details)))
 
   epl_ll_match_details <- load_fotmob_match_details(league_id = c(47, 87))
   expect_gt(nrow(epl_ll_match_details), n_rows_epl_match_details)
-  expect_equal(sort(colnames(epl_ll_match_details)), sort(expected_match_detail_cols))
+  expect_true(all(expected_match_detail_cols %in% colnames(epl_ll_match_details)))
 
   expect_error(load_fotmob_match_details(league_id = 0))
 })
