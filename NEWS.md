@@ -1,5 +1,11 @@
 # worldfootballR (development version)
 
+### Bugs
+
+* `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.2.3001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
+
+# worldfootballR 0.6.3
+
 ### Breaking Changes
 
 * `tm_player_transfer_history()` now contains an additional column in the returned dataframe (`transfer_type`). This column differentiate between regular transfers, free transfers, loans and paid loans and transfers due to players returning from loan.
@@ -8,7 +14,7 @@
 ### Bugs
 
 * `fotmob_get_match_players()` was failing for upcoming matches due to a missing `stats` column (0.6.2.1000) [#226](https://github.com/JaseZiv/worldfootballR/issues/226)
-* `tm_team_transfer_balances()` failing because of empty team boxes being collected (0.6.2.1000) [228](https://github.com/JaseZiv/worldfootballR/issues/228)
+* `tm_team_transfer_balances()` failing because of empty team boxes being collected (0.6.2.1000) [#228](https://github.com/JaseZiv/worldfootballR/issues/228)
 * `fotmob_get_league_matches()` was failing due to an extra `purrr::map_dfr` that is no longer needed (0.6.2.2000) [#229](https://github.com/JaseZiv/worldfootballR/issues/229)
 * All understat functions were failing due to a new cookie requirement (0.6.2.5000) [#239](https://github.com/JaseZiv/worldfootballR/issues/239)
 * `fb_player_scouting_report()` failing due to HTML changes on FBRef (0.6.2.7000) [#242](https://github.com/JaseZiv/worldfootballR/issues/242)
