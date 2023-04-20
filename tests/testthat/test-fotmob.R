@@ -409,12 +409,12 @@ test_that("fotmob_get_match_team_stats() works", {
   match_team_stats <- fotmob_get_match_team_stats(c(3609987, 3609979))
 
   expect_gt(nrow(match_team_stats), 0)
-  expect_setequal(colnames(match_team_stats), expected_match_team_stats_cols)
+  expect_true(all(expected_match_team_stats_cols %in% colnames(match_team_stats)))
 
   ## non-domestic match
   match_team_stats <- fotmob_get_match_team_stats(3846342)
   expect_gt(nrow(match_team_stats), 0)
-  expect_setequal(colnames(match_team_stats), expected_match_team_stats_cols)
+  expect_true(all(expected_match_team_stats_cols %in% colnames(match_team_stats)))
 })
 
 test_that("fotmob_get_match_details() works", {

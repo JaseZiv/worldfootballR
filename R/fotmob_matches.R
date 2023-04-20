@@ -12,14 +12,15 @@
     parent_league_season = general$parentLeagueSeason,
     match_time_utc = general$matchTimeUTC
   )
+  colors <- general$teamColor
   teams <- data.frame(
     stringsAsFactors = FALSE,
     home_team_id = unlist(general$homeTeam$id),
     home_team = unlist(general$homeTeam$name),
-    home_team_color = unlist(general$teamColors$home),
+    home_team_color = colors[1, "color"],
     away_team_id = unlist(general$awayTeam$id),
     away_team = unlist(general$awayTeam$name),
-    away_team_color = unlist(general$teamColors$away)
+    away_team_color = colors[2, "color"]
   )
   list(
     resp = resp,
