@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,19 +70,28 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="worldfootballr-development-version">worldfootballR (development version)<a class="anchor" aria-label="anchor" href="#worldfootballr-development-version"></a></h2>
 <div class="section level4">
-<h4 id="breaking-changes-development-version">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h4>
+<h4 id="bugs-development-version">Bugs<a class="anchor" aria-label="anchor" href="#bugs-development-version"></a></h4>
+<ul><li>
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing due to change in <code>teamColors</code> JSON element (0.6.2.3001) <a href="https://github.com/JaseZiv/worldfootballR/issues/271" class="external-link">#271</a>
+</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.3" id="worldfootballr-063">worldfootballR 0.6.3<a class="anchor" aria-label="anchor" href="#worldfootballr-063"></a></h2>
+<div class="section level4">
+<h4 id="breaking-changes-0-6-3">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-6-3"></a></h4>
 <ul><li>
 <code><a href="../reference/tm_player_transfer_history.html">tm_player_transfer_history()</a></code> now contains an additional column in the returned dataframe (<code>transfer_type</code>). This column differentiate between regular transfers, free transfers, loans and paid loans and transfers due to players returning from loan.</li>
 <li>
 <code><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report()</a></code> now accepts an additional argument called <code>league_comp_name</code> that allows the user to only return reports for specific leagues/comps. not passing anything to this results in all reports being returned</li>
 </ul></div>
 <div class="section level4">
-<h4 id="bugs-development-version">Bugs<a class="anchor" aria-label="anchor" href="#bugs-development-version"></a></h4>
+<h4 id="bugs-0-6-3">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-6-3"></a></h4>
 <ul><li>
 <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> was failing for upcoming matches due to a missing <code>stats</code> column (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/226" class="external-link">#226</a>
 </li>
 <li>
-<code><a href="../reference/tm_team_transfer_balances.html">tm_team_transfer_balances()</a></code> failing because of empty team boxes being collected (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/228" class="external-link">228</a>
+<code><a href="../reference/tm_team_transfer_balances.html">tm_team_transfer_balances()</a></code> failing because of empty team boxes being collected (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/228" class="external-link">#228</a>
 </li>
 <li>
 <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> was failing due to an extra <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr</a></code> that is no longer needed (0.6.2.2000) <a href="https://github.com/JaseZiv/worldfootballR/issues/229" class="external-link">#229</a>
@@ -104,7 +113,7 @@
 </li>
 </ul></div>
 <div class="section level4">
-<h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
+<h4 id="improvements-0-6-3">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-6-3"></a></h4>
 <ul><li>
 <code>check_league_name()</code> removes repeated code. It checks that the name of the leagues is correct (0.6.2.3000) <a href="https://github.com/JaseZiv/worldfootballR/pull/232" class="external-link">#232</a>
 </li>
