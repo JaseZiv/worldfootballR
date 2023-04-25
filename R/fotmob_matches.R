@@ -377,8 +377,8 @@ fotmob_get_match_momentum <- function(match_ids) {
       sprintf("Error with `match_id = %s` (%s). Error:\n", match_id, url, resp$error)
     )
   }
-  has_momentum <- is.null(resp$result[["content"]][["momentum"]])
-  if (isFALSE(has_momentum)) {
+  not_has_momentum <- length(resp$result$content$momentum) == 1 & isFALSE(resp$result$content$momentum)
+  if (isTRUE(not_has_momentum)) {
     stop(
       sprintf("No momentum data for `match_id = %s.", match_id)
     )
