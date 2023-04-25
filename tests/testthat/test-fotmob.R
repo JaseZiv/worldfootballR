@@ -458,7 +458,18 @@ test_that("fotmob_get_match_players() works", {
 
 test_that("fotmob_get_match_momentum() works", {
   testthat::skip_on_cran()
-  expected_cols <- c("match_id", "minute", "value", "type")
+  expected_cols <- c("match_id", "minute", "value", "debug_title", "type")
 
   momentum <- fotmob_get_match_momentum(3901251)
+  expect_gt(nrow(momentum), 0)
+  expect_true(all(expected_cols %in% colnames(momentum)))
+  expect_setequal(unique(momentum$type), c("main", "alternateModels"))
+  ## there are two versions at time of writing, and the alternativeModels format implies that there could be more in the future
+  expect_gte(length(unique(momentum$debug_title)), 2L)
+
+  ## Pre-2022/23 matches do not have momentum
+  expect_error(
+    fotmob_get_match_momentum(3610307),
+    regexp = "No momentum"
+  )
 })

@@ -3,11 +3,10 @@
 #' @importFrom dplyr mutate across
 #' @importFrom rlang .data
 #' @importFrom stats setNames
-.wrap_fotmob_match_f <- function(match_ids, f, ...) {
+.wrap_fotmob_match_f <- function(match_ids, f) {
   purrr::map_dfr(
     stats::setNames(match_ids, match_ids),
     f,
-    ...,
     .id = "match_id"
   ) %>%
     dplyr::mutate(

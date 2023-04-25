@@ -346,7 +346,7 @@ fotmob_get_match_info <- function(match_ids) {
 #' Returns match momentum from fotmob.com
 #'
 #' @inheritParams fotmob_get_match_info
-#' @param type either `"main"` and/or `"alternate"`. `"main"` is "Using xT SA-version", `"alternate"` is "Using xT SA-version without rolling". By default, both are returned.
+#'
 #' @return returns a dataframe of match momentum
 #' @importFrom rlang arg_match
 #' @examples
@@ -357,55 +357,41 @@ fotmob_get_match_info <- function(match_ids) {
 #' })
 #' }
 #' @export
-fotmob_get_match_momentum <- function(match_ids, type = c("main", "alternate")) {
-  type <- rlang::arg_match(type, c("main", "alternate"), multiple = TRUE)
-  .wrap_fotmob_match_f(
-    match_ids,
-    .fotmob_get_single_match_momentum,
-    type = type
-  )
+fotmob_get_match_momentum <- function(match_ids) {
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_momentum)
 }
 
 #' @importFrom rlang .data .env
 #' @importFrom tibble as_tibble tibble
+#' @importFrom tidyr unnest
 #' @importFrom dplyr bind_rows
 #' @importFrom purrr possibly
+#' @importFrom janitor clean_names
 .fotmob_get_single_match_momentum <- function(match_id, type) {
 
   main_url <- "https://www.fotmob.com/api/"
-
-  f <- function(match_id) {
-    url <- paste0(main_url, "matchDetails?matchId=", match_id)
-    resp <- safely_get_content(url)
-    if (!is.null(resp$error)) {
-      stop(
-        sprintf("Error with `match_id = %s` (%s). Error:\n", match_id, url, resp$error)
-      )
-    }
-    momentum <- resp$result$content$momentum
-    main <- momentum$main$data
-    main$type <- "main"
-    alt <- momentum$alternateModels$data
-    alt$type <- "alternate"
-    browser()
-    res <- tibble::as_tibble(dplyr::bind_rows(
-      main,
-      alt
-    ))
-    if (length(type) != 1) {
-      return(res)
-    }
-    type <- ifelse(type == "alternate", "alternateModels", type)
-    dplyr::filter(
-      res,
-      .data[["type"]] == .env[["type"]]
+  url <- paste0(main_url, "matchDetails?matchId=", match_id)
+  resp <- safely_get_content(url)
+  if (!is.null(resp$error)) {
+    stop(
+      sprintf("Error with `match_id = %s` (%s). Error:\n", match_id, url, resp$error)
     )
   }
-
-  fp <- purrr::possibly(
-    f,
-    quiet = FALSE,
-    otherwise = tibble::tibble()
+  has_momentum <- is.null(resp$result[["content"]][["momentum"]])
+  if (isFALSE(has_momentum)) {
+    stop(
+      sprintf("No momentum data for `match_id = %s.", match_id)
+    )
+  }
+  momentum <- resp$result$content$momentum
+  main <- tidyr::unnest(dplyr::bind_rows(momentum$main), "data")
+  main$type <- "main"
+  alt <-tidyr::unnest(dplyr::bind_rows(momentum$alternateModels), "data")
+  alt$type <- "alternateModels"
+  res <- dplyr::bind_rows(
+    main,
+    alt
   )
-  fp(match_id)
+  res <- janitor::clean_names(res)
+  tibble::as_tibble(res)
 }
