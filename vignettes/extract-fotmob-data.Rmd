@@ -339,5 +339,5 @@ momentum <- fotmob_get_match_momentum(3901251)
 dplyr::glimpse(momentum)
 ```
 
-Note that matches before the 2022/23 season (for European leagues) do not have momentum available.
+Note that matches before the 2022/23 season do not have momentum available. (And, for the 2022/23 season, momentum only seems available for matches going back to Oct. 18, 2022.)
 

@@ -343,7 +343,7 @@ fotmob_get_match_info <- function(match_ids) {
 
 #' Get fotmob match momentum
 #'
-#' Returns match momentum from fotmob.com
+#' Returns match momentum from fotmob.com. Only available for 2022/23 season and beyond.
 #'
 #' @inheritParams fotmob_get_match_info
 #'
