@@ -455,3 +455,10 @@ test_that("fotmob_get_match_players() works", {
   expect_true(all(expected_match_player_cols %in% colnames(players)))
 })
 
+
+test_that("fotmob_get_match_momentum() works", {
+  testthat::skip_on_cran()
+  expected_cols <- c("match_id", "minute", "value", "type")
+
+  momentum <- fotmob_get_match_momentum(3901251)
+})

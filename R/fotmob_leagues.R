@@ -159,7 +159,7 @@ fotmob_get_league_ids <- function(cached = TRUE) {
   }
 
   stop(
-    sprintf("Could not identify the league endpoint at %s. Error:\n", url, res$error)
+    sprintf("Could not identify the league endpoint at %s. Error:\n", url, resp$error)
   )
 }
 
