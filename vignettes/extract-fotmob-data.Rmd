@@ -329,3 +329,15 @@ salah_stats <- salah %>%
   janitor::remove_empty(which = "cols")
 dplyr::glimpse(salah_stats)
 ```
+
+### Momentum
+
+You can extract momentum data with the `fotmob_get_match_momentum()` function. At time of writing, momentum is provided in two sets: (1) `"main"` ("Using xT SA-version") and (2) `"alternateModels"` ("Using xT SA-version without rolling").
+
+```{r fotmob_get_match_momentum}
+momentum <- fotmob_get_match_momentum(3901251)
+dplyr::glimpse(momentum)
+```
+
+Note that matches before the 2022/23 season do not have momentum available. (And, for the 2022/23 season, momentum only seems available for matches going back to Oct. 18, 2022.)
+

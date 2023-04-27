@@ -4,6 +4,10 @@
 
 * `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.2.3001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
 
+### Improvements
+
+* `fotmob_get_match_momentum()` added (0.6.2.3002)
+
 # worldfootballR 0.6.3
 
 ### Breaking Changes

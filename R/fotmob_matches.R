@@ -339,3 +339,59 @@ fotmob_get_match_info <- function(match_ids) {
   )
   fp(match_id)
 }
+
+
+#' Get fotmob match momentum
+#'
+#' Returns match momentum from fotmob.com. Only available for 2022/23 season and beyond.
+#'
+#' @inheritParams fotmob_get_match_info
+#'
+#' @return returns a dataframe of match momentum
+#' @importFrom rlang arg_match
+#' @examples
+#' \donttest{
+#' try({
+#' match_id <- 3901251
+#' fotmob_get_match_info(match_id)
+#' })
+#' }
+#' @export
+fotmob_get_match_momentum <- function(match_ids) {
+  .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_momentum)
+}
+
+#' @importFrom rlang .data .env
+#' @importFrom tibble as_tibble tibble
+#' @importFrom tidyr unnest
+#' @importFrom dplyr bind_rows
+#' @importFrom purrr possibly
+#' @importFrom janitor clean_names
+.fotmob_get_single_match_momentum <- function(match_id, type) {
+
+  main_url <- "https://www.fotmob.com/api/"
+  url <- paste0(main_url, "matchDetails?matchId=", match_id)
+  resp <- safely_get_content(url)
+  if (!is.null(resp$error)) {
+    stop(
+      sprintf("Error with `match_id = %s` (%s). Error:\n", match_id, url, resp$error)
+    )
+  }
+  not_has_momentum <- length(resp$result$content$momentum) == 1 & isFALSE(resp$result$content$momentum)
+  if (isTRUE(not_has_momentum)) {
+    stop(
+      sprintf("No momentum data for `match_id = %s.", match_id)
+    )
+  }
+  momentum <- resp$result$content$momentum
+  main <- tidyr::unnest(dplyr::bind_rows(momentum$main), "data")
+  main$type <- "main"
+  alt <-tidyr::unnest(dplyr::bind_rows(momentum$alternateModels), "data")
+  alt$type <- "alternateModels"
+  res <- dplyr::bind_rows(
+    main,
+    alt
+  )
+  res <- janitor::clean_names(res)
+  tibble::as_tibble(res)
+}
