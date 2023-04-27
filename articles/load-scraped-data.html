@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-04-20</h4>
+            <h4 data-toc-skip class="date">2023-04-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -326,7 +326,7 @@ supported.</p>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 54,932 × 21</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 55,170 × 21</span></span></span>
 <span><span class="co">#&gt;    MatchURL   Date  Squad Home_Away Match_Half Minute Player xG    PSxG  Outcome</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://f… 2017… Arse… Home               1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal   </span></span>
@@ -339,7 +339,7 @@ supported.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://f… 2017… Arse… Home               1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://f… 2017… Arse… Home               1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://f… 2017… Arse… Home               1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 54,922 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 55,160 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: Distance &lt;chr&gt;, `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
@@ -460,7 +460,7 @@ these leagues back to the beginning of the 2020/21 season.</p>
 <span><span class="co">## or</span></span>
 <span><span class="co">## load_fotmob_match_details(league_id = 47)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_details</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 26,692</span></span>
+<span><span class="co">#&gt; Rows: 27,024</span></span>
 <span><span class="co">#&gt; Columns: 43</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3411352, 3411352, 3411352, 3411352, 3411352, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
@@ -518,7 +518,7 @@ fotmob match ids dating back to August 2017.</p>
 <span>  league_name <span class="op">=</span> <span class="st">"Premier League"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_matches</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2,361</span></span>
+<span><span class="co">#&gt; Rows: 2,372</span></span>
 <span><span class="co">#&gt; Columns: 40</span></span>
 <span><span class="co">#&gt; $ date                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2017-08-11", "2017-08-12", "2017-08…</span></span>
 <span><span class="co">#&gt; $ ccode                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "…</span></span>
