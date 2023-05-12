@@ -12,15 +12,12 @@
     parent_league_season = general$parentLeagueSeason,
     match_time_utc = general$matchTimeUTC
   )
-  colors <- general$teamColor
   teams <- data.frame(
     stringsAsFactors = FALSE,
     home_team_id = unlist(general$homeTeam$id),
     home_team = unlist(general$homeTeam$name),
-    home_team_color = colors[1, "color"],
     away_team_id = unlist(general$awayTeam$id),
-    away_team = unlist(general$awayTeam$name),
-    away_team_color = colors[2, "color"]
+    away_team = unlist(general$awayTeam$name)
   )
   list(
     resp = resp,
@@ -235,7 +232,7 @@ fotmob_get_match_team_stats <- function(match_ids) {
     df <- tibble::as_tibble(df)
     if(isTRUE(has_stats)) {
       wide_stats <- stats  %>%
-        tidyr::unnest_wider(stats, names_sep = '_')  %>%
+        tidyr::unnest_wider(stats, names_sep = "_")  %>%
         tidyr::unnest(vars_select_helpers$where(is.list))
       clean_stats <- wide_stats  %>%
         tidyr::hoist(
