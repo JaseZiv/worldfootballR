@@ -102,9 +102,10 @@
 #' @importFrom dplyr rename
 #' @importFrom tidyr unnest_wider unnest_longer
 #' @importFrom janitor clean_names
+#' @importFrom tidyselect vars_select_helpers
 #' @export
 fotmob_get_league_ids <- function(cached = TRUE) {
-  if(cached) {
+  if (isTRUE(cached)) {
     return(.fotmob_load_csv("fotmob-leagues/all_leagues.csv"))
   }
 
@@ -117,11 +118,17 @@ fotmob_get_league_ids <- function(cached = TRUE) {
       dplyr::select(.data[["value"]]) %>%
       tidyr::unnest_wider(.data[["value"]]) %>%
       tidyr::unnest_longer(.data[["leagues"]]) %>%
+      dplyr::select(
+        tidyselect::vars_select_helpers$all_of(c("ccode", "name", "leagues"))
+      ) %>%
       dplyr::rename(
         country = .data[["name"]]
       ) %>%
       tidyr::unnest_wider(.data[["leagues"]]) %>%
-      janitor::clean_names()
+      janitor::clean_names() %>%
+      dplyr::select(
+        tidyselect::vars_select_helpers$all_of(c("ccode", "country", "id", "name", "page_url"))
+      )
   }
 
   purrr::map_dfr(

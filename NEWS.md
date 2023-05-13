@@ -3,6 +3,8 @@
 ### Bugs
 
 * `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.2.3001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
+* `fotmob_get_league_ids()` failing due to addition of `localizedName` JSON element (0.6.2.3003) [#27](https://github.com/JaseZiv/worldfootballR/issues/275)
+* `fotmob_get_match_details()` failing (again) due to change in `teamColors` JSON element (0.6.2.3003)
 
 ### Improvements
 
