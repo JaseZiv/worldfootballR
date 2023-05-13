@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.5/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.6/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from fotmob">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <h4 data-toc-skip class="author">Tony
 ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2023-04-27</h4>
+            <h4 data-toc-skip class="date">2023-05-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fotmob-data.Rmd</code></div>
@@ -498,16 +498,16 @@ season’s standings can be retrieved.</p>
 <span><span class="co">#&gt; $ table_id            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 9825, 8456, 10261, 10204, 10260, 10252, 9879, 8586…</span></span>
 <span><span class="co">#&gt; $ table_page_url      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/teams/9825/overview/arsenal", "/teams/8456/overv…</span></span>
 <span><span class="co">#&gt; $ table_deduction     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
-<span><span class="co">#&gt; $ table_ongoing       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span>
-<span><span class="co">#&gt; $ table_played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 17, 15, 16, 16, 15, 16, 16, 16, 17, 17, 15, 17, 17…</span></span>
-<span><span class="co">#&gt; $ table_wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 11, 9, 7, 7, 7, 6, 6, 5, 5, 4, 4, 4, 4, 4, 4, 3, 2…</span></span>
-<span><span class="co">#&gt; $ table_draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 6, 4, 2, 4, 2, 5, 4, 7, 4, 4, 2, 2, 2, 3, 5,…</span></span>
-<span><span class="co">#&gt; $ table_losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 5, 6, 6, 8, 6, 8, 6, 7, 9, 11, 10, 10, 9,…</span></span>
-<span><span class="co">#&gt; $ table_scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "33-17", "28-13", "25-15", "30-26", "19-29", "17-2…</span></span>
-<span><span class="co">#&gt; $ table_goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 16, 15, 10, 4, -10, -5, 0, -6, -4, -6, -6, -6, -11…</span></span>
-<span><span class="co">#&gt; $ table_pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 36, 30, 27, 25, 23, 22, 20, 20, 19, 19, 16, 16, 14…</span></span>
+<span><span class="co">#&gt; $ table_played        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 18, 16, 18, 16, 18, 18, 17, 17, 17, 17, 18, 17, 18…</span></span>
+<span><span class="co">#&gt; $ table_wins          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 12, 10, 8, 7, 7, 6, 6, 5, 5, 5, 4, 5, 4, 2, 4, 4, …</span></span>
+<span><span class="co">#&gt; $ table_draws         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 7, 4, 3, 4, 2, 5, 4, 4, 7, 2, 4, 8, 2, 2, 3,…</span></span>
+<span><span class="co">#&gt; $ table_losses        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 5, 8, 8, 9, 7, 8, 8, 7, 10, 10, 8, 12, 12…</span></span>
+<span><span class="co">#&gt; $ table_scores_str    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "35-17", "30-14", "30-17", "30-26", "21-33", "17-2…</span></span>
+<span><span class="co">#&gt; $ table_goal_con_diff <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 18, 16, 13, 4, -12, -7, -1, -7, -4, -6, -7, -23, -…</span></span>
+<span><span class="co">#&gt; $ table_pts           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 39, 33, 31, 25, 24, 22, 20, 20, 19, 19, 19, 17, 16…</span></span>
 <span><span class="co">#&gt; $ table_idx           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…</span></span>
-<span><span class="co">#&gt; $ table_qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ table_qual_color    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#2AD572", "#2AD572", "#2AD572", "#2AD572", "#0046…</span></span>
+<span><span class="co">#&gt; $ table_ongoing       <span style="color: #949494; font-style: italic;">&lt;df[,14]&gt;</span> &lt;data.frame[26 x 14]&gt;</span></span></code></pre></div>
 <p>Note that the output of <code>fotmob_get_league_tables</code> for a
 tournament has more columns.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -564,15 +564,15 @@ tournament has more columns.</p>
 <span><span class="co">#&gt; $ match_time_utc               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sun, Oct 3, 2021, 15:30 UTC", "Sun, Jan …</span></span>
 <span><span class="co">#&gt; $ home_team_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8455</span></span>
 <span><span class="co">#&gt; $ home_team                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Chelsea"</span></span>
-<span><span class="co">#&gt; $ home_team_color              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#064b95"</span></span>
 <span><span class="co">#&gt; $ away_team_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8650</span></span>
 <span><span class="co">#&gt; $ away_team                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Liverpool"</span></span>
-<span><span class="co">#&gt; $ away_team_color              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#69A8D8", "#d3171e"</span></span>
 <span><span class="co">#&gt; $ match_date_utc_time          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2021-10-03T15:30:00.000Z", "2022-01-02T1…</span></span>
 <span><span class="co">#&gt; $ tournament_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47</span></span>
+<span><span class="co">#&gt; $ tournament_parent_league_id  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47</span></span>
 <span><span class="co">#&gt; $ tournament_link              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/leagues/47/overview/premier-league?seas…</span></span>
 <span><span class="co">#&gt; $ tournament_league_name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League"</span></span>
-<span><span class="co">#&gt; $ tournament_round             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Round 7", "Round 21"</span></span>
+<span><span class="co">#&gt; $ tournament_round_name        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Round 7", "Round 21"</span></span>
+<span><span class="co">#&gt; $ tournament_round             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "7", "21"</span></span>
 <span><span class="co">#&gt; $ tournament_selected_season   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2021/2022", "2021/2022"</span></span>
 <span><span class="co">#&gt; $ tournament_is_current_season <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE</span></span>
 <span><span class="co">#&gt; $ stadium_name                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Anfield", "Stamford Bridge"</span></span>
@@ -632,7 +632,7 @@ goals (xG), expected goals on target (xGoT), etc., use the
 <code class="sourceCode R"><span><span class="va">match_details</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details</a></span><span class="op">(</span><span class="va">fotmob_matches</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">match_details</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 43</span></span>
-<span><span class="co">#&gt; Columns: 42</span></span>
+<span><span class="co">#&gt; Columns: 40</span></span>
 <span><span class="co">#&gt; $ match_id                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3609994, 3609994, 3609994, 3609994, 3609994, …</span></span>
 <span><span class="co">#&gt; $ match_round              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "7", "7", "7", "7", "7", "7", "7", "7", "7", …</span></span>
 <span><span class="co">#&gt; $ league_id                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 4…</span></span>
@@ -643,10 +643,8 @@ goals (xG), expected goals on target (xGoT), etc., use the
 <span><span class="co">#&gt; $ match_time_utc           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sun, Oct 3, 2021, 15:30 UTC", "Sun, Oct 3, 2…</span></span>
 <span><span class="co">#&gt; $ home_team_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8650, 8650, 8650, 8650, 8650, 8650, 865…</span></span>
 <span><span class="co">#&gt; $ home_team                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Liverpool", "Liverpool", "Liverpool", "Liver…</span></span>
-<span><span class="co">#&gt; $ home_team_color          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#d3171e", "#d3171e", "#d3171e", "…</span></span>
 <span><span class="co">#&gt; $ away_team_id             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8456, 8456, 8456, 8456, 8456, 8456, 845…</span></span>
 <span><span class="co">#&gt; $ away_team                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester City", "Manchester City", "Manche…</span></span>
-<span><span class="co">#&gt; $ away_team_color          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#69A8D8", "#69A8D8", "#69A8D8", "#69A8D8", "…</span></span>
 <span><span class="co">#&gt; $ id                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2338869639, 2338876703, 2338881401, 233888382…</span></span>
 <span><span class="co">#&gt; $ event_type               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AttemptSaved", "AttemptSaved", "AttemptSaved…</span></span>
 <span><span class="co">#&gt; $ team_id                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8650, 8456, 8456, 8456, 8456, 8456, 8456, 845…</span></span>
