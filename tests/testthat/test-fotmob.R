@@ -202,7 +202,7 @@ test_that("fotmob_get_league_tables() works", {
   table_types <- dplyr::distinct(epl_ll_league_tables, table_type)
   expect_equal(
     table_types$table_type,
-    c("all", "home", "away")
+    c("all", "home", "away", "form")
   )
 
   ## non-domestic league
