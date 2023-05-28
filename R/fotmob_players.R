@@ -58,8 +58,8 @@
 
   tidyr::pivot_wider(
     res,
-    names_from = col,
-    values_from = value
+    names_from = .data[["col"]],
+    values_from = .data[["value"]]
   ) %>%
     janitor::clean_names()
 }
