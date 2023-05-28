@@ -384,10 +384,14 @@ fotmob_get_league_tables <- function(country, league_name, league_id, season = N
   .fotmob_message_for_season(resp, season)
 
   table_init <- resp$table$data
-  cols <- purrr::flatten_chr(resp$table$data$tableFilterTypes)
+
   table <- if("table" %in% names(table_init)) {
+    cols <- purrr::flatten_chr(table_init$tableFilterTypes)
     table_init$table %>% dplyr::select(dplyr::all_of(cols))
   } else if("tables" %in% names(table_init)) {
+    ## leagues like the MLS don't have the "form" table type quite yet, although we could
+    ##   theoretically get form from the `teamForm` element (which would require different post-processing).
+    cols <- c("all", "home", "away")
     tables <- dplyr::bind_rows(table_init$tables)
     tables$all <- tables$table$all
     tables$home <- tables$table$home
