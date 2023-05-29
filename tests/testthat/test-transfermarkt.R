@@ -3,7 +3,7 @@ context("Testing Transfermarkt functions")
 test_that("tm_player_market_values() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
-  message(cat(paste("\nworldfootballR HTTP user agent:", getOption("worldfootballR.agent")), sep = "\n"))
+  options("worldfootballR.browser_agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36")
   # test that multiple countries can be passed to the function
   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
