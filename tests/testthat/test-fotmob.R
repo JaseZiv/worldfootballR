@@ -142,6 +142,9 @@ test_that("fotmob_get_league_tables() works", {
   testthat::skip_on_cran()
 
   expected_domestic_league_table_cols <- c("league_id", "page_url", "table_type", "table_name", "table_short_name", "table_id", "table_page_url", "table_deduction", "table_ongoing", "table_played", "table_wins", "table_draws", "table_losses", "table_scores_str", "table_goal_con_diff", "table_pts", "table_idx", "table_qual_color")
+  expect_table_cols <- function(df, exepcted_cols) {
+    expect_true(all(exepcted_cols %in% colnames(df)))
+  }
   epl_league_table <- fotmob_get_league_tables(
     country = "ENG",
     league_name = "Premier League"
@@ -149,14 +152,14 @@ test_that("fotmob_get_league_tables() works", {
 
   ## should be 20 teams x 3 table types = 60
   expect_gt(nrow(epl_league_table), 0)
-  expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
+  expect_table_cols(epl_league_table, expected_domestic_league_table_cols)
 
   epl_league_table <- fotmob_get_league_tables(
     league_id = 47
   )
 
   expect_gt(nrow(epl_league_table), 0)
-  expect_setequal(colnames(epl_league_table), expected_domestic_league_table_cols)
+  expect_table_cols(epl_league_table, expected_domestic_league_table_cols)
 
   ## past season
   epl_league_table_2021 <- fotmob_get_league_tables(
@@ -165,7 +168,7 @@ test_that("fotmob_get_league_tables() works", {
   )
 
   expect_gt(nrow(epl_league_table_2021), 0)
-  expect_setequal(colnames(epl_league_table_2021), expected_domestic_league_table_cols)
+  expect_table_cols(epl_league_table, expected_domestic_league_table_cols)
   expect_false(
     all(epl_league_table_2021$table_scores_str[1:20] == epl_league_table$table_scores_str[1:20])
   )
@@ -185,8 +188,8 @@ test_that("fotmob_get_league_tables() works", {
 
   expect_gt(nrow(mls_league_table), 0)
   ## MLS typically has 4 extra columns, sometimes 5. Don't check for the fifth, "ongoing", since it depends on the time of year.
-  expect_setequal(
-    setdiff(colnames(mls_league_table), "ongoing"),
+  expect_table_cols(
+    mls_league_table,
     c(expected_domestic_league_table_cols, "ccode", "group_id", "group_page_url", "group_name")
   )
 
@@ -197,12 +200,12 @@ test_that("fotmob_get_league_tables() works", {
 
   ## should be 2 leagues x 20 teams x 3 table types = 120
   expect_gt(nrow(epl_ll_league_tables), 0)
-  expect_setequal(colnames(epl_ll_league_tables), expected_domestic_league_table_cols)
+  expect_table_cols(epl_ll_league_tables, expected_domestic_league_table_cols)
 
   table_types <- dplyr::distinct(epl_ll_league_tables, table_type)
   expect_equal(
     table_types$table_type,
-    c("all", "home", "away")
+    c("all", "home", "away", "form")
   )
 
   ## non-domestic league
@@ -218,7 +221,7 @@ test_that("fotmob_get_league_tables() works", {
 
     ## should be 32 teams x 3 table types = 96
     expect_gt(nrow(cl_league_table), 0)
-    expect_setequal(colnames(cl_league_table), expected_international_league_table_cols)
+    expect_table_cols(cl_league_table, expected_international_league_table_cols)
   }
 })
 

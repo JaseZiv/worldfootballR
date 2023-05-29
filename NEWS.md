@@ -10,7 +10,10 @@
 
 ### Improvements
 
-* `fotmob_get_match_momentum()` added (0.6.3.0002)
+* `fotmob_get_match_momentum()` added (0.6.2.3002)
+* `fotmob_get_league_tables()` returns form table (0.6.3.0005) [#279](https://github.com/JaseZiv/worldfootballR/issues/279)
+
+***
 
 # worldfootballR 0.6.3
 
