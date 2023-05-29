@@ -7,7 +7,7 @@ test_that("tm_player_market_values() works", {
   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
   # test 0-row data.frame
-  expect_equal(nrow(tm_player_market_values(country_name = "Fake Country", start_year = 2020), 0)
+  expect_equal(nrow(tm_player_market_values(country_name = "Fake Country", start_year = 2020)), 0)
 
 })
 
