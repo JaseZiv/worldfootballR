@@ -157,7 +157,7 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
     season_url <- meta_df_seasons$season_urls
 
   } else {
-    tryCatch({league_page <- xml2::read_html(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country_name <- league_page %>%
       rvest::html_nodes(".profilheader") %>%
@@ -204,7 +204,7 @@ tm_team_player_urls <- function(team_url) {
 
   main_url <- "https://www.transfermarkt.com"
 
-  tryCatch({team_page <- xml2::read_html(team_url)}, error = function(e) {team_page <- c()})
+  tryCatch({team_page <- .load_page(team_url)}, error = function(e) {team_page <- c()})
 
   player_urls <- team_page %>%
     rvest::html_nodes(".nowrap a") %>% rvest::html_attr("href") %>%
