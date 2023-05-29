@@ -2,14 +2,18 @@
 
 ### Bugs
 
-* `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.2.3001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
-* `fotmob_get_league_ids()` failing due to addition of `localizedName` JSON element (0.6.2.3003) [#27](https://github.com/JaseZiv/worldfootballR/issues/275)
-* `fotmob_get_match_details()` failing (again) due to change in `teamColors` JSON element (0.6.2.3003)
+* `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.3.0001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
+* `fotmob_get_league_ids()` failing due to addition of `localizedName` JSON element (0.6.3.0003) [#275](https://github.com/JaseZiv/worldfootballR/issues/275)
+* `fotmob_get_match_details()` failing (again) due to change in `teamColors` JSON element (0.6.3.0003)
+* `fotmob_get_match_players()` failing due to addition of nested JSON elements in `stat` element (0.6.3.0004) [#277](https://github.com/JaseZiv/worldfootballR/issues/277)
+
 
 ### Improvements
 
 * `fotmob_get_match_momentum()` added (0.6.2.3002)
 * `fotmob_get_league_tables()` returns form table (0.6.3.0005) [#279](https://github.com/JaseZiv/worldfootballR/issues/279)
+
+***
 
 # worldfootballR 0.6.3
 

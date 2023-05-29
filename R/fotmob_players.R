@@ -1,3 +1,123 @@
+#' @importFrom purrr pluck
+.pp <- function(p, ..., n, .na, .f) {
+  res <- purrr::pluck(p, ...)
+  if(is.null(res) | length(res) == 0) {
+    return(rep(.na, n))
+  }
+  dots <- list(...)
+  .f(res)
+}
+.ppc <- function(...) .pp(..., .na = NA_character_, .f = as.character)
+.ppi <- function(...) .pp(..., .na = NA_integer_, .f = as.integer)
+.ppl <- function(...) .pp(..., .na = NA, .f = as.logical)
+#' @importFrom purrr pluck
+.pp2 <- function(p, ...) {
+  res <- purrr::pluck(p, ...)
+  if(is.null(res) | length(res) == 0) {
+    return(NULL)
+  }
+  res
+}
+
+#' @importFrom tibble tibble
+.parse_stat <- function(x, nm) {
+  if (all(is.na(x$key))) {
+    return(tibble::tibble())
+  }
+  tibble::tibble(
+    col = nm,
+    value = as.character(x$value)
+  )
+}
+
+#' @importFrom jsonlite fromJSON toJSON
+#' @importFrom purrr map_dfr discard
+#' @importFrom tidyr pivot_wider
+#' @importFrom janitor clean_names
+.clean_stats <- function(x) {
+  s <- x[['stats']]
+  if(is.null(s)) {
+    return(data.frame(dummy = 1))
+  }
+  ## re-parse json since it's in a super-awckward format
+  j <- jsonlite::fromJSON(jsonlite::toJSON(s), simplifyDataFrame = FALSE)
+
+  res <- purrr::map_dfr(
+    j,
+    function(ji) {
+      retained_ji <- purrr::discard(
+        ji,
+        ~length(.x) == 0
+      )
+      purrr::imap_dfr(
+        retained_ji,
+        .parse_stat
+      )
+    }
+  )
+
+  tidyr::pivot_wider(
+    res,
+    names_from = .data[["col"]],
+    values_from = .data[["value"]]
+  ) %>%
+    janitor::clean_names()
+}
+
+#' @importFrom purrr map_dfr
+#' @importFrom dplyr select any_of
+#' @importFrom tibble tibble
+.clean_positions <- function(p) {
+
+  ## index represents F/M/D/G (1/2/3/4), row index represents player (usually up to 4)
+  player_ids <- as.character(p[["id"]])
+  n <- length(player_ids)
+  ## for some reason jsonlite tries to combine stuff row-wise when it really should just bind things column-wise
+  ps <- p[["stats"]]
+
+  stats <- if(is.null(ps)) {
+    list(NULL)
+  } else {
+
+    pss <- purrr::map_dfr(ps, .clean_stats)
+    if(any(colnames(pss) == "dummy")) {
+      pss <- dplyr::select(pss, -dplyr::any_of("dummy"))
+    }
+    pss
+  }
+
+  rows <- tibble::tibble(
+    "id" = player_ids,
+    "using_opta_id" = .ppl(p, "usingOptaId", n = n),
+    "first_name" = .ppc(p, "name", "firstName", n = n),
+    "last_name" = .ppc(p, "name", "lastName", n = n),
+    "image_url" = .ppc(p, "imageUrl", n = n),
+    "page_url" = .ppc(p, "pageUrl", n = n),
+    "shirt" = .ppc(p, "shirt", n = n) ,
+    "is_home_team" = .ppl(p, "isHomeTeam", n = n),
+    "time_subbed_on" = .ppi(p, "timeSubbedOn", n = n),
+    "time_subbed_off" = .ppi(p, "timeSubbedOff", n = n),
+    "usual_position" = .ppi(p, "usualPosition", n = n),
+    "position_row" = .ppi(p, "positionRow", n = n),
+    "role" = .ppc(p, "role", n = n),
+    "is_captain" = .ppl(p, "isCaptain", n = n),
+    "subbed_out" = .ppi(p, "events", "subbedOut", n = n),
+    "g" = .ppi(p, "events", "g", n = n),
+    "rating_num" = .ppc(p, "rating", "num", n = n),
+    "rating_bgcolor" = .ppc(p, "rating", "bgcolor", n = n),
+    "is_top_rating" = .ppl(p, "rating", "isTop", "isTopRating", n = n),
+    "is_match_finished" = .ppl(p, "rating", "isTop", "isMatchFinished", n = n),
+    "fantasy_score_num" = .ppc(p, "fantasyScore", "num", n = n),
+    "fantasy_score_bgcolor" = .ppc(p, "fantasyScore", "bgcolor", n = n),
+    "home_team_id" = .ppi(p, "teamData", "home", "id", n = n),
+    "home_team_color" = .ppc(p, "teamData", "home", "color", n = n),
+    "away_team_id" = .ppi(p, "teamData", "away", "id", n = n),
+    "away_team_color" = .ppc(p, "teamData", "away", "color", n = n)
+  )
+  rows$stats <- stats
+  rows$shotmap <- if(!is.null(.pp2(p, "shotmap", 1))) .pp2(p, "shotmap") else NULL
+  rows
+}
 
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate across
@@ -40,20 +160,16 @@
 #' })
 #' }
 #' @export
-
 fotmob_get_match_players <- function(match_ids) {
   .wrap_fotmob_match_f(match_ids, .fotmob_get_single_match_players)
 }
 
-#' @importFrom glue glue
-#' @importFrom tibble as_tibble tibble
+#' @importFrom tibble as_tibble
 #' @importFrom purrr pluck map_dfr map2_dfr possibly
-#' @importFrom dplyr bind_cols select filter distinct any_of
-#' @importFrom tidyr pivot_longer pivot_wider unnest_wider
+#' @importFrom dplyr mutate bind_rows
+#' @importFrom tidyr unnest_wider
 #' @importFrom rlang .data
-#' @importFrom janitor make_clean_names
 #' @importFrom tibble as_tibble tibble
-#' @importFrom stringr str_detect
 .fotmob_get_single_match_players <- function(match_id) {
   # CRAN feedback was to remove this from the existing functions so I have for now
   # print(glue::glue("Scraping match data from fotmob for match {match_id}."))
@@ -70,147 +186,21 @@ fotmob_get_match_players <- function(match_ids) {
     stopifnot(length(starters) == 2) ## 2 teams
     stopifnot(length(bench) == 2)
 
-    .clean_positions <- function(p) {
-
-      ## index represents F/M/D/G (1/2/3/4), row index represents player (usually up to 4)
-      player_ids <- as.character(p[["id"]])
-      n <- length(player_ids)
-      ## for some reason jsonlite tries to combine stuff row-wise when it really should just bind things column-wise
-      ps <- p[["stats"]]
-
-      .clean_stats <- function(x) {
-        if(is.null(x)) {
-          return(data.frame(dummy = 1))
-        }
-        xt <- t(x)
-        xt[xt == "NULL"] <- NA_real_
-        rn <- rownames(xt)
-        suppressWarnings(
-          xt2 <- matrix(
-            as.character(xt),
-            ncol = ncol(xt)
-          ) %>%
-            tibble::as_tibble()
-        )
-        xt2 %>%
-          dplyr::bind_cols(
-            col = janitor::make_clean_names(rn)
-          ) %>%
-          tidyr::pivot_longer(
-            -.data[["col"]]
-          ) %>%
-          dplyr::select(
-            -.data[["name"]]
-          ) %>%
-          dplyr::filter(stringr::str_detect(.data[["col"]], "^stats_"), !is.na(.data[["value"]])) %>%
-          dplyr::distinct(.data[["col"]], .data[["value"]]) %>%
-          tidyr::pivot_wider(
-            names_from = "col",
-            values_from = "value"
-          ) %>%
-          as.data.frame()
-      }
-
-      stats <- if(is.null(ps)) {
-        list(NULL)
-      } else {
-
-        pss <- ps %>% purrr::map_dfr(.clean_stats)
-        if(any(colnames(pss) == "dummy")) {
-          pss <- pss %>% dplyr::select(-dplyr::any_of("dummy"))
-        }
-        pss
-      }
-
-      pp <- function(..., .na, .f) {
-        res <- purrr::pluck(p, ...)
-        if(is.null(res) | length(res) == 0) {
-          return(rep(.na, n))
-        }
-        dots <- list(...)
-        .f(res)
-      }
-      ppc <- function(...) pp(..., .na = NA_character_, .f = as.character)
-      ppi <- function(...) pp(..., .na = NA_integer_, .f = as.integer)
-      ppl <- function(...) pp(..., .na = NA, .f = as.logical)
-      pp2 <- function(...) {
-        res <- purrr::pluck(p, ...)
-        if(is.null(res) | length(res) == 0) {
-          return(NULL)
-        }
-        res
-      }
-
-      rows <- tibble::tibble(
-        "id" = player_ids,
-        "using_opta_id" = ppl("usingOptaId"),
-        "first_name" = ppc("name", "firstName"),
-        "last_name" = ppc("name", "lastName"),
-        "image_url" = ppc("imageUrl"),
-        "page_url" = ppc("pageUrl"),
-        "shirt" = ppc("shirt") ,
-        "is_home_team" = ppl("isHomeTeam"),
-        "time_subbed_on" = ppi("timeSubbedOn"),
-        "time_subbed_off" = ppi("timeSubbedOff"),
-        "usual_position" = ppi("usualPosition"),
-        "position_row" = ppi("positionRow"),
-        "role" = ppc("role"),
-        "is_captain" = ppl("isCaptain"),
-        "subbed_out" = ppi("events", "subbedOut"),
-        "g" = ppi("events", "g"),
-        "rating_num" = ppc("rating", "num"),
-        "rating_bgcolor" = ppc("rating", "bgcolor"),
-        "is_top_rating" = ppl("rating", "isTop", "isTopRating"),
-        "is_match_finished" = ppl("rating", "isTop", "isMatchFinished"),
-        "fantasy_score_num" = ppc("fantasyScore", "num"),
-        "fantasy_score_bgcolor" = ppc("fantasyScore", "bgcolor"),
-        "home_team_id" = ppi("teamData", "home", "id"),
-        "home_team_color" = ppc("teamData", "home", "color"),
-        "away_team_id" = ppi("teamData", "away", "id"),
-        "away_team_color" = ppc("teamData", "away", "color")
-      )
-      rows$stats <- stats
-      rows$shotmap <- if(!is.null(pp2("shotmap", 1))) pp2("shotmap") else NULL
-      rows
-    }
-
-    add_team_info <- function(p, i) {
+    .add_team_info <- function(p, i) {
       res <- .clean_positions(p)
-      res$team_id <- lineup$teamId[i]
-      res$team_name <- lineup$teamName[i]
-      res %>%
-        dplyr::relocate(
-          .data[["team_id"]],
-          .data[["team_name"]],
-          .before = 1
-        )
+      dplyr::mutate(
+        res,
+        "team_id" = lineup$teamId[i],
+        "team_name" = lineup$teamName[i],
+        .before = 1
+      )
     }
 
-    res <- dplyr::bind_rows(
-      purrr::map2_dfr(
-        starters, seq_along(starters),
-        ~purrr::map2_dfr(
-          .x, .y,
-          add_team_info
-        )
-      ) %>%
-        dplyr::mutate(
-          is_starter = TRUE
-        ),
-      purrr::map2_dfr(
-        bench, seq_along(bench),
-        add_team_info
-      ) %>%
-        dplyr::mutate(
-          is_starter = FALSE
-        )
-    ) %>%
-      tibble::as_tibble()
     ## Overwrite the existing variables since the away team value is "bad".
     ##   See https://github.com/JaseZiv/worldfootballR/issues/93
     ## For non-domestic leagues, the table element will not have a teams element
     ##   See https://github.com/JaseZiv/worldfootballR/issues/111
-    coerce_team_id <- function(df, side) {
+    .coerce_team_id <- function(df, side) {
       idx <- ifelse(side == "home", 1, 2)
       team_col <- sprintf("%s_team_id", side)
       df[[team_col]] <- ifelse(
@@ -220,9 +210,37 @@ fotmob_get_match_players <- function(match_ids) {
       )
       df
     }
-    res <- coerce_team_id(res, "home")
-    res <- coerce_team_id(res, "away")
-    tidyr::unnest_wider(res, .data[["stats"]])
+
+    clean_starters <- purrr::map2_dfr(
+      starters,
+      seq_along(starters),
+      ~purrr::map2_dfr(
+        .x, .y,
+        .add_team_info
+      )
+    ) %>%
+      dplyr::mutate(
+        is_starter = TRUE
+      )
+
+    clean_bench <- purrr::map2_dfr(
+      bench,
+      seq_along(bench),
+      .add_team_info
+    ) %>%
+      dplyr::mutate(
+        is_starter = FALSE
+      )
+
+    res <- dplyr::bind_rows(
+      clean_starters,
+      clean_bench
+    ) %>%
+      tibble::as_tibble()
+
+    res <- .coerce_team_id(res, "home")
+    res <- .coerce_team_id(res, "away")
+    tidyr::unnest_wider(res, .data[["stats"]], names_sep = "_")
   }
 
   fp <- purrr::possibly(
