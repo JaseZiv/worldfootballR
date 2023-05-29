@@ -6,8 +6,8 @@ test_that("tm_player_market_values() works", {
   # test that multiple countries can be passed to the function
   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
-  # test that an invalid country will error
-  expect_error(tm_player_market_values(country_name = "Fake Country", start_year = 2020))
+  # test 0-row data.frame
+  expect_equal(nrow(tm_player_market_values(country_name = "Fake Country", start_year = 2020), 0)
 
 })
 
