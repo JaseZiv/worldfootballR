@@ -6,7 +6,7 @@
 * `fotmob_get_league_ids()` failing due to addition of `localizedName` JSON element (0.6.3.0003) [#275](https://github.com/JaseZiv/worldfootballR/issues/275)
 * `fotmob_get_match_details()` failing (again) due to change in `teamColors` JSON element (0.6.3.0003)
 * `fotmob_get_match_players()` failing due to addition of nested JSON elements in `stat` element (0.6.3.0004) [#277](https://github.com/JaseZiv/worldfootballR/issues/277)
-
+* `fb_season_team_stats()` failing to get the correct home/away league table on some unusual layout league pages (0.6.3.0006) [#282](https://github.com/JaseZiv/worldfootballR/issues/282)
 
 ### Improvements
 
