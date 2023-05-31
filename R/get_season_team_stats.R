@@ -111,7 +111,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
           stat_df <- dplyr::bind_rows(stat_df1, stat_df2)
           stat_df$Conference[1] <- "Conference"
         } else {
-          stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+          stat_df <- league_standings[grepl("home_away",all_tables)] %>% rvest::html_table() %>% data.frame()
         }
 
         var_names <- stat_df[1,] %>% as.character()
