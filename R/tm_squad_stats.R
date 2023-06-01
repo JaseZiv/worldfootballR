@@ -20,7 +20,7 @@ tm_squad_stats <- function(team_url) {
     pb$tick()
 
     team_data_url <- gsub("startseite", "leistungsdaten", each_team_url)
-    team_data_page <- tryCatch(.load_page(team_data_url), error = function(e) NA)
+    team_data_page <- tryCatch(.load_page_tm(team_data_url), error = function(e) NA)
 
     if(!is.na(team_data_page)) {
 

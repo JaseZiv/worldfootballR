@@ -27,7 +27,7 @@ fotmob_get_league_tables(
 returns a dataframe of league standings
 }
 \description{
-Returns league standings from fotmob.com. 3 types are returned: all, home, away
+Returns league standings from fotmob.com. 4 types are returned: all, home, away, form
 }
 \examples{
 \donttest{

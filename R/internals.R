@@ -414,6 +414,40 @@
   xml2::read_html(session)
 }
 
+
+#' Load transfermarkt page with headers
+#'
+#' loads transfermarkt webpages with a header passed to read_html
+#'
+#' @importFrom httr GET content
+#'
+#' @param page_url url of the page wanted to be loaded
+#' @return a html webpage from transfermarkt
+#'
+#' @importFrom httr GET content add_headers
+#'
+#' @noRd
+.load_page_tm <- function(page_url) {
+  ua_options <- c(
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36'
+  )
+
+  ua <- sample(ua_options, 1)
+
+  headers = c(
+    `user-agent` = ua
+  )
+
+  resp <- httr::GET(url = page_url, httr::add_headers(.headers=headers)) |> httr::content()
+
+  return(resp)
+
+}
+
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
 #' @noRd

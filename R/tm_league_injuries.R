@@ -30,7 +30,7 @@ tm_league_injuries <- function(country_name, league_url = NA) {
     comp_url <- meta_df_seasons$comp_url %>% unique() %>% .[1]
 
   } else {
-    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page_tm(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
       rvest::html_nodes(".data-header") %>%
@@ -53,7 +53,7 @@ tm_league_injuries <- function(country_name, league_url = NA) {
   comp_url <- paste0(comp_url, "/plus/1")
 
 
-  injuries_page <- .load_page(comp_url)
+  injuries_page <- .load_page_tm(comp_url)
   injuries_page <- injuries_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 
   player_name <- tryCatch(injuries_page %>% rvest::html_nodes(".inline-table .hauptlink a") %>% rvest::html_text(),

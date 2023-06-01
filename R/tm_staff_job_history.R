@@ -19,7 +19,7 @@ tm_staff_job_history <- function(staff_urls) {
     main_staff_url <- staff_url
     staff_url <- staff_url %>% gsub("profil", "stationen", .) %>% paste0(., "/plus/1")
 
-    staff_pg <- .load_page(staff_url)
+    staff_pg <- .load_page_tm(staff_url)
 
     name <- staff_pg %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% stringr::str_squish()
     current_club <- staff_pg %>% rvest::html_nodes(".data-header__club a") %>% rvest::html_text() %>% .replace_empty_na()
