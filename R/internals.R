@@ -400,52 +400,19 @@
 #' loads webpages with a header passed to read_html
 #'
 #' @param page_url url of the page wanted to be loaded
-#' @param agent_type either "browser" or "desktop"
 #' @return a html webpage
 #'
+#' @importFrom httr user_agent GET resp
 #' @noRd
-.load_page <- function(page_url, agent_type = "browser") {
+.load_page <- function(page_url) {
   agent <- getOption(
-    sprintf("worldfootballR.%s_agent", agent_type),
-    default = "friendly R user coming in peace"
+    "worldfootballR.agent",
+    ## deefault only needed if user doesn't library the package and doesn't have the option set in their global .Rprofile
+    default = Randomuseragent::random_useragent(software_type = "browser")
   )
   ua <- httr::user_agent(agent)
-  session <- rvest::session(url = page_url, ua)
-  xml2::read_html(session)
-}
-
-
-#' Load transfermarkt page with headers
-#'
-#' loads transfermarkt webpages with a header passed to read_html
-#'
-#' @importFrom httr GET content
-#'
-#' @param page_url url of the page wanted to be loaded
-#' @return a html webpage from transfermarkt
-#'
-#' @importFrom httr GET content add_headers
-#'
-#' @noRd
-.load_page_tm <- function(page_url) {
-  ua_options <- c(
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0',
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.59',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36'
-  )
-
-  ua <- sample(ua_options, 1)
-
-  headers = c(
-    `user-agent` = ua
-  )
-
-  resp <- httr::GET(url = page_url, httr::add_headers(.headers=headers)) |> httr::content()
-
-  return(resp)
-
+  resp <- httr::GET(url = page_url, ua)
+  httr::content(resp)
 }
 
 #' @importFrom httr GET content

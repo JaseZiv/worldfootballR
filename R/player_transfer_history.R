@@ -21,10 +21,12 @@ tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
 
     main_url <- "https://www.transfermarkt.com"
 
-    page <- .load_page_tm(player_url)
+    page <- .load_page(player_url)
 
     player_name <- page %>% rvest::html_node("h1") %>% rvest::html_text() %>% gsub("#[[:digit:]]+ ", "", .) %>% stringr::str_squish()
-
+    if (player_name == "") {
+      stop(sprintf("Couldn't find player transfer history at %s.", player_url))
+    }
     box_holder <- page %>% rvest::html_nodes(".viewport-tracking")
 
     # need to get the index of the box containing transfer history data
@@ -87,7 +89,7 @@ tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
         if(get_extra_info == TRUE){
 
           extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__link") %>% rvest::html_attr("href") %>% paste0(main_url, .)
-          extra_info <- tryCatch(.load_page_tm(extra_info_url), error = function(e) NA)
+          extra_info <- tryCatch(.load_page(extra_info_url), error = function(e) NA)
           contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
           contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
 
@@ -181,7 +183,7 @@ player_transfer_history <- function(player_urls) {
 
     main_url <- "https://www.transfermarkt.com"
 
-    page <- .load_page_tm(player_url)
+    page <- .load_page(player_url)
 
     player_name <- page %>% rvest::html_node("h1") %>% rvest::html_text() %>% gsub("#[[:digit:]]+ ", "", .) %>% stringr::str_squish()
 
@@ -233,7 +235,7 @@ player_transfer_history <- function(player_urls) {
 
         # to get contract length, which isn't on the main page listing all transfers:
         extra_info_url <- all_transfer_rows[each_row] %>% rvest::html_nodes(".tm-player-transfer-history-grid__link") %>% rvest::html_attr("href") %>% paste0(main_url, .)
-        extra_info <- tryCatch(.load_page_tm(extra_info_url), error = function(e) NA)
+        extra_info <- tryCatch(.load_page(extra_info_url), error = function(e) NA)
         contract_box <- extra_info %>% rvest::html_nodes(".large-4.columns") %>% rvest::html_node("table") %>% rvest::html_children()
         contract_idx <- grep("Remaining contract duration", contract_box %>% rvest::html_text())
         if(is.na(extra_info)) {

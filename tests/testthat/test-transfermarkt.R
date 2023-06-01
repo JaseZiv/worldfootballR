@@ -3,12 +3,14 @@ context("Testing Transfermarkt functions")
 test_that("tm_player_market_values() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
-  options("worldfootballR.browser_agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36")
+  # options("worldfootballR.browser_agent" = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36")
   # test that multiple countries can be passed to the function
   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
-  # test 0-row data.frame
-  expect_equal(nrow(tm_player_market_values(country_name = "Fake Country", start_year = 2020)), 0)
+  expect_error(
+    tm_player_market_values(country_name = "Fake Country", start_year = 2020),
+    regexp = "Fake Country.*2020"
+  )
 
 })
 
@@ -23,8 +25,10 @@ test_that("tm_player_transfer_history() works", {
   expect_type(transfer_data, "list")
   expect_true(ncol(transfer_data) != 0)
 
-  # test that an invalid country will error
-  expect_error(tm_player_transfer_history("aaa.com.au"))
+  expect_error(
+    tm_player_transfer_history("aaa.com.au"),
+    regexp = "aaa"
+  )
 
 })
 

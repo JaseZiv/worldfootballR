@@ -35,7 +35,6 @@ Imports:
     qdapRegex,
     readr,
     rlang,
-    rstudioapi,
     rvest (>= 1.0.0),
     stats,
     stringi,
@@ -47,7 +46,8 @@ Imports:
     xml2,
     tibble,
     cli,
-    curl
+    curl,
+    Randomuseragent
 Suggests: 
     chromote,
     R6,

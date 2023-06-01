@@ -34,7 +34,7 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
     season_url <- meta_df_seasons$season_urls
 
   } else {
-    tryCatch({league_page <- .load_page_tm(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country_name <- league_page %>%
       rvest::html_nodes(".data-header") %>%
@@ -51,7 +51,7 @@ tm_team_transfer_balances <- function(country_name, start_year, league_url=NA) {
 
   season_url <- gsub("startseite", "transfers", season_url)
 
-  page <- .load_page_tm(season_url)
+  page <- .load_page(season_url)
 
   team_transfers <- page %>% rvest::html_nodes(".large-8") %>% rvest::html_nodes(".box")
 

@@ -33,7 +33,7 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
     comp_url <- meta_df_seasons$comp_url %>% unique() %>% .[1]
 
   } else {
-    tryCatch({league_page <- .load_page_tm(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
       rvest::html_nodes(".data-header") %>%
@@ -62,14 +62,14 @@ tm_league_debutants <- function(country_name, league_url = NA, debut_type, debut
     stop("Check debut type is either 'league' or 'pro'")
   }
 
-  debutants_page <- .load_page_tm(comp_url)
+  debutants_page <- .load_page(comp_url)
 
   debutants_pages <- debutants_page %>% rvest::html_nodes(".tm-pagination__list-item a") %>% rvest::html_attr("href") %>%
     paste0(main_url, .)
 
 
   get_each_page <- function(page_url) {
-    debs <- .load_page_tm(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
+    debs <- .load_page(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 
     player_name <- tryCatch(debs %>% rvest::html_nodes(".inline-table .hauptlink a") %>% rvest::html_text(),
                             error = function(e) player_name <- NA_character_)

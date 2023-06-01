@@ -24,7 +24,7 @@ tm_player_injury_history <- function(player_urls) {
 
     player_url_fixed <- gsub("profil", "verletzungen", player_url) %>% paste0(., "/plus/1")
 
-    injury_page <- .load_page_tm(player_url_fixed)
+    injury_page <- .load_page(player_url_fixed)
 
     player_name <- injury_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
 
@@ -44,7 +44,7 @@ tm_player_injury_history <- function(player_urls) {
         pg <- tryCatch(injury_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children(),
                        error = function(e) pg <- NA_character_)
       } else {
-        pg <- .load_page_tm(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
+        pg <- .load_page(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
       }
 
       season_injured <- tryCatch(pg %>% rvest::html_nodes("td:nth-child(1)") %>% rvest::html_text(),

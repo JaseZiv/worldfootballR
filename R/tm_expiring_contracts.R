@@ -32,7 +32,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     comp_url <- meta_df_seasons$comp_url %>% unique() %>% .[1]
 
   } else {
-    tryCatch({league_page <- .load_page_tm(league_url)}, error = function(e) {league_page <- c()})
+    tryCatch({league_page <- .load_page(league_url)}, error = function(e) {league_page <- c()})
 
     tryCatch({country <- league_page %>%
       rvest::html_nodes(".data-header") %>%
@@ -55,7 +55,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
   comp_url <- paste0(comp_url, "/plus/1/galerie/0?jahr=", contract_end_year, "&ausrichtung=alle&spielerposition_id=alle&altersklasse=alle&land_id=0&yt0=Show")
 
 
-  expiring_page <- .load_page_tm(comp_url)
+  expiring_page <- .load_page(comp_url)
 
   expiring_urls <- expiring_page %>% rvest::html_nodes(".tm-pagination__list-item a") %>% rvest::html_attr("href")
 
@@ -73,11 +73,11 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
       exp_pg <- tryCatch(expiring_page %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children(),
                      error = function(e) exp_pg <- NA_character_)
     } else {
-      exp_pg <- .load_page_tm(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
+      exp_pg <- .load_page(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
     }
 
 
-    # exp_pg <- .load_page_tm(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
+    # exp_pg <- .load_page(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
 
     player_name <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table .hauptlink a") %>% rvest::html_text(),
                             error = function(e) player_name <- NA_character_)
