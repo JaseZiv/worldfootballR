@@ -402,7 +402,8 @@
 #' @param page_url url of the page wanted to be loaded
 #' @return a html webpage
 #'
-#' @importFrom httr user_agent GET resp
+#' @importFrom Randomuseragent random_useragent
+#' @importFrom httr user_agent GET content
 #' @noRd
 .load_page <- function(page_url) {
   agent <- getOption(
