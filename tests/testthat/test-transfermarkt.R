@@ -3,6 +3,9 @@ context("Testing Transfermarkt functions")
 test_that("tm_player_market_values() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
+
+  print(getOption("worldfootballR.agent"))
+  options("worldfootballR.agent" = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36")
   # test that multiple countries can be passed to the function
   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
 
@@ -16,7 +19,7 @@ test_that("tm_player_market_values() works", {
 test_that("tm_player_transfer_history() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
-
+  print(getOption("worldfootballR.agent"))
   transfer_data <- tm_player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
   # test the functions returns the data
   expect_type(transfer_data, "list")
