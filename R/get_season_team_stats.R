@@ -62,6 +62,17 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
     season_stats_page <- .load_page(season_url)
 
+    # have included this to differentiate between how different leagues handle ladders/tables
+    league_tables <- season_stats_page %>% rvest::html_nodes("#content .table_wrapper") %>% rvest::html_elements("h2") %>% rvest::html_text()
+
+    # we either want to detect the presence of League Table or Regular season and get the index of that to be able to extractg the table we want
+    if(length(grep("league table", tolower(league_tables))) > 0) {
+      league_tables_idx <- grep("league table", tolower(league_tables))
+    } else {
+      league_tables_idx <- grep("^Regular season", league_tables)
+    }
+
+
     league_standings <- season_stats_page %>% rvest::html_nodes("table")
 
     all_stat_tabs_holder <- season_stats_page %>% rvest::html_nodes(".stats_table")
@@ -88,7 +99,8 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
           stat_df <- dplyr::bind_rows(stat_df1, stat_df2)
         } else {
-          stat_df <- league_standings[1] %>% rvest::html_table() %>% data.frame()
+          # the first (min()) table with the header League Table or Regular Season is the overall table:
+          stat_df <- league_standings[min(league_tables_idx)] %>% rvest::html_table() %>% data.frame()
         }
 
         if(any(grepl("Attendance", names(stat_df)))) {
@@ -111,7 +123,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
           stat_df <- dplyr::bind_rows(stat_df1, stat_df2)
           stat_df$Conference[1] <- "Conference"
         } else {
-          stat_df <- league_standings[2] %>% rvest::html_table() %>% data.frame()
+          stat_df <- league_standings[grepl("home_away",all_tables)] %>% rvest::html_table() %>% data.frame()
         }
 
         var_names <- stat_df[1,] %>% as.character()
