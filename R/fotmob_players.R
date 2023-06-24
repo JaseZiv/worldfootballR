@@ -74,9 +74,8 @@
   n <- length(player_ids)
   ## for some reason jsonlite tries to combine stuff row-wise when it really should just bind things column-wise
   ps <- p[["stats"]]
-
   stats <- if(is.null(ps)) {
-    list(NULL)
+    NULL
   } else {
 
     pss <- purrr::map_dfr(ps, .clean_stats)
@@ -114,7 +113,7 @@
     "away_team_id" = .ppi(p, "teamData", "away", "id", n = n),
     "away_team_color" = .ppc(p, "teamData", "away", "color", n = n)
   )
-  rows$stats <- stats
+  rows$stats <- list(stats)
   rows$shotmap <- if(!is.null(.pp2(p, "shotmap", 1))) .pp2(p, "shotmap") else NULL
   rows
 }
