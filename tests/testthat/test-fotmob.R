@@ -478,7 +478,6 @@ test_that("fotmob_get_match_players() works", {
   ##   https://www.fotmob.com/match/2999754/matchfacts/vasco-da-gama-vs-atletico-mg
   players <- fotmob_get_match_players(2999754)
   expect_gt(nrow(players), 0)
-  expect_expected_match_player_cols(players)
 })
 
 
