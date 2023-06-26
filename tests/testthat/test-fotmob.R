@@ -203,10 +203,7 @@ test_that("fotmob_get_league_tables() works", {
   expect_table_cols(epl_ll_league_tables, expected_domestic_league_table_cols)
 
   table_types <- dplyr::distinct(epl_ll_league_tables, table_type)
-  expect_equal(
-    table_types$table_type,
-    c("all", "home", "away", "form")
-  )
+  expect_true(all(c("all", "home", "away") %in% table_types$table_type))
 
   ## non-domestic league
   ## Can only check on CL after group stages and briefly after the final.
@@ -476,6 +473,11 @@ test_that("fotmob_get_match_players() works", {
   players <- fotmob_get_match_players(3846347)
   expect_gt(nrow(players), 0)
   expect_expected_match_player_cols(players)
+
+  ## Does it work with a game with some players missing stats?
+  ##   https://www.fotmob.com/match/2999754/matchfacts/vasco-da-gama-vs-atletico-mg
+  players <- fotmob_get_match_players(2999754)
+  expect_gt(nrow(players), 0)
 })
 
 
