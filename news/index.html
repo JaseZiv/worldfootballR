@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0007</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,19 +72,31 @@
 <div class="section level4">
 <h4 id="bugs-development-version">Bugs<a class="anchor" aria-label="anchor" href="#bugs-development-version"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing due to change in <code>teamColors</code> JSON element (0.6.2.3001) <a href="https://github.com/JaseZiv/worldfootballR/issues/271" class="external-link">#271</a>
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing due to change in <code>teamColors</code> JSON element (0.6.3.0001) <a href="https://github.com/JaseZiv/worldfootballR/issues/271" class="external-link">#271</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> failing due to addition of <code>localizedName</code> JSON element (0.6.2.3003) <a href="https://github.com/JaseZiv/worldfootballR/issues/275" class="external-link">#27</a>
+<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> failing due to addition of <code>localizedName</code> JSON element (0.6.3.0003) <a href="https://github.com/JaseZiv/worldfootballR/issues/275" class="external-link">#275</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing (again) due to change in <code>teamColors</code> JSON element (0.6.2.3003)</li>
+<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing (again) due to change in <code>teamColors</code> JSON element (0.6.3.0003)</li>
+<li>
+<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> failing due to addition of nested JSON elements in <code>stat</code> element (0.6.3.0004) <a href="https://github.com/JaseZiv/worldfootballR/issues/277" class="external-link">#277</a>
+</li>
+<li>
+<code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> failing to get the correct home/away league table on some unusual layout league pages (0.6.3.0006) <a href="https://github.com/JaseZiv/worldfootballR/issues/282" class="external-link">#282</a>
+</li>
+<li>
+<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> failing due mismatch in <code>list</code> and <code>data.frame</code> types for internal <code>stats</code> column before unnesting (0.6.3.0007) <a href="https://github.com/JaseZiv/worldfootballR/issues/291" class="external-link">#291</a>
+</li>
 </ul></div>
 <div class="section level4">
 <h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_match_momentum.html">fotmob_get_match_momentum()</a></code> added (0.6.2.3002)</li>
-</ul></div>
+<code><a href="../reference/fotmob_get_match_momentum.html">fotmob_get_match_momentum()</a></code> added (0.6.2.0002)</li>
+<li>
+<code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> returns form table (0.6.3.0005) <a href="https://github.com/JaseZiv/worldfootballR/issues/279" class="external-link">#279</a>
+</li>
+</ul><hr></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.3" id="worldfootballr-063">worldfootballR 0.6.3<a class="anchor" aria-label="anchor" href="#worldfootballr-063"></a></h2>
