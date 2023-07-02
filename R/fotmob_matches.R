@@ -227,7 +227,7 @@ fotmob_get_match_team_stats <- function(match_ids) {
       general$teams
     )
 
-    stats <- general$resp$content$stats$stats %>% janitor::clean_names()
+    stats <- janitor::clean_names(general$resp$content$stats$Periods$All$stats)
     has_stats <- length(stats) > 0
     df <- tibble::as_tibble(df)
     if(isTRUE(has_stats)) {
