@@ -19,8 +19,16 @@ template:
     font_scale: 1
     base_font: {google: "Roboto"}
     heading_font: {google: "Roboto"}
-  params:
-    ganalytics: UA-145056765-3
+  includes:
+    in_header: |
+       <!-- Google tag (gtag.js) -->
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQNCTZ7KQD"></script>
+       <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-PQNCTZ7KQD');
+       </script>
 
 navbar:
   type: dark
