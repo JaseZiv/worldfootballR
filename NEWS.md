@@ -8,12 +8,13 @@
 * `fotmob_get_match_players()` failing due to addition of nested JSON elements in `stat` element (0.6.3.0004) [#277](https://github.com/JaseZiv/worldfootballR/issues/277)
 * `fb_season_team_stats()` failing to get the correct home/away league table on some unusual layout league pages (0.6.3.0006) [#282](https://github.com/JaseZiv/worldfootballR/issues/282)
 * `fotmob_get_match_players()` failing due mismatch in `list` and `data.frame` types for internal `stats` column before unnesting (0.6.3.0007) [#291](https://github.com/JaseZiv/worldfootballR/issues/291)
-* `fotmob_get_match_stats()` failing due to Fotmob additional nesting (0.6.3.0008 [#295](https://github.com/JaseZiv/worldfootballR/issues/295)
+* `fotmob_get_match_stats()` failing due to Fotmob additional nesting (0.6.3.0008) [#295](https://github.com/JaseZiv/worldfootballR/issues/295)
 
 ### Improvements
 
 * `fotmob_get_match_momentum()` added (0.6.2.0002)
 * `fotmob_get_league_tables()` returns form table (0.6.3.0005) [#279](https://github.com/JaseZiv/worldfootballR/issues/279)
+* `fotmob_get_match_stats()`: suppress error messages for seasons without data (0.6.3.0009) [#297](https://github.com/JaseZiv/worldfootballR/issues/297)
 
 ***
 
