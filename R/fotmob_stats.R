@@ -104,6 +104,11 @@
 
     topstats_url <- sprintf("https://data.fotmob.com/%s", link$RelativePath)
     topstats <- purrr::map_dfr(topstats_url, safely_get_content) ## Liga MX will have two rows
+
+    if (length(topstats$result$TopLists) == 0) {
+      return(data.frame())
+    }
+
     toplists <- topstats$result$TopLists %>%
       dplyr::distinct(header = .data[["Title"]], name = .data[["StatName"]])
 
