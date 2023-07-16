@@ -68,7 +68,6 @@
 #' @importFrom dplyr select any_of
 #' @importFrom tibble tibble
 .clean_positions <- function(p) {
-
   ## index represents F/M/D/G (1/2/3/4), row index represents player (usually up to 4)
   player_ids <- as.character(p[["id"]])
   n <- length(player_ids)
@@ -84,6 +83,7 @@
     }
     pss
   }
+
 
   rows <- tibble::tibble(
     "id" = player_ids,
@@ -113,7 +113,15 @@
     "away_team_id" = .ppi(p, "teamData", "away", "id", n = n),
     "away_team_color" = .ppc(p, "teamData", "away", "color", n = n)
   )
-  rows$stats <- list(stats)
+  if (nrow(stats) > 1) {
+    # browser()
+    rows$stats <- vector(mode = "list", length = nrow(stats))
+    for (i in 1:nrow(rows)) {
+      rows[i, ]$stats <- list(stats[1, ])
+    }
+  } else {
+    rows$stats <- list(stats)
+}
   rows$shotmap <- if(!is.null(.pp2(p, "shotmap", 1))) .pp2(p, "shotmap") else NULL
   rows
 }
@@ -239,7 +247,7 @@ fotmob_get_match_players <- function(match_ids) {
 
     res <- .coerce_team_id(res, "home")
     res <- .coerce_team_id(res, "away")
-    tidyr::unnest_wider(res, .data[["stats"]], names_sep = "_")
+    tidyr::unnest_wider(dplyr::slice(clean_starters, 2), tidyselect::vars_select_helpers$all_of("stats"), names_sep = "_")
   }
 
   fp <- purrr::possibly(
