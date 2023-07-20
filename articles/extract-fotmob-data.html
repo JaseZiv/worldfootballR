@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.6/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from fotmob">
@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +99,7 @@
                         <h4 data-toc-skip class="author">Tony
 ElHabr</h4>
             
-            <h4 data-toc-skip class="date">2023-07-04</h4>
+            <h4 data-toc-skip class="date">2023-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fotmob-data.Rmd" class="external-link"><code>vignettes/extract-fotmob-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fotmob-data.Rmd</code></div>
@@ -248,11 +248,11 @@ passing in values for <code>country</code> and
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> ENG     Premier League        47 2020/2021   15382     Premier League  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: stat_name &lt;chr&gt;, stat &lt;tibble[,1]&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   participant_name &lt;chr&gt;, particiant_id &lt;int&gt;, team_id &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   team_color &lt;chr&gt;, stat_value &lt;dbl&gt;, sub_stat_value &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   minutes_played &lt;int&gt;, matches_played &lt;int&gt;, stat_value_count &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   rank &lt;int&gt;, participant_country_code &lt;chr&gt;, team_name &lt;lgl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: stat_name &lt;chr&gt;, stat &lt;df[,1]&gt;, participant_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   particiant_id &lt;int&gt;, team_id &lt;int&gt;, team_color &lt;chr&gt;, stat_value &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   sub_stat_value &lt;dbl&gt;, minutes_played &lt;int&gt;, matches_played &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   stat_value_count &lt;int&gt;, rank &lt;int&gt;, participant_country_code &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   team_name &lt;lgl&gt;</span></span></span></code></pre></div>
 <p>You can retrieve data for multiple leagues, seasons, or stat types at
 the same time.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -672,53 +672,53 @@ returned from <code>fotmob_get_match_details</code>!</p>
 <span><span class="co">#&gt; $ home_team_color                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#d3171e", "#d3171e", "#d3171e", …</span></span>
 <span><span class="co">#&gt; $ away_team_id                         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8456, 8456, 8456, 8456, 8456, 845…</span></span>
 <span><span class="co">#&gt; $ away_team_color                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "#69A8D8", "#69A8D8", "#69A8D8", …</span></span>
-<span><span class="co">#&gt; $ stats_fot_mob_rating                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "5.67", &lt;"7.17", "7.32", "6…</span></span>
-<span><span class="co">#&gt; $ stats_minutes_played                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "90", &lt;"78", "90", "90", "9…</span></span>
-<span><span class="co">#&gt; $ stats_saves                          <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_goals_conceded                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "2", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_x_got_faced                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1.35", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_accurate_passes                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "48/55 (87%)", &lt;"27/34 (79%…</span></span>
-<span><span class="co">#&gt; $ stats_accurate_long_balls            <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "9/15 (60%)", &lt;"1/3 (33%)",…</span></span>
-<span><span class="co">#&gt; $ stats_diving_save                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "0", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_saves_inside_box               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_acted_as_sweeper               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "0", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_punches                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_throws                         <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "4", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_high_claim                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1", &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_recoveries                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "5", &lt;"6", "5", "4", "7"&gt;, …</span></span>
-<span><span class="co">#&gt; $ stats_fantasy_points                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "1", &lt;"1", "1", "1", "1"&gt;, …</span></span>
-<span><span class="co">#&gt; $ stats_touches                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> "64", &lt;"68", "101", "100", …</span></span>
-<span><span class="co">#&gt; $ stats_goals                          <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0", "0", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0", "0", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0", "0", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_chances_created                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"1", "1", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0.04", "0.03", "0…</span></span>
-<span><span class="co">#&gt; $ stats_passes_into_final_third        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"6", "11", "9", "8…</span></span>
-<span><span class="co">#&gt; $ stats_accurate_crosses               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"2/8 (25%)", NA, N…</span></span>
-<span><span class="co">#&gt; $ stats_corners                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"2", NA, NA, "1"&gt;,…</span></span>
-<span><span class="co">#&gt; $ stats_dispossessed                   <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0", "0", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_tackles_won                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"0", "3/3 (100%)",…</span></span>
-<span><span class="co">#&gt; $ stats_blocks                         <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"1", "2", "1", "1"…</span></span>
-<span><span class="co">#&gt; $ stats_clearances                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"2", "1", "2", "5"…</span></span>
-<span><span class="co">#&gt; $ stats_interceptions                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"2", "4", "1", "3"…</span></span>
-<span><span class="co">#&gt; $ stats_ground_duels_won               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"3/6 (50%)", "3/3 …</span></span>
-<span><span class="co">#&gt; $ stats_aerial_duels_won               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"1/1 (100%)", "0",…</span></span>
-<span><span class="co">#&gt; $ stats_was_fouled                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"3", "0", "0", "1"…</span></span>
-<span><span class="co">#&gt; $ stats_fouls_committed                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"3", "0", "0", "0"…</span></span>
-<span><span class="co">#&gt; $ stats_headed_clearance               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NA, "1", "1", "2"&gt;…</span></span>
-<span><span class="co">#&gt; $ stats_successful_dribbles            <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NA, NA, "1/1 (100%…</span></span>
-<span><span class="co">#&gt; $ stats_dribbled_past                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NA, NA, "1", NA&gt;, …</span></span>
-<span><span class="co">#&gt; $ stats_offsides                       <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NA, NA, NA, "1"&gt;, …</span></span>
-<span><span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_shot_accuracy                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_big_chances_missed             <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_expected_goals_on_target_x_got <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_blocked_shots                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_clearance_off_the_line         <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
+<span><span class="co">#&gt; $ stats_fot_mob_rating                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5.67", "7.17", "7.17", "7.17", "…</span></span>
+<span><span class="co">#&gt; $ stats_minutes_played                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "90", "78", "78", "78", "78", "90…</span></span>
+<span><span class="co">#&gt; $ stats_saves                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_goals_conceded                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_x_got_faced                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1.35", NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_accurate_passes                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "48/55 (87%)", "27/34 (79%)", "27…</span></span>
+<span><span class="co">#&gt; $ stats_accurate_long_balls            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "9/15 (60%)", "1/3 (33%)", "1/3 (…</span></span>
+<span><span class="co">#&gt; $ stats_diving_save                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_saves_inside_box               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_acted_as_sweeper               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_punches                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_throws                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_high_claim                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ stats_recoveries                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5", "6", "6", "6", "6", "9", "9"…</span></span>
+<span><span class="co">#&gt; $ stats_fantasy_points                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "2", "2"…</span></span>
+<span><span class="co">#&gt; $ stats_touches                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "64", "68", "68", "68", "68", "55…</span></span>
+<span><span class="co">#&gt; $ stats_goals                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0", "0", "0", "0", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0", "0", "0", "0", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0", "0", "0", "0", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_chances_created                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "1", "1", "1", "1", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0.04", "0.04", "0.04", "0.04…</span></span>
+<span><span class="co">#&gt; $ stats_passes_into_final_third        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "6", "6", "6", "6", "10", "10…</span></span>
+<span><span class="co">#&gt; $ stats_accurate_crosses               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2/8 (25%)", "2/8 (25%)", "2/…</span></span>
+<span><span class="co">#&gt; $ stats_corners                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2", "2", "2", "2", NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_dispossessed                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0", "0", "0", "0", "2", "2",…</span></span>
+<span><span class="co">#&gt; $ stats_tackles_won                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "0", "0", "0", "0", "2/3 (67%…</span></span>
+<span><span class="co">#&gt; $ stats_blocks                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "1", "1", "1", "1", NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_clearances                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2", "2", "2", "2", NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_interceptions                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2", "2", "2", "2", "2", "2",…</span></span>
+<span><span class="co">#&gt; $ stats_ground_duels_won               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "3/6 (50%)", "3/6 (50%)", "3/…</span></span>
+<span><span class="co">#&gt; $ stats_aerial_duels_won               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "1/1 (100%)", "1/1 (100%)", "…</span></span>
+<span><span class="co">#&gt; $ stats_was_fouled                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "3", "3", "3", "3", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_fouls_committed                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "3", "3", "3", "3", "0", "0",…</span></span>
+<span><span class="co">#&gt; $ stats_headed_clearance               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, "…</span></span>
+<span><span class="co">#&gt; $ stats_successful_dribbles            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, "1/1 (100%)",…</span></span>
+<span><span class="co">#&gt; $ stats_dribbled_past                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, "3", "3", "3"…</span></span>
+<span><span class="co">#&gt; $ stats_offsides                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, "1", "1", "1"…</span></span>
+<span><span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, "…</span></span>
+<span><span class="co">#&gt; $ stats_shot_accuracy                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, "…</span></span>
+<span><span class="co">#&gt; $ stats_big_chances_missed             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_expected_goals_on_target_x_got <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, "…</span></span>
+<span><span class="co">#&gt; $ stats_blocked_shots                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, "…</span></span>
+<span><span class="co">#&gt; $ stats_clearance_off_the_line         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span><span class="co">#&gt; $ shotmap                              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, …</span></span>
 <span><span class="co">#&gt; $ is_starter                           <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TRUE, TRUE, TRUE, TRUE, TRU…</span></span>
-<span><span class="co">#&gt; $ stats_error_led_to_goal              <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span>
-<span><span class="co">#&gt; $ stats_last_man_tackle                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NU…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ stats_error_led_to_goal              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ stats_last_man_tackle                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">salah</span> <span class="op">&lt;-</span> <span class="va">players</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">==</span> <span class="st">"292462"</span><span class="op">)</span></span>
 <span><span class="va">salah_shotmap</span> <span class="op">&lt;-</span> <span class="va">salah</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -759,39 +759,37 @@ returned from <code>fotmob_get_match_details</code>!</p>
 <span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/remove_empty.html" class="external-link">remove_empty</a></span><span class="op">(</span>which <span class="op">=</span> <span class="st">"cols"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">salah_stats</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 2</span></span>
-<span><span class="co">#&gt; Columns: 32</span></span>
+<span><span class="co">#&gt; Columns: 30</span></span>
 <span><span class="co">#&gt; $ player_id                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "292462", "292462"</span></span>
-<span><span class="co">#&gt; $ stats_fot_mob_rating                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"8.85", "6.14", "7.42"&gt;, &lt;"8.15"…</span></span>
-<span><span class="co">#&gt; $ stats_minutes_played                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"90", "68", "90"&gt;, &lt;"89", …</span></span>
-<span><span class="co">#&gt; $ stats_accurate_passes                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"16/19 (84%)", "11/15 (73%…</span></span>
-<span><span class="co">#&gt; $ stats_accurate_long_balls            <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NA, NA, "1/1 (100%)"&gt;, &lt;NA…</span></span>
-<span><span class="co">#&gt; $ stats_recoveries                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "4", "3"&gt;, &lt;"4", "4",…</span></span>
-<span><span class="co">#&gt; $ stats_fantasy_points                 <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"10 + 3", "2", "7"&gt;, &lt;"6",…</span></span>
-<span><span class="co">#&gt; $ stats_touches                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"49", "26", "33"&gt;, &lt;"48", …</span></span>
-<span><span class="co">#&gt; $ stats_goals                          <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "0", "1"&gt;, &lt;"1", "0",…</span></span>
-<span><span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "0", "0"&gt;, &lt;"0", "0",…</span></span>
-<span><span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"3", "1", "1"&gt;, &lt;"2", "0",…</span></span>
-<span><span class="co">#&gt; $ stats_chances_created                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"2", "0", "0"&gt;, &lt;"1", "0",…</span></span>
-<span><span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"0.29", "0.01", NA&gt;, &lt;"0.0…</span></span>
-<span><span class="co">#&gt; $ stats_passes_into_final_third        <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"2", "2", NA&gt;, &lt;"1", "5", …</span></span>
-<span><span class="co">#&gt; $ stats_accurate_crosses               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1/2 (50%)", NA, "0/2 (0%)…</span></span>
-<span><span class="co">#&gt; $ stats_dispossessed                   <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "1", "1"&gt;, &lt;"2", "3",…</span></span>
-<span><span class="co">#&gt; $ stats_tackles_won                    <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"3/4 (75%)", "0", "0"&gt;, &lt;"…</span></span>
-<span><span class="co">#&gt; $ stats_clearances                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", NA, NA&gt;, &lt;"2", NA, NA&gt;</span></span>
-<span><span class="co">#&gt; $ stats_interceptions                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "1", "1"&gt;, &lt;"1", NA, …</span></span>
-<span><span class="co">#&gt; $ stats_ground_duels_won               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"10/15 (67%)", "2/8 (25%)"…</span></span>
-<span><span class="co">#&gt; $ stats_aerial_duels_won               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1/2 (50%)", "2/7 (29%)", …</span></span>
-<span><span class="co">#&gt; $ stats_was_fouled                     <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "2", "2"&gt;, &lt;"1", "1",…</span></span>
-<span><span class="co">#&gt; $ stats_fouls_committed                <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"0", "3", "2"&gt;, &lt;"1", "4",…</span></span>
-<span><span class="co">#&gt; $ stats_headed_clearance               <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", NA, NA&gt;, &lt;"2", NA, NA&gt;</span></span>
-<span><span class="co">#&gt; $ stats_successful_dribbles            <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"5/8 (63%)", NA, "1/2 (50%…</span></span>
-<span><span class="co">#&gt; $ stats_dribbled_past                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1", "2", NA&gt;, &lt;NA, "1", N…</span></span>
-<span><span class="co">#&gt; $ stats_offsides                       <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;"1", "1", "1"&gt;</span></span>
-<span><span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"0.21", "0.09", "0.36"&gt;, &lt;…</span></span>
-<span><span class="co">#&gt; $ stats_shot_accuracy                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"1/1 (100%)", "1/1 (100%)"…</span></span>
-<span><span class="co">#&gt; $ stats_big_chances_missed             <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;NULL&gt;, &lt;NA, NA, "1"&gt;</span></span>
-<span><span class="co">#&gt; $ stats_expected_goals_on_target_x_got <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"0.97", "0.04", "0.83"&gt;, &lt;…</span></span>
-<span><span class="co">#&gt; $ stats_blocked_shots                  <span style="color: #949494; font-style: italic;">&lt;list&lt;chr&gt;&gt;</span> &lt;"2", NA, NA&gt;, &lt;NA, NA, "1"&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; $ stats_fot_mob_rating                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "8.85", "8.15"</span></span>
+<span><span class="co">#&gt; $ stats_minutes_played                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "90", "89"</span></span>
+<span><span class="co">#&gt; $ stats_accurate_passes                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "16/19 (84%)", "20/25 (80%)"</span></span>
+<span><span class="co">#&gt; $ stats_recoveries                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "4"</span></span>
+<span><span class="co">#&gt; $ stats_fantasy_points                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10 + 3", "6"</span></span>
+<span><span class="co">#&gt; $ stats_touches                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "49", "48"</span></span>
+<span><span class="co">#&gt; $ stats_goals                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1"</span></span>
+<span><span class="co">#&gt; $ stats_assists                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "0"</span></span>
+<span><span class="co">#&gt; $ stats_total_shots                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "2"</span></span>
+<span><span class="co">#&gt; $ stats_chances_created                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "1"</span></span>
+<span><span class="co">#&gt; $ stats_expected_assists_x_a           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.29", "0.05"</span></span>
+<span><span class="co">#&gt; $ stats_passes_into_final_third        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "1"</span></span>
+<span><span class="co">#&gt; $ stats_accurate_crosses               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1/2 (50%)", NA</span></span>
+<span><span class="co">#&gt; $ stats_dispossessed                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "2"</span></span>
+<span><span class="co">#&gt; $ stats_tackles_won                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3/4 (75%)", "0/1 (0%)"</span></span>
+<span><span class="co">#&gt; $ stats_clearances                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "2"</span></span>
+<span><span class="co">#&gt; $ stats_interceptions                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1"</span></span>
+<span><span class="co">#&gt; $ stats_ground_duels_won               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10/15 (67%)", "5/9 (56%)"</span></span>
+<span><span class="co">#&gt; $ stats_aerial_duels_won               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1/2 (50%)", "2/3 (67%)"</span></span>
+<span><span class="co">#&gt; $ stats_was_fouled                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1"</span></span>
+<span><span class="co">#&gt; $ stats_fouls_committed                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "1"</span></span>
+<span><span class="co">#&gt; $ stats_headed_clearance               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "2"</span></span>
+<span><span class="co">#&gt; $ stats_successful_dribbles            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "5/8 (63%)", "3/4 (75%)"</span></span>
+<span><span class="co">#&gt; $ stats_dribbled_past                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", NA</span></span>
+<span><span class="co">#&gt; $ stats_offsides                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "1"</span></span>
+<span><span class="co">#&gt; $ stats_expected_goals_x_g             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.21", "0.82"</span></span>
+<span><span class="co">#&gt; $ stats_shot_accuracy                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1/1 (100%)", "2/2 (100%)"</span></span>
+<span><span class="co">#&gt; $ stats_expected_goals_on_target_x_got <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.97", "0.55"</span></span>
+<span><span class="co">#&gt; $ stats_blocked_shots                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", NA</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="momentum">Momentum<a class="anchor" aria-label="anchor" href="#momentum"></a>
