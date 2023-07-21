@@ -158,14 +158,14 @@ test_that("tm_league_debutants() works", {
 test_that("tm_expiring_contracts() works", {
   testthat::skip_on_cran()
 
-  laliga_expiring <- tm_expiring_contracts(country_name = "Spain", contract_end_year = 2023)
+  laliga_expiring <- tm_expiring_contracts(country_name = "Spain", contract_end_year = 2024)
   expect_type(laliga_expiring, "list")
   expect_equal(ncol(laliga_expiring), 14)
   expect_false(nrow(laliga_expiring) == 0)
 
 
   league_one_expiring <- tm_expiring_contracts(country_name = "",
-                                               contract_end_year = 2023,
+                                               contract_end_year = 2024,
                                                league_url = "https://www.transfermarkt.com/league-one/startseite/wettbewerb/GB3")
   expect_type(league_one_expiring, "list")
   expect_equal(ncol(league_one_expiring), 14)
