@@ -73,7 +73,8 @@
   n <- length(player_ids)
   ## for some reason jsonlite tries to combine stuff row-wise when it really should just bind things column-wise
   ps <- p[["stats"]]
-  stats <- if(is.null(ps)) {
+  does_not_have_stats <- is.null(ps)
+  stats <- if (does_not_have_stats) {
     NULL
   } else {
 
@@ -114,9 +115,13 @@
     "away_team_color" = .ppc(p, "teamData", "away", "color", n = n)
   )
 
-  rows$stats <- vector(mode = "list", length = nrow(stats))
-  for (i in 1:nrow(rows)) {
-    rows[i, ]$stats <- list(stats[1, ])
+  if (does_not_have_stats) {
+    rows$stats <- list(NULL)
+  } else {
+    rows$stats <- vector(mode = "list", length = nrow(stats))
+    for (i in 1:nrow(rows)) {
+      rows[i, ]$stats <- list(stats[i, ])
+    }
   }
 
   rows$shotmap <- if(!is.null(.pp2(p, "shotmap", 1))) .pp2(p, "shotmap") else NULL
