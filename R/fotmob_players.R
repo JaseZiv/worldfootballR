@@ -116,7 +116,7 @@
   )
 
   if (does_not_have_stats) {
-    rows$stats <- list(NULL)
+    rows$stats <- list(stats)
   } else {
     rows$stats <- vector(mode = "list", length = nrow(stats))
     for (i in 1:nrow(rows)) {
