@@ -10,6 +10,7 @@
 * `fotmob_get_match_players()` failing due mismatch in `list` and `data.frame` types for internal `stats` column before unnesting (0.6.3.0007) [#291](https://github.com/JaseZiv/worldfootballR/issues/291)
 * `fotmob_get_match_stats()` failing due to Fotmob additional nesting (0.6.3.0008) [#295](https://github.com/JaseZiv/worldfootballR/issues/295)
 * `fotmob_get_match_players()` returning nested list elements for `stat` columns (0.6.3.0010) [#298](https://github.com/JaseZiv/worldfootballR/issues/298)
+* `fotmob_get_match_players()` returning repeated stats and failing for NULL case (0.6.3.0011) [#298](https://github.com/JaseZiv/worldfootballR/issues/298)
 
 ### Improvements
 
