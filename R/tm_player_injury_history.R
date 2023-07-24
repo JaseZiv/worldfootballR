@@ -26,9 +26,9 @@ tm_player_injury_history <- function(player_urls) {
 
     injury_page <- xml2::read_html(player_url_fixed)
 
-    player_name <- injury_page %>% rvest::html_nodes("h1") %>% rvest::html_text()
+    player_name <- injury_page %>% rvest::html_nodes("h1") %>% rvest::html_text() %>% gsub("#[0-9]+ ", "", .) %>% stringr::str_squish()
 
-    injury_urls <- injury_page %>% html_nodes(".tm-pagination__list-item a") %>% html_attr("href")
+    injury_urls <- injury_page %>% rvest::html_nodes(".tm-pagination__list-item a") %>% rvest::html_attr("href")
 
     if(length(injury_urls)==0) {
       injury_pages <- player_url_fixed
@@ -48,19 +48,20 @@ tm_player_injury_history <- function(player_urls) {
       }
 
       season_injured <- tryCatch(pg %>% rvest::html_nodes("td:nth-child(1)") %>% rvest::html_text(),
-                              error = function(e) season_injured <- NA_character_)
+                              error = function(e) season_injured <- NA_character_) %>% .replace_empty_na()
       injury <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ .hauptlink") %>% rvest::html_text(),
-                             error = function(e) injury <- NA_character_)
+                             error = function(e) injury <- NA_character_) %>% .replace_empty_na()
       injured_since <- tryCatch(pg %>% rvest::html_nodes(".hauptlink+ .zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
-                           error = function(e) injured_since <- NA_character_)
+                           error = function(e) injured_since <- NA_character_) %>% .replace_empty_na()
       injured_until <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ td.zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
-                              error = function(e) injured_until <- NA_character_)
+                              error = function(e) injured_until <- NA_character_) %>% .replace_empty_na()
       duration <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ td.rechts") %>% rvest::html_text(),
-                            error = function(e) duration <- NA_character_)
+                            error = function(e) duration <- NA_character_) %>% .replace_empty_na()
       games_missed <- tryCatch(pg %>% rvest::html_nodes(".wappen_verletzung") %>% rvest::html_text() %>% as.numeric() %>% suppressWarnings(),
-                              error = function(e) games_missed <- NA_integer_)
+                              error = function(e) games_missed <- NA_integer_) %>% .replace_empty_na()
       club <- tryCatch(pg %>% rvest::html_nodes("img") %>% rvest::html_attr("alt"),
-                        error = function(e) goals <- NA_character_)
+                        error = function(e) goals <- NA_character_) %>% .replace_empty_na()
+
 
       out_df <- cbind(player_name, player_url, season_injured, injury, injured_since, injured_until, duration, games_missed, club) %>%
         suppressWarnings() %>% data.frame()
