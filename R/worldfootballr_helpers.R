@@ -207,7 +207,7 @@ tm_team_player_urls <- function(team_url) {
   tryCatch({team_page <- xml2::read_html(team_url)}, error = function(e) {team_page <- c()})
 
   player_urls <- team_page %>%
-    rvest::html_nodes(".nowrap a") %>% rvest::html_attr("href") %>%
+    rvest::html_nodes(".data-link a") %>% rvest::html_attr("href") %>%
     unique() %>%
     paste0(main_url, .)
 

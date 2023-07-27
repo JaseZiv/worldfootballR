@@ -11,6 +11,7 @@
 * `fotmob_get_match_stats()` failing due to Fotmob additional nesting (0.6.3.0008) [#295](https://github.com/JaseZiv/worldfootballR/issues/295)
 * `fotmob_get_match_players()` returning nested list elements for `stat` columns (0.6.3.0010) [#298](https://github.com/JaseZiv/worldfootballR/issues/298)
 * `tm_player_injury_history()` returning empty value in the `club` value for when a player didn't miss any days through injury [#293](https://github.com/JaseZiv/worldfootballR/issues/293) (0.6.3.0011)
+* `tm_team_player_urls()` returning wrong player URLs due to html changes (0.6.3.0012) [#305](https://github.com/JaseZiv/worldfootballR/issues/305)
 
 ### Improvements
 
