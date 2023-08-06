@@ -383,12 +383,20 @@ fotmob_get_match_momentum <- function(match_ids) {
   momentum <- resp$result$content$momentum
   main <- tidyr::unnest(dplyr::bind_rows(momentum$main), "data")
   main$type <- "main"
-  alt <-tidyr::unnest(dplyr::bind_rows(momentum$alternateModels), "data")
-  alt$type <- "alternateModels"
-  res <- dplyr::bind_rows(
-    main,
-    alt
-  )
+
+  not_has_alt <- length(resp$result$content$momentum$alternateModels) == 0
+
+  if(isFALSE(not_has_alt)){
+    alt <-tidyr::unnest(dplyr::bind_rows(momentum$alternateModels), "data")
+    alt$type <- "alternateModels"
+    res <- dplyr::bind_rows(
+      main,
+      alt
+    )
+  } else {
+    res <- main
+  }
+
   res <- janitor::clean_names(res)
   tibble::as_tibble(res)
 }
