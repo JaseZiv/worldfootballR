@@ -149,13 +149,12 @@ fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
   all_players <- purrr::map2_df(player_url, stat_type, get_each_player_season)
 }
 
-fb_player_national_stats <- function(player_url, stat_type, time_pause=3) {
-
+fb_player_national_stats <- function(player_url, stat_type, time_pause = 3) {
   main_url <- "https://fbref.com"
 
   time_wait <- time_pause
 
-  get_each_player_season <- function(player_url, stat_type, time_pause=time_wait) {
+  get_each_player_season <- function(player_url, stat_type, time_pause = time_wait) {
     pb$tick()
 
     # put sleep in as per new user agreement on FBref
@@ -163,35 +162,41 @@ fb_player_national_stats <- function(player_url, stat_type, time_pause=3) {
 
     stat_types <- c("standard", "shooting", "passing", "passing_types", "gca", "defense", "possession", "playing_time", "misc", "keeper", "keeper_adv")
 
-    if(!stat_type %in% stat_types) stop("check stat type")
+    if (!stat_type %in% stat_types) stop("check stat type")
 
     player_page <- .load_page(player_url)
 
-    player_name <- player_page %>% rvest::html_node("h1") %>% rvest::html_text() %>% stringr::str_squish()
+    player_name <- player_page %>%
+      rvest::html_node("h1") %>%
+      rvest::html_text() %>%
+      stringr::str_squish()
 
     comps_filters <- player_page %>%
       rvest::html_nodes(".filter") %>%
       rvest::html_nodes("a") %>%
-      rvest::html_attr("href") %>% .[!is.na(.)]
+      rvest::html_attr("href") %>%
+      .[!is.na(.)]
 
     # if(length(comps_filters) >= 2) {
-    if(any(grepl("National-Team", comps_filters))) {
-
+    if (any(grepl("National-Team", comps_filters))) {
       national_comps_url <- player_page %>%
         rvest::html_nodes(".filter") %>%
         rvest::html_nodes("a") %>%
         rvest::html_attr("href") %>%
-        .[grep("National-Team", .)] %>% paste0(main_url, .)
+        .[grep("National-Team", .)] %>%
+        paste0(main_url, .)
 
       Sys.sleep(time_pause)
 
       national_comps_page <- .load_page(national_comps_url)
 
-      expanded_table_elements <- national_comps_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table")
+      expanded_table_elements <- national_comps_page %>%
+        rvest::html_nodes(".table_container") %>%
+        rvest::html_nodes("table")
 
       expanded_table_idx <- c()
 
-      for(i in 1:length(expanded_table_elements)) {
+      for (i in 1:length(expanded_table_elements)) {
         idx <- xml2::xml_attrs(expanded_table_elements[[i]])[["id"]]
         expanded_table_idx <- c(expanded_table_idx, idx)
       }
@@ -211,19 +216,18 @@ fb_player_national_stats <- function(player_url, stat_type, time_pause=3) {
     stat_df <- stat_df %>%
       filter(!is.na(Age))
 
-    if(nrow(stat_df) == 0){
-
+    if (nrow(stat_df) == 0) {
       print(glue::glue("{stat_type} data not available for: {player_url}"))
-
     } else {
       stat_df <- stat_df %>%
-        dplyr::mutate(player_name = player_name,
-                      player_url = player_url) %>%
+        dplyr::mutate(
+          player_name = player_name,
+          player_url = player_url
+        ) %>%
         dplyr::select(player_name, player_url, dplyr::everything())
     }
 
     return(stat_df)
-
   }
 
   # create the progress bar with a progress function.

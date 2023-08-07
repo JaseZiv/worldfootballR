@@ -113,6 +113,8 @@
     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Comp"]]) %>%
     names()
 
+  stat_df <- stat_df %>% dplyr::mutate(Squad = gsub("^.*? ([A-Z])", "\\1", .data[["Squad"]]))
+
   if ("Country" %in% cols_to_transform) {
     stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]]))
     cols_to_transform <- setdiff(cols_to_transform, "Country")
