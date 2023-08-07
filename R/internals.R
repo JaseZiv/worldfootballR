@@ -101,14 +101,6 @@
 
   stat_df <- stat_df[-remove_rows, ]
 
-  # if(any(grepl("LgRank", names(stat_df)))){
-  #   cols_to_transform <- stat_df %>%
-  #     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]], -.data[["LgRank"]]) %>% names()
-  # } else {
-  #   cols_to_transform <- stat_df %>%
-  #     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]]) %>% names()
-  # }
-
   cols_to_transform <- stat_df %>%
     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Comp"]]) %>%
     names()

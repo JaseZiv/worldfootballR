@@ -133,8 +133,7 @@ fb_player_season_stats <- function(player_url, stat_type, time_pause=3) {
     } else {
       stat_df <- stat_df %>%
         dplyr::mutate(player_name = player_name,
-                      player_url = player_url,
-                      Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]])) %>%
+                      player_url = player_url) %>%
         dplyr::select(player_name, player_url, dplyr::everything())
     }
 
@@ -154,7 +153,7 @@ fb_player_national_stats <- function(player_url, stat_type, time_pause = 3) {
 
   time_wait <- time_pause
 
-  get_each_player_season <- function(player_url, stat_type, time_pause = time_wait) {
+  get_each_player_national_stats <- function(player_url, stat_type, time_pause = time_wait) {
     pb$tick()
 
     # put sleep in as per new user agreement on FBref
@@ -234,5 +233,5 @@ fb_player_national_stats <- function(player_url, stat_type, time_pause = 3) {
   pb <- progress::progress_bar$new(total = length(player_url))
 
   # run for all players selected
-  all_players <- purrr::map2_df(player_url, stat_type, get_each_player_season)
+  all_players <- purrr::map2_df(player_url, stat_type, get_each_player_national_stats)
 }
