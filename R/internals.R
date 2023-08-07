@@ -68,13 +68,11 @@
 #' @noRd
 #'
 .clean_player_season_stats <- function(input_table_element) {
-
-
   stat_df <- input_table_element %>%
     rvest::html_table() %>%
     data.frame()
 
-  var_names <- stat_df[1,] %>% as.character()
+  var_names <- stat_df[1, ] %>% as.character()
 
   new_names <- paste(var_names, names(stat_df), sep = "_")
 
@@ -95,7 +93,7 @@
     gsub("__", "_", .)
 
   names(stat_df) <- new_names
-  stat_df <- stat_df[-1,]
+  stat_df <- stat_df[-1, ]
 
   stat_df <- stat_df %>% dplyr::select(-.data[["Matches"]])
 
@@ -103,17 +101,34 @@
 
   stat_df <- stat_df[-remove_rows, ]
 
-  if(any(grepl("LgRank", names(stat_df)))){
-    cols_to_transform <- stat_df %>%
-      dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]], -.data[["LgRank"]]) %>% names()
-  } else {
-    cols_to_transform <- stat_df %>%
-      dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]]) %>% names()
+  # if(any(grepl("LgRank", names(stat_df)))){
+  #   cols_to_transform <- stat_df %>%
+  #     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]], -.data[["LgRank"]]) %>% names()
+  # } else {
+  #   cols_to_transform <- stat_df %>%
+  #     dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Country"]], -.data[["Comp"]]) %>% names()
+  # }
+
+  cols_to_transform <- stat_df %>%
+    dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Comp"]]) %>%
+    names()
+
+  if ("Country" %in% cols_to_transform) {
+    stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]]))
+    cols_to_transform <- setdiff(cols_to_transform, "Country")
+  }
+
+  if ("LgRank" %in% cols_to_transform) {
+    cols_to_transform <- setdiff(cols_to_transform, "LgRank")
   }
 
   stat_df <- stat_df %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {
+      gsub(",", "", x)
+    }) %>%
+    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {
+      gsub("+", "", x)
+    }) %>%
     dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
 
   return(stat_df)
