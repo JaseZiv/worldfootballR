@@ -28,6 +28,7 @@ Imports:
     httr,
     janitor,
     jsonlite,
+    lubridate,
     magrittr,
     progress,
     purrr,
@@ -45,8 +46,7 @@ Imports:
     withr,
     xml2,
     tibble,
-    cli,
-    curl
+    cli
 Suggests: 
     chromote,
     R6,
