@@ -3,7 +3,6 @@ pkgdown: 2.0.4
 pkgdown_sha: ~
 articles:
   extract-fbref-data: extract-fbref-data.html
-  extract-fotmob-data: extract-fotmob-data.html
   extract-transfermarkt-data: extract-transfermarkt-data.html
   extract-understat-data: extract-understat-data.html
   fbref-data-internationals: fbref-data-internationals.html
