@@ -15,7 +15,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3.0013</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,6 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/extract-fbref-data.html">Extracting data from FBref</a>
-    <a class="dropdown-item" href="../articles/extract-fotmob-data.html">Extracting data from fotmob</a>
     <a class="dropdown-item" href="../articles/extract-transfermarkt-data.html">Extracting data from Transfermarkt</a>
     <a class="dropdown-item" href="../articles/extract-understat-data.html">Extracting data from Understat</a>
     <a class="dropdown-item" href="../articles/fbref-data-internationals.html">Extracting data from FBref for International Matches</a>
@@ -68,30 +67,37 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="worldfootballr-development-version">worldfootballR (development version)<a class="anchor" aria-label="anchor" href="#worldfootballr-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.4" id="worldfootballr-064">worldfootballR 0.6.4<a class="anchor" aria-label="anchor" href="#worldfootballr-064"></a></h2>
 <div class="section level4">
-<h4 id="bugs-development-version">Bugs<a class="anchor" aria-label="anchor" href="#bugs-development-version"></a></h4>
+<h4 id="breaking-changes-0-6-4">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-6-4"></a></h4>
+<ul><li>All fotmob functions removed due to an update to fotmob <a href="https://www.fotmob.com/tos.txt" class="external-link">terms of service</a> prohibiting “the use of automatic services (robots, spiders, indexing etc.) as well as other methods for systematic or regular use.”</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bugs-0-6-4">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-6-4"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing due to change in <code>teamColors</code> JSON element (0.6.3.0001) <a href="https://github.com/JaseZiv/worldfootballR/issues/271" class="external-link">#271</a>
+<code>fotmob_get_match_details()</code> failing due to change in <code>teamColors</code> JSON element (0.6.3.0001) <a href="https://github.com/JaseZiv/worldfootballR/issues/271" class="external-link">#271</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> failing due to addition of <code>localizedName</code> JSON element (0.6.3.0003) <a href="https://github.com/JaseZiv/worldfootballR/issues/275" class="external-link">#275</a>
+<code>fotmob_get_league_ids()</code> failing due to addition of <code>localizedName</code> JSON element (0.6.3.0003) <a href="https://github.com/JaseZiv/worldfootballR/issues/275" class="external-link">#275</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> failing (again) due to change in <code>teamColors</code> JSON element (0.6.3.0003)</li>
+<code>fotmob_get_match_details()</code> failing (again) due to change in <code>teamColors</code> JSON element (0.6.3.0003)</li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> failing due to addition of nested JSON elements in <code>stat</code> element (0.6.3.0004) <a href="https://github.com/JaseZiv/worldfootballR/issues/277" class="external-link">#277</a>
+<code>fotmob_get_match_players()</code> failing due to addition of nested JSON elements in <code>stat</code> element (0.6.3.0004) <a href="https://github.com/JaseZiv/worldfootballR/issues/277" class="external-link">#277</a>
 </li>
 <li>
 <code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> failing to get the correct home/away league table on some unusual layout league pages (0.6.3.0006) <a href="https://github.com/JaseZiv/worldfootballR/issues/282" class="external-link">#282</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> failing due mismatch in <code>list</code> and <code>data.frame</code> types for internal <code>stats</code> column before unnesting (0.6.3.0007) <a href="https://github.com/JaseZiv/worldfootballR/issues/291" class="external-link">#291</a>
+<code>fotmob_get_match_players()</code> failing due mismatch in <code>list</code> and <code>data.frame</code> types for internal <code>stats</code> column before unnesting (0.6.3.0007) <a href="https://github.com/JaseZiv/worldfootballR/issues/291" class="external-link">#291</a>
 </li>
 <li>
 <code>fotmob_get_match_stats()</code> failing due to Fotmob additional nesting (0.6.3.0008) <a href="https://github.com/JaseZiv/worldfootballR/issues/295" class="external-link">#295</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> returning nested list elements for <code>stat</code> columns (0.6.3.0010) <a href="https://github.com/JaseZiv/worldfootballR/issues/298" class="external-link">#298</a>
+<code>fotmob_get_match_players()</code> returning nested list elements for <code>stat</code> columns (0.6.3.0010) <a href="https://github.com/JaseZiv/worldfootballR/issues/298" class="external-link">#298</a>
 </li>
 <li>
 <code><a href="../reference/tm_player_injury_history.html">tm_player_injury_history()</a></code> returning empty value in the <code>club</code> value for when a player didn’t miss any days through injury <a href="https://github.com/JaseZiv/worldfootballR/issues/293" class="external-link">#293</a> (0.6.3.0011)</li>
@@ -101,15 +107,15 @@
 <li>
 <code><a href="../reference/tm_player_injury_history.html">tm_player_injury_history()</a></code> returning empty value in the <code>club</code> value for when a player didn’t miss any days through injury <a href="https://github.com/JaseZiv/worldfootballR/issues/293" class="external-link">#293</a> (0.6.3.0012)</li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> returning repeated stats and failing for NULL case (0.6.3.0011) <a href="https://github.com/JaseZiv/worldfootballR/issues/298" class="external-link">#298</a>
+<code>fotmob_get_match_players()</code> returning repeated stats and failing for NULL case (0.6.3.0011) <a href="https://github.com/JaseZiv/worldfootballR/issues/298" class="external-link">#298</a>
 </li>
 </ul></div>
 <div class="section level4">
-<h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
+<h4 id="improvements-0-6-4">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-6-4"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_match_momentum.html">fotmob_get_match_momentum()</a></code> added (0.6.2.0002)</li>
+<code>fotmob_get_match_momentum()</code> added (0.6.2.0002)</li>
 <li>
-<code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> returns form table (0.6.3.0005) <a href="https://github.com/JaseZiv/worldfootballR/issues/279" class="external-link">#279</a>
+<code>fotmob_get_league_tables()</code> returns form table (0.6.3.0005) <a href="https://github.com/JaseZiv/worldfootballR/issues/279" class="external-link">#279</a>
 </li>
 <li>
 <code>fotmob_get_match_stats()</code>: suppress error messages for seasons without data (0.6.3.0009) <a href="https://github.com/JaseZiv/worldfootballR/issues/297" class="external-link">#297</a>
@@ -130,13 +136,13 @@
 <div class="section level4">
 <h4 id="bugs-0-6-3">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-6-3"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> was failing for upcoming matches due to a missing <code>stats</code> column (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/226" class="external-link">#226</a>
+<code>fotmob_get_match_players()</code> was failing for upcoming matches due to a missing <code>stats</code> column (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/226" class="external-link">#226</a>
 </li>
 <li>
 <code><a href="../reference/tm_team_transfer_balances.html">tm_team_transfer_balances()</a></code> failing because of empty team boxes being collected (0.6.2.1000) <a href="https://github.com/JaseZiv/worldfootballR/issues/228" class="external-link">#228</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> was failing due to an extra <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr</a></code> that is no longer needed (0.6.2.2000) <a href="https://github.com/JaseZiv/worldfootballR/issues/229" class="external-link">#229</a>
+<code>fotmob_get_league_matches()</code> was failing due to an extra <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">purrr::map_dfr</a></code> that is no longer needed (0.6.2.2000) <a href="https://github.com/JaseZiv/worldfootballR/issues/229" class="external-link">#229</a>
 </li>
 <li>All understat functions were failing due to a new cookie requirement (0.6.2.5000) <a href="https://github.com/JaseZiv/worldfootballR/issues/239" class="external-link">#239</a>
 </li>
@@ -147,9 +153,9 @@
 <code>fb_league_stats(team_or_player = "player", stat_type = "standard", ...)</code> failing since <code>"standard"</code> should be translated to <code>"stats"</code> (0.6.2.9100) <a href="https://github.com/JaseZiv/worldfootballR/issues/252" class="external-link">#252</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> returned 0 rows instead of 1 when there are no shots available (0.6.2.9300)</li>
+<code>fotmob_get_match_details()</code> returned 0 rows instead of 1 when there are no shots available (0.6.2.9300)</li>
 <li>
-<code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> changed to use <code>matches.allMatches</code> JSON element (0.6.2.9400) <a href="https://github.com/JaseZiv/worldfootballR/issues/258" class="external-link">#258</a>
+<code>fotmob_get_league_matches()</code> changed to use <code>matches.allMatches</code> JSON element (0.6.2.9400) <a href="https://github.com/JaseZiv/worldfootballR/issues/258" class="external-link">#258</a>
 </li>
 <li>All fotmob functions updated to use <code><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">httr::GET()</a></code> with appropriate post-processing of JSON instead of <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">jsonlite::fromJSON()</a></code> with raw URLs (0.6.3.0000) <a href="https://github.com/JaseZiv/worldfootballR/issues/262" class="external-link">#262</a>
 </li>
@@ -170,16 +176,16 @@
 </li>
 <li>
 <code><a href="../reference/fb_league_stats.html">fb_league_stats()</a></code> uses <code>rvest::htm_table()</code> if <code>team_or_player = "table"</code> (faster and more reliable), and only uses chromote if <code>team_or_player = "player"</code>. (0.6.2.7100)</li>
-<li>Use <code>quiet = FALSE</code> in all <code><a href="https://purrr.tidyverse.org/reference/possibly.html" class="external-link">purrr::possibly()</a></code> calls internally. Improve messaging for unexpected outcomes in <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code> and <code><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info()</a></code>. (0.6.2.8000) <a href="https://github.com/JaseZiv/worldfootballR/pull/244" class="external-link">#244</a>
+<li>Use <code>quiet = FALSE</code> in all <code><a href="https://purrr.tidyverse.org/reference/possibly.html" class="external-link">purrr::possibly()</a></code> calls internally. Improve messaging for unexpected outcomes in <code>fotmob_get_matches_by_date()</code> and <code>fotmob_get_match_info()</code>. (0.6.2.8000) <a href="https://github.com/JaseZiv/worldfootballR/pull/244" class="external-link">#244</a>
 </li>
 <li>
 <code><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting()</a></code> added. (0.6.2.9000) <a href="https://github.com/JaseZiv/worldfootballR/pull/249" class="external-link">#249</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> and <code>fotmob_get_league_tables</code> gain a <code>season</code> parameter. (0.6.2.9200) <a href="https://github.com/JaseZiv/worldfootballR/pull/256" class="external-link">#256</a>
+<code>fotmob_get_league_matches()</code> and <code>fotmob_get_league_tables</code> gain a <code>season</code> parameter. (0.6.2.9200) <a href="https://github.com/JaseZiv/worldfootballR/pull/256" class="external-link">#256</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code> internals improved (0.6.3.0000)</li>
+<code>fotmob_get_season_stats()</code> internals improved (0.6.3.0000)</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -293,12 +299,12 @@
 </li>
 <li>Improve fotmob tests by checking for column names instead of just number of columns.</li>
 <li>
-<code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code>, <code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code>: Functions to load pre stored match ids and match details.</li>
+<code>load_fotmob_matches_by_date()</code>, <code>load_fotmob_match_details()</code>: Functions to load pre stored match ids and match details.</li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code>, <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>, and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+<code>fotmob_get_match_details()</code>, <code>fotmob_get_matches_by_date()</code>, and <code>fotmob_get_match_players()</code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code>fotmob_get_match_players()</code>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_info.html">fotmob_get_match_info()</a></code> added. (<a href="https://github.com/JaseZiv/worldfootballR/issues/166" class="external-link">#166</a>)</li>
+<code>fotmob_get_match_info()</code> added. (<a href="https://github.com/JaseZiv/worldfootballR/issues/166" class="external-link">#166</a>)</li>
 <li>
 <code><a href="../reference/fb_squad_wages.html">fb_squad_wages()</a></code> designed to get player wage estimates from FBref via Capology</li>
 </ul></div>
@@ -307,7 +313,7 @@
 <ul><li>
 <code><a href="../reference/load_fb_big5_advanced_season_stats.html">load_fb_big5_advanced_season_stats()</a></code> returning zero row df when no season selected. Now rectified</li>
 <li>
-<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>: Fixed bug in <code>.fotmob_get_single_season_stats()</code> where season ids with dashes, e.g. <code>"17709-Apertura"</code> for Liga MX 2022/2023 would error.</li>
+<code>fotmob_get_season_stats()</code>: Fixed bug in <code>.fotmob_get_single_season_stats()</code> where season ids with dashes, e.g. <code>"17709-Apertura"</code> for Liga MX 2022/2023 would error.</li>
 <li>
 <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> throwing error for team stats. Also updated to only have one page load, hopefully minimising the risk of being blocked for excessive page loads</li>
 </ul><p>Elements changed on FBref somewhere in the same time <code>v 0.5.11</code> was being released!</p>
@@ -317,13 +323,13 @@
 <code><a href="../reference/fb_big5_advanced_season_stats.html">fb_big5_advanced_season_stats()</a></code> throwing error as <code>Matches played</code> column now names <code>MP</code> <a href="https://github.com/JaseZiv/worldfootballR/issues/158" class="external-link">#158</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>: Fix unnesting to accommodate additional nesting and identical names at different levels. This bug affected <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which calls <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> <a href="https://github.com/JaseZiv/worldfootballR/issues/155" class="external-link">#155</a>
+<code>fotmob_get_league_tables()</code>: Fix unnesting to accommodate additional nesting and identical names at different levels. This bug affected <code>fotmob_get_season_stats()</code>, which calls <code>fotmob_get_league_tables()</code> <a href="https://github.com/JaseZiv/worldfootballR/issues/155" class="external-link">#155</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> returns stats as characters <a href="https://github.com/JaseZiv/worldfootballR/issues/150" class="external-link">#150</a>
+<code>fotmob_get_match_players()</code> returns stats as characters <a href="https://github.com/JaseZiv/worldfootballR/issues/150" class="external-link">#150</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>: Address logic for extracting season ids from season stats pages that was failing due to blank stats pages in the offseason for a league.</li>
+<code>fotmob_get_season_stats()</code>: Address logic for extracting season ids from season stats pages that was failing due to blank stats pages in the offseason for a league.</li>
 <li>
 <code><a href="../reference/get_match_lineups.html">get_match_lineups()</a></code> wasn’t returning the away team name <a href="https://github.com/JaseZiv/worldfootballR/issues/147" class="external-link">#147</a>
 </li>
@@ -334,7 +340,7 @@
 <div class="section level4">
 <h4 id="improvements-0-6-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-6-0"></a></h4>
 <ul><li><p>FBref functions now pass user agent to headers under the hood</p></li>
-<li><p><code><a href="../reference/fotmob_get_match_team_stats.html">fotmob_get_match_team_stats()</a></code> added. The following functions now no longer return league/season metadata, including columns <code>League</code>, <code>Gender</code>, <code>Country</code>, <code>Season</code>:</p></li>
+<li><p><code>fotmob_get_match_team_stats()</code> added. The following functions now no longer return league/season metadata, including columns <code>League</code>, <code>Gender</code>, <code>Country</code>, <code>Season</code>:</p></li>
 <li><p><code><a href="../reference/fb_match_summary.html">fb_match_summary()</a></code></p></li>
 <li><p><code><a href="../reference/fb_advanced_match_stats.html">fb_advanced_match_stats()</a></code></p></li>
 <li><p><code><a href="../reference/fb_match_report.html">fb_match_report()</a></code></p></li>
@@ -376,9 +382,9 @@
 </li>
 <li>Improve fotmob tests by checking for column names instead of just number of columns.</li>
 <li>
-<code><a href="../reference/load_fotmob_matches_by_date.html">load_fotmob_matches_by_date()</a></code>, <code><a href="../reference/load_fotmob_match_details.html">load_fotmob_match_details()</a></code>: Functions to load pre stored match ids and match details.</li>
+<code>load_fotmob_matches_by_date()</code>, <code>load_fotmob_match_details()</code>: Functions to load pre stored match ids and match details.</li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code>, <code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code>, and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+<code>fotmob_get_match_details()</code>, <code>fotmob_get_matches_by_date()</code>, and <code>fotmob_get_match_players()</code>: Nested list columns are unnested by default. The lone exception is <code>shotmap</code> in the output for <code>fotmob_get_match_players()</code>
 </li>
 </ul><hr></div>
 </div>
@@ -394,7 +400,7 @@
 <div class="section level4">
 <h4 id="bugs-0-5-7">Bugs<a class="anchor" aria-label="anchor" href="#bugs-0-5-7"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code> no longer errors out when stats are queried for a league in its offseason <a href="https://github.com/JaseZiv/worldfootballR/issues/136" class="external-link">#136</a>
+<code>fotmob_get_season_stats()</code> no longer errors out when stats are queried for a league in its offseason <a href="https://github.com/JaseZiv/worldfootballR/issues/136" class="external-link">#136</a>
 </li>
 <li>
 <code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> no longer throwing errors for players without a club <a href="https://github.com/JaseZiv/worldfootballR/issues/137" class="external-link">#137</a>
@@ -414,7 +420,7 @@
 <code><a href="../reference/get_match_report.html">get_match_report()</a></code> and <code><a href="../reference/get_advanced_match_stats.html">get_advanced_match_stats()</a></code> - now reporting the match date and away team name again. Additionally, <code>Home_Goals</code> and <code>Away_Goals</code> text strings now clean strings (tabs and line breaks removed) <a href="https://github.com/JaseZiv/worldfootballR/issues/128" class="external-link">#128</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code>, <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>, and <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>, which would have been broken if <code>cached=FALSE</code> was specified.</li>
+<code>fotmob_get_league_ids()</code> - now uses new endpoint for league ids (data in script element no longer has data). This function is internally used by <code>fotmob_get_league_matches()</code>, <code>fotmob_get_league_tables()</code>, and <code>fotmob_get_season_stats()</code>, which would have been broken if <code>cached=FALSE</code> was specified.</li>
 <li>
 <code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> no longer throwing errors for retired players and also addressed changed HTML on transfermarkt returning no data <a href="https://github.com/JaseZiv/worldfootballR/issues/127" class="external-link">#127</a>
 </li>
@@ -445,10 +451,10 @@
 <code><a href="../reference/player_transfer_history.html">player_transfer_history()</a></code> updated after html changes on Transfermarkt caused function to return zero row data frame <a href="https://github.com/JaseZiv/worldfootballR/issues/120" class="external-link">#120</a>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> and <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> after changes to names in JSON response (<code>fixtures</code> -&gt; <code>matches</code>, <code>tableData</code> -&gt; <code>table</code>) <a href="https://github.com/JaseZiv/worldfootballR/issues/121" class="external-link">#121</a>, <a href="https://github.com/JaseZiv/worldfootballR/issues/122" class="external-link">#122</a>
+<code>fotmob_get_league_matches()</code> and <code>fotmob_get_league_tables()</code> after changes to names in JSON response (<code>fixtures</code> -&gt; <code>matches</code>, <code>tableData</code> -&gt; <code>table</code>) <a href="https://github.com/JaseZiv/worldfootballR/issues/121" class="external-link">#121</a>, <a href="https://github.com/JaseZiv/worldfootballR/issues/122" class="external-link">#122</a>
 </li>
 <li>Various fotmob functions affected by addition of <code>api/</code> in URL</li>
-<li>New names to player stats outdated docs for <code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code>
+<li>New names to player stats outdated docs for <code>fotmob_get_season_stats()</code>
 </li>
 </ul><hr></div>
 </div>
@@ -496,27 +502,27 @@
 <ul><li>
 <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code> - to get match logs of selected stat types for a team(s) for all matches played in a season</li>
 <li>
-<code><a href="../reference/fotmob_get_league_ids.html">fotmob_get_league_ids()</a></code> - to get Fotmob’s league ids, which can be specified as an alternative to <code>country</code> and <code>league_name</code> in <code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> and <code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code>
+<code>fotmob_get_league_ids()</code> - to get Fotmob’s league ids, which can be specified as an alternative to <code>country</code> and <code>league_name</code> in <code>fotmob_get_league_matches()</code> and <code>fotmob_get_league_tables()</code>
 </li>
 <li>
-<code><a href="../reference/fotmob_get_season_stats.html">fotmob_get_season_stats()</a></code> - to get stats for one or more leagues, at team or player level</li>
+<code>fotmob_get_season_stats()</code> - to get stats for one or more leagues, at team or player level</li>
 <li>
-<code><a href="../reference/fotmob_get_league_matches.html">fotmob_get_league_matches()</a></code> - to select matches for one or more leagues</li>
+<code>fotmob_get_league_matches()</code> - to select matches for one or more leagues</li>
 <li>
-<code><a href="../reference/fotmob_get_league_tables.html">fotmob_get_league_tables()</a></code> - to get standings for one or more leagues</li>
+<code>fotmob_get_league_tables()</code> - to get standings for one or more leagues</li>
 <li>
-<code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code> - to select matches occurring on specific day(s)</li>
+<code>fotmob_get_matches_by_date()</code> - to select matches occurring on specific day(s)</li>
 <li>
-<code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> - to get shooting locations for an individual match</li>
+<code>fotmob_get_match_details()</code> - to get shooting locations for an individual match</li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> - extract player statistics from matches</li>
+<code>fotmob_get_match_players()</code> - extract player statistics from matches</li>
 </ul></div>
 <div class="section level4">
 <h4 id="improvements-0-5-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-5-0"></a></h4>
 <ul><li>
 <code>.clean_table_names()</code> (internal function) now able to clean tab names in <code><a href="../reference/fb_team_match_log_stats.html">fb_team_match_log_stats()</a></code>
 </li>
-<li><ul><li>Added documentation for <code>fotmob_get_match_players</code> and <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+<li><ul><li>Added documentation for <code>fotmob_get_match_players</code> and <code>fotmob_get_match_players()</code>
 </li>
 </ul></li>
 </ul></div>
@@ -525,9 +531,9 @@
 <ul><li>
 <code>fotmob_get_league_matches</code> and <code>fotmob_get_league_tables</code> updated to address new Fotmob league endpoint.</li>
 <li>
-<code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code> no longer returning the identical home and away team IDs <a href="https://github.com/JaseZiv/worldfootballR/issues/93" class="external-link">#93</a>
+<code>fotmob_get_match_players()</code> no longer returning the identical home and away team IDs <a href="https://github.com/JaseZiv/worldfootballR/issues/93" class="external-link">#93</a>
 </li>
-<li><ul><li>Fixed multiple rows returned for single player in <code>stats</code> column returned in <code><a href="../reference/fotmob_get_match_players.html">fotmob_get_match_players()</a></code>
+<li><ul><li>Fixed multiple rows returned for single player in <code>stats</code> column returned in <code>fotmob_get_match_players()</code>
 </li>
 </ul></li>
 <li>
@@ -675,7 +681,7 @@
 <div class="section level4">
 <h4 id="improvements-0-4-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-4-0"></a></h4>
 <ul><li>
-<code><a href="../reference/fotmob_get_matches_by_date.html">fotmob_get_matches_by_date()</a></code> and <code><a href="../reference/fotmob_get_match_details.html">fotmob_get_match_details()</a></code> added <a href="https://github.com/JaseZiv/worldfootballR/issues/61" class="external-link">#61</a>
+<code>fotmob_get_matches_by_date()</code> and <code>fotmob_get_match_details()</code> added <a href="https://github.com/JaseZiv/worldfootballR/issues/61" class="external-link">#61</a>
 </li>
 </ul><hr></div>
 </div>

@@ -13,9 +13,6 @@
     <loc>https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html</loc>
-  </url>
-  <url>
     <loc>https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html</loc>
   </url>
   <url>
@@ -106,36 +103,6 @@
     <loc>https://jaseziv.github.io/worldfootballR/reference/fb_teams_urls.html</loc>
   </url>
   <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_league_ids.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_league_matches.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_league_tables.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_details.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_info.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_momentum.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_players.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_match_team_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_matches_by_date.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/fotmob_get_season_stats.html</loc>
-  </url>
-  <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/get_advanced_match_stats.html</loc>
   </url>
   <url>
@@ -173,12 +140,6 @@
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/load_fb_match_shooting.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_match_details.html</loc>
-  </url>
-  <url>
-    <loc>https://jaseziv.github.io/worldfootballR/reference/load_fotmob_matches_by_date.html</loc>
   </url>
   <url>
     <loc>https://jaseziv.github.io/worldfootballR/reference/load_match_comp_results.html</loc>
