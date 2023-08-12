@@ -54,9 +54,6 @@ reference:
   - title: Understat
     contents:
       - starts_with("understat_")
-  - title: Fotmob
-    contents:
-      - starts_with("fotmob_")
   - title: Load
     contents:
       - starts_with("load_")
