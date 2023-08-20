@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-08-12</h4>
+            <h4 data-toc-skip class="date">2023-08-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -267,7 +267,7 @@ available:</p>
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">world_cups</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1,306</span></span>
+<span><span class="co">#&gt; Rows: 1,310</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FIFA Women's World Cup", "FIFA Women's World Cup", "…</span></span>
 <span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
@@ -321,7 +321,7 @@ supported.</p>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,872 × 21</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 57,345 × 21</span></span></span>
 <span><span class="co">#&gt;    MatchURL   Date  Squad Home_Away Match_Half Minute Player xG    PSxG  Outcome</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://f… 2017… Arse… Home               1 2      Alexa… 0.06  <span style="color: #949494;">"</span>0.3… Goal   </span></span>
@@ -334,7 +334,7 @@ supported.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://f… 2017… Arse… Home               1 27     Moham… 0.01  <span style="color: #949494;">""</span>    Off Ta…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://f… 2017… Arse… Home               1 38     Grani… 0.02  <span style="color: #949494;">""</span>    Blocked</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://f… 2017… Arse… Home               1 45+2   Alexa… 0.07  <span style="color: #949494;">""</span>    Blocked</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,862 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 57,335 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: Distance &lt;chr&gt;, `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;, Player_SCA_2 &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;, Gender &lt;chr&gt;, Country &lt;chr&gt;,</span></span></span>
