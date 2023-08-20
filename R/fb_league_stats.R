@@ -78,7 +78,7 @@
 #' \item{gca}
 #' \item{defense}
 #' \item{possession}
-#' \item{playing_time}
+#' \item{playingtime}
 #' \item{misc}
 #' \item{keepers}
 #' \item{keepersadv}
@@ -136,7 +136,7 @@ fb_league_stats <- function(
       "gca",
       "defense",
       "possession",
-      "playing_time",
+      "playingtime",
       "misc",
       "keepers",
       "keepersadv"

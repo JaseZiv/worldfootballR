@@ -1,5 +1,9 @@
 # worldfootballR (development version)
 
+### Bugs
+
+* `fb_league_stats()` failing for `playing_time`. (0.6.4.0001) [#314](https://github.com/JaseZiv/worldfootballR/issues/314)
+
 # worldfootballR 0.6.4
 
 ### Breaking changes

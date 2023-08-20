@@ -212,7 +212,7 @@ The following stat types can be selected:
 * *gca*
 * *defense*
 * *possession*
-* *playing_time*
+* *playingtime*
 * *misc*
 * *keepers*
 * *keepers_adv*
