@@ -420,16 +420,3 @@
   session <- rvest::session(url = page_url, ua)
   xml2::read_html(session)
 }
-
-#' @importFrom httr GET content
-#' @importFrom jsonlite fromJSON
-#' @noRd
-get_content <- function(url) {
-  resp <- httr::GET(url)
-  ## suppress encoding messages
-  suppressMessages(cont <- httr::content(resp, as = "text"))
-  jsonlite::fromJSON(cont)
-}
-
-#' @importFrom purrr safely
-safely_get_content <- purrr::safely(get_content, otherwise = NULL, quiet = TRUE)

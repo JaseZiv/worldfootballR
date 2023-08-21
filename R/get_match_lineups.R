@@ -10,6 +10,7 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
+#' @importFrom lubridate ymd
 #'
 #' @export
 #'

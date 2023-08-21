@@ -26,7 +26,6 @@ This package is designed to allow users to extract various world football result
 * [FBref](https://fbref.com/en/)
 * [Transfermarkt](https://www.transfermarkt.com/)
 * [Understat](https://understat.com/)
-* [Fotmob](https://www.fotmob.com/)
 
 
 ## Installation
@@ -59,7 +58,6 @@ Package vignettes have been built to help you get started with the package.
 * For functions to extract data from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
 * For functions to extract data from Transfermarkt, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-transfermarkt-data.html)
 * For functions to extract data from Understat, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-understat-data.html)
-* For functions to extract data from fotmob, see [here](https://jaseziv.github.io/worldfootballR/articles/extract-fotmob-data.html)
 * For functions to extract data for international matches from FBref, see [here](https://jaseziv.github.io/worldfootballR/articles/fbref-data-internationals.html)
 
 This vignette will cover the functions to load scraped data from the [`worldfootballR_data`](https://github.com/JaseZiv/worldfootballR_data) data repository.
@@ -180,55 +178,3 @@ This is effectively the loading equivalent of the `understat_league_season_shots
 serie_a_shot_locations <- load_understat_league_shots(league = "Serie A")
 dplyr::glimpse(serie_a_shot_locations)
 ```
-
-## Load fotmob
-
-The following section demonstrates the different loading functions of Understat data.
-
-### Load fotmob Big 5 Match Shots
-
-`load_fotmob_match_details()` returns match details dating back to the 2020/21 season (some matches may be missing) for each of the following leagues:
-
--   EURO: 50
--   Champions League: 42
--   Copa America: 44
--   Europa League: 73
--   Premier League: 47
--   1.  Bundesliga: 54
--   LaLiga: 87
--   Ligue 1: 53
--   MLS: 130
--   Serie A: 55
-
-This is effectively the loading equivalent of the `fotmob_get_match_details()` function for all matches for these leagues back to the beginning of the 2020/21 season.
-
-```{r load_fotmob_match_details}
-epl_match_details <- load_fotmob_match_details(
-  country = "ENG",
-  league_name = "Premier League"
-)
-## or
-## load_fotmob_match_details(league_id = 47)
-dplyr::glimpse(epl_match_details)
-
-## multiple leagues at once
-epl_ll_match_details <- load_fotmob_match_details(league_id = c(47, 87))
-```
-
-Note that fotmob does not currently have match details prior to 2020/21.
-
-`load_fotmob_matches_by_date()` can be used to retrieve fotmob match ids dating back to August 2017.
-
-```{r load_fotmob_matches_by_date}
-epl_matches <- load_fotmob_matches_by_date(
-  country = "ENG",
-  league_name = "Premier League"
-)
-dplyr::glimpse(epl_matches)
-
-## multiple leagues at once
-epl_ll_matches <- load_fotmob_matches_by_date(league_id = c(47, 87))
-```
-
-
-

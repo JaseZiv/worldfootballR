@@ -2,6 +2,17 @@
 
 ### Bugs
 
+* `fb_league_stats()` failing for `playing_time`. (0.6.4.0001) [#314](https://github.com/JaseZiv/worldfootballR/issues/314)
+
+# worldfootballR 0.6.4
+
+### Breaking changes
+
+* All fotmob functions removed due to an update to fotmob [terms of service](https://www.fotmob.com/tos.txt) prohibiting "the use of automatic services (robots, spiders, indexing etc.) as well as other methods for systematic or regular use."
+
+
+### Bugs
+
 * `fotmob_get_match_details()` failing due to change in `teamColors` JSON element (0.6.3.0001) [#271](https://github.com/JaseZiv/worldfootballR/issues/271)
 * `fotmob_get_league_ids()` failing due to addition of `localizedName` JSON element (0.6.3.0003) [#275](https://github.com/JaseZiv/worldfootballR/issues/275)
 * `fotmob_get_match_details()` failing (again) due to change in `teamColors` JSON element (0.6.3.0003)

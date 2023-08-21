@@ -81,14 +81,14 @@
 #' \item{playing_time}
 #' \item{misc}
 #' \item{keepers}
-#' \item{keepersadv}
+#' \item{keepers_adv}
 #' }
 #'
 #' @return a dataframe of season stats for all teams / players in a league
 #'
 #' @importFrom rlang arg_match0 .data .env
 #' @importFrom magrittr %>%
-#' @importFrom dplyr filter pull transmute
+#' @importFrom dplyr filter pull transmute case_when
 #' @importFrom stringr str_detect
 #' @importFrom tidyr crossing
 #' @importFrom tibble tibble
@@ -139,7 +139,7 @@ fb_league_stats <- function(
       "playing_time",
       "misc",
       "keepers",
-      "keepersadv"
+      "keepers_adv"
     )
   )
 
@@ -168,7 +168,12 @@ fb_league_stats <- function(
 
   urls <- tidyr::crossing(
     "league_url" = league_urls,
-    "stat_type" = ifelse(stat_type == "standard", "stats", stat_type)
+    "stat_type" = dplyr::case_when(
+      stat_type == "standard" ~ "stats",
+      stat_type == "keepers_adv" ~ "keepersadv",
+      stat_type == "playing_time" ~ "playingtime",
+      TRUE ~ stat_type
+    )
   ) %>%
     dplyr::transmute(
       "url" = sprintf("%s/%s/%s", dirname(.data[["league_url"]]), .data[["stat_type"]], basename(.data[["league_url"]]))
