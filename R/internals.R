@@ -67,6 +67,7 @@
 #' @importFrom rlang .data
 #' @noRd
 #'
+
 .clean_player_season_stats <- function(input_table_element) {
   stat_df <- input_table_element %>%
     rvest::html_table() %>%
@@ -95,20 +96,20 @@
   names(stat_df) <- new_names
   stat_df <- stat_df[-1, ]
 
-  stat_df <- stat_df %>% dplyr::select(-.data[["Matches"]])
+  stat_df <- stat_df %>% dplyr::select(-Matches)
 
   remove_rows <- min(grep("Season", stat_df$Season)):nrow(stat_df)
 
   stat_df <- stat_df[-remove_rows, ]
 
   cols_to_transform <- stat_df %>%
-    dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Comp"]]) %>%
+    dplyr::select(-Season, -Squad, -Comp) %>%
     names()
 
-  stat_df <- stat_df %>% dplyr::mutate(Squad = gsub("^[^A-Z]*([A-Z].*)", "\\1", .data[["Squad"]]))
+  stat_df <- stat_df %>% dplyr::mutate(Squad = gsub("^[^A-Z]*([A-Z].*)", "\\1", Squad))
 
   if ("Country" %in% cols_to_transform) {
-    stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]]))
+    stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", Country))
     cols_to_transform <- setdiff(cols_to_transform, "Country")
   }
 
@@ -117,17 +118,16 @@
   }
 
   stat_df <- stat_df %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {
+    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = function(x) {
       gsub(",", "", x)
     }) %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {
+    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = function(x) {
       gsub("+", "", x)
     }) %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = as.numeric)
 
   return(stat_df)
 }
-
 
 
 #' Clean each match advanced statistic tables
