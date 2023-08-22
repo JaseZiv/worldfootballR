@@ -4,12 +4,14 @@
 \alias{fb_player_season_stats}
 \title{Get fbref Player Season Statistics}
 \usage{
-fb_player_season_stats(player_url, stat_type, time_pause = 3)
+fb_player_season_stats(player_url, stat_type, national = FALSE, time_pause = 3)
 }
 \arguments{
 \item{player_url}{the URL(s) of the player(s) (can come from fb_player_urls())}
 
 \item{stat_type}{the type of statistic required}
+
+\item{national}{the category of the required stats, with FALSE being Club Stats and TRUE being National Team Stats}
 
 \item{time_pause}{the wait time (in seconds) between page loads
 
@@ -28,13 +30,33 @@ Returns the historical season stats for a selected player(s) and stat type
 \examples{
 \dontrun{
 try({
-fb_player_season_stats("https://fbref.com/en/players/3bb7b8b4/Ederson",
-                       stat_type = 'standard')
+  standard_stats <- fb_player_season_stats(
+    "https://fbref.com/en/players/3bb7b8b4/Ederson",
+    stat_type = "standard"
+  )
 
-multiple_playing_time <- fb_player_season_stats(
- player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-           "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
- stat_type = "playing_time")
+  multiple_playing_time <- fb_player_season_stats(
+    player_url = c(
+      "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+      "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"
+    ),
+    stat_type = "playing_time"
+  )
+
+  national_standard_stats <- fb_player_season_stats(
+    "https://fbref.com/en/players/3bb7b8b4/Ederson",
+    stat_type = "standard",
+    national = TRUE
+  )
+
+  multiple_national_playing_time <- fb_player_season_stats(
+    player_url = c(
+      "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+      "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"
+    ),
+    stat_type = "playing_time",
+    national = TRUE
+  )
 })
 }
 }
