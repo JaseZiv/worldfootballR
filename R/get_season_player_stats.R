@@ -138,7 +138,7 @@ fb_player_season_stats <- function(player_url, stat_type, national = FALSE, time
           error = function(e) data.frame()
         )
       }
-    } else { # for players where there are no options between all_comps, dom, cups, etc, and only domestic league data exists:
+    } else if (stats_string == "All-Compe") { # for players where there are no options between all_comps, dom, cups, etc, and only domestic league data exists:
 
       expanded_table_elements <- player_page %>%
         rvest::html_nodes(".table_container") %>%
@@ -175,8 +175,7 @@ fb_player_season_stats <- function(player_url, stat_type, national = FALSE, time
         print(glue::glue(error_info))
       }
     } else {
-      stat_df <- stat_df %>%
-        filter(!is.na(Age))
+      stat_df <- stat_df[rowSums(stat_df != "" & !is.na(stat_df)) > 0, ]
 
       stat_df <- stat_df %>%
         dplyr::mutate(
