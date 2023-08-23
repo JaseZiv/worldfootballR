@@ -305,6 +305,15 @@ liv_mci_2020 <- fb_match_report(match_url = "https://fbref.com/en/matches/47880e
 dplyr::glimpse(liv_mci_2020)
 ```
 
+### Get match team stats
+
+This function will return teams stats for a single match (Possessions, Passing Accuracy etc.)
+
+```{r fb_team_match_stats, eval=FALSE}
+# function to extract match team stats
+liv_mci_2020_team_stats <- fb_team_match_stats(match_url = "https://fbref.com/en/matches/47880eb7/Liverpool-Manchester-City-November-10-2019-Premier-League")
+dplyr::glimpse(liv_mci_2020_team_stats)
+```
 
 ### Get match summaries
 
