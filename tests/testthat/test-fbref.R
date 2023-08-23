@@ -138,7 +138,7 @@ test_that("fb_match_team_stats() works", {
   expect_type(test_df, "list")
 
   # test that the correct number of columns returned
-  expect_equal(ncol(test_df), 42)
+  expect_equal(ncol(test_df), 44)
 
 })
 
