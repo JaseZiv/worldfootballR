@@ -271,6 +271,54 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
 }
 
 
+#' Get Understat available teams
+#'
+#' Returns all available team names for the selected league
+#'
+#' @param league the available league in Understat as outlined below
+#'#'
+#' The leagues currently available for Understat are:
+#' \emph{"EPL"}, \emph{"La liga}", \emph{"Bundesliga"},
+#' \emph{"Serie A"}, \emph{"Ligue 1"}, \emph{"RFPL"}
+#'
+#' #' @return a character vector teams names
+#'
+#' @export
+#' @examples
+##' \dontrun{
+#' try({
+#' understat_available_teams(league = 'EPL')
+#' })
+#' }
+understat_available_teams <- function(league){
+  leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")
+  if(!league %in% leagues) stop("Check league name")
+
+  available_teams <- list(
+    'EPL' = c('Arsenal', 'Aston Villa', 'Bournemouth', 'Brentford', 'Brighton', 'Burnley', 'Cardiff', 'Chelsea', 'Crystal Palace', 'Everton', 'Fulham', 'Huddersfield',
+              'Hull', 'Leeds', 'Leicester', 'Liverpool', 'Luton', 'Manchester City', 'Manchester United', 'Middlesbrough', 'Newcastle United', 'Norwich',
+              'Nottingham Forest', 'Queens Park Rangers', 'Sheffield United', 'Southampton', 'Stoke', 'Sunderland', 'Swansea', 'Tottenham', 'Watford', 'West Bromwich Albion',
+              'West Ham', 'Wolverhampton Wanderers'),
+    'La liga' = c('Alaves', 'Almeria', 'Athletic Club', 'Atletico Madrid', 'Barcelona', 'Cadiz', 'Celta Vigo', 'Cordoba', 'Deportivo La Coruna', 'Eibar', 'Elche', 'Espanyol',
+                  'Getafe', 'Girona', 'Granada', 'Las Palmas', 'Leganes', 'Levante', 'Malaga', 'Mallorca', 'Osasuna', 'Rayo Vallecano', 'Real Betis', 'Real Madrid',
+                  'Real Sociedad', 'Real Valladolid', 'SD Huesca', 'Sevilla', 'Sporting Gijon', 'Valencia', 'Villarreal'),
+    'Bundesliga' = c('Arminia Bielefeld', 'Augsburg', 'Bayer Leverkusen', 'Bayern Munich', 'Bochum', 'Borussia Dortmund', 'Borussia M.Gladbach', 'Darmstadt', 'Eintracht Frankfurt',
+                     'FC Cologne', 'FC Heidenheim', 'Fortuna Duesseldorf', 'Freiburg', 'Greuther Fuerth', 'Hamburger SV', 'Hannover 96', 'Hertha Berlin', 'Hoffenheim',
+                     'Ingolstadt', 'Mainz 05', 'Nuernberg', 'Paderborn', 'RasenBallsport Leipzig', 'Schalke 04', 'Union Berlin', 'VfB Stuttgart', 'Werder Bremen', 'Wolfsburg'),
+    'Serie A' = c('AC Milan', 'Atalanta', 'Benevento', 'Bologna', 'Brescia', 'Cagliari', 'Carpi', 'Cesena', 'Chievo', 'Cremonese', 'Crotone', 'Empoli', 'Fiorentina', 'Frosinone',
+                  'Genoa', 'Inter', 'Juventus', 'Lazio', 'Lecce', 'Monza', 'Napoli', 'Palermo', 'Parma', 'Parma Calcio 1913', 'Pescara', 'Roma', 'Salernitana', 'Sampdoria',
+                  'Sassuolo', 'SPAL 2013', 'Spezia', 'Torino', 'Udinese', 'Venezia', 'Verona'),
+    'Ligue 1' = c('Ajaccio', 'Amiens', 'Angers', 'Auxerre', 'Bordeaux', 'Brest', 'Caen', 'Clermont Foot', 'Dijon', 'Evian Thonon Gaillard', 'GFC Ajaccio', 'Guingamp', 'Le Havre',
+                  'Lens', 'Lille', 'Lorient', 'Lyon', 'Marseille', 'Metz', 'Monaco', 'Montpellier', 'Nancy', 'Nantes', 'Nice', 'Nimes', 'Paris Saint Germain', 'Reims', 'Rennes',
+                  'Saint-Etienne', 'SC Bastia', 'Strasbourg', 'Toulouse', 'Troyes'),
+    'RFPL' = c('Amkar', 'Anzhi Makhachkala', 'Arsenal Tula', 'Baltika', 'CSKA Moscow', 'Dinamo Moscow', 'Fakel', 'FC Krasnodar', 'FC Orenburg', 'FC Rostov', 'FC Rotor Volgograd',
+               'FC Tambov', 'FC Ufa', 'FC Yenisey Krasnoyarsk', 'FK Akhmat', 'Khimki', 'Krylya Sovetov Samara', 'Kuban Krasnodar', 'Lokomotiv Moscow', 'Mordovya',
+               'Nizhny Novgorod', 'PFC Sochi', 'Rubin Kazan', 'SKA-Khabarovsk', 'Spartak Moscow', 'Tom Tomsk', 'Torpedo Moscow', 'Tosno', 'Ural', 'Zenit St. Petersburg')
+  )
+
+  return(available_teams[[league]])
+}
+
 #' Get Understat team info
 #'
 #' Retrieve Understat team metadata, including team URLs. Similar to `understatr::get_team_meta`.
