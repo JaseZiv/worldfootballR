@@ -127,6 +127,22 @@ test_that("fb_match_report() works", {
 })
 
 Sys.sleep(3)
+test_that("fb_match_team_stats() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+
+  # test that multiple match_url can be passed to the function
+  test_urls <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+                 "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
+  test_df <- fb_team_match_stats(match_url = test_urls, time_pause = 4)
+  expect_type(test_df, "list")
+
+  # test that the correct number of columns returned
+  expect_equal(ncol(test_df), 42)
+
+})
+
+Sys.sleep(3)
 test_that("fb_match_results() works", {
   testthat::skip_on_cran()
   testthat::skip_if_offline()
