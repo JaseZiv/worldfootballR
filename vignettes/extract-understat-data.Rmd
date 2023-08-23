@@ -67,6 +67,16 @@ This vignette will cover the functions to extract data from understat.com
 ## Understat Helper Functions
 
 
+### Team Names
+To get a list of all available teams names team selected league, use the `understat_avalaible_teams()` function.
+
+You can pass the results of the `understat_avalaible_teams()` function execution to the `understat_team_meta()` function.
+
+```{r team_urls, eval=FALSE}
+team_urls <- understat_team_meta(team_name = understat_avalaible_teams(league = 'EPL'))
+```
+
+
 ### Team URLs
 
 To get a list of all season team URLs for selected teams, use the `understat_team_meta()` function (note, to get team names, it might be advisable to look at Understat.com's spelling of the team names and pass that through to the function):
