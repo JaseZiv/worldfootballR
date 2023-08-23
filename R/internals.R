@@ -118,13 +118,13 @@
   }
 
   stat_df <- stat_df %>%
-    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = function(x) {
+    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = function(x) {
       gsub(",", "", x)
     }) %>%
-    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = function(x) {
+    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = function(x) {
       gsub("+", "", x)
     }) %>%
-    dplyr::mutate_at(vars(all_of(cols_to_transform)), .funs = as.numeric)
+    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = as.numeric)
 
   return(stat_df)
 }
