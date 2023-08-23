@@ -39,7 +39,7 @@ fb_league_stats(
 \item{playing_time}
 \item{misc}
 \item{keepers}
-\item{keepersadv}
+\item{keepers_adv}
 }}
 
 \item{team_or_player}{result either summarised for each team, or individual players}
