@@ -96,20 +96,20 @@
   names(stat_df) <- new_names
   stat_df <- stat_df[-1, ]
 
-  stat_df <- stat_df %>% dplyr::select(-Matches)
+  stat_df <- stat_df %>% dplyr::select(-.data[["Matches"]])
 
   remove_rows <- min(grep("Season", stat_df$Season)):nrow(stat_df)
 
   stat_df <- stat_df[-remove_rows, ]
 
   cols_to_transform <- stat_df %>%
-    dplyr::select(-Season, -Squad, -Comp) %>%
+    dplyr::select(-.data[["Season"]], -.data[["Squad"]], -.data[["Comp"]]) %>%
     names()
 
-  stat_df <- stat_df %>% dplyr::mutate(Squad = gsub("^[^A-Z]*([A-Z].*)", "\\1", Squad))
+  stat_df <- stat_df %>% dplyr::mutate(Squad = gsub("^[^A-Z]*([A-Z].*)", "\\1", .data[["Squad"]]))
 
   if ("Country" %in% cols_to_transform) {
-    stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", Country))
+    stat_df <- stat_df %>% dplyr::mutate(Country = gsub("^.*? ([A-Z])", "\\1", .data[["Country"]]))
     cols_to_transform <- setdiff(cols_to_transform, "Country")
   }
 
@@ -118,13 +118,13 @@
   }
 
   stat_df <- stat_df %>%
-    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = function(x) {
+    dplyr::mutate_at(dplyr::vars(tidyselect::all_of(cols_to_transform)), .funs = function(x) {
       gsub(",", "", x)
     }) %>%
-    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = function(x) {
+    dplyr::mutate_at(dplyr::vars(tidyselect::all_of(cols_to_transform)), .funs = function(x) {
       gsub("+", "", x)
     }) %>%
-    dplyr::mutate_at(dplyr::vars(all_of(cols_to_transform)), .funs = as.numeric)
+    dplyr::mutate_at(dplyr::vars(tidyselect::all_of(cols_to_transform)), .funs = as.numeric)
 
   return(stat_df)
 }

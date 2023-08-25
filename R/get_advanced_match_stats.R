@@ -147,7 +147,12 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
           }
 
 
-          stat_df_output <- cbind(match_report, stat_df_output)
+          stat_df_output <- dplyr::bind_cols(match_report, stat_df_output)
+
+          if(nrow(stat_df_output) == 0) {
+            print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this match. Check {match_url} to see if it exists."))
+          }
+
         } else if(stat_type == "shots") {
 
         }
