@@ -286,6 +286,24 @@ test_that("fb_player_season_stats() works", {
                                                   stat_type = "playing_time", time_pause = 4)
   expect_type(multiple_playing_time, "list")
   expect_false(nrow(multiple_playing_time) == 0)
+
+  multiple_national_standard_stats <- fb_player_season_stats(
+    player_url = c(
+      "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+      "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"
+    ),
+    stat_type = "standard", time_pause = 4, national = TRUE
+  )
+  expect_type(multiple_national_standard_stats, "list")
+  expect_false(nrow(multiple_national_standard_stats) == 0)
+
+  expect_no_error(victor_ulloa_national_stats <- fb_player_season_stats(
+    player_url = "https://fbref.com/en/players/e7056f05/Victor-Ulloa",
+    stat_type = "standard", time_pause = 4, national = TRUE
+  ))
+  expect_type(victor_ulloa_national_stats, "list")
+  expect_true(nrow(victor_ulloa_national_stats) == 0)
+
 })
 
 
