@@ -298,12 +298,12 @@ understat_available_teams <- function(leagues){
   for(lg in leagues){
     if(!lg %in% correct_leagues){warning(glue::glue("League {lg} not found. Please check understats.com for the correct league name")); next}
     match_url <- switch (lg,
-                         'EPL' = 'https://understat.com/team/Arsenal/2023',
-                         'La liga' = 'https://understat.com/team/Barcelona/2023',
-                         'Bundesliga' = 'https://understat.com/team/Bayern_Munich/2023',
-                         'Serie A' = 'https://understat.com/team/AC_Milan/2023',
-                         'Ligue 1' = 'https://understat.com/team/Paris_Saint_Germain/2023',
-                         'RFPL' = 'https://understat.com/team/Spartak_Moscow/2023'
+                         'EPL' = 'https://understat.com/team/Arsenal',
+                         'La liga' = 'https://understat.com/team/Barcelona',
+                         'Bundesliga' = 'https://understat.com/team/Bayern_Munich',
+                         'Serie A' = 'https://understat.com/team/AC_Milan',
+                         'Ligue 1' = 'https://understat.com/team/Paris_Saint_Germain',
+                         'RFPL' = 'https://understat.com/team/Spartak_Moscow'
     )
     team_page <- tryCatch(.load_page(match_url), error = function(e) NA)
     teams_list[[lg]] <- team_page %>% rvest::html_nodes(".header-wrapper") %>% html_text() %>% gsub("([\n\t])|(\\d{4}/\\d{4})", "", .) %>% gsub('(?<!\\s)([[:upper:]])', '(&&)\\1', ., perl = TRUE) %>%
