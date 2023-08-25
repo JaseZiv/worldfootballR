@@ -4,10 +4,10 @@
 \alias{understat_available_teams}
 \title{Get Understat available teams}
 \usage{
-understat_available_teams(league)
+understat_available_teams(leagues)
 }
 \arguments{
-\item{league}{the available league in Understat as outlined below
+\item{leagues}{the available leagues in Understat as outlined below
 #'
 The leagues currently available for Understat are:
 \emph{"EPL"}, \emph{"La liga}", \emph{"Bundesliga"},
@@ -16,12 +16,12 @@ The leagues currently available for Understat are:
 #' @return a character vector teams names}
 }
 \description{
-Returns all available team names for the selected league
+Returns all available team names for the selected leagues
 }
 \examples{
 \dontrun{
 try({
-understat_available_teams(league = 'EPL')
+understat_available_teams(leagues = c('EPL', 'La liga'))
 })
 }
 }
