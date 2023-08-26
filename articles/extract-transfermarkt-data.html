@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-08-24</h4>
+            <h4 data-toc-skip class="date">2023-08-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -384,22 +384,22 @@ selected league, use the <code><a href="../reference/tm_league_injuries.html">tm
 <code class="sourceCode R"><span><span class="co"># to get all current injuries for LaLiga</span></span>
 <span><span class="va">laliga_injuries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_injuries.html">tm_league_injuries</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">laliga_injuries</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 33</span></span>
+<span><span class="co">#&gt; Rows: 35</span></span>
 <span><span class="co">#&gt; Columns: 14</span></span>
 <span><span class="co">#&gt; $ comp_name           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LaLiga", "LaLiga", "LaLiga", "LaLiga", "LaLiga", …</span></span>
 <span><span class="co">#&gt; $ country             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", "Spain", "Spain", "Spai…</span></span>
 <span><span class="co">#&gt; $ comp_url            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/laliga/startseite/w…</span></span>
-<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Giuliano Simeone", "Éder Militão", "José María Gi…</span></span>
+<span><span class="co">#&gt; $ player_name         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Giuliano Simeone", "Yeray Álvarez", "André Silva"…</span></span>
 <span><span class="co">#&gt; $ player_url          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://www.transfermarkt.com/giuliano-simeone/pr…</span></span>
-<span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Centre-Back", "Centre-Back", "C…</span></span>
-<span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Deportivo Alavés", "Real Madrid", "Atlético de Ma…</span></span>
-<span><span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20, 25, 28, 31, 27, 23, 24, 28, 28, 27, 33, 31, 21…</span></span>
-<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Argentina", "Brazil", "Uruguay", "Spain", "Brazil…</span></span>
-<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", "Spain", "Spain", NA, NA, NA, NA, NA, NA,…</span></span>
-<span><span class="co">#&gt; $ injury              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ankle Fracture", "Cruciate Ligament Rupture", "Kn…</span></span>
-<span><span class="co">#&gt; $ injured_since       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-08-07, 2023-08-13, 2023-05-31, 2023-08-15, 2…</span></span>
+<span><span class="co">#&gt; $ position            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Centre-Forward", "Centre-Back", "Centre-Forward",…</span></span>
+<span><span class="co">#&gt; $ current_club        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Deportivo Alavés", "Athletic Bilbao", "Real Socie…</span></span>
+<span><span class="co">#&gt; $ age                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20, 28, 27, 25, 28, 21, 31, 23, 27, 24, 28, 28, 31…</span></span>
+<span><span class="co">#&gt; $ nationality         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Argentina", "Spain", "Portugal", "Brazil", "Urugu…</span></span>
+<span><span class="co">#&gt; $ second_nationality  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Spain", NA, NA, "Spain", "Spain", "Cote d'Ivoire"…</span></span>
+<span><span class="co">#&gt; $ injury              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ankle Fracture", "Tear in the abductor muscle", "…</span></span>
+<span><span class="co">#&gt; $ injured_since       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2023-08-07, 2023-07-31, 2023-05-31, 2023-08-13, 2…</span></span>
 <span><span class="co">#&gt; $ injured_until       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.5e+06, 7.0e+07, 3.5e+07, 1.6e+07, 7.5e+06, 5.0e+…</span></span>
+<span><span class="co">#&gt; $ player_market_value <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.5e+06, 1.5e+07, 1.5e+07, 7.0e+07, 3.5e+07, 7.5e+…</span></span>
 <span></span>
 <span><span class="co">#----- Can even do it for non-standard leagues - get all current injuries for League One in England</span></span>
 <span><span class="co"># league_one_injuries &lt;- tm_league_injuries(country_name = "",</span></span>
@@ -647,7 +647,7 @@ involved, but will require more time. The default value is
 <span><span class="va">all_leeds_united_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_team_player_urls.html">tm_team_player_urls</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/leeds-united/startseite/verein/399"</span><span class="op">)</span></span>
 <span><span class="va">all_leeds_united_players_transfer_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_transfer_history.html">tm_player_transfer_history</a></span><span class="op">(</span><span class="va">all_leeds_united_links</span>, get_extra_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all_leeds_united_players_transfer_history</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 202</span></span>
+<span><span class="co">#&gt; Rows: 208</span></span>
 <span><span class="co">#&gt; Columns: 8</span></span>
 <span><span class="co">#&gt; $ player_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Illan Meslier", "Illan Meslier", "Illan Meslier", "Ill…</span></span>
 <span><span class="co">#&gt; $ season         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "20/21", "20/21", "19/20", "18/19", "17/18", "21/22", "…</span></span>
@@ -695,7 +695,7 @@ and they’re also listed below:</p>
 <span><span class="co">#&gt; $ staff_nationality_secondary <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "Italy", NA, NA, NA, NA, NA, NA, NA, N…</span></span>
 <span><span class="co">#&gt; $ appointed                   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2016-07-01, 2013-07-01, 2009-12-19, 2008-…</span></span>
 <span><span class="co">#&gt; $ end_date                    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> NA, 2016-06-30, 2013-05-13, 2009-12-19, 2…</span></span>
-<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2610, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
+<span><span class="co">#&gt; $ days_in_post                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2612, 1095, 1241, 563, 332, 794, 1386, 118…</span></span>
 <span><span class="co">#&gt; $ matches                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 417, 166, 191, 77, 45, 97, 176, 158, 53, 6…</span></span>
 <span><span class="co">#&gt; $ wins                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 308, 101, 113, 37, 19, 34, 77, 69, 16, 2, …</span></span>
 <span><span class="co">#&gt; $ draws                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 49, 27, 38, 15, 11, 19, 39, 41, 17, 1, 12,…</span></span>
@@ -735,7 +735,7 @@ helpers section above.</p>
 <span><span class="co">#&gt; $ club              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Man City", "Málaga CF", "Real Madrid", "Real Socied…</span></span>
 <span><span class="co">#&gt; $ appointed         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2013-07-01", "2011-01-04", "2009-06-02", "1998-10-2…</span></span>
 <span><span class="co">#&gt; $ contract_expiry   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, "2013-06-30", "2010-05-27", "2009-06-01", "1998-…</span></span>
-<span><span class="co">#&gt; $ days_in_charge    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3706, 908, 359, 3874, 113, 1880, 729, 4437, 729, 632…</span></span>
+<span><span class="co">#&gt; $ days_in_charge    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3708, 908, 359, 3874, 113, 1882, 729, 4439, 729, 634…</span></span>
 <span><span class="co">#&gt; $ matches           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 2, NA, N…</span></span>
 <span><span class="co">#&gt; $ wins              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 0, NA, N…</span></span>
 <span><span class="co">#&gt; $ draws             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 1, NA, N…</span></span>
