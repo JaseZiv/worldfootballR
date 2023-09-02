@@ -108,6 +108,17 @@
 #'   stat_type = "shooting",
 #'   team_or_player = "player"
 #' )
+#' ## Non-domestic league
+#' ##   Note that this is more likely to fail due to the volume of players
+#' fb_league_stats(
+#'   country = NA_character_,
+#'   gender = "M",
+#'   season_end_year = 2023,
+#'   tier = NA_character_,
+#'   non_dom_league_url = "https://fbref.com/en/comps/8/history/Champions-League-Seasons",
+#'   stat_type = "standard",
+#'   team_or_player = "player"
+#' )
 #' })
 #' }
 fb_league_stats <- function(
