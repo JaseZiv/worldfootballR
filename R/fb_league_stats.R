@@ -151,23 +151,32 @@ fb_league_stats <- function(
 
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
-  league_urls <- seasons %>%
-    dplyr::filter(
-      stringr::str_detect(.data[["competition_type"]], "Leagues"),
-      .data[["country"]] %in% .env[["country"]],
-      .data[["gender"]]  %in% .env[["gender"]],
-      .data[["season_end_year"]] %in% .env[["season_end_year"]],
-      .data[["tier"]] %in% .env[["tier"]]
-    ) %>%
-    dplyr::pull(.data[["seasons_urls"]]) %>%
-    unique()
+  if(is.na(non_dom_league_url)) {
+    seasons_urls <- seasons %>%
+      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
+      dplyr::filter(country %in% .env[["country"]],
+                    gender %in% .env[["gender"]],
+                    season_end_year %in% .env[["season_end_year"]],
+                    tier %in% .env[["tier"]],
+                    !is.na(.data[["seasons_urls"]])) %>%
+      dplyr::arrange(.env[["season_end_year"]]) %>%
+      dplyr::pull(.data[["seasons_urls"]]) %>% unique()
+  } else {
+    seasons_urls <- seasons %>%
+      dplyr::filter(.data[["comp_url"]] %in% .env[["non_dom_league_url"]],
+                    gender %in% .env[["gender"]],
+                    season_end_year %in% .env[["season_end_year"]],
+                    !is.na(.data[["seasons_urls"]])) %>%
+      dplyr::arrange(.env[["season_end_year"]]) %>%
+      dplyr::pull(.data[["seasons_urls"]]) %>% unique()
+  }
 
-  if (length(league_urls) == 0) {
+  if (length(seasons_urls) == 0) {
     stop("Could not find any URLs matching input parameters")
   }
 
   urls <- tidyr::crossing(
-    "league_url" = league_urls,
+    "league_url" = seasons_urls,
     "stat_type" = dplyr::case_when(
       stat_type == "standard" ~ "stats",
       stat_type == "keepers_adv" ~ "keepersadv",
