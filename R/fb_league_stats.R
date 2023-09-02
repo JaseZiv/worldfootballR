@@ -164,10 +164,10 @@ fb_league_stats <- function(
 
   seasons_urls <- seasons %>%
     dplyr::filter(
-      # .data[["country"]] %in% .env[["country"]],
+      .data[["country"]] %in% .env[["country"]],
       .data[["gender"]]  %in% .env[["gender"]],
       .data[["season_end_year"]] %in% .env[["season_end_year"]],
-      # .data[["tier"]] %in% .env[["tier"]]
+      .data[["tier"]] %in% .env[["tier"]]
     )
 
   seasons_urls <- if (is.na(non_dom_league_url)) {
