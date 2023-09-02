@@ -162,29 +162,29 @@ fb_league_stats <- function(
 
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
-  if(is.na(non_dom_league_url)) {
-    seasons_urls <- seasons %>%
-      dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
-      dplyr::filter(country %in% .env[["country"]],
-                    gender %in% .env[["gender"]],
-                    season_end_year %in% .env[["season_end_year"]],
-                    tier %in% .env[["tier"]],
-                    !is.na(.data[["seasons_urls"]])) %>%
-      # dplyr::arrange(.env[["season_end_year"]]) %>%
-      dplyr::pull(.data[["seasons_urls"]]) %>% unique()
+  seasons_urls <- seasons %>%
+    dplyr::filter(
+      # .data[["country"]] %in% .env[["country"]],
+      .data[["gender"]]  %in% .env[["gender"]],
+      .data[["season_end_year"]] %in% .env[["season_end_year"]],
+      # .data[["tier"]] %in% .env[["tier"]]
+    )
+
+  seasons_urls <- if (is.na(non_dom_league_url)) {
+    seasons_urls %>%
+      dplyr::filter(
+        stringr::str_detect(.data[["competition_type"]], "Leagues")
+      )
   } else {
-    seasons_urls <- seasons %>%
-      dplyr::filter(.data[["comp_url"]] %in% .env[["non_dom_league_url"]],
-                    gender %in% .env[["gender"]],
-                    season_end_year %in% .env[["season_end_year"]],
-                    !is.na(.data[["seasons_urls"]])) %>%
-      # dplyr::arrange(.env[["season_end_year"]]) %>%
-      dplyr::pull(.data[["seasons_urls"]]) %>% unique()
+    seasons_urls %>%
+      dplyr::filter(
+        .data[["comp_url"]] %in% .env[["non_dom_league_url"]]
+      )
   }
 
-  if (length(seasons_urls) == 0) {
-    stop("Could not find any URLs matching input parameters")
-  }
+  seasons_urls <- unique(seasons_urls[["seasons_urls"]])
+
+  stopifnot("Could not find any URLs matching input parameters" = length(seasons_urls) > 0)
 
   urls <- tidyr::crossing(
     "league_url" = seasons_urls,
