@@ -159,7 +159,7 @@ fb_league_stats <- function(
                     season_end_year %in% .env[["season_end_year"]],
                     tier %in% .env[["tier"]],
                     !is.na(.data[["seasons_urls"]])) %>%
-      dplyr::arrange(.env[["season_end_year"]]) %>%
+      # dplyr::arrange(.env[["season_end_year"]]) %>%
       dplyr::pull(.data[["seasons_urls"]]) %>% unique()
   } else {
     seasons_urls <- seasons %>%
@@ -167,7 +167,7 @@ fb_league_stats <- function(
                     gender %in% .env[["gender"]],
                     season_end_year %in% .env[["season_end_year"]],
                     !is.na(.data[["seasons_urls"]])) %>%
-      dplyr::arrange(.env[["season_end_year"]]) %>%
+      # dplyr::arrange(.env[["season_end_year"]]) %>%
       dplyr::pull(.data[["seasons_urls"]]) %>% unique()
   }
 
