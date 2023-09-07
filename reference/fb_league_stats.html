@@ -15,7 +15,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,6 +155,17 @@
 <span class="r-in"><span>  season_end_year <span class="op">=</span> <span class="fl">2022</span>,</span></span>
 <span class="r-in"><span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span></span>
 <span class="r-in"><span>  stat_type <span class="op">=</span> <span class="st">"shooting"</span>,</span></span>
+<span class="r-in"><span>  team_or_player <span class="op">=</span> <span class="st">"player"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Non-domestic league</span></span></span>
+<span class="r-in"><span><span class="co">##   Note that this is more likely to fail due to the volume of players</span></span></span>
+<span class="r-in"><span><span class="fu">fb_league_stats</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  country <span class="op">=</span> <span class="cn">NA_character_</span>,</span></span>
+<span class="r-in"><span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span></span>
+<span class="r-in"><span>  season_end_year <span class="op">=</span> <span class="fl">2023</span>,</span></span>
+<span class="r-in"><span>  tier <span class="op">=</span> <span class="cn">NA_character_</span>,</span></span>
+<span class="r-in"><span>  non_dom_league_url <span class="op">=</span> <span class="st">"https://fbref.com/en/comps/8/history/Champions-League-Seasons"</span>,</span></span>
+<span class="r-in"><span>  stat_type <span class="op">=</span> <span class="st">"standard"</span>,</span></span>
 <span class="r-in"><span>  team_or_player <span class="op">=</span> <span class="st">"player"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
