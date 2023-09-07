@@ -108,6 +108,17 @@
 #'   stat_type = "shooting",
 #'   team_or_player = "player"
 #' )
+#' ## Non-domestic league
+#' ##   Note that this is more likely to fail due to the volume of players
+#' fb_league_stats(
+#'   country = NA_character_,
+#'   gender = "M",
+#'   season_end_year = 2023,
+#'   tier = NA_character_,
+#'   non_dom_league_url = "https://fbref.com/en/comps/8/history/Champions-League-Seasons",
+#'   stat_type = "standard",
+#'   team_or_player = "player"
+#' )
 #' })
 #' }
 fb_league_stats <- function(
@@ -151,23 +162,32 @@ fb_league_stats <- function(
 
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
-  league_urls <- seasons %>%
+  seasons_urls <- seasons %>%
     dplyr::filter(
-      stringr::str_detect(.data[["competition_type"]], "Leagues"),
       .data[["country"]] %in% .env[["country"]],
       .data[["gender"]]  %in% .env[["gender"]],
       .data[["season_end_year"]] %in% .env[["season_end_year"]],
       .data[["tier"]] %in% .env[["tier"]]
-    ) %>%
-    dplyr::pull(.data[["seasons_urls"]]) %>%
-    unique()
+    )
 
-  if (length(league_urls) == 0) {
-    stop("Could not find any URLs matching input parameters")
+  seasons_urls <- if (is.na(non_dom_league_url)) {
+    seasons_urls %>%
+      dplyr::filter(
+        stringr::str_detect(.data[["competition_type"]], "Leagues")
+      )
+  } else {
+    seasons_urls %>%
+      dplyr::filter(
+        .data[["comp_url"]] %in% .env[["non_dom_league_url"]]
+      )
   }
 
+  seasons_urls <- unique(seasons_urls[["seasons_urls"]])
+
+  stopifnot("Could not find any URLs matching input parameters" = length(seasons_urls) > 0)
+
   urls <- tidyr::crossing(
-    "league_url" = league_urls,
+    "league_url" = seasons_urls,
     "stat_type" = dplyr::case_when(
       stat_type == "standard" ~ "stats",
       stat_type == "keepers_adv" ~ "keepersadv",

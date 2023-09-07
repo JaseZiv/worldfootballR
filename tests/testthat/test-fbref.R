@@ -393,6 +393,19 @@ test_that("fb_league_stats() for players works", {
   expect_gt(nrow(multi_season_player_misc), 0)
   expect_setequal(colnames(multi_season_player_misc), expected_player_misc_cols)
   expect_equal(length(unique(multi_season_player_misc$url)), 2)
+
+  ## Non-domestic league
+  # ucl_player_stats_23 <- fb_league_stats(
+  #   country = NA_character_,
+  #   gender = "M",
+  #   season_end_year = 2023,
+  #   tier = NA_character_,
+  #   non_dom_league_url = "https://fbref.com/en/comps/8/history/Champions-League-Seasons",
+  #   stat_type = "standard",
+  #   team_or_player = "player"
+  # )
+  # expect_gt(nrow(ucl_player_stats_23), 0)
+  # expect_setequal(colnames(ucl_player_stats_23), ucl_player_stats_23)
 })
 
 test_that("fb_league_stats() for teams works", {
