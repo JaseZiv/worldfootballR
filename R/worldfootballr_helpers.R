@@ -271,6 +271,51 @@ tm_team_staff_urls <- function(team_urls, staff_role) {
 }
 
 
+#' Get Understat available teams
+#'
+#' Returns all available team names for the selected leagues
+#'
+#' @param leagues the available leagues in Understat as outlined below
+#'#'
+#' The leagues currently available for Understat are:
+#' \emph{"EPL"}, \emph{"La liga}", \emph{"Bundesliga"},
+#' \emph{"Serie A"}, \emph{"Ligue 1"}, \emph{"RFPL"}
+#'
+#' #' @return a character vector teams names
+#'
+#' @export
+#' @examples
+##' \dontrun{
+#' try({
+#' understat_available_teams(leagues = c('EPL', 'La liga'))
+#' })
+#' }
+understat_available_teams <- function(leagues){
+  correct_leagues <- c("EPL", "La liga", "Bundesliga", "Serie A", "Ligue 1", "RFPL")
+
+  teams_list <- list()
+
+  for(lg in leagues){
+    if(!lg %in% correct_leagues){warning(glue::glue("League {lg} not found. Please check understats.com for the correct league name")); next}
+    match_url <- switch (lg,
+                         'EPL' = 'https://understat.com/team/Arsenal',
+                         'La liga' = 'https://understat.com/team/Barcelona',
+                         'Bundesliga' = 'https://understat.com/team/Bayern_Munich',
+                         'Serie A' = 'https://understat.com/team/AC_Milan',
+                         'Ligue 1' = 'https://understat.com/team/Paris_Saint_Germain',
+                         'RFPL' = 'https://understat.com/team/Spartak_Moscow'
+    )
+    team_page <- tryCatch(.load_page(match_url), error = function(e) NA)
+    teams_list[[lg]] <- team_page %>% rvest::html_nodes(".header-wrapper") %>% html_text() %>% gsub("([\n\t])|(\\d{4}/\\d{4})", "", .) %>% gsub('(?<!\\s)([[:upper:]])', '(&&)\\1', ., perl = TRUE) %>%
+      strsplit(., "\\(&&\\)", perl = TRUE) %>% unlist(.) %>% .[2:length(.)] %>%  unlist(.)
+  }
+  if(length(leagues) == 1){
+    return(unlist(teams_list, use.names = FALSE))
+  }
+
+  return(teams_list)
+}
+
 #' Get Understat team info
 #'
 #' Retrieve Understat team metadata, including team URLs. Similar to `understatr::get_team_meta`.

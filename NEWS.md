@@ -8,7 +8,7 @@
 ### Improvements
 * `fb_player_season_stats()` now includes the ability to get a player's national team stats [https://github.com/JaseZiv/worldfootballR/pull/310/files] (0.6.4.0002)
 * `fb_league_stats()` now correctly scrapes non domestic competitions [https://github.com/JaseZiv/worldfootballR/pull/325] (0.6.4.0003)
-
+* `fb_team_match_stats()` and `understat_available_teams()` (0.6.4.0004)
 
 ***
 
