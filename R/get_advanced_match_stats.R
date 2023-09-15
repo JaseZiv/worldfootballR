@@ -1,3 +1,35 @@
+#' @importFrom xml2 xml_find_all xml_attr xml_text
+add_player_href <- function(xml_elements, df) {
+  player_elements <- xml2::xml_find_all(xml_elements, ".//tbody/tr/th/a")
+  players <- setNames(
+    xml2::xml_attr(player_elements, "href"),
+    xml2::xml_text(player_elements)
+  )
+  df$Player_Href <- players[df$Player]
+  pos <- which(colnames(df) == "Player") + 1
+  nms <- colnames(df)
+  df <- df[, c(nms[1:(pos-1)], "Player_Href", nms[-c(1:pos, length(nms))])]
+  df
+}
+
+extract_team_players <- function(match_page, xml_elements, team_idx, home_away) {
+
+  team <- match_page %>%
+    rvest::html_nodes("div+ strong a") %>%
+    rvest::html_text() %>%
+    purrr::pluck(team_idx)
+
+
+  team_stat <- xml_elements[team_idx] %>%
+    rvest::html_table() %>%
+    data.frame() %>%
+    .clean_match_advanced_stats_data()
+
+  team_stat <- add_player_href(xml_elements[team_idx], team_stat)
+  res <- cbind(list("Team" = team, "Home_Away" = home_away), team_stat)
+  res
+}
+
 #' Get FBref advanced match stats
 #'
 #' Returns data frame of selected statistics for each match, for either whole team or individual players.
@@ -96,28 +128,18 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
       if(length(stat_df) != 0) {
 
         if(!stat_type %in% c("shots")) {
-          Team <- match_page %>%
-            rvest::html_nodes("div+ strong a") %>%
-            rvest::html_text() %>% .[1]
-
-          home_stat <- stat_df[1] %>%
-            rvest::html_table() %>% data.frame() %>%
-            .clean_match_advanced_stats_data()
-
-          Home_Away <- "Home"
-          home_stat <- cbind(Team, Home_Away, home_stat)
-
-          Team <- match_page %>%
-            rvest::html_nodes("div+ strong a") %>%
-            rvest::html_text() %>% .[2]
-
-          away_stat <- stat_df[2] %>%
-            rvest::html_table() %>% data.frame() %>%
-            .clean_match_advanced_stats_data()
-
-          Home_Away <- "Away"
-          away_stat <- cbind(Team, Home_Away, away_stat)
-
+          home_stat <- extract_team_players(
+            match_page = match_page,
+            xml_elements = stat_df,
+            team_idx = 1,
+            home_away = "Home"
+          )
+          away_stat <- extract_team_players(
+            match_page = match_page,
+            xml_elements = stat_df,
+            team_idx = 2,
+            home_away = "Away"
+          )
           stat_df_output <- dplyr::bind_rows(home_stat, away_stat)
 
           if(any(grepl("Nation", colnames(stat_df_output)))) {
