@@ -41,7 +41,7 @@ WorldfootballRDynamicPage <- R6::R6Class("WorldfootballRDynamicPage", public = l
 #' @importFrom purrr map_chr
 #' @importFrom xml2 xml_children read_html
 #' @noRd
-worldfootballr_html_table <- function(x) {
+worldfootballr_html_page <- function(x) {
   stopifnot(identical(class(x), c("WorldfootballRDynamicPage", "R6")))
   nodes <- x$find_nodes("table")
 
@@ -50,6 +50,5 @@ worldfootballr_html_table <- function(x) {
     json$result$value
   })
   html <- paste0("<html>", paste0(elements, collapse = "\n"), "</html>")
-  res <- xml2::xml_children(xml2::xml_children(xml2::read_html(html)))
-  rvest::html_table(res)
+  xml2::read_html(html)
 }

@@ -1,3 +1,19 @@
+#' @importFrom xml2 xml_find_all xml_attr xml_text
+#' @importFrom dplyr mutate
+.add_league_stat_player_href <- function(parent_element, df) {
+  player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/td[@data-stat='player']/a")
+  players <- setNames(
+    xml2::xml_attr(player_elements, "href"),
+    xml2::xml_text(player_elements)
+  )
+  res <- dplyr::mutate(
+    df,
+    "Player_Href" = players[df$Player],
+    .after = "Player"
+  )
+  return(res)
+}
+
 #' @importFrom rvest html_table
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate
@@ -37,8 +53,11 @@
       .frequency_id = "fb_league_stats-player"
     )
     session <- worldfootballr_chromote_session(url)
-    tables <- worldfootballr_html_table(session)
+    page <- worldfootballr_html_page(session)
     session$session$close(wait_ = FALSE)
+    browser()
+    elements <- xml2::xml_children(xml2::xml_children(page))
+    tables <- rvest::html_table(elements)
 
     n_tables <- length(tables)
     if (n_tables != 3) {
@@ -47,6 +66,11 @@
     }
     renamed_table <- .rename_fb_cols(tables[[3]])
     renamed_table[renamed_table$Rk != "Rk", ]
+    ## TODO
+    renamed_table <- .add_league_stat_player_href(
+      elements[[3]],
+      renamed_table
+    )
   }
 
   suppressMessages(
@@ -100,7 +124,7 @@
 #' @examples
 #' \dontrun{
 #' try({
-#' fb_season_team_stats(
+#' fb_league_stats(
 #'   country = "ENG",
 #'   gender = "M",
 #'   season_end_year = 2022,
