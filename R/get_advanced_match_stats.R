@@ -1,7 +1,7 @@
 #' @importFrom xml2 xml_find_all xml_attr xml_text
 #' @importFrom dplyr mutate
-add_player_href <- function(xml_elements, df) {
-  player_elements <- xml2::xml_find_all(xml_elements, ".//tbody/tr/th/a")
+.add_player_href <- function(parent_element, df) {
+  player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/th/a")
   players <- setNames(
     xml2::xml_attr(player_elements, "href"),
     xml2::xml_text(player_elements)
@@ -16,7 +16,7 @@ add_player_href <- function(xml_elements, df) {
 
 #' @importFrom rvest html_nodes html_text html_table
 #' @importFrom purrr pluck
-extract_team_players <- function(match_page, xml_elements, team_idx, home_away) {
+.extract_team_players <- function(match_page, xml_elements, team_idx, home_away) {
 
   team <- match_page %>%
     rvest::html_nodes("div+ strong a") %>%
@@ -29,7 +29,7 @@ extract_team_players <- function(match_page, xml_elements, team_idx, home_away) 
     data.frame() %>%
     .clean_match_advanced_stats_data()
 
-  team_stat <- add_player_href(xml_elements[team_idx], team_stat)
+  team_stat <- .add_player_href(xml_elements[team_idx], team_stat)
   res <- cbind(list("Team" = team, "Home_Away" = home_away), team_stat)
   return(res)
 }
@@ -132,13 +132,13 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
       if(length(stat_df) != 0) {
 
         if(!stat_type %in% c("shots")) {
-          home_stat <- extract_team_players(
+          home_stat <- .extract_team_players(
             match_page = match_page,
             xml_elements = stat_df,
             team_idx = 1,
             home_away = "Home"
           )
-          away_stat <- extract_team_players(
+          away_stat <- .extract_team_players(
             match_page = match_page,
             xml_elements = stat_df,
             team_idx = 2,

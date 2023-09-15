@@ -1,5 +1,5 @@
 #' @importFrom dplyr mutate case_when mutate filter bind_cols
-prep_shot_df <- function(shot_df) {
+.prep_shot_df <- function(shot_df) {
 
   var_names <- shot_df[1,] %>% as.character()
   new_names <- paste(var_names, names(shot_df), sep = "_")
@@ -25,7 +25,7 @@ prep_shot_df <- function(shot_df) {
 
 #' @importFrom xml2 xml_find_all xml_attr xml_text
 #' @importFrom dplyr mutate
-add_team_shot_player_href <- function(parent_element, df) {
+.add_team_shot_player_href <- function(parent_element, df) {
   player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/td[@data-stat='player']/a")
   players <- setNames(
     xml2::xml_attr(player_elements, "href"),
@@ -54,9 +54,9 @@ extract_team_shot_df <- function(parent_element) {
     return(team_shot_df)
   }
 
-  team_shot_df <- prep_shot_df(team_shot_df) %>%
+  team_shot_df <- .prep_shot_df(team_shot_df) %>%
     dplyr::mutate(Home_Away = "Home")
-  team_shot_df <- add_team_shot_player_href(
+  team_shot_df <- .add_team_shot_player_href(
     parent_element,
     df = team_shot_df
   )
@@ -117,12 +117,12 @@ fb_match_shooting <- function(match_url, time_pause=3) {
       all_shot_df <- data.frame()
     } else {
 
-      home_shot_df <- extract_team_shot_df(
+      home_shot_df <- .extract_team_shot_df(
         all_shots[2],
         home_away = "Home"
       )
 
-      away_shot_df <- extract_team_shot_df(
+      away_shot_df <- .extract_team_shot_df(
         all_shots[3],
         home_away = "Away"
       )
