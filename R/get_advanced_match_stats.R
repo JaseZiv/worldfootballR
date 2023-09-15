@@ -1,17 +1,21 @@
 #' @importFrom xml2 xml_find_all xml_attr xml_text
+#' @importFrom dplyr mutate
 add_player_href <- function(xml_elements, df) {
   player_elements <- xml2::xml_find_all(xml_elements, ".//tbody/tr/th/a")
   players <- setNames(
     xml2::xml_attr(player_elements, "href"),
     xml2::xml_text(player_elements)
   )
-  df$Player_Href <- players[df$Player]
-  pos <- which(colnames(df) == "Player") + 1
-  nms <- colnames(df)
-  df <- df[, c(nms[1:(pos-1)], "Player_Href", nms[-c(1:pos, length(nms))])]
-  df
+  res <- dplyr::mutate(
+    df,
+    "Player_Href" = players[df$Player],
+    .after = "Player"
+  )
+  return(res)
 }
 
+#' @importFrom rvest html_nodes html_text html_table
+#' @importFrom purrr pluck
 extract_team_players <- function(match_page, xml_elements, team_idx, home_away) {
 
   team <- match_page %>%
@@ -27,7 +31,7 @@ extract_team_players <- function(match_page, xml_elements, team_idx, home_away) 
 
   team_stat <- add_player_href(xml_elements[team_idx], team_stat)
   res <- cbind(list("Team" = team, "Home_Away" = home_away), team_stat)
-  res
+  return(res)
 }
 
 #' Get FBref advanced match stats
