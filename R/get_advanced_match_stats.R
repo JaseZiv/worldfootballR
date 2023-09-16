@@ -1,7 +1,7 @@
 #' @importFrom xml2 xml_find_all xml_attr xml_text
 #' @importFrom dplyr mutate
-.add_player_href <- function(parent_element, df) {
-  player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/th/a")
+.add_player_href <- function(df, parent_element, player_xpath) {
+  player_elements <- xml2::xml_find_all(parent_element, player_xpath)
   players <- setNames(
     xml2::xml_attr(player_elements, "href"),
     xml2::xml_text(player_elements)
@@ -23,13 +23,16 @@
     rvest::html_text() %>%
     purrr::pluck(team_idx)
 
-
   team_stat <- xml_elements[team_idx] %>%
     rvest::html_table() %>%
     data.frame() %>%
     .clean_match_advanced_stats_data()
 
-  team_stat <- .add_player_href(xml_elements[team_idx], team_stat)
+  team_stat <- .add_player_href(
+    team_stat,
+    parent_element = xml_elements[team_idx],
+    player_xpath = ".//tbody/tr/th/a"
+  )
   res <- cbind(list("Team" = team, "Home_Away" = home_away), team_stat)
   return(res)
 }

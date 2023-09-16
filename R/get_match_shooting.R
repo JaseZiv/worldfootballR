@@ -23,25 +23,9 @@
   return(shot_df)
 }
 
-#' @importFrom xml2 xml_find_all xml_attr xml_text
-#' @importFrom dplyr mutate
-.add_team_shot_player_href <- function(parent_element, df) {
-  player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/td[@data-stat='player']/a")
-  players <- setNames(
-    xml2::xml_attr(player_elements, "href"),
-    xml2::xml_text(player_elements)
-  )
-  res <- dplyr::mutate(
-    df,
-    "Player_Href" = players[df$Player],
-    .after = "Player"
-  )
-  return(res)
-}
-
 #' @importFrom rvest html_nodes html_table
 #' @importFrom dplyr mutate
-extract_team_shot_df <- function(parent_element) {
+.extract_team_shot_df <- function(parent_element, home_away) {
   team_shot_df <- tryCatch(
     parent_element %>%
       rvest::html_nodes("table") %>%
@@ -54,11 +38,12 @@ extract_team_shot_df <- function(parent_element) {
     return(team_shot_df)
   }
 
-  team_shot_df <- .prep_shot_df(team_shot_df) %>%
-    dplyr::mutate(Home_Away = "Home")
-  team_shot_df <- .add_team_shot_player_href(
-    parent_element,
-    df = team_shot_df
+  team_shot_df <- .prep_shot_df(team_shot_df)
+  team_shot_df$Home_Away = home_away
+  team_shot_df <- .add_player_href(
+    team_shot_df,
+    parent_element = parent_element,
+    player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
   )
   return(team_shot_df)
 }

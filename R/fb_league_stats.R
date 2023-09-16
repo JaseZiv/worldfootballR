@@ -1,19 +1,3 @@
-#' @importFrom xml2 xml_find_all xml_attr xml_text
-#' @importFrom dplyr mutate
-.add_league_stat_player_href <- function(parent_element, df) {
-  player_elements <- xml2::xml_find_all(parent_element, ".//tbody/tr/td[@data-stat='player']/a")
-  players <- setNames(
-    xml2::xml_attr(player_elements, "href"),
-    xml2::xml_text(player_elements)
-  )
-  res <- dplyr::mutate(
-    df,
-    "Player_Href" = players[df$Player],
-    .after = "Player"
-  )
-  return(res)
-}
-
 #' @importFrom rvest html_table
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate
@@ -66,10 +50,10 @@
     }
     renamed_table <- .rename_fb_cols(tables[[3]])
     renamed_table[renamed_table$Rk != "Rk", ]
-    ## TODO
-    renamed_table <- .add_league_stat_player_href(
-      elements[[3]],
-      renamed_table
+    renamed_table <- .add_player_href(
+      renamed_table,
+      parent_element = elements[[3]],
+      player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
     )
   }
 
