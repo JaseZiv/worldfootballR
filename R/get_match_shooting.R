@@ -1,5 +1,5 @@
-#' @importFrom dplyr mutate case_when mutate filter bind_cols
-.prep_shot_df <- function(shot_df) {
+#' @importFrom dplyr mutate case_when mutate filter
+.prep_shot_df <- function(shot_df, match_date) {
 
   var_names <- shot_df[1,] %>% as.character()
   new_names <- paste(var_names, names(shot_df), sep = "_")
@@ -19,13 +19,12 @@
   shot_df <- shot_df %>%
     dplyr::filter(.data[["Minute"]] != "")
 
-  shot_df <- dplyr::bind_cols(Date=match_date, shot_df)
   return(shot_df)
 }
 
 #' @importFrom rvest html_nodes html_table
-#' @importFrom dplyr mutate
-.extract_team_shot_df <- function(parent_element, home_away) {
+#' @importFrom dplyr mutate bind_cols
+.extract_team_shot_df <- function(parent_element, home_away, match_date) {
   team_shot_df <- tryCatch(
     parent_element %>%
       rvest::html_nodes("table") %>%
@@ -39,6 +38,7 @@
   }
 
   team_shot_df <- .prep_shot_df(team_shot_df)
+  team_shot_df <- dplyr::bind_cols(Date=match_date, team_shot_df)
   team_shot_df$Home_Away = home_away
   team_shot_df <- .add_player_href(
     team_shot_df,
@@ -104,12 +104,14 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
       home_shot_df <- .extract_team_shot_df(
         all_shots[2],
-        home_away = "Home"
+        home_away = "Home",
+        match_date = match_date
       )
 
       away_shot_df <- .extract_team_shot_df(
         all_shots[3],
-        home_away = "Away"
+        home_away = "Away",
+        match_date = match_date
       )
 
       all_shot_df <- rbind(
@@ -119,10 +121,7 @@ fb_match_shooting <- function(match_url, time_pause=3) {
 
       all_shot_df <- all_shot_df %>%
         dplyr::select(
-          .data[["Date"]],
-          .data[["Squad"]],
-          .data[["Home_Away"]],
-          .data[["Match_Half"]],
+          dplyr::all_of(c("Date", "Squad", "Home_Away", "Match_Half")),
           dplyr::everything()
         )
     }

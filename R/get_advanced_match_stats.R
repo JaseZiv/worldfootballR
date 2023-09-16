@@ -123,14 +123,6 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
           rvest::html_nodes("table")
 
       }
-      # shots stat type is not yet built in to the function
-      # else if(stat_type == "shots") {
-      #   stat_df <- all_tables[which(stringr::str_detect(all_tables %>% rvest::html_attr("id"), "all_shots"))] %>% .[1] %>%
-      #     rvest::html_table()
-      #
-      # }
-
-
 
       if(length(stat_df) != 0) {
 
@@ -203,7 +195,8 @@ fb_advanced_match_stats <- function(match_url, stat_type, team_or_player, time_p
 
   suppressWarnings(
     final_df <- match_url %>%
-      purrr::map_df(get_each_match_statistic) )
+      purrr::map_df(get_each_match_statistic)
+  )
 
   return(final_df)
 }

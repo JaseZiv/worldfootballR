@@ -1,5 +1,5 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
- #======================================= IMPORTANT: ======================================#
+#======================================= IMPORTANT: ======================================#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 # as at 2022-07-08:
@@ -84,8 +84,14 @@ test_that("fb_advanced_match_stats() works", {
   # expect_error(fb_advanced_match_stats(match_url = "aaa.aaa"))
 
   # test that an invalid stat_type will error
-  expect_error(fb_advanced_match_stats(match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                                        stat_type = "test", team_or_player = "team", time_pause = 4))
+  expect_error(
+    fb_advanced_match_stats(
+      match_url = "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+      stat_type = "test",
+      team_or_player = "team",
+      time_pause = 4
+    )
+  )
 
 })
 
@@ -242,8 +248,10 @@ test_that("fb_big5_advanced_season_stats() works", {
 Sys.sleep(3)
 test_that("fb_match_shooting() works", {
   testthat::skip_on_cran()
-  test_urls_multiple <- c("https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
-                          "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1")
+  test_urls_multiple <- c(
+    "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
+    "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1"
+  )
   shot_multiple_matches <- fb_match_shooting(test_urls_multiple, time_pause = 4)
   expect_type(shot_multiple_matches, "list")
   expect_false(nrow(shot_multiple_matches) == 0)
@@ -281,9 +289,14 @@ test_that("fb_team_match_results() works", {
 Sys.sleep(3)
 test_that("fb_player_season_stats() works", {
   testthat::skip_on_cran()
-  multiple_playing_time <- fb_player_season_stats(player_url = c("https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                                                 "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"),
-                                                  stat_type = "playing_time", time_pause = 4)
+  multiple_playing_time <- fb_player_season_stats(
+    player_url = c(
+      "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
+      "https://fbref.com/en/players/dea698d9/Cristiano-Ronaldo"
+    ),
+    stat_type = "playing_time",
+    time_pause = 4
+  )
   expect_type(multiple_playing_time, "list")
   expect_false(nrow(multiple_playing_time) == 0)
 
@@ -297,10 +310,14 @@ test_that("fb_player_season_stats() works", {
   expect_type(multiple_national_standard_stats, "list")
   expect_false(nrow(multiple_national_standard_stats) == 0)
 
-  expect_no_error(victor_ulloa_national_stats <- fb_player_season_stats(
-    player_url = "https://fbref.com/en/players/e7056f05/Victor-Ulloa",
-    stat_type = "standard", time_pause = 4, national = TRUE
-  ))
+  expect_no_error(
+    victor_ulloa_national_stats <- fb_player_season_stats(
+      player_url = "https://fbref.com/en/players/e7056f05/Victor-Ulloa",
+      stat_type = "standard",
+      time_pause = 4,
+      national = TRUE
+    )
+  )
   expect_type(victor_ulloa_national_stats, "list")
   expect_true(nrow(victor_ulloa_national_stats) == 0)
 
@@ -381,7 +398,9 @@ Sys.sleep(3)
 test_that("fb_league_stats() for players works", {
   testthat::skip_on_cran()
   testthat::skip_on_ci()
-  expected_player_shooting_cols <- c("Rk", "Player", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "Gls", "Sh_Standard", "SoT_Standard", "SoT_percent_Standard", "Sh_per_90_Standard", "SoT_per_90_Standard", "G_per_Sh_Standard", "G_per_SoT_Standard", "Dist_Standard", "FK_Standard", "PK", "PKatt", "xG_Expected", "npxG_Expected", "npxG_per_Sh_Expected", "G_minus_xG_Expected", "np:G_minus_xG_Expected", "Matches", "url")
+
+  expected_player_shooting_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "MP_Playing Time", "Starts_Playing Time", "Min_Playing Time", "Mins_Per_90_Playing Time", "Gls", "Ast", "G+A", "G_minus_PK", "PK", "PKatt", "CrdY", "CrdR", "xG_Expected", "npxG_Expected", "xAG_Expected", "npxG+xAG_Expected", "PrgC_Progression", "PrgP_Progression", "PrgR_Progression", "Gls_Per 90 Minutes", "Ast_Per 90 Minutes", "G+A_Per 90 Minutes", "G_minus_PK_Per 90 Minutes", "G+A_minus_PK_Per 90 Minutes", "xG_Per 90 Minutes", "xAG_Per 90 Minutes", "xG+xAG_Per 90 Minutes", "npxG_Per 90 Minutes", "npxG+xAG_Per 90 Minutes", "Matches", "url")
+
   epl_player_shooting_22 <- fb_league_stats(
     country = "BRA",
     gender = "M",
@@ -393,7 +412,7 @@ test_that("fb_league_stats() for players works", {
   expect_gt(nrow(epl_player_shooting_22), 0)
   expect_setequal(colnames(epl_player_shooting_22), expected_player_shooting_cols)
 
-  expected_player_misc_cols <- c("Rk", "Player", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "Matches", "url")
+  expected_player_misc_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "Matches", "url")
   ## testing a lot would take too long, so just test multiple years since that is the most likely input param to have multiple values
   multi_season_player_misc <- fb_league_stats(
     # country = c("ITA", "ESP"),

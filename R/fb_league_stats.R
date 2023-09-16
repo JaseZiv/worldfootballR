@@ -39,7 +39,6 @@
     session <- worldfootballr_chromote_session(url)
     page <- worldfootballr_html_page(session)
     session$session$close(wait_ = FALSE)
-    browser()
     elements <- xml2::xml_children(xml2::xml_children(page))
     tables <- rvest::html_table(elements)
 
