@@ -74,8 +74,10 @@ test_that("fb_advanced_match_stats() works", {
   #                                      stat_type = "keeper", team_or_player = "player", time_pause = 4), "list")
 
   # test that multiple match_url can be passed to the function
-  test_urls <- c("https://fbref.com/en/matches/e0a84e7e/Southampton-Manchester-United-November-29-2020-Premier-League",
-                 "https://fbref.com/en/matches/703db983/Paris-Saint-Germain-Toulouse-August-25-2019-Ligue-1")
+  test_urls <- c(
+    "https://fbref.com/en/matches/e0a84e7e/Southampton-Manchester-United-November-29-2020-Premier-League",
+    "https://fbref.com/en/matches/703db983/Paris-Saint-Germain-Toulouse-August-25-2019-Ligue-1"
+  )
   test_df <- fb_advanced_match_stats(match_url = test_urls, stat_type = "possession", team_or_player = "team", time_pause = 4)
   expect_type(test_df, "list")
   expect_equal(nrow(test_df), 4)
@@ -398,15 +400,13 @@ Sys.sleep(3)
 test_that("fb_league_stats() for players works", {
   testthat::skip_on_cran()
   testthat::skip_on_ci()
-
-  expected_player_shooting_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "MP_Playing Time", "Starts_Playing Time", "Min_Playing Time", "Mins_Per_90_Playing Time", "Gls", "Ast", "G+A", "G_minus_PK", "PK", "PKatt", "CrdY", "CrdR", "xG_Expected", "npxG_Expected", "xAG_Expected", "npxG+xAG_Expected", "PrgC_Progression", "PrgP_Progression", "PrgR_Progression", "Gls_Per 90 Minutes", "Ast_Per 90 Minutes", "G+A_Per 90 Minutes", "G_minus_PK_Per 90 Minutes", "G+A_minus_PK_Per 90 Minutes", "xG_Per 90 Minutes", "xAG_Per 90 Minutes", "xG+xAG_Per 90 Minutes", "npxG_Per 90 Minutes", "npxG+xAG_Per 90 Minutes", "Matches", "url")
-
+  expected_player_shooting_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "Gls_Standard", "Sh_Standard", "SoT_Standard", "SoT_percent_Standard", "Sh_per_90_Standard", "SoT_per_90_Standard", "G_per_Sh_Standard", "G_per_SoT_Standard", "Dist_Standard", "FK_Standard", "PK_Standard", "PKatt_Standard", "xG_Expected", "npxG_Expected", "npxG_per_Sh_Expected", "G_minus_xG_Expected", "np:G_minus_xG_Expected", "Matches", "url")
   epl_player_shooting_22 <- fb_league_stats(
     country = "BRA",
     gender = "M",
     season_end_year = 2022,
     tier = "1st",
-    stat_type = "standard",
+    stat_type = "shooting",
     team_or_player = "player"
   )
   expect_gt(nrow(epl_player_shooting_22), 0)
