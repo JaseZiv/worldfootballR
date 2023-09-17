@@ -82,49 +82,48 @@ fb_player_match_logs <- function(player_url, season_end_year, stat_type, time_pa
              TRUE ~ NA_character_
            ))
 
-  log_url <- all_logs %>%
+  filt_logs <- all_logs %>%
     dplyr::filter(.data[["stat"]] == stat_type,
-                  .data[["season_end"]] == season_end_year) %>%
-    dplyr::pull(log_urls)
-
-  if(length(log_url) == 0) stop(glue::glue("check stat type: {stat_type} or season end: {season_end_year} exists"))
+                  .data[["season_end"]] == season_end_year)
 
 
-  season <- all_logs %>%
-    dplyr::filter(.data[["stat"]] == stat_type,
-                  .data[["season_end"]] == season_end_year) %>%
-    dplyr::pull(season)
+  if(nrow(filt_logs) == 0) stop(glue::glue("check stat type: {stat_type} or season end: {season_end_year} exists"))
 
-  # Get match logs for stat -------------------------------------------------
+  all_tabs <- purrr::map_dfr(
+    1:nrow(filt_logs),
+    \(i) {
+      log_url <- filt_logs[i, ][["log_urls"]]
+      season <- filt_logs[i, ][["season"]]
 
-  Sys.sleep(1)
-  stat_page <- .load_page(paste0(main_url, log_url))
+      Sys.sleep(1)
+      stat_page <- .load_page(paste0(main_url, log_url))
 
-  tab <- stat_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
+      tab <- stat_page %>% rvest::html_nodes(".table_container") %>% rvest::html_nodes("table") %>% rvest::html_table() %>% data.frame()
 
-  tab <- .clean_table_names(tab)
+      tab <- .clean_table_names(tab)
 
-  tab <- tab %>%
-    dplyr::filter(.data[["Date"]] != "") %>%
-    dplyr::mutate(Squad = sub("^.*?([A-Z])", "\\1", .data[["Squad"]]),
-           Opponent = sub("^.*?([A-Z])", "\\1", .data[["Opponent"]]),
-           Player = player_name,
-           Season = season) %>%
-    dplyr::select(.data[["Player"]], .data[["Season"]], dplyr::everything(), -.data[["Match Report"]])
+      tab <- tab %>%
+        dplyr::filter(.data[["Date"]] != "") %>%
+        dplyr::mutate(Squad = sub("^.*?([A-Z])", "\\1", .data[["Squad"]]),
+                      Opponent = sub("^.*?([A-Z])", "\\1", .data[["Opponent"]]),
+                      Player = player_name,
+                      Season = season) %>%
+        dplyr::select(.data[["Player"]], .data[["Season"]], dplyr::everything(), -.data[["Match Report"]])
 
+      non_num_vars <- c("Player", "Season", "Date", "Day", "Comp", "Round", "Venue", "Result", "Squad", "Opponent", "Start", "Pos")
+      cols_to_transform <- names(tab)[!names(tab) %in% non_num_vars]
 
-
-  non_num_vars <- c("Player", "Season", "Date", "Day", "Comp", "Round", "Venue", "Result", "Squad", "Opponent", "Start", "Pos")
-  cols_to_transform <- names(tab)[!names(tab) %in% non_num_vars]
-
-  suppressWarnings(
-    tab <- tab %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
-    dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+      suppressWarnings(
+        tab <- tab %>%
+          dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub(",", "", x)}) %>%
+          dplyr::mutate_at(.vars = cols_to_transform, .funs = function(x) {gsub("+", "", x)}) %>%
+          dplyr::mutate_at(.vars = cols_to_transform, .funs = as.numeric)
+      )
+      tab
+    }
   )
 
-  return(tab)
+  return(all_tabs)
 
 }
 
