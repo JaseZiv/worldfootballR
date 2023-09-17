@@ -332,6 +332,11 @@ test_that("fb_player_match_logs() works", {
   ederson_summary <- fb_player_match_logs("https://fbref.com/en/players/3bb7b8b4/Ederson", season_end_year = 2021, stat_type = 'summary', time_pause = 4)
   expect_type(ederson_summary, "list")
   expect_false(nrow(ederson_summary) == 0)
+
+  ## multiple teams in same season
+  messi_summary <- fb_player_match_logs("https://fbref.com/en/players/d70ce98e/Lionel-Messi", season_end_year = 2023, stat_type = 'summary', time_pause = 4)
+  expect_type(messi_summary, "list")
+  expect_false(nrow(messi_summary) == 0)
 })
 
 
