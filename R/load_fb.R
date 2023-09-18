@@ -28,7 +28,6 @@
 #' )
 #' })
 #' }
-
 load_match_results <- function(country, gender, season_end_year, tier) {
 
   dat_urls <- paste0("https://github.com/JaseZiv/worldfootballR_data/releases/download/match_results/", country, "_match_results.rds")
@@ -174,7 +173,7 @@ load_fb_big5_advanced_season_stats <- function(season_end_year = NA, stat_type, 
 #' Loading version of \code{fb_match_shooting}. Only some leagues available.
 #'
 #' @inheritParams load_match_results
-#' @importFrom purrr possibly map_dfr
+#' @importFrom purrr map_dfr
 #' @importFrom cli cli_alert
 #' @importFrom dplyr filter
 #' @importFrom rlang .data
@@ -225,3 +224,118 @@ load_fb_match_shooting <- function(country, gender, tier, season_end_year = NA) 
 
 }
 
+#' Load pre-saved FBref match summary data
+#'
+#' Loading version of \code{fb_match_summary}. Only some leagues available.
+#'
+#' @inheritParams load_match_results
+#' @importFrom purrr map_dfr
+#' @importFrom cli cli_alert
+#' @importFrom dplyr filter
+#' @importFrom rlang .data
+#' @return returns a dataframe
+#' @examples
+#' \donttest{
+#' try({
+#' load_fb_match_summary(
+#'   country = "ENG",
+#'   gender = "M",
+#'   tier = "1st"
+#' )
+#'
+#' load_fb_match_summary(
+#'   country = c("ITA", "ESP"),
+#'   gender = "M",
+#'   tier = "1st",
+#'   season_end_year = 2019
+#' )
+#' })
+#' }
+#' @export
+load_fb_match_summary <- function(country, gender, tier, season_end_year = NA) {
+
+  urls <- sprintf(
+    "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_match_summary/%s_%s_%s_match_summary.rds",
+    country,
+    gender,
+    tier
+  )
+
+  res <- purrr::map_dfr(urls, worldfootballR:::.file_reader)
+
+  if(nrow(res) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters.")
+    return(res)
+  } else {
+    cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
+  }
+
+  if (!all(is.na(season_end_year))) {
+    res <- res %>%
+      dplyr::filter(.data[["Season_End_Year"]] %in% season_end_year)
+  }
+
+  res
+
+}
+
+#' Load pre-saved FBref match advanced stats
+#'
+#' Loading version of \code{fb_advanced_match_stats}. Only some leagues available.
+#'
+#' @inheritParams load_match_results
+#' @inheritParams fb_advanced_match_stats
+#' @importFrom purrr map_dfr
+#' @importFrom cli cli_alert
+#' @importFrom dplyr filter
+#' @importFrom rlang .data
+#' @return returns a dataframe
+#' @examples
+#' \donttest{
+#' try({
+#' load_fb_advanced_match_stats(
+#'   country = "ENG",
+#'   gender = "M",
+#'   tier = "1st",
+#'   stat_type = "summary",
+#'   team_or_player = "player"
+#' )
+#'
+#' load_fb_advanced_match_stats(
+#'   country = c("ITA", "ESP"),
+#'   gender = "M",
+#'   tier = "1st",
+#'   season_end_year = 2023,
+#'   stat_type = "defense",
+#'   team_or_player = "player"
+#' )
+#' })
+#' }
+load_fb_advanced_match_stats <- function(country, gender, tier, stat_type, team_or_player, season_end_year = NA) {
+
+  urls <- sprintf(
+    "https://github.com/JaseZiv/worldfootballR_data/releases/download/fb_advanced_match_stats/%s_%s_%s_%s_%s_advanced_match_stats.rds",
+    country,
+    gender,
+    tier,
+    stat_type,
+    team_or_player
+  )
+
+  res <- purrr::map_dfr(urls, .file_reader)
+
+  if(nrow(res) == 0) {
+    cli::cli_alert("Data not loaded. Please check parameters.")
+    return(res)
+  } else {
+    cli::cli_alert("Data last updated {attr(res, 'scrape_timestamp')} UTC")
+  }
+
+  if (!all(is.na(season_end_year))) {
+    res <- res %>%
+      dplyr::filter(.data[["Season_End_Year"]] %in% season_end_year)
+  }
+
+  res
+
+}
