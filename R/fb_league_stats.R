@@ -37,8 +37,10 @@
       .frequency_id = "fb_league_stats-player"
     )
     session <- worldfootballr_chromote_session(url)
-    tables <- worldfootballr_html_table(session)
+    page <- worldfootballr_html_page(session)
     session$session$close(wait_ = FALSE)
+    elements <- xml2::xml_children(xml2::xml_children(page))
+    tables <- rvest::html_table(elements)
 
     n_tables <- length(tables)
     if (n_tables != 3) {
@@ -47,6 +49,11 @@
     }
     renamed_table <- .rename_fb_cols(tables[[3]])
     renamed_table[renamed_table$Rk != "Rk", ]
+    renamed_table <- .add_player_href(
+      renamed_table,
+      parent_element = elements[[3]],
+      player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
+    )
   }
 
   suppressMessages(
@@ -100,7 +107,7 @@
 #' @examples
 #' \dontrun{
 #' try({
-#' fb_season_team_stats(
+#' fb_league_stats(
 #'   country = "ENG",
 #'   gender = "M",
 #'   season_end_year = 2022,

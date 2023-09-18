@@ -592,7 +592,7 @@ Use the `fb_player_goal_logs()` function to get logs of "goals" (the default), "
 
 ```
 jwp_url <- "https://fbref.com/en/players/3515d404/James-Ward-Prowse"
-goal_log <- function(team_urls = jwp_url, goals_or_assists="both")
+goal_log <- fb_player_goal_logs(team_urls = jwp_url, goals_or_assists="both")
 
 dplyr::glimpse(goal_log)
 ```

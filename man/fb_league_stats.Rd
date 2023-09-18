@@ -60,7 +60,7 @@ Get the season stats for all teams / players in a selected league
 \examples{
 \dontrun{
 try({
-fb_season_team_stats(
+fb_league_stats(
   country = "ENG",
   gender = "M",
   season_end_year = 2022,
