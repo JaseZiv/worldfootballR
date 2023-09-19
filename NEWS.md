@@ -3,7 +3,8 @@
 ### Bugs
 
 * `fb_league_stats()` failing for `playing_time`. (0.6.4.0001) [#314](https://github.com/JaseZiv/worldfootballR/issues/314)
-* `fb_advanced_match_stats()` throwing errors when there were no stat tables available for matches [#315](https://github.com/JaseZiv/worldfootballR/issues/315) (0.6.4.0002)
+* `fb_advanced_match_stats()` throwing errors when there were no stat tables available for matches (0.6.4.0002) [#315](https://github.com/JaseZiv/worldfootballR/issues/315)
+* `fb_player_match_logs()` failing for players who have played on multiple teams/leagues in the same season (0.6.4.0006) [#327](https://github.com/JaseZiv/worldfootballR/issues/327)
 
 ### Improvements
 * `fb_player_season_stats()` now includes the ability to get a player's national team stats [https://github.com/JaseZiv/worldfootballR/pull/310/files] (0.6.4.0002)
