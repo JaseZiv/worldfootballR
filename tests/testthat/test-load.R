@@ -82,6 +82,105 @@ test_that("load_fb_match_shooting() works", {
   expect_equal(length(unique(test_df$Country)), 1)
 })
 
+test_that("load_fb_match_summary() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  test_df <- load_fb_match_summary(
+    country = "ENG",
+    gender = "M",
+    tier = "1st"
+  )
+  # test the functions returns the data
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+
+  # test that multiple countries can be passed to the function
+  test_df <- load_fb_match_summary(
+    country = c("ESP", "USA"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st"
+  )
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 2)
+
+  expect_message(
+    bad_df <- load_fb_match_summary(
+      country = "foo",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st"
+    ),
+    regexp = "Data not loaded[.] Please check parameters[.]"
+  )
+  expect_true(nrow(bad_df) == 0)
+
+  ## won't error here. instead, will silently not load anything for "foo"
+  test_df <- load_fb_match_summary(
+    country = c("ITA", "foo"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st"
+  )
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 1)
+})
+
+test_that("load_fb_advanced_match_stats() works", {
+  testthat::skip_on_cran()
+  testthat::skip_if_offline()
+  test_df <- load_fb_advanced_match_stats(
+    country = "ENG",
+    gender = "M",
+    tier = "1st",
+    stat_type = "keeper",
+    team_or_player = "player"
+  )
+  # test the functions returns the data
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+
+  # test that multiple countries can be passed to the function
+  test_df <- load_fb_advanced_match_stats(
+    country = c("ESP", "USA"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st",
+    stat_type = "passing",
+    team_or_player = "player"
+  )
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 2)
+
+  expect_message(
+    bad_df <- load_fb_advanced_match_stats(
+      country = "foo",
+      gender = "M",
+      season_end_year = 2022,
+      tier = "1st",
+      stat_type = "summary",
+      team_or_player = "player"
+    ),
+    regexp = "Data not loaded[.] Please check parameters[.]"
+  )
+  expect_true(nrow(bad_df) == 0)
+
+  ## won't error here. instead, will silently not load anything for "foo"
+  test_df <- load_fb_advanced_match_stats(
+    country = c("ITA", "foo"),
+    gender = "M",
+    season_end_year = 2021,
+    tier = "1st",
+    stat_type = "misc",
+    team_or_player = "player"
+  )
+  expect_type(test_df, "list")
+  expect_gt(nrow(test_df), 0)
+  expect_equal(length(unique(test_df$Country)), 1)
+})
 
 test_that("load_match_comp_results() works", {
   testthat::skip_on_cran()
