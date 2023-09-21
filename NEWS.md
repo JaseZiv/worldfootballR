@@ -11,6 +11,8 @@
 * `fb_league_stats()` now correctly scrapes non domestic competitions [https://github.com/JaseZiv/worldfootballR/pull/325] (0.6.4.0003)
 * `fb_team_match_stats()` and `understat_available_teams()` (0.6.4.0004)
 * `fb_match_shooting()`, `fb_advanced_match_stats()`, `fb_league_stats(team_or_player = "player")` gain `Player_Href` column (0.6.4.0005)
+* `load_fb_advanced_stats()` and `load_fb_match_summary()` added (0.6.4.0007)
+
 
 ***
 
