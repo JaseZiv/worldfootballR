@@ -3,13 +3,10 @@
 #' @importFrom stats setNames
 .add_player_href <- function(df, parent_element, player_xpath) {
   player_elements <- xml2::xml_find_all(parent_element, player_xpath)
-  players <- stats::setNames(
-    xml2::xml_attr(player_elements, "href"),
-    xml2::xml_text(player_elements)
-  )
+  player_hrefs <- xml2::xml_attr(player_elements, "href")
   res <- dplyr::mutate(
     df,
-    "Player_Href" = players[df$Player],
+    "Player_Href" = player_hrefs,
     .after = "Player"
   )
   return(res)
