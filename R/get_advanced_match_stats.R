@@ -4,9 +4,11 @@
 .add_player_href <- function(df, parent_element, player_xpath) {
   player_elements <- xml2::xml_find_all(parent_element, player_xpath)
   player_hrefs <- xml2::xml_attr(player_elements, "href")
+  ## we need to apd for fb_advanced_stats, where there is a total row at the bottom
+  n_diff <- nrow(df) - length(player_hrefs)
   res <- dplyr::mutate(
     df,
-    "Player_Href" = player_hrefs,
+    "Player_Href" = c(player_hrefs, rep(NA_character_, n_diff)),
     .after = "Player"
   )
   return(res)
