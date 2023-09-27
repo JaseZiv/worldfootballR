@@ -48,7 +48,7 @@
       return(tibble::tibble())
     }
     renamed_table <- .rename_fb_cols(tables[[3]])
-    renamed_table[renamed_table$Rk != "Rk", ]
+    renamed_table <- renamed_table[renamed_table$Rk != "Rk", ]
     renamed_table <- .add_player_href(
       renamed_table,
       parent_element = elements[[3]],
