@@ -177,7 +177,7 @@ fb_league_stats <- function(
       .data[["tier"]] %in% .env[["tier"]]
     )
 
-  seasons_urls <- if (is.na(non_dom_league_url)) {
+  filt_seasons_urls <- if (is.na(non_dom_league_url)) {
     seasons_urls %>%
       dplyr::filter(
         stringr::str_detect(.data[["competition_type"]], "Leagues")
@@ -189,23 +189,28 @@ fb_league_stats <- function(
       )
   }
 
-  seasons_urls <- unique(seasons_urls[["seasons_urls"]])
+  stopifnot("Could not find any URLs matching input parameters" = nrow(filt_seasons_urls) > 0)
 
-  stopifnot("Could not find any URLs matching input parameters" = length(seasons_urls) > 0)
+  filt_seasons_urls[["stat_type"]] <- dplyr::case_when(
+    stat_type == "standard" ~ "stats",
+    stat_type == "keepers_adv" ~ "keepersadv",
+    stat_type == "playing_time" ~ "playingtime",
+    TRUE ~ stat_type
+  )
 
-  urls <- tidyr::crossing(
-    "league_url" = seasons_urls,
-    "stat_type" = dplyr::case_when(
-      stat_type == "standard" ~ "stats",
-      stat_type == "keepers_adv" ~ "keepersadv",
-      stat_type == "playing_time" ~ "playingtime",
-      TRUE ~ stat_type
-    )
-  ) %>%
-    dplyr::transmute(
-      "url" = sprintf("%s/%s/%s", dirname(.data[["league_url"]]), .data[["stat_type"]], basename(.data[["league_url"]]))
-    ) %>%
-    dplyr::pull(.data[["url"]])
+  deduped_seasons_urls <- filt_seasons_urls[!duplicated(filt_seasons_urls$seasons_urls), , drop = FALSE]
+  urls <- purrr::map_chr(
+    1:nrow(deduped_seasons_urls),
+    \(i) {
+      deduped_seasons_url <- deduped_seasons_urls[i, ]
+      sprintf(
+        "%s/%s/%s",
+        gsub("history", deduped_seasons_url[["seasons"]], dirname(deduped_seasons_url[["comp_url"]])),
+        deduped_seasons_url[["stat_type"]],
+        paste0(deduped_seasons_url[["seasons"]], "-", gsub("Seasons", "Stats", basename(deduped_seasons_url[["comp_url"]])))
+      )
+    }
+  )
 
   fi <- purrr::insistently(
     .fb_single_league_stats,
