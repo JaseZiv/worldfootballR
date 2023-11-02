@@ -220,7 +220,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
     dplyr::left_join(all_seasons_df, by = "season_urls")
 
 
-  aa <- all_seasons_df %>%
+  all_seasons_df <- all_seasons_df %>%
     dplyr::mutate(player_market_value_euro = mapply(.convert_value_to_numeric, player_market_value)) %>%
     dplyr::mutate(date_joined = .tm_fix_dates(.data[["date_joined"]]),
                   contract_expiry = .tm_fix_dates(.data[["contract_expiry"]])) %>%
