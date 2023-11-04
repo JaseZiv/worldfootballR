@@ -107,12 +107,12 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
         player_num <- NA_character_
       }
       # player names
-      player_name <- team_data %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_text() %>% stringr::str_squish()
+      player_name <- team_data %>% rvest::html_nodes(".inline-table a") %>% rvest::html_text() %>% stringr::str_squish()
       if(length(player_name) == 0) {
         player_name <- NA_character_
       }
       # player_url
-      player_url <- team_data %>% rvest::html_nodes(".hauptlink a") %>% rvest::html_attr("href") %>%
+      player_url <- team_data %>% rvest::html_nodes(".inline-table a") %>% rvest::html_attr("href") %>%
         paste0(main_url, .)
       if(length(player_url) == 0) {
         player_url <- NA_character_
@@ -225,7 +225,7 @@ tm_player_market_values <- function(country_name, start_year, league_url = NA) {
     dplyr::mutate(date_joined = .tm_fix_dates(.data[["date_joined"]]),
                   contract_expiry = .tm_fix_dates(.data[["contract_expiry"]])) %>%
     tidyr::separate(., player_birthday, into = c("Month", "Day", "Year"), sep = " ", remove = F) %>%
-    dplyr::mutate(player_age = sub(".*(?:\\((.*)\\)).*|.*", "\\1", .data[["Year"]]),
+    dplyr::mutate(player_age = gsub(".*\\(", "", .data[["player_birthday"]]) %>% gsub("\\)", "", .),
                   Day = gsub(",", "", .data[["Day"]]) %>% as.numeric(),
                   Year = as.numeric(gsub("\\(.*", "", .data[["Year"]])),
                   Month = match(.data[["Month"]], month.abb),

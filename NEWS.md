@@ -8,6 +8,8 @@
 * `fb_league_stats(team_or_player = "player")` returning duplicate player hrefs (0.6.4.0008) [#331](https://github.com/JaseZiv/worldfootballR/issues/331)
 worldfootballR/issues/327)
 * `fb_league_stats(team_or_player = "player")` returning wrong season's data for Australian league (0.6.4.0009) [#333](https://github.com/JaseZiv/worldfootballR/issues/333)
+* `tm_player_market_values()` returing the player name and valuation on separate rows in the `player_name` column [#338] (https://github.com/JaseZiv/worldfootballR/issues/338) and also returning `NA`s for the `player_age` column [#336](https://github.com/JaseZiv/worldfootballR/issues/336) (0.6.4.0010)
+
 
 ### Improvements
 * `fb_player_season_stats()` now includes the ability to get a player's national team stats [https://github.com/JaseZiv/worldfootballR/pull/310/files] (0.6.4.0002)
