@@ -83,7 +83,7 @@
   suppressWarnings(
     season_summary <- season_summary %>%
       dplyr::filter(is.na(.data[["Time"]]) | .data[["Time"]] != "Time") %>%
-      dplyr::mutate(Score = iconv(.data[["Score"]], 'utf-8', 'ascii', sub=' ') %>% stringr::str_squish()) %>%
+      dplyr::mutate(Score = gsub("\u2013", " ", .data[["Score"]]) %>% stringr::str_squish()) %>%
       tidyr::separate(.data[["Score"]], into = c("HomeGoals", "AwayGoals"), sep = " ") %>%
       dplyr::mutate(HomeGoals = as.numeric(.data[["HomeGoals"]]),
                     AwayGoals = as.numeric(.data[["AwayGoals"]]),
