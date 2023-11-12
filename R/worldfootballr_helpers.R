@@ -201,16 +201,16 @@ tm_league_team_urls <- function(country_name, start_year, league_url = NA) {
 #' @export
 #'
 tm_team_player_urls <- function(team_url) {
-
+  
   main_url <- "https://www.transfermarkt.com"
-
+  
   tryCatch({team_page <- xml2::read_html(team_url)}, error = function(e) {team_page <- c()})
-
+  
   player_urls <- team_page %>%
-    rvest::html_nodes(".data-link a") %>% rvest::html_attr("href") %>%
+    rvest::html_nodes("#yw1 td.posrela .hauptlink a") %>% rvest::html_attr("href") %>%
     unique() %>%
     paste0(main_url, .)
-
+  
   return(player_urls)
 }
 
