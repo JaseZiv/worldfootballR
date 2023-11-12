@@ -6,8 +6,11 @@
 * `fb_advanced_match_stats()` throwing errors when there were no stat tables available for matches (0.6.4.0002) [#315](https://github.com/JaseZiv/worldfootballR/issues/315)
 * `fb_player_match_logs()` failing for players who have played on multiple teams/leagues in the same season (0.6.4.0006) [#327](https://github.com/JaseZiv/worldfootballR/issues/327)
 * `fb_league_stats(team_or_player = "player")` returning duplicate player hrefs (0.6.4.0008) [#331](https://github.com/JaseZiv/worldfootballR/issues/331)
-worldfootballR/issues/327)
 * `fb_league_stats(team_or_player = "player")` returning wrong season's data for Australian league (0.6.4.0009) [#333](https://github.com/JaseZiv/worldfootballR/issues/333)
+* `tm_player_market_values()` returing the player name and valuation on separate rows in the `player_name` column [#338] (https://github.com/JaseZiv/worldfootballR/issues/338) and also returning `NA`s for the `player_age` column (0.6.4.0010) [#336](https://github.com/JaseZiv/worldfootballR/issues/336)
+* `fb_match_results()` returns `NA` goals due to inconsistent `iconv()` behvaior on different systems (0.6.4.0011) [#326](https://github.com/JaseZiv/worldfootballR/issues/326)
+* `tm_team_player_urls()` html element changed on transfermarkt so stopped returning values (0.6.4.0012)
+
 
 ### Improvements
 * `fb_player_season_stats()` now includes the ability to get a player's national team stats [https://github.com/JaseZiv/worldfootballR/pull/310/files] (0.6.4.0002)
