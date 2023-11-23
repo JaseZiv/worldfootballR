@@ -27,8 +27,9 @@
 #' @importFrom stringr str_squish
 #' @importFrom httr GET add_headers content
 #' @importFrom lubridate ymd
-#' @importFrom dplyr mutate bind_rows
+#' @importFrom dplyr mutate bind_rows select
 #' @importFrom progress progress_bar
+#' @importFrom tidyselect vars_select_helpers
 #'
 #' @export
 tm_player_transfer_history <- function(player_urls, get_extra_info = TRUE) {
