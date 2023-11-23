@@ -11,24 +11,58 @@ test_that("tm_player_market_values() works", {
 
 })
 
+test_that("tm_player_transfer_history() works", {
+  testthat::skip_if_offline()
+  testthat::skip_on_cran()
 
-##--------------------------------------------------------------------------------------
-# As at version 0.6.4.0012, commenting out this test as the data is no longer available
-# by static scraping and will need to incorporate some form of browser automation
-##--------------------------------------------------------------------------------------
-# test_that("tm_player_transfer_history() works", {
-#   testthat::skip_if_offline()
-#   testthat::skip_on_cran()
-#
-#   transfer_data <- tm_player_transfer_history(c("https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198"))
-#   # test the functions returns the data
-#   expect_type(transfer_data, "list")
-#   expect_true(ncol(transfer_data) != 0)
-#
-#   # test that an invalid country will error
-#   expect_error(tm_player_transfer_history("aaa.com.au"))
-#
-# })
+  ## multiple URLs
+  transfer_data <- tm_player_transfer_history(
+    c(
+      "https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198",
+      "https://www.transfermarkt.com/jack-rodwell/profil/spieler/57079"
+    )
+  )
+
+  expected_base_transfer_data_cols <- c(
+    "player_name",
+    "season",
+    "transfer_date",
+    "team_from",
+    "team_to",
+    "market_value",
+    "transfer_value",
+    "transfer_type"
+  )
+  expected_extra_transfer_data_cols <- c(
+    "country_from",
+    "country_to",
+    "contract_expiry",
+    "days_remaining"
+  )
+
+  # test the functions returns the data
+  expect_type(transfer_data, "list")
+  expect_true(nrow(transfer_data) > 0)
+  expect_setequal(
+    colnames(transfer_data), c(expected_base_transfer_data_cols, expected_extra_transfer_data_cols)
+  )
+  expect_true(length(unique(transfer_data$player_name)) == 2L)
+
+  ## non default params
+  transfer_data_no_extra_info <- tm_player_transfer_history(
+    "https://www.transfermarkt.com/jack-rodwell/profil/spieler/57079",
+    get_extra_info = FALSE
+  )
+
+  expect_true(nrow(transfer_data_no_extra_info) > 0)
+  expect_setequal(
+    colnames(transfer_data_no_extra_info), expected_base_transfer_data_cols
+  )
+
+  # test that an invalid country will error
+  expect_error(tm_player_transfer_history("aaa.com.au"))
+
+})
 
 
 test_that("tm_team_transfers() works", {
