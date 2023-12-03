@@ -85,8 +85,13 @@ tm_player_bio <- function(player_urls) {
 
   # some of the following columns may not exist, so this series of if statements will handle for this:
   if(any(grepl("date_of_birth", colnames(full_bios)))) {
+    # tm changed the column name from date_of_birth to date_of_birth_age - need to clean up the age in parentheses
+    c_name <- names(full_bios[grepl("date_of_birth", colnames(full_bios))])
     full_bios <- full_bios %>%
-      dplyr::mutate(date_of_birth = .tm_fix_dates(.data[["date_of_birth"]]))
+      dplyr::mutate(date_of_birth = .tm_fix_dates(gsub(" \\(.*", "", .data[[c_name]])))
+
+    # to not introduce breaking changes, we will keep the column name consistent with existing expected output and remove the new date_of_birth_age column
+    full_bios[, c_name] <- NULL
   }
 
   if(any(grepl("joined", colnames(full_bios)))) {
