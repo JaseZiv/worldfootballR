@@ -297,7 +297,7 @@ dplyr::glimpse(hazard_injuries)
 #----- for multiple players: -----#
 # # can make use of a tm helper function:
 # burnley_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/fc-burnley/startseite/verein/1132/saison_id/2021")
-# # then pass all those URLs to the tm_player_bio
+# # then pass all those URLs to the tm_player_injury_history
 # burnley_player_injuries <- tm_player_injury_history(player_urls = burnley_player_urls)
 ```
 
@@ -323,6 +323,25 @@ all_leeds_united_links <- tm_team_player_urls(team_url = "https://www.transferma
 all_leeds_united_players_transfer_history <- tm_player_transfer_history(all_leeds_united_links, get_extra_info = FALSE)
 dplyr::glimpse(all_leeds_united_players_transfer_history)
 ```
+
+
+
+### Player Absence
+
+To be able to get a player's (or players') absence history as a result of suspensions from transfermarkt, use the `tm_get_player_absence()` function.
+
+```{r player_absence, eval=FALSE}
+#----- for a single player: -----#
+romero_absence <- tm_get_player_absence(player_urls = "https://www.transfermarkt.com/cristian-romero/profil/spieler/355915")
+dplyr::glimpse(romero_absence)
+
+#----- for multiple players: -----#
+# # can make use of a tm helper function:
+spurs_player_urls <- tm_team_player_urls(team_url = "https://www.transfermarkt.com/tottenham-hotspur/startseite/verein/148")
+# # then pass all those URLs to the tm_get_player_absence
+spurs_player_absence <- tm_get_player_absence(player_urls = spurs_player_urls)
+```
+
 
 
 ***
