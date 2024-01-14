@@ -52,7 +52,7 @@
 
     main_df <- main_df |>
       dplyr::mutate_all(as.character) |>
-      dplyr::mutate(dplyr::across(c(from, until), .tm_fix_dates)) |>
+      dplyr::mutate(dplyr::across(c("from", "until"), .tm_fix_dates)) |>
       janitor::clean_names()
 
   }
