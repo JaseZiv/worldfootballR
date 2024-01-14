@@ -1,5 +1,9 @@
 # worldfootballR (development version)
 
+***
+
+# worldfootballR 0.6.5
+
 ### Bugs
 
 * `fb_league_stats()` failing for `playing_time`. (0.6.4.0001) [#314](https://github.com/JaseZiv/worldfootballR/issues/314)
@@ -20,6 +24,7 @@
 * `fb_team_match_stats()` and `understat_available_teams()` (0.6.4.0004)
 * `fb_match_shooting()`, `fb_advanced_match_stats()`, `fb_league_stats(team_or_player = "player")` gain `Player_Href` column (0.6.4.0005)
 * `load_fb_advanced_stats()` and `load_fb_match_summary()` added (0.6.4.0007)
+* `tm_get_player_absence()` now available to get a list of absences through suspension for players from transfermarkt
 
 
 ***

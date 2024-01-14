@@ -238,3 +238,17 @@ test_that("tm_player_injury_history() works", {
   expect_false(nrow(hazard_injuries) == 0)
 
 })
+
+
+test_that("tm_get_player_absence() works", {
+  testthat::skip_on_cran()
+
+  player_absence <- tm_get_player_absence(player_urls = c("https://www.transfermarkt.com/cristian-romero/profil/spieler/355915",
+                                                          "https://www.transfermarkt.com/micky-van-de-ven/profil/spieler/557459"))
+  expect_type(player_absence, "list")
+  expect_equal(ncol(player_absence), 10)
+  expect_false(nrow(player_absence) == 0)
+
+})
+
+
