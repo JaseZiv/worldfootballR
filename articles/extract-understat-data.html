@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.7/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.8/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from Understat">
@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.0003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2023-09-07</h4>
+            <h4 data-toc-skip class="date">2024-01-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-understat-data.Rmd" class="external-link"><code>vignettes/extract-understat-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-understat-data.Rmd</code></div>
@@ -159,13 +159,24 @@ understat.com</p>
 <h2 id="understat-helper-functions">Understat Helper Functions<a class="anchor" aria-label="anchor" href="#understat-helper-functions"></a>
 </h2>
 <div class="section level3">
+<h3 id="team-names">Team Names<a class="anchor" aria-label="anchor" href="#team-names"></a>
+</h3>
+<p>To get a list of all available teams names team selected league, use
+the <code>understat_avalaible_teams()</code> function.</p>
+<p>You can pass the results of the
+<code>understat_avalaible_teams()</code> function execution to the
+<code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code> function.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">team_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_meta.html">understat_team_meta</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="fu">understat_avalaible_teams</span><span class="op">(</span>league <span class="op">=</span> <span class="st">'EPL'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
 <h3 id="team-urls">Team URLs<a class="anchor" aria-label="anchor" href="#team-urls"></a>
 </h3>
 <p>To get a list of all season team URLs for selected teams, use the
 <code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code> function (note, to get team names, it
 might be advisable to look at Understat.com’s spelling of the team names
 and pass that through to the function):</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_meta.html">understat_team_meta</a></span><span class="op">(</span>team_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Liverpool"</span>, <span class="st">"Manchester City"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
@@ -194,7 +205,7 @@ have results and expected goals, but they also provide a probability of
 a team winning.</p>
 <p>To extract the data, use the
 <code><a href="../reference/understat_league_match_results.html">understat_league_match_results()</a></code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># to get the EPL results:</span></span>
 <span><span class="va">epl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_match_results.html">understat_league_match_results</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"EPL"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_results</span><span class="op">)</span></span>
@@ -224,7 +235,7 @@ a team winning.</p>
 </h3>
 <p>To get shooting locations for a whole season in supported leagues,
 use the <code><a href="../reference/understat_league_season_shots.html">understat_league_season_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ligue1_shot_location</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_league_season_shots.html">understat_league_season_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Ligue 1"</span>, season_start_year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
@@ -239,7 +250,7 @@ data at the per-match level</p>
 </h3>
 <p>To get shooting locations for an individual match, use the
 <code><a href="../reference/understat_match_shots.html">understat_match_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wba_liv_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_match_shots.html">understat_match_shots</a></span><span class="op">(</span>match_url <span class="op">=</span> <span class="st">"https://understat.com/match/14789"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">wba_liv_shots</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 36</span></span>
@@ -277,7 +288,7 @@ Transfermarkt.</p>
 </h3>
 <p>To get all shots taken and conceded by a team during a season, use
 the <code><a href="../reference/understat_team_season_shots.html">understat_team_season_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for one team:</span></span>
 <span><span class="va">man_city_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_season_shots.html">understat_team_season_shots</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">man_city_shots</span><span class="op">)</span></span>
@@ -320,7 +331,7 @@ on the following groupings:</p>
 <li>Attack speed</li>
 <li>Result</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- Can get data for single teams at a time: -----#</span></span>
 <span><span class="va">team_breakdown</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_stats_breakdown.html">understat_team_stats_breakdown</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="st">"https://understat.com/team/Liverpool/2020"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">team_breakdown</span><span class="op">)</span></span>
@@ -356,10 +367,10 @@ extraction of player data.</p>
 <p>To get shooting locations for all games a player has participated in
 (for as long as Understat has data for), use the
 <code><a href="../reference/understat_player_shots.html">understat_player_shots()</a></code> function:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">raheem_sterling_shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_player_shots.html">understat_player_shots</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://understat.com/player/618"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">raheem_sterling_shots</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 642</span></span>
+<span><span class="co">#&gt; Rows: 667</span></span>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "14490", "14491", "14496", "14497", "14779", "15104", …</span></span>
 <span><span class="co">#&gt; $ minute          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 20, 22, 47, 53, 8, 7, 69, 74, 65, 81, 19, 25, 47, 50, …</span></span>
@@ -389,7 +400,7 @@ extraction of player data.</p>
 <code><a href="../reference/understat_team_players_stats.html">understat_team_players_stats()</a></code> function.</p>
 <p>Note: Team URLs cal be extracted using
 <code><a href="../reference/understat_team_meta.html">understat_team_meta()</a></code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_players</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/understat_team_players_stats.html">understat_team_players_stats</a></span><span class="op">(</span>team_url <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://understat.com/team/Liverpool/2020"</span>, <span class="st">"https://understat.com/team/Manchester_City/2020"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">team_players</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 52</span></span>
