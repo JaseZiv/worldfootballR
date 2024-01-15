@@ -72,8 +72,8 @@ To get a list of all available teams names team selected league, use the `unders
 
 You can pass the results of the `understat_avalaible_teams()` function execution to the `understat_team_meta()` function.
 
-```{r team_urls, eval=FALSE}
-team_urls <- understat_team_meta(team_name = understat_avalaible_teams(league = 'EPL'))
+```{r team_names, eval=FALSE}
+team_names <- understat_team_meta(team_name = understat_avalaible_teams(league = 'EPL'))
 ```
 
 
