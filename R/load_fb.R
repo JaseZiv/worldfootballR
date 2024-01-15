@@ -290,6 +290,9 @@ load_fb_match_summary <- function(country, gender, tier, season_end_year = NA) {
 #' @importFrom dplyr filter
 #' @importFrom rlang .data
 #' @return returns a dataframe
+#'
+#' @export
+#'
 #' @examples
 #' \donttest{
 #' try({
