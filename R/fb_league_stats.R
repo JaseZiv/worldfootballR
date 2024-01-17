@@ -18,7 +18,7 @@
     }
 
     purrr::map_dfr(
-      seq_along(n_tables),
+      1:n_tables,
       ~{
         tables[[.x]] %>%
           .rename_fb_cols() %>%
