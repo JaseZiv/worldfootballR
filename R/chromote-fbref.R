@@ -45,13 +45,11 @@ worldfootballr_html_player_table <- function(session) {
   stopifnot(identical(class(session), c("WorldfootballRDynamicPage", "R6")))
 
   ## find element "above" commented out table
-  node_id1 <- session$find_nodes("#stats_shooting_sh")
-  ## find element "below" commented out table
-  node_id2 <- session$find_nodes("#stats_shooting_control")
-  ## find commented out element in-between
-  node_id <- round((node_id1 + node_id2) / 2)
+  node_id0 <- session$find_nodes("#stats_shooting_sh")
+  ## skip 1 for the div "placeholder"
+  node_id <- node_id0 + 2L
 
-  elements <- session$call_node_method(node_id, ".textContent")[['result']][['value']]
+  elements <- session$call_node_method(node_id, ".textContent")[["result"]][["value"]]
   n_elements <- length(elements)
   if (n_elements != 1) {
     warning(sprintf("Did not find the expected number of tables on the page (3). Found %s.", n_elements))

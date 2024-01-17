@@ -36,9 +36,11 @@
       .frequency = "once",
       .frequency_id = "fb_league_stats-player"
     )
+
     session <- worldfootballr_chromote_session(url)
     player_table <- worldfootballr_html_player_table(session)
     session$session$close(wait_ = FALSE)
+
     if (is.null(player_table)) {
       return(tibble::tibble())
     }
@@ -46,7 +48,7 @@
     player_table_elements <- xml2::xml_children(xml2::xml_children(player_table))
     parsed_player_table <- rvest::html_table(player_table_elements)
     renamed_player_table <- worldfootballR:::.rename_fb_cols(parsed_player_table[[1]])
-    renamed_table <- renamed_player_table[renamed_player_table$Rk != "Rk", ]
+    renamed_player_table <- renamed_player_table[renamed_player_table$Rk != "Rk", ]
     renamed_player_table <- worldfootballR:::.add_player_href(
       renamed_player_table,
       parent_element = player_table_elements,
