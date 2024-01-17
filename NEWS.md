@@ -3,6 +3,7 @@
 ### Bugs
 
 * `fb_league_stats()` not returning `opponent` table. (0.6.5.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/355)
+* `tm_player_bio()` not returning values in the `player_valuation`, `max_player_valuation` and `max_player_valuation_date` fields. Unfortunately, `max_player_valuation` and `max_player_valuation_date` fields are no able to be scraped at this release (0.6.5.0002) [#357](https://github.com/JaseZiv/worldfootballR/issues/357)
 
 ***
 
