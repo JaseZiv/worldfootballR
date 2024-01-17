@@ -47,9 +47,9 @@
 
     player_table_elements <- xml2::xml_children(xml2::xml_children(player_table))
     parsed_player_table <- rvest::html_table(player_table_elements)
-    renamed_player_table <- worldfootballR:::.rename_fb_cols(parsed_player_table[[1]])
+    renamed_player_table <- .rename_fb_cols(parsed_player_table[[1]])
     renamed_player_table <- renamed_player_table[renamed_player_table$Rk != "Rk", ]
-    renamed_player_table <- worldfootballR:::.add_player_href(
+    renamed_player_table <- .add_player_href(
       renamed_player_table,
       parent_element = player_table_elements,
       player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
