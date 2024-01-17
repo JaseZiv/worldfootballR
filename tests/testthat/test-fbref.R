@@ -406,7 +406,7 @@ test_that("fb_league_stats() for players works", {
   testthat::skip_on_cran()
   testthat::skip_on_ci()
   expected_player_shooting_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "Gls_Standard", "Sh_Standard", "SoT_Standard", "SoT_percent_Standard", "Sh_per_90_Standard", "SoT_per_90_Standard", "G_per_Sh_Standard", "G_per_SoT_Standard", "Dist_Standard", "FK_Standard", "PK_Standard", "PKatt_Standard", "xG_Expected", "npxG_Expected", "npxG_per_Sh_Expected", "G_minus_xG_Expected", "np:G_minus_xG_Expected", "Matches", "url")
-  epl_player_shooting_22 <- fb_league_stats(
+  single_player_shooting_22 <- fb_league_stats(
     country = "BRA",
     gender = "M",
     season_end_year = 2022,
@@ -414,8 +414,8 @@ test_that("fb_league_stats() for players works", {
     stat_type = "shooting",
     team_or_player = "player"
   )
-  expect_gt(nrow(epl_player_shooting_22), 0)
-  expect_setequal(colnames(epl_player_shooting_22), expected_player_shooting_cols)
+  expect_gt(nrow(single_player_shooting_22), 0)
+  expect_setequal(colnames(single_player_shooting_22), expected_player_shooting_cols)
 
   expected_player_misc_cols <- c("Rk", "Player", "Player_Href", "Nation", "Pos", "Squad", "Age", "Born", "Mins_Per_90", "CrdY", "CrdR", "2CrdY", "Fls", "Fld", "Off", "Crs", "Int", "TklW", "PKwon", "PKcon", "OG", "Recov", "Won_Aerial Duels", "Lost_Aerial Duels", "Won_percent_Aerial Duels", "Matches", "url")
   ## testing a lot would take too long, so just test multiple years since that is the most likely input param to have multiple values
