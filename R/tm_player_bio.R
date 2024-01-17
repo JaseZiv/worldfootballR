@@ -52,9 +52,9 @@ tm_player_bio <- function(player_urls) {
       # handle for duplicate socials
       a <- a %>% dplyr::distinct(X1, .keep_all = TRUE)
 
-      player_val <- tryCatch(player_page %>% rvest::html_nodes(".tm-player-market-value-development__current-value") %>% rvest::html_text() %>%
-                               stringr::str_squish(), error = function(e) NA_character_) %>% .replace_empty_na()
-      player_val_max <- tryCatch(player_page %>% rvest::html_nodes(".tm-player-market-value-development__max-value") %>% rvest::html_text() %>%
+      player_val <- tryCatch(player_page %>% rvest::html_nodes(".data-header__market-value-wrapper") %>% rvest::html_text() %>%
+                               stringr::str_squish() %>% gsub(" Last.*", "", .), error = function(e) NA_character_) %>% .replace_empty_na()
+      player_val_max <- tryCatch(player_page %>% rvest::html_nodes(".max") %>% rvest::html_text() %>%
                                stringr::str_squish(), error = function(e) NA_character_) %>% .replace_empty_na()
       player_val_max_date <- tryCatch(player_page %>% rvest::html_nodes(".tm-player-market-value-development__max div") %>% .[3] %>% rvest::html_text() %>%
                                    stringr::str_squish(), error = function(e) NA_character_) %>% .replace_empty_na()
