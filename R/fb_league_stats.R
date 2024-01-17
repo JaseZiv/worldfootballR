@@ -37,33 +37,30 @@
       .frequency_id = "fb_league_stats-player"
     )
     session <- worldfootballr_chromote_session(url)
-    page <- worldfootballr_html_page(session)
+    player_table <- worldfootballr_html_player_table(session)
     session$session$close(wait_ = FALSE)
-    elements <- xml2::xml_children(xml2::xml_children(page))
-    tables <- rvest::html_table(elements)
-
-    n_tables <- length(tables)
-    if (n_tables != 3) {
-      warning(sprintf("Did not find the expected number of tables on the page (3). Found %s.", n_tables))
+    if (is.null(player_table)) {
       return(tibble::tibble())
     }
-    renamed_table <- .rename_fb_cols(tables[[3]])
-    renamed_table <- renamed_table[renamed_table$Rk != "Rk", ]
-    renamed_table <- .add_player_href(
-      renamed_table,
-      parent_element = elements[[3]],
+
+    player_table_elements <- xml2::xml_children(xml2::xml_children(player_table))
+    parsed_player_table <- rvest::html_table(player_table_elements)
+    renamed_player_table <- worldfootballR:::.rename_fb_cols(parsed_player_table[[1]])
+    renamed_table <- renamed_player_table[renamed_player_table$Rk != "Rk", ]
+    renamed_player_table <- worldfootballR:::.add_player_href(
+      renamed_player_table,
+      parent_element = player_table_elements,
       player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
     )
-  }
-
-  suppressMessages(
-    readr::type_convert(
-      clean_table,
-      guess_integer = TRUE,
-      na = "",
-      trim_ws = TRUE
+    suppressMessages(
+      readr::type_convert(
+        renamed_player_table,
+        guess_integer = TRUE,
+        na = "",
+        trim_ws = TRUE
+      )
     )
-  )
+  }
 }
 
 
