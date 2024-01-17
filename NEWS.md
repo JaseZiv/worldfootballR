@@ -1,5 +1,9 @@
 # worldfootballR (development version)
 
+### Bugs
+
+* `fb_league_stats()` not returning `opponent` table. (0.6.5.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/355)
+
 ***
 
 # worldfootballR 0.6.5
