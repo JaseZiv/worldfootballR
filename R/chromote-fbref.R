@@ -25,10 +25,10 @@ WorldfootballRDynamicPage <- R6::R6Class("WorldfootballRDynamicPage", public = l
     unlist(self$session$DOM$querySelectorAll(self$root_id, css)$nodeIds)
   },
 
-  call_node_method = function(node_id) {
-    js_fun <- paste0("function() { return this.outerHTML}")
+  call_node_method = function(node_id, method, ...) {
+    js_fun <- paste0("function() { return this", method, "}")
     obj_id <- self$object_id(node_id)
-    self$session$Runtime$callFunctionOn(js_fun, objectId = obj_id)
+    self$session$Runtime$callFunctionOn(js_fun, objectId = obj_id, ...)
   },
 
   object_id = function(node_id) {
@@ -41,14 +41,21 @@ WorldfootballRDynamicPage <- R6::R6Class("WorldfootballRDynamicPage", public = l
 #' @importFrom purrr map_chr
 #' @importFrom xml2 xml_children read_html
 #' @noRd
-worldfootballr_html_page <- function(x) {
-  stopifnot(identical(class(x), c("WorldfootballRDynamicPage", "R6")))
-  nodes <- x$find_nodes("table")
+worldfootballr_html_player_table <- function(session) {
+  stopifnot(identical(class(session), c("WorldfootballRDynamicPage", "R6")))
 
-  elements <- purrr::map_chr(nodes, function(node_id) {
-    json <- x$call_node_method(node_id)
-    json$result$value
-  })
+  ## find element "above" commented out table
+  node_id0 <- session$find_nodes("#stats_shooting_sh")
+  ## skip 1 for the div "placeholder"
+  node_id <- node_id0 + 2L
+
+  elements <- session$call_node_method(node_id, ".textContent")[["result"]][["value"]]
+  n_elements <- length(elements)
+  if (n_elements != 1) {
+    warning(sprintf("Did not find the expected number of tables on the page (3). Found %s.", n_elements))
+    return(NULL)
+  }
+
   html <- paste0("<html>", paste0(elements, collapse = "\n"), "</html>")
   xml2::read_html(html)
 }
