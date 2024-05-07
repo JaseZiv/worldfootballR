@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   extract-fbref-data: extract-fbref-data.html
@@ -7,7 +7,7 @@ articles:
   extract-understat-data: extract-understat-data.html
   fbref-data-internationals: fbref-data-internationals.html
   load-scraped-data: load-scraped-data.html
-last_built: 2024-01-18T02:24Z
+last_built: 2024-05-07T20:24Z
 urls:
   reference: https://jaseziv.github.io/worldfootballR/reference
   article: https://jaseziv.github.io/worldfootballR/articles
