@@ -47,49 +47,44 @@ tm_player_injury_history <- function(player_urls) {
         pg <- xml2::read_html(page_url) %>% rvest::html_nodes("#yw1") %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children()
       }
 
-      season_injured <- tryCatch(pg %>% rvest::html_nodes("td:nth-child(1)") %>% rvest::html_text(),
-                              error = function(e) season_injured <- NA_character_) %>% .replace_empty_na()
-      injury <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ .hauptlink") %>% rvest::html_text(),
-                             error = function(e) injury <- NA_character_) %>% .replace_empty_na()
-      injured_since <- tryCatch(pg %>% rvest::html_nodes(".hauptlink+ .zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
-                           error = function(e) injured_since <- NA_character_) %>% .replace_empty_na()
-      injured_until <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ td.zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
-                              error = function(e) injured_until <- NA_character_) %>% .replace_empty_na()
-      duration <- tryCatch(pg %>% rvest::html_nodes(".zentriert+ td.rechts") %>% rvest::html_text(),
-                            error = function(e) duration <- NA_character_) %>% .replace_empty_na()
-      games_missed <- tryCatch(pg %>% rvest::html_nodes(".wappen_verletzung") %>% rvest::html_text() %>% as.numeric() %>% suppressWarnings(),
-                              error = function(e) games_missed <- NA_integer_) %>% .replace_empty_na()
-      club <- tryCatch(pg %>% rvest::html_nodes("img") %>% rvest::html_attr("alt"),
-                        error = function(e) goals <- NA_character_) %>% .replace_empty_na()
+      get_each_tab_row <- function(pg_row) {
+
+        season_injured <- tryCatch(pg_row %>% rvest::html_nodes("td:nth-child(1)") %>% rvest::html_text(),
+                                   error = function(e) season_injured <- NA_character_) %>% .replace_empty_na()
+        injury <- tryCatch(pg_row %>% rvest::html_nodes(".zentriert+ .hauptlink") %>% rvest::html_text(),
+                           error = function(e) injury <- NA_character_) %>% .replace_empty_na()
+        injured_since <- tryCatch(pg_row %>% rvest::html_nodes(".hauptlink+ .zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
+                                  error = function(e) injured_since <- NA_character_) %>% .replace_empty_na()
+        injured_until <- tryCatch(pg_row %>% rvest::html_nodes(".zentriert+ td.zentriert") %>% rvest::html_text() %>% .tm_fix_dates(),
+                                  error = function(e) injured_until <- NA_character_) %>% .replace_empty_na()
+        duration <- tryCatch(pg_row %>% rvest::html_nodes(".zentriert+ td.rechts") %>% rvest::html_text(),
+                             error = function(e) duration <- NA_character_) %>% .replace_empty_na()
+        games_missed <- tryCatch(pg_row %>% rvest::html_nodes(".wappen_verletzung") %>% rvest::html_text() %>% as.numeric() %>% suppressWarnings(),
+                                 error = function(e) games_missed <- NA_integer_) %>% .replace_empty_na()
+        club_missed_games_for <- tryCatch(pg_row %>% rvest::html_nodes("img") %>% rvest::html_attr("alt"),
+                                          error = function(e) goals <- NA_character_) %>% .replace_empty_na() |> paste0(collapse = ", ")
 
 
-      out_df <- cbind(player_name, player_url, season_injured, injury, injured_since, injured_until, duration, games_missed, club) %>%
-        suppressWarnings() %>% data.frame()
+        df <- cbind(player_name, player_url, season_injured, injury, injured_since, injured_until, duration, games_missed, club_missed_games_for) %>%
+          suppressWarnings() %>% data.frame()
 
-      out_df <- out_df %>%
-        dplyr::mutate(player_name = as.character(.data[["player_name"]]),
-                      player_url = as.character(.data[["player_url"]]),
-                      season_injured = as.character(.data[["season_injured"]]),
-                      injury = as.character(.data[["injury"]]),
-                      injured_since = lubridate::ymd(.data[["injured_since"]]),
-                      injured_until = lubridate::ymd(.data[["injured_until"]]),
-                      duration = as.character(.data[["duration"]]),
-                      games_missed = as.character(.data[["games_missed"]]),
-                      club = as.character(.data[["club"]]))
+        df <- df %>%
+          dplyr::mutate(player_name = as.character(.data[["player_name"]]),
+                        player_url = as.character(.data[["player_url"]]),
+                        season_injured = as.character(.data[["season_injured"]]),
+                        injury = as.character(.data[["injury"]]),
+                        injured_since = lubridate::ymd(.data[["injured_since"]]),
+                        injured_until = lubridate::ymd(.data[["injured_until"]]),
+                        duration = as.character(.data[["duration"]]),
+                        games_missed = as.character(.data[["games_missed"]]),
+                        club_missed_games_for = as.character(.data[["club_missed_games_for"]]))
 
-      # # ----- use the below if want to include player bio data to injury histories -----#
-      #
-      # out_df <- cbind(season_injured, injury, injured_since, injured_until, duration, games_missed, club) %>%
-      #   suppressWarnings() %>% data.frame()
+        return(df)
+      }
 
-      # out_df <- out_df %>%
-      #   dplyr::mutate(season_injured = as.character(.data[["season_injured"]]),
-      #                 injury = as.character(.data[["injury"]]),
-      #                 injured_since = lubridate::ymd(.data[["injured_since"]]),
-      #                 injured_until = lubridate::ymd(.data[["injured_until"]]),
-      #                 duration = as.character(.data[["duration"]]),
-      #                 games_missed = as.character(.data[["games_missed"]]),
-      #                 club = as.character(.data[["club"]]))
+      out_df <- pg |>
+        purrr::map_dfr(get_each_tab_row)
+
 
       return(out_df)
     }
