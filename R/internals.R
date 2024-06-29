@@ -420,3 +420,40 @@
   session <- rvest::session(url = page_url, ua)
   xml2::read_html(session)
 }
+
+
+
+
+#' Convert formatted valuations to numeric
+#'
+#' Returns a numeric data type for player valuations
+#'
+#' @param euro_value raw valuation from transfermarkt.com
+#'
+#' @return a cleaned numeric data value for market and/or transfer valuation
+#'
+#' @importFrom magrittr %>%
+#' @noRd
+#'
+.convert_soccerdonna_value_to_numeric <- function(euro_value) {
+  clean_val <- gsub("[^\x20-\x7E]", "", euro_value) %>% tolower() |> trimws()
+  clean_val <- gsub("\\.", "", clean_val)
+  if(grepl("free", clean_val)) {
+    clean_val <- 0
+  } else if(grepl("loan fee", clean_val)) {
+    clean_val <- suppressWarnings(gsub("loan fee:", "", clean_val)) %>% .convert_value_to_numeric
+  } else if(grepl("m", clean_val)) {
+    clean_val <- suppressWarnings(gsub("m", "", clean_val) %>% as.numeric() * 1000000)
+  } else if(grepl("th.", clean_val)) {
+    clean_val <- suppressWarnings(gsub("th.", "", clean_val) %>% as.numeric() * 1000)
+  } else if(grepl("k", clean_val)) {
+    clean_val <- suppressWarnings(gsub("k", "", clean_val) %>% as.numeric() * 1000)
+  } else {
+    clean_val <- suppressWarnings(as.numeric(clean_val) * 1)
+  }
+  return(clean_val)
+}
+
+
+
+

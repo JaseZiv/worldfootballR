@@ -37,11 +37,7 @@ This package is designed to allow users to extract various world football result
 
 ## Installation
 
-You can install the CRAN version of [**```worldfootballR```** ](https://CRAN.R-project.org/package=worldfootballR) with:
-
-```{r cran-installation, eval=FALSE}
-install.packages("worldfootballR")
-```
+As at 2024-06-29, we are no longer including instructions to install from CRAN. The version pushed to CRAN is very much out of date, and with very regular updates to this library, we advise installing from GitHub only.
 
 You can install the released version of [**```worldfootballR```**](https://github.com/JaseZiv/worldfootballR/) from [GitHub](https://github.com/JaseZiv/worldfootballR) with:
 
@@ -130,6 +126,8 @@ Special mention goes out to [Ewan Henderson's](https://github.com/ewenme) awesom
 ## Contributing
 
 ### Issues and Improvements
+
+Before creating an issue, **please ensure you have the latest version installed from GitHub**. Check the changelog for more details on changes that have been made to the library.
 
 When creating an issue, please include:
 

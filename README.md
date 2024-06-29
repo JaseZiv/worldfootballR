@@ -29,13 +29,10 @@ football (soccer) data sites:
 
 ## Installation
 
-You can install the CRAN version of
-[**`worldfootballR`**](https://CRAN.R-project.org/package=worldfootballR)
-with:
-
-``` r
-install.packages("worldfootballR")
-```
+As at 2024-06-29, we are no longer including instructions to install
+from CRAN. The version pushed to CRAN is very much out of date, and with
+very regular updates to this library, we advise installing from GitHub
+only.
 
 You can install the released version of
 [**`worldfootballR`**](https://github.com/JaseZiv/worldfootballR/) from
@@ -91,9 +88,9 @@ to see examples of which data is available for rapid loading.
 To stay up-to-date with the latest changes, see the package [change
 log](https://jaseziv.github.io/worldfootballR/news/index.html)
 
-
-Note that fotmob data is no longer provided since the release of `v0.6.4` due to
-a change in their [terms of service](https://www.fotmob.com/tos.txt).
+Note that fotmob data is no longer provided since the release of
+`v0.6.4` due to a change in their [terms of
+service](https://www.fotmob.com/tos.txt).
 
 ------------------------------------------------------------------------
 
@@ -152,6 +149,10 @@ in this package.
 ## Contributing
 
 ### Issues and Improvements
+
+Before creating an issue, **please ensure you have the latest version
+installed from GitHub**. Check the changelog for more details on changes
+that have been made to the library.
 
 When creating an issue, please include:
 
