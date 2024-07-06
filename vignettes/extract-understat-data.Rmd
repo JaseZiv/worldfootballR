@@ -140,7 +140,7 @@ dplyr::glimpse(wba_liv_shots)
 
 To get the data from the stats table for an individual match, use the `understat_match_stats()` function:
 
-```{r match_shots}
+```{r match_stats}
 wba_liv_stats <- understat_match_stats(match_url = "https://understat.com/match/14789")
 dplyr::glimpse(wba_liv_stats)
 ```
@@ -150,7 +150,7 @@ dplyr::glimpse(wba_liv_stats)
 
 To get the data for player in an individual match, use the `understat_match_players()` function:
 
-```{r match_shots}
+```{r match_players}
 wba_liv_players <- understat_match_players(match_url = "https://understat.com/match/14789")
 dplyr::glimpse(wba_liv_players)
 ```

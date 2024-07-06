@@ -2,16 +2,16 @@
 % Please edit documentation in R/understat_match_stats.R
 \name{understat_match_stats}
 \alias{understat_match_stats}
-\title{Get all Understat shot locations for a player}
+\title{Get Understat match stats table data}
 \usage{
 understat_match_stats(match_url)
 }
 \arguments{
-\item{player_url}{the URL of a selected player}
+\item{match_url}{the URL of the match played}
 }
 \value{
-returns a dataframe of shooting locations for a selected player
+returns a dataframe with data from the stats table for the match
 }
 \description{
-Returns shooting locations for a selected player for all matches played from Understat.com
+Returns the Stats values for a selected match from Understat.com
 }
