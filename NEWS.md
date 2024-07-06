@@ -5,7 +5,7 @@
 * `fb_league_stats()` not returning `opponent` table. (0.6.5.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/355)
 * `tm_player_bio()` not returning values in the `player_valuation`, `max_player_valuation` and `max_player_valuation_date` fields. Unfortunately, `max_player_valuation` and `max_player_valuation_date` fields are no able to be scraped at this release (0.6.5.0002) [#357](https://github.com/JaseZiv/worldfootballR/issues/357)
 * `fb_league_stats()` not returning `player` table when hidden on page load. (0.6.5.0003) [#351](https://github.com/JaseZiv/worldfootballR/issues/351)
-
+* Fix parameter mis-sepcification in fbref vignette. (0.6.5.0005) [#385](https://github.com/JaseZiv/worldfootballR/issues/385)
 
 ### Breaking Changes
 
@@ -107,7 +107,7 @@
 
 ### Bugs
 
-* `tm_player_market_values()` returning `NAs` in the `squad` column 
+* `tm_player_market_values()` returning `NAs` in the `squad` column
 * `tm_` functions were missing the `country` and `comp_name` columns due to a change in the html on transfermarkt
 * `fb_match_shooting()` throwing errors for duplicate column names after switch from StatsBomb to Opta on FBRef
 * `fb_team_goal_logs` and `fb_player_goal_logs` gave errors when columns were not present
@@ -286,7 +286,7 @@ Now starting to have load functions:
 * `fotmob_get_season_stats` gains `stat_league_name` and can now be used for all leagues since seasons are programmatically scraped
 * `tm_player_bio()` now also returns the player's maximum valuation (`max_player_valuation`) and the date that max valuation was recorded (`max_player_valuation_date`). **Note:** there will now be an additional two columns to the output
 * Additional processing logic added such that `fotmob_get_league_tables` works properly for international tournaments.
-* The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players). 
+* The `stat_type` argument in `fotmob_get_seasons_stats` renamed to `stat_name` to reflect the different set of values that it takes. Valid values are now equivalent to the options that can be found on the stats page in the browser, e.g. [the Liverpool player stats page](https://www.fotmob.com/leagues/47/stats/season/16390/players/goals/team/8650/liverpool-players).
 * All FBref functions now contain a user defined pause (`time_pause`) before each page load to abide by their new rate limiting rules. See [here](https://www.sports-reference.com/bot-traffic.html). Default is set to `2` seconds
 * Internal function`.get_each_season_results()` exported now
 
@@ -416,7 +416,7 @@ Now starting to have load functions:
   * Fixed `Warning: Unexecutable code in man/fb_player_scouting_report.Rd: pos_versus = "primary")`
   * Wrote `.pkg_message()` to allow users to easily suppress messages outputted to the console by setting `options(mypackage.verbose = FALSE)`
   * Removed unnecessary examples
-  
+
 * Results of using `understat_` functions now return the correct full season details (ie for `season_start_year = 2019`, the resulting `season` column in the df will be '2019/2020')
 
 # worldfootballR 0.4.3
@@ -574,7 +574,7 @@ New transfermarkt.com functions:
 * `tm_team_transfers()` to get all arrival and departures for a team season
 * `tm_squad_stats()` to get basic squad stats for teams for a season
 * Helper functions:
-  * `tm_league_team_urls()` to get teams URLs for a league season 
+  * `tm_league_team_urls()` to get teams URLs for a league season
   * `tm_team_player_urls()` to get player URLs for a given team
 
 ### Improvements
@@ -599,7 +599,7 @@ New transfermarkt.com functions:
 * `get_match_summary()` now contains additional columns:
   * `Is_Pens` to indicate whether the event is from a penalty shootout
   * `Event_Half` to indicate which half the event occurred in (1, 2, 3, 4, 5), with 3 & 4 being extra time and 5 being penalty shootout
-  * `Penalty_Number` for penalty shootouts, the penalty taking order 
+  * `Penalty_Number` for penalty shootouts, the penalty taking order
 
 ### Bugs
 
@@ -607,17 +607,17 @@ New transfermarkt.com functions:
 * Fix issue [#30](https://github.com/JaseZiv/worldfootballR/issues/30) for functions reading in seasons data from [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data)
 * Fix issue [#31](https://github.com/JaseZiv/worldfootballR/issues/31) for `get_advanced_match_stats()`, `get_match_report()` and `get_match_summary()` not returning results for lower than tier 1 leagues
 * Fix issue [#32](https://github.com/JaseZiv/worldfootballR/issues/32) for `get_match_summary()` where event times causing issues in extra time of match half (ie 45+3 as opposed to 46th minute)
-* Fix issue [#33](https://github.com/JaseZiv/worldfootballR/issues/33) for `fb_player_season_stats()` where players not having played a game were previously causing errors 
+* Fix issue [#33](https://github.com/JaseZiv/worldfootballR/issues/33) for `fb_player_season_stats()` where players not having played a game were previously causing errors
 
 
-*** 
+***
 
 # worldfootballR 0.2.8
 
 ### New functions
 * Added new fbref functions
   * `fb_player_match_logs()` to get player match logs for a season and stat type (issue [#26](https://github.com/JaseZiv/worldfootballR/issues/26))
-  
+
 ### Improvements
 * `fb_player_scouting_report()` now returns a players **full** scouting report against peers in Men's Big 5 Leagues and European Competition over the last 365 days (issue [27](https://github.com/JaseZiv/worldfootballR/issues/27))
 * Removed the country abbreviation in the `Squad` column of the data frame returned using `fb_player_season_stats()`
@@ -630,7 +630,7 @@ New transfermarkt.com functions:
 * Added new fbref functions
   * `get_match_shooting()` to get shot and shot creation specific details (issue [#3](https://github.com/JaseZiv/worldfootballR/issues/3))
   * `get_team_match_results()` to get match results for a given team or teams in a season
-  
+
 ### Improvements
 * `get_match_lineups()` now returns additional summary player performance data (shots, goals, cards, etc) to the original lineups output
 
@@ -638,7 +638,7 @@ New transfermarkt.com functions:
 * Fixed issue where `get_season_player_stats()` not returning results for players who have only played in domestic comps (not cups, internationals, etc) (issue [#22](https://github.com/JaseZiv/worldfootballR/issues/22))
 * Fixed issue where `fb_big5_advanced_season_stats()` not returning results for 'playing_time' stat_type (issue [#23](https://github.com/JaseZiv/worldfootballR/issues/23))
 
-*** 
+***
 
 # worldfootballR 0.2.6
 
