@@ -59,7 +59,7 @@ This vignette will cover the functions to extract data from FBref.com.
 
 **NOTE:**
 
-As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information. 
+As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information.
 
 
 ***
@@ -155,7 +155,7 @@ dplyr::glimpse(prem_2020_shooting)
 
 #----- Can also run this for multiple leagues at a time: -----#
 # multiple_2020_shooting <- get_season_team_stats(country = c("USA", "NED"),
-#                                                 gender = "M", season_end_year = 2020, 
+#                                                 gender = "M", season_end_year = 2020,
 #                                                 tier = "1st", stat_type = "shooting")
 ```
 
@@ -180,7 +180,7 @@ The stat types available for this function are below:
 
 The function also accepts a season or seasons and whether you want data for the player, or team.
 
-Note that when selecting `team_or_player="team"`, results will be returned for both the team's for and against stats. To filter on this, use the `Team_or_Opponent` column in the resulting data frame, selecting 'team' if you want the team's for stats, or 'opponent' if you want the team's against stats. 
+Note that when selecting `team_or_player="team"`, results will be returned for both the team's for and against stats. To filter on this, use the `Team_or_Opponent` column in the resulting data frame, selecting 'team' if you want the team's for stats, or 'opponent' if you want the team's against stats.
 
 
 ```{r big5_team, eval=FALSE}
@@ -293,7 +293,7 @@ big_5_2020_results <- fb_match_results(country = c("ENG", "ESP", "ITA", "GER", "
 
 ### Get match report
 
-This function will return similar results to that of `fb_match_results()`, however `fb_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:  
+This function will return similar results to that of `fb_match_results()`, however `fb_match_report()` will provide some additional information. It will also only provide it for a single match, not the whole season:
 
 ```{r get_match_report, eval=FALSE}
 # function to extract match report data
@@ -313,7 +313,7 @@ dplyr::glimpse(liv_mci_2020_team_stats)
 
 ### Get match summaries
 
-This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:  
+This function will return the main events that occur during a match, including goals, substitutions and red/yellow cards:
 
 ```{r get_match_summary, eval=FALSE}
 # function to extract match summary data
@@ -480,12 +480,12 @@ dplyr::glimpse(messi_primary)
 
 # TO GET THE LAST 365 DAYS REPORT:
 messi_last_365 <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                   pos_versus = "primary", 
+                                   pos_versus = "primary",
                                    league_comp_name = "Last 365 Days Men's Big 5 Leagues, UCL, UEL")
 
 # TO GET SCOUTING REPORT FOR MULTIPLE COMPS/LEAGUES:
 messi_multiple <- fb_player_scouting_report(player_url = "https://fbref.com/en/players/d70ce98e/Lionel-Messi",
-                                   pos_versus = "primary", 
+                                   pos_versus = "primary",
                                    league_comp_name = c("Last 365 Days Men's Big 5 Leagues, UCL, UEL", "2022 World Cup"))
 
 
@@ -503,7 +503,7 @@ The stat_types available for use in this function are below:
 
 * *standard*
 * *shooting*
-* *passing* 
+* *passing*
 * *passing_types*
 * *gca*
 * *defense*
@@ -578,7 +578,7 @@ dplyr::glimpse(fleetwood_standard_stats)
 #----- Can even get stats for a series of teams: -----#
 # league_url <- fb_league_urls(country = "ENG", gender = "M",
 # teams <- fb_teams_urls(league_url)
-# 
+#
 # multiple_playing_time <- fb_team_player_stats(team_urls= teams, stat_type= "playing_time")
 ```
 
@@ -586,9 +586,9 @@ dplyr::glimpse(fleetwood_standard_stats)
 
 Use the `fb_player_goal_logs()` function to get logs of "goals" (the default), "assists", or "both".
 
-```
+```{r fb_player_goal_logs, eval=FALSE}
 jwp_url <- "https://fbref.com/en/players/3515d404/James-Ward-Prowse"
-goal_log <- fb_player_goal_logs(team_urls = jwp_url, goals_or_assists="both")
+goal_log <- fb_player_goal_logs(jwp_url, goals_or_assists="both")
 
 dplyr::glimpse(goal_log)
 ```
@@ -610,7 +610,8 @@ The following stat types can be selected, depending on the player's position (ie
 
 
 ```{r player_match_logs, eval=FALSE}
-ederson_summary <- fb_player_match_logs("https://fbref.com/en/players/3bb7b8b4/Ederson", season_end_year = 2021, stat_type = 'summary')
+ederson_url <- "https://fbref.com/en/players/3bb7b8b4/Ederson"
+ederson_summary <- fb_player_match_logs(ederson_url, season_end_year = 2021, stat_type = 'summary')
 dplyr::glimpse(ederson_summary)
 ```
 
