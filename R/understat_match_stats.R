@@ -24,29 +24,29 @@ understat_match_stats <- function(match_url) {
 
   match_stats <- data.frame(
 
-    match_id = gsub("[^0-9]", "", match_url),
+    match_id = as.integer(gsub("[^0-9]", "", match_url)),
 
-    home_team = away[1],
-    home_chances = away[2],
-    home_goals = home[3],
-    home_xG = home[4],
-    home_shots = home[5],
-    home_shot_on_target = home[6],
-    home_deep = home[7],
-    home_PPDA = home[8],
-    home_xPTS = home[9],
+    home_team = as.character(away[1]),
+    home_chances = as.integer(gsub("[^0-9]", "", away[2]))/100,
+    home_goals = as.integer(home[3]),
+    home_xG = as.numeric(home[4]),
+    home_shots = as.integer(home[5]),
+    home_shot_on_target = as.integer(home[6]),
+    home_deep = as.integer(home[7]),
+    home_PPDA = as.numeric(home[8]),
+    home_xPTS = as.numeric(home[9]),
 
-    draw_chances = home[2],
+    draw_chances = as.integer(gsub("[^0-9]", "", home[2]))/100,
 
     away_team = home[1],
-    away_chances = away[3],
-    away_goals = away[4],
-    away_xG = away[5],
-    away_shots = away[6],
-    away_shot_on_target = away[7],
-    away_deep = away[8],
-    away_PPDA = away[9],
-    away_xPTS = away[10]
+    away_chances = as.integer(gsub("[^0-9]", "", away[3]))/100 ,
+    away_goals = as.integer(away[4]),
+    away_xG = as.numeric(away[5]),
+    away_shots = as.integer(away[6]),
+    away_shot_on_target = as.integer(away[7]),
+    away_deep = as.integer(away[8]),
+    away_PPDA = as.numeric(away[9]),
+    away_xPTS = as.numeric(away[10])
 
   )
 
