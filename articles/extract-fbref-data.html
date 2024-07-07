@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.0004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.0005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +98,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2024-06-29</h4>
+            <h4 data-toc-skip class="date">2024-07-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/HEAD/vignettes/extract-fbref-data.Rmd" class="external-link"><code>vignettes/extract-fbref-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-fbref-data.Rmd</code></div>
@@ -268,7 +268,7 @@ it’s more efficient to use
 <span></span>
 <span><span class="co">#----- Can also run this for multiple leagues at a time: -----#</span></span>
 <span><span class="co"># multiple_2020_shooting &lt;- get_season_team_stats(country = c("USA", "NED"),</span></span>
-<span><span class="co">#                                                 gender = "M", season_end_year = 2020, </span></span>
+<span><span class="co">#                                                 gender = "M", season_end_year = 2020,</span></span>
 <span><span class="co">#                                                 tier = "1st", stat_type = "shooting")</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="the-big-5-euro-leagues">The Big 5 Euro Leagues<a class="anchor" aria-label="anchor" href="#the-big-5-euro-leagues"></a>
@@ -605,12 +605,12 @@ page on FBref.</li>
 <span></span>
 <span><span class="co"># TO GET THE LAST 365 DAYS REPORT:</span></span>
 <span><span class="va">messi_last_365</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,</span>
-<span>                                   pos_versus <span class="op">=</span> <span class="st">"primary"</span>, </span>
+<span>                                   pos_versus <span class="op">=</span> <span class="st">"primary"</span>,</span>
 <span>                                   league_comp_name <span class="op">=</span> <span class="st">"Last 365 Days Men's Big 5 Leagues, UCL, UEL"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># TO GET SCOUTING REPORT FOR MULTIPLE COMPS/LEAGUES:</span></span>
 <span><span class="va">messi_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_scouting_report.html">fb_player_scouting_report</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://fbref.com/en/players/d70ce98e/Lionel-Messi"</span>,</span>
-<span>                                   pos_versus <span class="op">=</span> <span class="st">"primary"</span>, </span>
+<span>                                   pos_versus <span class="op">=</span> <span class="st">"primary"</span>,</span>
 <span>                                   league_comp_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Last 365 Days Men's Big 5 Leagues, UCL, UEL"</span>, <span class="st">"2022 World Cup"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
@@ -703,7 +703,7 @@ selected team(s) seasons,</p>
 <span><span class="co">#----- Can even get stats for a series of teams: -----#</span></span>
 <span><span class="co"># league_url &lt;- fb_league_urls(country = "ENG", gender = "M",</span></span>
 <span><span class="co"># teams &lt;- fb_teams_urls(league_url)</span></span>
-<span><span class="co"># </span></span>
+<span><span class="co">#</span></span>
 <span><span class="co"># multiple_playing_time &lt;- fb_team_player_stats(team_urls= teams, stat_type= "playing_time")</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -711,10 +711,11 @@ selected team(s) seasons,</p>
 </h3>
 <p>Use the <code><a href="../reference/fb_player_goal_logs.html">fb_player_goal_logs()</a></code> function to get logs of
 “goals” (the default), “assists”, or “both”.</p>
-<pre><code><span><span class="va">jwp_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/players/3515d404/James-Ward-Prowse"</span></span>
-<span><span class="va">goal_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_goal_logs.html">fb_player_goal_logs</a></span><span class="op">(</span>team_urls <span class="op">=</span> <span class="va">jwp_url</span>, goals_or_assists<span class="op">=</span><span class="st">"both"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jwp_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/players/3515d404/James-Ward-Prowse"</span></span>
+<span><span class="va">goal_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_goal_logs.html">fb_player_goal_logs</a></span><span class="op">(</span><span class="va">jwp_url</span>, goals_or_assists<span class="op">=</span><span class="st">"both"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">goal_log</span><span class="op">)</span></span></code></pre>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">goal_log</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="player-match-logs">Player Match Logs<a class="anchor" aria-label="anchor" href="#player-match-logs"></a>
@@ -735,7 +736,8 @@ position (ie a striker probably won’t have “keepers” stats):</p>
 <li><em>misc</em></li>
 </ul>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ederson_url</span> <span class="op">&lt;-</span> <span class="st">"https://fbref.com/en/players/3bb7b8b4/Ederson"</span></span>
+<span><span class="va">ederson_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fb_player_match_logs.html">fb_player_match_logs</a></span><span class="op">(</span><span class="va">ederson_url</span>, season_end_year <span class="op">=</span> <span class="fl">2021</span>, stat_type <span class="op">=</span> <span class="st">'summary'</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">ederson_summary</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
