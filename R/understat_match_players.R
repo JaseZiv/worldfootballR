@@ -1,18 +1,17 @@
 
 #' Get Understat match player data
 #'
-#' Returns player values for a selected match from Understat.com
+#' Returns player values for a selected match from Understat.com.
 #'
-#' @param match_url the URL of the match played
+#' @param match_url A `character` string with the URL of the match played.
 #'
-#' @return returns a dataframe with data for all players for the match
+#' @return returns a `data.frame` with data for all players for the match.
 #'
 #' @importFrom magrittr %>%
 #'
 #' @export
 
 understat_match_players <- function(match_url) {
-  # .pkg_message("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source")
 
   match_id <- gsub("[^0-9]", "", match_url)
 
