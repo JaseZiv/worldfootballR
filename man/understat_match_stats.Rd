@@ -16,5 +16,5 @@ returns a `data.frame` with data from the stats table for the match.
 Returns the Stats values for a selected match from Understat.com.
 }
 \details{
-For definitions on each variable (e.g. PPDA), you can hover with your mouse over each of them in the Stats section of the match at understat.com. For `draw_chances`, `home_chances` and `away_chances`, values below 10% will be retrieved as NA, however they sometimes have a value inside the match website (e.g. "5%").
+For `draw_chances`, `home_chances` and `away_chances`, values below 10% in the browser will be retrieved as NA (e.g. A "5%" chance will be NA in the `data.frame`).
 }
