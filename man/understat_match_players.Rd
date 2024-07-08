@@ -7,11 +7,11 @@
 understat_match_players(match_url)
 }
 \arguments{
-\item{match_url}{the URL of the match played}
+\item{match_url}{A `character` string with the URL of the match played.}
 }
 \value{
-returns a dataframe with data for all players for the match
+returns a `data.frame` with data for all players for the match.
 }
 \description{
-Returns player values for a selected match from Understat.com
+Returns player values for a selected match from Understat.com.
 }

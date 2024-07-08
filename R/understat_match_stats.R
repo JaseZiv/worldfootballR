@@ -1,18 +1,19 @@
 
 #' Get Understat match stats table data
 #'
-#' Returns the Stats values for a selected match from Understat.com
+#' Returns the Stats values for a selected match from Understat.com.
 #'
-#' @param match_url the URL of the match played
+#' @param match_url A `character` string with the URL of the match played.
 #'
-#' @return returns a dataframe with data from the stats table for the match
+#' @return returns a `data.frame` with data from the stats table for the match.
+#'
+#' @details For definitions on each variable (e.g. PPDA), you can hover with your mouse over each of them in the Stats section of the match at understat.com. For `draw_chances`, `home_chances` and `away_chances`, values below 10% will be retrieved as NA, however they sometimes have a value inside the match website (e.g. "5%").
 #'
 #' @importFrom magrittr %>%
 #'
 #' @export
 
 understat_match_stats <- function(match_url) {
-  # .pkg_message("Scraping all shots for match {match_url}. Please acknowledge understat.com as the data source")
 
   match_stats <- .get_understat_json(page_url = match_url) %>%
     rvest::html_nodes("div.scheme-block.is-hide[data-scheme='stats']") %>%
@@ -24,29 +25,29 @@ understat_match_stats <- function(match_url) {
 
   match_stats <- data.frame(
 
-    match_id = gsub("[^0-9]", "", match_url),
+    match_id = as.integer(gsub("[^0-9]", "", match_url)),
 
-    home_team = away[1],
-    home_chances = away[2],
-    home_goals = home[3],
-    home_xG = home[4],
-    home_shots = home[5],
-    home_shot_on_target = home[6],
-    home_deep = home[7],
-    home_PPDA = home[8],
-    home_xPTS = home[9],
+    home_team = as.character(away[1]),
+    home_chances = as.integer(gsub("[^0-9]", "", away[2]))/100,
+    home_goals = as.integer(home[3]),
+    home_xG = as.numeric(home[4]),
+    home_shots = as.integer(home[5]),
+    home_shot_on_target = as.integer(home[6]),
+    home_deep = as.integer(home[7]),
+    home_PPDA = as.numeric(home[8]),
+    home_xPTS = as.numeric(home[9]),
 
-    draw_chances = home[2],
+    draw_chances = as.integer(gsub("[^0-9]", "", home[2]))/100,
 
     away_team = home[1],
-    away_chances = away[3],
-    away_goals = away[4],
-    away_xG = away[5],
-    away_shots = away[6],
-    away_shot_on_target = away[7],
-    away_deep = away[8],
-    away_PPDA = away[9],
-    away_xPTS = away[10]
+    away_chances = as.integer(gsub("[^0-9]", "", away[3]))/100 ,
+    away_goals = as.integer(away[4]),
+    away_xG = as.numeric(away[5]),
+    away_shots = as.integer(away[6]),
+    away_shot_on_target = as.integer(away[7]),
+    away_deep = as.integer(away[8]),
+    away_PPDA = as.numeric(away[9]),
+    away_xPTS = as.numeric(away[10])
 
   )
 
