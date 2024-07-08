@@ -7,11 +7,14 @@
 understat_match_stats(match_url)
 }
 \arguments{
-\item{match_url}{the URL of the match played}
+\item{match_url}{A `character` string with the URL of the match played.}
 }
 \value{
-returns a dataframe with data from the stats table for the match
+returns a `data.frame` with data from the stats table for the match.
 }
 \description{
-Returns the Stats values for a selected match from Understat.com
+Returns the Stats values for a selected match from Understat.com.
+}
+\details{
+For definitions on each variable (e.g. PPDA), you can hover with your mouse over each of them in the Stats section of the match at understat.com. For `draw_chances`, `home_chances` and `away_chances`, values below 10% will be retrieved as NA, however they sometimes have a value inside the match website (e.g. "5%").
 }
