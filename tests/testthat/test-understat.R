@@ -47,3 +47,19 @@ test_that("understat_team_stats_breakdown() works", {
   expect_equal(ncol(team_stats), 11)
   expect_gt(nrow(team_stats), 0)
 })
+
+test_that("understat_match_players() works", {
+  testthat::skip_on_cran()
+  match_players <- understat_match_players(match_url = "https://understat.com/match/14789")
+  expect_true(any("data.frame" == class(match_players)))
+  expect_equal(ncol(match_players), 23)
+  expect_gt(nrow(match_players), 0)
+})
+
+test_that("understat_match_stats() works", {
+  testthat::skip_on_cran()
+  match_stats <- understat_match_stats(match_url = "https://understat.com/match/14789")
+  expect_true(any("data.frame" == class(match_stats)))
+  expect_equal(ncol(match_stats), 20)
+  expect_equal(nrow(match_stats), 1)
+})
