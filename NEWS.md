@@ -11,6 +11,9 @@
 
 * In addressing the issue with `tm_player_injury_history()` in [#375](https://github.com/JaseZiv/worldfootballR/issues/375), the previously names column `club` has been renamed `club_missed_games_for` to better represent that this column will contain the games the player missed games for, as previously this column could have been misunderstood to be who they were playing for when they were injured (0.6.5.0004)
 
+### Improvements
+
+* `understat_match_players` and `understat_match_stats` added. (0.6.5.0006) [#386](https://github.com/JaseZiv/worldfootballR/issues/386)
 
 ***
 
