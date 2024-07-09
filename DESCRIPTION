@@ -54,4 +54,4 @@ Suggests:
     rmarkdown,
     testthat
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.2.3

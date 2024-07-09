@@ -52,7 +52,7 @@ test_that("understat_match_players() works", {
   testthat::skip_on_cran()
   match_players <- understat_match_players(match_url = "https://understat.com/match/14789")
   expect_true(any("data.frame" == class(match_players)))
-  expect_equal(ncol(match_players), 22)
+  expect_equal(ncol(match_players), 23)
   expect_gt(nrow(match_players), 0)
 })
 

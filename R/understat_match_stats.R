@@ -10,14 +10,15 @@
 #' @details For `draw_chances`, `home_chances` and `away_chances`, values below 10% in the browser will be retrieved as NA (e.g. A "5%" chance will be NA in the `data.frame`).
 #'
 #' @importFrom magrittr %>%
+#' @importFrom rvest html_elements html_text
 #'
 #' @export
 
 understat_match_stats <- function(match_url) {
 
   match_stats <- .get_understat_json(page_url = match_url) %>%
-    rvest::html_nodes("div.scheme-block.is-hide[data-scheme='stats']") %>%
-    rvest::html_nodes(".progress-value") %>%
+    rvest::html_elements("div.scheme-block.is-hide[data-scheme='stats']") %>%
+    rvest::html_elements(".progress-value") %>%
     rvest::html_text()
 
   away <- match_stats[seq(1, length(match_stats), by=2)]
