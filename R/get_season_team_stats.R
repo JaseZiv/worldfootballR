@@ -61,9 +61,8 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
   get_each_stats_type <- function(single_season_url, time_pause=time_wait) {
 
     # put sleep in as per new user agreement on FBref
-    # Sys.sleep(time_pause)
+    Sys.sleep(time_pause)
 
-    ## Often will pull multiple if there are "Overall" and "Home/Away" tabs
     competition_name <- filtered_seasons %>%
       dplyr::filter(.data[["seasons_urls"]] == single_season_url) %>%
       dplyr::pull(competition_name) %>%
