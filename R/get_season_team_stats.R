@@ -216,7 +216,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
     if(nrow(stat_df) == 0) {
       stat_df <- data.frame()
-      print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this league season. Check {season_url} to see if it exists."))
+      print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this league season. Check {single_season_url} to see if it exists."))
 
     } else {
       # stopifnot("Data not available, see message above" = length(stats_url) > 0)
@@ -231,7 +231,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
             dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
             dplyr::filter(.data[["Team_or_Opponent"]] == "opponent")
         ) %>%
-        dplyr::mutate(season_url = season_url) %>%
+        dplyr::mutate(season_url = single_season_url) %>%
         dplyr::select(.data[["season_url"]], .data[["Squad"]], .data[["Team_or_Opponent"]], dplyr::everything())
 
       stat_df <- seasons %>%
