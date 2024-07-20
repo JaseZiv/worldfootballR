@@ -6,7 +6,7 @@
 * `tm_player_bio()` not returning values in the `player_valuation`, `max_player_valuation` and `max_player_valuation_date` fields. Unfortunately, `max_player_valuation` and `max_player_valuation_date` fields are no able to be scraped at this release (0.6.5.0002) [#357](https://github.com/JaseZiv/worldfootballR/issues/357)
 * `fb_league_stats()` not returning `player` table when hidden on page load. (0.6.5.0003) [#351](https://github.com/JaseZiv/worldfootballR/issues/351)
 * Fix parameter mis-sepcification in fbref vignette. (0.6.5.0005) [#385](https://github.com/JaseZiv/worldfootballR/issues/385)
-* `fb_season_team_stats` failing due to change in FBRef table name. (0.6.5.0007) [#395](https://github.com/JaseZiv/worldfootballR/issues/389)
+* `fb_season_team_stats()` failing due to change in FBRef table name. (0.6.5.0007) [#395](https://github.com/JaseZiv/worldfootballR/issues/389)
 
 ### Breaking Changes
 
