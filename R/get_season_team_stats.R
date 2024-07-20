@@ -44,30 +44,38 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
   seasons <- read.csv("https://raw.githubusercontent.com/JaseZiv/worldfootballR_data/master/raw-data/all_leages_and_cups/all_competitions.csv", stringsAsFactors = F)
 
-  seasons_urls <- seasons %>%
+  filtered_seasons <- seasons %>%
     dplyr::filter(stringr::str_detect(.data[["competition_type"]], "Leagues")) %>%
-    dplyr::filter(country %in% country_abbr,
-                  gender %in% gender_M_F,
-                  season_end_year %in% season_end_year_num,
-                  tier %in% comp_tier) %>%
-    dplyr::arrange(season_end_year) %>%
-    dplyr::pull(seasons_urls) %>% unique()
+    dplyr::filter(.data[["country"]] %in% country_abbr,
+                  .data[["gender"]] %in% gender_M_F,
+                  .data[["season_end_year"]] %in% season_end_year_num,
+                  .data[["tier"]] %in% comp_tier) %>%
+    dplyr::arrange(.data[["season_end_year"]])
+
+  seasons_urls <- filtered_seasons %>%
+    dplyr::pull(.data[["seasons_urls"]]) %>%
+    unique()
 
   time_wait <- time_pause
 
-  get_each_stats_type <- function(season_url, time_pause=time_wait) {
+  get_each_stats_type <- function(single_season_url, time_pause=time_wait) {
 
     # put sleep in as per new user agreement on FBref
     Sys.sleep(time_pause)
 
-    season_stats_page <- .load_page(season_url)
+    competition_name <- filtered_seasons %>%
+      dplyr::filter(.data[["seasons_urls"]] == single_season_url) %>%
+      dplyr::pull(competition_name) %>%
+      unique()
+
+    season_stats_page <- .load_page(single_season_url)
 
     # have included this to differentiate between how different leagues handle ladders/tables
     league_tables <- season_stats_page %>% rvest::html_nodes("#content .table_wrapper") %>% rvest::html_elements("h2") %>% rvest::html_text()
 
     # we either want to detect the presence of League Table or Regular season and get the index of that to be able to extractg the table we want
-    if(length(grep("league table", tolower(league_tables))) > 0) {
-      league_tables_idx <- grep("league table", tolower(league_tables))
+    if(length(grep(competition_name, league_tables)) > 0) {
+      league_tables_idx <- grep(competition_name, league_tables)
     } else {
       league_tables_idx <- grep("^Regular season", league_tables)
     }
@@ -208,7 +216,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
 
     if(nrow(stat_df) == 0) {
       stat_df <- data.frame()
-      print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this league season. Check {season_url} to see if it exists."))
+      print(glue::glue("NOTE: Stat Type '{stat_type}' is not found for this league season. Check {single_season_url} to see if it exists."))
 
     } else {
       # stopifnot("Data not available, see message above" = length(stats_url) > 0)
@@ -223,7 +231,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
             dplyr::mutate(Team_or_Opponent = ifelse(!stringr::str_detect(.data[["Squad"]], "vs "), "team", "opponent")) %>%
             dplyr::filter(.data[["Team_or_Opponent"]] == "opponent")
         ) %>%
-        dplyr::mutate(season_url = season_url) %>%
+        dplyr::mutate(season_url = single_season_url) %>%
         dplyr::select(.data[["season_url"]], .data[["Squad"]], .data[["Team_or_Opponent"]], dplyr::everything())
 
       stat_df <- seasons %>%
