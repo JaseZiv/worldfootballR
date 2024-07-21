@@ -73,13 +73,7 @@ fb_season_team_stats <- function(country, gender, season_end_year, tier, stat_ty
     # have included this to differentiate between how different leagues handle ladders/tables
     league_tables <- season_stats_page %>% rvest::html_nodes("#content .table_wrapper") %>% rvest::html_elements("h2") %>% rvest::html_text()
 
-    # we either want to detect the presence of League Table or Regular season and get the index of that to be able to extractg the table we want
-    if(length(grep(competition_name, league_tables)) > 0) {
-      league_tables_idx <- grep(competition_name, league_tables)
-    } else {
-      league_tables_idx <- grep("^Regular season", league_tables)
-    }
-
+    league_tables_idx <- 1
 
     league_standings <- season_stats_page %>% rvest::html_nodes("table")
 
