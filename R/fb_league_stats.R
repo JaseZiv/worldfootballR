@@ -1,10 +1,10 @@
-#' @importFrom rvest html_table
+#' @importFrom rvest html_table read_html_live
 #' @importFrom purrr map_dfr
 #' @importFrom dplyr mutate
 #' @importFrom rlang inform
 #' @importFrom tibble tibble
 #' @importFrom readr type_convert
-.fb_single_league_stats <- function(url, team_or_player) {
+.fb_single_league_stats <- function(url, team_or_player, stat_type) {
 
   clean_table <- if (team_or_player == "team") {
     page <- .load_page(url)
@@ -32,26 +32,27 @@
   } else {
 
     rlang::inform(
-      'Please be aware that `fb_league_stats(..., team_or_player = "player")` depends on promises, which may not always work.',
+      'Please be aware that `fb_league_stats(..., team_or_player = "player")` depends on `rvest::read_html_live` (and chromote), which may not always work.',
       .frequency = "once",
       .frequency_id = "fb_league_stats-player"
     )
 
-    session <- worldfootballr_chromote_session(url)
-    player_table <- worldfootballr_html_player_table(session)
-    session$session$close(wait_ = FALSE)
+    page <- rvest::read_html_live(url)
+    ## for keepers: although URLs have plural term, div elements have singular term
+    stat_type <- gsub("keepers", "keeper", stat_type)
+    player_table_element <- page$html_elements(paste0("#div_stats_", stat_type))
+    page$session$close(wait_ = FALSE)
 
-    if (is.null(player_table)) {
+    if (is.null(player_table_element)) {
       return(tibble::tibble())
     }
 
-    player_table_elements <- xml2::xml_children(xml2::xml_children(player_table))
-    parsed_player_table <- rvest::html_table(player_table_elements)
+    parsed_player_table <- rvest::html_table(player_table_element)
     renamed_player_table <- .rename_fb_cols(parsed_player_table[[1]])
     renamed_player_table <- renamed_player_table[renamed_player_table$Rk != "Rk", ]
     renamed_player_table <- .add_player_href(
       renamed_player_table,
-      parent_element = player_table_elements,
+      parent_element = player_table_element,
       player_xpath = ".//tbody/tr/td[@data-stat='player']/a"
     )
     suppressMessages(
@@ -213,6 +214,7 @@ fb_league_stats <- function(
 
   fi <- purrr::insistently(
     .fb_single_league_stats,
+    rate = purrr::rate_backoff(max_times = 2),
     quiet = TRUE
   )
 
@@ -232,7 +234,7 @@ fb_league_stats <- function(
       }
       pb$tick()
       url <- urls[.x]
-      res <- fp(url, team_or_player = team_or_player)
+      res <- fp(url, team_or_player = team_or_player, stat_type = stat_type)
       res[["url"]] <- url
       res
     }

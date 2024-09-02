@@ -1,7 +1,7 @@
 Type: Package
 Package: worldfootballR
 Title: Extract and Clean World Football (Soccer) Data
-Version: 0.6.5.0008
+Version: 0.6.6.0000
 Authors@R: c(
     person("Jason", "Zivkovic", , "jaseziv83@gmail.com", role = c("aut", "cre", "cph")),
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
@@ -13,14 +13,14 @@ Description: Allow users to obtain clean and tidy
     number of popular sites, including 'FBref',
     transfer and valuations data from
     'Transfermarkt'<https://www.transfermarkt.com/> and shooting location
-    and other match stats data from 'Understat'<https://understat.com/>. 
+    and other match stats data from 'Understat'<https://understat.com/>.
     It gives users the ability to access data more efficiently, rather than
-    having to export data tables to files before being able to complete their 
+    having to export data tables to files before being able to complete their
     analysis.
 License: GPL-3
 URL: https://github.com/JaseZiv/worldfootballR
 BugReports: https://github.com/JaseZiv/worldfootballR/issues
-Depends: 
+Depends:
   R (>= 4.0.0)
 Imports:
     dplyr,
@@ -36,7 +36,7 @@ Imports:
     readr,
     rlang,
     rstudioapi,
-    rvest (>= 1.0.0),
+    rvest (>= 1.0.4),
     stats,
     stringi,
     stringr,
@@ -47,7 +47,7 @@ Imports:
     xml2,
     tibble,
     cli
-Suggests: 
+Suggests:
     chromote,
     R6,
     knitr,
