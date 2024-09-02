@@ -12,7 +12,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.0008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.0000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,16 @@
 <h2 class="pkg-version" data-toc-text="development version" id="worldfootballr-development-version">worldfootballR (development version)<a class="anchor" aria-label="anchor" href="#worldfootballr-development-version"></a></h2>
 <div class="section level4">
 <h4 id="bugs-development-version">Bugs<a class="anchor" aria-label="anchor" href="#bugs-development-version"></a></h4>
+</div>
+<div class="section level4">
+<h4 id="breaking-changes-development-version">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h4>
+</div>
+<div class="section level4">
+<h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
+<hr></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.6" id="worldfootballr-066">worldfootballR 0.6.6<a class="anchor" aria-label="anchor" href="#worldfootballr-066"></a></h2>
 <ul><li>
 <code><a href="../reference/fb_league_stats.html">fb_league_stats()</a></code> not returning <code>opponent</code> table. (0.6.5.0001) <a href="https://github.com/JaseZiv/worldfootballR/issues/355" class="external-link">#355</a>
 </li>
@@ -61,18 +71,14 @@
 <li>
 <code><a href="../reference/fb_season_team_stats.html">fb_season_team_stats()</a></code> failing due to change in FBRef table name. (0.6.5.0007, 0.6.5.0008) <a href="https://github.com/JaseZiv/worldfootballR/issues/389" class="external-link">#395</a>
 </li>
-</ul></div>
-<div class="section level4">
-<h4 id="breaking-changes-development-version">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h4>
-<ul><li>In addressing the issue with <code><a href="../reference/tm_player_injury_history.html">tm_player_injury_history()</a></code> in <a href="https://github.com/JaseZiv/worldfootballR/issues/375" class="external-link">#375</a>, the previously names column <code>club</code> has been renamed <code>club_missed_games_for</code> to better represent that this column will contain the games the player missed games for, as previously this column could have been misunderstood to be who they were playing for when they were injured (0.6.5.0004)</li>
-</ul></div>
-<div class="section level4">
-<h4 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h4>
-<ul><li>
+<li>In addressing the issue with <code><a href="../reference/tm_player_injury_history.html">tm_player_injury_history()</a></code> in <a href="https://github.com/JaseZiv/worldfootballR/issues/375" class="external-link">#375</a>, the previously names column <code>club</code> has been renamed <code>club_missed_games_for</code> to better represent that this column will contain the games the player missed games for, as previously this column could have been misunderstood to be who they were playing for when they were injured (0.6.5.0004)</li>
+<li>
 <code>understat_match_players</code> and <code>understat_match_stats</code> added. (0.6.5.0006) <a href="https://github.com/JaseZiv/worldfootballR/issues/386" class="external-link">#386</a>
 </li>
-</ul><hr></div>
-</div>
+<li>
+<code><a href="../reference/fb_league_stats.html">fb_league_stats()</a></code> unreliable for <code>team_or_player = "player"</code>. (0.6.6) <a href="https://github.com/JaseZiv/worldfootballR/issues/395" class="external-link">#395</a>
+</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.5" id="worldfootballr-065">worldfootballR 0.6.5<a class="anchor" aria-label="anchor" href="#worldfootballr-065"></a></h2>
 <div class="section level4">
