@@ -84,7 +84,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     player_url <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table .hauptlink a") %>% rvest::html_attr("href") %>% paste0(main_url, .),
                            error = function(e) player_url <- NA_character_)
     date_of_birth <- tryCatch(exp_pg %>% rvest::html_nodes("td.zentriert:nth-child(2)") %>% 
-                             rvest::html_text(), error = function(e) birthday <- NA_character_)
+                             rvest::html_text(), error = function(e) date_of_birth <- NA_character_)
     position <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text(),
                          error = function(e) position <- NA_character_)
     nationality <- tryCatch(exp_pg %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% rvest::html_attr("title"),
