@@ -83,6 +83,8 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
                             error = function(e) player_name <- NA_character_)
     player_url <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table .hauptlink a") %>% rvest::html_attr("href") %>% paste0(main_url, .),
                            error = function(e) player_url <- NA_character_)
+    date_of_birth <- tryCatch(exp_pg %>% rvest::html_nodes("td.zentriert:nth-child(2)") %>% 
+                             rvest::html_text(), error = function(e) date_of_birth <- NA_character_)
     position <- tryCatch(exp_pg %>% rvest::html_nodes(".inline-table tr+ tr td") %>% rvest::html_text(),
                          error = function(e) position <- NA_character_)
     nationality <- tryCatch(exp_pg %>% rvest::html_nodes(".flaggenrahmen:nth-child(1)") %>% rvest::html_attr("title"),
@@ -107,7 +109,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     agent <- tryCatch(exp_pg %>% rvest::html_nodes(".rechts+ .hauptlink") %>% rvest::html_text() %>% stringr::str_squish(),
                       error = function(e) agent <- NA_character_)
 
-    out_df <- cbind(player_name, player_url, position, nationality, second_nationality,
+    out_df <- cbind(player_name, player_url, date_of_birth, position, nationality, second_nationality,
                     current_club, contract_expiry, contract_option, player_market_value, transfer_fee, agent) %>% data.frame()
 
     if(is.na(league_url)) {
@@ -120,6 +122,7 @@ tm_expiring_contracts <- function(country_name, contract_end_year, league_url = 
     out_df <- out_df %>%
       dplyr::mutate(player_name = as.character(.data[["player_name"]]),
                     player_url = as.character(.data[["player_url"]]),
+                    date_of_birth = as.character(.data[["date_of_birth"]]),
                     position = as.character(.data[["position"]]),
                     nationality = as.character(.data[["nationality"]]),
                     second_nationality = as.character(.data[["second_nationality"]]),
