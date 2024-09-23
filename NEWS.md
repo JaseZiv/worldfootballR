@@ -6,6 +6,8 @@
 
 ### Improvements
 
+* `tm_expiring_contracts()` returns additional `date_of_birth` column. (0.6.6.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/397)
+
 ***
 
 # worldfootballR 0.6.6
