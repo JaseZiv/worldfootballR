@@ -170,7 +170,7 @@ able to create an issue.
 ### Show your support
 
 Follow me on Bluesky
-[jaseziv](https://bsky.app/profile/jaseziv.bsky.social) for updates
+[jaseziv](https://bsky.app/profile/jaseziv.bsky.social) for updates.
 
 If this package helps you, all I ask is that you star this repo. If you
 did want to show your support and contribute to server time and data
