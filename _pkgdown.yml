@@ -4,7 +4,7 @@ url: https://jaseziv.github.io/worldfootballR/
 
 authors:
   Jason Zivkovic:
-    href: https://twitter.com/jaseziv
+    href: https://bsky.app/profile/jaseziv.bsky.social
   Tony ElHabr:
     href: https://twitter.com/TonyElHabr
   Tan Ho:
@@ -35,11 +35,11 @@ navbar:
   bg: dark
   structure:
     left: [home, reference, articles, news]
-    right: [twitter, github, more]
+    right: [bluesky, github, more]
   components:
-    twitter:
-      icon: "fab fa-twitter fa-lg"
-      href: https://twitter.com/jaseziv
+    bluesky:
+      icon: "fa-brands fa-bluesky fa-lg"
+      href: https://bsky.app/profile/jaseziv.bsky.social
 
 reference:
   - title: FBRef
