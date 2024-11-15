@@ -137,7 +137,7 @@ When creating an issue, please include:
 * For improvement suggestions, what features are being requested and their purpose 
 
 
-Feel free to get in touch via email or Bluesky https://bsky.app/profile/jaseziv.bsky.social if you aren't able to create an issue.
+Feel free to get in touch via email or [Bluesky](https://bsky.app/profile/jaseziv.bsky.social) if you aren't able to create an issue.
 
 
 ### Show your support

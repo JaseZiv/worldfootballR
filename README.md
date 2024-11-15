@@ -163,13 +163,14 @@ When creating an issue, please include:
 - For improvement suggestions, what features are being requested and
   their purpose
 
-Feel free to get in touch via email or twitter
-<https://twitter.com/jaseziv> if you aren’t able to create an issue.
+Feel free to get in touch via email or
+[Bluesky](https://bsky.app/profile/jaseziv.bsky.social) if you aren’t
+able to create an issue.
 
 ### Show your support
 
-Follow me on Twitter ([jaseziv](https://twitter.com/jaseziv)) for
-updates
+Follow me on Bluesky
+[jaseziv](https://bsky.app/profile/jaseziv.bsky.social) for updates
 
 If this package helps you, all I ask is that you star this repo. If you
 did want to show your support and contribute to server time and data
