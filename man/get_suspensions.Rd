@@ -12,7 +12,7 @@ get_suspensions(country_name = NA, league_url = NA)
 \item{league_url}{Optional direct league URL from transfermarkt.com}
 }
 \value{
-A dataframe of suspended players
+A data frame of suspended players
 }
 \description{
 Returns a data frame of all suspended players in a selected league

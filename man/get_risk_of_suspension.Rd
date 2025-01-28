@@ -2,7 +2,7 @@
 % Please edit documentation in R/tm_league_suspensions.R
 \name{get_risk_of_suspension}
 \alias{get_risk_of_suspension}
-\title{Get Risk of Suspension}
+\title{Get League Risk of Suspension}
 \usage{
 get_risk_of_suspension(country_name, league_url = NA)
 }
@@ -12,7 +12,7 @@ get_risk_of_suspension(country_name, league_url = NA)
 \item{league_url}{Optional direct league URL from transfermarkt.com}
 }
 \value{
-A dataframe of players at risk of suspension
+A data frame of players at risk of suspension
 }
 \description{
 Returns a data frame of players at risk of suspension

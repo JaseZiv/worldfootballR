@@ -4,7 +4,7 @@
 #'
 #' @param country_name The country of the league (used if league_url not provided)
 #' @param league_url Optional direct league URL from transfermarkt.com
-#' @return A dataframe of suspended players
+#' @return A data frame of suspended players
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
@@ -76,14 +76,6 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
     purrr::map_df(rows, ~{
       player_info <- .x %>% rvest::html_node("td:first-child table.inline-table")
 
-      .parse_date <- function(date_text) {
-        if (grepl("\\d{2}\\.\\d{2}\\.\\d{4}", date_text)) {
-          lubridate::dmy(date_text)
-        } else {
-          NA_Date_
-        }
-      }
-
       tibble::tibble(
         Player = tryCatch(player_info %>%
                             rvest::html_node("td:nth-child(2) a") %>%
@@ -99,19 +91,24 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
                         error = function(e) NA_character_),
         Age = tryCatch(.x %>%
                          rvest::html_node("td:nth-child(3)") %>%
-                         rvest::html_text(trim = TRUE) %>% as.numeric(),
+                         rvest::html_text(trim = TRUE) %>%
+                         as.numeric(),
                        error = function(e) NA_real_),
         Reason = tryCatch(.x %>%
                             rvest::html_node("td:nth-child(4)") %>%
                             rvest::html_text(trim = TRUE),
                           error = function(e) NA_character_),
         Since = tryCatch(.x %>%
-                          rvest::html_node("td:nth-child(5)") %>%
-                          rvest::html_text(trim = TRUE),
+                           rvest::html_node("td:nth-child(5)") %>%
+                           rvest::html_text(trim = TRUE) %>%
+                           .tm_fix_dates() %>%
+                           as.Date(),
                          error = function(e) NA_Date_),
         Until = tryCatch(.x %>%
-                          rvest::html_node("td:nth-child(6)") %>%
-                          rvest::html_text(trim = TRUE),
+                           rvest::html_node("td:nth-child(6)") %>%
+                           rvest::html_text(trim = TRUE) %>%
+                           .tm_fix_dates() %>%
+                           as.Date(),
                          error = function(e) NA_Date_),
         Matches_Missed = tryCatch(.x %>%
                                     rvest::html_node("td:nth-child(7)") %>%
@@ -138,12 +135,12 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
   return(suspensions_data)
 }
 
-#' Get Risk of Suspension
+#' Get League Risk of Suspension
 #'
 #' Returns a data frame of players at risk of suspension
 #'
 #' @inheritParams get_suspensions
-#' @return A dataframe of players at risk of suspension
+#' @return A data frame of players at risk of suspension
 #' @export
 
 get_risk_of_suspension <- function(country_name, league_url = NA) {
