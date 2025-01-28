@@ -15,5 +15,5 @@ tm_league_injuries(country_name, league_url = NA)
 returns a dataframe of injured players in the selected league
 }
 \description{
-Returns a data frame of all currently injured players players for a selected league
+Returns a data frame of all currently injured players for a selected league
 }
