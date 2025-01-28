@@ -41,7 +41,7 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
       league_page <- xml2::read_html(league_url)
       comp_url <- league_url
       comp_name <- league_page %>%
-        rvest::html_node("h1.data-header__headline") %>%
+        rvest::html_nodes(".data-header__headline-wrapper--oswald") %>%
         rvest::html_text() %>%
         stringr::str_squish()
       country <- league_page %>%
@@ -85,22 +85,39 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
       }
 
       tibble::tibble(
-        Player = tryCatch(player_info %>% rvest::html_node("td:nth-child(2) a") %>%
-                            rvest::html_text(trim = TRUE), error = function(e) NA_character_),
-        Position = tryCatch(player_info %>% rvest::html_node("tr:nth-child(2) td") %>%
-                              rvest::html_text(trim = TRUE), error = function(e) NA_character_),
-        Club = tryCatch(.x %>% rvest::html_node("td:nth-child(2) a img") %>%
-                          rvest::html_attr("title"), error = function(e) NA_character_),
-        Age = tryCatch(.x %>% rvest::html_node("td:nth-child(3)") %>%
-                         rvest::html_text(trim = TRUE) %>% as.numeric(), error = function(e) NA_real_),
-        Reason = tryCatch(.x %>% rvest::html_node("td:nth-child(4)") %>%
-                            rvest::html_text(trim = TRUE), error = function(e) NA_character_),
-        Since = tryCatch(.parse_date(.x %>% rvest::html_node("td:nth-child(5)") %>%
-                                       rvest::html_text(trim = TRUE)), error = function(e) NA_Date_),
-        Until = tryCatch(.parse_date(.x %>% rvest::html_node("td:nth-child(6)") %>%
-                                       rvest::html_text(trim = TRUE)), error = function(e) NA_Date_),
-        Matches_Missed = tryCatch(.x %>% rvest::html_node("td:nth-child(7)") %>%
-                                    rvest::html_text(trim = TRUE) %>% as.numeric(), error = function(e) NA_real_)
+        Player = tryCatch(player_info %>%
+                            rvest::html_node("td:nth-child(2) a") %>%
+                            rvest::html_text(trim = TRUE),
+                          error = function(e) NA_character_),
+        Position = tryCatch(player_info %>%
+                              rvest::html_node("tr:nth-child(2) td") %>%
+                              rvest::html_text(trim = TRUE),
+                            error = function(e) NA_character_),
+        Club = tryCatch(.x %>%
+                          rvest::html_node("td:nth-child(2) a img") %>%
+                          rvest::html_attr("title"),
+                        error = function(e) NA_character_),
+        Age = tryCatch(.x %>%
+                         rvest::html_node("td:nth-child(3)") %>%
+                         rvest::html_text(trim = TRUE) %>% as.numeric(),
+                       error = function(e) NA_real_),
+        Reason = tryCatch(.x %>%
+                            rvest::html_node("td:nth-child(4)") %>%
+                            rvest::html_text(trim = TRUE),
+                          error = function(e) NA_character_),
+        Since = tryCatch(.x %>%
+                          rvest::html_node("td:nth-child(5)") %>%
+                          rvest::html_text(trim = TRUE),
+                         error = function(e) NA_Date_),
+        Until = tryCatch(.x %>%
+                          rvest::html_node("td:nth-child(6)") %>%
+                          rvest::html_text(trim = TRUE),
+                         error = function(e) NA_Date_),
+        Matches_Missed = tryCatch(.x %>%
+                                    rvest::html_node("td:nth-child(7)") %>%
+                                    rvest::html_text(trim = TRUE) %>%
+                                    as.numeric(),
+                                  error = function(e) NA_real_)
       )
     }) %>%
       dplyr::mutate(dplyr::across(where(is.character), .replace_empty_na))
@@ -128,6 +145,7 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
 #' @inheritParams get_suspensions
 #' @return A dataframe of players at risk of suspension
 #' @export
+
 get_risk_of_suspension <- function(country_name, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 
@@ -164,7 +182,7 @@ get_risk_of_suspension <- function(country_name, league_url = NA) {
   }
 
   risk_url <- comp_url %>%
-    gsub("startseite", "krankenhaus", .) %>%
+    gsub("startseite", "sperrenausfaelle", .) %>%
     paste0(., "/plus/1")
 
   tryCatch({
