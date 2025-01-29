@@ -37,6 +37,20 @@ tm_player_bio <- function(player_urls) {
 
       # print(glue::glue("Scraping player_bio for {player_name}"))
 
+      player_id <- stringr::str_extract(player_url, "(?<=spieler/)\\d+") %>% as.numeric()
+      player_picture_url <- tryCatch({
+        if(inherits(player_page, "xml_document")) {
+          player_page %>%
+            rvest::html_nodes(".data-header__profile-container img.data-header__profile-image") %>%
+            rvest::html_attr("src")
+        } else {
+          NA_character_
+        }
+      }, error = function(e) {
+        NA_character_
+      }) %>%
+        .replace_empty_na()
+
       X1 <- player_page %>% rvest::html_nodes(".info-table__content--regular") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
       X2 <- player_page %>% rvest::html_nodes(".info-table__content--bold") %>% rvest::html_text() %>% stringr::str_squish() %>% .replace_empty_na()
 
@@ -61,14 +75,20 @@ tm_player_bio <- function(player_urls) {
       val_df <- data.frame(X1=c("player_valuation", "max_player_valuation", "max_player_valuation_date"), X2=c(player_val, player_val_max, player_val_max_date))
       a <- rbind(a, val_df)
 
+      squad_number_url <- gsub("profil", "rueckennummern", player_url)
+      squad_number_page <- tryCatch(xml2::read_html(squad_number_url), error = function(e) NA)
+      squad_number <- squad_number_page %>% rvest::html_node("tbody tr:first-child td:nth-child(4)") %>% rvest::html_text(trim = TRUE)
+
       a <- a %>%
-        dplyr::mutate(player_name = player_name) %>%
+        dplyr::mutate(player_name = player_name, player_id = player_id) %>%
         tidyr::pivot_wider(names_from = .data[["X1"]], values_from = .data[["X2"]]) %>%
         janitor::clean_names() %>%
+        dplyr::mutate(squad_number = squad_number) %>%
         dplyr::mutate(player_valuation = .convert_value_to_numeric(euro_value = .data[["player_valuation"]]),
                       max_player_valuation = .convert_value_to_numeric(euro_value = .data[["max_player_valuation"]]),
                       max_player_valuation_date = .tm_fix_dates(dirty_dates = .data[["max_player_valuation_date"]])) %>%
-        dplyr::mutate(URL = player_url)
+        dplyr::mutate(URL = player_url, picture_url = player_picture_url) %>%
+        dplyr::select(-na)
     } else {
       a <- data.frame()
     }
