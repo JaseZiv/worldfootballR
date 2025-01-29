@@ -391,6 +391,14 @@ test_that("fb_team_goal_logs() works", {
 })
 
 Sys.sleep(3)
+test_that("fb_player_info() works", {
+  testthat::skip_on_cran()
+  jwp <- fb_player_info(player_url = "https://fbref.com/en/players/3515d404/James-Ward-Prowse")
+  expect_type(jwp, "list")
+  expect_true(nrow(jwp) == 1)
+})
+
+Sys.sleep(3)
 test_that("fb_player_goal_logs() works", {
   testthat::skip_on_cran()
   jwp_goal_log <- fb_player_goal_logs(player_url = "https://fbref.com/en/players/3515d404/James-Ward-Prowse", time_pause = 4, goals_or_assists = "goals")

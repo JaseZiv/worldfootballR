@@ -1,4 +1,4 @@
-# worldfootballR 0.6.7
+# worldfootballR (development version)
 
 ### Bugs
 
@@ -6,11 +6,14 @@
 
 ### Improvements
 
-* `tm_expiring_contracts()` returns additional `date_of_birth` column. (0.6.6.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/397)
-* `tm_player_bio()` now includes three new columns. `picture_url` containing the URL of the player's picture from Transfermarkt, `squad_number` containing the current worn squad number of the player and `player_id` that that contains the player ID on Transfermarkt.
-* `get_player_info()` added. ([#47](https://github.com/JaseZiv/worldfootballR/issues/47))
-* `tm_get_suspensions()` and `tm_get_risk_of_suspensions()` added. ([#411](https://github.com/JaseZiv/worldfootballR/issues/411))
+* `tm_get_suspensions()` and `tm_get_risk_of_suspensions()` added. (0.6.7.0000) ([#411](https://github.com/JaseZiv/worldfootballR/issues/411))
+* `fb_player_info()` added. (0.6.7.0001) ([#47](https://github.com/JaseZiv/worldfootballR/issues/47))
 
+***
+
+# worldfootballR 0.6.7
+
+* `tm_expiring_contracts()` returns additional `date_of_birth` column. (0.6.6.0001) [#355](https://github.com/JaseZiv/worldfootballR/issues/397)
 
 ***
 
