@@ -24,8 +24,40 @@ get_player_info <- function(url) {
   weight <- stringr::str_extract(height_weight, "\\d+kg")
 
   birth_date <- page %>% rvest::html_node("#necro-birth") %>% rvest::html_attr("data-birth")
-  age <- page %>% rvest::html_node(xpath = "//nobr[contains(., 'Age:')]") %>% rvest::html_text2() %>%
-    stringr::str_extract("\\d+-\\d+d")
+
+  # Calculates age from birth_date
+  age <- NA
+  birth_date_clean <- .replace_empty_na(birth_date)
+
+  if (!is.na(birth_date_clean)) {
+    birth_date_date <- as.Date(birth_date_clean)
+    today <- Sys.Date()
+
+    # Calculates years
+    years <- as.integer(format(today, "%Y")) - as.integer(format(birth_date_date, "%Y"))
+    current_year_birthday <- as.Date(paste0(format(today, "%Y"), "-", format(birth_date_date, "%m-%d")))
+
+    # Handles invalid dates (e.g., February 29 in non-leap years)
+    if (is.na(current_year_birthday)) {
+      current_year_birthday <- as.Date(paste0(format(today, "%Y"), "-03-01"))
+    }
+
+    # Adjusts years and find last valid birthday
+    if (current_year_birthday > today) {
+      years <- years - 1
+      last_birthday <- as.Date(paste0(as.integer(format(today, "%Y")) - 1, "-", format(birth_date_date, "%m-%d")))
+      # Handles invalid adjusted dates
+      if (is.na(last_birthday)) {
+        last_birthday <- as.Date(paste0(as.integer(format(today, "%Y")) - 1, "-03-01"))
+      }
+    } else {
+      last_birthday <- current_year_birthday
+    }
+
+    # Calculates days since last birthday
+    days <- as.integer(difftime(today, last_birthday, units = "days"))
+    age <- paste0(years, "-", days, "d")
+  }
 
   birth_place <- page %>% rvest::html_node(xpath = "//p[contains(., 'Born:')]//span[contains(., 'in ')]") %>%
     rvest::html_text2() %>% stringr::str_remove("^in ") %>% stringr::str_trim()
