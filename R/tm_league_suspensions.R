@@ -9,7 +9,7 @@
 #' @importFrom rlang .data
 #' @export
 
-get_suspensions <- function(country_name = NA, league_url = NA) {
+tm_get_suspensions <- function(country_name = NA, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 
   .replace_empty_na <- function(x) {
@@ -139,11 +139,11 @@ get_suspensions <- function(country_name = NA, league_url = NA) {
 #'
 #' Returns a data frame of players at risk of suspension
 #'
-#' @inheritParams get_suspensions
+#' @inheritParams tm_get_suspensions
 #' @return A data frame of players at risk of suspension
 #' @export
 
-get_risk_of_suspension <- function(country_name, league_url = NA) {
+tm_get_risk_of_suspension <- function(country_name, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 
   .replace_empty_na <- function(x) {
