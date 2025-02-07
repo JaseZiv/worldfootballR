@@ -127,7 +127,7 @@ This section will cover the functions to aid in the extraction of season team st
 
 ### League Table by Matchdays
 
-To be able to extract league tables for select matchday(s), the below function can be used. 
+To be able to extract league tables for select matchday(s), the below function can be used.
 
 The function can accept either the country name, season start year and matchday number(s), or for leagues not contained in the [worldfootballR_data](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv) repository, it can accept the league URL, season start year and matchday number(s).
 
@@ -392,5 +392,24 @@ dplyr::glimpse(epl_gk_coach_job_histories)
 ```
 
 
+### Player Suspensions
 
+You can extract players with current suspensions in a league using `tm_get_suspensions()`.
 
+The list of countries that can be passed to the `country_name` argument can be found [here](https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv). `league_url` can also be specified--the same file has a non-exhaustive list of valid URLs in `comp_url`. You may need to specify `league_url` for non-first tier leagues.
+
+```{r tm_get_suspensions}
+england_suspensions <- tm_get_suspensions(country_name = "England")
+epl_suspensions <- tm_get_suspensions(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+dplyr::glimpse(epl_suspensions)
+```
+
+### Players at Risk of Suspension
+
+You can extract players at risk of being suspended (e.g. accumulating yellow cards) in a league using `tm_get_risk_of_suspension()`. The function arguments work in the same way as they do for `tm_get_suspensions()`.
+
+```{r tm_get_risk_of_suspension}
+england_risk_of_suspension <- tm_get_risk_of_suspension(country_name = "England")
+epl_risk_of_suspension <- tm_get_risk_of_suspension(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+dplyr::glimpse(epl_risk_of_suspension)
+```

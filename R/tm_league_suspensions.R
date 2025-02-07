@@ -8,7 +8,13 @@
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @export
-
+#' @examples
+#' \dontrun{
+#' try({
+#' tm_get_suspensions(country_name = "England")
+#' tm_get_suspensions(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+#' })
+#' }
 tm_get_suspensions <- function(country_name = NA, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 
@@ -142,7 +148,13 @@ tm_get_suspensions <- function(country_name = NA, league_url = NA) {
 #' @inheritParams tm_get_suspensions
 #' @return A data frame of players at risk of suspension
 #' @export
-
+#' @examples
+#' \dontrun{
+#' try({
+#' tm_get_risk_of_suspension(country_name = "England")
+#' tm_get_risk_of_suspension(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+#' })
+#' }
 tm_get_risk_of_suspension <- function(country_name, league_url = NA) {
   main_url <- "https://www.transfermarkt.com"
 

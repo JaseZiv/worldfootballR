@@ -17,3 +17,11 @@ A data frame of suspended players
 \description{
 Returns a data frame of all suspended players in a selected league
 }
+\examples{
+\dontrun{
+try({
+tm_get_suspensions(country_name = "England")
+tm_get_suspensions(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+})
+}
+}

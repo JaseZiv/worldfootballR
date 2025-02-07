@@ -17,3 +17,11 @@ A data frame of players at risk of suspension
 \description{
 Returns a data frame of players at risk of suspension
 }
+\examples{
+\dontrun{
+try({
+tm_get_risk_of_suspension(country_name = "England")
+tm_get_risk_of_suspension(league_url = "https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1")
+})
+}
+}
