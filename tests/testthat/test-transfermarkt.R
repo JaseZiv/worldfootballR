@@ -252,3 +252,22 @@ test_that("tm_get_player_absence() works", {
 })
 
 
+test_that("tm_get_suspensions() works", {
+  testthat::skip_on_cran()
+
+  player_suspensions <- tm_get_suspensions(league_url = "https://www.transfermarkt.com/jupiler-pro-league/sperrenausfaelle/wettbewerb/BE1")
+  expect_type(player_suspensions, "list")
+  expect_equal(ncol(player_suspensions), 10)
+  expect_false(nrow(player_suspensions) == 0)
+})
+
+
+test_that("tm_get_risk_of_suspensions() works", {
+  testthat::skip_on_cran()
+
+  player_stats <- tm_get_risk_of_suspension(league_url = "https://www.transfermarkt.com/jupiler-pro-league/sperrenausfaelle/wettbewerb/BE1")
+  expect_type(player_stats, "list")
+  expect_equal(ncol(player_stats), 7)
+  expect_false(nrow(player_stats) == 0)
+
+})

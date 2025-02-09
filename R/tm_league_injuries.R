@@ -1,6 +1,6 @@
 #' Get league injuries
 #'
-#' Returns a data frame of all currently injured players players for a selected league
+#' Returns a data frame of all currently injured players for a selected league
 #'
 #' @param country_name the country of the league's players
 #' @param league_url league url from transfermarkt.com. To be used when country_name not available in main function
