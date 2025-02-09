@@ -460,6 +460,19 @@ This section will cover the functions available to aid in the extraction of play
 
 The examples provided below in a lot of cases have the actual url (player or team) passed to them, however the suite of fbref helper functions outlined in [this helpers vignette](https://jaseziv.github.io/worldfootballR/articles/extract-helper-urls.html) could also be used.
 
+### Get Player Info
+
+Use the `fb_player_info()` function.
+
+```{r fb_player_info, eval=FALSE}
+player_urls <- c(
+  "https://fbref.com/en/players/d70ce98e/", # Messi
+  "https://fbref.com/en/players/3515d404/" # JWP
+)
+messi_and_jwp_info <- fb_player_info(player_urls)
+dplyr::glimpse(messi_and_jwp_info)
+```
+
 
 ### Get Player Scouting Report
 
