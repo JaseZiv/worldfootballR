@@ -7,7 +7,7 @@ Authors@R: c(
     person("Tony", "ElHabr", , "anthonyelhabr@gmail.com", role = "ctb"),
     person(given = "Tan", family = "Ho", , "tan@tanho.ca", role = "ctb"),
     person("Samuel","H", , "saintsbynumbers@gmail.com", role = "ctb"),
-    person("Aymen", "Nasri", role = "ctb")
+    person("Aymen", "Nasri", , "aymennasrii@proton.me", role = "ctb")
   )
 Description: Allow users to obtain clean and tidy
     football (soccer) game, team and player data. Data is collected from a
