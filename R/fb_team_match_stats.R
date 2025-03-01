@@ -18,6 +18,10 @@
   if(!is.na(each_game_page)) {
     team_stats <- each_game_page %>% rvest::html_nodes("#team_stats") %>% rvest::html_nodes("tr") %>% rvest::html_text()
     team_stats_extra <- each_game_page %>% rvest::html_nodes("#team_stats_extra") %>% rvest::html_text()
+    if(length(team_stats) == 0 && length(team_stats_extra) == 0) {
+      message(glue::glue("Team stats data is missing for {Game_URL}. Returning an empty dataframe."))
+      return(data.frame())
+    }
 
     tryCatch( {League <- each_game_page %>% rvest::html_nodes("h1+ div a:nth-child(1)") %>% rvest::html_text()}, error = function(e) {League <- NA})
     tryCatch( {Match_Date <- each_game_page %>% rvest::html_nodes(".venuetime") %>% rvest::html_attr("data-venue-date")}, error = function(e) {Match_Date <- NA})
@@ -65,49 +69,23 @@
     tryCatch( {Away_Yellow_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.yellow_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Yellow_Cards <- 0})
     tryCatch( {Away_Red_Cards <- each_game_page %>% rvest::html_nodes(".cards") %>% .[2] %>% rvest::html_nodes("span.red_card, span.yellow_red_card") %>% length()}, error = function(e) {Away_Red_Cards <- 0})
 
-    suppressWarnings(each_game <- cbind(League, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Possession, Home_Success_Pass, Home_Pass, Home_Passing_Accuracy, Home_Fouls, Home_Corners, Home_Crosses, Home_Touches, Home_Tackles,
-                                        Home_Interceptions, Home_Aerials_Won, Home_Clearances, Home_Offsides, Home_Goal_Kicks, Home_Throw_Ins, Home_Long_Balls, Home_Yellow_Cards, Home_Red_Cards,
-                                        Away_Team, Away_Formation, Away_Possession, Away_Success_Pass, Away_Pass, Away_Passing_Accuracy, Away_Fouls, Away_Corners, Away_Crosses, Away_Touches, Away_Tackles, Away_Interceptions, Away_Aerials_Won,
-                                        Away_Clearances, Away_Offsides, Away_Goal_Kicks, Away_Throw_Ins, Away_Long_Balls, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
-                       dplyr::as_tibble() %>%
-                       dplyr::mutate(Home_Possession = as.numeric(.data[["Home_Possession"]]),
-                                     Home_Success_Pass = as.numeric(.data[["Home_Success_Pass"]]),
-                                     Home_Pass = as.numeric(.data[["Home_Pass"]]),
-                                     Home_Passing_Accuracy = as.numeric(.data[["Home_Passing_Accuracy"]]),
-                                     Home_Fouls = as.numeric(.data[["Home_Fouls"]]),
-                                     Home_Corners = as.numeric(.data[["Home_Corners"]]),
-                                     Home_Crosses = as.numeric(.data[["Home_Crosses"]]),
-                                     Home_Touches = as.numeric(.data[["Home_Touches"]]),
-                                     Home_Tackles = as.numeric(.data[["Home_Tackles"]]),
-                                     Home_Interceptions = as.numeric(.data[["Home_Interceptions"]]),
-                                     Home_Aerials_Won = as.numeric(.data[["Home_Aerials_Won"]]),
-                                     Home_Clearances = as.numeric(.data[["Home_Clearances"]]),
-                                     Home_Offsides = as.numeric(.data[["Home_Offsides"]]),
-                                     Home_Goal_Kicks = as.numeric(.data[["Home_Goal_Kicks"]]),
-                                     Home_Throw_Ins = as.numeric(.data[["Home_Throw_Ins"]]),
-                                     Home_Long_Balls = as.numeric(.data[["Home_Long_Balls"]]),
-                                     Away_Possession = as.numeric(.data[["Away_Possession"]]),
-                                     Away_Success_Pass = as.numeric(.data[["Away_Success_Pass"]]),
-                                     Away_Pass = as.numeric(.data[["Away_Pass"]]),
-                                     Away_Passing_Accuracy = as.numeric(.data[["Away_Passing_Accuracy"]]),
-                                     Away_Fouls = as.numeric(.data[["Away_Fouls"]]),
-                                     Away_Corners = as.numeric(.data[["Away_Corners"]]),
-                                     Away_Crosses = as.numeric(.data[["Away_Crosses"]]),
-                                     Away_Touches = as.numeric(.data[["Away_Touches"]]),
-                                     Away_Tackles = as.numeric(.data[["Away_Tackles"]]),
-                                     Away_Interceptions = as.numeric(.data[["Away_Interceptions"]]),
-                                     Away_Aerials_Won = as.numeric(.data[["Away_Aerials_Won"]]),
-                                     Away_Clearances = as.numeric(.data[["Away_Clearances"]]),
-                                     Away_Offsides = as.numeric(.data[["Away_Offsides"]]),
-                                     Away_Goal_Kicks = as.numeric(.data[["Away_Goal_Kicks"]]),
-                                     Away_Throw_Ins = as.numeric(.data[["Away_Throw_Ins"]]),
-                                     Away_Long_Balls = as.numeric(.data[["Away_Long_Balls"]]))
-    )
-
-
-  } else {
-    print(glue::glue("{Game_URL} is not available"))
-    each_game <- data.frame()
+    tryCatch({
+      suppressWarnings({
+        each_game <- cbind(League, Match_Date, Matchweek, Home_Team, Home_Formation, Home_Possession, Home_Success_Pass, Home_Pass, Home_Passing_Accuracy, Home_Fouls, Home_Corners, Home_Crosses, Home_Touches, Home_Tackles,
+                           Home_Interceptions, Home_Aerials_Won, Home_Clearances, Home_Offsides, Home_Goal_Kicks, Home_Throw_Ins, Home_Long_Balls, Home_Yellow_Cards, Home_Red_Cards,
+                           Away_Team, Away_Formation, Away_Possession, Away_Success_Pass, Away_Pass, Away_Passing_Accuracy, Away_Fouls, Away_Corners, Away_Crosses, Away_Touches, Away_Tackles, Away_Interceptions, Away_Aerials_Won,
+                           Away_Clearances, Away_Offsides, Away_Goal_Kicks, Away_Throw_Ins, Away_Long_Balls, Away_Yellow_Cards, Away_Red_Cards, Game_URL) %>%
+          dplyr::as_tibble()
+        
+        numeric_cols <- c("Home_Possession", "Home_Success_Pass", "Home_Pass", "Home_Passing_Accuracy", "Home_Fouls", "Home_Corners", "Home_Crosses", "Home_Touches", "Home_Tackles", "Home_Interceptions", "Home_Aerials_Won", "Home_Clearances", "Home_Offsides", "Home_Goal_Kicks", "Home_Throw_Ins", "Home_Long_Balls", "Home_Yellow_Cards", "Home_Red_Cards",
+        "Away_Possession", "Away_Success_Pass", "Away_Pass", "Away_Passing_Accuracy", "Away_Fouls", "Away_Corners", "Away_Crosses", "Away_Touches", "Away_Tackles", "Away_Interceptions", "Away_Aerials_Won", "Away_Clearances", "Away_Offsides", "Away_Goal_Kicks", "Away_Throw_Ins", "Away_Long_Balls", "Away_Yellow_Cards", "Away_Red_Cards")                   
+        each_game[intersect(names(each_game), numeric_cols)] <- lapply(each_game[intersect(names(each_game), numeric_cols)], as.numeric)
+      })
+    },
+    error = function(e) {
+      message(glue::glue("Error processing team stats for {Game_URL}: {e$message}"))
+      return(data.frame())
+    })
   }
 
   return(each_game)
