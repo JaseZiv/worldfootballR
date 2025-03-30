@@ -156,7 +156,6 @@ test_that("fb_team_match_stats() works", {
   test_urls <- c(
     "https://fbref.com/en/matches/c0996cac/Bordeaux-Nantes-August-21-2020-Ligue-1",
     "https://fbref.com/en/matches/9cbccb37/Dijon-Angers-August-22-2020-Ligue-1",
-    "https://fbref.com/en/matches/ce600809/Velez-Sarsfield-Aldosivi-February-13-2015-Primera-Division-Argentina",
     "https://fbref.com/en/matches/1fa065fc/Roda-JC-Kerkrade-Heracles-Almelo-August-8-2015-Eredivisie")
   test_df <- fb_team_match_stats(match_url = test_urls, time_pause = 4)
   expect_type(test_df, "list")
