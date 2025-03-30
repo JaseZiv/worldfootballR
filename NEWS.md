@@ -9,6 +9,7 @@
 * `tm_get_suspensions()` and `tm_get_risk_of_suspensions()` added. (0.6.7.0000) ([#411](https://github.com/JaseZiv/worldfootballR/issues/411))
 * `fb_player_info()` added. (0.6.7.0001) ([#47](https://github.com/JaseZiv/worldfootballR/issues/47))
 * `tm_player_bio()` now includes three new columns. `picture_url` containing the URL of the player's picture from Transfermarkt, `squad_number` containing the current worn squad number of the player and `player_id` that that contains the player ID on Transfermarkt. (0.6.7.0002) ([#141](https://github.com/JaseZiv/worldfootballR/issues/141))
+* `fb_team_match_stats()` now handles matches with incomplete team stats. (0.6.7.0003) ([#409](https://github.com/JaseZiv/worldfootballR/issues/409), [#424](https://github.com/JaseZiv/worldfootballR/issues/424))
 
 ***
 
