@@ -60,7 +60,7 @@ This vignette will cover the functions to load scraped data from the [`worldfoot
 
 **NOTE:**
 
-As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information. 
+As of version `0.5.2`, all FBref functions now come with a user-defined pause between page loads to address their new rate limiting. See [this](https://www.sports-reference.com/bot-traffic.html) document for more information.
 
 
 ***
@@ -71,7 +71,7 @@ The following section demonstrates the different loading functions of FBref data
 
 ### Load FBref match results
 
-To load pre-scraped match results for all years the data is available, the `load_match_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository. 
+To load pre-scraped match results for all years the data is available, the `load_match_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. All domestic leagues are included in the data repository.
 
 This is the load function equivalent of `fb_match_results()`.
 
@@ -83,7 +83,7 @@ dplyr::glimpse(eng_match_results)
 
 ### Load FBref match results for Cups and International Comps
 
-Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the `load_match_comp_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated. 
+Similarly, to load pre-scraped match results for cups and international matches in all years the data is available, the `load_match_comp_results()` function can be used. This data is scheduled to be updated most days and a print statement will inform the user of when the data was last updated.
 
 The following list of competitions (`comp_name`) are available:
 
@@ -97,9 +97,9 @@ latest_cup_seasons <- seasons %>%
   # filtering out things that aren't domestic leagues:
   filter(!stringr::str_detect(.data$competition_type, "Leagues"),
          # and also the single match type cup games:
-         !.data$competition_name %in% exclusion_cups) %>% 
-  group_by(competition_name) %>% slice_max(season_end_year) %>% 
-  distinct() %>% 
+         !.data$competition_name %in% exclusion_cups) %>%
+  group_by(competition_name) %>% slice_max(season_end_year) %>%
+  distinct() %>%
   select(competition_type,competition_name,country,gender,governing_body,first_season,last_season,tier)
 
 latest_cup_seasons %>% pull(competition_name)
@@ -135,19 +135,21 @@ current_season_team <- load_fb_big5_advanced_season_stats(season_end_year = 2022
 
 ```{r load_fb_match_shooting}
 ## 2018 - current season for EPL
-load_fb_match_shooting(
+epl_match_shooting <- load_fb_match_shooting(
   country = "ENG",
   gender = "M",
   tier = "1st"
 )
+dplyr::glimpse(epl_match_shooting)
 
 ## just 2019, for multiple leagues at the same time
-load_fb_match_shooting(
-  country = c("ITA", "ESP"),
+multiple_match_shooting_2019 <- load_fb_match_shooting(
+  country = c("ITA", "FRA"),
   gender = "M",
   tier = "1st",
   season_end_year = 2019
 )
+dplyr::glimpse(multiple_match_shooting_2019)
 ```
 
 ### Load FBref match summary
@@ -156,19 +158,21 @@ load_fb_match_shooting(
 
 ```{r load_fb_match_summary}
 ## 2018 - current season for EPL
-load_fb_match_summary(
+epl_match_summary <- load_fb_match_summary(
   country = "ENG",
   gender = "M",
   tier = "1st"
 )
+dplyr::glimpse(epl_match_summary)
 
 ## just 2019, for multiple leagues at the same time
-load_fb_match_summary(
-  country = c("ITA", "ESP"),
+multiple_match_summary_2019 <- load_fb_match_summary(
+  country = c("ITA", "FRA"),
   gender = "M",
   tier = "1st",
   season_end_year = 2019
 )
+dplyr::glimpse(multiple_match_summary_2019)
 ```
 
 ### Load FBref advanced match stats
@@ -177,23 +181,25 @@ load_fb_match_summary(
 
 ```{r load_fb_advanced_match_stats}
 ## 2018 - current season for EPL
-load_fb_advanced_match_stats(
+epl_summary_player_match_stats <- load_fb_advanced_match_stats(
   country = "ENG",
   gender = "M",
   tier = "1st",
   stat_type = "summary",
   team_or_player = "player"
 )
+dplyr::glimpse(epl_summary_player_match_stats)
 
 ## just 2019, for multiple leagues at the same time
-load_fb_advanced_match_stats(
-  country = c("ITA", "ESP"),
+multiple_defense_player_match_stats_2019 <- load_fb_advanced_match_stats(
+  country = c("ITA", "FRA"),
   gender = "M",
   tier = "1st",
   season_end_year = 2019,
   stat_type = "defense",
   team_or_player = "player"
 )
+dplyr::glimpse(multiple_defense_player_match_stats_2019)
 ```
 
 
