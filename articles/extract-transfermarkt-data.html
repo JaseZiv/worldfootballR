@@ -15,8 +15,8 @@
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Extracting data from Transfermarkt">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-PQNCTZ7KQD"></script><script>
   window.dataLayer = window.dataLayer || [];
@@ -33,7 +33,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7.0003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2024-11-15</h4>
+            <h4 data-toc-skip class="date">2025-04-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/main/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -473,6 +473,33 @@ helpers section above.</p>
 <span><span class="co"># then you can pass these URLs to the function and get job histories for the selected staff members</span></span>
 <span><span class="va">epl_gk_coach_job_histories</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_staff_job_history.html">tm_staff_job_history</a></span><span class="op">(</span>staff_urls <span class="op">=</span> <span class="va">epl_gk_coaches</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_gk_coach_job_histories</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="player-suspensions">Player Suspensions<a class="anchor" aria-label="anchor" href="#player-suspensions"></a>
+</h3>
+<p>You can extract players with current suspensions in a league using
+<code><a href="../reference/tm_get_suspensions.html">tm_get_suspensions()</a></code>.</p>
+<p>The list of countries that can be passed to the
+<code>country_name</code> argument can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_leagues/main_comp_seasons.csv" class="external-link">here</a>.
+<code>league_url</code> can also be specified–the same file has a
+non-exhaustive list of valid URLs in <code>comp_url</code>. You may need
+to specify <code>league_url</code> for non-first tier leagues.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">england_suspensions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_suspensions.html">tm_get_suspensions</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span><span class="op">)</span></span>
+<span><span class="va">epl_suspensions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_suspensions.html">tm_get_suspensions</a></span><span class="op">(</span>league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1"</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_suspensions</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="players-at-risk-of-suspension">Players at Risk of Suspension<a class="anchor" aria-label="anchor" href="#players-at-risk-of-suspension"></a>
+</h3>
+<p>You can extract players at risk of being suspended (e.g. accumulating
+yellow cards) in a league using
+<code><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension()</a></code>. The function arguments work in
+the same way as they do for <code><a href="../reference/tm_get_suspensions.html">tm_get_suspensions()</a></code>.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">england_risk_of_suspension</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span><span class="op">)</span></span>
+<span><span class="va">epl_risk_of_suspension</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension</a></span><span class="op">(</span>league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1"</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_risk_of_suspension</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

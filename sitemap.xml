@@ -22,6 +22,7 @@
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_match_summary.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_match_urls.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_goal_logs.html</loc></url>
+<url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_info.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_match_logs.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_scouting_report.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/fb_player_season_stats.html</loc></url>
@@ -56,6 +57,8 @@
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/player_transfer_history.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_expiring_contracts.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_get_player_absence.html</loc></url>
+<url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_get_risk_of_suspension.html</loc></url>
+<url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_get_suspensions.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_league_debutants.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_league_injuries.html</loc></url>
 <url><loc>https://jaseziv.github.io/worldfootballR/reference/tm_league_team_urls.html</loc></url>

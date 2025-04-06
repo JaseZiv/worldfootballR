@@ -15,8 +15,8 @@
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Load Scraped Data Functions">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-PQNCTZ7KQD"></script><script>
   window.dataLayer = window.dataLayer || [];
@@ -33,7 +33,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.0001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7.0003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2024-11-15</h4>
+            <h4 data-toc-skip class="date">2025-04-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/main/vignettes/load-scraped-data.Rmd" class="external-link"><code>vignettes/load-scraped-data.Rmd</code></a></small>
       <div class="d-none name"><code>load-scraped-data.Rmd</code></div>
@@ -162,8 +162,8 @@ leagues are included in the data repository.</p>
 <span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
 <span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG…</span></span>
 <span><span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020,…</span></span>
-<span><span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
-<span><span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
+<span><span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
 <span><span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun…</span></span>
 <span><span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2019-09-07, 2019-09-07, 2019-09-08, 2019-09-08, 2019…</span></span>
 <span><span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "15:00", "15:00", "12:30", "14:00", "14:00", "14:30",…</span></span>
@@ -201,8 +201,8 @@ available:</p>
 <span><span class="co">#&gt; [10] "CONCACAF W Championship"                                     </span></span>
 <span><span class="co">#&gt; [11] "CONMEBOL Copa América"                                       </span></span>
 <span><span class="co">#&gt; [12] "Copa América Femenina"                                       </span></span>
-<span><span class="co">#&gt; [13] "Copa Libertadores de América"                                </span></span>
-<span><span class="co">#&gt; [14] "Copa Sudamericana"                                           </span></span>
+<span><span class="co">#&gt; [13] "Copa CONMEBOL Sudamericana"                                  </span></span>
+<span><span class="co">#&gt; [14] "Copa Libertadores de América"                                </span></span>
 <span><span class="co">#&gt; [15] "Copa de la Liga Profesional"                                 </span></span>
 <span><span class="co">#&gt; [16] "Copa del Rey"                                                </span></span>
 <span><span class="co">#&gt; [17] "Coppa Italia"                                                </span></span>
@@ -225,21 +225,22 @@ available:</p>
 <span><span class="co">#&gt; [34] "FIFA World Cup Qualification — UEFA"                         </span></span>
 <span><span class="co">#&gt; [35] "International Friendlies (M)"                                </span></span>
 <span><span class="co">#&gt; [36] "International Friendlies (W)"                                </span></span>
-<span><span class="co">#&gt; [37] "NWSL Challenge Cup"                                          </span></span>
-<span><span class="co">#&gt; [38] "NWSL Fall Series"                                            </span></span>
-<span><span class="co">#&gt; [39] "OFC Nations Cup"                                             </span></span>
-<span><span class="co">#&gt; [40] "OFC Women's Nations Cup"                                     </span></span>
-<span><span class="co">#&gt; [41] "Olympics — Women's Tournament"                               </span></span>
-<span><span class="co">#&gt; [42] "SheBelieves Cup"                                             </span></span>
-<span><span class="co">#&gt; [43] "UEFA Champions League"                                       </span></span>
-<span><span class="co">#&gt; [44] "UEFA Conference League"                                      </span></span>
-<span><span class="co">#&gt; [45] "UEFA Europa League"                                          </span></span>
-<span><span class="co">#&gt; [46] "UEFA European Football Championship"                         </span></span>
-<span><span class="co">#&gt; [47] "UEFA European Football Championship Qualifying"              </span></span>
-<span><span class="co">#&gt; [48] "UEFA Nations League"                                         </span></span>
-<span><span class="co">#&gt; [49] "UEFA Women's Champions League"                               </span></span>
-<span><span class="co">#&gt; [50] "UEFA Women's Championship"                                   </span></span>
-<span><span class="co">#&gt; [51] "UEFA Women's Euro Qualification"</span></span></code></pre>
+<span><span class="co">#&gt; [37] "Lamar Hunt U.S. Open Cup"                                    </span></span>
+<span><span class="co">#&gt; [38] "NWSL Challenge Cup"                                          </span></span>
+<span><span class="co">#&gt; [39] "NWSL Fall Series"                                            </span></span>
+<span><span class="co">#&gt; [40] "OFC Nations Cup"                                             </span></span>
+<span><span class="co">#&gt; [41] "OFC Women's Nations Cup"                                     </span></span>
+<span><span class="co">#&gt; [42] "Olympics — Women's Tournament"                               </span></span>
+<span><span class="co">#&gt; [43] "SheBelieves Cup"                                             </span></span>
+<span><span class="co">#&gt; [44] "UEFA Champions League"                                       </span></span>
+<span><span class="co">#&gt; [45] "UEFA Conference League"                                      </span></span>
+<span><span class="co">#&gt; [46] "UEFA Europa League"                                          </span></span>
+<span><span class="co">#&gt; [47] "UEFA European Football Championship"                         </span></span>
+<span><span class="co">#&gt; [48] "UEFA European Football Championship Qualifying"              </span></span>
+<span><span class="co">#&gt; [49] "UEFA Nations League"                                         </span></span>
+<span><span class="co">#&gt; [50] "UEFA Women's Champions League"                               </span></span>
+<span><span class="co">#&gt; [51] "UEFA Women's Championship"                                   </span></span>
+<span><span class="co">#&gt; [52] "UEFA Women's Euro Qualification"</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FIFA Women's World Cup"</span>,<span class="st">"FIFA World Cup"</span><span class="op">)</span></span>
 <span><span class="va">world_cups</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_match_comp_results.html">load_match_comp_results</a></span><span class="op">(</span>comp_name <span class="op">=</span> <span class="va">cups</span><span class="op">)</span></span>
@@ -248,19 +249,19 @@ available:</p>
 <span><span class="co">#&gt; Columns: 20</span></span>
 <span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FIFA Women's World Cup", "FIFA Women's World Cup", "…</span></span>
 <span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F"…</span></span>
-<span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
 <span><span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1991, 1991, 1991, 1991, 1991, 1991, 1991, 1991, 1991,…</span></span>
 <span><span class="co">#&gt; $ Round            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Group stage", "Group stage", "Group stage", "Group s…</span></span>
-<span><span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Wk               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
 <span><span class="co">#&gt; $ Day              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Tue", "Tue…</span></span>
 <span><span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 1991-11-16, 1991-11-17, 1991-11-17, 1991-11-17, 1991…</span></span>
 <span><span class="co">#&gt; $ Time             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "20:45", "15:30", "19:45", "19:45", "19:45", "19:45",…</span></span>
 <span><span class="co">#&gt; $ Home             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "China PR cn", "Germany de", "Japan jp", "Chinese Tai…</span></span>
 <span><span class="co">#&gt; $ HomeGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 4, 4, 0, 0, 2, 3, 4, 1, 0, 0, 0, 2, 0, 0, 4, 2, 2, 0,…</span></span>
-<span><span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Home_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
 <span><span class="co">#&gt; $ Away             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "no Norway", "ng Nigeria", "br Brazil", "it Italy", "…</span></span>
 <span><span class="co">#&gt; $ AwayGoals        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 1, 5, 3, 0, 0, 0, 3, 5, 8, 2, 3, 2, 1, 0, 1, 2,…</span></span>
-<span><span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ Away_xG          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
 <span><span class="co">#&gt; $ Attendance       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 65000, 14000, 14000, 11000, 14000, 14000, 12000, 1200…</span></span>
 <span><span class="co">#&gt; $ Venue            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Tianhe Stadium (Neutral Site)", "Jiangmen Stadium (N…</span></span>
 <span><span class="co">#&gt; $ Referee          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Salvador Imperatore Marcone", "Rafael Rodriguez", "L…</span></span>
@@ -293,55 +294,71 @@ match shooting logs from FBref. This is the load function equivalent of
 supported.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 2018 - current season for EPL</span></span>
-<span><span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
+<span><span class="va">epl_match_shooting</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 70,530 × 23</span></span></span>
-<span><span class="co">#&gt;    MatchURL     Date  Squad Home_Away Match_Half Minute Player Player_Href xG   </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbr… 2017… Arse… Home               1 2      Alexa… /en/player… 0.06 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbr… 2017… Arse… Home               1 8      Alex … /en/player… 0.04 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbr… 2017… Arse… Home               1 14     Alex … /en/player… 0.03 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbr… 2017… Arse… Home               1 22     Danny… /en/player… 0.34 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbr… 2017… Arse… Home               1 22     Grani… /en/player… 0.02 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbr… 2017… Arse… Home               1 26     Danny… /en/player… 0.07 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbr… 2017… Arse… Home               1 27     Sead … /en/player… 0.05 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbr… 2017… Arse… Home               1 27     Moham… /en/player… 0.01 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbr… 2017… Arse… Home               1 38     Grani… /en/player… 0.02 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbr… 2017… Arse… Home               1 45+2   Alexa… /en/player… 0.07 </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 70,520 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: PSxG &lt;chr&gt;, Outcome &lt;chr&gt;, Distance &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;, Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_2 &lt;chr&gt;, Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Gender &lt;chr&gt;, Country &lt;chr&gt;, Tier &lt;chr&gt;, Season_End_Year &lt;int&gt;</span></span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_shooting</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 73,903</span></span>
+<span><span class="co">#&gt; Columns: 23</span></span>
+<span><span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2df9a3a1/Aston-Villa-Br…</span></span>
+<span><span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2023-09-30", "2023-09-30", "2023-09-30", "2023-09-30…</span></span>
+<span><span class="co">#&gt; $ Squad            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Aston Villa", "Aston Villa", "Aston Villa", "Aston V…</span></span>
+<span><span class="co">#&gt; $ Home_Away        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home", "Home…</span></span>
+<span><span class="co">#&gt; $ Match_Half       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,…</span></span>
+<span><span class="co">#&gt; $ Minute           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "11", "14", "17", "17", "21", "23", "26", "26", "37",…</span></span>
+<span><span class="co">#&gt; $ Player           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Moussa Diaby", "Ollie Watkins", "Ollie Watkins", "Ol…</span></span>
+<span><span class="co">#&gt; $ Player_Href      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/en/players/aeed5c06/Moussa-Diaby", "/en/players/aed…</span></span>
+<span><span class="co">#&gt; $ xG               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.03", "0.37", "0.05", "0.04", "0.09", "0.03", "0.17…</span></span>
+<span><span class="co">#&gt; $ PSxG             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "0.93", "", "", "0.39", "0.43", "0.04", "", "", "…</span></span>
+<span><span class="co">#&gt; $ Outcome          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Blocked", "Goal", "Blocked", "Off Target", "Goal", "…</span></span>
+<span><span class="co">#&gt; $ Distance         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "31", "8", "16", "17", "15", "12", "16", "14", "26", …</span></span>
+<span><span class="co">#&gt; $ `Body Part`      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Left Foot", "Left Foot", "Left Foot", "Right Foot", …</span></span>
+<span><span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "Free kick", "Volley"…</span></span>
+<span><span class="co">#&gt; $ Player_SCA_1     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "Matty Cash", "John McGinn", "Ollie Watkins", "Ol…</span></span>
+<span><span class="co">#&gt; $ Event_SCA_1      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "Pass (Live)", "Pass (Live)", "Shot", "Take-On", …</span></span>
+<span><span class="co">#&gt; $ Player_SCA_2     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "John McGinn", "", "", "Moussa Diaby", "Nicolò Za…</span></span>
+<span><span class="co">#&gt; $ Event_SCA_2      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "Pass (Live)", "", "", "Pass (Live)", "Pass (Live…</span></span>
+<span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "Premier League",…</span></span>
+<span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"…</span></span>
+<span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG…</span></span>
+<span><span class="co">#&gt; $ Tier             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1st", "1st", "1st", "1st", "1st", "1st", "1st", "1st…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…</span></span>
 <span></span>
 <span><span class="co">## just 2019, for multiple leagues at the same time</span></span>
-<span><span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
-<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"ESP"</span><span class="op">)</span>,</span>
+<span><span class="va">multiple_match_shooting_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_match_shooting.html">load_fb_match_shooting</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"FRA"</span><span class="op">)</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span>
 <span>  season_end_year <span class="op">=</span> <span class="fl">2019</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19,810 × 23</span></span></span>
-<span><span class="co">#&gt;    MatchURL     Date  Squad Home_Away Match_Half Minute Player Player_Href xG   </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbr… 2018… Chie… Home               1 15     Ivan … /en/player… 0.02 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbr… 2018… Chie… Home               1 22     Ivan … /en/player… 0.02 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbr… 2018… Chie… Home               1 38     Mariu… /en/player… 0.23 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbr… 2018… Chie… Home               2 56     Emanu… /en/player… 0.79 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbr… 2018… Chie… Home               2 67     Ivan … /en/player… 0.03 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbr… 2018… Chie… Home               2 84     Fabri… /en/player… 0.02 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbr… 2018… Juve… Away               1 3      Sami … /en/player… 0.20 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbr… 2018… Juve… Away               1 5      Paulo… /en/player… 0.04 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbr… 2018… Juve… Away               1 6      Sami … /en/player… 0.07 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbr… 2018… Juve… Away               1 9      João … /en/player… 0.66 </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 19,800 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 14 more variables: PSxG &lt;chr&gt;, Outcome &lt;chr&gt;, Distance &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `Body Part` &lt;chr&gt;, Notes &lt;chr&gt;, Player_SCA_1 &lt;chr&gt;, Event_SCA_1 &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Player_SCA_2 &lt;chr&gt;, Event_SCA_2 &lt;chr&gt;, Competition_Name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Gender &lt;chr&gt;, Country &lt;chr&gt;, Tier &lt;chr&gt;, Season_End_Year &lt;int&gt;</span></span></span></code></pre></div>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">multiple_match_shooting_2019</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 19,967</span></span>
+<span><span class="co">#&gt; Columns: 23</span></span>
+<span><span class="co">#&gt; $ MatchURL         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2758c0c0/Chievo-Juventu…</span></span>
+<span><span class="co">#&gt; $ Date             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2018-08-18", "2018-08-18", "2018-08-18", "2018-08-18…</span></span>
+<span><span class="co">#&gt; $ Squad            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Chievo", "Chievo", "Chievo", "Chievo", "Chievo", "Ch…</span></span>
+<span><span class="co">#&gt; $ Home_Away        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home", "Away…</span></span>
+<span><span class="co">#&gt; $ Match_Half       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></span>
+<span><span class="co">#&gt; $ Minute           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "15", "22", "38", "56", "67", "84", "3", "5", "6", "9…</span></span>
+<span><span class="co">#&gt; $ Player           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ivan Radovanović", "Ivan Radovanović", "Mariusz Stęp…</span></span>
+<span><span class="co">#&gt; $ Player_Href      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/en/players/023937a9/Ivan-Radovanovic", "/en/players…</span></span>
+<span><span class="co">#&gt; $ xG               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.02", "0.02", "0.23", "0.79", "0.03", "0.02", "0.20…</span></span>
+<span><span class="co">#&gt; $ PSxG             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "0.50", "0.98", "", "", "0.19", "0.13", "", "…</span></span>
+<span><span class="co">#&gt; $ Outcome          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Off Target", "Off Target", "Goal", "Goal", "Off Targ…</span></span>
+<span><span class="co">#&gt; $ Distance         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "30", "28", "12", "13", "28", "28", "9", "22", "10", …</span></span>
+<span><span class="co">#&gt; $ `Body Part`      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Right Foot", "Right Foot", "Head", "Right Foot", "Le…</span></span>
+<span><span class="co">#&gt; $ Notes            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "", "…</span></span>
+<span><span class="co">#&gt; $ Player_SCA_1     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fabio Depaoli", "Fabrizio Cacciatore", "Emanuele Gia…</span></span>
+<span><span class="co">#&gt; $ Event_SCA_1      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pass (Live)", "Pass (Live)", "Pass (Live)", "Fouled"…</span></span>
+<span><span class="co">#&gt; $ Player_SCA_2     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Ivan Radovanović", "Emanuele Giaccherini", "Fabrizio…</span></span>
+<span><span class="co">#&gt; $ Event_SCA_2      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Pass (Live)", "Pass (Live)", "Pass (Live)", "Pass (L…</span></span>
+<span><span class="co">#&gt; $ Competition_Name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Serie A"…</span></span>
+<span><span class="co">#&gt; $ Gender           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M"…</span></span>
+<span><span class="co">#&gt; $ Country          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA…</span></span>
+<span><span class="co">#&gt; $ Tier             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1st", "1st", "1st", "1st", "1st", "1st", "1st", "1st…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,…</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="load-fbref-match-summary">Load FBref match summary<a class="anchor" aria-label="anchor" href="#load-fbref-match-summary"></a>
@@ -352,59 +369,58 @@ match summaries from FBref. This is the load function equivalent of
 supported.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 2018 - current season for EPL</span></span>
-<span><span class="fu"><a href="../reference/load_fb_match_summary.html">load_fb_match_summary</a></span><span class="op">(</span></span>
+<span><span class="va">epl_match_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_match_summary.html">load_fb_match_summary</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 35,745 × 33</span></span></span>
-<span><span class="co">#&gt;    MatchURL      League Match_Date Matchweek Home_Team Home_Formation Home_Score</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 35,735 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 26 more variables: Home_xG &lt;dbl&gt;, Home_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Yellow_Cards &lt;chr&gt;, Home_Red_Cards &lt;chr&gt;, Away_Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Formation &lt;chr&gt;, Away_Score &lt;dbl&gt;, Away_xG &lt;dbl&gt;, Away_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Yellow_Cards &lt;chr&gt;, Away_Red_Cards &lt;chr&gt;, Game_URL &lt;chr&gt;, Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Away &lt;chr&gt;, Event_Time &lt;dbl&gt;, Is_Pens &lt;lgl&gt;, Event_Half &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Event_Type &lt;chr&gt;, Event_Players &lt;chr&gt;, Score_Progression &lt;chr&gt;, …</span></span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_match_summary</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 0</span></span>
+<span><span class="co">#&gt; Columns: 0</span></span>
 <span></span>
 <span><span class="co">## just 2019, for multiple leagues at the same time</span></span>
-<span><span class="fu"><a href="../reference/load_fb_match_summary.html">load_fb_match_summary</a></span><span class="op">(</span></span>
-<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"ESP"</span><span class="op">)</span>,</span>
+<span><span class="va">multiple_match_summary_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_match_summary.html">load_fb_match_summary</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"FRA"</span><span class="op">)</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span>
 <span>  season_end_year <span class="op">=</span> <span class="fl">2019</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10,311 × 33</span></span></span>
-<span><span class="co">#&gt;    MatchURL      League Match_Date Matchweek Home_Team Home_Formation Home_Score</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 10,301 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 26 more variables: Home_xG &lt;dbl&gt;, Home_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Yellow_Cards &lt;chr&gt;, Home_Red_Cards &lt;chr&gt;, Away_Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Formation &lt;chr&gt;, Away_Score &lt;dbl&gt;, Away_xG &lt;dbl&gt;, Away_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Yellow_Cards &lt;chr&gt;, Away_Red_Cards &lt;chr&gt;, Game_URL &lt;chr&gt;, Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Away &lt;chr&gt;, Event_Time &lt;dbl&gt;, Is_Pens &lt;lgl&gt;, Event_Half &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Event_Type &lt;chr&gt;, Event_Players &lt;chr&gt;, Score_Progression &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">multiple_match_summary_2019</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 9,739</span></span>
+<span><span class="co">#&gt; Columns: 33</span></span>
+<span><span class="co">#&gt; $ MatchURL          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2758c0c0/Chievo-Juvent…</span></span>
+<span><span class="co">#&gt; $ League            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Serie A…</span></span>
+<span><span class="co">#&gt; $ Match_Date        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2018-08-18", "2018-08-18", "2018-08-18", "2018-08-1…</span></span>
+<span><span class="co">#&gt; $ Matchweek         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A (Matchweek 1)", "Serie A (Matchweek 1)", "S…</span></span>
+<span><span class="co">#&gt; $ Home_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Chievo", "Chievo", "Chievo", "Chievo", "Chievo", "C…</span></span>
+<span><span class="co">#&gt; $ Home_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3"…</span></span>
+<span><span class="co">#&gt; $ Home_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ Home_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.…</span></span>
+<span><span class="co">#&gt; $ Home_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mariusz Stępiński · 38&amp;rsquor; Emanuele Giaccherini…</span></span>
+<span><span class="co">#&gt; $ Home_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2…</span></span>
+<span><span class="co">#&gt; $ Home_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Away_Team         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Juventus", "Juventus", "Juventus", "Juv…</span></span>
+<span><span class="co">#&gt; $ Away_Formation    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1…</span></span>
+<span><span class="co">#&gt; $ Away_Score        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2…</span></span>
+<span><span class="co">#&gt; $ Away_xG           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.…</span></span>
+<span><span class="co">#&gt; $ Away_Goals        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sami Khedira · 3&amp;rsquor; Mattia Bani (OG) · 75&amp;rsqu…</span></span>
+<span><span class="co">#&gt; $ Away_Yellow_Cards <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Away_Red_Cards    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Game_URL          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2758c0c0/Chievo-Juvent…</span></span>
+<span><span class="co">#&gt; $ Team              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Chievo", "Chievo", "Juventus", "Chievo"…</span></span>
+<span><span class="co">#&gt; $ Home_Away         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Away", "Home", "Home", "Away", "Home", "Away", "Hom…</span></span>
+<span><span class="co">#&gt; $ Event_Time        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3, 38, 56, 56, 60, 64, 66, 75, 78, 84, 91, 93, 95, 2…</span></span>
+<span><span class="co">#&gt; $ Is_Pens           <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…</span></span>
+<span><span class="co">#&gt; $ Event_Half        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2…</span></span>
+<span><span class="co">#&gt; $ Event_Type        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Goal", "Goal", "Penalty", "Substitute", "Yellow Car…</span></span>
+<span><span class="co">#&gt; $ Event_Players     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sami Khedira Assist: Giorgio Chiellini", "Mariusz S…</span></span>
+<span><span class="co">#&gt; $ Score_Progression <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0:1", "1:1", "2:1", "2:1", "2:1", "2:1", "2:1", "2:…</span></span>
+<span><span class="co">#&gt; $ Penalty_Number    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, …</span></span>
+<span><span class="co">#&gt; $ Competition_Name  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Serie A…</span></span>
+<span><span class="co">#&gt; $ Gender            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…</span></span>
+<span><span class="co">#&gt; $ Country           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "IT…</span></span>
+<span><span class="co">#&gt; $ Tier              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1st", "1st", "1st", "1st", "1st", "1st", "1st", "1s…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019…</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="load-fbref-advanced-match-stats">Load FBref advanced match stats<a class="anchor" aria-label="anchor" href="#load-fbref-advanced-match-stats"></a>
@@ -415,63 +431,144 @@ equivalent of <code><a href="../reference/fb_advanced_match_stats.html">fb_advan
 and stat types are supported.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## 2018 - current season for EPL</span></span>
-<span><span class="fu"><a href="../reference/load_fb_advanced_match_stats.html">load_fb_advanced_match_stats</a></span><span class="op">(</span></span>
+<span><span class="va">epl_summary_player_match_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_advanced_match_stats.html">load_fb_advanced_match_stats</a></span><span class="op">(</span></span>
 <span>  country <span class="op">=</span> <span class="st">"ENG"</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span>
 <span>  stat_type <span class="op">=</span> <span class="st">"summary"</span>,</span>
 <span>  team_or_player <span class="op">=</span> <span class="st">"player"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 78,334 × 58</span></span></span>
-<span><span class="co">#&gt;    MatchURL      League Match_Date Matchweek Home_Team Home_Formation Home_Score</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbre… Premi… 2017-08-11 Premier … Arsenal   3-4-3                   4</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 78,324 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 51 more variables: Home_xG &lt;dbl&gt;, Home_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Yellow_Cards &lt;chr&gt;, Home_Red_Cards &lt;chr&gt;, Away_Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Formation &lt;chr&gt;, Away_Score &lt;dbl&gt;, Away_xG &lt;dbl&gt;, Away_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Yellow_Cards &lt;chr&gt;, Away_Red_Cards &lt;chr&gt;, Game_URL &lt;chr&gt;, Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Away &lt;chr&gt;, Player &lt;chr&gt;, Player_Href &lt;chr&gt;, Player_Num &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Nation &lt;chr&gt;, Pos &lt;chr&gt;, Age &lt;chr&gt;, Min &lt;dbl&gt;, Gls &lt;dbl&gt;, Ast &lt;dbl&gt;, …</span></span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_summary_player_match_stats</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 7,246</span></span>
+<span><span class="co">#&gt; Columns: 58</span></span>
+<span><span class="co">#&gt; $ MatchURL           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/cc5b4244/Manchester-U…</span></span>
+<span><span class="co">#&gt; $ League             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "Premier League…</span></span>
+<span><span class="co">#&gt; $ Match_Date         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2024-08-16", "2024-08-16", "2024-08-16", "2024-08-…</span></span>
+<span><span class="co">#&gt; $ Matchweek          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League (Matchweek 1)", "Premier League (Ma…</span></span>
+<span><span class="co">#&gt; $ Home_Team          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester United", "Manchester United", "Manchest…</span></span>
+<span><span class="co">#&gt; $ Home_Formation     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-…</span></span>
+<span><span class="co">#&gt; $ Home_Score         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "…</span></span>
+<span><span class="co">#&gt; $ Home_xG            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2.4, 2…</span></span>
+<span><span class="co">#&gt; $ Home_Goals         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Joshua Zirkzee · 87&amp;rsquor;", "Joshua Zirkzee · 87…</span></span>
+<span><span class="co">#&gt; $ Home_Yellow_Cards  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "…</span></span>
+<span><span class="co">#&gt; $ Home_Red_Cards     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Away_Team          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Fulham", "Fulham", "Fulham", "Fulham", "Fulham", "…</span></span>
+<span><span class="co">#&gt; $ Away_Formation     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-…</span></span>
+<span><span class="co">#&gt; $ Away_Score         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Away_xG            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0…</span></span>
+<span><span class="co">#&gt; $ Away_Goals         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "", "", "", "", "", "", "", "", "", "", "", "",…</span></span>
+<span><span class="co">#&gt; $ Away_Yellow_Cards  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "…</span></span>
+<span><span class="co">#&gt; $ Away_Red_Cards     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Game_URL           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/cc5b4244/Manchester-U…</span></span>
+<span><span class="co">#&gt; $ Team               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Manchester United", "Manchester United", "Manchest…</span></span>
+<span><span class="co">#&gt; $ Home_Away          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home", "Ho…</span></span>
+<span><span class="co">#&gt; $ Player             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Bruno Fernandes", "Marcus Rashford", "Amad Diallo"…</span></span>
+<span><span class="co">#&gt; $ Player_Href        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/en/players/507c7bdf/Bruno-Fernandes", "/en/player…</span></span>
+<span><span class="co">#&gt; $ Player_Num         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "8", "10", "16", "17", "7", "11", "37", "39", "18",…</span></span>
+<span><span class="co">#&gt; $ Nation             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "POR", "ENG", "CIV", "ARG", "ENG", "NED", "ENG", "S…</span></span>
+<span><span class="co">#&gt; $ Pos                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FW,AM", "LW", "RW", "RW", "AM", "FW", "DM", "DM", …</span></span>
+<span><span class="co">#&gt; $ Age                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "29-343", "26-290", "22-036", "20-046", "25-219", "…</span></span>
+<span><span class="co">#&gt; $ Min                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "90", "90", "60", "30", "60", "30", "83", "7", "90"…</span></span>
+<span><span class="co">#&gt; $ Gls                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Ast                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ PK                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ PKatt              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Sh                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "0", "0", "2", "1", "1", "1", "0", "3", "0", "…</span></span>
+<span><span class="co">#&gt; $ SoT                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "0", "0", "0", "1", "1", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ CrdY               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ CrdR               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…</span></span>
+<span><span class="co">#&gt; $ Touches            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "70", "43", "36", "19", "23", "12", "55", "4", "77"…</span></span>
+<span><span class="co">#&gt; $ Tkl                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "0", "1", "1", "3", "0", "3", "0", "4", "2", "…</span></span>
+<span><span class="co">#&gt; $ Int                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "1", "2", "0", "0", "0", "5", "0", "1", "1", "…</span></span>
+<span><span class="co">#&gt; $ Blocks             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "1", "0", "0", "0", "1", "0", "0", "5", "1", "…</span></span>
+<span><span class="co">#&gt; $ xG_Expected        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.2, 0.0, 0.0, 0.7, 0.3, 0.1, 0.0, 0.0, 0.2, 0.0, 0…</span></span>
+<span><span class="co">#&gt; $ npxG_Expected      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.2, 0.0, 0.0, 0.7, 0.3, 0.1, 0.0, 0.0, 0.2, 0.0, 0…</span></span>
+<span><span class="co">#&gt; $ xAG_Expected       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0, 0.7, 0.1, 0.2, 0.1, 0.0, 0.0, 0.0, 1.0, 0.0, 0…</span></span>
+<span><span class="co">#&gt; $ SCA_SCA            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "1", "1", "3", "3", "1", "1", "0", "5", "1", "…</span></span>
+<span><span class="co">#&gt; $ GCA_SCA            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "…</span></span>
+<span><span class="co">#&gt; $ Cmp_Passes         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "43", "22", "28", "10", "11", "8", "37", "4", "44",…</span></span>
+<span><span class="co">#&gt; $ Att_Passes         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "60", "30", "33", "11", "15", "9", "41", "4", "57",…</span></span>
+<span><span class="co">#&gt; $ Cmp_percent_Passes <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 71.7, 73.3, 84.8, 90.9, 73.3, 88.9, 90.2, 100.0, 77…</span></span>
+<span><span class="co">#&gt; $ PrgP_Passes        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "6", "2", "1", "0", "1", "1", "5", "0", "4", "3", "…</span></span>
+<span><span class="co">#&gt; $ Carries_Carries    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "50", "34", "22", "11", "16", "6", "39", "3", "46",…</span></span>
+<span><span class="co">#&gt; $ PrgC_Carries       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "7", "2", "0", "2", "0", "0", "0", "0", "0", "1", "…</span></span>
+<span><span class="co">#&gt; $ Att_Take_Ons       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "6", "1", "2", "2", "0", "5", "0", "1", "1", "…</span></span>
+<span><span class="co">#&gt; $ Succ_Take_Ons      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "0", "1", "0", "0", "0", "4", "0", "0", "1", "…</span></span>
+<span><span class="co">#&gt; $ Competition_Name   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Premier League", "Premier League", "Premier League…</span></span>
+<span><span class="co">#&gt; $ Gender             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "…</span></span>
+<span><span class="co">#&gt; $ Country            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "ENG", "E…</span></span>
+<span><span class="co">#&gt; $ Tier               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1st", "1st", "1st", "1st", "1st", "1st", "1st", "1…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 202…</span></span>
 <span></span>
 <span><span class="co">## just 2019, for multiple leagues at the same time</span></span>
-<span><span class="fu"><a href="../reference/load_fb_advanced_match_stats.html">load_fb_advanced_match_stats</a></span><span class="op">(</span></span>
-<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"ESP"</span><span class="op">)</span>,</span>
+<span><span class="va">multiple_defense_player_match_stats_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_fb_advanced_match_stats.html">load_fb_advanced_match_stats</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ITA"</span>, <span class="st">"FRA"</span><span class="op">)</span>,</span>
 <span>  gender <span class="op">=</span> <span class="st">"M"</span>,</span>
 <span>  tier <span class="op">=</span> <span class="st">"1st"</span>,</span>
 <span>  season_end_year <span class="op">=</span> <span class="fl">2019</span>,</span>
 <span>  stat_type <span class="op">=</span> <span class="st">"defense"</span>,</span>
 <span>  team_or_player <span class="op">=</span> <span class="st">"player"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,106 × 49</span></span></span>
-<span><span class="co">#&gt;    MatchURL      League Match_Date Matchweek Home_Team Home_Formation Home_Score</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> https://fbre… Serie… 2018-08-18 Serie A … Chievo    4-3-3                   2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21,096 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 42 more variables: Home_xG &lt;dbl&gt;, Home_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Yellow_Cards &lt;chr&gt;, Home_Red_Cards &lt;chr&gt;, Away_Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Formation &lt;chr&gt;, Away_Score &lt;dbl&gt;, Away_xG &lt;dbl&gt;, Away_Goals &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Away_Yellow_Cards &lt;chr&gt;, Away_Red_Cards &lt;chr&gt;, Game_URL &lt;chr&gt;, Team &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Home_Away &lt;chr&gt;, Player &lt;chr&gt;, Player_Href &lt;chr&gt;, Player_Num &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   Nation &lt;chr&gt;, Pos &lt;chr&gt;, Age &lt;chr&gt;, Min &lt;dbl&gt;, Tkl_Tackles &lt;dbl&gt;, …</span></span></span></code></pre></div>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">multiple_defense_player_match_stats_2019</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 21,107</span></span>
+<span><span class="co">#&gt; Columns: 57</span></span>
+<span><span class="co">#&gt; $ MatchURL               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2758c0c0/Chievo-J…</span></span>
+<span><span class="co">#&gt; $ League                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Se…</span></span>
+<span><span class="co">#&gt; $ Match_Date             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2018-08-18", "2018-08-18", "2018-08-18", "2018…</span></span>
+<span><span class="co">#&gt; $ Matchweek              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A (Matchweek 1)", "Serie A (Matchweek 1)…</span></span>
+<span><span class="co">#&gt; $ Home_Team              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Chievo", "Chievo", "Chievo", "Chievo", "Chievo…</span></span>
+<span><span class="co">#&gt; $ Home_Formation         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4-3-3", "4…</span></span>
+<span><span class="co">#&gt; $ Home_Score             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2…</span></span>
+<span><span class="co">#&gt; $ Home_xG                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.…</span></span>
+<span><span class="co">#&gt; $ Home_Goals             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mariusz Stępiński · 38&amp;rsquor; Emanuele Giacch…</span></span>
+<span><span class="co">#&gt; $ Home_Yellow_Cards      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "2", "2", "2", "2", "2", "2", "2", "2", "2…</span></span>
+<span><span class="co">#&gt; $ Home_Red_Cards         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Away_Team              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Juventus", "Juventus", "Juventus", "Juventus",…</span></span>
+<span><span class="co">#&gt; $ Away_Formation         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-2-3-1", "4-…</span></span>
+<span><span class="co">#&gt; $ Away_Score             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "3", "3", "3", "3", "3", "3", "3", "3", "3…</span></span>
+<span><span class="co">#&gt; $ Away_xG                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.…</span></span>
+<span><span class="co">#&gt; $ Away_Goals             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Sami Khedira · 3&amp;rsquor; Mattia Bani (OG) · 75…</span></span>
+<span><span class="co">#&gt; $ Away_Yellow_Cards      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Away_Red_Cards         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Game_URL               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://fbref.com/en/matches/2758c0c0/Chievo-J…</span></span>
+<span><span class="co">#&gt; $ Team                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Chievo", "Chievo", "Chievo", "Chievo", "Chievo…</span></span>
+<span><span class="co">#&gt; $ Home_Away              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Home", "Home", "Home", "Home", "Home", "Home",…</span></span>
+<span><span class="co">#&gt; $ Player                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Mariusz Stępiński", "Filip Đorđević", "Emanuel…</span></span>
+<span><span class="co">#&gt; $ Player_Href            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "/en/players/7b536033/Mariusz-Stepinski", "/en/…</span></span>
+<span><span class="co">#&gt; $ Player_Num             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "9", "20", "17", "27", "56", "22", "8", "4", "2…</span></span>
+<span><span class="co">#&gt; $ Nation                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "POL", "SRB", "ITA", "ITA", "FIN", "NGA", "SRB"…</span></span>
+<span><span class="co">#&gt; $ Pos                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "FW", "FW", "LW", "RW", "LM", "LM", "CM", "RM",…</span></span>
+<span><span class="co">#&gt; $ Age                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "23-098", "30-324", "33-105", "21-116", "31-249…</span></span>
+<span><span class="co">#&gt; $ Min                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "65", "25", "90", "90", "77", "13", "90", "90",…</span></span>
+<span><span class="co">#&gt; $ Tkl_Tackles            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "0", "8", "0", "1", "0", "2", "2", "6…</span></span>
+<span><span class="co">#&gt; $ TklW_Tackles           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "0", "0", "4", "0", "0", "0", "1", "1", "4…</span></span>
+<span><span class="co">#&gt; $ Def.3rd_Tackles        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 1, 0, 4, 0, 1, 0, 2, 2, 3, 2, 0, 0, 0, 0, 0,…</span></span>
+<span><span class="co">#&gt; $ Mid.3rd_Tackles        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 0, 0, 4, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1,…</span></span>
+<span><span class="co">#&gt; $ Att.3rd_Tackles        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span><span class="co">#&gt; $ Tkl_Challenges         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "3", "0", "0", "0", "1", "2", "2…</span></span>
+<span><span class="co">#&gt; $ Att_Challenges         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "1", "2", "4", "2", "0", "1", "1", "4", "2…</span></span>
+<span><span class="co">#&gt; $ Tkl_percent_Challenges <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 75, 0, <span style="color: #BB0000;">NA</span>, 0, 100, 50, 100, 100, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">N</span>…</span></span>
+<span><span class="co">#&gt; $ Lost_Challenges        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2", "1", "2", "1", "2", "0", "1", "0", "2", "0…</span></span>
+<span><span class="co">#&gt; $ Blocks_Blocks          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "1", "0", "0", "1", "0", "0", "2", "2", "0…</span></span>
+<span><span class="co">#&gt; $ Sh_Blocks              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "1", "0", "0", "0", "0", "0", "1", "1", "0…</span></span>
+<span><span class="co">#&gt; $ Pass_Blocks            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "1", "0", "0", "1", "1", "0…</span></span>
+<span><span class="co">#&gt; $ Int                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "2", "1", "0", "1", "2", "0", "2…</span></span>
+<span><span class="co">#&gt; $ Tkl.Int                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 0, 10, 1, 1, 1, 4, 2, 8, 3, 2, 0, 0, 0, 1…</span></span>
+<span><span class="co">#&gt; $ Clr                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "0", "1", "7", "2", "1", "0", "0", "4", "7…</span></span>
+<span><span class="co">#&gt; $ Err                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0…</span></span>
+<span><span class="co">#&gt; $ Competition_Name       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie A", "Serie A", "Serie A", "Serie A", "Se…</span></span>
+<span><span class="co">#&gt; $ Gender                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M…</span></span>
+<span><span class="co">#&gt; $ Country                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ITA", "ITA", "ITA", "ITA", "ITA", "ITA", "ITA"…</span></span>
+<span><span class="co">#&gt; $ Tier                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1st", "1st", "1st", "1st", "1st", "1st", "1st"…</span></span>
+<span><span class="co">#&gt; $ Season_End_Year        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,…</span></span>
+<span><span class="co">#&gt; $ Def.3rd_Tackles.1      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ Mid.3rd_Tackles.1      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ Att.3rd_Tackles.1      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ Tkl.Int.1              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ `Def 3rd_Tackles`      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ `Mid 3rd_Tackles`      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ `Att 3rd_Tackles`      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span>
+<span><span class="co">#&gt; $ `Tkl+Int`              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>,…</span></span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -501,7 +598,7 @@ for all seasons for the selected league since the 2014/15 seasons.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">serie_a_shot_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_understat_league_shots.html">load_understat_league_shots</a></span><span class="op">(</span>league <span class="op">=</span> <span class="st">"Serie A"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">serie_a_shot_locations</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 103,232</span></span>
+<span><span class="co">#&gt; Rows: 107,584</span></span>
 <span><span class="co">#&gt; Columns: 22</span></span>
 <span><span class="co">#&gt; $ league          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Serie_A", "Serie_A", "Serie_A", "Serie_A", "Serie_A",…</span></span>
 <span><span class="co">#&gt; $ id              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 41439, 41444, 41445, 41446, 41451, 41452, 41461, 41462…</span></span>
@@ -522,9 +619,9 @@ for all seasons for the selected league since the 2014/15 seasons.</p>
 <span><span class="co">#&gt; $ home_goals      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span></span>
 <span><span class="co">#&gt; $ away_goals      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span></span>
 <span><span class="co">#&gt; $ date            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2014-08-30 17:00:00", "2014-08-30 17:00:00", "2014-08…</span></span>
-<span><span class="co">#&gt; $ player_assisted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cristiano Biraghi", NA, "Nicolas Frey", "Ezequiel Sch…</span></span>
+<span><span class="co">#&gt; $ player_assisted <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cristiano Biraghi", <span style="color: #BB0000;">NA</span>, "Nicolas Frey", "Ezequiel Sch…</span></span>
 <span><span class="co">#&gt; $ lastAction      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Cross", "CrossNotClaimed", "Cross", "Pass", "Pass", "…</span></span>
-<span><span class="co">#&gt; $ home_away       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ home_away       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>, <span style="color: #BB0000;">NA</span>…</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
