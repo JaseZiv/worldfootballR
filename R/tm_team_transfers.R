@@ -53,15 +53,24 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
       team_page_window <- xml2::read_html(xfers_window_url)
       tab_box_window <- team_page_window %>% rvest::html_nodes(".box")
       # need to isolate the arrivals and departures tables
-      tab_names <- tab_box_window %>% rvest::html_nodes("h2") %>% rvest::html_text() %>% stringr::str_squish()
-      tab_box_window <- tab_box_window[which(tab_names %in% c("Arrivals", "Departures"))]
-      both_tabs <- tab_box_window %>% rvest::html_nodes(".responsive-table")
+      tab_names <- tab_box_window %>% 
+        rvest::html_node("h2") %>% 
+        purrr::map_chr(
+          \(.x) {
+            .x %>%
+              rvest::html_text() %>% 
+              stringr::str_squish()
+          }
+        )
+        
+      tab_box_window_selected <- tab_box_window[which(tab_names %in% c("Arrivals", "Departures"))]
+      both_tabs <- tab_box_window_selected %>% rvest::html_nodes(".responsive-table")
 
 
       # create output for team of both arrivals and departures
       team_df_each_window <- data.frame()
 
-      for(i in 1:length(tab_box_window)) {
+      for(i in 1:length(tab_box_window_selected)) {
         each_tab <- tryCatch(both_tabs[i] %>% rvest::html_nodes("tbody") %>% .[[1]] %>% rvest::html_children(), error = function(e) NA_character_)
 
         if(any(is.na(each_tab))) {
@@ -69,7 +78,7 @@ tm_team_transfers <- function(team_url, transfer_window = "all") {
         } else {
           player_df <- data.frame()
           for(j in 1:length(each_tab)) {
-            player_df[j, "transfer_type"] <- tryCatch(tab_box_window[i] %>% rvest::html_nodes("h2") %>% rvest::html_text() %>% stringr::str_squish(),
+            player_df[j, "transfer_type"] <- tryCatch(tab_box_window_selected[i] %>% rvest::html_nodes("h2") %>% rvest::html_text() %>% stringr::str_squish(),
                                                       error = function(e) player_df[j, "transfer_type"] <- NA_character_)
             player_df[j, "player_name"] <- tryCatch(each_tab[j] %>% rvest::html_node(".hauptlink") %>% rvest::html_nodes("a") %>% rvest::html_text(),
                                                     error = function(e) player_df[j, "player_name"] <- NA_character_)
