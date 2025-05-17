@@ -2,6 +2,8 @@
 
 ### Bugs
 
+* `tm_team_transfers()` correctly returns both Arrivals and Departures. (0.6.7.0004) ([#433](https://github.com/JaseZiv/worldfootballR/issues/433))
+
 ### Breaking Changes
 
 ### Improvements
