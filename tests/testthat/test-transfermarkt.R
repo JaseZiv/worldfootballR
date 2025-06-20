@@ -286,3 +286,10 @@ test_that("tm_get_risk_of_suspensions() works", {
   expect_false(nrow(player_stats) == 0)
 
 })
+
+test_that("tm_each_team_player_market_val() works") {
+  psg_player_market_values <- tm_each_team_player_market_val('https://www.transfermarkt.com/paris-saint-germain/startseite/verein/583')
+  expect_type(psg_player_market_values, "list")
+  expect_equal(ncol(psg_player_market_values), 18)
+  expect_false(nrow(psg_player_market_values) == 0)
+}
