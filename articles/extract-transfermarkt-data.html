@@ -32,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">worldfootballR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.7.0004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +73,7 @@
                         <h4 data-toc-skip class="author">Jason
 Zivkovic</h4>
             
-            <h4 data-toc-skip class="date">2025-05-17</h4>
+            <h4 data-toc-skip class="date">2025-06-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/JaseZiv/worldfootballR/blob/main/vignettes/extract-transfermarkt-data.Rmd" class="external-link"><code>vignettes/extract-transfermarkt-data.Rmd</code></a></small>
       <div class="d-none name"><code>extract-transfermarkt-data.Rmd</code></div>
@@ -325,9 +325,38 @@ all games played by players for a squad season, the
 <div class="section level3">
 <h3 id="player-valuations">Player Valuations<a class="anchor" aria-label="anchor" href="#player-valuations"></a>
 </h3>
+<p>As of version <code>0.6.8</code>, you can now get player market
+valuations per team using <code><a href="../reference/tm_each_team_player_market_val.html">tm_each_team_player_market_val()</a></code>,
+rather than returning all player valuations for all teams in a league.
+This function was created to allow users to iterate between teams and
+navigate their way through unresponsive page issues (see bug <a href="https://github.com/JaseZiv/worldfootballR/issues/432" class="external-link">#432</a>).</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#################################################################################################################################</span></span>
+<span><span class="co">#----- for a single team: -----#</span></span>
+<span><span class="va">rma</span> <span class="op">&lt;-</span> <span class="st">"https://www.transfermarkt.com/real-madrid/startseite/verein/418/saison_id/2024"</span></span>
+<span><span class="va">rma_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_each_team_player_market_val.html">tm_each_team_player_market_val</a></span><span class="op">(</span>each_team_url <span class="op">=</span> <span class="va">rma</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">#################################################################################################################################</span></span>
+<span><span class="co">#----- for a whole league season: -----#</span></span>
+<span><span class="co"># first, get all the team URLs for </span></span>
+<span><span class="va">italy_team_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Italy"</span>, start_year <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># then I would suggest using a for-loop - this will allow you to get creative and if you get blocked on a particular page </span></span>
+<span><span class="co"># you can start scraping from there:</span></span>
+<span><span class="va">italy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">each_team</span> <span class="kw">in</span> <span class="va">team_urls_update</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># print statement will allow you to see where you were blocked from</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"scraping "</span>, <span class="va">each_team</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="co"># OPTIONAL: put an extra sleep in in to be extra cautious</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_each_team_player_market_val.html">tm_each_team_player_market_val</a></span><span class="op">(</span>each_team_url <span class="op">=</span> <span class="va">each_team</span><span class="op">)</span></span>
+<span>  <span class="va">italy</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">italy</span>, <span class="va">df</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p>To get player valuations for all teams in a league season, use the
 <code><a href="../reference/tm_player_market_values.html">tm_player_market_values()</a></code> function:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- Can do it for a single league: -----#</span></span>
 <span><span class="va">a_league_valuations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_market_values.html">tm_player_market_values</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"Australia"</span>,</span>
 <span>                                       start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
@@ -356,7 +385,7 @@ extraction of player data.</p>
 were born, who they play for, their contract details, social media
 accounts and a whole lot more, use the <code><a href="../reference/tm_player_bio.html">tm_player_bio()</a></code>
 function.:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- for a single player: -----#</span></span>
 <span><span class="va">hazard_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_bio.html">tm_player_bio</a></span><span class="op">(</span>player_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">hazard_bio</span><span class="op">)</span></span>
@@ -373,7 +402,7 @@ function.:</p>
 <p>To be able to get an individual player(s) injury history from
 transfermarkt, use the <code><a href="../reference/tm_player_injury_history.html">tm_player_injury_history()</a></code>
 function.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- for a single player: -----#</span></span>
 <span><span class="va">hazard_injuries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_injury_history.html">tm_player_injury_history</a></span><span class="op">(</span>player_urls <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/eden-hazard/profil/spieler/50202"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">hazard_injuries</span><span class="op">)</span></span>
@@ -395,7 +424,7 @@ they want to scrape the extra info regarding the transfer. This will
 give additional information regarding contract length and nations
 involved, but will require more time. The default value is
 <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- for a single player, get_extra_info defaulting TRUE: -----#</span></span>
 <span><span class="va">jack_rodwell_transfer_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_player_transfer_history.html">tm_player_transfer_history</a></span><span class="op">(</span>player_urls <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/jack-rodwell/profil/spieler/57079"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">jack_rodwell_transfer_history</span><span class="op">)</span></span>
@@ -415,7 +444,7 @@ involved, but will require more time. The default value is
 <p>To be able to get a player’s (or players’) absence history as a
 result of suspensions from transfermarkt, use the
 <code><a href="../reference/tm_get_player_absence.html">tm_get_player_absence()</a></code> function.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#----- for a single player: -----#</span></span>
 <span><span class="va">romero_absence</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_player_absence.html">tm_get_player_absence</a></span><span class="op">(</span>player_urls <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/cristian-romero/profil/spieler/355915"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">romero_absence</span><span class="op">)</span></span>
@@ -444,7 +473,7 @@ detailed above).</p>
 <p>The list of roles that can be passed to the <code>staff_roles</code>
 argument can be found <a href="https://github.com/JaseZiv/worldfootballR_data/blob/master/raw-data/transfermarkt_staff/tm_staff_types.csv" class="external-link">here</a>,
 and they’re also listed below:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get a list of team URLs for the EPL 2021/22 season</span></span>
 <span><span class="va">epl_teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_league_team_urls.html">tm_league_team_urls</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span>, start_year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></span>
 <span><span class="co">#----- then use the URLs to pass to the function, and select the role you wish to see results for: -----#</span></span>
@@ -462,7 +491,7 @@ and they’re also listed below:</p>
 <p>The function accepts one argument, <code>staff_urls</code>, which can
 be extracted using <code><a href="../reference/tm_team_staff_urls.html">tm_team_staff_urls()</a></code> explained in the
 helpers section above.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get a list of team URLs for the EPL 2021/22 season</span></span>
 <span><span class="co"># epl_teams &lt;- tm_league_team_urls(country_name = "England", start_year = 2021)</span></span>
 <span></span>
@@ -483,7 +512,7 @@ helpers section above.</p>
 <code>league_url</code> can also be specified–the same file has a
 non-exhaustive list of valid URLs in <code>comp_url</code>. You may need
 to specify <code>league_url</code> for non-first tier leagues.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">england_suspensions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_suspensions.html">tm_get_suspensions</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span><span class="op">)</span></span>
 <span><span class="va">epl_suspensions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_suspensions.html">tm_get_suspensions</a></span><span class="op">(</span>league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_suspensions</span><span class="op">)</span></span></code></pre></div>
@@ -495,7 +524,7 @@ to specify <code>league_url</code> for non-first tier leagues.</p>
 yellow cards) in a league using
 <code><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension()</a></code>. The function arguments work in
 the same way as they do for <code><a href="../reference/tm_get_suspensions.html">tm_get_suspensions()</a></code>.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">england_risk_of_suspension</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension</a></span><span class="op">(</span>country_name <span class="op">=</span> <span class="st">"England"</span><span class="op">)</span></span>
 <span><span class="va">epl_risk_of_suspension</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tm_get_risk_of_suspension.html">tm_get_risk_of_suspension</a></span><span class="op">(</span>league_url <span class="op">=</span> <span class="st">"https://www.transfermarkt.com/premier-league/sperrenausfaelle/wettbewerb/GB1"</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">epl_risk_of_suspension</span><span class="op">)</span></span></code></pre></div>
@@ -512,7 +541,7 @@ the same way as they do for <code><a href="../reference/tm_get_suspensions.html"
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
