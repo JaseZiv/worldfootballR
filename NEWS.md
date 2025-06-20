@@ -1,5 +1,9 @@
 # worldfootballR (development version)
 
+### New Functions
+
+* `tm_each_team_player_market_val()` created to allow users to get player market values per team [#432](https://github.com/JaseZiv/worldfootballR/issues/432)
+
 ### Bugs
 
 * `tm_team_transfers()` correctly returns both Arrivals and Departures. (0.6.7.0004) ([#433](https://github.com/JaseZiv/worldfootballR/issues/433))

@@ -123,7 +123,7 @@ tm_get_suspensions <- function(country_name = NA, league_url = NA) {
                                   error = function(e) NA_real_)
       )
     }) %>%
-      dplyr::mutate(dplyr::across(where(is.character), .replace_empty_na))
+      dplyr::mutate(dplyr::across(dplyr::where(is.character), .replace_empty_na))
   }, error = function(e) {
     warning("Failed to extract suspension data")
     return(data.frame())
@@ -225,7 +225,7 @@ tm_get_risk_of_suspension <- function(country_name, league_url = NA) {
                                   rvest::html_text(trim = TRUE) %>% as.numeric(), error = function(e) NA)
       )
     }) %>%
-      dplyr::mutate(dplyr::across(where(is.character), .replace_empty_na))
+      dplyr::mutate(dplyr::across(dplyr::where(is.character), .replace_empty_na))
   }, error = function(e) {
     warning("Failed to extract risk data")
     return(data.frame())

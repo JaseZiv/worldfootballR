@@ -1,14 +1,29 @@
 context("Testing Transfermarkt functions")
 
-test_that("tm_player_market_values() works", {
+# test_that("tm_player_market_values() works", {
+#   testthat::skip_if_offline()
+#   testthat::skip_on_cran()
+#   # test that multiple countries can be passed to the function
+#   expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
+# 
+#   # test that an invalid country will error
+#   expect_error(tm_player_market_values(country_name = "Fake Country", start_year = 2020))
+# 
+# })
+
+
+test_that("tm_each_team_player_market_val() works", {
   testthat::skip_if_offline()
   testthat::skip_on_cran()
+  
+  rma <- "https://www.transfermarkt.com/real-madrid/startseite/verein/418/saison_id/2024"
+  rma_vals <- tm_each_team_player_market_val(each_team_url = rma)
   # test that multiple countries can be passed to the function
-  expect_type(tm_player_market_values(country_name = c("Australia", "Croatia"), start_year = 2020), "list")
-
+  expect_type(tm_each_team_player_market_val(each_team_url = rma), "list")
+  
   # test that an invalid country will error
-  expect_error(tm_player_market_values(country_name = "Fake Country", start_year = 2020))
-
+  expect_error(tm_each_team_player_market_val(each_team_url = "bvhjvhjbkj"))
+  
 })
 
 test_that("tm_player_transfer_history() works", {

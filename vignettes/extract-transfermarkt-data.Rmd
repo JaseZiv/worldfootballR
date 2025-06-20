@@ -238,6 +238,38 @@ dplyr::glimpse(bayern)
 
 ### Player Valuations
 
+
+As of version `0.6.8`, you can now get player market valuations per team using `tm_each_team_player_market_val()`, rather than returning all player valuations for all teams in a league. This function was created to allow users to iterate between teams and navigate their way through unresponsive page issues (see bug [#432](https://github.com/JaseZiv/worldfootballR/issues/432)).
+
+
+```{r, player_vals_team}
+#################################################################################################################################
+#----- for a single team: -----#
+rma <- "https://www.transfermarkt.com/real-madrid/startseite/verein/418/saison_id/2024"
+rma_vals <- tm_each_team_player_market_val(each_team_url = rma)
+
+
+#################################################################################################################################
+#----- for a whole league season: -----#
+# first, get all the team URLs for 
+italy_team_urls <- tm_league_team_urls(country_name = "Italy", start_year = 2024)
+
+# then I would suggest using a for-loop - this will allow you to get creative and if you get blocked on a particular page 
+# you can start scraping from there:
+italy <- data.frame()
+
+for(each_team in team_urls_update) {
+  # print statement will allow you to see where you were blocked from
+  print(paste0("scraping ", each_team))
+  # OPTIONAL: put an extra sleep in in to be extra cautious
+  Sys.sleep(10)
+  df <- tm_each_team_player_market_val(each_team_url = each_team)
+  italy <- bind_rows(italy, df)
+}
+```
+
+
+
 To get player valuations for all teams in a league season, use the `tm_player_market_values()` function:
 
 ```{r, player_vals}
