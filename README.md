@@ -23,7 +23,7 @@ This package is designed to allow users to extract various world
 football results and player statistics from the following popular
 football (soccer) data sites:
 
-- FBref
+- [FBref](https://fbref.com/)
 - [Transfermarkt](https://www.transfermarkt.com/)
 - [Understat](https://understat.com/)
 
